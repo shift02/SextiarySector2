@@ -8,15 +8,14 @@ import shift.sextiarysector.api.machine.energy.IEnergyHandler;
 
 public class TileEntityShaft extends TileEntityDirection implements IEnergyHandler {
 
-	public int rotateStep = 360;
-	public EnergyStorage storage = new EnergyStorage("Base", 1, 320,160);
-	//表示用
+	public float rotateStep = 360;
+	public EnergyStorage storage = new EnergyStorage("Base", 1, 320, 160);
+	// 表示用
 	public int lastSpeed = 0;
 	private final int cooltime = 0;
 
 	@Override
-	public void updateEntity()
-	{
+	public void updateEntity() {
 		super.updateEntity();
 		if (this.worldObj.isRemote) {
 			this.updateClientEntity();
@@ -28,123 +27,131 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 
 	}
 
-	public void updateClientEntity()
-	{
+	public void updateClientEntity() {
 
-		TileEntity t = this.worldObj.getTileEntity(xCoord+this.getInDirection().offsetX, yCoord+this.getInDirection().offsetY, zCoord+this.getInDirection().offsetZ);
+		TileEntity t = this.worldObj.getTileEntity(
+				xCoord + this.getInDirection().offsetX,
+				yCoord + this.getInDirection().offsetY,
+				zCoord + this.getInDirection().offsetZ);
 
-		if(t instanceof TileEntityShaft && ((TileEntityShaft) t).getDirection().ordinal()==this.direction.ordinal()){
+		if (t instanceof TileEntityShaft
+				&& ((TileEntityShaft) t).getDirection().ordinal() == this.direction
+						.ordinal()) {
 			return;
 		}
 
 		/*
-		if(this.rotateStep>=360){
-			this.rotateStep-=360;
-		}*/
+		 * if(this.rotateStep>=360){ this.rotateStep-=360; }
+		 */
 
-		this.rotateStep+=this.lastSpeed;
+		this.rotateStep += (float)this.lastSpeed/10.0f;
 
-		t = this.worldObj.getTileEntity(xCoord+this.getOutDirection().offsetX, yCoord+this.getOutDirection().offsetY, zCoord+this.getOutDirection().offsetZ);
+		t = this.worldObj.getTileEntity(
+				xCoord + this.getOutDirection().offsetX,
+				yCoord + this.getOutDirection().offsetY,
+				zCoord + this.getOutDirection().offsetZ);
 
-		for(int i=2;t instanceof TileEntityShaft && ((TileEntityShaft) t).getDirection().ordinal()==this.direction.ordinal();i++)
-		{
-			//System.out.println("b");
-			((TileEntityShaft)t).rotateStep=this.rotateStep;
-			t = this.worldObj.getTileEntity(xCoord+this.getOutDirection().offsetX*i, yCoord+this.getOutDirection().offsetY*i, zCoord+this.getOutDirection().offsetZ*i);
+		for (int i = 2; t instanceof TileEntityShaft
+				&& ((TileEntityShaft) t).getDirection().ordinal() == this.direction
+						.ordinal(); i++) {
+			// System.out.println("b");
+			((TileEntityShaft) t).rotateStep = this.rotateStep;
+			t = this.worldObj.getTileEntity(xCoord
+					+ this.getOutDirection().offsetX * i,
+					yCoord + this.getOutDirection().offsetY * i,
+					zCoord + this.getOutDirection().offsetZ * i);
 		}
 
 	}
 
-	public void updateServerEntity()
-	{
+	public void updateServerEntity() {
 
-		if(this.storage.getSpeedStored()/10!=lastSpeed){
-			lastSpeed = (int) (this.storage.getSpeedStored()/10);
-			//PacketDispatcher.sendPacketToAllPlayers(this.getDescriptionPacket());
+		if (this.storage.getSpeedStored() != lastSpeed) {
+			lastSpeed = (int) (this.storage.getSpeedStored());
+			// PacketDispatcher.sendPacketToAllPlayers(this.getDescriptionPacket());
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
 		}
 
-		if(storage.getSpeedStored()>0){
+		if (storage.getSpeedStored() > 0) {
 			storage.drawEnergy(storage.getMaxPowerStored(), 10, false);
 		}
 
 		/*
-		if(cooltime<=2){
-			this.cooltime++;
-		}else {
-
-			cooltime=0;*/
+		 * if(cooltime<=2){ this.cooltime++; }else {
+		 *
+		 * cooltime=0;
+		 */
 
 		/*
-			if(storage.getSpeedStored()>0){
+		 * if(storage.getSpeedStored()>0){
+		 *
+		 *
+		 * TileEntity t =this.getOutTileEntity(); if(t!=null && t instanceof
+		 * IEnergyHandler){
+		 *
+		 * int d =((IEnergyHandler)t).addEnergy(this.getInDirection(),
+		 * 1,Math.min(160, this.storage.getSpeedStored()) , true);
+		 *
+		 * ((IEnergyHandler)t).addEnergy(this.getInDirection(), 1,d , false);
+		 *
+		 * this.storage.drawEnergy(1, d, false);
+		 *
+		 * } }
+		 */
 
-
-				TileEntity t =this.getOutTileEntity();
-				if(t!=null && t instanceof IEnergyHandler){
-
-					int d =((IEnergyHandler)t).addEnergy(this.getInDirection(), 1,Math.min(160, this.storage.getSpeedStored()) , true);
-
-					((IEnergyHandler)t).addEnergy(this.getInDirection(), 1,d , false);
-
-					this.storage.drawEnergy(1, d, false);
-
-				}
-			}
-			*/
-
-		//}
-
+		// }
 
 	}
 
-	public int getShaftLength(){
+	public int getShaftLength() {
 
 		TileEntityShaft in = this.getInTileEntityShaft();
 		TileEntityShaft out = this.getOutTileEntityShaft();
 
-		int x= Math.abs(in.xCoord-out.yCoord);
-		int y= Math.abs(in.yCoord-out.yCoord);
-		int z= Math.abs(in.zCoord-out.zCoord);
+		int x = Math.abs(in.xCoord - out.yCoord);
+		int y = Math.abs(in.yCoord - out.yCoord);
+		int z = Math.abs(in.zCoord - out.zCoord);
 
-		return x+y+z;
+		return x + y + z;
 
 	}
 
-	public TileEntityShaft getInTileEntityShaft(){
+	public TileEntityShaft getInTileEntityShaft() {
 
-		if(this.isInShaft()){
+		if (this.isInShaft()) {
 			return this;
-		}else{
-			return ((TileEntityShaft)this.getInTileEntity()).getInTileEntityShaft();
+		} else {
+			return ((TileEntityShaft) this.getInTileEntity())
+					.getInTileEntityShaft();
 		}
 
 	}
 
-	public TileEntityShaft getOutTileEntityShaft(){
+	public TileEntityShaft getOutTileEntityShaft() {
 
-		if(this.isOutShaft()){
+		if (this.isOutShaft()) {
 			return this;
-		}else{
-			return ((TileEntityShaft)this.getOutTileEntity()).getOutTileEntityShaft();
+		} else {
+			return ((TileEntityShaft) this.getOutTileEntity()).getOutTileEntityShaft();
 		}
 
 	}
 
-	public boolean isInShaft(){
-		return !(this.getInTileEntity() instanceof TileEntityShaft) || ((TileEntityShaft)this.getInTileEntity()).getDirection().ordinal()!=this.getDirection().ordinal();
+	public boolean isInShaft() {
+		return !(this.getInTileEntity() instanceof TileEntityShaft)|| ((TileEntityShaft) this.getInTileEntity()).getDirection().ordinal() != this.getDirection().ordinal();
 	}
 
-	public boolean isOutShaft(){
-		return !(this.getOutTileEntity() instanceof TileEntityShaft) || ((TileEntityShaft)this.getOutTileEntity()).getDirection().ordinal()!=this.getDirection().ordinal();
+	public boolean isOutShaft() {
+		return !(this.getOutTileEntity() instanceof TileEntityShaft)|| ((TileEntityShaft) this.getOutTileEntity()).getDirection().ordinal() != this.getDirection().ordinal();
 	}
 
-	public TileEntity getInTileEntity(){
-		return this.worldObj.getTileEntity(xCoord+this.getInDirection().offsetX, yCoord+this.getInDirection().offsetY, zCoord+this.getInDirection().offsetZ);
+	public TileEntity getInTileEntity() {
+		return this.worldObj.getTileEntity(xCoord+ this.getInDirection().offsetX, yCoord+ this.getInDirection().offsetY, zCoord+ this.getInDirection().offsetZ);
 	}
 
-	public TileEntity getOutTileEntity(){
-		return this.worldObj.getTileEntity(xCoord+this.getOutDirection().offsetX, yCoord+this.getOutDirection().offsetY, zCoord+this.getOutDirection().offsetZ);
+	public TileEntity getOutTileEntity() {
+		return this.worldObj.getTileEntity(xCoord+ this.getOutDirection().offsetX,yCoord + this.getOutDirection().offsetY,zCoord + this.getOutDirection().offsetZ);
 	}
 
 	public ForgeDirection getInDirection() {
@@ -155,7 +162,7 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 		return direction;
 	}
 
-	//NBT関係
+	// NBT関係
 	@Override
 	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
 		super.readFromNBT(par1nbtTagCompound);
@@ -171,7 +178,7 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 	}
 
 	public float getRotateStep() {
-		return rotateStep/2.0f;
+		return rotateStep / 2.0f;
 	}
 
 	@Override
@@ -183,39 +190,46 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 		direction = d;
 	}
 
-	//EnergyStorageの利用
+	// EnergyStorageの利用
 	@Override
-	public int addEnergy(ForgeDirection from, int power, int speed, boolean simulate) {
+	public int addEnergy(ForgeDirection from, int power, int speed,
+			boolean simulate) {
 
-		if (this.getInDirection().ordinal() != from.ordinal())return 0;
+		if (this.getInDirection().ordinal() != from.ordinal())
+			return 0;
 
-		if(!(this.getOutTileEntity() instanceof IEnergyHandler))return 0;
+		if (!(this.getOutTileEntity() instanceof IEnergyHandler))
+			return 0;
 
-		int i = ((IEnergyHandler)this.getOutTileEntity()).addEnergy(from, power, speed, simulate);
+		int i = ((IEnergyHandler) this.getOutTileEntity()).addEnergy(from,
+				power, speed, simulate);
 
-		//storage.addEnergy(power, speed, simulate);
-		if(!simulate)storage.setEnergyStored(i);
+		// storage.addEnergy(power, speed, simulate);
+		if (!simulate)
+			storage.setEnergyStored(i);
 
 		return i;
 
-		//return storage.addEnergy(power, speed, simulate);
+		// return storage.addEnergy(power, speed, simulate);
 
 	}
 
 	@Override
-	public int drawEnergy(ForgeDirection from, int power, int speed, boolean simulate) {
+	public int drawEnergy(ForgeDirection from, int power, int speed,
+			boolean simulate) {
 
 		if (!this.canInterface(from))
 			return 0;
 
-		return 0;//storage.drawEnergy(power, speed, simulate);
+		return 0;// storage.drawEnergy(power, speed, simulate);
 
 	}
 
 	@Override
 	public boolean canInterface(ForgeDirection from) {
 
-		return this.getInDirection().ordinal() == from.ordinal()||this.getOutDirection().ordinal()==from.ordinal();
+		return this.getInDirection().ordinal() == from.ordinal()
+				|| this.getOutDirection().ordinal() == from.ordinal();
 
 	}
 

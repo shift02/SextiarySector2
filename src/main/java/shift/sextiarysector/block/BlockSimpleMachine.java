@@ -54,11 +54,11 @@ public class BlockSimpleMachine extends BlockContainer {
     {
 		int d = ((TileEntitySimpleMachine)par1IBlockAccess.getTileEntity(par2, par3, par4)).direction.ordinal();
 
-		if (par5 == 0)
+		if (par5 == 1)
 		{
 			return this.iconTop;
 		}
-		else if (par5 == 1)
+		else if (par5 == 0)
 		{
 			return this.iconUnder;
 		}
@@ -78,11 +78,11 @@ public class BlockSimpleMachine extends BlockContainer {
 	public IIcon getIcon(int par1, int par2)
 	{
 
-		if (par1 == 0)
+		if (par1 == 1)
 		{
 			return this.iconTop;
 		}
-		else if (par1 == 1)
+		else if (par1 == 0)
 		{
 			return this.iconUnder;
 		}
