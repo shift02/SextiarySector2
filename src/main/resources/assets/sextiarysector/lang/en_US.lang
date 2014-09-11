@@ -1,0 +1,28 @@
+#English en_US
+
+#Block
+tile.ss.large_furnace.name=Large Furnace
+
+tile.ss.wood_grate.name=Wood Grate
+
+tile.ss.small_windmill.name=Small Windmill
+tile.ss.wood_shaft.name=Wood shaft
+tile.ss.millstone.name=Millstone
+
+#Item
+item.ss.dust_waterlily.name=WaterLily Dust
+
+#GUI
+container.large_furnace=Large Furnace
+container.sub.inventory=Buffer
+
+gui.ss.millstone=Millstone
+
+#Tab
+itemGroup.ss.core=SextiarySector -Core-
+
+#NEI
+nei.ss.furnace.shaped=Furnace Shaped
+nei.ss.furnace.shapeless=Furnace Shapeless
+
+nei.ss.millstone=Millstone Recipe

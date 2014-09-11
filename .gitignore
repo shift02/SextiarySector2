@@ -1,0 +1,9 @@
+/bin
+
+/.gradle
+/api
+/build
+/src/api
+/*.exe
+/*.classpath
+/*.project

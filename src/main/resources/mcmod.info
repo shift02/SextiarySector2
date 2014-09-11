@@ -1,0 +1,16 @@
+[
+{
+  "modid": "SextiarySector",
+  "name": "Sextiary Sector",
+  "description": "SextiarySector",
+  "version": "${version}",
+  "logoFile": "",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authors": [ "ƒVƒtƒg (Shift)" ],
+  "parent":"",
+  "screenshots": [],
+  "dependencies": ["mod_MinecraftForge"]
+}
+]
