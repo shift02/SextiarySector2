@@ -20,6 +20,7 @@ gui.ss.millstone=Millstone
 
 #Tab
 itemGroup.ss.core=SextiarySector -Core-
+itemGroup.ss.machine=SextiarySector -Machine-
 
 #NEI
 nei.ss.furnace.shaped=Furnace Shaped

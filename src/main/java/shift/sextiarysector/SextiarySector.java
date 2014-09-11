@@ -3,11 +3,7 @@ package shift.sextiarysector;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +23,7 @@ import shift.sextiarysector.module.ModuleAchievement;
 import shift.sextiarysector.packet.PacketHandler;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.proxy.CommonProxy;
-import shift.sextiarysector.recipe.FurnaceCraftingManager;
+import shift.sextiarysector.recipe.RecipesFurnaceCraft;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -111,12 +107,7 @@ public class SextiarySector {
     public void postInit(FMLPostInitializationEvent event)
     {
 
-
-    	for( Map.Entry<ItemStack, ItemStack> e : ((HashMap<ItemStack,ItemStack>)FurnaceRecipes.smelting().getSmeltingList()).entrySet()){
-
-    		FurnaceCraftingManager.getInstance().addShapelessRecipe(e.getValue(), new Object[]{e.getKey()});
-
-    	}
+    	RecipesFurnaceCraft.addVanillaRecipes();
 
     	for(IModule m : modules){
     		m.postInit(event);

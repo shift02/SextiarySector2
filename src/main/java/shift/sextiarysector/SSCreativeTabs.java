@@ -12,6 +12,7 @@ public class SSCreativeTabs {
 	public static void initCreativeTabs(){
 
 		SextiarySectorAPI.TabSSCore = new CreativeTabSSCore();
+		SextiarySectorAPI.TabSSMachine = new CreativeTabSSMachine();
 
 	}
 
@@ -30,6 +31,25 @@ public class SSCreativeTabs {
 	    public ItemStack getIconItemStack()
 	    {
 			return new ItemStack(SSBlocks.LargeFurnace,1);
+	    }
+
+	}
+
+	private static class CreativeTabSSMachine extends CreativeTabs{
+
+		public CreativeTabSSMachine() {
+			super("ss.machine");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;//SSBlocks.LargeFurnace.g;
+		}
+
+		@SideOnly(Side.CLIENT)
+	    public ItemStack getIconItemStack()
+	    {
+			return new ItemStack(SSBlocks.shaft,1);
 	    }
 
 	}

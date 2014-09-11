@@ -16,6 +16,8 @@ public class SextiarySectorAPI {
 
 	//CreativeTabs
 	public static CreativeTabs TabSSCore;
+	public static CreativeTabs TabSSMachine;
+
 
 	/**
 	 * IPlayerManager Player関係のインターフェース <br>
