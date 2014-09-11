@@ -99,6 +99,19 @@ public class GearForceItemManager implements IGearForceItemManager {
 	}
 
 	@Override
+	public int getPower(ItemStack theItem) {
+
+		if (theItem.getTagCompound() == null)
+        {
+			theItem.setTagCompound(new NBTTagCompound());
+			return 0;
+        }
+
+		return theItem.getTagCompound().getInteger("gfpower");
+
+	}
+
+	@Override
 	public int getSpeed(ItemStack theItem) {
 
 		if (theItem.getTagCompound() == null)
@@ -130,6 +143,7 @@ public class GearForceItemManager implements IGearForceItemManager {
         int powerStored = Math.max(Math.min(power, item.getMaxPowerStored(itemStack)), 0);
         int speedStored = Math.max(Math.min(speed, item.getMaxSpeedStored(itemStack)), 0);
         itemStack.getTagCompound().setInteger("gfpower", powerStored);
+        if(speedStored==0)itemStack.getTagCompound().setInteger("gfpower", 0);
         itemStack.getTagCompound().setInteger("gfspeed", speedStored);
         int damage = (int) (d - (speedStored / (double) item.getMaxSpeedStored(itemStack)) * d);
         if(speedStored==0){
@@ -142,12 +156,12 @@ public class GearForceItemManager implements IGearForceItemManager {
         	damage = 1;
         }
 
-        if(!r.contains(itemStack.getItem())){
+        if(!r.contains(itemStack.getItem())&&((IGearForceItem)itemStack.getItem()).isCustomDamage(itemStack)){
         	SextiarySector.proxy.registerItemRenderer(itemStack.getItem());
         	r.add(itemStack.getItem());
         }
 
-        itemStack.setItemDamage(damage);
+        //itemStack.setItemDamage(damage);
 		return true;
     }
 

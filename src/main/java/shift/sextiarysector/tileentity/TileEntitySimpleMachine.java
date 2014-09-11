@@ -119,7 +119,7 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 	{
 
 		if(GearForceItem.manager.storeEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), 1, true)>0){
-			int s = GearForceItem.manager.storeEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), 2, false);
+			int s = GearForceItem.manager.storeEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), 20, false);
 
 			int i = this.storage.addEnergy(this.storage.getMaxPowerStored(), s, false);
 			if(i>0)this.inPower = this.storage.getMaxPowerStored();

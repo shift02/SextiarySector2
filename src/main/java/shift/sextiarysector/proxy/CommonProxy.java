@@ -17,8 +17,8 @@ public class CommonProxy {
 	}
 
 	public void registerItemRenderer(Item item) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
+
 
 }

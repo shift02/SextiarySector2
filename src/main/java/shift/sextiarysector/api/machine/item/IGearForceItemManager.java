@@ -11,6 +11,8 @@ public interface IGearForceItemManager {
 
 	public int getSpeed(ItemStack theItem);
 
+	public int getPower(ItemStack theItem);
+
 	public boolean setEnergy(ItemStack itemStack, int power, int speed);
 
 	boolean canUse(ItemStack itemStack, int speed);

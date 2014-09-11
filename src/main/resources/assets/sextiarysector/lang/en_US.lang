@@ -12,6 +12,8 @@ tile.ss.millstone.name=Millstone
 #Item
 item.ss.dust_waterlily.name=WaterLily Dust
 
+item.ss.wood_gf_storage.name=Wood GF Storage
+
 #GUI
 container.large_furnace=Large Furnace
 container.sub.inventory=Buffer

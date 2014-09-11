@@ -25,7 +25,7 @@ public class ContainerSimpleMachine  extends Container{
     {
         this.machine = par2TileEntityFurnace;
         this.addSlotToContainer(new Slot(par2TileEntityFurnace, 0, 56, 17));
-        this.addSlotToContainer(new Slot(par2TileEntityFurnace, 1, 56, 53));
+        this.addSlotToContainer(new SlotGF(par2TileEntityFurnace, 1, 56, 53,1));
         this.addSlotToContainer(new SlotFurnace(par1InventoryPlayer.player, par2TileEntityFurnace, 2, 116, 35));
         int i;
 
