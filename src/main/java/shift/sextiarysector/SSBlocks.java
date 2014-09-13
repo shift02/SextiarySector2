@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockLargeFurnace;
+import shift.sextiarysector.block.BlockPowerStone;
 import shift.sextiarysector.block.BlockSSPane;
 import shift.sextiarysector.block.BlockShaft;
 import shift.sextiarysector.block.BlockSimpleMachine;
@@ -32,6 +33,9 @@ public class SSBlocks {
 
 	public static Block woodGrate;
 
+	public static Block blueStoneOre;
+	public static Block yellowStoneOre;
+
 	public static void initBlicks(){
 
 		LargeFurnace = new BlockLargeFurnace().setBlockName("ss.large_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
@@ -40,6 +44,12 @@ public class SSBlocks {
 
 		woodGrate = (new BlockSSPane(ID+":wood_grate", ID+":wood_grate", Material.wood, false)).setHardness(0.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodGrate, "WoodGrate");
+
+		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(blueStoneOre, "BlueStoneOre");
+
+		yellowStoneOre = new BlockPowerStone().setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(yellowStoneOre, "YellowStoneOre");
 
 		shaft = new BlockShaft().setBlockName("ss.wood_shaft").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerBlock(shaft,ItemBlockShaft.class, "WoodShaft");

@@ -10,8 +10,14 @@ tile.ss.wood_shaft.name=Wood shaft
 tile.ss.wood_gear_box.name=Wood Gear Box
 tile.ss.millstone.name=Millstone
 
+tile.ss.blue_stone.name=Blue Stone Ore
+tile.ss.yellow_stone.name=Yellow Stone Ore
+
 #Item
 item.ss.dust_waterlily.name=WaterLily Dust
+
+item.ss.dust_blue_stone.name=Blue Stone Dust
+item.ss.dust_yellow_stone.name=Yellow Stone Dust
 
 item.ss.wood_gf_storage.name=Wood GF Storage
 
@@ -26,6 +32,7 @@ itemGroup.ss.core=SextiarySector -Core-
 itemGroup.ss.machine=SextiarySector -Machine-
 
 #NEI
+nei.recipe=Recipes
 nei.ss.furnace.shaped=Furnace Shaped
 nei.ss.furnace.shapeless=Furnace Shapeless
 

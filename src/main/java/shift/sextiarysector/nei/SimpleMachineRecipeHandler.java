@@ -15,7 +15,7 @@ import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
-public abstract class SimpleMachineRecipeHandler  extends TemplateRecipeHandler{
+public abstract class SimpleMachineRecipeHandler  extends TemplateSSRecipeHandler{
 
 	public class SimpleMachinePair extends CachedRecipe
     {

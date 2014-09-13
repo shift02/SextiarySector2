@@ -1,18 +1,46 @@
 package shift.sextiarysector.item;
 
-import net.minecraft.item.Item;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import shift.sextiarysector.api.machine.item.GearForceItem;
 import shift.sextiarysector.api.machine.item.ItemGearForce;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemGearStorage extends ItemGearForce{
+
+	private IIcon full;
 
 	public ItemGearStorage(int power, int maxSpeed, int slot) {
 		super(power, maxSpeed, slot);
 	}
 
-	public Item setTextureName(String p_111206_1_)
+	@SideOnly(Side.CLIENT)
+    public IIcon getIconIndex(ItemStack p_77650_1_)
     {
-        this.iconString = p_111206_1_;
-        return this;
+
+		if(GearForceItem.manager.getSpeed(p_77650_1_)>0){
+			return this.full;
+		}
+
+        return this.getIconFromDamage(p_77650_1_.getItemDamage());
+    }
+
+	public IIcon getIcon(ItemStack stack, int pass)
+    {
+		if(GearForceItem.manager.getSpeed(stack)>0){
+			return this.full;
+		}
+
+        return this.getIconFromDamage(stack.getItemDamage());
+    }
+
+	@SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister p_94581_1_)
+    {
+        this.itemIcon = p_94581_1_.registerIcon(this.getIconString());
+        this.full = p_94581_1_.registerIcon(this.getIconString()+"_full");
     }
 
 }

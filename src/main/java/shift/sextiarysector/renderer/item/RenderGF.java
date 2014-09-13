@@ -40,7 +40,7 @@ public class RenderGF implements IItemRenderer {
 
 			int k = (int)Math.round(GearForceItem.manager.getSpeed(item) * 13.0D / ((IGearForceItem)item.getItem()).getMaxSpeedStored(item));
 
-			this.renderItem.renderIcon(0, 0, item.getItem().getIcon(item, 0), 16, 16);
+			this.renderItem.renderIcon(0, 0, item.getItem().getIconIndex(item), 16, 16);
 
 			int y = 0;
 
