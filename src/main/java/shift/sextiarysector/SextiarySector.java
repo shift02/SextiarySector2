@@ -17,6 +17,7 @@ import shift.sextiarysector.event.ClientEventHandler;
 import shift.sextiarysector.event.CommonEventHandler;
 import shift.sextiarysector.event.HUDEventHandler;
 import shift.sextiarysector.event.PlayerStatusEventHandler;
+import shift.sextiarysector.event.WorldEventHandler;
 import shift.sextiarysector.item.GearForceItemManager;
 import shift.sextiarysector.module.IModule;
 import shift.sextiarysector.module.ModuleAchievement;
@@ -64,7 +65,8 @@ public class SextiarySector {
     	if(event.getSide().isClient())MinecraftForge.EVENT_BUS.register(new HUDEventHandler());
     	MinecraftForge.EVENT_BUS.register(new PlayerStatusEventHandler());
     	MinecraftForge.EVENT_BUS.register(new VanillaFoodHandler());
-    	MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+    	if(event.getSide().isClient())MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+    	MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
 
 		GearForceItem.manager = new GearForceItemManager();
 
