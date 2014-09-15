@@ -29,14 +29,11 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 
 	public void updateClientEntity() {
 
-		TileEntity t = this.worldObj.getTileEntity(
-				xCoord + this.getInDirection().offsetX,
+		TileEntity t = this.worldObj.getTileEntity(xCoord + this.getInDirection().offsetX,
 				yCoord + this.getInDirection().offsetY,
 				zCoord + this.getInDirection().offsetZ);
 
-		if (t instanceof TileEntityShaft
-				&& ((TileEntityShaft) t).getDirection().ordinal() == this.direction
-						.ordinal()) {
+		if (t instanceof TileEntityShaft&& ((TileEntityShaft) t).getDirection().ordinal() == this.direction.ordinal()) {
 			return;
 		}
 
@@ -46,20 +43,15 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 
 		this.rotateStep += (float)this.lastSpeed/10.0f;
 
-		t = this.worldObj.getTileEntity(
-				xCoord + this.getOutDirection().offsetX,
-				yCoord + this.getOutDirection().offsetY,
-				zCoord + this.getOutDirection().offsetZ);
+		t = this.worldObj.getTileEntity(xCoord + this.getOutDirection().offsetX,yCoord + this.getOutDirection().offsetY,zCoord + this.getOutDirection().offsetZ);
 
-		for (int i = 2; t instanceof TileEntityShaft
-				&& ((TileEntityShaft) t).getDirection().ordinal() == this.direction
-						.ordinal(); i++) {
+		for (int i = 2; t instanceof TileEntityShaft&& ((TileEntityShaft) t).getDirection().ordinal() == this.direction.ordinal(); i++) {
 			// System.out.println("b");
 			((TileEntityShaft) t).rotateStep = this.rotateStep;
-			t = this.worldObj.getTileEntity(xCoord
-					+ this.getOutDirection().offsetX * i,
-					yCoord + this.getOutDirection().offsetY * i,
-					zCoord + this.getOutDirection().offsetZ * i);
+
+			//if(this.worldObj.rand.nextInt(30)==1)this.worldObj.spawnParticle("reddust", t.xCoord+0.5f, t.yCoord+0.5f, t.zCoord+0.5f, -0.3D, 0.0D, 1.0D);
+
+			t = this.worldObj.getTileEntity(xCoord+ this.getOutDirection().offsetX * i,yCoord + this.getOutDirection().offsetY * i,zCoord + this.getOutDirection().offsetZ * i);
 		}
 
 	}

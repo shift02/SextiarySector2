@@ -8,6 +8,7 @@ tile.ss.wood_grate.name=Wood Grate
 tile.ss.small_windmill.name=Small Windmill
 tile.ss.wood_shaft.name=Wood shaft
 tile.ss.wood_gear_box.name=Wood Gear Box
+tile.ss.wood_gf_tank.name=Wood GF Tank
 tile.ss.millstone.name=Millstone
 
 tile.ss.blue_stone.name=Blue Stone Ore
@@ -26,6 +27,7 @@ container.large_furnace=Large Furnace
 container.sub.inventory=Buffer
 
 gui.ss.millstone=Millstone
+gui.ss.gf_tank=Wood GF Tank
 
 #Tab
 itemGroup.ss.core=SextiarySector -Core-

@@ -6,26 +6,47 @@ import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.api.machine.energy.IEnergyHandler;
 import shift.sextiarysector.tileentity.TileEntityDirection;
-import shift.sextiarysector.tileentity.TileEntityGearBox;
+import shift.sextiarysector.tileentity.TileEntityGFTank;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockGearBox  extends BlockContainer{
+public class BlockGFTank  extends BlockContainer{
 
 	@SideOnly(Side.CLIENT)
     protected IIcon in;
     protected IIcon out;
 
-	public BlockGearBox(Material p_i45386_1_) {
+    private int guiID;
+
+	public BlockGFTank(Material p_i45386_1_, int gui) {
 		super(p_i45386_1_);
+		this.guiID = gui;
+	}
+
+	@Override
+	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6,
+			float par7, float par8, float par9) {
+
+		if (par1World.isRemote)
+		{
+			return true;
+		}
+		else
+		{
+			par5EntityPlayer.openGui(SextiarySector.instance, this.guiID, par1World, x, y, z);
+
+			return true;
+		}
 	}
 
 	@Override
@@ -36,13 +57,13 @@ public class BlockGearBox  extends BlockContainer{
 
 		int di = ((TileEntityDirection)par1IBlockAccess.getTileEntity(par2, par3, par4)).direction.ordinal();
 
-		if(di==par5)return in;
+		if(di==par5)return out;
 
 		ForgeDirection d = ForgeDirection.getOrientation(par5);
 
 		TileEntity t = par1IBlockAccess.getTileEntity(par2 + d.offsetX, par3 + d.offsetY, par4 + d.offsetZ);
 
-		if(t instanceof IEnergyHandler && ((IEnergyHandler) t).canInterface(d.getOpposite()))return out;
+		if(t instanceof IEnergyHandler && ((IEnergyHandler) t).canInterface(d.getOpposite()))return in;
 
 		return this.blockIcon;
     }
@@ -54,7 +75,7 @@ public class BlockGearBox  extends BlockContainer{
 
 		if (par1 == 3)
 		{
-			return this.in;
+			return this.out;
 		}else
 		{
 			return this.blockIcon;
@@ -127,7 +148,7 @@ public class BlockGearBox  extends BlockContainer{
 
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileEntityGearBox();
+		return new TileEntityGFTank();
 	}
 
 }
