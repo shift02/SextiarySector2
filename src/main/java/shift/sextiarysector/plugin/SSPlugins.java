@@ -29,8 +29,8 @@ public class SSPlugins {
 
 			try {
 
-				PluginAppleMilk.registeCoFHCore(event);
-				SextiarySector.Log.info("CoFHCore is loaded");
+				PluginAppleMilk.registeDCsAppleMilk(event);
+				SextiarySector.Log.info("DCsAppleMilk is loaded");
 
 			} catch (Exception e) {
 

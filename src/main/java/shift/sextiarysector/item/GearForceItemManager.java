@@ -17,7 +17,7 @@ public class GearForceItemManager implements IGearForceItemManager {
 
 	//減らす
 	@Override
-	public int storeEnergy(ItemStack itemStack, int power, int speed, boolean simulate) {
+	public int reduceEnergy(ItemStack itemStack, int power, int speed, boolean simulate) {
 
 		if(!(itemStack.getItem() instanceof IGearForceItem)){
 			return 0;
@@ -60,7 +60,7 @@ public class GearForceItemManager implements IGearForceItemManager {
 
 	//増やす
 	@Override
-	public int reduceEnergy(ItemStack itemStack, int power, int speed, boolean simulate) {
+	public int addEnergy(ItemStack itemStack, int power, int speed, boolean simulate) {
 
 
 		if(!(itemStack.getItem() instanceof IGearForceItem)){

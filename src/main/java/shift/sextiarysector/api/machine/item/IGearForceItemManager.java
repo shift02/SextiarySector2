@@ -5,9 +5,9 @@ import net.minecraft.item.ItemStack;
 
 public interface IGearForceItemManager {
 
-	public int storeEnergy(ItemStack itemStack, int power, int speed, boolean simulate);
-
 	public int reduceEnergy(ItemStack itemStack, int power, int speed, boolean simulate);
+
+	public int addEnergy(ItemStack itemStack, int power, int speed, boolean simulate);
 
 	public int getSpeed(ItemStack theItem);
 

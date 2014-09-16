@@ -17,6 +17,7 @@ import shift.sextiarysector.event.ClientEventHandler;
 import shift.sextiarysector.event.CommonEventHandler;
 import shift.sextiarysector.event.HUDEventHandler;
 import shift.sextiarysector.event.PlayerStatusEventHandler;
+import shift.sextiarysector.event.WorldEventHandler;
 import shift.sextiarysector.item.GearForceItemManager;
 import shift.sextiarysector.module.IModule;
 import shift.sextiarysector.module.ModuleAchievement;
@@ -36,7 +37,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	//public static final String MODID = "SextiarySector";
-    public static final String VERSION = "1.0.0";
+    public static final String VERSION = "2.0.1";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
@@ -64,7 +65,8 @@ public class SextiarySector {
     	if(event.getSide().isClient())MinecraftForge.EVENT_BUS.register(new HUDEventHandler());
     	MinecraftForge.EVENT_BUS.register(new PlayerStatusEventHandler());
     	MinecraftForge.EVENT_BUS.register(new VanillaFoodHandler());
-    	MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+    	if(event.getSide().isClient())MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+    	MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
 
 		GearForceItem.manager = new GearForceItemManager();
 
@@ -85,11 +87,14 @@ public class SextiarySector {
 
     	NetworkRegistry.INSTANCE.registerGuiHandler(this, new SSGuiHandler());
 
+    	SSOreDictionary.init();
+
 	}
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
+
 
     	if(event.getSide().isClient()){
 			HUDMP.left_height += 10;

@@ -3,6 +3,7 @@ package shift.sextiarysector;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import shift.sextiarysector.api.SextiarySectorAPI;
+import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockPowerStone;
@@ -11,6 +12,7 @@ import shift.sextiarysector.block.BlockShaft;
 import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.item.ItemBlockShaft;
+import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityShaft;
@@ -26,6 +28,8 @@ public class SSBlocks {
 
 	public static Block shaft;
 	public static Block woodGearBox;
+
+	public static Block woodGFTank;
 
 	public static Block smallWindmill;
 	public static Block millstone;
@@ -58,6 +62,10 @@ public class SSBlocks {
 		woodGearBox = new BlockGearBox(Material.wood).setBlockName("ss.wood_gear_box").setBlockTextureName("sextiarysector:machine/wood_gear_box").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerBlock(woodGearBox, "WoodGearBox");
 		GameRegistry.registerTileEntity(TileEntityGearBox.class, "GearBox");
+
+		woodGFTank = new BlockGFTank(Material.wood,40).setBlockName("ss.wood_gf_tank").setBlockTextureName("sextiarysector:machine/wood_gf_tank").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerBlock(woodGFTank, "WoodGFTank");
+		GameRegistry.registerTileEntity(TileEntityGFTank.class, "GFTank");
 
 		smallWindmill = new BlockSmallWindmill().setBlockName("ss.small_windmill").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerTileEntity(TileEntitySmallWindmill.class, "SmallWindmill");

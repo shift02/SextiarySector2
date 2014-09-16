@@ -39,6 +39,7 @@ public class BlockLargeFurnace extends BlockContainer{
 
 	public BlockLargeFurnace() {
 		super(Material.rock);
+		this.setHardness(1.0F);
 	}
 
 	@Override
