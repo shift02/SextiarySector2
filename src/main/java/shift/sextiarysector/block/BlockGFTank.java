@@ -31,6 +31,7 @@ public class BlockGFTank  extends BlockContainer{
 	public BlockGFTank(Material p_i45386_1_, int gui) {
 		super(p_i45386_1_);
 		this.guiID = gui;
+		this.setHardness(0.8F);
 	}
 
 	@Override
