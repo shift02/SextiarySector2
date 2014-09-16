@@ -40,7 +40,13 @@ public class RenderGF implements IItemRenderer {
 
 			int k = (int)Math.round(GearForceItem.manager.getSpeed(item) * 13.0D / ((IGearForceItem)item.getItem()).getMaxSpeedStored(item));
 
+			GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glEnable(GL11.GL_ALPHA_TEST);
+
 			this.renderItem.renderIcon(0, 0, item.getItem().getIconIndex(item), 16, 16);
+
+			GL11.glDisable(GL11.GL_ALPHA_TEST);
+            GL11.glEnable(GL11.GL_LIGHTING);
 
 			int y = 0;
 
@@ -54,7 +60,14 @@ public class RenderGF implements IItemRenderer {
 			//this.bind(icons);
 
 			//this.drawTexturedModalRect(2, 13, 0, 2, 14, 2);
+
+			GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glEnable(GL11.GL_ALPHA_TEST);
+
 			this.renderItem.renderIcon(0, y, ClientEventHandler.itemGF[0], 16, 16);
+
+			GL11.glDisable(GL11.GL_ALPHA_TEST);
+            GL11.glEnable(GL11.GL_LIGHTING);
 
 			//this.renderItem.renderIcon(0, y, ((ItemGearForce) item.getItem()).getIcon2(item, 1), 16, 16);
 

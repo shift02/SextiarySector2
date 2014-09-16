@@ -26,6 +26,7 @@ public class BlockGearBox  extends BlockContainer{
 
 	public BlockGearBox(Material p_i45386_1_) {
 		super(p_i45386_1_);
+		this.setHardness(1.0F);
 	}
 
 	@Override
