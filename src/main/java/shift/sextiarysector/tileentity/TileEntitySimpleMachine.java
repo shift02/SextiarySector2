@@ -117,11 +117,13 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 
 	public void updateChargeEntity()
 	{
+		if(this.items.getStackInSlot(1)==null)return;
 
-		if(GearForceItem.manager.storeEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), 1, true)>0){
-			int s = GearForceItem.manager.storeEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), 20, false);
+		if(GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), 1, true)>0){
+			int s = GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), 20, true);
 
 			int i = this.storage.addEnergy(this.storage.getMaxPowerStored(), s, false);
+			GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), i, false);
 			if(i>0)this.inPower = this.storage.getMaxPowerStored();
 			//this.inSpeed += (int) i;
 
@@ -185,7 +187,7 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 
 		f1=this.storage.getMaxSpeedStored()>this.storage.getSpeedStored();
 		f2=(this.items.getStackInSlot(1)!=null&&GearForceItem.manager.isGearForceItem(this.items.getStackInSlot(1)));
-		f3=GearForceItem.manager.storeEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), 1, true)>0;
+		f3=GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), 1, true)>0;
 
 		//System.out.println(f1+" "+f2+" "+f3);
 
