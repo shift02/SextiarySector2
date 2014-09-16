@@ -63,11 +63,11 @@ public class GuiGFTank  extends GUIGearMachine{
         this.drawGear( 1, (int) s, 60, 23);
 
         //out
-        this.drawGear( 1, (int) -s, 82, 48);
-        this.drawGear( 2, (int) -s, 103, 60);
+        this.drawGear( 1, (int) -s2, 82, 48);
+        this.drawGear( 2, (int) -s2, 103, 60);
 
-        this.drawGear( 0, (int) s, 92, 52);
-        this.drawGear( 0, (int) s, 116, 55);
+        this.drawGear( 0, (int) s2, 92, 52);
+        this.drawGear( 0, (int) s2, 116, 55);
 
         //this.drawGear( 1, (int) s, 37, 29);
 

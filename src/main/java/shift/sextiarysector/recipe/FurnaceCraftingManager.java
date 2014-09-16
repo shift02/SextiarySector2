@@ -155,6 +155,10 @@ public class FurnaceCraftingManager {
 
     }
 
+    public void addRecipe(IRecipe recipe){
+    	this.recipes.add(recipe);
+    }
+
     /**
      * returns the List<> of all recipes
      */

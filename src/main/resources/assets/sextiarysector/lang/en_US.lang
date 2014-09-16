@@ -20,6 +20,13 @@ item.ss.dust_waterlily.name=WaterLily Dust
 item.ss.dust_blue_stone.name=Blue Stone Dust
 item.ss.dust_yellow_stone.name=Yellow Stone Dust
 
+item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
+
+item.ss.unit.name=Unit
+
+item.ss.wood_gear.name=Wood Gear
+item.ss.wood_unit_gear.name=Wood Unit Gear
+
 item.ss.wood_gf_storage.name=Wood GF Storage
 
 #GUI

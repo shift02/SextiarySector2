@@ -4,9 +4,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
 import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.item.GearForceItem;
 import shift.sextiarysector.container.ItemBox;
 
 public class TileEntityGFTank extends TileEntityDirection implements ISidedInventory, IEnergyHandler {
@@ -15,7 +17,7 @@ public class TileEntityGFTank extends TileEntityDirection implements ISidedInven
 	protected static final int[] slots_bottom = new int[] { 1 };
 	protected static final int[] slots_sides = new int[] { 1 };
 
-	public EnergyStorage storage = new EnergyStorage("Base", 1, 10000);
+	public EnergyStorage storage = new EnergyStorage("Base", 1, 30000);
 
 	//0  Out,1 In
 	ItemBox items = new ItemBox("Base", 2);
@@ -55,12 +57,86 @@ public class TileEntityGFTank extends TileEntityDirection implements ISidedInven
 		if(lastInSeed!=this.storage.getSpeedStored()){
 			this.inSpeed = this.storage.getSpeedStored()-lastInSeed;
 			this.lastInSeed = this.storage.getSpeedStored();
+			if(this.inSpeed<0)this.inSpeed=0;
 		}else{
 			this.inSpeed = 0;
 		}
 
 		if(this.storage.getSpeedStored()<=0){
 			this.storage.setPowerStored(0);
+		}
+
+		if(this.outSpeed==0)this.outPower=0;
+		outSpeed=0;
+
+		//Item -> Block
+		this.updateChargeEntity();
+
+		//Block -> Item
+		this.updateChargeItem();
+
+		this.addOutEnergy();
+
+	}
+
+	public void updateChargeEntity()
+	{
+
+		if(this.items.getStackInSlot(1)==null)return;
+
+		if(GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), 1, true)>0){
+			int s = GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), 20, true);
+
+			int i = this.storage.addEnergy(this.storage.getMaxPowerStored(), s, false);
+			GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPowerStored(), i, false);
+			if(i>0)this.inPower = this.storage.getMaxPowerStored();
+			//this.inSpeed += (int) i;
+
+			this.markDirty();
+
+		}
+	}
+
+	public void updateChargeItem(){
+
+		if(this.items.getStackInSlot(0)==null)return;
+
+		if(this.storage.drawEnergy(this.storage.getMaxPowerStored(), 1, true)>0&&this.items.getStackInSlot(0)!=null){
+
+			int i = this.storage.drawEnergy(this.storage.getMaxPowerStored(), 20, true);
+
+			int s = GearForceItem.manager.addEnergy(this.items.getStackInSlot(0), this.storage.getMaxPowerStored(), i, false);
+
+			int j = this.storage.drawEnergy(this.storage.getMaxPowerStored(), s, false);
+
+			this.outSpeed+=j;
+			if(j>0)this.outPower=this.storage.getMaxPowerStored();
+
+			//int i = this.storage.addEnergy(this.storage.getMaxPowerStored(), s, false);
+			//if(i>0)this.inPower = this.storage.getMaxPowerStored();
+			//this.inSpeed += (int) i;
+
+			this.markDirty();
+
+		}
+
+	}
+
+	public void addOutEnergy(){
+
+		TileEntity t = this.worldObj.getTileEntity(xCoord + this.getDirection().offsetX, yCoord + this.getDirection().offsetY, zCoord + this.getDirection().offsetZ);
+
+		if(t instanceof IEnergyHandler && ((IEnergyHandler)t).canInterface(getDirection().getOpposite())){
+
+			int i = ((IEnergyHandler)t).addEnergy(getDirection().getOpposite(), this.storage.getMaxPowerStored(), Math.min(160, this.storage.getSpeedStored()), true);
+
+			int j = this.storage.drawEnergy(this.storage.getMaxPowerStored(), i, false);
+
+			((IEnergyHandler)t).addEnergy(getDirection().getOpposite(), this.storage.getMaxPowerStored(), j, false);
+
+			this.outSpeed+=j;
+			if(j>0)this.outPower=this.storage.getMaxPowerStored();
+
 		}
 
 	}
@@ -144,7 +220,11 @@ public class TileEntityGFTank extends TileEntityDirection implements ISidedInven
 	@Override
 	public int addEnergy(ForgeDirection from, int power, int speed,boolean simulate) {
 		if(this.getDirection().ordinal()==from.ordinal())return 0;
-		return storage.addEnergy(power, speed, simulate);
+
+		int i = storage.addEnergy(power, speed, simulate);
+		if(i>0 && !simulate)inPower=power;
+
+		return i;
 	}
 
 	@Override
