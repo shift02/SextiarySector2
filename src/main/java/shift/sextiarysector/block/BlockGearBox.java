@@ -1,7 +1,6 @@
 package shift.sextiarysector.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,13 +11,14 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.machine.energy.IEnergyHandler;
 import shift.sextiarysector.tileentity.TileEntityDirection;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockGearBox  extends BlockContainer{
+public class BlockGearBox  extends BlockDirection{
 
 	@SideOnly(Side.CLIENT)
     protected IIcon in;
@@ -26,6 +26,8 @@ public class BlockGearBox  extends BlockContainer{
 
 	public BlockGearBox(Material p_i45386_1_) {
 		super(p_i45386_1_);
+		this.setHardness(1.0F);
+		this.setCreativeTab(SextiarySectorAPI.TabSSMachine);
 	}
 
 	@Override

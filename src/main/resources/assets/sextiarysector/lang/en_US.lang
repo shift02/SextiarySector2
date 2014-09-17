@@ -27,6 +27,8 @@ item.ss.unit.name=Unit
 item.ss.wood_gear.name=Wood Gear
 item.ss.wood_unit_gear.name=Wood Unit Gear
 
+item.ss.hammer.name=Hammer
+
 item.ss.wood_gf_storage.name=Wood GF Storage
 
 #GUI

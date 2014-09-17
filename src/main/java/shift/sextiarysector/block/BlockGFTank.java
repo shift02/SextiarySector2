@@ -1,7 +1,6 @@
 package shift.sextiarysector.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,13 +13,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SextiarySector;
+import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.machine.energy.IEnergyHandler;
 import shift.sextiarysector.tileentity.TileEntityDirection;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockGFTank  extends BlockContainer{
+public class BlockGFTank  extends BlockDirection{
 
 	@SideOnly(Side.CLIENT)
     protected IIcon in;
@@ -31,11 +31,16 @@ public class BlockGFTank  extends BlockContainer{
 	public BlockGFTank(Material p_i45386_1_, int gui) {
 		super(p_i45386_1_);
 		this.guiID = gui;
+		this.setHardness(0.8F);
+		this.setCreativeTab(SextiarySectorAPI.TabSSMachine);
 	}
 
 	@Override
-	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6,
-			float par7, float par8, float par9) {
+	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6,float par7, float par8, float par9) {
+
+		boolean f = super.onBlockActivated(par1World, x, y, z, par5EntityPlayer, par6, par7, par8, par9);
+
+		if(f)return true;
 
 		if (par1World.isRemote)
 		{

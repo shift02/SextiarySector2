@@ -55,15 +55,15 @@ public class SSBlocks {
 		yellowStoneOre = new BlockPowerStone().setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(yellowStoneOre, "YellowStoneOre");
 
-		shaft = new BlockShaft().setBlockName("ss.wood_shaft").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		shaft = new BlockShaft().setBlockName("ss.wood_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(shaft,ItemBlockShaft.class, "WoodShaft");
 		GameRegistry.registerTileEntity(TileEntityShaft.class, "Shaft");
 
-		woodGearBox = new BlockGearBox(Material.wood).setBlockName("ss.wood_gear_box").setBlockTextureName("sextiarysector:machine/wood_gear_box").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		woodGearBox = new BlockGearBox(Material.wood).setBlockName("ss.wood_gear_box").setBlockTextureName("sextiarysector:machine/wood_gear_box").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(woodGearBox, "WoodGearBox");
 		GameRegistry.registerTileEntity(TileEntityGearBox.class, "GearBox");
 
-		woodGFTank = new BlockGFTank(Material.wood,40).setBlockName("ss.wood_gf_tank").setBlockTextureName("sextiarysector:machine/wood_gf_tank").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		woodGFTank = new BlockGFTank(Material.wood,40).setBlockName("ss.wood_gf_tank").setBlockTextureName("sextiarysector:machine/wood_gf_tank").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(woodGFTank, "WoodGFTank");
 		GameRegistry.registerTileEntity(TileEntityGFTank.class, "GFTank");
 

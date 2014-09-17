@@ -16,6 +16,7 @@ public class BlockSmallWindmill extends BlockContainer{
 
 	public BlockSmallWindmill() {
 		super(Material.wood);
+		this.setHardness(0.8F);
 	}
 
 	@Override

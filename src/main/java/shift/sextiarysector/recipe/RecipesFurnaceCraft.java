@@ -36,6 +36,13 @@ public class RecipesFurnaceCraft {
 			Character.valueOf('x'), "cobblestone",
 			}));
 
+		//Hammer
+        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.hammer, 1),
+				new Object[] { "xxx", " y "," y ",
+			Character.valueOf('x'), "ingotIron",
+			Character.valueOf('y'), "stickWood",
+			}));
+
     }
 
 	public static void addVanillaRecipes()
