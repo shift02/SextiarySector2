@@ -3,6 +3,7 @@ package shift.sextiarysector;
 import net.minecraft.item.Item;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.item.ItemGearStorage;
+import shift.sextiarysector.item.ItemHammer;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SSItems {
@@ -16,6 +17,8 @@ public class SSItems {
 	public static Item woodUnitGear;
 
 	public static Item woodGFStorage;
+
+	public static Item hammer;
 
 	//素材
 	public static Item dustWaterLily;
@@ -38,6 +41,9 @@ public class SSItems {
 
 		woodGFStorage = new ItemGearStorage(1, 10000, 1).setUnlocalizedName("ss.wood_gf_storage").setTextureName("sextiarysector:gearforce/gear_storage").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerItem(woodGFStorage, "WoodGFStorage");
+
+		hammer = new ItemHammer().setUnlocalizedName("ss.hammer").setTextureName("sextiarysector:machine/hammer").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerItem(hammer, "Hammer");
 
 		dustWaterLily = new Item().setUnlocalizedName("ss.dust_waterlily").setTextureName("sextiarysector:dust/waterlily_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(dustWaterLily, "DustWaterLily");
