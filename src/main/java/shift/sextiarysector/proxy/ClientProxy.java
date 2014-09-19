@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
+import shift.sextiarysector.renderer.block.RendererHole;
 import shift.sextiarysector.renderer.block.RendererShaft;
 import shift.sextiarysector.renderer.block.RendererSmallWindmill;
 import shift.sextiarysector.renderer.item.RenderGF;
@@ -25,9 +26,13 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public void setCustomRenderers() {
 
+		this.holeType = RenderingRegistry.getNextAvailableRenderId();
+
 		this.ShaftRenderType = RenderingRegistry.getNextAvailableRenderId();
 
 		this.smallWindMillType = RenderingRegistry.getNextAvailableRenderId();
+
+		RenderingRegistry.registerBlockHandler(new RendererHole());
 
 		RenderingRegistry.registerBlockHandler(new RendererShaft());
 

@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
+import shift.sextiarysector.block.BlockHole;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockPowerStone;
 import shift.sextiarysector.block.BlockSSPane;
@@ -34,6 +35,7 @@ public class SSBlocks {
 	public static Block smallWindmill;
 	public static Block millstone;
 
+	public static Block hole;
 
 	public static Block woodGrate;
 
@@ -45,6 +47,9 @@ public class SSBlocks {
 		LargeFurnace = new BlockLargeFurnace().setBlockName("ss.large_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(LargeFurnace, "LargeFurnace");
 		GameRegistry.registerTileEntity(TileEntityLargeFurnace.class, "LargeFurnace");
+
+		hole = new BlockHole().setBlockName("ss.hole").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(hole, "Hole");
 
 		woodGrate = (new BlockSSPane(ID+":wood_grate", ID+":wood_grate", Material.wood, false)).setHardness(0.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodGrate, "WoodGrate");

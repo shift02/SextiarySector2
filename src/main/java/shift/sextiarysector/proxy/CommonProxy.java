@@ -5,6 +5,8 @@ import net.minecraft.item.Item;
 
 public class CommonProxy {
 
+	public int holeType;
+
 	public int ShaftRenderType;
 	public int smallWindMillType;
 
