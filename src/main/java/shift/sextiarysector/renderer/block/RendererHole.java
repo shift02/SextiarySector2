@@ -38,12 +38,21 @@ public class RendererHole implements ISimpleBlockRenderingHandler {
 
 		//renderer.setOverrideBlockTexture(Blocks.dirt.getIcon(0, 0));
 
+
+
 		float f = 0.125F;
+
+		float minx = 0;
+		float minz = 0;
+		float maxx = 1;
+		float maxz = 1;
+
 
 		if(!this.isSame(world, x, y, z,block, ForgeDirection.getOrientation(4))){
 			//tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y+1, z));
 			this.renderer.setRenderBounds(0.0f, 0.0F, 0.0F, f, 1.0F, 1.0F);
 			this.renderer.renderStandardBlock(block, x, y, z, ForgeDirection.getOrientation(4));
+			minx = f;
         }
 
         if(!this.isSame(world, x, y, z,block, ForgeDirection.getOrientation(2))){
@@ -51,6 +60,7 @@ public class RendererHole implements ISimpleBlockRenderingHandler {
         	this.renderer.setRenderBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, f);
         	this.renderer.renderStandardBlock(block, x, y, z, ForgeDirection.getOrientation(2));
         	//this.renderStandardBlock(block, world, x, y, z, renderer);
+        	minz = f;
         }
 
         if(!this.isSame(world, x, y, z,block, ForgeDirection.getOrientation(5))){
@@ -58,6 +68,7 @@ public class RendererHole implements ISimpleBlockRenderingHandler {
         	this.renderer.setRenderBounds(1.0F - f, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         	this.renderer.renderStandardBlock(block, x, y, z, ForgeDirection.getOrientation(5));
         	//this.renderStandardBlock(block, world, x, y, z, renderer);
+        	maxx = 1-f;
         }
 
         if(!this.isSame(world, x, y, z,block, ForgeDirection.getOrientation(3))){
@@ -65,6 +76,7 @@ public class RendererHole implements ISimpleBlockRenderingHandler {
         	this.renderer.setRenderBounds(0.0F, 0.0F, 1.0F - f, 1.0F, 1.0F, 1.0F);
         	this.renderer.renderStandardBlock(block, x, y, z,ForgeDirection.getOrientation(3));
         	//this.renderStandardBlock(block, world, x, y, z, renderer);
+        	maxz = 1-f;
         }
 
 
@@ -74,14 +86,17 @@ public class RendererHole implements ISimpleBlockRenderingHandler {
         //IIcon iicon = BlockLiquid.getLiquidIcon("water_still");
         //this.renderer.renderFaceYPos(block, (double)x, (double)((float)y - 1.0F + (15f/16f)), (double)z, iicon);
 
-        /*
-        this.renderer.setRenderBounds(f, 0.3125F, f, 1.0f - f , 0.7125F, 1.0f - f);
-        this.renderer.setOverrideBlockTexture(Blocks.water.getIcon(0, 0));
-    	this.renderer.renderStandardBlock(block, x, y, z,ForgeDirection.getOrientation(1));
-    	this.renderer.clearOverrideBlockTexture();
 
-    	this.renderer.clearOverrideBlockTexture();
-    	*/
+        if(world.getBlockMetadata(x, y, z)==1){
+        	this.renderer.setRenderBounds(minx, 0.3125F, minz, maxx , 0.9375F, maxz);
+            this.renderer.setOverrideBlockTexture(Blocks.water.getIcon(0, 0));
+        	this.renderer.renderStandardBlock(block, x, y, z,ForgeDirection.getOrientation(1));
+        	this.renderer.clearOverrideBlockTexture();
+
+        	this.renderer.clearOverrideBlockTexture();
+        }
+
+
         this.renderer.field_152631_f = false;
         this.renderer.renderAllFaces = false;
 
