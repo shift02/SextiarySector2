@@ -10,6 +10,7 @@ import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockPowerStone;
 import shift.sextiarysector.block.BlockSSPane;
 import shift.sextiarysector.block.BlockShaft;
+import shift.sextiarysector.block.BlockShippingBox;
 import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.item.ItemBlockShaft;
@@ -41,6 +42,8 @@ public class SSBlocks {
 
 	public static Block blueStoneOre;
 	public static Block yellowStoneOre;
+
+	public static Block shippingBox;
 
 	public static void initBlicks(){
 
@@ -79,7 +82,10 @@ public class SSBlocks {
 		millstone = new BlockSimpleMachine("millstone",20,SSRecipes.millstone).setBlockName("ss.millstone").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 
 		GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "ss_millstone");
-		GameRegistry.registerBlock(millstone, "ss_millstone");
+		GameRegistry.registerBlock(millstone, "Millstone");
+
+		shippingBox = new BlockShippingBox().setBlockName("ss.shipping_box").setBlockTextureName("sextiarysector:shipping_box").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(shippingBox, "ShippingBox");
 
 	}
 
