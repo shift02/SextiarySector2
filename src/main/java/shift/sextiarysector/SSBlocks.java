@@ -3,6 +3,7 @@ package shift.sextiarysector;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import shift.sextiarysector.api.SextiarySectorAPI;
+import shift.sextiarysector.block.BlockChunkLoader;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockHole;
@@ -40,10 +41,14 @@ public class SSBlocks {
 
 	public static Block woodGrate;
 
+	public static Block chunkLoader;
+
 	public static Block blueStoneOre;
 	public static Block yellowStoneOre;
 
 	public static Block shippingBox;
+
+
 
 	public static void initBlicks(){
 
@@ -56,6 +61,9 @@ public class SSBlocks {
 
 		woodGrate = (new BlockSSPane(ID+":wood_grate", ID+":wood_grate", Material.wood, false)).setHardness(0.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodGrate, "WoodGrate");
+
+		chunkLoader = new BlockChunkLoader().setHardness(1.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(chunkLoader, "ChunkLoader");
 
 		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(blueStoneOre, "BlueStoneOre");

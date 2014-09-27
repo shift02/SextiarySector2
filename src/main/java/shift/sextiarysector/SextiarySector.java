@@ -21,6 +21,7 @@ import shift.sextiarysector.event.WorldEventHandler;
 import shift.sextiarysector.item.GearForceItemManager;
 import shift.sextiarysector.module.IModule;
 import shift.sextiarysector.module.ModuleAchievement;
+import shift.sextiarysector.module.ModuleChunkLoader;
 import shift.sextiarysector.packet.PacketHandler;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.proxy.CommonProxy;
@@ -72,6 +73,7 @@ public class SextiarySector {
 
     	//Module
     	modules.add(ModuleAchievement.getInstance());
+    	modules.add(ModuleChunkLoader.getInstance());
 
     	for(IModule m : modules){
     		m.preInit(event);
