@@ -5,6 +5,8 @@ tile.ss.large_furnace.name=Large Furnace
 
 tile.ss.wood_grate.name=Wood Grate
 
+tile.ss.hole.name=Hole
+
 tile.ss.chunk_loader.name=Time Loader
 
 tile.ss.small_windmill.name=Small Windmill
