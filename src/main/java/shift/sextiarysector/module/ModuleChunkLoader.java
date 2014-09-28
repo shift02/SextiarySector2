@@ -68,7 +68,10 @@ public class ModuleChunkLoader  implements IModule ,LoadingCallback{
 
 		if(ticketList.containsKey(Arrays.asList(x, y, z))){
 
+			if(!ForgeChunkManager.getPersistentChunksFor(ticketList.get(Arrays.asList(x, y, z)).world).isEmpty()){
 			ForgeChunkManager.unforceChunk(ticketList.get(Arrays.asList(x, y, z)), world.getChunkFromBlockCoords(x, z).getChunkCoordIntPair());
+			}
+
 			ticketList.remove(Arrays.asList(x, y, z));
 
 		}
