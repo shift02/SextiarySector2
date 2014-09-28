@@ -24,6 +24,7 @@ import shift.sextiarysector.module.ModuleAchievement;
 import shift.sextiarysector.module.ModuleChunkLoader;
 import shift.sextiarysector.packet.PacketHandler;
 import shift.sextiarysector.player.EntityPlayerManager;
+import shift.sextiarysector.plugin.SSPlugins;
 import shift.sextiarysector.proxy.CommonProxy;
 import shift.sextiarysector.recipe.RecipesFurnaceCraft;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -34,7 +35,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-@Mod(modid = SextiarySectorAPI.MODID, version = SextiarySector.VERSION)
+@Mod(modid = SextiarySectorAPI.MODID, version = SextiarySector.VERSION, dependencies = SextiarySector.DEPENDENCY)
 public class SextiarySector {
 
 	//public static final String MODID = "SextiarySector";
@@ -42,6 +43,8 @@ public class SextiarySector {
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
+
+    public static final String DEPENDENCY = "after:ComputerCraft,mceconomy2";
 
     @SidedProxy(clientSide = "shift.sextiarysector.proxy.ClientProxy", serverSide = "shift.sextiarysector.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -55,6 +58,8 @@ public class SextiarySector {
 	{
 
     	Log.info("PreInit");
+
+    	Config.ConfigRead(event);
 
     	PacketHandler.init(event);
 
@@ -91,6 +96,8 @@ public class SextiarySector {
 
     	SSOreDictionary.init();
 
+
+
 	}
 
     @Mod.EventHandler
@@ -110,6 +117,8 @@ public class SextiarySector {
 
     	SSVillages.initVillages();
 
+
+
     }
 
     @Mod.EventHandler
@@ -121,6 +130,10 @@ public class SextiarySector {
     	for(IModule m : modules){
     		m.postInit(event);
     	}
+    	SSPlugins.initModHelper();
+
+    	SSPlugins.initPlugins(event);
+
 
     }
 

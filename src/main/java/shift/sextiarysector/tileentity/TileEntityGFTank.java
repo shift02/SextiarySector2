@@ -230,7 +230,7 @@ public class TileEntityGFTank extends TileEntityDirection implements ISidedInven
 	@Override
 	public int drawEnergy(ForgeDirection from, int power, int speed,boolean simulate) {
 		if(this.getDirection().ordinal()!=from.ordinal())return 0;
-		return storage.addEnergy(power, speed, simulate);
+		return storage.drawEnergy(power, speed, simulate);
 	}
 
 	@Override
