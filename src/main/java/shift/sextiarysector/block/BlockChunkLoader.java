@@ -2,16 +2,49 @@ package shift.sextiarysector.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureClock;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.module.ModuleChunkLoader;
 import shift.sextiarysector.module.ModuleChunkLoader.IChunkLoaderBlock;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockChunkLoader extends Block implements IChunkLoaderBlock{
 
+	@SideOnly(Side.CLIENT)
+    protected IIcon active;
+
 	public BlockChunkLoader() {
 		super(Material.iron);
+		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+		this.setHardness(1.4f);
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public IIcon getIcon(int par1, int par2)
+	{
+		if(par2==1)return this.active;
+
+		return blockIcon;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister par1IconRegister)
+	{
+		this.blockIcon = par1IconRegister.registerIcon(this.getTextureName());
+
+		this.active = new TextureClock(this.getTextureName()+"_active");
+
+				((TextureMap)par1IconRegister).setTextureEntry(this.getTextureName()+"_active", (TextureAtlasSprite)this.active);
 	}
 
 	@Override

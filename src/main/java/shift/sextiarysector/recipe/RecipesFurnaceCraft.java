@@ -3,11 +3,13 @@ package shift.sextiarysector.recipe;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSItems;
 
 
@@ -41,6 +43,14 @@ public class RecipesFurnaceCraft {
 				new Object[] { "xxx", " y "," y ",
 			Character.valueOf('x'), "ingotIron",
 			Character.valueOf('y'), "stickWood",
+			}));
+
+        //time
+        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.chunkLoader, 1),
+				new Object[] { "xyx", "yzy","xyx",
+			Character.valueOf('x'), "ingotIron",
+			Character.valueOf('y'), Blocks.obsidian,
+			Character.valueOf('z'), Items.clock,
 			}));
 
     }

@@ -15,6 +15,11 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
+/**
+ * ChunkLoader管理用のクラス
+ * @see LoadingCallback
+ * @author Shift02
+ */
 public class ModuleChunkLoader  implements IModule ,LoadingCallback{
 
 	private static ModuleChunkLoader instance = new ModuleChunkLoader();
@@ -46,6 +51,7 @@ public class ModuleChunkLoader  implements IModule ,LoadingCallback{
 	public void postInit(FMLPostInitializationEvent event) {
 	}
 
+	/** 指定した座礁のブロックをChunkLoaderとして起動する */
 	public static boolean setBlockTicket(World world, int x, int y, int z){
 
 		Ticket t = ForgeChunkManager.requestTicket(SextiarySector.instance, world, Type.NORMAL);
@@ -57,6 +63,7 @@ public class ModuleChunkLoader  implements IModule ,LoadingCallback{
 		return true;
 	}
 
+	/**指定した座礁のChunkLoaderを停止する*/
 	public static void deleteBlockTicket(World world, int x, int y, int z){
 
 		if(ticketList.containsKey(Arrays.asList(x, y, z))){
@@ -117,6 +124,10 @@ public class ModuleChunkLoader  implements IModule ,LoadingCallback{
 		return world.getBlock(ticket.getModData().getInteger("x"), ticket.getModData().getInteger("y"), ticket.getModData().getInteger("z"));
 	}
 
+	/**
+	 * ChunkLoaderに実装するinterface<br>
+	 * worldがロードされた時に呼ばれる。trueを返すとChunkLoaderが始まる。
+	 * */
 	public interface IChunkLoaderBlock{
 
 		public boolean canLoad(World world,int x, int y, int z);
