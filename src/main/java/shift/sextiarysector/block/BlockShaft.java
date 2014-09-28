@@ -1,6 +1,5 @@
 package shift.sextiarysector.block;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -11,16 +10,18 @@ import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
 import shift.sextiarysector.SextiarySector;
+import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.tileentity.TileEntityShaft;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockShaft  extends BlockContainer{
+public class BlockShaft  extends BlockDirection{
 
 
 	public BlockShaft() {
 		super(Material.wood);
 		this.setHardness(0.8F);
+		this.setCreativeTab(SextiarySectorAPI.TabSSMachine);
 	}
 	@Override
 	public boolean renderAsNormalBlock() {

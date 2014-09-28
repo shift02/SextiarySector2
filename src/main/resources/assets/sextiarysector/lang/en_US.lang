@@ -5,6 +5,10 @@ tile.ss.large_furnace.name=Large Furnace
 
 tile.ss.wood_grate.name=Wood Grate
 
+tile.ss.hole.name=Hole
+
+tile.ss.chunk_loader.name=Time Loader
+
 tile.ss.small_windmill.name=Small Windmill
 tile.ss.wood_shaft.name=Wood shaft
 tile.ss.wood_gear_box.name=Wood Gear Box
@@ -26,6 +30,8 @@ item.ss.unit.name=Unit
 
 item.ss.wood_gear.name=Wood Gear
 item.ss.wood_unit_gear.name=Wood Unit Gear
+
+item.ss.hammer.name=Hammer
 
 item.ss.wood_gf_storage.name=Wood GF Storage
 

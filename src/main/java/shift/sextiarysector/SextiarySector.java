@@ -21,6 +21,7 @@ import shift.sextiarysector.event.WorldEventHandler;
 import shift.sextiarysector.item.GearForceItemManager;
 import shift.sextiarysector.module.IModule;
 import shift.sextiarysector.module.ModuleAchievement;
+import shift.sextiarysector.module.ModuleChunkLoader;
 import shift.sextiarysector.packet.PacketHandler;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.proxy.CommonProxy;
@@ -37,7 +38,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	//public static final String MODID = "SextiarySector";
-    public static final String VERSION = "2.0.1";
+    public static final String VERSION = "2.0.2";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
@@ -72,6 +73,7 @@ public class SextiarySector {
 
     	//Module
     	modules.add(ModuleAchievement.getInstance());
+    	modules.add(ModuleChunkLoader.getInstance());
 
     	for(IModule m : modules){
     		m.preInit(event);
@@ -105,6 +107,8 @@ public class SextiarySector {
     	for(IModule m : modules){
     		m.load(event);
     	}
+
+    	SSVillages.initVillages();
 
     }
 
