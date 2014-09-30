@@ -18,6 +18,8 @@ tile.ss.millstone.name=Millstone
 tile.ss.blue_stone.name=Blue Stone Ore
 tile.ss.yellow_stone.name=Yellow Stone Ore
 
+tile.ss.creeper_chest.name=Creeper Monger Chest
+
 #Item
 item.ss.dust_waterlily.name=WaterLily Dust
 
