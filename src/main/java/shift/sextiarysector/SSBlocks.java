@@ -94,10 +94,10 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "ss_millstone");
 		GameRegistry.registerBlock(millstone, "Millstone");
 
-		shippingBox = new BlockShippingBox().setBlockName("ss.shipping_box").setBlockTextureName("sextiarysector:shipping_box").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		shippingBox = new BlockShippingBox().setBlockName("ss.shipping_box").setBlockTextureName("sextiarysector:shipping_box").setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(shippingBox, "ShippingBox");
 
-		creeperChest = new BlockSSChest(6).setBlockName("ss.creeper_chest").setHardness(2.5F).setStepSound(Block.soundTypeWood).setCreativeTab(SextiarySectorAPI.TabSSCore);
+		creeperChest = new BlockSSChest(6).setBlockName("ss.creeper_chest").setHardness(2.5F).setStepSound(Block.soundTypeWood).setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(creeperChest, "CreeperChest");
 		GameRegistry.registerTileEntity(TileEntitySSChest.class, "SSChest");
 

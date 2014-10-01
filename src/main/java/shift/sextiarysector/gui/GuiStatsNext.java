@@ -51,6 +51,7 @@ public class GuiStatsNext extends GuiScreen implements IProgressMeter
     private static final String __OBFID = "CL_00000723";
     //
     protected int shift = -50;
+    //protected int shift = 50;
     public static final ResourceLocation statIcons = new ResourceLocation("sextiarysector:textures/guis/stats_icons.png");
 
 
@@ -438,8 +439,9 @@ public class GuiStatsNext extends GuiScreen implements IProgressMeter
         {
         	int k = GuiStatsNext.this.width / 2 - 110 + GuiStatsNext.this.shift;
             int l = GuiStatsNext.this.width / 2 + 160 + GuiStatsNext.this.shift;
-            //int k = this.left + this.width / 2 - this.getListWidth() / 2;
-            //int l = this.left + this.width / 2 + this.getListWidth() / 2;
+            //int k = this.left + this.width / 2 - this.getListWidth() / 2 + GuiStatsNext.this.shift;
+            //int l = this.left + this.width / 2 + this.getListWidth() / 2 + GuiStatsNext.this.shift;
+
             int i1 = p_148124_2_ - this.top - this.headerPadding + (int)this.getAmountScrolled() - 4;
             int j1 = i1 / this.slotHeight;
             return p_148124_1_ < this.getScrollBarX() && p_148124_1_ >= k && p_148124_1_ <= l && j1 >= 0 && i1 >= 0 && j1 < this.getSize() ? j1 : -1;
@@ -810,37 +812,37 @@ public class GuiStatsNext extends GuiScreen implements IProgressMeter
 
             if (this.field_148218_l == 0)
             {
-                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 215 + 115 - 18 + 1, p_148129_2_ + 1 + 1, 72, 18);
+                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 115 - 18 + 1, p_148129_2_ + 1 + 1, 72, 18);
             }
             else
             {
-                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 215 + 115 - 18, p_148129_2_ + 1, 72, 18);
+                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 115 - 18, p_148129_2_ + 1, 72, 18);
             }
 
             if (this.field_148218_l == 1)
             {
-                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 215 + 165 - 18 + 1, p_148129_2_ + 1 + 1, 18, 18);
+                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 165 - 18 + 1, p_148129_2_ + 1 + 1, 18, 18);
             }
             else
             {
-                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 215 + 165 - 18, p_148129_2_ + 1, 18, 18);
+                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 165 - 18, p_148129_2_ + 1, 18, 18);
             }
 
             if (this.field_148218_l == 2)
             {
-                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 215 + 215 - 18 + 1, p_148129_2_ + 1 + 1, 36, 18);
+                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 215 - 18 + 1, p_148129_2_ + 1 + 1, 36, 18);
             }
             else
             {
-                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 215 + 215 - 18, p_148129_2_ + 1, 36, 18);
+                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 215 - 18, p_148129_2_ + 1, 36, 18);
             }
             if (this.field_148218_l == 3)
             {
-                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 215 + 265 - 18 + 1, p_148129_2_ + 1 + 1, 90, 18);
+                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 265 - 18 + 1, p_148129_2_ + 1 + 1, 90, 18);
             }
             else
             {
-                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 215 + 265 - 18, p_148129_2_ + 1, 90, 18);
+                GuiStatsNext.this.drawSprite(p_148129_1_ + GuiStatsNext.this.shift + 265 - 18, p_148129_2_ + 1, 90, 18);
             }
         }
 
@@ -848,18 +850,18 @@ public class GuiStatsNext extends GuiScreen implements IProgressMeter
         {
             StatCrafting statcrafting = this.func_148211_c(p_148126_1_);
             Item item = statcrafting.func_150959_a();
-            GuiStatsNext.this.func_146521_a(p_148126_2_ + GuiStatsNext.this.shift + 215 + 40, p_148126_3_, item);
+            GuiStatsNext.this.func_146521_a(p_148126_2_ + GuiStatsNext.this.shift + 40, p_148126_3_, item);
             int k1 = Item.getIdFromItem(item);
-            this.func_148209_a(StatList.objectBreakStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 215 + 115, p_148126_3_, p_148126_1_ % 2 == 0);
-            this.func_148209_a(StatList.objectCraftStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 215 + 165, p_148126_3_, p_148126_1_ % 2 == 0);
-            this.func_148209_a(statcrafting, p_148126_2_ + GuiStatsNext.this.shift + 215 + 215, p_148126_3_, p_148126_1_ % 2 == 0);
-            this.func_148209_a(ModuleAchievement.objectSellStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 215 + 265, p_148126_3_, p_148126_1_ % 2 == 0);
+            this.func_148209_a(StatList.objectBreakStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 115, p_148126_3_, p_148126_1_ % 2 == 0);
+            this.func_148209_a(StatList.objectCraftStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 165, p_148126_3_, p_148126_1_ % 2 == 0);
+            this.func_148209_a(statcrafting, p_148126_2_ + GuiStatsNext.this.shift + 215, p_148126_3_, p_148126_1_ % 2 == 0);
+            this.func_148209_a(ModuleAchievement.objectSellStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 265, p_148126_3_, p_148126_1_ % 2 == 0);
 
         }
 
         protected String func_148210_b(int p_148210_1_)
         {
-            return p_148210_1_ == 1 ? "stat.crafted" : (p_148210_1_ == 2 ? "stat.used" : (p_148210_1_ == 3 ? "stat.depleted" : "stat.sell"));
+            return p_148210_1_ == 0 ? "stat.crafted" : (p_148210_1_ == 1 ? "stat.used" : (p_148210_1_ == 2 ? "stat.depleted" : "stat.sell"));
         }
     }
 

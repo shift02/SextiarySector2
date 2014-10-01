@@ -75,10 +75,6 @@ public class SextiarySector {
     	modules.add(ModuleAchievement.getInstance());
     	modules.add(ModuleChunkLoader.getInstance());
 
-    	for(IModule m : modules){
-    		m.preInit(event);
-    	}
-
     	SSRecipes.initRecipeLists();
 
     	SextiarySectorAPI.playerManager = EntityPlayerManager.instance;
@@ -90,6 +86,10 @@ public class SextiarySector {
     	NetworkRegistry.INSTANCE.registerGuiHandler(this, new SSGuiHandler());
 
     	SSOreDictionary.init();
+
+    	for(IModule m : modules){
+    		m.preInit(event);
+    	}
 
 	}
 

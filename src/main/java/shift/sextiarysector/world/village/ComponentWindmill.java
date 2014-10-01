@@ -28,7 +28,7 @@ public class ComponentWindmill extends StructureVillagePieces.Village{
 
 	public static Object buildComponent(StructureVillagePieces.Start startPiece,List pieces, Random random, int p1, int p2, int p3, int p4, int p5) {
 
-		System.out.println("AA*"+p1+" : " + p3);
+		//System.out.println("AA*"+p1+" : " + p3);
 		StructureBoundingBox structureboundingbox = StructureBoundingBox.getComponentToAddBoundingBox(p1, p2, p3, 0, 0, 0, 5, 10, 5, p4);
         return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(pieces, structureboundingbox) == null ? new ComponentWindmill(startPiece, p5, random, structureboundingbox, p4) : null;
 
@@ -51,7 +51,7 @@ public class ComponentWindmill extends StructureVillagePieces.Village{
             this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 10 - 1, 0);
         }
 
-		System.out.println("AAAAA");
+		//System.out.println("AAAAA");
 
 		this.fillWithBlocks(p_74875_1_, p_74875_3_, 0, 0, 0, 6, 10, 6, Blocks.air, Blocks.air, false);
 
