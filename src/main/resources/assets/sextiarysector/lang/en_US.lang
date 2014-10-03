@@ -19,6 +19,11 @@ tile.ss.blue_stone.name=Blue Stone Ore
 tile.ss.yellow_stone.name=Yellow Stone Ore
 
 tile.ss.creeper_chest.name=Creeper Monger Chest
+tile.ss.shipping_box.name=Shipping Box
+
+tile.ss.monitor.name=Monitor
+monitor.type=Type
+monitor.creeper=Simple Creeper Shop
 
 #Item
 item.ss.dust_waterlily.name=WaterLily Dust
@@ -44,6 +49,8 @@ container.sub.inventory=Buffer
 gui.ss.millstone=Millstone
 gui.ss.gf_tank=Wood GF Tank
 
+shop.ss.creeper=Simple Creeper Shop
+
 #Tab
 itemGroup.ss.core=SextiarySector -Core-
 itemGroup.ss.machine=SextiarySector -Machine-
@@ -54,8 +61,11 @@ stat.sell=Sell
 
 achievement.ss.economy=SextiarySector -Economy-
 
-achievement.creeperFirework=Creeper Monger
-achievement.creeperFirework.desc=The attempt to communicate with fireworks !
+achievement.creeper_firework=Creeper Monger
+achievement.creeper_firework.desc=The attempt to communicate with fireworks !
+
+achievement.creeper_chest=Creeper Chest
+achievement.creeper_chest.desc=Santa Creeper ?
 
 achievement.shipping=Shipping Block
 achievement.shipping.desc=Trying to shipment

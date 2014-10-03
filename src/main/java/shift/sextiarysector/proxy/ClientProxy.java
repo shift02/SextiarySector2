@@ -6,9 +6,11 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import shift.sextiarysector.renderer.block.RendererChest;
 import shift.sextiarysector.renderer.block.RendererHole;
+import shift.sextiarysector.renderer.block.RendererMonitor;
 import shift.sextiarysector.renderer.block.RendererShaft;
 import shift.sextiarysector.renderer.block.RendererSmallWindmill;
 import shift.sextiarysector.renderer.item.RenderGF;
+import shift.sextiarysector.tileentity.TileEntityMonitor;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntityShaft;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
@@ -36,6 +38,8 @@ public class ClientProxy extends CommonProxy{
 
 		this.chestType = RenderingRegistry.getNextAvailableRenderId();
 
+		this.monitorType = RenderingRegistry.getNextAvailableRenderId();
+
 		RenderingRegistry.registerBlockHandler(new RendererHole());
 
 		RenderingRegistry.registerBlockHandler(new RendererShaft());
@@ -43,6 +47,8 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerBlockHandler(new RendererSmallWindmill());
 
 		RenderingRegistry.registerBlockHandler(new RendererChest());
+
+		RenderingRegistry.registerBlockHandler(new RendererMonitor());
 
 		this.setCustomClientRenderers();
 
@@ -56,6 +62,7 @@ public class ClientProxy extends CommonProxy{
 
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySSChest.class, new RendererChest());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMonitor.class, new RendererMonitor());
 
 
 	}

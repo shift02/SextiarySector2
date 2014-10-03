@@ -11,6 +11,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.block.BlockMonitor;
+import shift.sextiarysector.block.BlockMonitor.MonitorType;
 import shift.sextiarysector.module.ModuleAchievement;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -66,13 +68,13 @@ public class CommonEventHandler {
 
 			EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
 
-			if(!player.func_147099_x().hasAchievementUnlocked(ModuleAchievement.creeperFirework)||player.func_147099_x().hasAchievementUnlocked(ModuleAchievement.shipping)){
+			if(!player.func_147099_x().hasAchievementUnlocked(ModuleAchievement.creeperFirework)||player.func_147099_x().hasAchievementUnlocked(ModuleAchievement.creeperChest)){
 				return;
 			}
 
 			if (player.isPlayerFullyAsleep()) {
 
-				System.out.println("CCCCC");
+				//System.out.println("CCCCC");
 
 				int x = (int) player.posX;
 			    int y = (int) player.posY;
@@ -85,7 +87,7 @@ public class CommonEventHandler {
 			    		for(int k = -range; k < range; k++){
 			    			if (world.isAirBlock(x + i, y + k, z + j)) {
 			    				if (generateChest(world, x + i, y + k, z + j)) {
-			    					//p.addStat(ModuleAchievement.shipping, 1);
+			    					player.addStat(ModuleAchievement.creeperChest, 1);
 			    					return;
 			    				}
 			    			}
@@ -107,6 +109,9 @@ public class CommonEventHandler {
 		      if (tileEntityChest != null) {
 
 		    	  tileEntityChest.setInventorySlotContents(0,new ItemStack(SSBlocks.shippingBox));
+		    	  tileEntityChest.setInventorySlotContents(1,BlockMonitor.getMonitor(MonitorType.creeper));
+		    	  tileEntityChest.setInventorySlotContents(2,new ItemStack(Items.gunpowder,16));
+		    	  tileEntityChest.setInventorySlotContents(3,new ItemStack(Items.diamond,4));
 
 		    	  return true;
 

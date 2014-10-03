@@ -44,7 +44,7 @@ public class SextiarySector {
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
 
-    public static final String DEPENDENCY = "after:ComputerCraft,mceconomy2";
+    public static final String DEPENDENCY = "after:ComputerCraft";
 
     @SidedProxy(clientSide = "shift.sextiarysector.proxy.ClientProxy", serverSide = "shift.sextiarysector.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -109,6 +109,7 @@ public class SextiarySector {
 
     	SSRecipes.initRecipes();
 
+
     	for(IModule m : modules){
     		m.load(event);
     	}
@@ -124,6 +125,7 @@ public class SextiarySector {
     {
 
     	RecipesFurnaceCraft.addVanillaRecipes();
+    	SSShops.initShops();
 
     	for(IModule m : modules){
     		m.postInit(event);

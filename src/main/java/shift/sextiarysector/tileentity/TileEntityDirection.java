@@ -37,7 +37,8 @@ public class TileEntityDirection extends TileEntity{
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		readFromNBT(pkt.func_148857_g());
-    	this.worldObj.func_147479_m(xCoord, yCoord, zCoord);
+    	//this.worldObj.func_147479_m(xCoord, yCoord, zCoord);
+		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 
 }

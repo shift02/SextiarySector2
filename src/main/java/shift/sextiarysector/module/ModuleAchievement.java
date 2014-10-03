@@ -50,12 +50,15 @@ public class ModuleAchievement implements IModule {
 
 	public static Achievement creeperFirework;
 
+	public static Achievement creeperChest;
+
 	public static Achievement shipping;
 
 	private void initEconomy() {
 
-		creeperFirework = new SSAchievement("creeperFirework", 0, 0, new ItemStack(Items.fireworks), (Achievement)null,economy).initIndependentStat().registerStat();
-		shipping = new SSAchievement("shipping", 2, 2, new ItemStack(SSBlocks.shippingBox), creeperFirework,economy).registerStat();
+		creeperFirework = new SSAchievement("creeper_firework", 0, 0, new ItemStack(Items.fireworks), (Achievement)null,economy).initIndependentStat().registerStat();
+		creeperChest = new SSAchievement("creeper_chest", 1, -2, new ItemStack(SSBlocks.creeperChest), creeperFirework,economy).registerStat();
+		shipping = new SSAchievement("shipping", 3, -2, new ItemStack(SSBlocks.shippingBox), creeperChest,economy).registerStat();
 
 		AchievementPage.registerAchievementPage(new AchievementPage("achievement.ss.economy", economy.toArray(new Achievement[0])){
 			public String getName()

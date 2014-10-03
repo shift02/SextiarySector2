@@ -8,6 +8,7 @@ import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockHole;
 import shift.sextiarysector.block.BlockLargeFurnace;
+import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockPowerStone;
 import shift.sextiarysector.block.BlockSSChest;
 import shift.sextiarysector.block.BlockSSPane;
@@ -15,10 +16,12 @@ import shift.sextiarysector.block.BlockShaft;
 import shift.sextiarysector.block.BlockShippingBox;
 import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.block.BlockSmallWindmill;
+import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.item.ItemBlockShaft;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
+import shift.sextiarysector.tileentity.TileEntityMonitor;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntityShaft;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
@@ -51,6 +54,7 @@ public class SSBlocks {
 	public static Block shippingBox;
 	public static Block creeperChest;
 
+	public static Block monitor;
 
 	public static void initBlicks(){
 
@@ -100,6 +104,10 @@ public class SSBlocks {
 		creeperChest = new BlockSSChest(6).setBlockName("ss.creeper_chest").setHardness(2.5F).setStepSound(Block.soundTypeWood).setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(creeperChest, "CreeperChest");
 		GameRegistry.registerTileEntity(TileEntitySSChest.class, "SSChest");
+
+		monitor = new BlockMonitor().setBlockName("ss.monitor").setBlockTextureName("stone");
+		GameRegistry.registerBlock(monitor,ItemBlockMonitor.class, "Monitor");
+		GameRegistry.registerTileEntity(TileEntityMonitor.class, "SSMonitor");
 
 	}
 
