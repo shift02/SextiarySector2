@@ -10,6 +10,10 @@ public class CommonProxy {
 	public int ShaftRenderType;
 	public int smallWindMillType;
 
+	public int monitorType;
+
+	public int chestType;
+
 
 	public EntityPlayer getClientPlayer(){
 		return null;

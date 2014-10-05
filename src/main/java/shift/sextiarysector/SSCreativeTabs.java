@@ -13,6 +13,7 @@ public class SSCreativeTabs {
 
 		SextiarySectorAPI.TabSSCore = new CreativeTabSSCore();
 		SextiarySectorAPI.TabSSMachine = new CreativeTabSSMachine();
+		SextiarySectorAPI.TabSSEconomy = new CreativeTabSSEconomy();
 
 	}
 
@@ -50,6 +51,25 @@ public class SSCreativeTabs {
 	    public ItemStack getIconItemStack()
 	    {
 			return new ItemStack(SSBlocks.shaft,1);
+	    }
+
+	}
+
+	private static class CreativeTabSSEconomy extends CreativeTabs{
+
+		public CreativeTabSSEconomy() {
+			super("ss.economy");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;//SSBlocks.LargeFurnace.g;
+		}
+
+		@SideOnly(Side.CLIENT)
+	    public ItemStack getIconItemStack()
+	    {
+			return new ItemStack(SSBlocks.creeperChest,1);
 	    }
 
 	}

@@ -31,7 +31,7 @@ public class BlockShippingBox extends Block{
 			return false;
 		}
 
-		if(par5EntityPlayer.getCurrentEquippedItem().getItem()==SSItems.hammer){
+		if(!world.isRemote && par5EntityPlayer.getCurrentEquippedItem().getItem()==SSItems.hammer){
 
 			EntityItem item = new EntityItem(world, x+0.5d, y+0.5d, z+0.5d, new ItemStack(this,1));
 
@@ -54,6 +54,7 @@ public class BlockShippingBox extends Block{
 
 		MCEconomyAPI.addPlayerMP(par5EntityPlayer, i,false);
 		par5EntityPlayer.addStat(ModuleAchievement.objectSellStats[Item.getIdFromItem(item.getItem())], 1);
+		par5EntityPlayer.addStat(ModuleAchievement.shipping, 1);
 		item.stackSize--;
 		world.playSoundAtEntity(par5EntityPlayer, "damage.fallsmall", 1.0F, 1.0F);
 		return true;
