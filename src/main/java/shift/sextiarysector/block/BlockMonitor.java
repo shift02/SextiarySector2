@@ -83,6 +83,7 @@ public class BlockMonitor extends BlockContainer{
 	public enum MonitorType{
 
 		creeper("creeper","creeper"),
+		robot("robot","robot"),
 		unknown("","");
 
 		public String name;

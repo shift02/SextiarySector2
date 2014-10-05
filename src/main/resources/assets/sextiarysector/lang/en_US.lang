@@ -24,6 +24,7 @@ tile.ss.shipping_box.name=Shipping Box
 tile.ss.monitor.name=Monitor
 monitor.type=Type
 monitor.creeper=Simple Creeper Shop
+monitor.robot=Blue Robot Shop
 
 #Item
 item.ss.dust_waterlily.name=WaterLily Dust
@@ -50,6 +51,7 @@ gui.ss.millstone=Millstone
 gui.ss.gf_tank=Wood GF Tank
 
 shop.ss.creeper=Simple Creeper Shop
+shop.ss.robot=Blue Robot Shop
 
 #Tab
 itemGroup.ss.core=SextiarySector -Core-
