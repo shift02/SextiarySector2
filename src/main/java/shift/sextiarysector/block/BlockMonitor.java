@@ -76,7 +76,7 @@ public class BlockMonitor extends BlockContainer{
 
 	public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
-		if(((TileEntityMonitor)world.getTileEntity(x, y, z)).on)return 15;
+		if(world.getBlockMetadata(x, y, z)==1)return 15;
 		return 0;
     }
 

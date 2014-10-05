@@ -33,8 +33,10 @@ public class TileEntityMonitor extends TileEntityDirection implements IEnergyHan
 		if(!this.worldObj.isRemote){
 			if(!this.on&&this.storage.getSpeedStored()>0){
 				this.on=true;
+				this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 4);
 			}else{
-				this.on=false;;
+				this.on=false;
+				this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 4);
 			}
 			this.worldObj.playSoundEffect((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D, "random.click", 0.3F, 0.6F);
 		}
