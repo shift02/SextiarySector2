@@ -3,6 +3,7 @@ package shift.sextiarysector;
 import net.minecraft.item.crafting.CraftingManager;
 import shift.sextiarysector.recipe.FurnaceCraftingManager;
 import shift.sextiarysector.recipe.RecipeSimpleMachine;
+import shift.sextiarysector.recipe.RecipesCore;
 import shift.sextiarysector.recipe.RecipesFurnaceCraft;
 import shift.sextiarysector.recipe.RecipesMachine;
 import shift.sextiarysector.recipe.RecipesMillstone;
@@ -25,6 +26,7 @@ public class SSRecipes {
 
 		RecipesNormalBlock.addRecipes(m);
 		RecipesMachine.addRecipes(m);
+		RecipesCore.addRecipes(m);
 
 		FurnaceCraftingManager fm = FurnaceCraftingManager.getInstance();
 
