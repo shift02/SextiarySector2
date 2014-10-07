@@ -17,6 +17,7 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.AchievementPage;
 import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.SextiarySector;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -99,8 +100,14 @@ public class ModuleAchievement implements IModule {
 
             if (item != null)
             {
-                int i = Item.getIdFromItem(item); //TODO: Hook FML's stat change event and re-assign these
-                objectSellStats[i] = (new StatCrafting("stat.sellItem." + i, new ChatComponentTranslation("stat.sellItem", new Object[] {(new ItemStack(item)).func_151000_E()}), item)).registerStat();
+                int i = Item.getIdFromItem(item);
+                try{
+                	objectSellStats[i] = (new StatCrafting("stat.sellItem." + i, new ChatComponentTranslation("stat.sellItem", new Object[] {(new ItemStack(item)).func_151000_E()}), item)).registerStat();
+                	}
+                	catch (NullPointerException e){
+                		SextiarySector.Log.catching(e);
+                	}
+
 
                 if (!(item instanceof ItemBlock))
                 {

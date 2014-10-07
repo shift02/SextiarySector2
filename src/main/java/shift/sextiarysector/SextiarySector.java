@@ -4,20 +4,12 @@ package shift.sextiarysector;
 
 import java.util.ArrayList;
 
-import net.minecraftforge.common.MinecraftForge;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import shift.mceconomy2.gui.HUDMP;
 import shift.sextiarysector.api.SextiarySectorAPI;
-import shift.sextiarysector.api.event.VanillaFoodHandler;
 import shift.sextiarysector.api.machine.item.GearForceItem;
-import shift.sextiarysector.event.ClientEventHandler;
-import shift.sextiarysector.event.CommonEventHandler;
-import shift.sextiarysector.event.HUDEventHandler;
-import shift.sextiarysector.event.PlayerStatusEventHandler;
-import shift.sextiarysector.event.WorldEventHandler;
 import shift.sextiarysector.item.GearForceItemManager;
 import shift.sextiarysector.module.IModule;
 import shift.sextiarysector.module.ModuleAchievement;
@@ -28,7 +20,6 @@ import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.plugin.SSPlugins;
 import shift.sextiarysector.proxy.CommonProxy;
 import shift.sextiarysector.recipe.RecipesFurnaceCraft;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -66,14 +57,7 @@ public class SextiarySector {
 
     	SextiarySector.proxy.setCustomRenderers();
 
-    	MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
-    	MinecraftForge.EVENT_BUS.register(EntityPlayerManager.instance);
-    	FMLCommonHandler.instance().bus().register(EntityPlayerManager.instance);
-    	if(event.getSide().isClient())MinecraftForge.EVENT_BUS.register(new HUDEventHandler());
-    	MinecraftForge.EVENT_BUS.register(new PlayerStatusEventHandler());
-    	MinecraftForge.EVENT_BUS.register(new VanillaFoodHandler());
-    	if(event.getSide().isClient())MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
-    	MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
+    	SSEvents.preInit(event);
 
 		GearForceItem.manager = new GearForceItemManager();
 
