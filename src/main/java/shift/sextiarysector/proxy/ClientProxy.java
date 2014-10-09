@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import shift.sextiarysector.renderer.block.RendererChest;
+import shift.sextiarysector.renderer.block.RendererFarmland;
 import shift.sextiarysector.renderer.block.RendererHole;
 import shift.sextiarysector.renderer.block.RendererMonitor;
 import shift.sextiarysector.renderer.block.RendererShaft;
@@ -40,6 +41,8 @@ public class ClientProxy extends CommonProxy{
 
 		this.monitorType = RenderingRegistry.getNextAvailableRenderId();
 
+		this.farmlandType = RenderingRegistry.getNextAvailableRenderId();
+
 		RenderingRegistry.registerBlockHandler(new RendererHole());
 
 		RenderingRegistry.registerBlockHandler(new RendererShaft());
@@ -49,6 +52,8 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerBlockHandler(new RendererChest());
 
 		RenderingRegistry.registerBlockHandler(new RendererMonitor());
+
+		RenderingRegistry.registerBlockHandler(new RendererFarmland());
 
 		this.setCustomClientRenderers();
 

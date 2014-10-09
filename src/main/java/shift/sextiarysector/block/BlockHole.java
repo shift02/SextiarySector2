@@ -22,6 +22,7 @@ public class BlockHole extends Block{
 	public BlockHole() {
 		super(Material.grass);
 		this.setLightOpacity(255);
+		this.useNeighborBrightness = true;
 	}
 
 	@SideOnly(Side.CLIENT)

@@ -6,7 +6,10 @@ import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import shift.sextiarysector.api.agriculture.AgricultureAPI;
+import shift.sextiarysector.api.agriculture.IFertilizer;
 import shift.sextiarysector.gui.GuiStatsNext;
+import shift.sextiarysector.module.FertilizerManager;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -67,6 +70,19 @@ public class ClientEventHandler {
     		itemGF = new IIcon[2];
     		itemGF[0] = event.map.registerIcon("sextiarysector:damage/damage_0");
     		itemGF[1] = event.map.registerIcon("sextiarysector:damage/damage_1");
+
+    	}
+
+    }
+
+    @SubscribeEvent
+	public void rreFertilizerTextureStitchEvent(TextureStitchEvent.Pre event){
+
+    	if(event.map.getTextureType()==0){
+
+    		for(IFertilizer f : ((FertilizerManager)AgricultureAPI.fertilizerManager).fertilizers.values()){
+    			f.registerFertilizerIcons(event.map);
+    		}
 
     	}
 

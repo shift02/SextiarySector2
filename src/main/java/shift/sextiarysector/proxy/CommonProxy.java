@@ -14,6 +14,7 @@ public class CommonProxy {
 
 	public int chestType;
 
+	public int farmlandType;
 
 	public EntityPlayer getClientPlayer(){
 		return null;

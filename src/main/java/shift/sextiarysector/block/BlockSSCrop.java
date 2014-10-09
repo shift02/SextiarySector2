@@ -46,7 +46,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     protected boolean canPlaceBlockOn(Block p_149854_1_)
     {
-        return p_149854_1_ == Blocks.farmland;
+        return p_149854_1_ == Blocks.farmland || p_149854_1_ == Blocks.farmland;
     }
 
     @SideOnly(Side.CLIENT)

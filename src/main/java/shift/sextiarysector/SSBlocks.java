@@ -11,6 +11,7 @@ import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockPowerStone;
 import shift.sextiarysector.block.BlockSSChest;
+import shift.sextiarysector.block.BlockSSFarmland;
 import shift.sextiarysector.block.BlockSSPane;
 import shift.sextiarysector.block.BlockShaft;
 import shift.sextiarysector.block.BlockShippingBox;
@@ -18,6 +19,7 @@ import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.item.ItemBlockShaft;
+import shift.sextiarysector.tileentity.TileEntityFarmland;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
@@ -55,6 +57,8 @@ public class SSBlocks {
 	public static Block creeperChest;
 
 	public static Block monitor;
+
+	public static Block farmland;
 
 	public static void initBlicks(){
 
@@ -108,6 +112,11 @@ public class SSBlocks {
 		monitor = new BlockMonitor().setBlockName("ss.monitor").setBlockTextureName("stone");
 		GameRegistry.registerBlock(monitor,ItemBlockMonitor.class, "Monitor");
 		GameRegistry.registerTileEntity(TileEntityMonitor.class, "SSMonitor");
+
+
+		farmland = new BlockSSFarmland().setBlockName("ss.farmland").setBlockTextureName("farmland").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(farmland,"Farmland");
+		GameRegistry.registerTileEntity(TileEntityFarmland.class, "SSFarmland");
 
 	}
 

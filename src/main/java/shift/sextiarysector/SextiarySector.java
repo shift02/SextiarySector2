@@ -13,6 +13,7 @@ import shift.sextiarysector.api.machine.item.GearForceItem;
 import shift.sextiarysector.item.GearForceItemManager;
 import shift.sextiarysector.module.IModule;
 import shift.sextiarysector.module.ModuleAchievement;
+import shift.sextiarysector.module.ModuleAgriculture;
 import shift.sextiarysector.module.ModuleChunkLoader;
 import shift.sextiarysector.module.ModuleSeason;
 import shift.sextiarysector.packet.PacketHandler;
@@ -65,6 +66,7 @@ public class SextiarySector {
     	modules.add(ModuleAchievement.getInstance());
     	modules.add(ModuleChunkLoader.getInstance());
     	modules.add(ModuleSeason.getInstance());
+    	modules.add(ModuleAgriculture.getInstance());
 
     	SSRecipes.initRecipeLists();
 
