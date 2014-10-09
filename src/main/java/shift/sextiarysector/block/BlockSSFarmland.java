@@ -5,9 +5,13 @@ import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.module.FertilizerManager;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
@@ -50,6 +54,48 @@ public class BlockSSFarmland extends BlockFarmland  implements ITileEntityProvid
 			return true;
 
 		}
+
+		if(par5EntityPlayer.getCurrentEquippedItem()!=null){
+
+			FluidStack f = FluidContainerRegistry.getFluidForFilledItem(par5EntityPlayer.getCurrentEquippedItem());
+
+			if(f!=null){
+
+				TileEntityFarmland t = (TileEntityFarmland) par1World.getTileEntity(x, y, z);
+
+				if(t.fill(ForgeDirection.getOrientation(par6), f, true)>0){
+
+					ItemStack item = par5EntityPlayer.getCurrentEquippedItem().getItem().getContainerItem(par5EntityPlayer.getCurrentEquippedItem());
+
+					if (!par5EntityPlayer.capabilities.isCreativeMode)
+			        {
+			            --par5EntityPlayer.getCurrentEquippedItem().stackSize;
+
+			            if(item!=null){
+							if (!par5EntityPlayer.inventory.addItemStackToInventory(item))
+		                    {
+								par5EntityPlayer.dropPlayerItemWithRandomChoice(item,false);
+		                    }
+						}
+
+			        }
+
+					return true;
+
+				}
+
+			}else{
+				return false;
+			}
+
+		}
+
+		return false;
+	}
+
+	private boolean addWater(World par1World, int x, int y, int z){
+
+		TileEntityFarmland t = (TileEntityFarmland) par1World.getTileEntity(x, y, z);
 
 		return false;
 	}

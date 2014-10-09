@@ -5,9 +5,43 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileEntityFarmland extends TileEntity{
+public class TileEntityFarmland extends TileEntity implements IFluidHandler{
 
+	//水
+	protected FluidTank water = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
+
+	public void updateEntity() {
+
+		if(!this.worldObj.isRemote){
+			this.updateServerEntity();
+		}
+
+	}
+
+	public void updateServerEntity() {
+
+		if(this.getBlockMetadata()==0&&water.getFluidAmount()>500){
+			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 4);
+			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		}
+
+		if(this.getBlockMetadata()==1&&water.getFluidAmount()<=500){
+			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 4);
+			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		}
+
+	}
+
+	//肥料
 	public String fertilizer;
 
 	public String getFertilizer() {
@@ -21,13 +55,17 @@ public class TileEntityFarmland extends TileEntity{
 	@Override
 	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
 		super.readFromNBT(par1nbtTagCompound);
-		this.fertilizer = par1nbtTagCompound.getString("fertilizer");
+		if(par1nbtTagCompound.hasKey("fertilizer")){
+			this.fertilizer = par1nbtTagCompound.getString("fertilizer");
+		}
+		this.water.readFromNBT(par1nbtTagCompound);
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
 		super.writeToNBT(par1nbtTagCompound);
-		par1nbtTagCompound.setString("fertilizer", fertilizer);
+		if(fertilizer!=null)par1nbtTagCompound.setString("fertilizer", fertilizer);
+		this.water.writeToNBT(par1nbtTagCompound);
 	}
 
 	@Override
@@ -41,6 +79,43 @@ public class TileEntityFarmland extends TileEntity{
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		readFromNBT(pkt.func_148857_g());
 		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+	}
+
+	//液体関係
+	@Override
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+
+		if(!this.canFill(from, resource.getFluid())){
+			return 0;
+		}
+
+		return this.water.fill(resource, doFill);
+
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, FluidStack resource,boolean doDrain) {
+		return null;
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+		return null;
+	}
+
+	@Override
+	public boolean canFill(ForgeDirection from, Fluid fluid) {
+		return fluid.getID()==FluidRegistry.WATER.getID();
+	}
+
+	@Override
+	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+		return false;
+	}
+
+	@Override
+	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+		return new FluidTankInfo[] { this.water.getInfo() };
 	}
 
 }
