@@ -8,12 +8,15 @@ import net.minecraft.block.BlockBush;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
+import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -23,11 +26,15 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
     private IIcon[] field_149867_a;
     private static final String __OBFID = "CL_00000222";
     private static CropType type;
+    private static Item drop;
+    private static CropStatus status;
 
-    public BlockSSCrop(CropType type)
+    public BlockSSCrop(CropType type, CropStatus status, Item drop)
     {
         this.setTickRandomly(true);
         this.type = type;
+        this.drop = drop;
+        this.status = status;
 
         if(type.equals(CropType.Normal)){
         	float f = 0.5F;
@@ -46,13 +53,25 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     protected boolean canPlaceBlockOn(Block p_149854_1_)
     {
-        return p_149854_1_ == Blocks.farmland || p_149854_1_ == Blocks.farmland;
+        return p_149854_1_ == Blocks.farmland || p_149854_1_ == SSBlocks.farmland;
+    }
+
+    @Override
+    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
+    {
+		return EnumPlantType.Crop;
+    }
+
+    public Block setBlockTextureName(String p_149658_1_)
+    {
+        this.textureName = p_149658_1_;
+        return this;
     }
 
     @SideOnly(Side.CLIENT)
     public String getItemIconName()
     {
-    	return this.getTextureName();
+    	return "sextiarysector:seed/"+this.getTextureName()+"_seed";
     }
 
     @SideOnly(Side.CLIENT)
@@ -68,7 +87,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
         for (int i = 0; i < this.field_149867_a.length; ++i)
         {
-            this.field_149867_a[i] = p_149651_1_.registerIcon(this.getTextureName() + "_stage_" + i);
+            this.field_149867_a[i] = p_149651_1_.registerIcon("sextiarysector:crop/"+this.getTextureName() + "_stage_" + i);
         }
     }
 
@@ -84,7 +103,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     protected Item func_149865_P()
     {
-        return Items.wheat;
+        return drop;
     }
 
     public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_)
@@ -94,7 +113,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
-        return p_149650_1_ == 3 ? this.func_149865_P() : this.func_149866_i();
+        return p_149650_1_ == 3 ? this.func_149865_P() : null;//this.func_149866_i();
     }
 
     @Override
@@ -102,13 +121,15 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
     {
         ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
 
+
         if (metadata >= 3)
         {
             for (int i = 0; i < 3 + fortune; ++i)
             {
                 if (world.rand.nextInt(15) <= metadata)
                 {
-                    ret.add(new ItemStack(this.func_149866_i(), 1, 0));
+                    //ret.add(new ItemStack(this.func_149866_i(), 1, 0));
+                    ret.add(new ItemStack(this.func_149865_P(), 1, 0));
                 }
             }
         }
@@ -116,20 +137,8 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
         return ret;
     }
 
-    public enum CropType{
 
-    	Normal(6),
-    	Close(1)
 
-    	;
-
-    	public int id;
-
-    	CropType(int renderID){
-    		this.id = renderID;
-    	}
-
-    }
 
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
@@ -146,8 +155,48 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return new TileEntitySSCrop();
 	}
+
+	public static CropStatus getStatus() {
+		return status;
+	}
+
+	public static boolean hasFarmland(World world, int x, int y, int z){
+		return world.getBlock(x, y-1, z)==SSBlocks.farmland;
+	}
+
+
+    //---------------------------------------------------
+
+	public enum CropType{
+
+    	Normal(6),
+    	Close(1)
+
+    	;
+
+    	public int id;
+
+    	CropType(int renderID){
+    		this.id = renderID;
+    	}
+
+    }
+
+    public static class CropStatus{
+
+    	public int i[] = new int[3];
+
+    	public CropStatus(int i1,int i2,int i3){
+
+    		i[0]=i1;
+    		i[1]=i2;
+    		i[2]=i3;
+
+    	}
+
+    }
+
 
 }

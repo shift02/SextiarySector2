@@ -54,6 +54,10 @@ gui.ss.gf_tank=Wood GF Tank
 shop.ss.creeper=Simple Creeper Shop
 shop.ss.robot=Blue Robot Shop
 
+#ToolTip
+tooltip.season.pm=PM
+tooltip.season.am=AM
+
 #Tab
 itemGroup.ss.core=SextiarySector -Core-
 itemGroup.ss.machine=SextiarySector -Machine-

@@ -73,8 +73,8 @@ public class SextiarySector {
     	SextiarySectorAPI.playerManager = EntityPlayerManager.instance;
 
     	SSCreativeTabs.initCreativeTabs();
-    	SSBlocks.initBlicks();
     	SSItems.initItems();
+    	SSBlocks.initBlicks();
 
     	NetworkRegistry.INSTANCE.registerGuiHandler(this, new SSGuiHandler());
 

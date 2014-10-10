@@ -1,15 +1,21 @@
 package shift.sextiarysector.event;
 
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.achievement.GuiStats;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
 import shift.sextiarysector.api.agriculture.IFertilizer;
 import shift.sextiarysector.gui.GuiStatsNext;
 import shift.sextiarysector.module.FertilizerManager;
+import shift.sextiarysector.module.SeasonManager;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -50,6 +56,19 @@ public class ClientEventHandler {
 
 
     		//System.out.println("GuiOpenEvent");
+    	}
+
+    }
+
+    @SubscribeEvent
+    public void onItemTooltipEvent(ItemTooltipEvent event) {
+
+
+    	ItemStack itemStack = event.itemStack;
+    	List<String> toolTip = event.toolTip;
+
+    	if(itemStack.getItem()==Items.clock){
+    		toolTip.add(SeasonManager.getInstance().getTime2(this.mc.theWorld));
     	}
 
     }

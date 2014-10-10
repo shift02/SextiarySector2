@@ -53,7 +53,7 @@ public class SeasonManager implements ISeason {
 		m = (int) ((t%1000)/(1000f/60f));
 		s = (int) (((t%1000)/(1000f/3600f)))%60;
 
-		return ""+h+" : "+String.format("%1$02d", m)+" : "+String.format("%1$02d", s);
+		return "["+getAMorPM(world)+"] "+String.format("%1$2d", h)+":"+String.format("%1$02d", m);//+":"+String.format("%1$02d", s);
 
 	}
 

@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.block.BlockMonitor;
@@ -119,5 +120,27 @@ public class CommonEventHandler {
 	    }
 	    return false;
 	}
+
+	@SubscribeEvent
+    public void onSpawn(LivingSpawnEvent.CheckSpawn event)
+    {
+		/*
+		World world = event.world;
+        EntityLivingBase living = event.entityLiving;
+
+        if (living instanceof IMob)
+        {
+            int x = (int)event.x;
+            int y = (int)event.y;
+            int z = (int)event.z;
+
+            System.out.println( x+" : "+ y + " : "+ z);
+
+            if(world.getBlock(x, y-1, z)!=Blocks.stone){
+            	world.setBlock(x, y, z, Blocks.stone);
+            }
+
+        }*/
+    }
 
 }

@@ -2,6 +2,7 @@ package shift.sextiarysector;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Items;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.block.BlockChunkLoader;
 import shift.sextiarysector.block.BlockGFTank;
@@ -11,6 +12,9 @@ import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockPowerStone;
 import shift.sextiarysector.block.BlockSSChest;
+import shift.sextiarysector.block.BlockSSCrop;
+import shift.sextiarysector.block.BlockSSCrop.CropStatus;
+import shift.sextiarysector.block.BlockSSCrop.CropType;
 import shift.sextiarysector.block.BlockSSFarmland;
 import shift.sextiarysector.block.BlockSSPane;
 import shift.sextiarysector.block.BlockShaft;
@@ -25,6 +29,7 @@ import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
+import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import shift.sextiarysector.tileentity.TileEntityShaft;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
@@ -59,6 +64,8 @@ public class SSBlocks {
 	public static Block monitor;
 
 	public static Block farmland;
+
+	public static Block turnip;
 
 	public static void initBlicks(){
 
@@ -117,6 +124,12 @@ public class SSBlocks {
 		farmland = new BlockSSFarmland().setBlockName("ss.farmland").setBlockTextureName("farmland").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(farmland,"Farmland");
 		GameRegistry.registerTileEntity(TileEntityFarmland.class, "SSFarmland");
+
+		//
+		GameRegistry.registerTileEntity(TileEntitySSCrop.class, "SSCrop");
+
+		turnip = new BlockSSCrop(CropType.Normal, new CropStatus(2,3,4), Items.apple).setBlockName("ss.turnip").setBlockTextureName("turnip").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(turnip,"Turnip");
 
 	}
 

@@ -52,6 +52,14 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler{
 		this.fertilizer = fertilizer;
 	}
 
+	public boolean canGrowth(){
+		return water.getFluidAmount()>=500;
+	}
+
+	public void growth(){
+		this.water.drain(500, true);
+	}
+
 	@Override
 	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
 		super.readFromNBT(par1nbtTagCompound);
