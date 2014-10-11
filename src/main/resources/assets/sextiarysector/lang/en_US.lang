@@ -6,6 +6,7 @@ tile.ss.large_furnace.name=Large Furnace
 tile.ss.wood_grate.name=Wood Grate
 
 tile.ss.hole.name=Hole
+tile.ss.farmland.name=farmland
 
 tile.ss.chunk_loader.name=Time Loader
 
@@ -20,6 +21,8 @@ tile.ss.yellow_stone.name=Yellow Stone Ore
 
 tile.ss.creeper_chest.name=Creeper Monger Chest
 tile.ss.shipping_box.name=Shipping Box
+
+tile.ss.turnip.name=Turnip Seed
 
 tile.ss.monitor.name=Monitor
 monitor.type=Type
@@ -44,6 +47,12 @@ item.ss.calendar.name=Calendar
 
 item.ss.wood_gf_storage.name=Wood GF Storage
 
+item.ss.wood_scoop.name=Wood Scoop
+item.ss.stone_scoop.name=Stone Scoop
+item.ss.iron_scoop.name=Iron Scoop
+item.ss.gold_scoop.name=Gold Scoop
+item.ss.diamond_scoop.name=Diamond Scoop
+
 #GUI
 container.large_furnace=Large Furnace
 container.sub.inventory=Buffer
@@ -61,6 +70,7 @@ tooltip.season.am=AM
 #Tab
 itemGroup.ss.core=SextiarySector -Core-
 itemGroup.ss.machine=SextiarySector -Machine-
+itemGroup.ss.agriculture=SextiarySector -Agriculture-
 itemGroup.ss.economy=SextiarySector -Economy-
 
 #Achievement

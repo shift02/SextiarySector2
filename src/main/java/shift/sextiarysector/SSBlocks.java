@@ -121,14 +121,14 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntityMonitor.class, "SSMonitor");
 
 
-		farmland = new BlockSSFarmland().setBlockName("ss.farmland").setBlockTextureName("farmland").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		farmland = new BlockSSFarmland().setBlockName("ss.farmland").setBlockTextureName("farmland").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
 		GameRegistry.registerBlock(farmland,"Farmland");
 		GameRegistry.registerTileEntity(TileEntityFarmland.class, "SSFarmland");
 
 		//
 		GameRegistry.registerTileEntity(TileEntitySSCrop.class, "SSCrop");
 
-		turnip = new BlockSSCrop(CropType.Normal, new CropStatus(2,3,4), Items.apple).setBlockName("ss.turnip").setBlockTextureName("turnip").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		turnip = new BlockSSCrop(CropType.Normal, new CropStatus(2,3,4), Items.apple, false).setBlockName("ss.turnip").setBlockTextureName("turnip").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
 		GameRegistry.registerBlock(turnip,"Turnip");
 
 	}

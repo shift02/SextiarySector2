@@ -23,6 +23,9 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 	//成長何日目か
 	private int day=0;
 
+	//再収穫
+	private int day2=0;
+
 	public void updateEntity() {
 
 		if(!this.worldObj.isRemote){
@@ -35,24 +38,13 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 
 		if(lastMinutes==0){
 			lastMinutes=SeasonAPI.getMinute(getWorldObj());
-			System.out.println("AAAAAA"+lastMinutes);
 		}
 
 		if(lastMinutes==SeasonAPI.getMinute(getWorldObj())&&lastDay!=SeasonAPI.getDay(getWorldObj())){
 
-			System.out.println("BBBBB"+lastMinutes);
-
 			if(this.hasFarmland()&&this.canGrowth()){
 
 				this.growth();
-				day++;
-
-				if(this.getStatus().i[this.getBlockMetadata()]<=day){
-					this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getBlockMetadata()+1, 4);
-					this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-				}
-
-				this.lastDay = SeasonAPI.getDay(getWorldObj());
 
 			}
 
@@ -66,15 +58,47 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 
 	private boolean canGrowth(){
 
+		if(this.getBlockMetadata()==3){
+			return false;
+		}
+
 		return ((TileEntityFarmland)this.worldObj.getTileEntity(this.xCoord,this.yCoord-1,this.zCoord)).canGrowth();
 
 	}
 
 	private void growth(){
 
-		((TileEntityFarmland)this.worldObj.getTileEntity(this.xCoord,this.yCoord-1,this.zCoord)).growth();
-		System.out.println("GGGGGG");
+		day++;
 
+		BlockSSCrop crop = (BlockSSCrop) this.getBlockType();
+
+		if(this.getBlockMetadata()<3){
+			if(this.getStatus().i[this.getBlockMetadata()]<=day){
+				this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getBlockMetadata()+1, 4);
+				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			}
+		}else if(crop.canReHarvest()&&this.getBlockMetadata()==4&&this.getStatus().i.length==4){
+
+			day2++;
+
+			if(this.getStatus().i[3]<=day2){
+				this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 3, 4);
+				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			}
+		}
+
+
+		this.lastDay = SeasonAPI.getDay(getWorldObj());
+
+		((TileEntityFarmland)this.worldObj.getTileEntity(this.xCoord,this.yCoord-1,this.zCoord)).growth();
+		//System.out.println("GGGGGG");
+
+	}
+
+	public void onHarvest(){
+		this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 4, 4);
+		this.day2=0;
+		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 
 	private CropStatus getStatus(){

@@ -13,6 +13,7 @@ public class SSCreativeTabs {
 
 		SextiarySectorAPI.TabSSCore = new CreativeTabSSCore();
 		SextiarySectorAPI.TabSSMachine = new CreativeTabSSMachine();
+		SextiarySectorAPI.TabSSAgriculture = new CreativeTabSSAgriculture();
 		SextiarySectorAPI.TabSSEconomy = new CreativeTabSSEconomy();
 
 	}
@@ -51,6 +52,25 @@ public class SSCreativeTabs {
 	    public ItemStack getIconItemStack()
 	    {
 			return new ItemStack(SSBlocks.shaft,1);
+	    }
+
+	}
+
+	private static class CreativeTabSSAgriculture extends CreativeTabs{
+
+		public CreativeTabSSAgriculture() {
+			super("ss.agriculture");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;//SSBlocks.LargeFurnace.g;
+		}
+
+		@SideOnly(Side.CLIENT)
+	    public ItemStack getIconItemStack()
+	    {
+			return new ItemStack(SSBlocks.turnip,1);
 	    }
 
 	}

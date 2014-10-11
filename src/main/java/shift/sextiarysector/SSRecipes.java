@@ -8,6 +8,7 @@ import shift.sextiarysector.recipe.RecipesFurnaceCraft;
 import shift.sextiarysector.recipe.RecipesMachine;
 import shift.sextiarysector.recipe.RecipesMillstone;
 import shift.sextiarysector.recipe.RecipesNormalBlock;
+import shift.sextiarysector.recipe.RecipesTool;
 
 public class SSRecipes {
 
@@ -27,6 +28,7 @@ public class SSRecipes {
 		RecipesNormalBlock.addRecipes(m);
 		RecipesMachine.addRecipes(m);
 		RecipesCore.addRecipes(m);
+		RecipesTool.addRecipes(m);
 
 		FurnaceCraftingManager fm = FurnaceCraftingManager.getInstance();
 

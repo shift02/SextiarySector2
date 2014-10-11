@@ -7,8 +7,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -24,17 +27,20 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
 	@SideOnly(Side.CLIENT)
     private IIcon[] field_149867_a;
-    private static final String __OBFID = "CL_00000222";
     private static CropType type;
     private static Item drop;
     private static CropStatus status;
+    private static boolean re_harvest;
 
-    public BlockSSCrop(CropType type, CropStatus status, Item drop)
+    private static Random r = new Random();
+
+    public BlockSSCrop(CropType type, CropStatus status, Item drop, Boolean re_harvest)
     {
         this.setTickRandomly(true);
         this.type = type;
         this.drop = drop;
         this.status = status;
+        this.re_harvest = re_harvest;
 
         if(type.equals(CropType.Normal)){
         	float f = 0.5F;
@@ -49,6 +55,39 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
         this.setStepSound(soundTypeGrass);
         this.disableStats();
         this.isBlockContainer = true;
+    }
+
+    @Override
+	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6,float par7, float par8, float par9) {
+
+    	if(par1World.isRemote)return true;
+
+    	if(par1World.getBlockMetadata(x, y, z)==3&&par5EntityPlayer.getCurrentEquippedItem()!= null&&par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof ItemShears){
+    		par5EntityPlayer.getCurrentEquippedItem().damageItem(4, par5EntityPlayer);
+
+    		float var10 = this.r.nextFloat() * 0.8F + 0.1F;
+            float var11 = this.r.nextFloat() * 0.8F + 0.1F;
+            float var12 = this.r.nextFloat() * 0.8F + 0.1F;
+
+            EntityItem var14 = new EntityItem(par1World, (x + var10), (y + var11), (z + var12), new ItemStack(this.func_149865_P(), 1));
+
+            par1World.setBlock(x, y, z, this,4, 1);
+            TileEntitySSCrop crop = (TileEntitySSCrop) par1World.getTileEntity(x, y, z);
+            crop.onHarvest();
+
+            par1World.playSoundAtEntity(par5EntityPlayer, "mob.sheep.shear", 1.0F, 1.0F);
+
+            return par1World.spawnEntityInWorld(var14);
+
+    	}
+
+
+    	if(this.hasFarmland(par1World, x, y, z)){
+    		return par1World.getBlock(x, y-1, z).onBlockActivated(par1World, x, y-1, z, par5EntityPlayer, par6, par7, par8, par9);
+    	}
+
+    	return false;
+
     }
 
     protected boolean canPlaceBlockOn(Block p_149854_1_)
@@ -83,7 +122,9 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister p_149651_1_)
     {
-        this.field_149867_a = new IIcon[4];
+    	int s =4;
+    	if(this.canReHarvest())s = 5;
+        this.field_149867_a = new IIcon[s];
 
         for (int i = 0; i < this.field_149867_a.length; ++i)
         {
@@ -158,6 +199,10 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 		return new TileEntitySSCrop();
 	}
 
+	public static boolean canReHarvest(){
+		return re_harvest;
+	}
+
 	public static CropStatus getStatus() {
 		return status;
 	}
@@ -186,13 +231,11 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     public static class CropStatus{
 
-    	public int i[] = new int[3];
+    	public int i[] ;//= new int[3];
 
-    	public CropStatus(int i1,int i2,int i3){
+    	public CropStatus(int... i1){
 
-    		i[0]=i1;
-    		i[1]=i2;
-    		i[2]=i3;
+    		i= i1;
 
     	}
 

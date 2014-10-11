@@ -1,10 +1,12 @@
 package shift.sextiarysector;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.item.ItemCalendar;
 import shift.sextiarysector.item.ItemGearStorage;
 import shift.sextiarysector.item.ItemHammer;
+import shift.sextiarysector.item.ItemScoop;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SSItems {
@@ -30,6 +32,13 @@ public class SSItems {
 	public static Item yellowStoneDust;
 
 	public static Item blueStoneSlimeBall;
+
+	//道具
+	public static Item woodScoop;
+	public static Item stoneScoop;
+	public static Item ironScoop;
+	public static Item goldScoop;
+	public static Item diamondScoop;
 
 	public static void initItems(){
 
@@ -62,6 +71,18 @@ public class SSItems {
 
 		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
+
+		//道具
+		woodScoop = new ItemScoop(ToolMaterial.WOOD).setUnlocalizedName("ss.wood_scoop").setTextureName("wood_scoop");
+		stoneScoop = new ItemScoop(ToolMaterial.STONE).setUnlocalizedName("ss.stone_scoop").setTextureName("stone_scoop");
+		ironScoop = new ItemScoop(ToolMaterial.IRON).setUnlocalizedName("ss.iron_scoop").setTextureName("iron_scoop");
+		goldScoop = new ItemScoop(ToolMaterial.GOLD).setUnlocalizedName("ss.gold_scoop").setTextureName("gold_scoop");
+		diamondScoop = new ItemScoop(ToolMaterial.EMERALD).setUnlocalizedName("ss.diamond_scoop").setTextureName("diamond_scoop");
+		GameRegistry.registerItem(woodScoop, "WoodScoop");
+		GameRegistry.registerItem(stoneScoop, "StoneScoop");
+		GameRegistry.registerItem(ironScoop, "IronScoop");
+		GameRegistry.registerItem(goldScoop, "GoldScoop");
+		GameRegistry.registerItem(diamondScoop, "DiamondScoop");
 
 	}
 

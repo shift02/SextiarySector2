@@ -34,6 +34,11 @@ public class BlockSSFarmland extends BlockFarmland  implements ITileEntityProvid
 	@Override
 	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6,float par7, float par8, float par9) {
 
+		if (par1World.isRemote)
+        {
+            return true;
+        }
+
 		if(FertilizerManager.getFertilizer(par5EntityPlayer.getCurrentEquippedItem())!=null){
 
 			TileEntityFarmland t = (TileEntityFarmland) par1World.getTileEntity(x, y, z);
@@ -72,10 +77,18 @@ public class BlockSSFarmland extends BlockFarmland  implements ITileEntityProvid
 			            --par5EntityPlayer.getCurrentEquippedItem().stackSize;
 
 			            if(item!=null){
-							if (!par5EntityPlayer.inventory.addItemStackToInventory(item))
+
+			            	if(par5EntityPlayer.getCurrentEquippedItem().stackSize==0){
+
+			            		par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, item);
+
+
+			            	}else if (!par5EntityPlayer.inventory.addItemStackToInventory(item))
 		                    {
 								par5EntityPlayer.dropPlayerItemWithRandomChoice(item,false);
 		                    }
+
+
 						}
 
 			        }
