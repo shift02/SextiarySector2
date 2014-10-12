@@ -23,6 +23,7 @@ import shift.sextiarysector.SSItems;
 import shift.sextiarysector.SSShops.SSProductList;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.api.SextiarySectorAPI;
+import shift.sextiarysector.api.season.SeasonAPI;
 import shift.sextiarysector.tileentity.TileEntityDirection;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
 import cpw.mods.fml.relauncher.Side;
@@ -53,7 +54,7 @@ public class BlockMonitor extends BlockContainer{
 
 			}else if(tileEntity.on){
 
-				MCEconomyAPI.openShopGui(tileEntity.type.getList().id, par5EntityPlayer, world, x, y, z);
+				MCEconomyAPI.openShopGui(tileEntity.type.getList(world).id, par5EntityPlayer, world, x, y, z);
 
 			}
 
@@ -89,6 +90,7 @@ public class BlockMonitor extends BlockContainer{
 		public String name;
 		private ResourceLocation resource;
 		private SSProductList list;
+		private SSProductList[] sList;
 
 		MonitorType(String name,String resource){
 			this.name = name;
@@ -103,12 +105,23 @@ public class BlockMonitor extends BlockContainer{
 			this.resource = resource;
 		}
 
+		public SSProductList getList(World world) {
+
+			if(world==null||sList==null)return this.getList();
+
+			return sList[SeasonAPI.getSeason(world).ordinal()];
+		}
+
 		public SSProductList getList() {
 			return list;
 		}
 
 		public void setList(SSProductList list) {
 			this.list = list;
+		}
+
+		public void setList(SSProductList[] list) {
+			this.sList = list;
 		}
 
 	}

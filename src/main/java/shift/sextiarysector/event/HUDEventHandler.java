@@ -60,6 +60,18 @@ public class HUDEventHandler {
             }
         }
 
+
+
+    }
+
+    //アイテムテキストずらし
+    @SubscribeEvent
+    public void onRenderGameOverlayEventPost(RenderGameOverlayEvent.Post event) {
+
+    	/*if(event.type == ElementType.EXPERIENCE||event.type == ElementType.JUMPBAR){
+
+        }*/
+
     }
 
 

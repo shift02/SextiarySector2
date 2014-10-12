@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Items;
 import shift.sextiarysector.api.SextiarySectorAPI;
+import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.block.BlockChunkLoader;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
@@ -128,7 +129,7 @@ public class SSBlocks {
 		//
 		GameRegistry.registerTileEntity(TileEntitySSCrop.class, "SSCrop");
 
-		turnip = new BlockSSCrop(CropType.Normal, new CropStatus(2,3,4), Items.apple, false).setBlockName("ss.turnip").setBlockTextureName("turnip").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
+		turnip = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,3,4},Season.WINTER), Items.apple, false).setBlockName("ss.turnip").setBlockTextureName("turnip").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
 		GameRegistry.registerBlock(turnip,"Turnip");
 
 	}

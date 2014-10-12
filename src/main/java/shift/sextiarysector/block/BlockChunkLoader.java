@@ -50,7 +50,7 @@ public class BlockChunkLoader extends Block implements IChunkLoaderBlock{
 	@Override
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
-		if(!par1World.isRemote && par5EntityPlayer.isSneaking()){
+		if(!par1World.isRemote && par5EntityPlayer.isSneaking() && par5EntityPlayer.getCurrentEquippedItem() == null){
 
 			if(par1World.getBlockMetadata(par2, par3, par4)==0){
 				par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 2);

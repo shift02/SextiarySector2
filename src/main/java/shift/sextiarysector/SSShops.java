@@ -11,11 +11,20 @@ public class SSShops {
 
 	public static void initShops(){
 
-		SSProductList creeper = new SSProductList("shop.ss.creeper");
-		MonitorType.creeper.setList(creeper);
+		SSProductList[] creepers = new SSProductList[4];
 
-		creeper.addItemProduct(new ProductItem(new ItemStack(SSItems.blueStoneDust,2),320));
-		creeper.addItemProduct(new ProductItem(new ItemStack(SSItems.yellowStoneDust,2),320));
+		for(int i = 0;i<4;i++){
+
+			creepers[i] = new SSProductList("shop.ss.creeper");
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.blueStoneDust,2),320));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.yellowStoneDust,2),320));
+
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.seasonStone,1),3000));
+
+		}
+
+		MonitorType.creeper.setList(creepers);
+
 
 		SSProductList robot = new SSProductList("shop.ss.robot");
 		MonitorType.robot.setList(robot);

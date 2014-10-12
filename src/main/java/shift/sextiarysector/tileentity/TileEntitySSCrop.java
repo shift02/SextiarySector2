@@ -11,6 +11,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.api.season.SeasonAPI;
 import shift.sextiarysector.block.BlockSSCrop;
 import shift.sextiarysector.block.BlockSSCrop.CropStatus;
@@ -41,6 +42,22 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 		}
 
 		if(lastMinutes==SeasonAPI.getMinute(getWorldObj())&&lastDay!=SeasonAPI.getDay(getWorldObj())){
+
+			Season[] s = this.getCrop().getStatus().getSeason();
+
+			boolean notB = false;
+			for(int i = 0;i<s.length;i++){
+				if(s[i].equals(SeasonAPI.getSeason(getWorldObj()))){
+					notB =true;
+					break;
+				}
+			}
+
+			if(!notB){
+				this.worldObj.func_147480_a(this.xCoord, this.yCoord, this.zCoord, false);
+				this.worldObj.removeTileEntity(xCoord, yCoord, zCoord);
+				return ;
+			}
 
 			if(this.hasFarmland()&&this.canGrowth()){
 
@@ -107,6 +124,10 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 
 	private TileEntityFarmland getTileEntityFarmland(){
 		return ((TileEntityFarmland)this.worldObj.getTileEntity(this.xCoord,this.yCoord-1,this.zCoord));
+	}
+
+	private BlockSSCrop getCrop(){
+		return (BlockSSCrop) this.blockType;
 	}
 
 	@Override

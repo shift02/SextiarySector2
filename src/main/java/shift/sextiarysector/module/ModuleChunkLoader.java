@@ -56,6 +56,8 @@ public class ModuleChunkLoader  implements IModule ,LoadingCallback{
 
 		Ticket t = ForgeChunkManager.requestTicket(SextiarySector.instance, world, Type.NORMAL);
 
+		if(t==null)return false;
+
 		setBlockType(t);
 		setBlock(t, x, y, z);
 		ticketList.put(Arrays.asList(x, y, z), t);

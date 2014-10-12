@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -233,11 +234,18 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     	public int i[] ;//= new int[3];
 
-    	public CropStatus(int... i1){
+    	public Season[] season;
 
-    		i= i1;
+		public CropStatus(int[] i1,Season... s){
+
+    		this.i= i1;
+    		this.season= s;
 
     	}
+
+    	public Season[] getSeason() {
+			return season;
+		}
 
     }
 

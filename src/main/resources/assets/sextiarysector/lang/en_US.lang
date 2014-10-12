@@ -45,6 +45,13 @@ item.ss.wood_unit_gear.name=Wood Unit Gear
 item.ss.hammer.name=Hammer
 item.ss.calendar.name=Calendar
 
+item.ss.calendar.name=Calendar
+item.ss.season_stone.name=Season Stone
+item.ss.season_stone_spring.name=Season Stone -Spring-
+item.ss.season_stone_summer.name=Season Stone -Summer-
+item.ss.season_stone_autumn.name=Season Stone -Autumn-
+item.ss.season_stone_winter.name=Season Stone -Winter-
+
 item.ss.wood_gf_storage.name=Wood GF Storage
 
 item.ss.wood_scoop.name=Wood Scoop
@@ -66,6 +73,12 @@ shop.ss.robot=Blue Robot Shop
 #ToolTip
 tooltip.season.pm=PM
 tooltip.season.am=AM
+
+tooltip.season=Season
+tooltip.season.spring=Spring
+tooltip.season.summer=Summer
+tooltip.season.autumn=Autumn
+tooltip.season.winter=Winter
 
 #Tab
 itemGroup.ss.core=SextiarySector -Core-

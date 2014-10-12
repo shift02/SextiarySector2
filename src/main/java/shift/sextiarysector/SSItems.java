@@ -7,6 +7,7 @@ import shift.sextiarysector.item.ItemCalendar;
 import shift.sextiarysector.item.ItemGearStorage;
 import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemScoop;
+import shift.sextiarysector.item.ItemSeasonStone;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SSItems {
@@ -24,6 +25,7 @@ public class SSItems {
 	public static Item hammer;
 
 	public static Item calendar;
+	public static Item seasonStone;
 
 	//素材
 	public static Item dustWaterLily;
@@ -59,6 +61,9 @@ public class SSItems {
 
 		calendar = new ItemCalendar().setUnlocalizedName("ss.calendar").setTextureName("sextiarysector:calendar").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(calendar, "Calendar");
+
+		seasonStone = new ItemSeasonStone().setUnlocalizedName("ss.season_stone").setTextureName("sextiarysector:season_stone").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(seasonStone, "SeasonStone");
 
 		dustWaterLily = new Item().setUnlocalizedName("ss.dust_waterlily").setTextureName("sextiarysector:dust/waterlily_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(dustWaterLily, "DustWaterLily");
