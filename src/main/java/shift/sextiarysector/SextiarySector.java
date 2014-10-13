@@ -32,12 +32,12 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	//public static final String MODID = "SextiarySector";
-    public static final String VERSION = "2.0.3";
+    public static final String VERSION = "2.0.4";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
 
-    public static final String DEPENDENCY = "after:ComputerCraft";
+    public static final String DEPENDENCY = "";//"required-after:mceconomy2";
 
     @SidedProxy(clientSide = "shift.sextiarysector.proxy.ClientProxy", serverSide = "shift.sextiarysector.proxy.CommonProxy")
 	public static CommonProxy proxy;
