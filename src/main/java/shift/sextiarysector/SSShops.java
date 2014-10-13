@@ -21,6 +21,27 @@ public class SSShops {
 
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.seasonStone,1),3000));
 
+			if(i==0){
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.turnip,1),200));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.cucumber,1),380));
+			}
+
+			if(i==1){
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.onion,1),200));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.tomato,1),200));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.corn,1),800));
+			}
+
+			if(i==2){
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.eggplant,1),310));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.sweetPotato,1),120));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.greenPepper,1),340));
+			}
+
+			if(i==3){
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.radish,1),180));
+			}
+
 		}
 
 		MonitorType.creeper.setList(creepers);
@@ -47,6 +68,23 @@ public class SSShops {
 		public String getProductListName() {
 			return this.name;
 		}
+
+	}
+
+	public static void initPurchase(){
+
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.turnip), 280);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.cucumber), 350);
+
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.onion), 320);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.tomato), 150);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.corn), 720);
+
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.eggplant), 210);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.sweetPotato), 120);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.greenPepper), 200);
+
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.radish), 220);
 
 	}
 

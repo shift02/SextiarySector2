@@ -114,6 +114,7 @@ public class SextiarySector {
 
     	RecipesFurnaceCraft.addVanillaRecipes();
     	SSShops.initShops();
+    	SSShops.initPurchase();
 
     	for(IModule m : modules){
     		m.postInit(event);

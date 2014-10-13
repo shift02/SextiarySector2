@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import cpw.mods.fml.relauncher.Side;
@@ -28,10 +29,10 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
 	@SideOnly(Side.CLIENT)
     private IIcon[] field_149867_a;
-    private static CropType type;
-    private static Item drop;
-    private static CropStatus status;
-    private static boolean re_harvest;
+    private CropType type;
+    private Item drop;
+    private CropStatus status;
+    private boolean re_harvest;
 
     private static Random r = new Random();
 
@@ -56,6 +57,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
         this.setStepSound(soundTypeGrass);
         this.disableStats();
         this.isBlockContainer = true;
+        this.setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
     }
 
     @Override
@@ -87,7 +89,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
     		return par1World.getBlock(x, y-1, z).onBlockActivated(par1World, x, y-1, z, par5EntityPlayer, par6, par7, par8, par9);
     	}
 
-    	return false;
+    	return true;
 
     }
 
@@ -200,11 +202,11 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 		return new TileEntitySSCrop();
 	}
 
-	public static boolean canReHarvest(){
+	public boolean canReHarvest(){
 		return re_harvest;
 	}
 
-	public static CropStatus getStatus() {
+	public CropStatus getStatus() {
 		return status;
 	}
 

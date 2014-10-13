@@ -716,6 +716,7 @@ public class GuiStatsNext extends GuiScreen implements IProgressMeter
             {
                 StatCrafting statcrafting = (StatCrafting)iterator.next();
                 boolean flag = false;
+                if(statcrafting==null)continue;
                 int i = Item.getIdFromItem(statcrafting.func_150959_a());
 
                 if (GuiStatsNext.this.field_146546_t.writeStat(statcrafting) > 0)

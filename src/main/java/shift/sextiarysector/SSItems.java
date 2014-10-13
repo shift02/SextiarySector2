@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.item.ItemCalendar;
+import shift.sextiarysector.item.ItemCrop;
 import shift.sextiarysector.item.ItemGearStorage;
 import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemScoop;
@@ -41,6 +42,20 @@ public class SSItems {
 	public static Item ironScoop;
 	public static Item goldScoop;
 	public static Item diamondScoop;
+
+	//野菜
+	public static Item turnip;
+	public static Item cucumber;
+
+	public static Item onion;
+	public static Item tomato;
+	public static Item corn;
+
+	public static Item eggplant;
+	public static Item sweetPotato;
+	public static Item greenPepper;
+
+	public static Item radish;
 
 	public static void initItems(){
 
@@ -88,6 +103,36 @@ public class SSItems {
 		GameRegistry.registerItem(ironScoop, "IronScoop");
 		GameRegistry.registerItem(goldScoop, "GoldScoop");
 		GameRegistry.registerItem(diamondScoop, "DiamondScoop");
+
+		turnip = new ItemCrop(3, 1, 1, 4, 0, 0, false).setUnlocalizedName("ss.turnip").setTextureName("sextiarysector:crop/turnip");
+		GameRegistry.registerItem(turnip, "Turnip");
+
+		cucumber = new ItemCrop(1, 1, 3, 4, 0, 2, false).setUnlocalizedName("ss.cucumber").setTextureName("sextiarysector:crop/cucumber");
+		GameRegistry.registerItem(cucumber, "Cucumber");
+
+
+		onion = new ItemCrop(2, 1, 1, 0, 0, 0, false).setUnlocalizedName("ss.onion").setTextureName("sextiarysector:crop/onion");
+		GameRegistry.registerItem(onion, "Onion");
+
+		tomato = new ItemCrop(1, 1, 4, 5, 0, 0, false).setUnlocalizedName("ss.tomato").setTextureName("sextiarysector:crop/tomato");
+		GameRegistry.registerItem(tomato, "Tomato");
+
+		corn = new ItemCrop(0, 1, 1, 6, 4, 2, false).setUnlocalizedName("ss.corn").setTextureName("sextiarysector:crop/corn");
+		GameRegistry.registerItem(corn, "corn");
+
+
+		eggplant = new ItemCrop(1, 1, 4, 2, 0, 0, false).setUnlocalizedName("ss.eggplant").setTextureName("sextiarysector:crop/eggplant");
+		GameRegistry.registerItem(eggplant, "Eggplant");
+
+		sweetPotato = new ItemCrop(4, 1, 0, 0, 6, 0, false).setUnlocalizedName("ss.sweet_potato").setTextureName("sextiarysector:crop/sweet_potato");
+		GameRegistry.registerItem(sweetPotato, "SweetPotato");
+
+		greenPepper = new ItemCrop(2, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.green_pepper").setTextureName("sextiarysector:crop/green_pepper");
+		GameRegistry.registerItem(greenPepper, "GreenPepper");
+
+
+		radish = new ItemCrop(3, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.radish").setTextureName("sextiarysector:crop/radish");
+		GameRegistry.registerItem(radish, "Radish");
 
 	}
 

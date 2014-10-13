@@ -43,7 +43,7 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 
 		if(lastMinutes==SeasonAPI.getMinute(getWorldObj())&&lastDay!=SeasonAPI.getDay(getWorldObj())){
 
-			Season[] s = this.getCrop().getStatus().getSeason();
+			Season[] s = this.getStatus().getSeason();
 
 			boolean notB = false;
 			for(int i = 0;i<s.length;i++){
@@ -127,7 +127,7 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 	}
 
 	private BlockSSCrop getCrop(){
-		return (BlockSSCrop) this.blockType;
+		return (BlockSSCrop) this.worldObj.getBlock(xCoord, yCoord, zCoord);
 	}
 
 	@Override

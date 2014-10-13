@@ -23,6 +23,17 @@ tile.ss.creeper_chest.name=Creeper Monger Chest
 tile.ss.shipping_box.name=Shipping Box
 
 tile.ss.turnip.name=Turnip Seed
+tile.ss.cucumber.name=Cucumber Seed
+
+tile.ss.onion.name=Onion Seed
+tile.ss.tomato.name=Tomato Seed
+tile.ss.corn.name=Corn Seed
+
+tile.ss.eggplant.name=Eggplant Seed
+tile.ss.sweet_potato.name=Sweet Potato Seed
+tile.ss.green_pepper.name=Green Pepper Seed
+
+tile.ss.radish.name=Radish Seed
 
 tile.ss.monitor.name=Monitor
 monitor.type=Type
@@ -60,6 +71,16 @@ item.ss.iron_scoop.name=Iron Scoop
 item.ss.gold_scoop.name=Gold Scoop
 item.ss.diamond_scoop.name=Diamond Scoop
 
+item.ss.turnip.name=Turnip
+item.ss.cucumber.name=Cucumber
+item.ss.onion.name=Onion
+item.ss.tomato.name=Tomato
+item.ss.corn.name=Corn
+item.ss.eggplant.name=Eggplant
+item.ss.sweet_potato.name=Sweet Potato
+item.ss.green_pepper.name=Green Pepper
+item.ss.radish.name=Radish
+
 #GUI
 container.large_furnace=Large Furnace
 container.sub.inventory=Buffer
@@ -75,6 +96,7 @@ tooltip.season.pm=PM
 tooltip.season.am=AM
 
 tooltip.season=Season
+tooltip.season.seed=Season
 tooltip.season.spring=Spring
 tooltip.season.summer=Summer
 tooltip.season.autumn=Autumn
