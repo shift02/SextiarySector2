@@ -22,6 +22,15 @@ public class RecipesTool {
 					}));
 		}
 
+		Item[] wateringCan = new Item[]{SSItems.woodWateringCan};
+		for(int i = 0;i<wateringCan.length;i++){
+
+			 p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(wateringCan[i], 1,(wateringCan[i].getMaxDamage()-1)),
+						new Object[] { "yyy", " yy",
+					Character.valueOf('y'), material[i],
+					}));
+		}
+
     }
 
 }
