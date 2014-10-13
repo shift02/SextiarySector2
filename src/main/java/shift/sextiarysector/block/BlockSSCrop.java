@@ -63,24 +63,32 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
     @Override
 	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6,float par7, float par8, float par9) {
 
-    	if(par1World.isRemote)return true;
+    	//if(par1World.isRemote)return true;
 
     	if(par1World.getBlockMetadata(x, y, z)==3&&par5EntityPlayer.getCurrentEquippedItem()!= null&&par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof ItemShears){
-    		par5EntityPlayer.getCurrentEquippedItem().damageItem(4, par5EntityPlayer);
 
-    		float var10 = this.r.nextFloat() * 0.8F + 0.1F;
-            float var11 = this.r.nextFloat() * 0.8F + 0.1F;
-            float var12 = this.r.nextFloat() * 0.8F + 0.1F;
+    		if(!par1World.isRemote){
+    			par5EntityPlayer.getCurrentEquippedItem().damageItem(4, par5EntityPlayer);
 
-            EntityItem var14 = new EntityItem(par1World, (x + var10), (y + var11), (z + var12), new ItemStack(this.func_149865_P(), 1));
+    			float var10 = this.r.nextFloat() * 0.8F + 0.1F;
+                float var11 = this.r.nextFloat() * 0.8F + 0.1F;
+                float var12 = this.r.nextFloat() * 0.8F + 0.1F;
 
-            par1World.setBlock(x, y, z, this,4, 1);
-            TileEntitySSCrop crop = (TileEntitySSCrop) par1World.getTileEntity(x, y, z);
-            crop.onHarvest();
+                EntityItem var14 = new EntityItem(par1World, (x + var10), (y + var11), (z + var12), new ItemStack(this.func_149865_P(), 1));
 
-            par1World.playSoundAtEntity(par5EntityPlayer, "mob.sheep.shear", 1.0F, 1.0F);
+                par1World.setBlock(x, y, z, this,4, 1);
+                TileEntitySSCrop crop = (TileEntitySSCrop) par1World.getTileEntity(x, y, z);
+                crop.onHarvest();
 
-            return par1World.spawnEntityInWorld(var14);
+                par1World.playSoundAtEntity(par5EntityPlayer, "mob.sheep.shear", 1.0F, 1.0F);
+
+                return par1World.spawnEntityInWorld(var14);
+
+    		}else{
+
+    			return true;
+
+    		}
 
     	}
 
@@ -89,7 +97,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
     		return par1World.getBlock(x, y-1, z).onBlockActivated(par1World, x, y-1, z, par5EntityPlayer, par6, par7, par8, par9);
     	}
 
-    	return true;
+    	return false;
 
     }
 

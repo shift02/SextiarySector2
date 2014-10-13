@@ -71,6 +71,8 @@ item.ss.iron_scoop.name=Iron Scoop
 item.ss.gold_scoop.name=Gold Scoop
 item.ss.diamond_scoop.name=Diamond Scoop
 
+item.ss.wood_watering_can.name=Wood Watering Can
+
 item.ss.turnip.name=Turnip
 item.ss.cucumber.name=Cucumber
 item.ss.onion.name=Onion

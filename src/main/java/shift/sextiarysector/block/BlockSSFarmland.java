@@ -11,6 +11,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.module.FertilizerManager;
@@ -34,11 +35,6 @@ public class BlockSSFarmland extends BlockFarmland  implements ITileEntityProvid
 	@Override
 	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6,float par7, float par8, float par9) {
 
-		if (par1World.isRemote)
-        {
-            return true;
-        }
-
 		if(FertilizerManager.getFertilizer(par5EntityPlayer.getCurrentEquippedItem())!=null){
 
 			TileEntityFarmland t = (TileEntityFarmland) par1World.getTileEntity(x, y, z);
@@ -49,7 +45,7 @@ public class BlockSSFarmland extends BlockFarmland  implements ITileEntityProvid
 
 			t.setFertilizer(FertilizerManager.getFertilizer(par5EntityPlayer.getCurrentEquippedItem()).getName());
 
-			if (!par5EntityPlayer.capabilities.isCreativeMode)
+			if (!par5EntityPlayer.capabilities.isCreativeMode && !par1World.isRemote)
 	        {
 	            --par5EntityPlayer.getCurrentEquippedItem().stackSize;
 	        }
@@ -72,7 +68,7 @@ public class BlockSSFarmland extends BlockFarmland  implements ITileEntityProvid
 
 					ItemStack item = par5EntityPlayer.getCurrentEquippedItem().getItem().getContainerItem(par5EntityPlayer.getCurrentEquippedItem());
 
-					if (!par5EntityPlayer.capabilities.isCreativeMode)
+					if (!par5EntityPlayer.capabilities.isCreativeMode && !par1World.isRemote)
 			        {
 			            --par5EntityPlayer.getCurrentEquippedItem().stackSize;
 
@@ -106,11 +102,12 @@ public class BlockSSFarmland extends BlockFarmland  implements ITileEntityProvid
 		return false;
 	}
 
-	private boolean addWater(World par1World, int x, int y, int z){
+	public boolean addWater(World par1World, int x, int y, int z){
 
 		TileEntityFarmland t = (TileEntityFarmland) par1World.getTileEntity(x, y, z);
 
-		return false;
+		return t.fill(ForgeDirection.UP, new FluidStack(FluidRegistry.WATER, 1000), true) > 0;
+
 	}
 
 	public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)

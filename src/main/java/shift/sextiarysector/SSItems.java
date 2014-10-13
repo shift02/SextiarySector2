@@ -9,6 +9,7 @@ import shift.sextiarysector.item.ItemGearStorage;
 import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
+import shift.sextiarysector.item.ItemWateringCan;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SSItems {
@@ -42,6 +43,9 @@ public class SSItems {
 	public static Item ironScoop;
 	public static Item goldScoop;
 	public static Item diamondScoop;
+
+	public static Item woodWateringCan;
+
 
 	//野菜
 	public static Item turnip;
@@ -103,6 +107,9 @@ public class SSItems {
 		GameRegistry.registerItem(ironScoop, "IronScoop");
 		GameRegistry.registerItem(goldScoop, "GoldScoop");
 		GameRegistry.registerItem(diamondScoop, "DiamondScoop");
+
+		woodWateringCan = new ItemWateringCan(ToolMaterial.WOOD).setUnlocalizedName("ss.wood_watering_can").setTextureName("wood_watering_can");
+		GameRegistry.registerItem(woodWateringCan, "WoodWateringCan");
 
 		turnip = new ItemCrop(3, 1, 1, 4, 0, 0, false).setUnlocalizedName("ss.turnip").setTextureName("sextiarysector:crop/turnip");
 		GameRegistry.registerItem(turnip, "Turnip");
