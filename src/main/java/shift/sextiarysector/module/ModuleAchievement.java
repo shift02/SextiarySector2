@@ -46,7 +46,6 @@ public class ModuleAchievement implements IModule {
 
 	}
 
-
 	private ArrayList<Achievement> economy = new ArrayList<Achievement>();
 
 	public static Achievement creeperFirework;
@@ -96,24 +95,31 @@ public class ModuleAchievement implements IModule {
 
         while (iterator.hasNext())
         {
-            Item item = (Item)iterator.next();
 
-            if (item != null)
-            {
-                int i = Item.getIdFromItem(item);
-                try{
-                	objectSellStats[i] = (new StatCrafting("stat.sellItem." + i, new ChatComponentTranslation("stat.sellItem", new Object[] {(new ItemStack(item)).func_151000_E()}), item)).registerStat();
-                	}
-                	catch (NullPointerException e){
-                		SextiarySector.Log.catching(e);
-                	}
+        	try{
 
+        		Item item = (Item)iterator.next();
 
-                if (!(item instanceof ItemBlock))
+                if (item != null)
                 {
-                	StatList.itemStats.add((StatCrafting)objectSellStats[i]);
+                    int i = Item.getIdFromItem(item);
+
+                    objectSellStats[i] = (new StatCrafting("stat.sellItem." + i, new ChatComponentTranslation("stat.sellItem", new Object[] {(new ItemStack(item)).func_151000_E()}), item)).registerStat();
+
+                    if (!(item instanceof ItemBlock))
+                    {
+        				StatList.itemStats.add((StatCrafting)objectSellStats[i]);
+                    }
+
                 }
+
+
+        	}catch (NullPointerException e){
+        		SextiarySector.Log.catching(e);
+            }catch (ArrayIndexOutOfBoundsException e){
+            	SextiarySector.Log.catching(e);
             }
+
         }
 
         replaceAllSimilarBlocks(objectSellStats);
