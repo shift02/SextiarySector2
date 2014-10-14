@@ -46,7 +46,6 @@ public class ModuleAchievement implements IModule {
 
 	}
 
-
 	private ArrayList<Achievement> economy = new ArrayList<Achievement>();
 
 	public static Achievement creeperFirework;
