@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import shift.sextiarysector.api.IDrink;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -100,6 +101,17 @@ public class VanillaFoodHandler {
 
 			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 6.8f);
 			SextiarySectorAPI.playerManager.addStaminaStats(player, 4, 4);
+		}
+
+		//牛乳
+		if(food.getItem() == Items.milk_bucket){
+
+			SextiarySectorAPI.playerManager.addMoistureStats(player, 4, 4);
+
+		}
+
+		if(food.getItem() instanceof IDrink){
+			SextiarySectorAPI.playerManager.addMoistureStats(player, ((IDrink)food.getItem()).getMoisture(food), ((IDrink)food.getItem()).getMoistureSaturation(food));
 		}
 
 	}

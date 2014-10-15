@@ -3,7 +3,7 @@ sourceSets.main {
     resources.srcDirs project.projectDir.name
 }
  
-version = "2.0.4.b-${project.minecraft.version}"
+version = "2.0.4.f-${project.minecraft.version}"
 
 minecraft {
     // replacing stuff in the source
@@ -40,5 +40,18 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+
+    //from(sourceSets.main.java.srcDirs+'/shift/sextiarysector/api/') {
+	//include '**/shift/sextiarysector/api/'
+
+//	into sourceSets.main.java.srcDirs
+    //}
+
+}
+
+jar {
+  into('src/shift/sextiarysector/api') {
+    from 'src/main/java/shift/sextiarysector/api'
+  }
 }
 
