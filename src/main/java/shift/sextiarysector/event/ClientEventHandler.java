@@ -1,10 +1,16 @@
 package shift.sextiarysector.event;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
 import java.util.List;
 
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.achievement.GuiStats;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -14,6 +20,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
 import shift.sextiarysector.api.agriculture.IFertilizer;
 import shift.sextiarysector.gui.GuiStatsNext;
+import shift.sextiarysector.item.TextureSeason;
 import shift.sextiarysector.module.FertilizerManager;
 import shift.sextiarysector.module.SeasonManager;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -95,13 +102,62 @@ public class ClientEventHandler {
     }
 
     @SubscribeEvent
-	public void rreFertilizerTextureStitchEvent(TextureStitchEvent.Pre event){
+	public void preFertilizerTextureStitchEvent(TextureStitchEvent.Pre event){
 
     	if(event.map.getTextureType()==0){
 
-    		for(IFertilizer f : ((FertilizerManager)AgricultureAPI.fertilizerManager).fertilizers.values()){
+    		for(IFertilizer f : ((FertilizerManager)AgricultureAPI.fertilizerManager).fertilizers){
     			f.registerFertilizerIcons(event.map);
     		}
+
+    	}
+
+    }
+
+    @SubscribeEvent
+	public void preVanillaTextureStitchEvent(TextureStitchEvent.Pre event){
+
+    	//Item
+    	if(event.map.getTextureType()==0){
+
+    		IIcon icon = new TextureSeason("sextiarysector:vanilla/leaves_birch");
+
+    		((TextureMap)event.map).setTextureEntry("sextiarysector:vanilla/leaves_birch", (TextureAtlasSprite)icon);
+
+
+
+			try {
+
+				Field f;
+
+				BlockLeaves birch = (BlockLeaves) Blocks.leaves;
+	    		Class<BlockLeaves> c = BlockLeaves.class;
+				f = c.getDeclaredField("field_150129_M");
+
+				f.setAccessible(true);
+
+				IIcon[] a = (IIcon[])Array.get(f.get(birch), 0);
+
+	    		Array.set(a, 2, icon);
+
+	    		System.out.println("AAAAA");
+
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (NoSuchFieldException e) {
+				e.printStackTrace();
+			} catch (ArrayIndexOutOfBoundsException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
+
+
 
     	}
 

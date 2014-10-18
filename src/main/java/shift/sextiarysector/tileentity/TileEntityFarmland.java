@@ -1,5 +1,6 @@
 package shift.sextiarysector.tileentity;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -43,13 +44,23 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler{
 
 	//肥料
 	public String fertilizer;
+	public ItemStack fertilizerItem;
 
-	public String getFertilizer() {
-		return fertilizer;
+	public ItemStack getFertilizer() {
+		return fertilizerItem;
 	}
 
-	public void setFertilizer(String fertilizer) {
-		this.fertilizer = fertilizer;
+	public void setFertilizer(ItemStack fertilizer) {
+		if(fertilizer==null){
+			this.fertilizerItem = null;
+		}else{
+			this.fertilizerItem = fertilizer.copy();
+		}
+
+	}
+
+	public void clearFertilizer(){
+		this.fertilizerItem = null;
 	}
 
 	public boolean canGrowth(){
@@ -66,6 +77,10 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler{
 		if(par1nbtTagCompound.hasKey("fertilizer")){
 			this.fertilizer = par1nbtTagCompound.getString("fertilizer");
 		}
+		if(par1nbtTagCompound.hasKey("fertilizeritem")){
+			this.fertilizerItem = ItemStack.loadItemStackFromNBT(par1nbtTagCompound.getCompoundTag("fertilizeritem"));
+		}
+
 		this.water.readFromNBT(par1nbtTagCompound);
 	}
 
@@ -73,6 +88,11 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler{
 	public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
 		super.writeToNBT(par1nbtTagCompound);
 		if(fertilizer!=null)par1nbtTagCompound.setString("fertilizer", fertilizer);
+		if(fertilizerItem!=null){
+			NBTTagCompound itemNBT =new NBTTagCompound();
+			fertilizerItem.writeToNBT(itemNBT);
+			par1nbtTagCompound.setTag("fertilizeritem", itemNBT);
+		}
 		this.water.writeToNBT(par1nbtTagCompound);
 	}
 

@@ -73,6 +73,8 @@ item.ss.diamond_scoop.name=Diamond Scoop
 
 item.ss.wood_watering_can.name=Wood Watering Can
 
+item.ss.crop.big=Big
+
 item.ss.turnip.name=Turnip
 item.ss.cucumber.name=Cucumber
 item.ss.onion.name=Onion
@@ -130,3 +132,5 @@ nei.ss.furnace.shaped=Furnace Shaped
 nei.ss.furnace.shapeless=Furnace Shapeless
 
 nei.ss.millstone=Millstone Recipe
+
+nei.ss.fertilizer=Mutation Recipe

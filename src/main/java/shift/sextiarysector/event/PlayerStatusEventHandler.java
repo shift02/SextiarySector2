@@ -45,8 +45,7 @@ public class PlayerStatusEventHandler {
 
 		float i = 0.025f;
 
-		if (BiomeDictionary.isBiomeOfType(
-				event.world.getBiomeGenForCoords(event.x, event.y), Type.SANDY)) {
+		if (BiomeDictionary.isBiomeOfType(event.world.getBiomeGenForCoords(event.x, event.y), Type.SANDY)) {
 			i *= 4;
 		}
 		if (event.world.getBlock(event.x, event.y, event.z).getMaterial() == Material.sand) {
@@ -88,8 +87,7 @@ public class PlayerStatusEventHandler {
 
 		float i = 1;
 
-		if (BiomeDictionary.isBiomeOfType(player.worldObj.getBiomeGenForCoords(
-				(int) player.posX, (int) player.posY), Type.DESERT)) {
+		if (BiomeDictionary.isBiomeOfType(player.worldObj.getBiomeGenForCoords((int) player.posX, (int) player.posY), Type.DESERT)) {
 			i = 2;
 		}
 
