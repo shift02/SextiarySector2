@@ -169,6 +169,9 @@ public class SSBlocks {
 		radish = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,3,4},Season.WINTER), SSItems.radish, false).setBlockName("ss.radish").setBlockTextureName("radish");
 		GameRegistry.registerBlock(radish,ItemBlockCrop.class,"BlockRadish");
 
+		//initVanillaBlock();
+
+
 	}
 
 }

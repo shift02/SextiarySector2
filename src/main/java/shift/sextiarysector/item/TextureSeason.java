@@ -10,7 +10,7 @@ public class TextureSeason  extends TextureAtlasSprite{
 	private double field_94239_h;
     private double field_94240_i;
 
-	protected TextureSeason(String p_i1282_1_) {
+	public TextureSeason(String p_i1282_1_) {
 		super(p_i1282_1_);
 		// TODO 自動生成されたコンストラクター・スタブ
 	}

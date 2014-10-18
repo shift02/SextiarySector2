@@ -1,8 +1,7 @@
 package shift.sextiarysector.module;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.Random;
 
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector.api.agriculture.IFertilizer;
@@ -10,13 +9,16 @@ import shift.sextiarysector.api.agriculture.IFertilizerManager;
 
 public class FertilizerManager implements IFertilizerManager {
 
-	public static HashMap<ItemStack,IFertilizer> fertilizers = new HashMap<ItemStack,IFertilizer>();
-	public static HashMap<String,IFertilizer> fertilizersS = new HashMap<String,IFertilizer>();
+	//public static HashMap<ItemStack,IFertilizer> fertilizers = new HashMap<ItemStack,IFertilizer>();
+	public static ArrayList<IFertilizer> fertilizers = new ArrayList<IFertilizer>();
+	//public static HashMap<String,IFertilizer> fertilizersS = new HashMap<String,IFertilizer>();
+
+	private static Random r = new Random();
 
 	@Override
-	public void registerFertilizer(ItemStack item, IFertilizer fertilizer) {
-		fertilizers.put(item, fertilizer);
-		fertilizersS.put(fertilizer.getName(), fertilizer);
+	public void registerFertilizer(IFertilizer fertilizer) {
+		//fertilizersS.put(fertilizer.getName(), fertilizer);
+		fertilizers.add(fertilizer);
 	}
 
 	public static IFertilizer getFertilizer(ItemStack item)
@@ -26,21 +28,15 @@ public class FertilizerManager implements IFertilizerManager {
             return null;
         }
 
-		Iterator iterator = fertilizers.entrySet().iterator();
-        Entry entry;
+		for(IFertilizer f:fertilizers){
 
-        do
-        {
-            if (!iterator.hasNext())
-            {
-                return null;
-            }
+			if(checkItem(item,f.getFertilizer())){
+				return f;
+			}
 
-            entry = (Entry)iterator.next();
-        }
-        while (!checkItem(item, (ItemStack)entry.getKey()));
+		}
 
-        return (IFertilizer) entry.getValue();
+        return null;
 
     }
 
@@ -48,5 +44,54 @@ public class FertilizerManager implements IFertilizerManager {
     {
         return p_151397_2_.getItem() == p_151397_1_.getItem() && (p_151397_2_.getItemDamage() == 32767 || p_151397_2_.getItemDamage() == p_151397_1_.getItemDamage());
     }
+
+	public static boolean hasFertilizer(ItemStack item){
+		return getFertilizer(item)!=null;
+	}
+
+	public static ItemStack getAfter(ItemStack fertilizer,ItemStack before){
+
+		if (fertilizer == null || before == null)
+        {
+            return null;
+        }
+
+		for(IFertilizer f:fertilizers){
+
+			if( checkItem(fertilizer,f.getFertilizer()) && checkItem(before,f.getBefore()) ){
+				return f.getAfter().copy();
+			}
+
+		}
+
+        return null;
+	}
+
+	public static boolean canMutation(ItemStack fertilizer,ItemStack before){
+
+		if (fertilizer == null || before == null)
+        {
+            return false;
+        }
+
+		for(IFertilizer f:fertilizers){
+
+			if( checkItem(fertilizer,f.getFertilizer()) && checkItem(before,f.getBefore()) ){
+
+				if(f.getProbability()==0){
+					return true;
+				}
+
+				return 0 == r.nextInt(f.getProbability());
+			}
+
+		}
+
+        return false;
+
+	}
+
+
+
 
 }

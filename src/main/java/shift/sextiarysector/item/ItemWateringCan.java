@@ -41,7 +41,7 @@ public class ItemWateringCan extends Item{
 
 		 }
 
-		System.out.println("AA"+ par3World.isRemote);
+		//System.out.println("AA"+ par3World.isRemote);
 
 		if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack)|| par1ItemStack.getMaxDamage()-par1ItemStack.getItemDamage() ==1)
         {

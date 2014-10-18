@@ -9,7 +9,6 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
@@ -21,6 +20,8 @@ import net.minecraftforge.common.EnumPlantType;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
+import shift.sextiarysector.module.FertilizerManager;
+import shift.sextiarysector.tileentity.TileEntityFarmland;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -67,6 +68,8 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     	if(par1World.getBlockMetadata(x, y, z)==3&&par5EntityPlayer.getCurrentEquippedItem()!= null&&par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof ItemShears){
 
+    		ItemStack item = this.getAfter(par1World, x, y, z);
+
     		if(!par1World.isRemote){
     			par5EntityPlayer.getCurrentEquippedItem().damageItem(4, par5EntityPlayer);
 
@@ -74,7 +77,13 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
                 float var11 = this.r.nextFloat() * 0.8F + 0.1F;
                 float var12 = this.r.nextFloat() * 0.8F + 0.1F;
 
-                EntityItem var14 = new EntityItem(par1World, (x + var10), (y + var11), (z + var12), new ItemStack(this.func_149865_P(), 1));
+                item = this.getAfter(par1World, x, y, z);
+
+                if(item==null){
+                	item = new ItemStack(this.func_149865_P(), 1);
+                }
+
+                EntityItem var14 = new EntityItem(par1World, (x + var10), (y + var11), (z + var12), item);
 
                 par1World.setBlock(x, y, z, this,4, 1);
                 TileEntitySSCrop crop = (TileEntitySSCrop) par1World.getTileEntity(x, y, z);
@@ -103,7 +112,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     protected boolean canPlaceBlockOn(Block p_149854_1_)
     {
-        return p_149854_1_ == Blocks.farmland || p_149854_1_ == SSBlocks.farmland;
+        return /*p_149854_1_ == Blocks.farmland ||*/ p_149854_1_ == SSBlocks.farmland;
     }
 
     @Override
@@ -173,7 +182,6 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
     {
         ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
 
-
         if (metadata >= 3)
         {
             for (int i = 0; i < 3 + fortune; ++i)
@@ -184,12 +192,40 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
                     ret.add(new ItemStack(this.func_149865_P(), 1, 0));
                 }
             }
+
+            ItemStack after = this.getAfter(world, x, y, z);
+            if(after!=null){
+            	ret.add(after);
+            }
+
         }
 
         return ret;
     }
 
+    private ItemStack getAfter(World world, int x, int y, int z){
 
+    	if(this.hasFarmland(world, x, y, z)){
+
+        	TileEntityFarmland f =(TileEntityFarmland) world.getTileEntity(x, y-1, z);
+
+        	if(f.getFertilizer()!=null && FertilizerManager.canMutation(f.getFertilizer(), new ItemStack(func_149865_P() ) ) ){
+
+        		ItemStack item = FertilizerManager.getAfter(f.getFertilizer(), new ItemStack(func_149865_P()));
+        		f.clearFertilizer();
+        		world.markBlockForUpdate(x, y-1, z);
+
+        		return item;
+
+        	}else{
+        		return null;
+        	}
+
+        }else{
+        	return null;
+        }
+
+    }
 
 
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
