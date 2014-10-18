@@ -47,7 +47,7 @@ public class SimpleFertilizer implements IFertilizer {
 
 	@Override
 	public int getProbability() {
-		return 1;
+		return 255;
 	}
 
 	@Override
