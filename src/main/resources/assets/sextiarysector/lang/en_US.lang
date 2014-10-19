@@ -43,6 +43,8 @@ monitor.robot=Blue Robot Shop
 #Item
 item.ss.dust_waterlily.name=WaterLily Dust
 
+item.ss.stone_dust.name=Stone Dust
+
 item.ss.dust_blue_stone.name=Blue Stone Dust
 item.ss.dust_yellow_stone.name=Yellow Stone Dust
 
@@ -77,13 +79,22 @@ item.ss.crop.big=Big
 
 item.ss.turnip.name=Turnip
 item.ss.cucumber.name=Cucumber
+
+item.ss.iron_turnip.name=Iron Turnip
+
 item.ss.onion.name=Onion
 item.ss.tomato.name=Tomato
 item.ss.corn.name=Corn
+
+item.ss.golden_corn.name=Golden Corn
+
 item.ss.eggplant.name=Eggplant
 item.ss.sweet_potato.name=Sweet Potato
 item.ss.green_pepper.name=Green Pepper
+
 item.ss.radish.name=Radish
+
+
 
 #GUI
 container.large_furnace=Large Furnace
