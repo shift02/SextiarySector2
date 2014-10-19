@@ -5,6 +5,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.item.ItemCalendar;
 import shift.sextiarysector.item.ItemCrop;
+import shift.sextiarysector.item.ItemFoodDrink;
 import shift.sextiarysector.item.ItemGearStorage;
 import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemScoop;
@@ -38,6 +39,9 @@ public class SSItems {
 	public static Item yellowStoneDust;
 
 	public static Item blueStoneSlimeBall;
+
+	//飲み物
+	public static Item drinkingWaterSmallBottle;
 
 	//道具
 	public static Item woodScoop;
@@ -105,6 +109,11 @@ public class SSItems {
 
 		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
+
+		//飲み物
+		drinkingWaterSmallBottle  = new ItemFoodDrink(0, 3.5f, 2, 6.5f, 0, 0, false).setUnlocalizedName("ss.drinking_water_small_bottle").setTextureName("sextiarysector:drink/drinking_water_small_bottle");
+		GameRegistry.registerItem(drinkingWaterSmallBottle, "DrinkingWaterSmallBottle");
+
 
 		//道具
 		woodScoop = new ItemScoop(ToolMaterial.WOOD).setUnlocalizedName("ss.wood_scoop").setTextureName("wood_scoop");
