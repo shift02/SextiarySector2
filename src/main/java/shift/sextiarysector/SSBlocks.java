@@ -2,6 +2,7 @@ package shift.sextiarysector;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.block.BlockChunkLoader;
@@ -16,12 +17,14 @@ import shift.sextiarysector.block.BlockSSCrop;
 import shift.sextiarysector.block.BlockSSCrop.CropStatus;
 import shift.sextiarysector.block.BlockSSCrop.CropType;
 import shift.sextiarysector.block.BlockSSFarmland;
+import shift.sextiarysector.block.BlockSSOre;
 import shift.sextiarysector.block.BlockSSPane;
 import shift.sextiarysector.block.BlockShaft;
 import shift.sextiarysector.block.BlockShippingBox;
 import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.item.ItemBlockCrop;
+import shift.sextiarysector.item.ItemBlockMeta;
 import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.item.ItemBlockShaft;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
@@ -58,6 +61,8 @@ public class SSBlocks {
 
 	public static Block blueStoneOre;
 	public static Block yellowStoneOre;
+
+	public static Block coalLargeOre;
 
 	public static Block shippingBox;
 	public static Block creeperChest;
@@ -99,6 +104,9 @@ public class SSBlocks {
 
 		yellowStoneOre = new BlockPowerStone().setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(yellowStoneOre, "YellowStoneOre");
+
+		coalLargeOre = new BlockSSOre(SSItems.coalDust,Blocks.coal_ore,1).setBlockName("ss.coal_large_ore").setBlockTextureName("sextiarysector:ore/coal_large_ore");
+		GameRegistry.registerBlock(coalLargeOre,ItemBlockMeta.class, "CoalLargeOre");
 
 		shaft = new BlockShaft().setBlockName("ss.wood_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(shaft,ItemBlockShaft.class, "WoodShaft");

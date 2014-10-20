@@ -19,6 +19,8 @@ tile.ss.millstone.name=Millstone
 tile.ss.blue_stone.name=Blue Stone Ore
 tile.ss.yellow_stone.name=Yellow Stone Ore
 
+tile.ss.coal_large_ore.name=Coal Large Ore
+
 tile.ss.creeper_chest.name=Creeper Monger Chest
 tile.ss.shipping_box.name=Shipping Box
 
@@ -47,6 +49,8 @@ item.ss.stone_dust.name=Stone Dust
 
 item.ss.dust_blue_stone.name=Blue Stone Dust
 item.ss.dust_yellow_stone.name=Yellow Stone Dust
+
+item.ss.coal_dust.name=Coal Dust
 
 item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
 

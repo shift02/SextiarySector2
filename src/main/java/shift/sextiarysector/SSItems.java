@@ -38,6 +38,8 @@ public class SSItems {
 	public static Item blueStoneDust;
 	public static Item yellowStoneDust;
 
+	public static Item coalDust;
+
 	public static Item blueStoneSlimeBall;
 
 	//飲み物
@@ -106,6 +108,9 @@ public class SSItems {
 
 		yellowStoneDust = new Item().setUnlocalizedName("ss.dust_yellow_stone").setTextureName("sextiarysector:dust/yellowstone_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(yellowStoneDust, "DustYellowStone");
+
+		coalDust = new Item().setUnlocalizedName("ss.coal_dust").setTextureName("sextiarysector:dust/coal_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(coalDust, "CoalDust");
 
 		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
