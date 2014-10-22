@@ -5,15 +5,22 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
 import shift.sextiarysector.api.machine.energy.IEnergyHandler;
-import shift.sextiarysector.block.BlockShaft;
 
 public class TileEntityShaft extends TileEntityDirection implements IEnergyHandler {
 
 	public float rotateStep = 360;
-	private EnergyStorage storage;// = new EnergyStorage("Base", 1, 320, 160);
+	private EnergyStorage storage = new EnergyStorage("Base", 1, 320, 160);
 	// 表示用
 	public int lastSpeed = 0;
 	private final int cooltime = 0;
+
+	public TileEntityShaft(){
+
+	}
+
+	public TileEntityShaft(int i){
+		this.getStorage().setPowerCapacity(i);
+	}
 
 	@Override
 	public void updateEntity() {
@@ -185,9 +192,9 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 
 	public EnergyStorage getStorage() {
 
-		if(storage==null){
-			storage = new EnergyStorage("Base", ((BlockShaft)this.getBlockType()).getType(), 320, 160);
-		}
+		//if(storage==null){
+		//	storage = new EnergyStorage("base", ((BlockShaft)this.getBlockType()).getType(), 320, 160);
+		//}
 
 		return storage;
 	}

@@ -10,6 +10,7 @@ import shift.sextiarysector.item.ItemGearStorage;
 import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
+import shift.sextiarysector.item.ItemShiftHat;
 import shift.sextiarysector.item.ItemWateringCan;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -73,6 +74,9 @@ public class SSItems {
 	public static Item greenPepper;
 
 	public static Item radish;
+
+	//装備
+	public static Item shiftHat;
 
 	public static void initItems(){
 
@@ -170,6 +174,9 @@ public class SSItems {
 
 		radish = new ItemCrop(3, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.radish").setTextureName("sextiarysector:crop/radish");
 		GameRegistry.registerItem(radish, "Radish");
+
+		shiftHat = new ItemShiftHat().setUnlocalizedName("ss.shift_hat").setTextureName("sextiarysector:shift_hat");
+		GameRegistry.registerItem(shiftHat, "ShiftHat");
 
 	}
 

@@ -132,7 +132,7 @@ public class BlockShaft  extends BlockDirection{
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_) {
-		return new TileEntityShaft();
+		return new TileEntityShaft(this.getType());
 	}
 
 	public int getType() {
