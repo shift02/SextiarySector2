@@ -24,7 +24,6 @@ import shift.sextiarysector.block.BlockShippingBox;
 import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.item.ItemBlockCrop;
-import shift.sextiarysector.item.ItemBlockMeta;
 import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.item.ItemBlockShaft;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
@@ -45,7 +44,10 @@ public class SSBlocks {
 
 	public static Block LargeFurnace;
 
-	public static Block shaft;
+	public static Block woodShaft;
+	public static Block stoneShaft;
+
+
 	public static Block woodGearBox;
 
 	public static Block woodGFTank;
@@ -106,11 +108,16 @@ public class SSBlocks {
 		GameRegistry.registerBlock(yellowStoneOre, "YellowStoneOre");
 
 		coalLargeOre = new BlockSSOre(SSItems.coalDust,Blocks.coal_ore,1).setBlockName("ss.coal_large_ore").setBlockTextureName("sextiarysector:ore/coal_large_ore");
-		GameRegistry.registerBlock(coalLargeOre,ItemBlockMeta.class, "CoalLargeOre");
+		GameRegistry.registerBlock(coalLargeOre, "CoalLargeOre");
 
-		shaft = new BlockShaft().setBlockName("ss.wood_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
-		GameRegistry.registerBlock(shaft,ItemBlockShaft.class, "WoodShaft");
+
 		GameRegistry.registerTileEntity(TileEntityShaft.class, "Shaft");
+
+		woodShaft = new BlockShaft(1).setBlockName("ss.wood_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
+		GameRegistry.registerBlock(woodShaft,ItemBlockShaft.class, "WoodShaft");
+
+		stoneShaft = new BlockShaft(2).setBlockName("ss.stone_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeStone);
+		GameRegistry.registerBlock(stoneShaft,ItemBlockShaft.class, "StoneShaft");
 
 		woodGearBox = new BlockGearBox(Material.wood).setBlockName("ss.wood_gear_box").setBlockTextureName("sextiarysector:machine/wood_gear_box").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(woodGearBox, "WoodGearBox");

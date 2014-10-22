@@ -17,12 +17,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockShaft  extends BlockDirection{
 
+	private int type;
 
-	public BlockShaft() {
+	public BlockShaft(int type) {
 		super(Material.wood);
+		this.setType(type);
 		this.setHardness(0.8F);
 		this.setCreativeTab(SextiarySectorAPI.TabSSMachine);
+
 	}
+
 	@Override
 	public boolean renderAsNormalBlock() {
 		return false;
@@ -38,6 +42,20 @@ public class BlockShaft  extends BlockDirection{
     {
     	return SextiarySector.proxy.ShaftRenderType;
     }
+
+	/*
+	public int damageDropped(int p_149692_1_)
+    {
+        return p_149692_1_;
+    }
+
+	@SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
+    {
+		for(int i=0;i<5;i++){
+			p_149666_3_.add(new ItemStack(p_149666_1_,1,i));
+		}
+    }*/
 
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
@@ -115,6 +133,14 @@ public class BlockShaft  extends BlockDirection{
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_) {
 		return new TileEntityShaft();
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 
 

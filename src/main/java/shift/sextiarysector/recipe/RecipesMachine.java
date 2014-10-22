@@ -30,7 +30,7 @@ public class RecipesMachine {
 			Character.valueOf('z'), Blocks.wool
 			}));
 
-        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.shaft, 4),
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.woodShaft, 4),
 				new Object[] { "xzx", "xyx","xzx",
 			Character.valueOf('y'), SSItems.blueStoneDust,
 			Character.valueOf('x'), "plankWood",

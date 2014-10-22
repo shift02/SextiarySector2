@@ -1,18 +1,14 @@
 package shift.sextiarysector.block;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import shift.sextiarysector.api.SextiarySectorAPI;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockSSOre extends  Block{
 
@@ -35,6 +31,24 @@ public class BlockSSOre extends  Block{
 		return oreItem;
     }
 
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    {
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+
+        int count = quantityDropped(metadata, fortune, world.rand);
+        for(int i = 0; i < count; i++)
+        {
+            Item item = getItemDropped(metadata, world.rand, fortune);
+            if (item != null)
+            {
+                ret.add(new ItemStack(item, 1, damageDropped(metadata)));
+                ret.add(new ItemStack(oreBlock, 1, damageDropped(metadata)));
+            }
+        }
+        return ret;
+    }
+
+	/*
 	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest)
     {
 		if(!willHarvest){
@@ -53,7 +67,7 @@ public class BlockSSOre extends  Block{
 		for(int i=0;i<4;i++){
 			p_149666_3_.add(new ItemStack(p_149666_1_,1,i));
 		}
-    }
+    }*/
 
 	protected boolean canSilkHarvest()
     {

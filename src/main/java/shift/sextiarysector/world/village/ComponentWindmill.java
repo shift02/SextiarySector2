@@ -148,7 +148,7 @@ public class ComponentWindmill extends StructureVillagePieces.Village{
 
 		for (int l = 2; l <= 5; ++l)
         {
-			this.placeBlockAtCurrentPosition(p_74875_1_, SSBlocks.shaft, 0, 3, l, 5, p_74875_3_);
+			this.placeBlockAtCurrentPosition(p_74875_1_, SSBlocks.woodShaft, 0, 3, l, 5, p_74875_3_);
 			this.setForgeDirection(p_74875_1_, 3, l, 5, ForgeDirection.getOrientation(0));
         }
 
@@ -173,7 +173,7 @@ public class ComponentWindmill extends StructureVillagePieces.Village{
 
 		for (int l = 1; l <= 4; ++l)
         {
-			this.placeBlockAtCurrentPosition(p_74875_1_, SSBlocks.shaft, 0, 3, 6, l, p_74875_3_);
+			this.placeBlockAtCurrentPosition(p_74875_1_, SSBlocks.woodShaft, 0, 3, 6, l, p_74875_3_);
 			this.setForgeDirection(p_74875_1_, 3, 6, l, ForgeDirection.getOrientation(i).getOpposite());
         }
 
