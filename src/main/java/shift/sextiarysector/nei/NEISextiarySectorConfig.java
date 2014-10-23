@@ -1,6 +1,7 @@
 package shift.sextiarysector.nei;
 
 import shift.sextiarysector.gui.GuiLargeFurnace;
+import shift.sextiarysector.gui.GuiLoom;
 import shift.sextiarysector.gui.GuiMillstone;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
@@ -13,6 +14,9 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 
 		API.registerRecipeHandler(new MillstoneRecipeHandler());
 		API.registerUsageHandler(new MillstoneRecipeHandler());
+
+		API.registerRecipeHandler(new LoomRecipeHandler());
+		API.registerUsageHandler(new LoomRecipeHandler());
 
 		/*
 		API.registerRecipeHandler(new LoomRecipeHandler());
@@ -46,6 +50,7 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 		API.registerGuiOverlay(GuiLargeFurnace.class, "furnaceCrafting");
 
 		API.registerGuiOverlay(GuiMillstone.class, "SS_Millstone");
+		API.registerGuiOverlay(GuiLoom.class, "SS_Loom");
 		//API.registerGuiOverlay(GuiBrewingStand.class, "SextiarySectorBrewing");
 
 	}

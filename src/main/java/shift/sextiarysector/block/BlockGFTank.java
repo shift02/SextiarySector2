@@ -28,9 +28,12 @@ public class BlockGFTank  extends BlockDirection{
 
     private int guiID;
 
-	public BlockGFTank(Material p_i45386_1_, int gui) {
+    private int type;
+
+	public BlockGFTank(Material p_i45386_1_, int gui,int type) {
 		super(p_i45386_1_);
 		this.guiID = gui;
+		this.type = type;
 		this.setHardness(0.8F);
 		this.setCreativeTab(SextiarySectorAPI.TabSSMachine);
 	}
@@ -153,7 +156,7 @@ public class BlockGFTank  extends BlockDirection{
 
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileEntityGFTank();
+		return new TileEntityGFTank(this.type);
 	}
 
 }

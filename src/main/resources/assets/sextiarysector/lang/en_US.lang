@@ -17,7 +17,9 @@ tile.ss.stone_shaft.name=Stone Shaft
 
 tile.ss.wood_gear_box.name=Wood Gear Box
 tile.ss.wood_gf_tank.name=Wood GF Tank
+tile.ss.stone_gf_tank.name=Stone GF Tank
 tile.ss.millstone.name=Millstone
+tile.ss.loom.name=loom
 
 tile.ss.blue_stone.name=Blue Stone Ore
 tile.ss.yellow_stone.name=Yellow Stone Ore
@@ -111,7 +113,10 @@ container.large_furnace=Large Furnace
 container.sub.inventory=Buffer
 
 gui.ss.millstone=Millstone
-gui.ss.gf_tank=Wood GF Tank
+gui.ss.loom=Loom
+
+gui.ss.gf_tank_1=Wood GF Tank
+gui.ss.gf_tank_2=Stone GF Tank
 
 shop.ss.creeper=Simple Creeper Shop
 shop.ss.robot=Blue Robot Shop
@@ -153,5 +158,6 @@ nei.ss.furnace.shaped=Furnace Shaped
 nei.ss.furnace.shapeless=Furnace Shapeless
 
 nei.ss.millstone=Millstone Recipe
+nei.ss.loom=Loom Recipe
 
 nei.ss.fertilizer=Mutation Recipe

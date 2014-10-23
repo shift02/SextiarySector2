@@ -9,6 +9,7 @@ import shift.sextiarysector.container.ContainerLargeFurnace;
 import shift.sextiarysector.container.ContainerSimpleMachine;
 import shift.sextiarysector.gui.GuiGFTank;
 import shift.sextiarysector.gui.GuiLargeFurnace;
+import shift.sextiarysector.gui.GuiLoom;
 import shift.sextiarysector.gui.GuiMillstone;
 import shift.sextiarysector.gui.IServerGuiElement;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
@@ -37,9 +38,13 @@ public class SSGuiHandler implements IGuiHandler {
 
 		case 0 : return new ContainerLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));
 
-		case 20:return new ContainerSimpleMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+		case 20:
+		case 21:
+			return new ContainerSimpleMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
-		case 40:return new ContainerGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z));
+		case 40:
+		case 41:
+			return new ContainerGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z));
 
 		}
 
@@ -82,8 +87,10 @@ public class SSGuiHandler implements IGuiHandler {
 		case 0 : return new GuiLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));
 
 		case 20:return new GuiMillstone(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+		case 21:return new GuiLoom(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
-		case 40:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z));
+		case 40:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),1);
+		case 41:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),2);
 
 		}
 

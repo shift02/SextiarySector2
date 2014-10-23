@@ -51,9 +51,13 @@ public class SSBlocks {
 	public static Block woodGearBox;
 
 	public static Block woodGFTank;
+	public static Block stoneGFTank;
 
 	public static Block smallWindmill;
+
 	public static Block millstone;
+	public static Block loom;
+
 
 	public static Block hole;
 
@@ -123,18 +127,24 @@ public class SSBlocks {
 		GameRegistry.registerBlock(woodGearBox, "WoodGearBox");
 		GameRegistry.registerTileEntity(TileEntityGearBox.class, "GearBox");
 
-		woodGFTank = new BlockGFTank(Material.wood,40).setBlockName("ss.wood_gf_tank").setBlockTextureName("sextiarysector:machine/wood_gf_tank").setStepSound(Block.soundTypeWood);
-		GameRegistry.registerBlock(woodGFTank, "WoodGFTank");
+
 		GameRegistry.registerTileEntity(TileEntityGFTank.class, "GFTank");
+		woodGFTank = new BlockGFTank(Material.wood,40,1).setBlockName("ss.wood_gf_tank").setBlockTextureName("sextiarysector:machine/wood_gf_tank").setStepSound(Block.soundTypeWood);
+		GameRegistry.registerBlock(woodGFTank, "WoodGFTank");
+
+		stoneGFTank = new BlockGFTank(Material.rock,41,2).setBlockName("ss.stone_gf_tank").setBlockTextureName("sextiarysector:machine/stone_gf_tank").setStepSound(Block.soundTypeWood);
+		GameRegistry.registerBlock(stoneGFTank, "StoneGFTank");
 
 		smallWindmill = new BlockSmallWindmill().setBlockName("ss.small_windmill").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerTileEntity(TileEntitySmallWindmill.class, "SmallWindmill");
 		GameRegistry.registerBlock(smallWindmill, "SmallWindmill");
 
-		millstone = new BlockSimpleMachine("millstone",20,SSRecipes.millstone).setBlockName("ss.millstone").setCreativeTab(SextiarySectorAPI.TabSSMachine);
-
-		GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "ss_millstone");
+		GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "SimpleMachine");
+		millstone = new BlockSimpleMachine("millstone",20,SSRecipes.millstone,1).setBlockName("ss.millstone").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerBlock(millstone, "Millstone");
+
+		loom = new BlockSimpleMachine("loom",21,SSRecipes.loom,1).setBlockName("ss.loom").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerBlock(loom, "Loom");
 
 		shippingBox = new BlockShippingBox().setBlockName("ss.shipping_box").setBlockTextureName("sextiarysector:shipping_box").setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(shippingBox, "ShippingBox");

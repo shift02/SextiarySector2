@@ -5,6 +5,7 @@ import shift.sextiarysector.recipe.FurnaceCraftingManager;
 import shift.sextiarysector.recipe.RecipeSimpleMachine;
 import shift.sextiarysector.recipe.RecipesCore;
 import shift.sextiarysector.recipe.RecipesFurnaceCraft;
+import shift.sextiarysector.recipe.RecipesLoom;
 import shift.sextiarysector.recipe.RecipesMachine;
 import shift.sextiarysector.recipe.RecipesMillstone;
 import shift.sextiarysector.recipe.RecipesNormalBlock;
@@ -13,10 +14,12 @@ import shift.sextiarysector.recipe.RecipesTool;
 public class SSRecipes {
 
 	public static RecipeSimpleMachine millstone;
+	public static RecipeSimpleMachine loom;
 
 	public static void initRecipeLists(){
 
 		millstone = new RecipeSimpleMachine();
+		loom = new RecipeSimpleMachine();
 
 	}
 
@@ -36,6 +39,8 @@ public class SSRecipes {
 
 		//Millstone
 		RecipesMillstone.addRecipes(millstone);
+
+		RecipesLoom.addRecipes(loom);
 
 	}
 

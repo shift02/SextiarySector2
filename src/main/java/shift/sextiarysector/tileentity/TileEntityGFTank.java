@@ -31,6 +31,14 @@ public class TileEntityGFTank extends TileEntityDirection implements ISidedInven
 
 	public int lastOutSeed = 0;
 
+	public TileEntityGFTank(){
+
+	}
+
+	public TileEntityGFTank(int type) {
+		this.storage.setPowerCapacity(type);
+	}
+
 	@Override
 	public void updateEntity()
 	{
@@ -169,7 +177,7 @@ public class TileEntityGFTank extends TileEntityDirection implements ISidedInven
 
 	@Override
 	public String getInventoryName() {
-		return "gui.ss.gf_tank";
+		return "gui.ss.gf_tank_"+this.storage.getMaxPowerStored();
 	}
 
 	@Override
@@ -261,7 +269,7 @@ public class TileEntityGFTank extends TileEntityDirection implements ISidedInven
 	//gui
 	public int getEnergyProgressScaled(int par1)
     {
-        return (int) (this.storage.getSpeedStored() / (this.storage.getMaxSpeedStored() / par1));
+        return (int) (this.storage.getSpeedStored() / ((float)this.storage.getMaxSpeedStored() / (float)par1));
     }
 
 	//NBT関係
