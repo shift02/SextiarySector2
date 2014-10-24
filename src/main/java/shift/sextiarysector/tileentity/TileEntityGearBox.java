@@ -10,6 +10,13 @@ public class TileEntityGearBox extends TileEntityDirection implements IEnergyHan
 
 	public EnergyStorage storage = new EnergyStorage("Base", 1, 960, 160);
 
+	public TileEntityGearBox() {
+	}
+
+	public TileEntityGearBox(int type) {
+		this.storage.setPowerCapacity(type);
+	}
+
 	@Override
 	public void updateEntity() {
 		super.updateEntity();

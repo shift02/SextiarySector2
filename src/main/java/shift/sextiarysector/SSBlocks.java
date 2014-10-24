@@ -49,6 +49,7 @@ public class SSBlocks {
 
 
 	public static Block woodGearBox;
+	public static Block stoneGearBox;
 
 	public static Block woodGFTank;
 	public static Block stoneGFTank;
@@ -62,6 +63,8 @@ public class SSBlocks {
 	public static Block hole;
 
 	public static Block woodGrate;
+
+	public static Block woodPlate;
 
 	public static Block chunkLoader;
 
@@ -99,8 +102,11 @@ public class SSBlocks {
 		hole = new BlockHole().setBlockName("ss.hole").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(hole, "Hole");
 
-		woodGrate = (new BlockSSPane(ID+":wood_grate", ID+":wood_grate", Material.wood, false)).setHardness(0.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		woodGrate = (new BlockSSPane(ID+":wood_grate", ID+":wood_grate", Material.wood, false,0)).setHardness(0.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodGrate, "WoodGrate");
+
+		woodPlate = (new BlockSSPane("planks_oak", "planks_oak", Material.wood, false,1)).setHardness(0.5F).setBlockName("ss.wood_plate").setBlockTextureName(ID+":plate/wood_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(woodPlate, "WoodPlate");
 
 		chunkLoader = new BlockChunkLoader().setHardness(1.5F).setBlockName("ss.chunk_loader").setBlockTextureName("sextiarysector:time_loader");
 		GameRegistry.registerBlock(chunkLoader, "ChunkLoader");
@@ -123,9 +129,12 @@ public class SSBlocks {
 		stoneShaft = new BlockShaft(2).setBlockName("ss.stone_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeStone);
 		GameRegistry.registerBlock(stoneShaft,ItemBlockShaft.class, "StoneShaft");
 
-		woodGearBox = new BlockGearBox(Material.wood).setBlockName("ss.wood_gear_box").setBlockTextureName("sextiarysector:machine/wood_gear_box").setStepSound(Block.soundTypeWood);
-		GameRegistry.registerBlock(woodGearBox, "WoodGearBox");
 		GameRegistry.registerTileEntity(TileEntityGearBox.class, "GearBox");
+		woodGearBox = new BlockGearBox(Material.wood,1).setBlockName("ss.wood_gear_box").setBlockTextureName("sextiarysector:machine/wood_gear_box").setStepSound(Block.soundTypeWood);
+		GameRegistry.registerBlock(woodGearBox, "WoodGearBox");
+
+		stoneGearBox = new BlockGearBox(Material.rock,2).setBlockName("ss.stone_gear_box").setBlockTextureName("sextiarysector:machine/stone_gear_box").setStepSound(Block.soundTypeStone);
+		GameRegistry.registerBlock(stoneGearBox, "StoneGearBox");
 
 
 		GameRegistry.registerTileEntity(TileEntityGFTank.class, "GFTank");
