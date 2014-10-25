@@ -13,6 +13,7 @@ tile.ss.farmland.name=farmland
 tile.ss.chunk_loader.name=Time Loader
 
 tile.ss.small_windmill.name=Small Windmill
+tile.ss.windmill.name=Windmill
 
 tile.ss.wood_shaft.name=Wood Shaft
 tile.ss.stone_shaft.name=Stone Shaft
