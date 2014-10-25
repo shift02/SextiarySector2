@@ -104,7 +104,9 @@ public class SextiarySector {
 
     	SSVillages.initVillages();
 
+    	SSPlugins.initModHelper();
 
+    	SSPlugins.initPlugins(event);
 
     }
 
@@ -119,10 +121,8 @@ public class SextiarySector {
     	for(IModule m : modules){
     		m.postInit(event);
     	}
-    	SSPlugins.initModHelper();
 
-    	SSPlugins.initPlugins(event);
-
+    	SSPlugins.postPlugins(event);
 
     }
 
