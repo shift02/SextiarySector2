@@ -14,6 +14,7 @@ public class ItemBlockShaft extends ItemBlock{
 		super(par1);
 	}
 
+
 	@Override
     public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata)
     {

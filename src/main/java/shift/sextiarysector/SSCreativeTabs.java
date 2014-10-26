@@ -51,7 +51,7 @@ public class SSCreativeTabs {
 		@SideOnly(Side.CLIENT)
 	    public ItemStack getIconItemStack()
 	    {
-			return new ItemStack(SSBlocks.shaft,1);
+			return new ItemStack(SSBlocks.woodShaft,1);
 	    }
 
 	}

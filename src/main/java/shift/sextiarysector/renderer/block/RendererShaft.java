@@ -9,6 +9,7 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
+import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.renderer.model.ModelShaft;
 import shift.sextiarysector.tileentity.TileEntityShaft;
@@ -34,8 +35,12 @@ public class RendererShaft extends TileEntitySpecialRenderer implements ISimpleB
 
         GL11.glRotatef(90, 1, 0, 0);
 
+        if(block == SSBlocks.woodShaft){
+        	this.bind(woodShaftTextures);
+        }else if(block == SSBlocks.stoneShaft){
+        	this.bind(stoneShaftTextures);
+        }
 
-        this.bind(shaftTextures);
         modelShaft.render(null, 0,0,0, 0,0, 1.0f);
         modelShaft.renderIn(null, 0,0,0, 0,0, 1.0f);
         modelShaft.renderOut(null, 0,0,0, 0,0, 1.0f);
@@ -62,7 +67,9 @@ public class RendererShaft extends TileEntitySpecialRenderer implements ISimpleB
 		return SextiarySector.instance.proxy.ShaftRenderType;
 	}
 
-	private static final ResourceLocation shaftTextures = new ResourceLocation("sextiarysector:textures/models/shaft.png");
+	private static final ResourceLocation woodShaftTextures = new ResourceLocation("sextiarysector:textures/models/wood_shaft.png");
+	private static final ResourceLocation stoneShaftTextures = new ResourceLocation("sextiarysector:textures/models/stone_shaft.png");
+
 	static public ModelShaft modelShaft = new ModelShaft();
 
 	@Override
@@ -77,7 +84,11 @@ public class RendererShaft extends TileEntitySpecialRenderer implements ISimpleB
         float scale = 0.0625f;
         GL11.glScalef(scale,scale,scale);
 
-        this.bindTexture(shaftTextures);
+        switch(tile.getStorage().getMaxPowerStored()){
+        	case 1:this.bindTexture(woodShaftTextures);break;
+        	case 2:this.bindTexture(stoneShaftTextures);break;
+        }
+
 
         switch(tile.direction){
         case UP:

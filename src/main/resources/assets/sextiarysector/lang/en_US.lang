@@ -5,19 +5,35 @@ tile.ss.large_furnace.name=Large Furnace
 
 tile.ss.wood_grate.name=Wood Grate
 
+tile.ss.wood_plate.name=Wood Plate
+
 tile.ss.hole.name=Hole
-tile.ss.farmland.name=farmland
+tile.ss.farmland.name=Farm Land
 
 tile.ss.chunk_loader.name=Time Loader
 
 tile.ss.small_windmill.name=Small Windmill
-tile.ss.wood_shaft.name=Wood shaft
+tile.ss.windmill.name=Windmill
+
+tile.ss.wood_shaft.name=Wood Shaft
+tile.ss.stone_shaft.name=Stone Shaft
+
 tile.ss.wood_gear_box.name=Wood Gear Box
+tile.ss.stone_gear_box.name=Stone Gear Box
+
 tile.ss.wood_gf_tank.name=Wood GF Tank
+tile.ss.stone_gf_tank.name=Stone GF Tank
+
 tile.ss.millstone.name=Millstone
+tile.ss.loom.name=Loom
+tile.ss.sawmill.name=Sawmill
 
 tile.ss.blue_stone.name=Blue Stone Ore
 tile.ss.yellow_stone.name=Yellow Stone Ore
+
+tile.ss.coal_large_ore.name=Coal Large Ore
+tile.ss.iron_large_ore.name=Iron Large Ore
+tile.ss.gold_large_ore.name=Gold Large Ore
 
 tile.ss.creeper_chest.name=Creeper Monger Chest
 tile.ss.shipping_box.name=Shipping Box
@@ -43,15 +59,24 @@ monitor.robot=Blue Robot Shop
 #Item
 item.ss.dust_waterlily.name=WaterLily Dust
 
+item.ss.stone_dust.name=Stone Dust
+
 item.ss.dust_blue_stone.name=Blue Stone Dust
 item.ss.dust_yellow_stone.name=Yellow Stone Dust
+
+item.ss.coal_dust.name=Coal Dust
+item.ss.iron_dust.name=Iron Dust
+item.ss.gold_dust.name=Gold Dust
 
 item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
 
 item.ss.unit.name=Unit
 
 item.ss.wood_gear.name=Wood Gear
+item.ss.stone_gear.name=Stone Gear
+
 item.ss.wood_unit_gear.name=Wood Unit Gear
+item.ss.stone_unit_gear.name=Stone Unit Gear
 
 item.ss.hammer.name=Hammer
 item.ss.calendar.name=Calendar
@@ -65,6 +90,13 @@ item.ss.season_stone_winter.name=Season Stone -Winter-
 
 item.ss.wood_gf_storage.name=Wood GF Storage
 
+item.ss.string_bobbin.name=String Bobbin
+item.ss.cloth.name=Cloth
+item.ss.canvas.name=Canvas
+
+item.ss.drinking_water_small_bottle.name=Drinking Water Small Bottle
+
+
 item.ss.wood_scoop.name=Wood Scoop
 item.ss.stone_scoop.name=Stone Scoop
 item.ss.iron_scoop.name=Iron Scoop
@@ -77,20 +109,33 @@ item.ss.crop.big=Big
 
 item.ss.turnip.name=Turnip
 item.ss.cucumber.name=Cucumber
+
+item.ss.iron_turnip.name=Iron Turnip
+
 item.ss.onion.name=Onion
 item.ss.tomato.name=Tomato
 item.ss.corn.name=Corn
+
+item.ss.golden_corn.name=Golden Corn
+
 item.ss.eggplant.name=Eggplant
 item.ss.sweet_potato.name=Sweet Potato
 item.ss.green_pepper.name=Green Pepper
+
 item.ss.radish.name=Radish
+
+item.ss.shift_hat.name=Shift's Hat
 
 #GUI
 container.large_furnace=Large Furnace
 container.sub.inventory=Buffer
 
 gui.ss.millstone=Millstone
-gui.ss.gf_tank=Wood GF Tank
+gui.ss.loom=Loom
+gui.ss.sawmill=Sawmill
+
+gui.ss.gf_tank_1=Wood GF Tank
+gui.ss.gf_tank_2=Stone GF Tank
 
 shop.ss.creeper=Simple Creeper Shop
 shop.ss.robot=Blue Robot Shop
@@ -132,5 +177,7 @@ nei.ss.furnace.shaped=Furnace Shaped
 nei.ss.furnace.shapeless=Furnace Shapeless
 
 nei.ss.millstone=Millstone Recipe
+nei.ss.loom=Loom Recipe
+nei.ss.sawmill=Sawmill Recipe
 
 nei.ss.fertilizer=Mutation Recipe

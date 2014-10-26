@@ -40,6 +40,8 @@ public class SSShops {
 
 			if(i==3){
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.radish,1),180));
+
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.stoneDust,4),500));
 			}
 
 		}
@@ -75,18 +77,21 @@ public class SSShops {
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.turnip), 280);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.cucumber), 350);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.ironTurnip), 300);
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.turnip,1,1), 2800);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.cucumber,1,1), 3500);
-
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.ironTurnip,1,1), 3000);
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.onion), 320);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.tomato), 150);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.corn), 720);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.goldenCorn), 800);
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.onion,1,1), 3200);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.tomato,1,1), 1500);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.corn,1,1), 7200);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.goldenCorn,1,1), 8000);
 
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.eggplant), 210);

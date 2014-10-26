@@ -9,10 +9,18 @@ import shift.sextiarysector.api.machine.energy.IEnergyHandler;
 public class TileEntityShaft extends TileEntityDirection implements IEnergyHandler {
 
 	public float rotateStep = 360;
-	public EnergyStorage storage = new EnergyStorage("Base", 1, 320, 160);
+	private EnergyStorage storage = new EnergyStorage("Base", 1, 320, 160);
 	// 表示用
 	public int lastSpeed = 0;
 	private final int cooltime = 0;
+
+	public TileEntityShaft(){
+
+	}
+
+	public TileEntityShaft(int i){
+		this.getStorage().setPowerCapacity(i);
+	}
 
 	@Override
 	public void updateEntity() {
@@ -58,15 +66,15 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 
 	public void updateServerEntity() {
 
-		if (this.storage.getSpeedStored() != lastSpeed) {
-			lastSpeed = (int) (this.storage.getSpeedStored());
+		if (this.getStorage().getSpeedStored() != lastSpeed) {
+			lastSpeed = (int) (this.getStorage().getSpeedStored());
 			// PacketDispatcher.sendPacketToAllPlayers(this.getDescriptionPacket());
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
 		}
 
-		if (storage.getSpeedStored() > 0) {
-			storage.drawEnergy(storage.getMaxPowerStored(), 10, false);
+		if (this.getStorage().getSpeedStored() > 0) {
+			this.getStorage().drawEnergy(this.getStorage().getMaxPowerStored(), 10, false);
 		}
 
 		/*
@@ -158,14 +166,14 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 	@Override
 	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
 		super.readFromNBT(par1nbtTagCompound);
-		storage.readFromNBT(par1nbtTagCompound);
+		this.getStorage().readFromNBT(par1nbtTagCompound);
 		this.lastSpeed = par1nbtTagCompound.getInteger("lastSpeed");
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
 		super.writeToNBT(par1nbtTagCompound);
-		storage.writeToNBT(par1nbtTagCompound);
+		this.getStorage().writeToNBT(par1nbtTagCompound);
 		par1nbtTagCompound.setInteger("lastSpeed", lastSpeed);
 	}
 
@@ -182,23 +190,30 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 		direction = d;
 	}
 
+	public EnergyStorage getStorage() {
+
+		//if(storage==null){
+		//	storage = new EnergyStorage("base", ((BlockShaft)this.getBlockType()).getType(), 320, 160);
+		//}
+
+		return storage;
+	}
+
 	// EnergyStorageの利用
 	@Override
-	public int addEnergy(ForgeDirection from, int power, int speed,
-			boolean simulate) {
+	public int addEnergy(ForgeDirection from, int power, int speed,boolean simulate) {
 
 		if (this.getInDirection().ordinal() != from.ordinal())
 			return 0;
 
-		if (!(this.getOutTileEntity() instanceof IEnergyHandler))
+		if (!(this.getOutTileEntity() instanceof IEnergyHandler) || power != this.getStorage().getMaxPowerStored())
 			return 0;
 
-		int i = ((IEnergyHandler) this.getOutTileEntity()).addEnergy(from,
-				power, speed, simulate);
+		int i = ((IEnergyHandler) this.getOutTileEntity()).addEnergy(from,power, speed, simulate);
 
 		// storage.addEnergy(power, speed, simulate);
 		if (!simulate)
-			storage.setEnergyStored(i);
+			this.getStorage().setEnergyStored(i);
 
 		return i;
 
@@ -228,28 +243,28 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 	@Override
 	public int getPowerStored(ForgeDirection from) {
 
-		return storage.getPowerStored();
+		return this.getStorage().getPowerStored();
 
 	}
 
 	@Override
 	public long getSpeedStored(ForgeDirection from) {
 
-		return storage.getSpeedStored();
+		return this.getStorage().getSpeedStored();
 
 	}
 
 	@Override
 	public int getMaxPowerStored(ForgeDirection from) {
 
-		return storage.getMaxPowerStored();
+		return this.getStorage().getMaxPowerStored();
 
 	}
 
 	@Override
 	public long getMaxSpeedStored(ForgeDirection from) {
 
-		return storage.getMaxSpeedStored();
+		return this.getStorage().getMaxSpeedStored();
 
 	}
 

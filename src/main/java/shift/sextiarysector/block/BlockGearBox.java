@@ -24,8 +24,11 @@ public class BlockGearBox  extends BlockDirection{
     protected IIcon in;
     protected IIcon out;
 
-	public BlockGearBox(Material p_i45386_1_) {
+    private int type;
+
+	public BlockGearBox(Material p_i45386_1_,int type) {
 		super(p_i45386_1_);
+		this.type = type;
 		this.setHardness(1.0F);
 		this.setCreativeTab(SextiarySectorAPI.TabSSMachine);
 	}
@@ -129,7 +132,7 @@ public class BlockGearBox  extends BlockDirection{
 
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileEntityGearBox();
+		return new TileEntityGearBox(this.type);
 	}
 
 }
