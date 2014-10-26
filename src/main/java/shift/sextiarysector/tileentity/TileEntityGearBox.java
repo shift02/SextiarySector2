@@ -76,7 +76,7 @@ public class TileEntityGearBox extends TileEntityDirection implements IEnergyHan
 
 			TileEntity t = this.worldObj.getTileEntity(x, y, z);
 
-			if(t instanceof IEnergyHandler && ((IEnergyHandler) t).addEnergy(d.getOpposite(), 1, 1, true)>0){
+			if(t instanceof IEnergyHandler && ((IEnergyHandler) t).addEnergy(d.getOpposite(), this.storage.getMaxPowerStored(), 1, true)>0){
 				i++;
 			}
 
