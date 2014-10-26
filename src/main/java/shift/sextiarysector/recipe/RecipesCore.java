@@ -3,6 +3,7 @@ package shift.sextiarysector.recipe;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import shift.sextiarysector.SSItems;
 
 public class RecipesCore {
@@ -16,6 +17,13 @@ public class RecipesCore {
         	'x', Items.redstone,
         	'y', Items.paper,
         	});
+
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.stringBobbin, 1),
+        		new Object[] {
+        	"xxx", "xyx", "xxx",
+        	'x', Items.string,
+        	'y', "stickWood",
+        	}));
     }
 
 }

@@ -62,6 +62,8 @@ public class SSBlocks {
 	public static Block millstone;
 	public static Block loom;
 
+	public static Block sawmill;
+
 
 	public static Block hole;
 
@@ -170,6 +172,9 @@ public class SSBlocks {
 
 		loom = new BlockSimpleMachine("loom",21,SSRecipes.loom,1).setBlockName("ss.loom").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerBlock(loom, "Loom");
+
+		sawmill = new BlockSimpleMachine("sawmill",25,SSRecipes.sawmill,2).setBlockName("ss.sawmill").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerBlock(sawmill, "Sawmill");
 
 		shippingBox = new BlockShippingBox().setBlockName("ss.shipping_box").setBlockTextureName("sextiarysector:shipping_box").setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(shippingBox, "ShippingBox");

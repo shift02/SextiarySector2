@@ -25,7 +25,8 @@ tile.ss.wood_gf_tank.name=Wood GF Tank
 tile.ss.stone_gf_tank.name=Stone GF Tank
 
 tile.ss.millstone.name=Millstone
-tile.ss.loom.name=loom
+tile.ss.loom.name=Loom
+tile.ss.sawmill.name=Sawmill
 
 tile.ss.blue_stone.name=Blue Stone Ore
 tile.ss.yellow_stone.name=Yellow Stone Ore
@@ -72,7 +73,10 @@ item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
 item.ss.unit.name=Unit
 
 item.ss.wood_gear.name=Wood Gear
+item.ss.stone_gear.name=Stone Gear
+
 item.ss.wood_unit_gear.name=Wood Unit Gear
+item.ss.stone_unit_gear.name=Stone Unit Gear
 
 item.ss.hammer.name=Hammer
 item.ss.calendar.name=Calendar
@@ -128,6 +132,7 @@ container.sub.inventory=Buffer
 
 gui.ss.millstone=Millstone
 gui.ss.loom=Loom
+gui.ss.sawmill=Sawmill
 
 gui.ss.gf_tank_1=Wood GF Tank
 gui.ss.gf_tank_2=Stone GF Tank
@@ -173,5 +178,6 @@ nei.ss.furnace.shapeless=Furnace Shapeless
 
 nei.ss.millstone=Millstone Recipe
 nei.ss.loom=Loom Recipe
+nei.ss.sawmill=Sawmill Recipe
 
 nei.ss.fertilizer=Mutation Recipe
