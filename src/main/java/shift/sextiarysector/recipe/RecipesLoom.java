@@ -1,16 +1,15 @@
 package shift.sextiarysector.recipe;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import shift.sextiarysector.SSItems;
 
 public class RecipesLoom {
 
 	public static void addRecipes(RecipeSimpleMachine recipe)
     {
 
-		//バニラ
-		recipe.add(new ItemStack(Blocks.bedrock,1),new ItemStack(Items.dye, 4, 1));
+		//風車
+		recipe.add(new ItemStack(SSItems.stringBobbin,1),new ItemStack(SSItems.cloth, 1));
 
 
     }

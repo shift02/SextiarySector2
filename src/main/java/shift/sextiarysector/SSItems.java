@@ -1,5 +1,6 @@
 package shift.sextiarysector;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import shift.sextiarysector.api.SextiarySectorAPI;
@@ -20,7 +21,10 @@ public class SSItems {
 	public static Item unit;
 
 	public static Item woodGear;
+	public static Item stoneGear;
+
 	public static Item woodUnitGear;
+	public static Item stoneUnitGear;
 
 	public static Item woodGFStorage;
 
@@ -91,8 +95,14 @@ public class SSItems {
 		woodGear = new Item().setUnlocalizedName("ss.wood_gear").setTextureName("sextiarysector:machine/wood_gear").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerItem(woodGear, "WoodGear");
 
+		stoneGear = new Item().setUnlocalizedName("ss.stone_gear").setTextureName("sextiarysector:machine/stone_gear").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerItem(stoneGear, "StoneGear");
+
 		woodUnitGear = new Item().setUnlocalizedName("ss.wood_unit_gear").setTextureName("sextiarysector:machine/wood_unit_gear").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerItem(woodUnitGear, "WoodUnitGear");
+
+		stoneUnitGear = new Item().setUnlocalizedName("ss.stone_unit_gear").setTextureName("sextiarysector:machine/stone_unit_gear").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerItem(stoneUnitGear, "StoneUnitGear");
 
 		woodGFStorage = new ItemGearStorage(1, 10000, 1).setUnlocalizedName("ss.wood_gf_storage").setTextureName("sextiarysector:gearforce/gear_storage").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerItem(woodGFStorage, "WoodGFStorage");
@@ -141,7 +151,7 @@ public class SSItems {
 		GameRegistry.registerItem(canvas, "Canvas");
 
 		//飲み物
-		drinkingWaterSmallBottle  = new ItemFoodDrink(0, 3.5f, 2, 6.5f, 0, 0, false).setUnlocalizedName("ss.drinking_water_small_bottle").setTextureName("sextiarysector:drink/drinking_water_small_bottle");
+		drinkingWaterSmallBottle  = new ItemFoodDrink(0, 3.5f, 2, 6.5f, 0, 0, false).setUnlocalizedName("ss.drinking_water_small_bottle").setTextureName("sextiarysector:drink/drinking_water_small_bottle").setContainerItem(Items.glass_bottle);
 		GameRegistry.registerItem(drinkingWaterSmallBottle, "DrinkingWaterSmallBottle");
 
 
