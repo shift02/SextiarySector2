@@ -3,7 +3,7 @@ sourceSets.main {
     resources.srcDirs project.projectDir.name
 }
  
-version = "2.0.6.a-${project.minecraft.version}"
+version = "2.0.6.b-${project.minecraft.version}"
 
 minecraft {
     // replacing stuff in the source
