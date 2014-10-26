@@ -16,9 +16,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SSItems {
 
-
 	//Gear
-
 	public static Item unit;
 
 	public static Item woodGear;
@@ -40,8 +38,15 @@ public class SSItems {
 	public static Item yellowStoneDust;
 
 	public static Item coalDust;
+	public static Item ironDust;
+	public static Item goldDust;
 
 	public static Item blueStoneSlimeBall;
+
+	//布
+	public static Item stringBobbin;
+	public static Item cloth;
+	public static Item canvas;
 
 	//飲み物
 	public static Item drinkingWaterSmallBottle;
@@ -116,8 +121,24 @@ public class SSItems {
 		coalDust = new Item().setUnlocalizedName("ss.coal_dust").setTextureName("sextiarysector:dust/coal_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(coalDust, "CoalDust");
 
+		ironDust = new Item().setUnlocalizedName("ss.iron_dust").setTextureName("sextiarysector:dust/iron_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(ironDust, "IronDust");
+
+		goldDust = new Item().setUnlocalizedName("ss.gold_dust").setTextureName("sextiarysector:dust/gold_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(goldDust, "GoldDust");
+
 		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
+
+		//布
+		stringBobbin = new Item().setUnlocalizedName("ss.string_bobbin").setTextureName("sextiarysector:loom/string_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(stringBobbin, "StringBobbin");
+
+		cloth = new Item().setUnlocalizedName("ss.cloth").setTextureName("sextiarysector:loom/cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(cloth, "Cloth");
+
+		canvas = new Item().setUnlocalizedName("ss.canvas").setTextureName("sextiarysector:loom/canvas").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(canvas, "Canvas");
 
 		//飲み物
 		drinkingWaterSmallBottle  = new ItemFoodDrink(0, 3.5f, 2, 6.5f, 0, 0, false).setUnlocalizedName("ss.drinking_water_small_bottle").setTextureName("sextiarysector:drink/drinking_water_small_bottle");

@@ -8,7 +8,7 @@ tile.ss.wood_grate.name=Wood Grate
 tile.ss.wood_plate.name=Wood Plate
 
 tile.ss.hole.name=Hole
-tile.ss.farmland.name=farmland
+tile.ss.farmland.name=Farm Land
 
 tile.ss.chunk_loader.name=Time Loader
 
@@ -31,6 +31,8 @@ tile.ss.blue_stone.name=Blue Stone Ore
 tile.ss.yellow_stone.name=Yellow Stone Ore
 
 tile.ss.coal_large_ore.name=Coal Large Ore
+tile.ss.iron_large_ore.name=Iron Large Ore
+tile.ss.gold_large_ore.name=Gold Large Ore
 
 tile.ss.creeper_chest.name=Creeper Monger Chest
 tile.ss.shipping_box.name=Shipping Box
@@ -62,6 +64,8 @@ item.ss.dust_blue_stone.name=Blue Stone Dust
 item.ss.dust_yellow_stone.name=Yellow Stone Dust
 
 item.ss.coal_dust.name=Coal Dust
+item.ss.iron_dust.name=Iron Dust
+item.ss.gold_dust.name=Gold Dust
 
 item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
 
@@ -81,6 +85,10 @@ item.ss.season_stone_autumn.name=Season Stone -Autumn-
 item.ss.season_stone_winter.name=Season Stone -Winter-
 
 item.ss.wood_gf_storage.name=Wood GF Storage
+
+item.ss.string_bobbin.name=String Bobbin
+item.ss.cloth.name=Cloth
+item.ss.canvas.name=Canvas
 
 item.ss.drinking_water_small_bottle.name=Drinking Water Small Bottle
 
