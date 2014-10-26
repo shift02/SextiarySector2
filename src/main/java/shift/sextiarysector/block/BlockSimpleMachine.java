@@ -37,13 +37,15 @@ public class BlockSimpleMachine extends BlockContainer {
 	private int guiID;
 	private RecipeSimpleMachine recipe;
 	private String guiuUnlocalizedName;
+	private int type;
 
-	public BlockSimpleMachine(String iconFront,int gui,RecipeSimpleMachine recipe) {
+	public BlockSimpleMachine(String iconFront,int gui,RecipeSimpleMachine recipe,int type) {
 		super( Material.wood);
 		this.setHardness(3.0F);
 		this.frontIcon = iconFront;
 		this.guiID = gui;
 		this.recipe=recipe;
+		this.type =type;
 		IconName = ("sextiarysector:machine/machine");
 	}
 
@@ -252,7 +254,7 @@ public class BlockSimpleMachine extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world,int i) {
-		return new TileEntitySimpleMachine();
+		return new TileEntitySimpleMachine(type);
 	}
 
 }

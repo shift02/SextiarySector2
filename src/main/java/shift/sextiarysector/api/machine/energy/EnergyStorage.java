@@ -40,6 +40,8 @@ public class EnergyStorage implements IEnergyStorage {
 
 	public EnergyStorage readFromNBT(NBTTagCompound nbt) {
 
+		this.powerCapacity = nbt.getInteger(name+"PowerCapacity");
+
 		this.powerEnergy = nbt.getInteger(name+"GearForcePower");
 		this.speedEnergy = nbt.getInteger(name+"GearForceSpeed");
 
@@ -63,6 +65,9 @@ public class EnergyStorage implements IEnergyStorage {
 		if (speedEnergy < 0) {
 			speedEnergy = 0;
 		}
+
+		nbt.setInteger(name+"PowerCapacity", this.powerCapacity);
+
 		nbt.setInteger(name+"GearForcePower", powerEnergy);
 		nbt.setInteger(name+"GearForceSpeed", speedEnergy);
 		nbt.setBoolean(name+"GearForceTransmission", isTransmission);
@@ -196,6 +201,10 @@ public class EnergyStorage implements IEnergyStorage {
 	@Override
 	public int getMaxSpeedStored() {
 		return speedCapacity;
+	}
+
+	public void setPowerCapacity(int powerCapacity) {
+		this.powerCapacity = powerCapacity;
 	}
 
 }

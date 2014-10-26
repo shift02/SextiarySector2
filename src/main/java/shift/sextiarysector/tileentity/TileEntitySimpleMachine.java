@@ -37,6 +37,14 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 
 	private int cooltime = 0;
 
+	public TileEntitySimpleMachine() {
+	}
+
+
+	public TileEntitySimpleMachine(int type) {
+		this.storage.setPowerCapacity(type);
+	}
+
 	@Override
 	public void updateEntity()
 	{

@@ -140,7 +140,7 @@ public class ClientEventHandler {
 
 	    		Array.set(a, 2, icon);
 
-	    		System.out.println("AAAAA");
+	    		//System.out.println("AAAAA");
 
 			} catch (SecurityException e) {
 				e.printStackTrace();

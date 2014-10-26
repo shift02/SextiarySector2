@@ -18,6 +18,12 @@ public class RecipesFurnaceCraft {
 	public static void addRecipes(FurnaceCraftingManager p_77608_1_)
     {
 
+		//飲み物
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.drinkingWaterSmallBottle, 1),
+				new Object[] {
+			new ItemStack(Items.potionitem),
+			}));
+
 		//スライム
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.slime_ball, 2),
 				new Object[] {

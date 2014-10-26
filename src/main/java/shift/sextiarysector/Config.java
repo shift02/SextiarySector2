@@ -9,6 +9,7 @@ public class Config {
 	//Mod
 	public static boolean modDCsAppleMilk;
 	public static boolean modComputerCraft;
+	public static boolean modTHKaguya;
 
 	public static void ConfigRead(FMLPreInitializationEvent event) {
 
@@ -30,8 +31,9 @@ public class Config {
 
 	public static void ConfigForMCEconomy(Configuration cfg) {
 
-		modDCsAppleMilk = cfg.getBoolean("mod_DCsAppleMilk", "general", true, "");
+		modDCsAppleMilk = cfg.getBoolean("AppleMilk", "general", true, "");
 		modComputerCraft = cfg.getBoolean("ComputerCraft", "general", true, "");
+		modTHKaguya = cfg.getBoolean("THKaguya", "general", true, "");
 
 	}
 

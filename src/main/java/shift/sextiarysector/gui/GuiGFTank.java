@@ -15,14 +15,17 @@ import shift.sextiarysector.tileentity.TileEntityGFTank;
 
 public class GuiGFTank  extends GUIGearMachine{
 
-	private static final ResourceLocation tankGuiTextures = new ResourceLocation("sextiarysector:textures/guis/machine/wood_gf_tank.png");
+	private static final ResourceLocation woodGuiTextures = new ResourceLocation("sextiarysector:textures/guis/machine/wood_gf_tank.png");
+	private static final ResourceLocation stoneGuiTextures = new ResourceLocation("sextiarysector:textures/guis/machine/stone_gf_tank.png");
+	private int type;
     protected final TileEntityGFTank tankInventory;
     float s =0;
     float s2 =0;
 
-    public GuiGFTank(InventoryPlayer par1InventoryPlayer, TileEntityGFTank par2TileEntity) {
+    public GuiGFTank(InventoryPlayer par1InventoryPlayer, TileEntityGFTank par2TileEntity ,int type) {
 		super(new ContainerGFTank(par1InventoryPlayer, par2TileEntity));
 		this.tankInventory = par2TileEntity;
+		this.type = type;
 	}
 
 	@Override
@@ -152,7 +155,11 @@ public class GuiGFTank  extends GUIGearMachine{
     }
 
 	protected  ResourceLocation getBindTexture() {
-		return this.tankGuiTextures;
+		switch(this.type){
+		case 1:return this.woodGuiTextures;
+		case 2:return this.stoneGuiTextures;
+		}
+		return this.woodGuiTextures;
 	}
 
 }
