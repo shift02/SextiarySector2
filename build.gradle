@@ -55,3 +55,12 @@ jar {
   }
 }
 
+task devJar(type: Jar) {
+    from sourceSets.main.output
+    from sourceSets.main.allSource
+    classifier = 'dev'
+}
+ 
+artifacts {
+    archives devJar
+}

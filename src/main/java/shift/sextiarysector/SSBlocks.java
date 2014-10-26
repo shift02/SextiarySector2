@@ -75,6 +75,8 @@ public class SSBlocks {
 	public static Block yellowStoneOre;
 
 	public static Block coalLargeOre;
+	public static Block ironLargeOre;
+	public static Block goldLargeOre;
 
 	public static Block shippingBox;
 	public static Block creeperChest;
@@ -114,6 +116,7 @@ public class SSBlocks {
 		chunkLoader = new BlockChunkLoader().setHardness(1.5F).setBlockName("ss.chunk_loader").setBlockTextureName("sextiarysector:time_loader");
 		GameRegistry.registerBlock(chunkLoader, "ChunkLoader");
 
+		//鉱石
 		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(blueStoneOre, "BlueStoneOre");
 
@@ -123,7 +126,13 @@ public class SSBlocks {
 		coalLargeOre = new BlockSSOre(SSItems.coalDust,Blocks.coal_ore,1).setBlockName("ss.coal_large_ore").setBlockTextureName("sextiarysector:ore/coal_large_ore");
 		GameRegistry.registerBlock(coalLargeOre, "CoalLargeOre");
 
+		ironLargeOre = new BlockSSOre(SSItems.ironDust,Blocks.iron_ore,2).setBlockName("ss.iron_large_ore").setBlockTextureName("sextiarysector:ore/iron_large_ore");
+		GameRegistry.registerBlock(ironLargeOre, "IronLargeOre");
 
+		goldLargeOre = new BlockSSOre(SSItems.goldDust,Blocks.gold_ore,2).setBlockName("ss.gold_large_ore").setBlockTextureName("sextiarysector:ore/gold_large_ore");
+		GameRegistry.registerBlock(goldLargeOre, "GoldLargeOre");
+
+		//GF
 		GameRegistry.registerTileEntity(TileEntityShaft.class, "Shaft");
 
 		woodShaft = new BlockShaft(1).setBlockName("ss.wood_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
