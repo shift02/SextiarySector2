@@ -8,6 +8,9 @@ public class CommonProxy {
 	public int holeType;
 
 	public int ShaftRenderType;
+
+	public int GearShaftRenderType;
+
 	public int smallWindMillType;
 	public int windMillType;
 
