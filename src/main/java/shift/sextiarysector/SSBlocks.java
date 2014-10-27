@@ -8,6 +8,7 @@ import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.block.BlockChunkLoader;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
+import shift.sextiarysector.block.BlockGearShaft;
 import shift.sextiarysector.block.BlockHole;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockMonitor;
@@ -27,6 +28,7 @@ import shift.sextiarysector.block.BlockWindmill;
 import shift.sextiarysector.item.ItemBlockCrop;
 import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.item.ItemBlockShaft;
+import shift.sextiarysector.tileentity.TileEntityGearShaft;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
@@ -55,6 +57,8 @@ public class SSBlocks {
 
 	public static Block woodGFTank;
 	public static Block stoneGFTank;
+
+	public static Block woodStoneGearShaft;
 
 	public static Block smallWindmill;
 	public static Block windmill;
@@ -157,6 +161,11 @@ public class SSBlocks {
 
 		stoneGFTank = new BlockGFTank(Material.rock,41,2).setBlockName("ss.stone_gf_tank").setBlockTextureName("sextiarysector:machine/stone_gf_tank").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(stoneGFTank, "StoneGFTank");
+
+
+		GameRegistry.registerTileEntity(TileEntityGearShaft.class, "GearShaft");
+		woodStoneGearShaft = new BlockGearShaft(1).setBlockName("ss.wood_stone_gear_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
+		GameRegistry.registerBlock(woodStoneGearShaft,ItemBlockShaft.class, "WoodStoneGearShaft");
 
 		smallWindmill = new BlockSmallWindmill().setBlockName("ss.small_windmill").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerTileEntity(TileEntitySmallWindmill.class, "SmallWindmill");
