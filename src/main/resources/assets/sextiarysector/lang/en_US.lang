@@ -24,6 +24,8 @@ tile.ss.stone_gear_box.name=Stone Gear Box
 tile.ss.wood_gf_tank.name=Wood GF Tank
 tile.ss.stone_gf_tank.name=Stone GF Tank
 
+tile.ss.wood_stone_gear_shaft.name=Wood Stone Gear Shaft
+
 tile.ss.millstone.name=Millstone
 tile.ss.loom.name=Loom
 tile.ss.sawmill.name=Sawmill
