@@ -151,7 +151,7 @@ public class SSItems {
 		GameRegistry.registerItem(canvas, "Canvas");
 
 		//飲み物
-		drinkingWaterSmallBottle  = new ItemFoodDrink(0, 3.5f, 2, 6.5f, 0, 0, false).setUnlocalizedName("ss.drinking_water_small_bottle").setTextureName("sextiarysector:drink/drinking_water_small_bottle").setContainerItem(Items.glass_bottle);
+		drinkingWaterSmallBottle  = new ItemFoodDrink(0, 3.5f, 2, 6.5f, 0, 0, false).setDrink().setUnlocalizedName("ss.drinking_water_small_bottle").setTextureName("sextiarysector:drink/drinking_water_small_bottle").setContainerItem(Items.glass_bottle);
 		GameRegistry.registerItem(drinkingWaterSmallBottle, "DrinkingWaterSmallBottle");
 
 
