@@ -20,10 +20,11 @@ public class VanillaFoodHandler {
 		EntityPlayer player = (EntityPlayer) event.entity;
 
 		//水入り瓶
-		if(food.getItem() == Items.potionitem){
+		if(food.getItem() == Items.potionitem && food.getItemDamage()==0){
 
 			SextiarySectorAPI.playerManager.addMoistureStats(player, 3, 0);
-			player.addPotionEffect(new PotionEffect(Potion.hunger.getId(),600,0));
+			player.addExhaustion(4.5f);
+			player.addPotionEffect(new PotionEffect(Potion.hunger.getId(),30,0));
 		}
 
 		//きのこシチュー
