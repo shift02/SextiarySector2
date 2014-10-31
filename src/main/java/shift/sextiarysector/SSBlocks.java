@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.block.BlockChunkLoader;
+import shift.sextiarysector.block.BlockFluidFurnace;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockGearShaft;
@@ -30,6 +31,7 @@ import shift.sextiarysector.item.ItemBlockGearShaft;
 import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.item.ItemBlockShaft;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
+import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
@@ -48,6 +50,7 @@ public class SSBlocks {
 	public static String ID = "sextiarysector";
 
 	public static Block LargeFurnace;
+	public static Block fluidFurnace;
 
 	public static Block woodShaft;
 	public static Block stoneShaft;
@@ -110,6 +113,10 @@ public class SSBlocks {
 		LargeFurnace = new BlockLargeFurnace().setBlockName("ss.large_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(LargeFurnace, "LargeFurnace");
 		GameRegistry.registerTileEntity(TileEntityLargeFurnace.class, "LargeFurnace");
+
+		fluidFurnace = new BlockFluidFurnace().setBlockName("ss.fluid_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(fluidFurnace, "FluidFurnace");
+		GameRegistry.registerTileEntity(TileEntityFluidFurnace.class, "FluidFurnace");
 
 		hole = new BlockHole().setBlockName("ss.hole").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(hole, "Hole");
