@@ -20,7 +20,7 @@ public class ItemBlockShaft extends ItemBlock{
     {
 		boolean result = super.placeBlockAt(stack, player, world, x, y, z, side, hitX, hitY, hitZ,metadata);
 
-		if(result){
+		if(result && world.getTileEntity(x, y, z) instanceof TileEntityDirection){
 			TileEntityDirection tile = (TileEntityDirection)world.getTileEntity(x, y, z);
 			tile.direction = ForgeDirection.getOrientation(side);
 		}
