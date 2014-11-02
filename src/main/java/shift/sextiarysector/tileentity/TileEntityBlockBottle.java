@@ -18,6 +18,32 @@ public class TileEntityBlockBottle extends TileEntity  implements IFluidHandler{
 
 	protected FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME*64);
 
+	private int lastFluid;
+
+	@Override
+	public void updateEntity() {
+		super.updateEntity();
+		if (this.worldObj.isRemote) {
+			this.updateClientEntity();
+		} else {
+
+			this.updateServerEntity();
+
+		}
+
+	}
+
+	public void updateClientEntity() {
+	}
+
+	private void updateServerEntity() {
+
+		if((lastFluid)!=(tank.getFluidAmount()/100)){
+			this.lastFluid = (tank.getFluidAmount()/100);
+			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		}
+
+	}
 
 	/* IFluidHandler */
     @Override

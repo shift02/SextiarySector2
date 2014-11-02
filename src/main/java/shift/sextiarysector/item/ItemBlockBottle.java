@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -17,6 +18,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import shift.sextiarysector.api.SextiarySectorAPI;
+import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.tileentity.TileEntityBlockBottle;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -49,6 +51,61 @@ public class ItemBlockBottle extends ItemBlock  implements IFluidContainerItem{
 
 
 	/* Item */
+	@Override
+	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4,int par5, int par6, int par7, float par8, float par9, float par10)
+	{
+
+		if (par2EntityPlayer.isSneaking()) {
+			return super.onItemUse(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9,par10);
+		} else {
+			return false;
+		}
+
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    {
+
+		if (par3EntityPlayer.isSneaking()) {
+			return par1ItemStack;
+		} else if(this.getFluid(par1ItemStack)!=null && this.getFluid(par1ItemStack).amount>=1000 && this.canDrink(par3EntityPlayer, false)){
+			par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+
+		}
+		return par1ItemStack;
+
+    }
+
+	@Override
+	public ItemStack onEaten(ItemStack stack, World par2World,EntityPlayer par3EntityPlayer) {
+
+
+		this.drain(stack, 1000, true);
+
+		return stack;
+		//--stack.stackSize;
+
+	}
+
+	@Override
+	public EnumAction getItemUseAction(ItemStack par1ItemStack)
+    {
+		return EnumAction.drink;
+    }
+
+	public boolean canDrink(EntityPlayer par3EntityPlayer,boolean par1)
+    {
+        return (par1 || EntityPlayerManager.getMoistureStats(par3EntityPlayer).needMoisture()) && !par3EntityPlayer.capabilities.disableDamage;
+    }
+
+	public int getMaxItemUseDuration(ItemStack p_77626_1_)
+    {
+        return 32;
+    }
+
+
+
 	@SideOnly(Side.CLIENT)
     public void getSubItems(Item p_150895_1_, CreativeTabs p_150895_2_, List p_150895_3_)
     {
@@ -138,6 +195,8 @@ public class ItemBlockBottle extends ItemBlock  implements IFluidContainerItem{
         {
             NBTTagCompound fluidTag = resource.writeToNBT(new NBTTagCompound());
 
+            container.setItemDamage(resource.fluidID);
+
             if (capacity < resource.amount)
             {
                 fluidTag.setInteger("Amount", capacity);
@@ -197,6 +256,9 @@ public class ItemBlockBottle extends ItemBlock  implements IFluidContainerItem{
                 {
                     container.stackTagCompound = null;
                 }
+
+                container.setItemDamage(0);
+
                 return stack;
             }
 

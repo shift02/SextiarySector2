@@ -10,6 +10,8 @@ tile.ss.wood_plate.name=Wood Plate
 tile.ss.hole.name=Hole
 tile.ss.farmland.name=Farm Land
 
+tile.ss.bottle.name=Fluid Bottle
+
 tile.ss.chunk_loader.name=Time Loader
 
 tile.ss.small_windmill.name=Small Windmill
