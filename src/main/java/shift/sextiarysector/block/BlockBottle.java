@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.item.ItemBlockBottle;
@@ -58,6 +59,15 @@ public class BlockBottle extends BlockContainer{
 		return false;
 
 	}
+
+
+    public ItemStack getFluidItem(FluidStack resource){
+
+    	ItemStack stack = new ItemStack(this,1,resource.fluidID);
+    	((ItemBlockBottle)stack.getItem()).fill(stack, resource, true);
+
+		return stack;
+    }
 
 	@Override
 	public boolean renderAsNormalBlock() {

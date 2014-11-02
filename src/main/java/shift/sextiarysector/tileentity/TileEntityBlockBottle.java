@@ -16,7 +16,7 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TileEntityBlockBottle extends TileEntity  implements IFluidHandler{
 
-	protected FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME*64);
+	protected FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
 
 	private int lastFluid;
 

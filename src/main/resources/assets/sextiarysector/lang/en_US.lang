@@ -130,6 +130,9 @@ item.ss.radish.name=Radish
 
 item.ss.shift_hat.name=Shift's Hat
 
+#Fluid
+fluid.ss.takumi_tea=TAKUMI Tea
+
 #GUI
 container.large_furnace=Large Furnace
 container.sub.inventory=Buffer
