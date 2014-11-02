@@ -25,9 +25,12 @@ import shift.sextiarysector.module.FertilizerManager;
 import shift.sextiarysector.module.SeasonManager;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ClientEventHandler {
 
+	@SideOnly(Side.CLIENT)
     public static Minecraft mc = FMLClientHandler.instance().getClient();
 
     @SubscribeEvent
@@ -84,6 +87,9 @@ public class ClientEventHandler {
 
     public static IIcon[] itemGF;
 
+    public static IIcon waterFlow;
+    public static IIcon waterStill;
+
     @SubscribeEvent
 	public void PreTextureStitchEvent(TextureStitchEvent.Pre event){
 
@@ -97,6 +103,10 @@ public class ClientEventHandler {
     		itemGF[0] = event.map.registerIcon("sextiarysector:damage/damage_0");
     		itemGF[1] = event.map.registerIcon("sextiarysector:damage/damage_1");
 
+
+    	}else{
+    		waterFlow = event.map.registerIcon("sextiarysector:fluid/water_flow");
+    		waterStill = event.map.registerIcon("sextiarysector:fluid/water_still");
     	}
 
     }

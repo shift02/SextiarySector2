@@ -73,6 +73,7 @@ public class SextiarySector {
     	SextiarySectorAPI.playerManager = EntityPlayerManager.instance;
 
     	SSCreativeTabs.initCreativeTabs();
+    	SSFluids.initFluids();
     	SSItems.initItems();
     	SSBlocks.initBlicks();
 

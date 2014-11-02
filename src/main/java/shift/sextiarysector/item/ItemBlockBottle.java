@@ -25,11 +25,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlockBottle extends ItemBlock  implements IFluidContainerItem{
 
-	protected int capacity = FluidContainerRegistry.BUCKET_VOLUME*64;
+	protected int capacity = FluidContainerRegistry.BUCKET_VOLUME;
 
 	public ItemBlockBottle(Block block){
 		super(block);
 		this.setHasSubtypes(true);
+		this.setMaxStackSize(1);
 		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
 	}
 
