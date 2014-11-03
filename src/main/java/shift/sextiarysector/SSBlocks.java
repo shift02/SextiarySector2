@@ -123,7 +123,7 @@ public class SSBlocks {
 		GameRegistry.registerBlock(fluidFurnace, "FluidFurnace");
 		GameRegistry.registerTileEntity(TileEntityFluidFurnace.class, "FluidFurnace");
 
-		bottle = new BlockBottle().setBlockName("ss.bottle");
+		bottle = new BlockBottle().setBlockName("ss.bottle").setBlockTextureName("glass");
 		GameRegistry.registerBlock(bottle,ItemBlockBottle.class, "Bottle");
 		GameRegistry.registerTileEntity(TileEntityBlockBottle.class, "Bottle");
 

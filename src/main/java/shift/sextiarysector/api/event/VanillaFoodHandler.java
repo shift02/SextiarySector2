@@ -5,6 +5,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.api.IDrink;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -113,6 +115,29 @@ public class VanillaFoodHandler {
 
 		if(food.getItem() instanceof IDrink){
 			SextiarySectorAPI.playerManager.addMoistureStats(player, ((IDrink)food.getItem()).getMoisture(food), ((IDrink)food.getItem()).getMoistureSaturation(food));
+		}
+
+	}
+
+	/**バニラの液体を飲んだ時の動作*/
+	@SubscribeEvent
+    public void onPlayerEatenEvent(BlockBottleEvent event) {
+
+		FluidStack fluid = event.fluid;
+		EntityPlayer player = (EntityPlayer) event.entity;
+
+		if(fluid.fluidID == FluidRegistry.WATER.getID()){
+
+			SextiarySectorAPI.playerManager.addMoistureStats(player, 3, 0);
+			player.addExhaustion(4.5f);
+			player.addPotionEffect(new PotionEffect(Potion.hunger.getId(),30,0));
+
+		}
+
+		if(fluid.fluidID == FluidRegistry.LAVA.getID()){
+
+			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 12.0f);
+
 		}
 
 	}

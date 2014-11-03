@@ -11,13 +11,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import shift.sextiarysector.api.SextiarySectorAPI;
+import shift.sextiarysector.api.event.BlockBottleEvent;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.tileentity.TileEntityBlockBottle;
 import cpw.mods.fml.relauncher.Side;
@@ -70,19 +74,62 @@ public class ItemBlockBottle extends ItemBlock  implements IFluidContainerItem{
 
 		if (par3EntityPlayer.isSneaking()) {
 			return par1ItemStack;
-		} else if(this.getFluid(par1ItemStack)!=null && this.getFluid(par1ItemStack).amount>=1000 && this.canDrink(par3EntityPlayer, false)){
-			par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+		} else {
+
+			if(this.getFluid(par1ItemStack)==null){
+				return this.onEmptyItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
+			}else if(this.getFluid(par1ItemStack)!=null && this.getFluid(par1ItemStack).amount>=100 && this.canDrink(par3EntityPlayer, false)){
+				par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+			}
 
 		}
+
+
 		return par1ItemStack;
 
+    }
+
+	private ItemStack onEmptyItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    {
+
+		MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
+
+
+		if (movingobjectposition != null && movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+        {
+            int x = movingobjectposition.blockX;
+            int y = movingobjectposition.blockY;
+            int z = movingobjectposition.blockZ;
+
+            if (!par3EntityPlayer.canPlayerEdit(x, y, z, movingobjectposition.sideHit, par1ItemStack))
+            {
+                return par1ItemStack;
+            }
+
+            Block block = par2World.getBlock(x, y, z);
+
+            Fluid f = FluidRegistry.lookupFluidForBlock(block);
+
+            if(f!=null){
+            	this.fill(par1ItemStack, new FluidStack(f, 1000), true);
+            	par2World.setBlockToAir(x, y, z);
+            }
+
+        }
+
+
+		return par1ItemStack;
     }
 
 	@Override
 	public ItemStack onEaten(ItemStack stack, World par2World,EntityPlayer par3EntityPlayer) {
 
+		if(par2World.isRemote){
+			return stack;
+		}
 
-		this.drain(stack, 1000, true);
+		MinecraftForge.EVENT_BUS.post(new BlockBottleEvent(par3EntityPlayer, this.getFluid(stack)));
+		this.drain(stack, 100, true);
 
 		return stack;
 		//--stack.stackSize;
