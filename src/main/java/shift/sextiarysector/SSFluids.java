@@ -13,17 +13,22 @@ public class SSFluids {
 
 	public static void initFluids(){
 
-		takumiTea =  new SSFluid("takumi_tea",0x006400);
+		takumiTea =  new SSFluid("takumi_tea", 0x006400, 5, 2.0f);
 
 	}
 
-	public static class SSFluid extends Fluid{
+	public static class SSFluid extends Fluid {
 
 		private int color;
 
-		public SSFluid(String fluidName, int color) {
+		public int moisture;
+		public float moistureSaturation;
+
+		public SSFluid(String fluidName, int color, int moisture, float moistureSaturation) {
 			super(fluidName);
 			this.color = color;
+			this.moisture = moisture;
+			this.moistureSaturation = moistureSaturation;
 			FluidRegistry.registerFluid(this);
 		}
 
