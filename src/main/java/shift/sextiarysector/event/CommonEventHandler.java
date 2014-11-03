@@ -11,7 +11,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.SSFluids.SSFluid;
+import shift.sextiarysector.api.SextiarySectorAPI;
+import shift.sextiarysector.api.event.BlockBottleEvent;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
 import shift.sextiarysector.module.ModuleAchievement;
@@ -142,5 +146,20 @@ public class CommonEventHandler {
 
         }*/
     }
+
+	/** */
+	@SubscribeEvent
+    public void onPlayerEatenEvent(BlockBottleEvent event) {
+
+		FluidStack fluid = event.fluid;
+		EntityPlayer player = (EntityPlayer) event.entity;
+
+		if(fluid.getFluid() instanceof SSFluid){
+
+			SextiarySectorAPI.playerManager.addMoistureStats(player, ((SSFluid)fluid.getFluid()).moisture, ((SSFluid)fluid.getFluid()).moistureSaturation);
+
+		}
+
+	}
 
 }

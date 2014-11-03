@@ -113,7 +113,7 @@ public class TileEntityFluidFurnace  extends TileEntityDirection  implements ISi
             ItemStack itemstack = this.getResult(this.items.getStackInSlot(0));
             FluidStack fluidstack = this.getFluidResult(this.items.getStackInSlot(0));
             if (itemstack == null && fluidstack == null) return false;
-            return this.checkItem(itemstack) && this.checkFluid(fluidstack);
+            return this.checkItem(itemstack) && this.checkFluid(fluidstack) && this.checkContainerItem(this.items.getStackInSlot(0));
         }
     }
 
@@ -123,6 +123,17 @@ public class TileEntityFluidFurnace  extends TileEntityDirection  implements ISi
 		if (!this.items.getStackInSlot(2).isItemEqual(itemstack)) return false;
 		int result = this.items.getStackInSlot(2).stackSize + itemstack.stackSize;
         return (result <= getInventoryStackLimit() && result <= itemstack.getMaxStackSize());
+	}
+
+	private boolean checkContainerItem(ItemStack itemstack){
+
+		if(!itemstack.getItem().hasContainerItem(itemstack)) return true;
+		ItemStack itemstackC = itemstack.getItem().getContainerItem(itemstack.copy());
+		if (this.items.getStackInSlot(3) == null || itemstackC == null) return true;
+		if (!this.items.getStackInSlot(3).isItemEqual(itemstackC)) return false;
+		int result = this.items.getStackInSlot(3).stackSize + itemstackC.stackSize;
+        return (result <= getInventoryStackLimit() && result <= itemstackC.getMaxStackSize());
+
 	}
 
 	private boolean checkFluid(FluidStack fluidstack){
@@ -150,6 +161,22 @@ public class TileEntityFluidFurnace  extends TileEntityDirection  implements ISi
             {
             	this.items.getStackInSlot(2).stackSize += itemstack.stackSize;
             }
+
+            //CItem
+            if(this.items.getStackInSlot(0).getItem().hasContainerItem(this.items.getStackInSlot(0))){
+
+            	ItemStack itemC = this.items.getStackInSlot(0).getItem().getContainerItem(this.items.getStackInSlot(0).copy());
+
+            	if (this.items.getStackInSlot(3) == null)
+                {
+                    this.setInventorySlotContents(3, itemC);
+                }
+                else if (this.items.getStackInSlot(3).isItemEqual(itemC))
+                {
+                	this.items.getStackInSlot(3).stackSize += itemC.stackSize;
+                }
+            }
+
 
             //fluid
             this.getTank().fill(fluidstack, true);
