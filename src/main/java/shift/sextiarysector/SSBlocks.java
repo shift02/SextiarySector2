@@ -7,6 +7,7 @@ import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.block.BlockBottle;
 import shift.sextiarysector.block.BlockChunkLoader;
+import shift.sextiarysector.block.BlockFluidCrafter;
 import shift.sextiarysector.block.BlockFluidFurnace;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
@@ -29,11 +30,13 @@ import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.block.BlockWindmill;
 import shift.sextiarysector.item.ItemBlockBottle;
 import shift.sextiarysector.item.ItemBlockCrop;
+import shift.sextiarysector.item.ItemBlockFluidCrafter;
 import shift.sextiarysector.item.ItemBlockGearShaft;
 import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.item.ItemBlockShaft;
 import shift.sextiarysector.tileentity.TileEntityBlockBottle;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
+import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
@@ -56,6 +59,7 @@ public class SSBlocks {
 	public static Block fluidFurnace;
 
 	public static Block bottle;
+	public static Block fluidCrafter;
 
 	public static Block woodShaft;
 	public static Block stoneShaft;
@@ -126,6 +130,10 @@ public class SSBlocks {
 		bottle = new BlockBottle().setBlockName("ss.bottle").setBlockTextureName("glass");
 		GameRegistry.registerBlock(bottle,ItemBlockBottle.class, "Bottle");
 		GameRegistry.registerTileEntity(TileEntityBlockBottle.class, "Bottle");
+
+		fluidCrafter = new BlockFluidCrafter().setBlockName("ss.bottle").setBlockTextureName("glass");
+		GameRegistry.registerBlock(fluidCrafter,ItemBlockFluidCrafter.class, "FluidCrafter");
+		GameRegistry.registerTileEntity(TileEntityFluidCrafter.class, "FluidCrafter");
 
 		hole = new BlockHole().setBlockName("ss.hole").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(hole, "Hole");

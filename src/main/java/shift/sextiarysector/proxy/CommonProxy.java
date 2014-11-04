@@ -9,6 +9,8 @@ public class CommonProxy {
 
 	public int bottleType;
 
+	public int fluidCrafterType;
+
 	public int ShaftRenderType;
 
 	public int GearShaftRenderType;
