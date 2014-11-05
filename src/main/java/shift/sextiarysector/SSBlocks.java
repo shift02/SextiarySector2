@@ -131,7 +131,7 @@ public class SSBlocks {
 		GameRegistry.registerBlock(bottle,ItemBlockBottle.class, "Bottle");
 		GameRegistry.registerTileEntity(TileEntityBlockBottle.class, "Bottle");
 
-		fluidCrafter = new BlockFluidCrafter().setBlockName("ss.bottle").setBlockTextureName("glass");
+		fluidCrafter = new BlockFluidCrafter().setBlockName("ss.fluid_crafter").setBlockTextureName("glass");
 		GameRegistry.registerBlock(fluidCrafter,ItemBlockFluidCrafter.class, "FluidCrafter");
 		GameRegistry.registerTileEntity(TileEntityFluidCrafter.class, "FluidCrafter");
 

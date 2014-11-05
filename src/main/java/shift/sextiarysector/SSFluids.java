@@ -1,7 +1,9 @@
 package shift.sextiarysector;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import shift.sextiarysector.event.ClientEventHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -14,6 +16,15 @@ public class SSFluids {
 	public static void initFluids(){
 
 		takumiTea =  new SSFluid("takumi_tea", 0x006400, 5, 2.0f);
+
+	}
+
+	public static void postFluids(){
+
+		for(int i=1;i<FluidRegistry.getRegisteredFluids().size();i++){
+			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluid(i), new ItemStack(SSBlocks.fluidCrafter,1,i), new ItemStack(SSBlocks.fluidCrafter,1,0));
+		}
+
 
 	}
 

@@ -116,6 +116,7 @@ public class SextiarySector {
     {
 
     	RecipesFurnaceCraft.addVanillaRecipes();
+    	SSFluids.postFluids();
     	SSShops.initShops();
     	SSShops.initPurchase();
 
