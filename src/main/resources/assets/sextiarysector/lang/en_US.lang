@@ -11,6 +11,7 @@ tile.ss.hole.name=Hole
 tile.ss.farmland.name=Farm Land
 
 tile.ss.bottle.name=Fluid Bottle
+tile.ss.fluid_crafter.name=Fluid Crafter
 
 tile.ss.chunk_loader.name=Time Loader
 
