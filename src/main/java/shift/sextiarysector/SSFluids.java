@@ -23,7 +23,7 @@ public class SSFluids {
 
 	public static void postFluids(){
 
-		for(int i=1;i<FluidRegistry.getRegisteredFluids().size();i++){
+		for(int i=1;i<=FluidRegistry.getRegisteredFluids().size();i++){
 			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluid(i), new ItemStack(SSBlocks.fluidCrafter,1,i), new ItemStack(SSBlocks.fluidCrafter,1,0));
 		}
 
