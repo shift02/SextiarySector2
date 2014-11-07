@@ -32,7 +32,7 @@ public abstract class SimpleFluidRecipeHandler  extends TemplateSSRecipeHandler 
         {
             ingred.stackSize = 1;
             this.ingred = new PositionedStack(ingred, 51, 6);
-            this.result = new PositionedStack(result, 111 - 9, 24 + 18);
+            if(result!=null)this.result = new PositionedStack(result, 111 - 9, 24 + 18);
             if(ingred.getItem().getContainerItem(ingred.copy())!=null){
             	this.result2 = new PositionedStack(ingred.getItem().getContainerItem(ingred.copy()), 111 - 9 + 18, 24 + 18);
             }
@@ -47,7 +47,7 @@ public abstract class SimpleFluidRecipeHandler  extends TemplateSSRecipeHandler 
         	}
             //ingred.stackSize = 1;
             this.ingred = new PositionedStack(ingred, 51, 6);
-            this.result = new PositionedStack(result, 111 - 8, 24 + 19);
+            if(result!=null)this.result = new PositionedStack(result, 111 - 8, 24 + 19);
             this.fluidStack = fluidStack;
         }
 

@@ -25,6 +25,9 @@ public class SSShops {
 
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.seasonStone,1),3000));
 
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,0),500));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,1),500));
+
 			if(i==0){
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.turnip,1),200));
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.cucumber,1),380));
@@ -40,6 +43,9 @@ public class SSShops {
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.eggplant,1),310));
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.sweetPotato,1),120));
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.greenPepper,1),340));
+
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.fluidCrafter,4,0),580));
+
 			}
 
 			if(i==3){

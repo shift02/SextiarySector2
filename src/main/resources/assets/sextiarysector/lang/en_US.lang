@@ -2,6 +2,7 @@
 
 #Block
 tile.ss.large_furnace.name=Large Furnace
+tile.ss.fluid_furnace.name=Fluid Furnace
 
 tile.ss.wood_grate.name=Wood Grate
 
@@ -133,10 +134,13 @@ item.ss.shift_hat.name=Shift's Hat
 
 #Fluid
 fluid.ss.takumi_tea=TAKUMI Tea
+fluid.ss.drinking_water=Drinking Water
 
 #GUI
 container.large_furnace=Large Furnace
 container.sub.inventory=Buffer
+
+gui.ss.fluid_furnace=Fluid Furnace
 
 gui.ss.millstone=Millstone
 gui.ss.loom=Loom
@@ -183,6 +187,8 @@ achievement.shipping.desc=Trying to shipment
 nei.recipe=Recipes
 nei.ss.furnace.shaped=Furnace Shaped
 nei.ss.furnace.shapeless=Furnace Shapeless
+
+nei.ss.fluid_furnace.=Fluid Furnace
 
 nei.ss.millstone=Millstone Recipe
 nei.ss.loom=Loom Recipe

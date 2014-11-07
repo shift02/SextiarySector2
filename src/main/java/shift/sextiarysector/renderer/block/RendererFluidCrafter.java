@@ -42,7 +42,7 @@ public class RendererFluidCrafter  extends TileEntitySpecialRenderer  implements
 
 		GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
+        GL11.glColor3f(1,1,1);
 
 		this.bind(MC_BLOCK_SHEET);
 
@@ -139,6 +139,7 @@ public class RendererFluidCrafter  extends TileEntitySpecialRenderer  implements
 
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_LIGHT0);
+        GL11.glColor3f(1,1,1);
 
 		GL11.glTranslatef((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F);
 

@@ -12,10 +12,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class SSFluids {
 
 	public static Fluid takumiTea;
+	public static Fluid drinkingWater;
 
 	public static void initFluids(){
 
 		takumiTea =  new SSFluid("takumi_tea", 0x006400, 5, 2.0f);
+		drinkingWater =  new SSFluid("drinking_water", 0xF0FFFF, 4, 1.0f);
 
 	}
 
@@ -24,7 +26,6 @@ public class SSFluids {
 		for(int i=1;i<FluidRegistry.getRegisteredFluids().size();i++){
 			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluid(i), new ItemStack(SSBlocks.fluidCrafter,1,i), new ItemStack(SSBlocks.fluidCrafter,1,0));
 		}
-
 
 	}
 
