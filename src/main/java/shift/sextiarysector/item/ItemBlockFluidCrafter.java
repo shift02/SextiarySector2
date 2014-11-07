@@ -49,7 +49,7 @@ public class ItemBlockFluidCrafter extends ItemBlock{
     {
 		p_150895_3_.add(new ItemStack(p_150895_1_, 1, 0));
 
-		for(int i=1;i<FluidRegistry.getRegisteredFluids().size();i++){
+		for(int i=1;i<=FluidRegistry.getRegisteredFluids().size();i++){
 			ItemStack item = new ItemStack(p_150895_1_, 1, i);
 			p_150895_3_.add(item);
 		}
