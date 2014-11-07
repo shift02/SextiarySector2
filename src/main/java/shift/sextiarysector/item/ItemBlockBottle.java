@@ -159,7 +159,7 @@ public class ItemBlockBottle extends ItemBlock  implements IFluidContainerItem{
     {
 		p_150895_3_.add(new ItemStack(p_150895_1_, 1, 0));
 
-		for(int i=1;i<FluidRegistry.getRegisteredFluids().size();i++){
+		for(int i=1;i<=FluidRegistry.getRegisteredFluids().size();i++){
 			ItemStack item = new ItemStack(p_150895_1_, 1, i);
 			this.fill(item, new FluidStack(FluidRegistry.getFluid(i), capacity), true);
 			p_150895_3_.add(item);

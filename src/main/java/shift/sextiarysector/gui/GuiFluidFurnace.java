@@ -79,7 +79,7 @@ public class GuiFluidFurnace extends GuiContainer
 
 		if (this.tileFurnace.isFluid())
         {
-			f = this.tileFurnace.getTank().getFluid().getFluid().getName();
+			f = this.tileFurnace.getTank().getFluid().getFluid().getLocalizedName(this.tileFurnace.getTank().getFluid());
         }
 
 		NumberFormat nfNum = NumberFormat.getNumberInstance();
