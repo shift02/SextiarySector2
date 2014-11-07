@@ -14,6 +14,10 @@ public class WorldEventHandler {
 	private WorldGenMinable bluestoneGen;
 	private WorldGenMinable yellowstoneGen;
 
+	private WorldGenMinable coaLargeGen;
+	private WorldGenMinable ironLarge;
+	private WorldGenMinable goldLarge;
+
 	private int chunk_X;
 	private int chunk_Z;
 	private World currentWorld;
@@ -31,9 +35,17 @@ public class WorldEventHandler {
 		this.bluestoneGen = new WorldGenMinable(SSBlocks.blueStoneOre, 7);
 		this.yellowstoneGen = new WorldGenMinable(SSBlocks.yellowStoneOre, 7);
 
+		coaLargeGen = new WorldGenMinable(SSBlocks.coalLargeOre, 16);
+		ironLarge = new WorldGenMinable(SSBlocks.ironLargeOre, 8);
+		goldLarge = new WorldGenMinable(SSBlocks.goldLargeOre, 8);
+
 
 		this.genStandardOre1(8, this.bluestoneGen, 0, 16);
 		this.genStandardOre1(8, this.yellowstoneGen, 0, 16);
+
+		this.genStandardOre1(10, this.coaLargeGen, 0, 128);
+		this.genStandardOre1(10, this.ironLarge, 0, 64);
+		this.genStandardOre1(1, this.goldLarge, 0, 32);
 		//System.out.println("onOreGenEvent");
 
 	}

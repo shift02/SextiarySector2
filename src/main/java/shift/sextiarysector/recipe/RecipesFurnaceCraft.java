@@ -51,6 +51,13 @@ public class RecipesFurnaceCraft {
 			Character.valueOf('y'), "stickWood",
 			}));
 
+        //液体カマド
+        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.fluidFurnace, 1),
+				new Object[] { "xxx", "xyx","xxx",
+			Character.valueOf('x'), "cobblestone",
+			Character.valueOf('y'), Blocks.glass_pane,
+			}));
+
         //time
         p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.chunkLoader, 1),
 				new Object[] { "xyx", "yzy","xyx",

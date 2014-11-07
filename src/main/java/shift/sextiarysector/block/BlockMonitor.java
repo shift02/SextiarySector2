@@ -69,6 +69,7 @@ public class BlockMonitor extends BlockContainer{
 			world.spawnEntityInWorld(item);
 
 			world.setBlockToAir(x, y, z);
+			world.removeTileEntity(x, y, z);
 			return true;
 		}
 		return false;
