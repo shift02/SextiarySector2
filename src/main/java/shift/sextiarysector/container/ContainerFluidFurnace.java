@@ -19,6 +19,8 @@ public class ContainerFluidFurnace extends Container
     private int lastFuel;
     private int lastFuelMax;
     private int workProgress;
+    //private int lastFluid;
+    //private int lastFluidID;
 
     public ContainerFluidFurnace(InventoryPlayer p_i1812_1_, TileEntityFluidFurnace p_i1812_2_)
     {
@@ -51,6 +53,13 @@ public class ContainerFluidFurnace extends Container
         p_75132_1_.sendProgressBarUpdate(this, 0, this.tileFurnace.fuel);
         p_75132_1_.sendProgressBarUpdate(this, 1, this.tileFurnace.fuelMax);
         p_75132_1_.sendProgressBarUpdate(this, 2, this.tileFurnace.machineWorkProgressTime);
+        p_75132_1_.sendProgressBarUpdate(this, 3, this.tileFurnace.getTank().getFluidAmount());
+        if(this.tileFurnace.getTank().getFluid()!=null){
+        	p_75132_1_.sendProgressBarUpdate(this, 4, this.tileFurnace.getTank().getFluid().fluidID);
+        }else{
+        	p_75132_1_.sendProgressBarUpdate(this, 4, 0);
+        }
+
     }
 
     /**
@@ -78,11 +87,22 @@ public class ContainerFluidFurnace extends Container
             {
                 icrafting.sendProgressBarUpdate(this, 2, this.tileFurnace.machineWorkProgressTime);
             }
+
+            /*if (this.lastFluid != this.tileFurnace.getTank().getFluidAmount())
+            {
+                icrafting.sendProgressBarUpdate(this, 3, this.tileFurnace.getTank().getFluidAmount());
+
+                ////if(this.tileFurnace.getTank().getFluidAmount()>0){
+                //	icrafting.sendProgressBarUpdate(this, 4, this.tileFurnace.getTank().getFluid().fluidID);
+               // }
+
+            }*/
         }
 
         this.lastFuel = this.tileFurnace.fuel;
         this.lastFuelMax = this.tileFurnace.fuelMax;
         this.workProgress = this.tileFurnace.machineWorkProgressTime;
+        //this.lastFluid = this.tileFurnace.getTank().getFluidAmount();
     }
 
     @SideOnly(Side.CLIENT)
@@ -102,6 +122,12 @@ public class ContainerFluidFurnace extends Container
         {
             this.tileFurnace.machineWorkProgressTime = p_75137_2_;
         }
+
+        /*if (p_75137_1_ == 3)
+        {
+            this.tileFurnace.amount = p_75137_2_;
+        }*/
+
     }
 
     public boolean canInteractWith(EntityPlayer p_75145_1_)

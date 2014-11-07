@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -40,6 +41,8 @@ public class TileEntityFluidFurnace  extends TileEntityDirection  implements ISi
 	//燃料と投入されている燃料のマックス状態の量
 	public int fuel;
 	public int fuelMax;
+
+	public boolean on;
 
 	@Override
 	public void updateEntity()
@@ -86,7 +89,72 @@ public class TileEntityFluidFurnace  extends TileEntityDirection  implements ISi
 
 		}
 
+		this.chargeFluid();
+		if(this.on && this.tank.getFluidAmount() > 0)this.chargeUPFluid();
+
 	}
+
+	private void chargeUPFluid(){
+
+		if(this.worldObj.getTileEntity(xCoord, yCoord + 1, zCoord) instanceof IFluidHandler){
+			IFluidHandler f = (IFluidHandler) this.worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
+
+			if(f.canFill(ForgeDirection.DOWN, this.tank.getFluid().getFluid())){
+				int i = f.fill(ForgeDirection.DOWN, this.tank.getFluid(), true);
+				this.tank.drain(i, true);
+				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			}
+
+		}
+
+	}
+
+	private void chargeFluid(){
+
+		if(canChargeFluid()){
+
+			ItemStack empty = items.getStackInSlot(4);
+
+			for(FluidContainerData f : FluidContainerRegistry.getRegisteredFluidContainerData()){
+
+				if(f.emptyContainer.isItemEqual(empty) && f.fluid.isFluidEqual(this.tank.getFluid()) && f.fluid.amount <= this.tank.getFluidAmount()){
+
+					ItemStack item = FluidContainerRegistry.fillFluidContainer(this.tank.getFluid(), empty);
+					if (this.items.getStackInSlot(5) == null)
+		            {
+		                this.setInventorySlotContents(5, item.copy());
+		            }
+		            else if (this.items.getStackInSlot(5).isItemEqual(item))
+		            {
+		            	this.items.getStackInSlot(5).stackSize += item.stackSize;
+		            }
+
+					this.tank.drain(f.fluid.amount, true);
+
+					this.items.reduceStackSize(4, 1);
+
+					this.markDirty();
+
+		            this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+					return ;
+				}
+
+			}
+
+		}
+
+	}
+
+	public boolean canChargeFluid()
+    {
+		if(items.getStackInSlot(4) == null)return false;
+		ItemStack item = FluidContainerRegistry.fillFluidContainer(this.tank.getFluid(), items.getStackInSlot(4));
+		if(item == null)return false;
+		if(this.items.getStackInSlot(5) == null)return true;
+		int result = this.items.getStackInSlot(5).stackSize + item.stackSize;
+        return (result <= getInventoryStackLimit() && result <= item.getMaxStackSize());
+    }
 
 	private void chargeFuel(){
 
@@ -247,7 +315,7 @@ public class TileEntityFluidFurnace  extends TileEntityDirection  implements ISi
 
 	@Override
 	public String getInventoryName() {
-		return "gui.fluid_furnace";//+SimpleMachine.values()[this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord)].icon+".name";
+		return "gui.ss.fluid_furnace";//+SimpleMachine.values()[this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord)].icon+".name";
 	}
 
 	@Override
@@ -355,9 +423,11 @@ public class TileEntityFluidFurnace  extends TileEntityDirection  implements ISi
 		super.readFromNBT(nbt);
 		items.readFromNBT(nbt);
 		getTank().readFromNBT(nbt);
+		if(nbt.hasKey("Empty") && tank.getFluidAmount() > 0)this.tank.setFluid(null);
 		this.machineWorkProgressTime = nbt.getShort("WorkTime");
 		this.fuel = nbt.getInteger("fuel");
 		this.fuelMax = nbt.getInteger("fuelMax");
+		this.on = nbt.getBoolean("on");
 	}
 
 	@Override
@@ -369,6 +439,7 @@ public class TileEntityFluidFurnace  extends TileEntityDirection  implements ISi
 		nbt.setShort("WorkTime", (short)this.machineWorkProgressTime);
 		nbt.setInteger("fuel", this.fuel);
 		nbt.setInteger("fuelMax", this.fuelMax);
+		nbt.setBoolean("on", this.on);
 	}
 
 	@Override

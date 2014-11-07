@@ -101,6 +101,8 @@ public class GuiFluidFurnace extends GuiContainer
 
 	public void drawFluidTank(int x, int y, FluidTank fluidTank, int width, int height) {
 
+		GL11.glColor3f(1,1,1);
+
 		FluidStack fluidStack = fluidTank.getFluid();
 
 		ResourceLocation r;

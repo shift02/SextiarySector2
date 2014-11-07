@@ -20,6 +20,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SextiarySector;
+import shift.sextiarysector.api.machine.item.IHammer;
 import shift.sextiarysector.tileentity.TileEntityDirection;
 import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
 import cpw.mods.fml.relauncher.Side;
@@ -35,6 +36,8 @@ public class BlockFluidFurnace extends BlockContainer{
     private IIcon furnaceIconTop;
     @SideOnly(Side.CLIENT)
     private IIcon[] furnaceIconFront = new IIcon[2];
+    @SideOnly(Side.CLIENT)
+	private IIcon furnaceIconTopOn;
 
 	public BlockFluidFurnace() {
 		super(Material.rock);
@@ -59,6 +62,19 @@ public class BlockFluidFurnace extends BlockContainer{
         else
         {
         	TileEntityFluidFurnace tileentityfurnace = (TileEntityFluidFurnace)par1World.getTileEntity(par2, par3, par4);
+
+        	if(par5EntityPlayer.getCurrentEquippedItem() != null){
+        		if(par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof IHammer && ((IHammer)par5EntityPlayer.getCurrentEquippedItem().getItem()).canUse(par5EntityPlayer.getCurrentEquippedItem())){
+
+        			tileentityfurnace.on = !tileentityfurnace.on;
+        			((IHammer)par5EntityPlayer.getCurrentEquippedItem().getItem()).use(par5EntityPlayer.getCurrentEquippedItem());
+        			par1World.markBlockForUpdate(par2, par3, par4);
+        			return true;
+
+        		}
+        	}
+
+
 
             if (tileentityfurnace != null)
             {
@@ -131,7 +147,7 @@ public class BlockFluidFurnace extends BlockContainer{
 
     	int meta = tileEntity.getDirection().ordinal();//p_149673_1_.getBlockMetadata(x, y, z);
 
-		return side == 1 ? this.furnaceIconTop : (side == 0 ? this.furnaceIconTop : (side != meta ? this.blockIcon : (tileEntity.isFuel() ? this.furnaceIconFront[0] : this.furnaceIconFront[1])));
+		return side == 1 ? (tileEntity.on ? this.furnaceIconTopOn : this.furnaceIconTop) : (side == 0 ? this.furnaceIconTop : (side != meta ? this.blockIcon : (tileEntity.isFuel() ? this.furnaceIconFront[0] : this.furnaceIconFront[1])));
 
     }
 
@@ -142,7 +158,8 @@ public class BlockFluidFurnace extends BlockContainer{
         this.blockIcon = par1IconRegister.registerIcon("furnace_side");
         this.furnaceIconFront[0] = par1IconRegister.registerIcon("furnace_front_on");
         this.furnaceIconFront[1] = par1IconRegister.registerIcon("furnace_front_off");
-        this.furnaceIconTop = par1IconRegister.registerIcon("sextiarysector:furnace_top");
+        this.furnaceIconTop = par1IconRegister.registerIcon("sextiarysector:fluid_furnace_top");
+        this.furnaceIconTopOn = par1IconRegister.registerIcon("sextiarysector:fluid_furnace_top_on");
     }
 
 	@Override
