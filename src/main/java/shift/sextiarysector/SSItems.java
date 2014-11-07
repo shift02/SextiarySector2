@@ -55,6 +55,8 @@ public class SSItems {
 	//飲み物
 	public static Item drinkingWaterSmallBottle;
 
+	//public static Item bottle;
+
 	//道具
 	public static Item woodScoop;
 	public static Item stoneScoop;
@@ -151,8 +153,11 @@ public class SSItems {
 		GameRegistry.registerItem(canvas, "Canvas");
 
 		//飲み物
-		drinkingWaterSmallBottle  = new ItemFoodDrink(0, 3.5f, 2, 6.5f, 0, 0, false).setUnlocalizedName("ss.drinking_water_small_bottle").setTextureName("sextiarysector:drink/drinking_water_small_bottle").setContainerItem(Items.glass_bottle);
+		drinkingWaterSmallBottle  = new ItemFoodDrink(0, 3.5f, 2, 6.5f, 0, 0, false).setDrink().setUnlocalizedName("ss.drinking_water_small_bottle").setTextureName("sextiarysector:drink/drinking_water_small_bottle").setContainerItem(Items.glass_bottle);
 		GameRegistry.registerItem(drinkingWaterSmallBottle, "DrinkingWaterSmallBottle");
+
+		//bottle  = new ItemBlockBottle().setUnlocalizedName("ss.bottle").setTextureName("sextiarysector:drink/empty_bottle");
+		//GameRegistry.registerItem(bottle, "Bottle");
 
 
 		//道具

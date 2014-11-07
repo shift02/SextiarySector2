@@ -2,9 +2,11 @@ package shift.sextiarysector;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 import shift.mceconomy2.api.MCEconomyAPI;
 import shift.mceconomy2.api.shop.ProductItem;
 import shift.mceconomy2.api.shop.ProductList;
+import shift.sextiarysector.block.BlockBottle;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
 
 public class SSShops {
@@ -19,7 +21,12 @@ public class SSShops {
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.blueStoneDust,2),320));
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.yellowStoneDust,2),320));
 
+			creepers[i].addItemProduct(new ProductItem(((BlockBottle) SSBlocks.bottle).getFluidItem(new FluidStack(SSFluids.takumiTea,1000)),216));
+
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.seasonStone,1),3000));
+
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,0),500));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,1),500));
 
 			if(i==0){
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.turnip,1),200));
@@ -36,6 +43,9 @@ public class SSShops {
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.eggplant,1),310));
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.sweetPotato,1),120));
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.greenPepper,1),340));
+
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.fluidCrafter,4,0),580));
+
 			}
 
 			if(i==3){

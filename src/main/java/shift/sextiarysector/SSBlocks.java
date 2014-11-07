@@ -5,9 +5,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
+import shift.sextiarysector.block.BlockBottle;
 import shift.sextiarysector.block.BlockChunkLoader;
+import shift.sextiarysector.block.BlockFluidCrafter;
+import shift.sextiarysector.block.BlockFluidFurnace;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
+import shift.sextiarysector.block.BlockGearShaft;
 import shift.sextiarysector.block.BlockHole;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockMonitor;
@@ -24,12 +28,19 @@ import shift.sextiarysector.block.BlockShippingBox;
 import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.block.BlockWindmill;
+import shift.sextiarysector.item.ItemBlockBottle;
 import shift.sextiarysector.item.ItemBlockCrop;
+import shift.sextiarysector.item.ItemBlockFluidCrafter;
+import shift.sextiarysector.item.ItemBlockGearShaft;
 import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.item.ItemBlockShaft;
+import shift.sextiarysector.tileentity.TileEntityBlockBottle;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
+import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
+import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
+import shift.sextiarysector.tileentity.TileEntityGearShaft;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
@@ -45,6 +56,10 @@ public class SSBlocks {
 	public static String ID = "sextiarysector";
 
 	public static Block LargeFurnace;
+	public static Block fluidFurnace;
+
+	public static Block bottle;
+	public static Block fluidCrafter;
 
 	public static Block woodShaft;
 	public static Block stoneShaft;
@@ -55,6 +70,8 @@ public class SSBlocks {
 
 	public static Block woodGFTank;
 	public static Block stoneGFTank;
+
+	public static Block woodStoneGearShaft;
 
 	public static Block smallWindmill;
 	public static Block windmill;
@@ -105,6 +122,18 @@ public class SSBlocks {
 		LargeFurnace = new BlockLargeFurnace().setBlockName("ss.large_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(LargeFurnace, "LargeFurnace");
 		GameRegistry.registerTileEntity(TileEntityLargeFurnace.class, "LargeFurnace");
+
+		fluidFurnace = new BlockFluidFurnace().setBlockName("ss.fluid_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(fluidFurnace, "FluidFurnace");
+		GameRegistry.registerTileEntity(TileEntityFluidFurnace.class, "FluidFurnace");
+
+		bottle = new BlockBottle().setBlockName("ss.bottle").setBlockTextureName("glass");
+		GameRegistry.registerBlock(bottle,ItemBlockBottle.class, "Bottle");
+		GameRegistry.registerTileEntity(TileEntityBlockBottle.class, "Bottle");
+
+		fluidCrafter = new BlockFluidCrafter().setBlockName("ss.fluid_crafter").setBlockTextureName("glass");
+		GameRegistry.registerBlock(fluidCrafter,ItemBlockFluidCrafter.class, "FluidCrafter");
+		GameRegistry.registerTileEntity(TileEntityFluidCrafter.class, "FluidCrafter");
 
 		hole = new BlockHole().setBlockName("ss.hole").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(hole, "Hole");
@@ -157,6 +186,11 @@ public class SSBlocks {
 
 		stoneGFTank = new BlockGFTank(Material.rock,41,2).setBlockName("ss.stone_gf_tank").setBlockTextureName("sextiarysector:machine/stone_gf_tank").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(stoneGFTank, "StoneGFTank");
+
+
+		GameRegistry.registerTileEntity(TileEntityGearShaft.class, "GearShaft");
+		woodStoneGearShaft = new BlockGearShaft(1).setBlockName("ss.wood_stone_gear_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
+		GameRegistry.registerBlock(woodStoneGearShaft,ItemBlockGearShaft.class, "WoodStoneGearShaft");
 
 		smallWindmill = new BlockSmallWindmill().setBlockName("ss.small_windmill").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerTileEntity(TileEntitySmallWindmill.class, "SmallWindmill");

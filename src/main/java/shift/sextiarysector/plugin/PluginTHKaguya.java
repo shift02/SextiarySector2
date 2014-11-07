@@ -12,7 +12,6 @@ public class PluginTHKaguya {
 
 	public static void initPlugin() {
 
-		System.out.println("BBBBBBBBBBBBBBBBB");
 		thSpellCard = GameRegistry.findItem("THKaguyaMod", "Spell Card");
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(thSpellCard,1,OreDictionary.WILDCARD_VALUE), 500);

@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import shift.sextiarysector.container.ContainerFluidFurnace;
 import shift.sextiarysector.container.ContainerGFTank;
 import shift.sextiarysector.container.ContainerLargeFurnace;
 import shift.sextiarysector.container.ContainerSimpleMachine;
+import shift.sextiarysector.gui.GuiFluidFurnace;
 import shift.sextiarysector.gui.GuiGFTank;
 import shift.sextiarysector.gui.GuiLargeFurnace;
 import shift.sextiarysector.gui.GuiLoom;
 import shift.sextiarysector.gui.GuiMillstone;
 import shift.sextiarysector.gui.GuiSawmill;
 import shift.sextiarysector.gui.IServerGuiElement;
+import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
@@ -38,6 +41,7 @@ public class SSGuiHandler implements IGuiHandler {
 		switch(ID){
 
 		case 0 : return new ContainerLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));
+		case 1 : return new ContainerFluidFurnace(player.inventory, (TileEntityFluidFurnace) world.getTileEntity(x, y, z));
 
 		case 20:
 		case 21:
@@ -87,6 +91,7 @@ public class SSGuiHandler implements IGuiHandler {
 		switch(ID){
 
 		case 0 : return new GuiLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));
+		case 1 : return new GuiFluidFurnace(player.inventory, (TileEntityFluidFurnace) world.getTileEntity(x, y, z));
 
 		case 20:return new GuiMillstone(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 		case 21:return new GuiLoom(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));

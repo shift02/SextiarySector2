@@ -7,7 +7,14 @@ public class CommonProxy {
 
 	public int holeType;
 
+	public int bottleType;
+
+	public int fluidCrafterType;
+
 	public int ShaftRenderType;
+
+	public int GearShaftRenderType;
+
 	public int smallWindMillType;
 	public int windMillType;
 

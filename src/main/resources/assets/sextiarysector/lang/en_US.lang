@@ -2,6 +2,7 @@
 
 #Block
 tile.ss.large_furnace.name=Large Furnace
+tile.ss.fluid_furnace.name=Fluid Furnace
 
 tile.ss.wood_grate.name=Wood Grate
 
@@ -9,6 +10,9 @@ tile.ss.wood_plate.name=Wood Plate
 
 tile.ss.hole.name=Hole
 tile.ss.farmland.name=Farm Land
+
+tile.ss.bottle.name=Fluid Bottle
+tile.ss.fluid_crafter.name=Fluid Crafter
 
 tile.ss.chunk_loader.name=Time Loader
 
@@ -23,6 +27,8 @@ tile.ss.stone_gear_box.name=Stone Gear Box
 
 tile.ss.wood_gf_tank.name=Wood GF Tank
 tile.ss.stone_gf_tank.name=Stone GF Tank
+
+tile.ss.wood_stone_gear_shaft.name=Wood Stone Gear Shaft
 
 tile.ss.millstone.name=Millstone
 tile.ss.loom.name=Loom
@@ -126,9 +132,15 @@ item.ss.radish.name=Radish
 
 item.ss.shift_hat.name=Shift's Hat
 
+#Fluid
+fluid.ss.takumi_tea=TAKUMI Tea
+fluid.ss.drinking_water=Drinking Water
+
 #GUI
 container.large_furnace=Large Furnace
 container.sub.inventory=Buffer
+
+gui.ss.fluid_furnace=Fluid Furnace
 
 gui.ss.millstone=Millstone
 gui.ss.loom=Loom
@@ -175,6 +187,8 @@ achievement.shipping.desc=Trying to shipment
 nei.recipe=Recipes
 nei.ss.furnace.shaped=Furnace Shaped
 nei.ss.furnace.shapeless=Furnace Shapeless
+
+nei.ss.fluid_furnace.=Fluid Furnace
 
 nei.ss.millstone=Millstone Recipe
 nei.ss.loom=Loom Recipe

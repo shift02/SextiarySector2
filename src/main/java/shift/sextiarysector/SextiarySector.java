@@ -32,7 +32,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	//public static final String MODID = "SextiarySector";
-    public static final String VERSION = "2.0.6";
+    public static final String VERSION = "2.0.7";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
@@ -73,6 +73,7 @@ public class SextiarySector {
     	SextiarySectorAPI.playerManager = EntityPlayerManager.instance;
 
     	SSCreativeTabs.initCreativeTabs();
+    	SSFluids.initFluids();
     	SSItems.initItems();
     	SSBlocks.initBlicks();
 
@@ -115,6 +116,7 @@ public class SextiarySector {
     {
 
     	RecipesFurnaceCraft.addVanillaRecipes();
+    	SSFluids.postFluids();
     	SSShops.initShops();
     	SSShops.initPurchase();
 
