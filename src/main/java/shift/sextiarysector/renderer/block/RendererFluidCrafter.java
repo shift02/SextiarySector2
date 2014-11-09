@@ -50,7 +50,7 @@ public class RendererFluidCrafter  extends TileEntitySpecialRenderer  implements
 
 		GL11.glRotatef(-(FMLClientHandler.instance().getClient().getMinecraft().getSystemTime()/50)%360, 0, 1, 0);
 
-		if(metadata!=0&&FluidRegistry.getFluid(metadata)!=null){
+		if(metadata!=0&&FluidRegistry.getFluid(metadata)!=null && FluidRegistry.getFluid(metadata).getIcon()!=null){
 
 			IIcon  icon = FluidRegistry.getFluid(metadata).getIcon();
 
