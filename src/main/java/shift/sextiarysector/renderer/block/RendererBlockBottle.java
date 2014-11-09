@@ -45,7 +45,7 @@ public class RendererBlockBottle extends TileEntitySpecialRenderer  implements I
 
         //GL11.glTranslatef((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F);
 
-		if(metadata!=0&&FluidRegistry.getFluid(metadata)!=null){
+		if(metadata!=0&&FluidRegistry.getFluid(metadata)!=null && FluidRegistry.getFluid(metadata).getIcon()!=null){
 
 			IIcon  icon = FluidRegistry.getFluid(metadata).getIcon();
 
