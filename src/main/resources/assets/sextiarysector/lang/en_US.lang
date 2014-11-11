@@ -37,6 +37,9 @@ tile.ss.sawmill.name=Sawmill
 tile.ss.blue_stone.name=Blue Stone Ore
 tile.ss.yellow_stone.name=Yellow Stone Ore
 
+tile.ss.mithril_ore.name=Mithril Ore
+tile.ss.orichalcum_ore.name=Orichalcum Ore
+
 tile.ss.coal_large_ore.name=Coal Large Ore
 tile.ss.iron_large_ore.name=Iron Large Ore
 tile.ss.gold_large_ore.name=Gold Large Ore
@@ -74,7 +77,11 @@ item.ss.coal_dust.name=Coal Dust
 item.ss.iron_dust.name=Iron Dust
 item.ss.gold_dust.name=Gold Dust
 
+item.ss.orichalcum_gem.name=Orichalcum
+
 item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
+
+item.ss.magic_dust.name=Magic Dust
 
 item.ss.unit.name=Unit
 
@@ -165,9 +172,11 @@ tooltip.season.winter=Winter
 
 #Tab
 itemGroup.ss.core=SextiarySector -Core-
+itemGroup.ss.fluid=SextiarySector -Fluid-
 itemGroup.ss.machine=SextiarySector -Machine-
 itemGroup.ss.agriculture=SextiarySector -Agriculture-
 itemGroup.ss.economy=SextiarySector -Economy-
+itemGroup.ss.magic=SextiarySector -Magic-
 
 #Achievement
 stat.sell=Sell

@@ -12,9 +12,11 @@ public class SSCreativeTabs {
 	public static void initCreativeTabs(){
 
 		SextiarySectorAPI.TabSSCore = new CreativeTabSSCore();
+		SextiarySectorAPI.TabSSFluid = new CreativeTabSSFluid();
 		SextiarySectorAPI.TabSSMachine = new CreativeTabSSMachine();
 		SextiarySectorAPI.TabSSAgriculture = new CreativeTabSSAgriculture();
 		SextiarySectorAPI.TabSSEconomy = new CreativeTabSSEconomy();
+		SextiarySectorAPI.TabSSMagic = new CreativeTabSSMagic();
 
 	}
 
@@ -33,6 +35,25 @@ public class SSCreativeTabs {
 	    public ItemStack getIconItemStack()
 	    {
 			return new ItemStack(SSBlocks.LargeFurnace,1);
+	    }
+
+	}
+
+	private static class CreativeTabSSFluid extends CreativeTabs{
+
+		public CreativeTabSSFluid() {
+			super("ss.fluid");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;//SSBlocks.LargeFurnace.g;
+		}
+
+		@SideOnly(Side.CLIENT)
+	    public ItemStack getIconItemStack()
+	    {
+			return new ItemStack(SSBlocks.bottle,1);
 	    }
 
 	}
@@ -90,6 +111,25 @@ public class SSCreativeTabs {
 	    public ItemStack getIconItemStack()
 	    {
 			return new ItemStack(SSBlocks.creeperChest,1);
+	    }
+
+	}
+
+	private static class CreativeTabSSMagic extends CreativeTabs{
+
+		public CreativeTabSSMagic() {
+			super("ss.magic");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;//SSBlocks.LargeFurnace.g;
+		}
+
+		@SideOnly(Side.CLIENT)
+	    public ItemStack getIconItemStack()
+	    {
+			return new ItemStack(SSItems.magicDust,1);
 	    }
 
 	}

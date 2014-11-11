@@ -45,7 +45,12 @@ public class SSItems {
 	public static Item ironDust;
 	public static Item goldDust;
 
+	public static Item orichalcumGem;
+
 	public static Item blueStoneSlimeBall;
+
+	//魔法
+	public static Item magicDust;
 
 	//布
 	public static Item stringBobbin;
@@ -118,6 +123,7 @@ public class SSItems {
 		seasonStone = new ItemSeasonStone().setUnlocalizedName("ss.season_stone").setTextureName("sextiarysector:season_stone").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(seasonStone, "SeasonStone");
 
+		//素材
 		dustWaterLily = new Item().setUnlocalizedName("ss.dust_waterlily").setTextureName("sextiarysector:dust/waterlily_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(dustWaterLily, "DustWaterLily");
 
@@ -139,8 +145,15 @@ public class SSItems {
 		goldDust = new Item().setUnlocalizedName("ss.gold_dust").setTextureName("sextiarysector:dust/gold_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(goldDust, "GoldDust");
 
+		orichalcumGem = new Item().setUnlocalizedName("ss.orichalcum_gem").setTextureName("sextiarysector:gem/orichalcum_gem").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(orichalcumGem, "OrichalcumGem");
+
 		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
+
+		//魔法
+		magicDust = new Item().setUnlocalizedName("ss.magic_dust").setTextureName("sextiarysector:dust/magic_dust").setCreativeTab(SextiarySectorAPI.TabSSMagic);
+		GameRegistry.registerItem(magicDust, "MagicDust");
 
 		//布
 		stringBobbin = new Item().setUnlocalizedName("ss.string_bobbin").setTextureName("sextiarysector:loom/string_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);
