@@ -15,6 +15,7 @@ import shift.sextiarysector.block.BlockGearShaft;
 import shift.sextiarysector.block.BlockHole;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockLargeOre;
+import shift.sextiarysector.block.BlockMagicFurnace;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockPowerStone;
 import shift.sextiarysector.block.BlockSSChest;
@@ -43,6 +44,7 @@ import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
+import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
@@ -58,6 +60,7 @@ public class SSBlocks {
 
 	public static Block LargeFurnace;
 	public static Block fluidFurnace;
+	public static Block magicFurnace;
 
 	public static Block bottle;
 	public static Block fluidCrafter;
@@ -132,6 +135,10 @@ public class SSBlocks {
 		fluidFurnace = new BlockFluidFurnace().setBlockName("ss.fluid_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(fluidFurnace, "FluidFurnace");
 		GameRegistry.registerTileEntity(TileEntityFluidFurnace.class, "FluidFurnace");
+
+		magicFurnace = new BlockMagicFurnace().setBlockName("ss.magic_furnace").setCreativeTab(SextiarySectorAPI.TabSSMagic);
+		GameRegistry.registerBlock(magicFurnace, "MagicFurnace");
+		GameRegistry.registerTileEntity(TileEntityMagicFurnace.class, "MagicFurnace");
 
 		bottle = new BlockBottle().setBlockName("ss.bottle").setBlockTextureName("glass");
 		GameRegistry.registerBlock(bottle,ItemBlockBottle.class, "Bottle");
