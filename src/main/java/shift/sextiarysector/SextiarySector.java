@@ -85,6 +85,14 @@ public class SextiarySector {
     		m.preInit(event);
     	}
 
+    	/*
+    	GameRegistry.registerTileEntity(TileEmptyCauldron.class, "SSCauldron");
+    	Iterable<Class<?>> cc = new ArrayList();
+    	((ArrayList) cc).add(ITileEntityProvider.class);
+    	ExtendedClassSupport.loadAndGenerateNewExtendedClass(BlockCauldron.class, Block.class, BlockSSCauldron.class, ITileEntityProvider.class, cc);
+    	*/
+
+
 	}
 
     @Mod.EventHandler
