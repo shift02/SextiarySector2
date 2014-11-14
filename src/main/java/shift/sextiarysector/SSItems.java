@@ -45,6 +45,7 @@ public class SSItems {
 	public static Item ironDust;
 	public static Item goldDust;
 
+	public static Item mithrilIngot;
 	public static Item orichalcumGem;
 
 	public static Item blueStoneSlimeBall;
@@ -144,6 +145,9 @@ public class SSItems {
 
 		goldDust = new Item().setUnlocalizedName("ss.gold_dust").setTextureName("sextiarysector:dust/gold_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(goldDust, "GoldDust");
+
+		mithrilIngot = new Item().setUnlocalizedName("ss.mithril_ingot").setTextureName("sextiarysector:ingot/mithril_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(mithrilIngot, "MithrilIngot");
 
 		orichalcumGem = new Item().setUnlocalizedName("ss.orichalcum_gem").setTextureName("sextiarysector:gem/orichalcum_gem").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(orichalcumGem, "OrichalcumGem");

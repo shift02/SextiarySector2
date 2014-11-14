@@ -4,6 +4,8 @@
 tile.ss.large_furnace.name=Large Furnace
 tile.ss.fluid_furnace.name=Fluid Furnace
 
+tile.ss.magic_furnace.name=Magic Furnace
+
 tile.ss.wood_grate.name=Wood Grate
 
 tile.ss.wood_plate.name=Wood Plate
@@ -77,6 +79,7 @@ item.ss.coal_dust.name=Coal Dust
 item.ss.iron_dust.name=Iron Dust
 item.ss.gold_dust.name=Gold Dust
 
+item.ss.mithril_ingot.name=Mithril Ingot
 item.ss.orichalcum_gem.name=Orichalcum
 
 item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
@@ -148,6 +151,7 @@ container.large_furnace=Large Furnace
 container.sub.inventory=Buffer
 
 gui.ss.fluid_furnace=Fluid Furnace
+gui.ss.magic_furnace=Magic Furnace
 
 gui.ss.millstone=Millstone
 gui.ss.loom=Loom

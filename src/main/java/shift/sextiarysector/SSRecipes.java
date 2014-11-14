@@ -10,6 +10,8 @@ import shift.sextiarysector.recipe.RecipesFluidFurnace;
 import shift.sextiarysector.recipe.RecipesFurnaceCraft;
 import shift.sextiarysector.recipe.RecipesLoom;
 import shift.sextiarysector.recipe.RecipesMachine;
+import shift.sextiarysector.recipe.RecipesMagicFuel;
+import shift.sextiarysector.recipe.RecipesMagicFurnace;
 import shift.sextiarysector.recipe.RecipesMillstone;
 import shift.sextiarysector.recipe.RecipesNormalBlock;
 import shift.sextiarysector.recipe.RecipesSawmill;
@@ -54,6 +56,9 @@ public class SSRecipes {
 		RecipesFurnaceCraft.addRecipes(fm);
 
 		RecipesFluidFurnace.addRecipes(fluidFurnace);
+
+		RecipesMagicFurnace.addRecipes(magicFurnace);
+		RecipesMagicFuel.addRecipes(magicFuel);
 
 		//GF
 		RecipesMillstone.addRecipes(millstone);
