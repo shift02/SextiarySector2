@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.tileentity.TileEntityDirection;
-import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -145,11 +144,11 @@ public class BlockMagicFurnace  extends BlockContainer{
     public IIcon getIcon(IBlockAccess p_149673_1_, int x, int y, int z, int side)
     {
     	//System.out.println("Icon");
-    	TileEntityLargeFurnace tileEntity = (TileEntityLargeFurnace)p_149673_1_.getTileEntity(x, y, z);
+    	TileEntityMagicFurnace tileEntity = (TileEntityMagicFurnace)p_149673_1_.getTileEntity(x, y, z);
 
     	int meta = p_149673_1_.getBlockMetadata(x, y, z);
 
-		return side == 1 ? this.furnaceIconTop : (side == 0 ? this.furnaceIconTop : (side != meta ? this.blockIcon : (tileEntity.isBurning() ? this.furnaceIconFront[0] : this.furnaceIconFront[1])));
+		return side == 1 ? this.furnaceIconTop : (side == 0 ? this.furnaceIconTop : (side != meta ? this.blockIcon : (tileEntity.isFuel() ? this.furnaceIconFront[0] : this.furnaceIconFront[1])));
 
 
     }
@@ -163,10 +162,10 @@ public class BlockMagicFurnace  extends BlockContainer{
      */
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("furnace_side");
-        this.furnaceIconFront[0] = par1IconRegister.registerIcon("furnace_front_on");
-        this.furnaceIconFront[1] = par1IconRegister.registerIcon("furnace_front_off");
-        this.furnaceIconTop = par1IconRegister.registerIcon("sextiarysector:furnace_top");
+        this.blockIcon = par1IconRegister.registerIcon("sextiarysector:magic/furnace_side");
+        this.furnaceIconFront[0] = par1IconRegister.registerIcon("sextiarysector:magic/furnace_front_on");
+        this.furnaceIconFront[1] = par1IconRegister.registerIcon("sextiarysector:magic/furnace_front_off");
+        this.furnaceIconTop = par1IconRegister.registerIcon("sextiarysector:magic/furnace_top");
     }
 
 
