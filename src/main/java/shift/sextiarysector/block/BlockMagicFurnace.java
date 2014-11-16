@@ -63,7 +63,7 @@ public class BlockMagicFurnace  extends BlockContainer{
 
             if (tileentityfurnace != null)
             {
-                par5EntityPlayer.openGui(SextiarySector.instance, 90, par1World, par2, par3, par4);
+                par5EntityPlayer.openGui(SextiarySector.instance, 200, par1World, par2, par3, par4);
             }
 
             return true;

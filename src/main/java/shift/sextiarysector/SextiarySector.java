@@ -99,6 +99,7 @@ public class SextiarySector {
     public void init(FMLInitializationEvent event)
     {
 
+    	SSWorld.init(event);
 
     	if(event.getSide().isClient()){
 			HUDMP.left_height += 10;
@@ -112,6 +113,7 @@ public class SextiarySector {
     	}
 
     	SSVillages.initVillages();
+
 
     	SSPlugins.initModHelper();
 

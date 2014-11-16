@@ -203,6 +203,9 @@ nei.ss.furnace.shapeless=Furnace Shapeless
 
 nei.ss.fluid_furnace.=Fluid Furnace
 
+nei.ss.magic_furnace=Magic Furnace
+nei.ss.magic_fuel=Magic Fuel
+
 nei.ss.millstone=Millstone Recipe
 nei.ss.loom=Loom Recipe
 nei.ss.sawmill=Sawmill Recipe
