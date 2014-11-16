@@ -17,6 +17,8 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 	/** スタミナ */
 	private StaminaStats stamina;
 
+	/**装備**/
+	private EquipmentStats equipment;
 
 	public void onUpdateEntity(EntityPlayer entityPlayer)
     {
@@ -25,7 +27,6 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 			PacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
 			//.out.println("onUpdateEntity");
 		}
-
 		//System.out.println("AAA"+this.moisture.getMoistureLevel()+" : "+this.stamina.getStaminaLevel());
 
 		this.moisture.onUpdate(entityPlayer);
@@ -40,6 +41,8 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 
 		this.stamina.writeNBT(compound);
 
+		this.equipment.writeNBT(compound);
+
 	}
 
 	@Override
@@ -49,6 +52,8 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 
 		this.moisture.readNBT(compound);
 
+		this.equipment.readNBT(compound);
+
 	}
 
 	@Override
@@ -57,6 +62,8 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 		this.moisture = new MoistureStats();
 
 		this.stamina = new StaminaStats();
+
+		this.equipment = new EquipmentStats((EntityPlayer) entity);
 
 	}
 
@@ -74,6 +81,10 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 
 	private void setStamina(StaminaStats stamina) {
 		this.stamina = stamina;
+	}
+
+	public EquipmentStats getEquipmentStats(){
+		return equipment;
 	}
 
 

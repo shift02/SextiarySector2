@@ -8,9 +8,11 @@ import shift.sextiarysector.container.ContainerFluidFurnace;
 import shift.sextiarysector.container.ContainerGFTank;
 import shift.sextiarysector.container.ContainerLargeFurnace;
 import shift.sextiarysector.container.ContainerMagicFurnace;
+import shift.sextiarysector.container.ContainerPlayerNext;
 import shift.sextiarysector.container.ContainerSimpleMachine;
 import shift.sextiarysector.gui.GuiFluidFurnace;
 import shift.sextiarysector.gui.GuiGFTank;
+import shift.sextiarysector.gui.GuiInventoryNext;
 import shift.sextiarysector.gui.GuiLargeFurnace;
 import shift.sextiarysector.gui.GuiLoom;
 import shift.sextiarysector.gui.GuiMagicFurnace;
@@ -57,6 +59,8 @@ public class SSGuiHandler implements IGuiHandler {
 
 
 		case 90 : return new ContainerMagicFurnace(player.inventory, (TileEntityMagicFurnace) world.getTileEntity(x, y, z));
+
+		case 200 : return new ContainerPlayerNext(player.inventory, player);
 
 		}
 
@@ -108,6 +112,8 @@ public class SSGuiHandler implements IGuiHandler {
 		case 41:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),2);
 
 		case 90:return new GuiMagicFurnace(player.inventory, (TileEntityMagicFurnace) world.getTileEntity(x, y, z));
+
+		case 200:return new GuiInventoryNext(player);
 
 		}
 

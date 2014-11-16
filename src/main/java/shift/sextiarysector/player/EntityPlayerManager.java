@@ -212,6 +212,10 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 
     }
 
+	public static EquipmentStats getEquipmentStats(EntityPlayer entityPlayer){
+		return getCustomPlayerData(entityPlayer).getEquipmentStats();
+	}
+
 	//パケット用
 	/*
 	public void onPacketData(INetworkManager manager,Packet250CustomPayload packet, Player player) {
