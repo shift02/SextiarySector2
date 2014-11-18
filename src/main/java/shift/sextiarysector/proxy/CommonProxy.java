@@ -35,5 +35,14 @@ public class CommonProxy {
 
 	}
 
+	public void openGUI(int id){
+
+	}
+
+	public void registerInventoryTabs()
+    {
+
+    }
+
 
 }

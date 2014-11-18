@@ -27,7 +27,7 @@ public class ContainerPlayerNext  extends Container {
 		for(int i = 0;i<5;i++){
 
 			for(int j =0;j<4;j++){
-				this.addSlotToContainer(new Slot(this.equipment,c, 80 + i * 18, 8 + j * 36));
+				this.addSlotToContainer(new Slot(this.equipment,c, 80 + i * 18, 8 + j * 18));
 				c++;
 			}
 

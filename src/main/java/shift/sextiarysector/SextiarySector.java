@@ -125,6 +125,7 @@ public class SextiarySector {
     public void postInit(FMLPostInitializationEvent event)
     {
 
+    	SextiarySector.proxy.registerInventoryTabs();
     	RecipesFurnaceCraft.addVanillaRecipes();
     	SSFluids.postFluids();
     	SSShops.initShops();
