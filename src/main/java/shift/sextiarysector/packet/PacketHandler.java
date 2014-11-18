@@ -16,6 +16,8 @@ public class PacketHandler {
 		 */
 		INSTANCE.registerMessage(MessagePlayer.class,PacketPlayerData.class, 0, Side.CLIENT);
 
+		INSTANCE.registerMessage(MessageGuiId.class,PacketGuiId.class, 1, Side.SERVER);
+
 
 	}
 

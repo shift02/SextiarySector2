@@ -20,6 +20,9 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 	/**装備**/
 	private EquipmentStats equipment;
 
+	//@SideOnly(Side.CLIENT)
+	//private TabStats tab;
+
 	public void onUpdateEntity(EntityPlayer entityPlayer)
     {
 
@@ -87,6 +90,23 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 		return equipment;
 	}
 
+	/*
+	@SideOnly(Side.CLIENT)
+	public void setTabList(ArrayList<AbstractTab> tabList){
+		tab.setTabList(tabList);
+	}
 
+	@SideOnly(Side.CLIENT)
+	public ArrayList<AbstractTab> getTabList(){
+		return tab.getTabList();
+	}
+
+	public void setSelectPage(int i){
+		tab.selectPage = i;
+	}
+
+	public int getSelectPage(){
+		return tab.selectPage;
+	}*/
 
 }

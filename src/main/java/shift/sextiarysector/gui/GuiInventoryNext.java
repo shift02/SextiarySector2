@@ -3,7 +3,6 @@ package shift.sextiarysector.gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
-import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.renderer.InventoryEffectRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
@@ -16,6 +15,8 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import shift.sextiarysector.container.ContainerPlayerNext;
+import shift.sextiarysector.gui.tab.InventoryTabSextiarysector;
+import tconstruct.client.tabs.TabRegistry;
 
 public class GuiInventoryNext extends InventoryEffectRenderer
 {
@@ -41,7 +42,7 @@ public class GuiInventoryNext extends InventoryEffectRenderer
     {
         if (this.mc.playerController.isInCreativeMode())
         {
-            this.mc.displayGuiScreen(new GuiContainerCreative(this.mc.thePlayer));
+            //this.mc.displayGuiScreen(new GuiContainerCreative(this.mc.thePlayer));
         }
     }
 
@@ -59,8 +60,16 @@ public class GuiInventoryNext extends InventoryEffectRenderer
         }
         else
         {*/
-            super.initGui();
+        super.initGui();
         //}
+
+        int cornerX = this.guiLeft;
+
+        int cornerY = this.guiTop;
+
+        TabRegistry.updateTabValues(cornerX, cornerY, InventoryTabSextiarysector.class);
+        TabRegistry.addTabsToList(this.buttonList);
+
     }
 
     /**
