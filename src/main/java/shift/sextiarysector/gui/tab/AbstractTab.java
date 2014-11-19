@@ -1,13 +1,16 @@
 package shift.sextiarysector.gui.tab;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public abstract class AbstractTab {
 
+	public abstract void onTabClicked ();
 
-	@SideOnly(Side.CLIENT)
-	public abstract boolean shouldAddToList(EntityPlayer player);
+	public abstract ItemStack getItemStack();
+
+	public abstract boolean shouldAddToList();
 
 }

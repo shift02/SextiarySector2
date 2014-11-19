@@ -1,13 +1,18 @@
 package shift.sextiarysector.player;
 
+import java.util.ArrayList;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import shift.sextiarysector.gui.tab.AbstractTab;
 import shift.sextiarysector.packet.PacketHandler;
 import shift.sextiarysector.packet.PacketPlayerData;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class CustomPlayerData implements IExtendedEntityProperties{
 
@@ -20,8 +25,8 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 	/**装備**/
 	private EquipmentStats equipment;
 
-	//@SideOnly(Side.CLIENT)
-	//private TabStats tab;
+	@SideOnly(Side.CLIENT)
+	private TabStats tab;
 
 	public void onUpdateEntity(EntityPlayer entityPlayer)
     {
@@ -68,6 +73,8 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 
 		this.equipment = new EquipmentStats((EntityPlayer) entity);
 
+		this.tab = new TabStats();
+
 	}
 
 	public MoistureStats getMoisture() {
@@ -90,7 +97,7 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 		return equipment;
 	}
 
-	/*
+
 	@SideOnly(Side.CLIENT)
 	public void setTabList(ArrayList<AbstractTab> tabList){
 		tab.setTabList(tabList);
@@ -107,6 +114,6 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 
 	public int getSelectPage(){
 		return tab.selectPage;
-	}*/
+	}
 
 }

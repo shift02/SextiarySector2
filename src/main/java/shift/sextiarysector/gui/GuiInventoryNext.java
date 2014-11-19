@@ -15,8 +15,8 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import shift.sextiarysector.container.ContainerPlayerNext;
-import shift.sextiarysector.gui.tab.InventoryTabSextiarysector;
-import tconstruct.client.tabs.TabRegistry;
+import shift.sextiarysector.gui.tab.InventoryTabEquipment;
+import shift.sextiarysector.gui.tab.TabManager;
 
 public class GuiInventoryNext extends InventoryEffectRenderer
 {
@@ -67,8 +67,8 @@ public class GuiInventoryNext extends InventoryEffectRenderer
 
         int cornerY = this.guiTop;
 
-        TabRegistry.updateTabValues(cornerX, cornerY, InventoryTabSextiarysector.class);
-        TabRegistry.addTabsToList(this.buttonList);
+        TabManager.updateTabValues(cornerX, cornerY,this.buttonList, InventoryTabEquipment.class,false);
+        //TabRegistry.addTabsToList(this.buttonList);
 
     }
 

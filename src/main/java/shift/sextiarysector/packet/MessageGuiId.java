@@ -17,7 +17,7 @@ public class MessageGuiId implements IMessageHandler<PacketGuiId, IMessage>{
 
 		//data.loadNBTData(message.getData());
 
-		System.out.println("AAAAA" + message.getData().getInteger("gui"));
+		//System.out.println("AAAAA" + message.getData().getInteger("gui"));
 
 		int i = message.getData().getInteger("gui");
 
