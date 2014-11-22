@@ -22,7 +22,7 @@ public class BlockBottle extends BlockContainer{
 		this.setHardness(0.4F);
 		this.setStepSound(soundTypeGlass);
 		this.setBlockBounds(2.0f/16.0f, 0, 2.0f/16.0f, 14.0f/16.0f, 1, 14.0f/16.0f);
-		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+		this.setCreativeTab(SextiarySectorAPI.TabSSFluid);
 	}
 
 	@Override

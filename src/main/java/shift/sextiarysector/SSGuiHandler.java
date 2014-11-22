@@ -7,17 +7,24 @@ import net.minecraft.world.World;
 import shift.sextiarysector.container.ContainerFluidFurnace;
 import shift.sextiarysector.container.ContainerGFTank;
 import shift.sextiarysector.container.ContainerLargeFurnace;
+import shift.sextiarysector.container.ContainerMagicFurnace;
+import shift.sextiarysector.container.ContainerPlayerNext;
 import shift.sextiarysector.container.ContainerSimpleMachine;
+import shift.sextiarysector.container.ContainerTabWorkbench;
 import shift.sextiarysector.gui.GuiFluidFurnace;
 import shift.sextiarysector.gui.GuiGFTank;
+import shift.sextiarysector.gui.GuiInventoryNext;
 import shift.sextiarysector.gui.GuiLargeFurnace;
 import shift.sextiarysector.gui.GuiLoom;
+import shift.sextiarysector.gui.GuiMagicFurnace;
 import shift.sextiarysector.gui.GuiMillstone;
 import shift.sextiarysector.gui.GuiSawmill;
+import shift.sextiarysector.gui.GuiTabCrafting;
 import shift.sextiarysector.gui.IServerGuiElement;
 import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
+import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
 import cpw.mods.fml.common.network.IGuiHandler;
 
@@ -37,7 +44,6 @@ public class SSGuiHandler implements IGuiHandler {
 			return null;
 		}*/
 
-
 		switch(ID){
 
 		case 0 : return new ContainerLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));
@@ -51,6 +57,12 @@ public class SSGuiHandler implements IGuiHandler {
 		case 40:
 		case 41:
 			return new ContainerGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z));
+
+
+		case 90 : return new ContainerMagicFurnace(player.inventory, (TileEntityMagicFurnace) world.getTileEntity(x, y, z));
+
+		case 200 : return new ContainerPlayerNext(player.inventory, player);
+		case 201 : return new ContainerTabWorkbench(player.inventory, world, x, y, z);
 
 		}
 
@@ -87,7 +99,6 @@ public class SSGuiHandler implements IGuiHandler {
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world,int x, int y, int z) {
 
-
 		switch(ID){
 
 		case 0 : return new GuiLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));
@@ -100,6 +111,11 @@ public class SSGuiHandler implements IGuiHandler {
 
 		case 40:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),1);
 		case 41:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),2);
+
+		case 90:return new GuiMagicFurnace(player.inventory, (TileEntityMagicFurnace) world.getTileEntity(x, y, z));
+
+		case 200:return new GuiInventoryNext(player);
+		case 201:return new GuiTabCrafting(player.inventory, world, x, y, z);
 
 		}
 

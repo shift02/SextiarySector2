@@ -7,6 +7,7 @@ import shift.sextiarysector.event.CommonEventHandler;
 import shift.sextiarysector.event.HUDEventHandler;
 import shift.sextiarysector.event.PlayerStatusEventHandler;
 import shift.sextiarysector.event.WorldEventHandler;
+import shift.sextiarysector.gui.tab.TabManager;
 import shift.sextiarysector.player.EntityPlayerManager;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -22,6 +23,7 @@ public class SSEvents {
     	MinecraftForge.EVENT_BUS.register(new PlayerStatusEventHandler());
     	MinecraftForge.EVENT_BUS.register(new VanillaFoodHandler());
     	if(event.getSide().isClient())MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+    	if(event.getSide().isClient())MinecraftForge.EVENT_BUS.register(new TabManager());
     	MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
 
 	}

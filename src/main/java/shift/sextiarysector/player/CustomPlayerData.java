@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import shift.sextiarysector.packet.PacketHandler;
+import shift.sextiarysector.packet.SSPacketHandler;
 import shift.sextiarysector.packet.PacketPlayerData;
 
 public class CustomPlayerData implements IExtendedEntityProperties{
@@ -17,15 +17,19 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 	/** スタミナ */
 	private StaminaStats stamina;
 
+	/**装備**/
+	private EquipmentStats equipment;
+
+	//@SideOnly(Side.CLIENT)
+	//private TabStats tab;
 
 	public void onUpdateEntity(EntityPlayer entityPlayer)
     {
 
 		if(moisture.isPacket()||stamina.isPacket()){
-			PacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
+			SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
 			//.out.println("onUpdateEntity");
 		}
-
 		//System.out.println("AAA"+this.moisture.getMoistureLevel()+" : "+this.stamina.getStaminaLevel());
 
 		this.moisture.onUpdate(entityPlayer);
@@ -40,6 +44,8 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 
 		this.stamina.writeNBT(compound);
 
+		this.equipment.writeNBT(compound);
+
 	}
 
 	@Override
@@ -49,6 +55,8 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 
 		this.moisture.readNBT(compound);
 
+		this.equipment.readNBT(compound);
+
 	}
 
 	@Override
@@ -57,6 +65,10 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 		this.moisture = new MoistureStats();
 
 		this.stamina = new StaminaStats();
+
+		this.equipment = new EquipmentStats((EntityPlayer) entity);
+
+		//this.tab = new TabStats();
 
 	}
 
@@ -76,6 +88,27 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 		this.stamina = stamina;
 	}
 
+	public EquipmentStats getEquipmentStats(){
+		return equipment;
+	}
 
+
+	//@SideOnly(Side.CLIENT)
+	//public void setTabList(ArrayList<AbstractTab> tabList){
+	//	tab.setTabList(tabList);
+	//}
+
+	//@SideOnly(Side.CLIENT)
+	//public ArrayList<AbstractTab> getTabList(){
+	//	return tab.getTabList();
+	//}
+
+	//public void setSelectPage(int i){
+	//	tab.selectPage = i;
+	//}
+
+	///public int getSelectPage(){
+	//	return tab.selectPage;
+	//}
 
 }

@@ -16,7 +16,7 @@ import shift.sextiarysector.module.ModuleAchievement;
 import shift.sextiarysector.module.ModuleAgriculture;
 import shift.sextiarysector.module.ModuleChunkLoader;
 import shift.sextiarysector.module.ModuleSeason;
-import shift.sextiarysector.packet.PacketHandler;
+import shift.sextiarysector.packet.SSPacketHandler;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.plugin.SSPlugins;
 import shift.sextiarysector.proxy.CommonProxy;
@@ -32,7 +32,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	//public static final String MODID = "SextiarySector";
-    public static final String VERSION = "2.0.7";
+    public static final String VERSION = "2.0.8";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
@@ -54,7 +54,7 @@ public class SextiarySector {
 
     	Config.ConfigRead(event);
 
-    	PacketHandler.init(event);
+    	SSPacketHandler.init(event);
 
     	SextiarySector.proxy.setCustomRenderers();
 
@@ -85,12 +85,21 @@ public class SextiarySector {
     		m.preInit(event);
     	}
 
+    	/*
+    	GameRegistry.registerTileEntity(TileEmptyCauldron.class, "SSCauldron");
+    	Iterable<Class<?>> cc = new ArrayList();
+    	((ArrayList) cc).add(ITileEntityProvider.class);
+    	ExtendedClassSupport.loadAndGenerateNewExtendedClass(BlockCauldron.class, Block.class, BlockSSCauldron.class, ITileEntityProvider.class, cc);
+    	*/
+
+
 	}
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
 
+    	SSWorld.init(event);
 
     	if(event.getSide().isClient()){
 			HUDMP.left_height += 10;
@@ -105,6 +114,8 @@ public class SextiarySector {
 
     	SSVillages.initVillages();
 
+    	if(event.getSide().isClient())SSPlayerTabs.initRecipes();
+
     	SSPlugins.initModHelper();
 
     	SSPlugins.initPlugins(event);
@@ -115,6 +126,7 @@ public class SextiarySector {
     public void postInit(FMLPostInitializationEvent event)
     {
 
+    	SextiarySector.proxy.registerInventoryTabs();
     	RecipesFurnaceCraft.addVanillaRecipes();
     	SSFluids.postFluids();
     	SSShops.initShops();

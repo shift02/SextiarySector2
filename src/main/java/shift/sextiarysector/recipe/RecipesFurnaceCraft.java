@@ -58,6 +58,13 @@ public class RecipesFurnaceCraft {
 			Character.valueOf('y'), Blocks.glass_pane,
 			}));
 
+        //魔法カマド
+        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.magicFurnace, 1),
+				new Object[] { "xxx", "xyx","xxx",
+			Character.valueOf('x'), "cobblestone",
+			Character.valueOf('y'), SSItems.magicDust,
+			}));
+
         //time
         p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.chunkLoader, 1),
 				new Object[] { "xyx", "yzy","xyx",

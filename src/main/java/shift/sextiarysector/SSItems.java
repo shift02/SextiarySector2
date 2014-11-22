@@ -8,6 +8,7 @@ import shift.sextiarysector.item.ItemCalendar;
 import shift.sextiarysector.item.ItemCrop;
 import shift.sextiarysector.item.ItemFoodDrink;
 import shift.sextiarysector.item.ItemGearStorage;
+import shift.sextiarysector.item.ItemGuiUnit;
 import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
@@ -45,7 +46,16 @@ public class SSItems {
 	public static Item ironDust;
 	public static Item goldDust;
 
+	public static Item mithrilIngot;
+	public static Item orichalcumGem;
+
 	public static Item blueStoneSlimeBall;
+
+	//unit
+	public static Item craftUnit;
+
+	//魔法
+	public static Item magicDust;
 
 	//布
 	public static Item stringBobbin;
@@ -118,6 +128,7 @@ public class SSItems {
 		seasonStone = new ItemSeasonStone().setUnlocalizedName("ss.season_stone").setTextureName("sextiarysector:season_stone").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(seasonStone, "SeasonStone");
 
+		//素材
 		dustWaterLily = new Item().setUnlocalizedName("ss.dust_waterlily").setTextureName("sextiarysector:dust/waterlily_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(dustWaterLily, "DustWaterLily");
 
@@ -139,8 +150,22 @@ public class SSItems {
 		goldDust = new Item().setUnlocalizedName("ss.gold_dust").setTextureName("sextiarysector:dust/gold_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(goldDust, "GoldDust");
 
+		mithrilIngot = new Item().setUnlocalizedName("ss.mithril_ingot").setTextureName("sextiarysector:ingot/mithril_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(mithrilIngot, "MithrilIngot");
+
+		orichalcumGem = new Item().setUnlocalizedName("ss.orichalcum_gem").setTextureName("sextiarysector:gem/orichalcum_gem").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(orichalcumGem, "OrichalcumGem");
+
 		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
+
+		//Unit
+		craftUnit = new ItemGuiUnit(201).setUnlocalizedName("ss.craft_unit").setTextureName("sextiarysector:unit/craft_unit").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(craftUnit, "CraftUnit");
+
+		//魔法
+		magicDust = new Item().setUnlocalizedName("ss.magic_dust").setTextureName("sextiarysector:dust/magic_dust").setCreativeTab(SextiarySectorAPI.TabSSMagic);
+		GameRegistry.registerItem(magicDust, "MagicDust");
 
 		//布
 		stringBobbin = new Item().setUnlocalizedName("ss.string_bobbin").setTextureName("sextiarysector:loom/string_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);

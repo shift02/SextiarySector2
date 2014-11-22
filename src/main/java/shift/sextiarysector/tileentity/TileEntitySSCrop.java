@@ -37,6 +37,10 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 
 	public void updateServerEntity() {
 
+		if(this.getBlockMetadata()==4 && this.getStatus().i.length<4){
+			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 3, 0);
+		}
+
 		if(lastMinutes==0){
 			lastMinutes=SeasonAPI.getMinute(getWorldObj());
 		}
