@@ -159,7 +159,7 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 	@SubscribeEvent
 	public void onPlayerDropsEvent(PlayerDropsEvent event)
 	{
-		//this.getCustomPlayerData(event.entityPlayer).getEquipmentStats().inventory.dropAllItems();
+		this.getCustomPlayerData(event.entityPlayer).getEquipmentStats().inventory.dropAllItems();
 	}
 
 	private void oneton(){
