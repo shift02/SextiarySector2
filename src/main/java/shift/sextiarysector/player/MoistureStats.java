@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
+import shift.sextiarysector.Config;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -54,7 +55,7 @@ public class MoistureStats {
             {
                 this.moistureSaturationLevel = Math.max(this.moistureSaturationLevel - 1.0F, 0.0F);
             }
-            else if (i.getDifficultyId() > 0)
+            else if (i.getDifficultyId() > 0 || Config.peacefulMoisture)
             {
                 this.moistureLevel = Math.max(this.moistureLevel - 1, 0);
             }

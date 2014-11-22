@@ -84,6 +84,9 @@ item.ss.orichalcum_gem.name=Orichalcum
 
 item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
 
+
+item.ss.craft_unit.name=Craft Unit
+
 item.ss.magic_dust.name=Magic Dust
 
 item.ss.unit.name=Unit
@@ -185,6 +188,7 @@ itemGroup.ss.magic=SextiarySector -Magic-
 #Player Tab
 player.tab.vanilla=Vanilla
 player.tab.equipment=Equipment
+player.tab.item.ss.craft_unit=Craft
 
 #Achievement
 stat.sell=Sell

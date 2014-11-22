@@ -94,6 +94,7 @@ public class ContainerPlayerNext  extends Container {
         //40
 
         this.addSlotToContainer(new SlotEquipment(EquipmentType.Necklace, this.equipment, 0, 80 + 0 * 18, 8 + 0 * 18));
+        //this.addSlotToContainer(new Slot(this.equipment,0, 80 + 0 * 18, 8 + 0 * 18));
 
 		this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 1, 80 + 0 * 18, 8 + 1 * 18));
 		this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 2, 80 + 0 * 18, 8 + 2 * 18));
@@ -120,7 +121,6 @@ public class ContainerPlayerNext  extends Container {
 		this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 19, 80 + 4 * 18, 8 + 3 * 18));
 
 
-		System.out.println("AAAA : "+this.inventorySlots.size());
     }
 
 	@Override
