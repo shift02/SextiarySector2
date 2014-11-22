@@ -1,18 +1,13 @@
 package shift.sextiarysector.player;
 
-import java.util.ArrayList;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import shift.sextiarysector.gui.tab.AbstractTab;
-import shift.sextiarysector.packet.PacketHandler;
+import shift.sextiarysector.packet.SSPacketHandler;
 import shift.sextiarysector.packet.PacketPlayerData;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class CustomPlayerData implements IExtendedEntityProperties{
 
@@ -25,14 +20,14 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 	/**装備**/
 	private EquipmentStats equipment;
 
-	@SideOnly(Side.CLIENT)
-	private TabStats tab;
+	//@SideOnly(Side.CLIENT)
+	//private TabStats tab;
 
 	public void onUpdateEntity(EntityPlayer entityPlayer)
     {
 
 		if(moisture.isPacket()||stamina.isPacket()){
-			PacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
+			SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
 			//.out.println("onUpdateEntity");
 		}
 		//System.out.println("AAA"+this.moisture.getMoistureLevel()+" : "+this.stamina.getStaminaLevel());
@@ -73,7 +68,7 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 
 		this.equipment = new EquipmentStats((EntityPlayer) entity);
 
-		this.tab = new TabStats();
+		//this.tab = new TabStats();
 
 	}
 
@@ -98,22 +93,22 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 	}
 
 
-	@SideOnly(Side.CLIENT)
-	public void setTabList(ArrayList<AbstractTab> tabList){
-		tab.setTabList(tabList);
-	}
+	//@SideOnly(Side.CLIENT)
+	//public void setTabList(ArrayList<AbstractTab> tabList){
+	//	tab.setTabList(tabList);
+	//}
 
-	@SideOnly(Side.CLIENT)
-	public ArrayList<AbstractTab> getTabList(){
-		return tab.getTabList();
-	}
+	//@SideOnly(Side.CLIENT)
+	//public ArrayList<AbstractTab> getTabList(){
+	//	return tab.getTabList();
+	//}
 
-	public void setSelectPage(int i){
-		tab.selectPage = i;
-	}
+	//public void setSelectPage(int i){
+	//	tab.selectPage = i;
+	//}
 
-	public int getSelectPage(){
-		return tab.selectPage;
-	}
+	///public int getSelectPage(){
+	//	return tab.selectPage;
+	//}
 
 }

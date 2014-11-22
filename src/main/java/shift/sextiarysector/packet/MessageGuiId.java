@@ -1,6 +1,6 @@
 package shift.sextiarysector.packet;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import shift.sextiarysector.SextiarySector;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -11,7 +11,7 @@ public class MessageGuiId implements IMessageHandler<PacketGuiId, IMessage>{
 	@Override
 	public IMessage onMessage(PacketGuiId message, MessageContext ctx) {
 
-		EntityPlayer p = ctx.getServerHandler().playerEntity;
+		EntityPlayerMP p = ctx.getServerHandler().playerEntity;
 
 		//CustomPlayerData data = EntityPlayerManager.getCustomPlayerData(p);
 

@@ -5,7 +5,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 
-public class PacketHandler {
+public class SSPacketHandler {
 
 	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel("sextiarysector");
 
@@ -17,7 +17,6 @@ public class PacketHandler {
 		INSTANCE.registerMessage(MessagePlayer.class,PacketPlayerData.class, 0, Side.CLIENT);
 
 		INSTANCE.registerMessage(MessageGuiId.class,PacketGuiId.class, 1, Side.SERVER);
-
 
 	}
 

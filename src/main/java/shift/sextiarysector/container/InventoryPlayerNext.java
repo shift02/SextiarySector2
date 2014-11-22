@@ -9,6 +9,11 @@ import net.minecraft.nbt.NBTTagCompound;
 public class InventoryPlayerNext implements IInventory{
 
 	ItemBox items = new ItemBox("Base", 20);
+	private EntityPlayer player;
+
+	public InventoryPlayerNext(EntityPlayer player) {
+		this.player = player;
+	}
 
 	@Override
 	public int getSizeInventory() {
@@ -75,6 +80,21 @@ public class InventoryPlayerNext implements IInventory{
 
 		return true;
 	}
+
+	public void dropAllItems()
+    {
+        int i;
+
+        for (i = 0; i < this.items.getSizeInventory(); ++i)
+        {
+            if (this.items.getStackInSlot(i) != null)
+            {
+                this.player.func_146097_a(this.items.getStackInSlot(i), true, false);
+                this.items.setInventorySlotContents(i, null);
+            }
+        }
+
+    }
 
 	//NBT
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt)

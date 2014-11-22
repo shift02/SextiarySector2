@@ -27,7 +27,7 @@ public class GuiBackButton extends GuiButton{
         if (inWindow && (TabManager.getSelectPage()>1))
         {
         	TabManager.setSelectPage(TabManager.getSelectPage()-1);
-        	TabManager.updateTabValues(cornerX, cornerY, buttonList, TabManager.getSelectedButton().getClass(),true);
+        	TabManager.updateTabValues(cornerX, cornerY, buttonList, TabManager.getSelectedButton(),true);
         }
 
         return inWindow;

@@ -17,7 +17,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class TabManager {
 
-	//private static ArrayList<AbstractTab> tabList = new ArrayList<AbstractTab>();
 	private static HashMap<Integer,AbstractTab> tabMap = new HashMap<Integer,AbstractTab>();
 	private static int tabSize = 0;
 
@@ -29,8 +28,22 @@ public class TabManager {
 	private static final String Select_Page = "selectpage";
 	private static final String Selected_Button = "selectedbutton";
 
+	private static boolean init;
+	private static AbstractTab vanilla;
+
+	public static void initTabManager(){
+
+		if(!init){
+			init = true;
+			vanilla = new InventoryTabVanilla();
+			registerTab(vanilla);
+		}
+
+	}
+
     public static void registerTab (AbstractTab tab)
     {
+    	if(!init)initTabManager();
     	tabMap.put(tabSize, tab);
         tabSize++;
     }
@@ -58,15 +71,13 @@ public class TabManager {
             int guiLeft = (event.gui.width - xSize) / 2;
             int guiTop = (event.gui.height - ySize) / 2;
 
-            updateTabValues(guiLeft, guiTop,event.buttonList, InventoryTabVanilla.class,false);
-            //addTabsToList(event.buttonList);
+            updateTabValues(guiLeft, guiTop,event.buttonList, vanilla,false);
+
         }
     }
 
-    public static void updateTabValues (int cornerX, int cornerY,List buttonList, Class<? extends AbstractTab> selectedButton, boolean reset)
+    public static void updateTabValues (int cornerX, int cornerY,List buttonList, AbstractTab selectedButton, boolean reset)
     {
-
-
 
     	if(reset){
 
@@ -84,13 +95,12 @@ public class TabManager {
         int count = 3;
         int pCount = getSelectPage();
         ArrayList<AbstractTab> tabs = getTabListFromPage(pCount);
-        System.out.println("AAAAA"+tabs.size()+ " : " + buttonList.size());
 
         TabButton buttonV = new TabButton(tabMap.get(0));
     	buttonV.id = 2;
     	buttonV.xPosition = cornerX ;
     	buttonV.yPosition = cornerY - 28;
-    	buttonV.enabled = !InventoryTabVanilla.class.equals(selectedButton);
+    	buttonV.enabled = !tabMap.get(0).equals(selectedButton);
     	buttonList.add(buttonV);
 
 
@@ -104,7 +114,7 @@ public class TabManager {
             	button.id = count;
             	button.xPosition = cornerX + 32 + (count - 3) * 29;
             	button.yPosition = cornerY - 28;
-            	button.enabled = !t.getClass().equals(selectedButton);
+            	button.enabled = !t.equals(selectedButton);
             	buttonList.add(button);
                 count++;
             }
@@ -123,11 +133,12 @@ public class TabManager {
 
     }
 
-    private static void setSelectedButton(Class<? extends AbstractTab> selectedButton){
+    @SideOnly(Side.CLIENT)
+    private static void setSelectedButton(AbstractTab selectedButton){
 
     	for (int i = 0; i < tabMap.size(); i++)
         {
-    		if(tabMap.get(i).getClass().equals(selectedButton)){
+    		if(tabMap.get(i).equals(selectedButton)){
     			getPlayer().getEntityData().setInteger(Selected_Button, i);
     			return;
     		}
@@ -135,14 +146,16 @@ public class TabManager {
 
     }
 
+    @SideOnly(Side.CLIENT)
     public static AbstractTab getSelectedButton(){
     	return tabMap.get(getPlayer().getEntityData().getInteger(Selected_Button));
     }
 
+    @SideOnly(Side.CLIENT)
     private static ArrayList<AbstractTab> getTabListFromPage(int i){
 
     	ArrayList<AbstractTab> tabs = new ArrayList<AbstractTab>();
-    	ArrayList<AbstractTab> naw = getUpdateTab();
+    	ArrayList<AbstractTab> now = getUpdateTab();
     	int j = i - 1;
 
     	if(i>getPageSize()){
@@ -150,8 +163,8 @@ public class TabManager {
     		j = 0;
     	}
 
-    	for(int k=j*5; k<naw.size()&&k<(j*5+5); k++){
-    		tabs.add(naw.get(k));
+    	for(int k=j*5; k<now.size()&&k<(j*5+5); k++){
+    		tabs.add(now.get(k));
     	}
 
 		return tabs;
@@ -203,112 +216,5 @@ public class TabManager {
         GuiInventory inventory = new GuiInventory(mc.thePlayer);
         mc.displayGuiScreen(inventory);
     }
-
-    /*
-    @SideOnly(Side.CLIENT)
-    public static void updateTab(EntityPlayer player)
-    {
-    	ArrayList<AbstractTab> tabs = new ArrayList<AbstractTab>();
-
-    	for (int i = 1; i < tabList.size(); i++)
-        {
-            AbstractTab t = tabList.get(i);
-            if (t.shouldAddToList(player))
-            {
-            	tabs.add(t);
-            }
-        }
-
-    	//EntityPlayerManager.getCustomPlayerData(player).setTabList(tabs);
-
-    }
-
-
-    public static void updateTabValues (EntityPlayer player,int cornerX, int cornerY, Class<? extends AbstractTab> selectedButton)
-    {
-    	int count = 2;
-    	AbstractTab[] tabs = getTabList(player)[getPageNumber(player,selectedButton)];
-        for (int i = 0; tabs[i]!=null; i++)
-        {
-            	AbstractTab t = tabList.get(i);
-
-                //t.id = count;
-                //t.xPosition = cornerX + (count - 2) * 28;
-               // t.yPosition = cornerY - 28;
-                //t.enabled = !t.getClass().equals(selectedButton);
-                //count++;
-
-
-        }
-
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static AbstractTab[][] getTabList(EntityPlayer player){
-
-    	updateTab(player);
-
-    	ArrayList<AbstractTab> tabList = null;//EntityPlayerManager.getCustomPlayerData(player).getTabList();
-    	int p = tabList.size()%5==0 ? 0 : 1;
-    	AbstractTab[][] tabs = new AbstractTab[(tabList.size()/5)+p][5];
-
-    	int page=0;
-    	for(int i = 0;i<tabList.size();i++){
-
-    		tabs[page][i%5] = tabList.get(i);
-
-    		if(i%5==0 && i!=0){
-    			page++;
-    		}
-    	}
-
-		return tabs;
-    }
-
-    public static int getPageNumber(EntityPlayer player, Class<? extends AbstractTab> selectedButton){
-
-    	AbstractTab[][] tabs = getTabList(player);
-    	for(int i = 0;i<tabs.length;i++){
-    		for(int j=0;j<tabs[i].length;++j){
-    			if(selectedButton.equals(tabs[i][j])){
-    				return i;
-    			}
-    		}
-    	}
-		return 0;
-
-    }
-
-
-    public static boolean isNextPage(EntityPlayer player){
-
-    	AbstractTab[][] i = getTabList(player);
-
-    	boolean f = false;
-
-    	if(i.length>EntityPlayerManager.getCustomPlayerData(player).getSelectPage()+1){
-    		f = true;
-    	}else{
-    		EntityPlayerManager.getCustomPlayerData(player).setSelectPage(i.length-1);;
-    	}
-
-		return f;
-    }
-
-    public static boolean isBackPage(EntityPlayer player){
-
-    	AbstractTab[][] i = getTabList(player);
-
-    	boolean f = false;
-
-    	if(EntityPlayerManager.getCustomPlayerData(player).getSelectPage()>0){
-    		f = true;
-    	}else if(EntityPlayerManager.getCustomPlayerData(player).getSelectPage()<0){
-    		EntityPlayerManager.getCustomPlayerData(player).setSelectPage(0);
-    	}
-
-		return f;
-    }*/
-
 
 }

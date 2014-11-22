@@ -3,20 +3,18 @@ package shift.sextiarysector.gui.tab;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import shift.sextiarysector.SextiarySector;
+import shift.sextiarysector.packet.PacketGuiId;
+import shift.sextiarysector.packet.SSPacketHandler;
 import cpw.mods.fml.client.FMLClientHandler;
 
-public class InventoryTabEquipment extends AbstractTab {
+public class InventoryTabSS  extends AbstractTab {
 
 	private static Minecraft mc = FMLClientHandler.instance().getClient();
 
-	public InventoryTabEquipment(int slot){
-
-	}
-
 	@Override
 	public void onTabClicked() {
-		mc.thePlayer.openGui(SextiarySector.instance, 200, mc.thePlayer.worldObj, (int)mc.thePlayer.posX, (int)mc.thePlayer.posY, (int)mc.thePlayer.posZ);
+		SSPacketHandler.INSTANCE.sendToServer(new PacketGuiId(200));
+		//mc.thePlayer.openGui(SextiarySector.instance, 200, mc.thePlayer.worldObj, (int)mc.thePlayer.posX, (int)mc.thePlayer.posY, (int)mc.thePlayer.posZ);
 	}
 
 	@Override
@@ -31,8 +29,7 @@ public class InventoryTabEquipment extends AbstractTab {
 
 	@Override
 	public String getTabName() {
-		return "player.tab.vanilla";
+		return "player.tab.equipment";
 	}
-
 
 }

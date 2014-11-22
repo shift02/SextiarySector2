@@ -13,7 +13,7 @@ public class EquipmentStats {
 
 	public EquipmentStats(EntityPlayer player){
 
-		inventory = new InventoryPlayerNext();
+		inventory = new InventoryPlayerNext(player);
 
 	}
 
@@ -21,6 +21,7 @@ public class EquipmentStats {
     {
 
     }
+
 
 	public void writeNBT(NBTTagCompound compound) {
 
