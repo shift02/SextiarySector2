@@ -24,6 +24,7 @@ public class CommonProxy {
 
 	public int farmlandType;
 
+
 	public EntityPlayer getClientPlayer(){
 		return null;
 	}
@@ -34,6 +35,15 @@ public class CommonProxy {
 	public void registerItemRenderer(Item item) {
 
 	}
+
+	public void openGUI(int id){
+
+	}
+
+	public void registerInventoryTabs()
+    {
+
+    }
 
 
 }

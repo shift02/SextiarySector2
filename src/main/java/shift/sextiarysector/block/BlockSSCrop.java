@@ -66,7 +66,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     	//if(par1World.isRemote)return true;
 
-    	if(par1World.getBlockMetadata(x, y, z)==3&&par5EntityPlayer.getCurrentEquippedItem()!= null&&par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof ItemShears){
+    	if(this.getStatus().i.length == 4 && par1World.getBlockMetadata(x, y, z)==3&&par5EntityPlayer.getCurrentEquippedItem()!= null&&par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof ItemShears){
 
     		ItemStack item = this.getAfter(par1World, x, y, z);
 
@@ -136,6 +136,10 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int p_149691_1_, int p_149691_2_)
     {
+    	if(this.field_149867_a.length == 3 && p_149691_2_ == 4){
+    		return this.field_149867_a[3];
+    	}
+
     	return this.field_149867_a[p_149691_2_];
     }
 

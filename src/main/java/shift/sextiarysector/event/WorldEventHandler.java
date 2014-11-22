@@ -1,10 +1,14 @@
 package shift.sextiarysector.event;
 
+import static net.minecraftforge.common.BiomeDictionary.Type.*;
+
 import java.util.Random;
 
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import shift.sextiarysector.SSBlocks;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -14,6 +18,9 @@ public class WorldEventHandler {
 	private WorldGenMinable bluestoneGen;
 	private WorldGenMinable yellowstoneGen;
 
+	private WorldGenMinable mithrilOreGen;
+	private WorldGenMinable orichalcumOreGen;
+
 	private WorldGenMinable coaLargeGen;
 	private WorldGenMinable ironLarge;
 	private WorldGenMinable goldLarge;
@@ -21,6 +28,7 @@ public class WorldEventHandler {
 	private int chunk_X;
 	private int chunk_Z;
 	private World currentWorld;
+	private BiomeGenBase biome;
 
 	public Random randomGenerato;
 
@@ -31,9 +39,13 @@ public class WorldEventHandler {
 		this.chunk_X = event.worldX;
 		this.chunk_Z = event.worldZ;
 		this.currentWorld = event.world;
+		this.biome = event.world.getBiomeGenForCoords(chunk_X, chunk_Z);
 
 		this.bluestoneGen = new WorldGenMinable(SSBlocks.blueStoneOre, 7);
 		this.yellowstoneGen = new WorldGenMinable(SSBlocks.yellowStoneOre, 7);
+
+		mithrilOreGen = new WorldGenMinable(SSBlocks.mithrilOre, 8);
+		orichalcumOreGen = new WorldGenMinable(SSBlocks.orichalcumOre, 7);
 
 		coaLargeGen = new WorldGenMinable(SSBlocks.coalLargeOre, 16);
 		ironLarge = new WorldGenMinable(SSBlocks.ironLargeOre, 8);
@@ -42,6 +54,11 @@ public class WorldEventHandler {
 
 		this.genStandardOre1(8, this.bluestoneGen, 0, 16);
 		this.genStandardOre1(8, this.yellowstoneGen, 0, 16);
+
+		if(BiomeDictionary.isBiomeOfType(biome, MAGICAL)){
+			this.genStandardOre1(4, mithrilOreGen, 0, 32);
+			this.genStandardOre1(1, orichalcumOreGen, 0, 18);
+		}
 
 		this.genStandardOre1(10, this.coaLargeGen, 0, 128);
 		this.genStandardOre1(10, this.ironLarge, 0, 64);

@@ -5,9 +5,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import shift.sextiarysector.api.IPlayerManager;
-import shift.sextiarysector.packet.PacketHandler;
 import shift.sextiarysector.packet.PacketPlayerData;
+import shift.sextiarysector.packet.SSPacketHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
@@ -155,6 +156,12 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 
     }
 
+	@SubscribeEvent
+	public void onPlayerDropsEvent(PlayerDropsEvent event)
+	{
+		this.getCustomPlayerData(event.entityPlayer).getEquipmentStats().inventory.dropAllItems();
+	}
+
 	private void oneton(){
 
 
@@ -211,6 +218,10 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 		}*/
 
     }
+
+	public static EquipmentStats getEquipmentStats(EntityPlayer entityPlayer){
+		return getCustomPlayerData(entityPlayer).getEquipmentStats();
+	}
 
 	//パケット用
 	/*
@@ -349,7 +360,7 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 
 		if (!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer) {
 
-			PacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData((EntityPlayer) event.entity)), (EntityPlayerMP) event.entity);
+			SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData((EntityPlayer) event.entity)), (EntityPlayerMP) event.entity);
 
 		}
 	}
@@ -358,7 +369,7 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 	public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
 		//プレイヤーがディメンション間を移動したときの処理
 
-    	if(!event.player.worldObj.isRemote)PacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
+    	if(!event.player.worldObj.isRemote)SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
 
 	}
 
@@ -366,7 +377,7 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 	public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
 		//プレイヤーがリスポーンした時の処理
     	//System.out.println("onPlayerRespawn");
-    	if(!event.player.worldObj.isRemote)PacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
+    	if(!event.player.worldObj.isRemote)SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
 
 	}
 

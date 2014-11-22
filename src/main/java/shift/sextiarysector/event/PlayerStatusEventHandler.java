@@ -60,14 +60,13 @@ public class PlayerStatusEventHandler {
 	@SubscribeEvent
 	public void onLivingHurtEvent(LivingHurtEvent event) {
 
-		if (event.entityLiving.worldObj.isRemote
-				|| !(event.entityLiving instanceof EntityPlayer)) {
+		if (event.entityLiving.worldObj.isRemote|| !(event.entityLiving instanceof EntityPlayer)) {
 			return;
 		}
 
 		EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-		SextiarySectorAPI.addMoistureExhaustion(player, event.ammount * 1.4f);
+		SextiarySectorAPI.addMoistureExhaustion(player, event.ammount * 0.4f);
 
 	}
 
@@ -140,7 +139,7 @@ public class PlayerStatusEventHandler {
 
 		EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-		SextiarySectorAPI.addStaminaExhaustion(player, event.ammount * 1.4f);
+		SextiarySectorAPI.addStaminaExhaustion(player, event.ammount * 5.0f);
 
 	}
 

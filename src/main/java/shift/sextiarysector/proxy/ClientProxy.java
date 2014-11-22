@@ -4,6 +4,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
+import shift.mceconomy2.packet.PacketHandler;
+import shift.sextiarysector.gui.tab.TabManager;
+import shift.sextiarysector.packet.PacketGuiId;
 import shift.sextiarysector.renderer.block.RendererBlockBottle;
 import shift.sextiarysector.renderer.block.RendererChest;
 import shift.sextiarysector.renderer.block.RendererFarmland;
@@ -29,6 +32,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ClientProxy extends CommonProxy{
+
 
 
 	@Override
@@ -99,12 +103,41 @@ public class ClientProxy extends CommonProxy{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySSChest.class, new RendererChest());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMonitor.class, new RendererMonitor());
 
-
 	}
 
 	@Override
 	public void registerItemRenderer(Item item) {
 		MinecraftForgeClient.registerItemRenderer(item, new RenderGF());
 	}
+
+	public void openGUI(int id){
+		PacketHandler.INSTANCE.sendToServer(new PacketGuiId(id));
+	}
+
+	public void registerInventoryTabs()
+    {
+		/*
+        if (!Loader.isModLoaded("TConstruct") || TabRegistry.getTabList().size() < 3)
+        {
+            TabRegistry.registerTab(new InventoryTabVanilla());
+        }
+
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        */
+		TabManager.initTabManager();
+		//TabManager.registerTab(new InventoryTabEquipment());
+		//TabManager.registerTab(new InventoryTabEquipment());
+		//TabManager.registerTab(new InventoryTabEquipment());
+		//TabManager.registerTab(new InventoryTabEquipment());
+		//TabManager.registerTab(new InventoryTabEquipment());
+		//TabManager.registerTab(new InventoryTabEquipment());
+
+    }
 
 }

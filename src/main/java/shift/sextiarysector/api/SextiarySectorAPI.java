@@ -16,9 +16,11 @@ public class SextiarySectorAPI {
 
 	//CreativeTabs
 	public static CreativeTabs TabSSCore;
+	public static CreativeTabs TabSSFluid;
 	public static CreativeTabs TabSSMachine;
 	public static CreativeTabs TabSSAgriculture;
 	public static CreativeTabs TabSSEconomy;
+	public static CreativeTabs TabSSMagic;
 
 	/**
 	 * IPlayerManager Player関係のインターフェース <br>

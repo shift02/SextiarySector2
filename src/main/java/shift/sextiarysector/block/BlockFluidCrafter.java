@@ -15,7 +15,7 @@ public class BlockFluidCrafter extends BlockContainer{
 		this.setHardness(0.4F);
 		this.setStepSound(soundTypeGlass);
 		this.setBlockBounds(4.0f/16.0f, 4.0f/16.0f, 4.0f/16.0f, 12.0f/16.0f, 12.0f/16.0f, 12.0f/16.0f);
-		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+		this.setCreativeTab(SextiarySectorAPI.TabSSFluid);
 	}
 
 	/*

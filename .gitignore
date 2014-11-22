@@ -4,6 +4,7 @@
 /api
 /build
 /src/api
+/src/main/java/tconstruct
 /*.exe
 /*.classpath
 /*.project

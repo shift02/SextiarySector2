@@ -5,6 +5,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class Config {
 
+	//Biome
+	public static int magicDesert;
+
+	//Player
+	public static boolean peacefulMoisture;
+	public static boolean peacefulStamina;
 
 	//Mod
 	public static boolean modDCsAppleMilk;
@@ -18,8 +24,11 @@ public class Config {
 		try {
 
 			cfg.load();
+			configForBiome(cfg);
 
-			ConfigForMCEconomy(cfg);
+			configForPlayer(cfg);
+
+			configForPlugin(cfg);
 
 		} catch (Exception e) {
 			//FMLLog.log(Level.SEVERE, "", e.getMessage());
@@ -29,7 +38,16 @@ public class Config {
 
 	}
 
-	public static void ConfigForMCEconomy(Configuration cfg) {
+	public static void configForBiome(Configuration cfg) {
+		magicDesert = cfg.getInt("MagicDesertID", "biome", 120, 0, 255, "");
+	}
+
+	public static void configForPlayer(Configuration cfg) {
+		peacefulMoisture = cfg.getBoolean("PeacefulMoisture", "player", false, "");
+		peacefulStamina = cfg.getBoolean("PeacefulStamina", "player", false, "");
+	}
+
+	public static void configForPlugin(Configuration cfg) {
 
 		modDCsAppleMilk = cfg.getBoolean("AppleMilk", "general", true, "");
 		modComputerCraft = cfg.getBoolean("ComputerCraft", "general", true, "");
