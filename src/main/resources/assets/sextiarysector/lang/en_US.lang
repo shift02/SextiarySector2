@@ -182,6 +182,10 @@ itemGroup.ss.agriculture=SextiarySector -Agriculture-
 itemGroup.ss.economy=SextiarySector -Economy-
 itemGroup.ss.magic=SextiarySector -Magic-
 
+#Player Tab
+player.tab.vanilla=Vanilla
+player.tab.equipment=Equipment
+
 #Achievement
 stat.sell=Sell
 

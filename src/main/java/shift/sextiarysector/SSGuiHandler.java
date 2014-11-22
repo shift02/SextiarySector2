@@ -42,7 +42,7 @@ public class SSGuiHandler implements IGuiHandler {
 			return null;
 		}*/
 
-
+		System.out.println("sss");
 		switch(ID){
 
 		case 0 : return new ContainerLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));
@@ -97,7 +97,7 @@ public class SSGuiHandler implements IGuiHandler {
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world,int x, int y, int z) {
 
-
+		System.out.println("aaa");
 		switch(ID){
 
 		case 0 : return new GuiLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));

@@ -23,6 +23,7 @@ import shift.sextiarysector.gui.GuiStatsNext;
 import shift.sextiarysector.item.TextureSeason;
 import shift.sextiarysector.module.FertilizerManager;
 import shift.sextiarysector.module.SeasonManager;
+import shift.sextiarysector.player.EquipmentType;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -102,6 +103,10 @@ public class ClientEventHandler {
     		itemGF = new IIcon[2];
     		itemGF[0] = event.map.registerIcon("sextiarysector:damage/damage_0");
     		itemGF[1] = event.map.registerIcon("sextiarysector:damage/damage_1");
+
+    		for(EquipmentType type :EquipmentType.values()){
+    			type.registerIcon(event.map);
+    		}
 
 
     	}else{

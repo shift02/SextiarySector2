@@ -16,7 +16,7 @@ import shift.sextiarysector.module.ModuleAchievement;
 import shift.sextiarysector.module.ModuleAgriculture;
 import shift.sextiarysector.module.ModuleChunkLoader;
 import shift.sextiarysector.module.ModuleSeason;
-import shift.sextiarysector.packet.PacketHandler;
+import shift.sextiarysector.packet.SSPacketHandler;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.plugin.SSPlugins;
 import shift.sextiarysector.proxy.CommonProxy;
@@ -54,7 +54,7 @@ public class SextiarySector {
 
     	Config.ConfigRead(event);
 
-    	PacketHandler.init(event);
+    	SSPacketHandler.init(event);
 
     	SextiarySector.proxy.setCustomRenderers();
 

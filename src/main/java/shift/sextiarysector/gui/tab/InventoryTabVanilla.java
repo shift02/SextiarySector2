@@ -20,4 +20,9 @@ public class InventoryTabVanilla extends AbstractTab {
 		TabManager.openInventoryGui();
 	}
 
+	@Override
+	public String getTabName() {
+		return "player.tab.vanilla";
+	}
+
 }
