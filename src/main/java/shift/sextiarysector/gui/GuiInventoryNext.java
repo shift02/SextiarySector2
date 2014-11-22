@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import shift.sextiarysector.SextiarySector;
+import shift.sextiarysector.SSPlayerTabs;
 import shift.sextiarysector.container.ContainerPlayerNext;
 import shift.sextiarysector.gui.tab.TabManager;
 
@@ -59,7 +59,7 @@ public class GuiInventoryNext extends InventoryEffectRenderer
 
         int cornerY = this.guiTop;
 
-        TabManager.updateTabValues(cornerX, cornerY,this.buttonList, SextiarySector.proxy.ss,false);
+        TabManager.updateTabValues(cornerX, cornerY,this.buttonList, SSPlayerTabs.ss,false);
 
     }
 

@@ -7,8 +7,8 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import shift.sextiarysector.api.IPlayerManager;
-import shift.sextiarysector.packet.SSPacketHandler;
 import shift.sextiarysector.packet.PacketPlayerData;
+import shift.sextiarysector.packet.SSPacketHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
@@ -159,7 +159,7 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 	@SubscribeEvent
 	public void onPlayerDropsEvent(PlayerDropsEvent event)
 	{
-		this.getCustomPlayerData(event.entityPlayer).getEquipmentStats().inventory.dropAllItems();
+		//this.getCustomPlayerData(event.entityPlayer).getEquipmentStats().inventory.dropAllItems();
 	}
 
 	private void oneton(){

@@ -114,6 +114,7 @@ public class SextiarySector {
 
     	SSVillages.initVillages();
 
+    	if(event.getSide().isClient())SSPlayerTabs.initRecipes();
 
     	SSPlugins.initModHelper();
 

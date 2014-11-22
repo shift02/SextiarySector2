@@ -10,4 +10,5 @@ public interface IEquipment {
 
 	boolean isItemValid(EquipmentType equipment, ItemStack stack);
 
+
 }

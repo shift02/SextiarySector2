@@ -3,6 +3,7 @@ package shift.sextiarysector.player;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.EnumDifficulty;
+import shift.sextiarysector.Config;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -58,7 +59,7 @@ public class StaminaStats {
             {
                 this.staminaSaturationLevel = Math.max(this.staminaSaturationLevel - 1.0F, 0.0F);
             }
-            else if (i.getDifficultyId() > 0)
+            else if (i.getDifficultyId() > 0 || Config.peacefulStamina)
             {
                 this.staminaLevel = Math.max(this.staminaLevel - 1, 0);
             }

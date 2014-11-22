@@ -2,7 +2,6 @@ package shift.sextiarysector.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import shift.sextiarysector.gui.tab.AbstractTab;
 
 public class CommonProxy {
 
@@ -25,7 +24,6 @@ public class CommonProxy {
 
 	public int farmlandType;
 
-	public AbstractTab ss;
 
 	public EntityPlayer getClientPlayer(){
 		return null;

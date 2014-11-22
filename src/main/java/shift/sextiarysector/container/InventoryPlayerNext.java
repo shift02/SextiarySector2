@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class InventoryPlayerNext implements IInventory{
 
-	ItemBox items = new ItemBox("Base", 20);
+	ItemBox items = new ItemBox("Base", 20, 1);
 	private EntityPlayer player;
 
 	public InventoryPlayerNext(EntityPlayer player) {

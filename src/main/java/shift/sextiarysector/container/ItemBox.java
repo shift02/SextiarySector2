@@ -12,7 +12,7 @@ public class ItemBox{
 
 	public ItemBox(String name,int size){
 
-		this(name,size,0);
+		this(name, size, 64);
 
 	}
 

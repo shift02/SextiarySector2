@@ -5,7 +5,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import shift.mceconomy2.packet.PacketHandler;
-import shift.sextiarysector.gui.tab.InventoryTabSS;
 import shift.sextiarysector.gui.tab.TabManager;
 import shift.sextiarysector.packet.PacketGuiId;
 import shift.sextiarysector.renderer.block.RendererBlockBottle;
@@ -132,8 +131,6 @@ public class ClientProxy extends CommonProxy{
         TabRegistry.registerTab(new InventoryTabSextiarysector());
         */
 		TabManager.initTabManager();
-		ss = new InventoryTabSS();
-		TabManager.registerTab(ss);
 		//TabManager.registerTab(new InventoryTabEquipment());
 		//TabManager.registerTab(new InventoryTabEquipment());
 		//TabManager.registerTab(new InventoryTabEquipment());

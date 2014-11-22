@@ -8,6 +8,10 @@ public class Config {
 	//Biome
 	public static int magicDesert;
 
+	//Player
+	public static boolean peacefulMoisture;
+	public static boolean peacefulStamina;
+
 	//Mod
 	public static boolean modDCsAppleMilk;
 	public static boolean modComputerCraft;
@@ -22,6 +26,8 @@ public class Config {
 			cfg.load();
 			configForBiome(cfg);
 
+			configForPlayer(cfg);
+
 			configForPlugin(cfg);
 
 		} catch (Exception e) {
@@ -34,6 +40,11 @@ public class Config {
 
 	public static void configForBiome(Configuration cfg) {
 		magicDesert = cfg.getInt("MagicDesertID", "biome", 120, 0, 255, "");
+	}
+
+	public static void configForPlayer(Configuration cfg) {
+		peacefulMoisture = cfg.getBoolean("PeacefulMoisture", "player", false, "");
+		peacefulStamina = cfg.getBoolean("PeacefulStamina", "player", false, "");
 	}
 
 	public static void configForPlugin(Configuration cfg) {

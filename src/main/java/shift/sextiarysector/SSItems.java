@@ -8,6 +8,7 @@ import shift.sextiarysector.item.ItemCalendar;
 import shift.sextiarysector.item.ItemCrop;
 import shift.sextiarysector.item.ItemFoodDrink;
 import shift.sextiarysector.item.ItemGearStorage;
+import shift.sextiarysector.item.ItemGuiUnit;
 import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
@@ -49,6 +50,9 @@ public class SSItems {
 	public static Item orichalcumGem;
 
 	public static Item blueStoneSlimeBall;
+
+	//unit
+	public static Item craftUnit;
 
 	//魔法
 	public static Item magicDust;
@@ -154,6 +158,10 @@ public class SSItems {
 
 		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
+
+		//Unit
+		craftUnit = new ItemGuiUnit(201).setUnlocalizedName("ss.craft_unit").setTextureName("sextiarysector:unit/craft_unit").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(craftUnit, "CraftUnit");
 
 		//魔法
 		magicDust = new Item().setUnlocalizedName("ss.magic_dust").setTextureName("sextiarysector:dust/magic_dust").setCreativeTab(SextiarySectorAPI.TabSSMagic);
