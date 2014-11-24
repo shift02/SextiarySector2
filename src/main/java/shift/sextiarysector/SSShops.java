@@ -31,29 +31,29 @@ public class SSShops {
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.craftUnit,1),50000));
 
 			if(i==0){
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.turnip,1),200));
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.cucumber,1),380));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.turnip,1),180));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.cucumber,1),360));
 			}
 
 			if(i==1){
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.onion,1),200));
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.tomato,1),200));
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.corn,1),800));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.onion,1),180));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.tomato,1),190));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.corn,1),740));
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.magicDust,4),500));
 			}
 
 			if(i==2){
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.eggplant,1),310));
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.sweetPotato,1),120));
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.greenPepper,1),340));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.eggplant,1),290));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.sweetPotato,1),110));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.greenPepper,1),320));
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.fluidCrafter,4,0),580));
 
 			}
 
 			if(i==3){
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.radish,1),180));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.radish,1),170));
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.stoneDust,4),500));
 			}
@@ -96,6 +96,7 @@ public class SSShops {
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.turnip,1,1), 2800);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.cucumber,1,1), 3500);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.ironTurnip,1,1), 3000);
+
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.onion), 320);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.tomato), 150);

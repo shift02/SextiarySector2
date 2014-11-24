@@ -10,6 +10,7 @@ import shift.sextiarysector.item.ItemFoodDrink;
 import shift.sextiarysector.item.ItemGearStorage;
 import shift.sextiarysector.item.ItemGuiUnit;
 import shift.sextiarysector.item.ItemHammer;
+import shift.sextiarysector.item.ItemKnife;
 import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
 import shift.sextiarysector.item.ItemShiftHat;
@@ -73,6 +74,12 @@ public class SSItems {
 	public static Item ironScoop;
 	public static Item goldScoop;
 	public static Item diamondScoop;
+
+	public static Item woodKnife;
+	public static Item stoneKnife;
+	public static Item ironKnife;
+	public static Item goldKnife;
+	public static Item diamondKnife;
 
 	public static Item woodWateringCan;
 
@@ -196,6 +203,17 @@ public class SSItems {
 		GameRegistry.registerItem(ironScoop, "IronScoop");
 		GameRegistry.registerItem(goldScoop, "GoldScoop");
 		GameRegistry.registerItem(diamondScoop, "DiamondScoop");
+
+		woodKnife = new ItemKnife(ToolMaterial.WOOD).setUnlocalizedName("ss.wood_knife").setTextureName("wood_knife");
+		stoneKnife = new ItemKnife(ToolMaterial.STONE).setUnlocalizedName("ss.stone_knife").setTextureName("stone_knife");
+		ironKnife = new ItemKnife(ToolMaterial.IRON).setUnlocalizedName("ss.iron_knife").setTextureName("iron_knife");
+		goldKnife = new ItemKnife(ToolMaterial.GOLD).setUnlocalizedName("ss.gold_knife").setTextureName("gold_knife");
+		diamondKnife = new ItemKnife(ToolMaterial.EMERALD).setUnlocalizedName("ss.diamond_knife").setTextureName("diamond_knife");
+		GameRegistry.registerItem(woodKnife, "WoodKnife");
+		GameRegistry.registerItem(stoneKnife, "StoneKnife");
+		GameRegistry.registerItem(ironKnife, "IronKnife");
+		GameRegistry.registerItem(goldKnife, "GoldKnife");
+		GameRegistry.registerItem(diamondKnife, "DiamondKnife");
 
 		woodWateringCan = new ItemWateringCan(ToolMaterial.WOOD).setUnlocalizedName("ss.wood_watering_can").setTextureName("wood_watering_can");
 		GameRegistry.registerItem(woodWateringCan, "WoodWateringCan");
