@@ -30,6 +30,7 @@ import shift.sextiarysector.block.BlockShippingBox;
 import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.block.BlockWindmill;
+import shift.sextiarysector.block.BlockWoodHopper;
 import shift.sextiarysector.item.ItemBlockBottle;
 import shift.sextiarysector.item.ItemBlockCrop;
 import shift.sextiarysector.item.ItemBlockFluidCrafter;
@@ -64,6 +65,8 @@ public class SSBlocks {
 
 	public static Block bottle;
 	public static Block fluidCrafter;
+
+	public static Block woodHopper;
 
 	public static Block woodShaft;
 	public static Block stoneShaft;
@@ -150,6 +153,9 @@ public class SSBlocks {
 
 		hole = new BlockHole().setBlockName("ss.hole").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(hole, "Hole");
+
+		woodHopper = new BlockWoodHopper().setBlockName("ss.wood_hopper").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(woodHopper, "WoodHopper");
 
 		woodGrate = (new BlockSSPane(ID+":wood_grate", ID+":wood_grate", Material.wood, false,0)).setHardness(0.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodGrate, "WoodGrate");

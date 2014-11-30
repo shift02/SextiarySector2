@@ -26,6 +26,7 @@ public class RecipesMachine {
 
         Object[] material = new Object[]{"plankWood","stone"};
         Item[] gear = new Item[]{SSItems.woodGear,SSItems.stoneGear};
+        String[] gearOre = new String[]{"gearWood","gearStone"};
 		Item[] unit = new Item[]{SSItems.woodUnitGear,SSItems.stoneUnitGear};
 		Block[] shaft = new Block[]{SSBlocks.woodShaft, SSBlocks.stoneShaft};
 		Block[] tank = new Block[]{SSBlocks.woodGFTank, SSBlocks.stoneGFTank};
@@ -65,13 +66,13 @@ public class RecipesMachine {
     			Character.valueOf('y'), material[i],
     			Character.valueOf('x'), SSItems.woodGFStorage,
     			Character.valueOf('z'), unit[i],
-    			Character.valueOf('a'), gear[i]
+    			Character.valueOf('a'), gearOre[i]
     			}));
 
             p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(box[i], 1),
     				new Object[] { "yxy", "xzx","yxy",
     			Character.valueOf('y'), material[i],
-    			Character.valueOf('x'), gear[i],
+    			Character.valueOf('x'), gearOre[i],
     			Character.valueOf('z'), unit[i]
     			}));
 
@@ -118,7 +119,7 @@ public class RecipesMachine {
 	        p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(unit[i], 1),
 					new Object[] {
 				SSItems.unit,
-				gear[i]
+				gearOre[i]
 				}));
 
 		}

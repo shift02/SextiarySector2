@@ -9,6 +9,14 @@ public class SSOreDictionary {
 
 		OreDictionary.registerOre("craftingSugar", Items.sugar);
 
+
+		//素材 プレート
+		OreDictionary.registerOre("plateWood", SSBlocks.woodPlate);
+
+
+		OreDictionary.registerOre("gearWood", SSItems.woodGear);
+		OreDictionary.registerOre("gearStone", SSItems.stoneGear);
+
 	}
 
 }
