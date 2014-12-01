@@ -91,7 +91,8 @@ public class SextiarySector {
     	((ArrayList) cc).add(ITileEntityProvider.class);
     	ExtendedClassSupport.loadAndGenerateNewExtendedClass(BlockCauldron.class, Block.class, BlockSSCauldron.class, ITileEntityProvider.class, cc);
     	*/
-
+    	SSPlugins.initModHelper();
+    	SSPlugins.prePlugins(event);
 
 	}
 
