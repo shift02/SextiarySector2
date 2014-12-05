@@ -22,6 +22,17 @@ public class RecipesTool {
 					}));
 		}
 
+		//Knife
+		Item[] knife = new Item[]{SSItems.woodKnife,SSItems.stoneKnife,SSItems.ironKnife,SSItems.goldKnife,SSItems.diamondKnife};
+		for(int i = 0;i<material.length;i++){
+			 p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(knife[i], 1),
+						new Object[] { " y","x ",
+					Character.valueOf('y'), material[i],
+					Character.valueOf('x'), "stickWood",
+					}));
+		}
+
+
 		Item[] wateringCan = new Item[]{SSItems.woodWateringCan};
 		for(int i = 0;i<wateringCan.length;i++){
 

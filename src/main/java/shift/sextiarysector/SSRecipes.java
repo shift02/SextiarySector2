@@ -7,6 +7,7 @@ import shift.sextiarysector.recipe.RecipeSimpleFuel;
 import shift.sextiarysector.recipe.RecipeSimpleMachine;
 import shift.sextiarysector.recipe.RecipesCore;
 import shift.sextiarysector.recipe.RecipesFluidFurnace;
+import shift.sextiarysector.recipe.RecipesFurnace;
 import shift.sextiarysector.recipe.RecipesFurnaceCraft;
 import shift.sextiarysector.recipe.RecipesLoom;
 import shift.sextiarysector.recipe.RecipesMachine;
@@ -45,6 +46,7 @@ public class SSRecipes {
 
 		CraftingManager m = CraftingManager.getInstance();
 
+		RecipesFurnace.addRecipes();
 
 		RecipesNormalBlock.addRecipes(m);
 		RecipesMachine.addRecipes(m);
