@@ -22,6 +22,7 @@ tile.ss.chunk_loader.name=Time Loader
 
 tile.ss.small_windmill.name=Small Windmill
 tile.ss.windmill.name=Windmill
+tile.ss.small_waterwheel.name=Small Waterwheel
 
 tile.ss.wood_shaft.name=Wood Shaft
 tile.ss.stone_shaft.name=Stone Shaft

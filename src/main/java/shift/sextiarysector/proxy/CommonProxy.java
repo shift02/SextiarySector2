@@ -19,6 +19,7 @@ public class CommonProxy {
 
 	public int smallWindMillType;
 	public int windMillType;
+	public int smallWaterwheel;
 
 	public int monitorType;
 

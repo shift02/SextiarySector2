@@ -12,8 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.renderer.model.ModelSmallWaterwheel;
-import shift.sextiarysector.renderer.model.ModelsmallWindMill;
-import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
+import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
@@ -41,7 +40,7 @@ public class RendererSmallWaterwheel  extends TileEntitySpecialRenderer  impleme
         GL11.glRotatef(90, 0, -1, 0);
         this.bind(windmillTextures);
 
-        ((ModelsmallWindMill) modelWaterwheel).renderinOut(null, 0,0,0, 0,0, 1.0f);
+        ((ModelSmallWaterwheel) modelWaterwheel).renderinOut(null, 0,0,0, 0,0, 1.0f);
 
         GL11.glRotatef(-(FMLClientHandler.instance().getClient().getMinecraft().getSystemTime()/50)%360, 0, 0, 1);
 
@@ -53,24 +52,26 @@ public class RendererSmallWaterwheel  extends TileEntitySpecialRenderer  impleme
         this.bind(MC_BLOCK_SHEET);
 
 	}
+
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-			RenderBlocks renderer) {
-		// TODO 自動生成されたメソッド・スタブ
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,RenderBlocks renderer) {
 		return false;
 	}
+
 	@Override
 	public boolean shouldRender3DInInventory(int modelId) {
 		return true;
 	}
+
 	@Override
 	public int getRenderId() {
-		return SextiarySector.proxy.smallWindMillType;
+		return SextiarySector.proxy.smallWaterwheel;
 	}
+
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {
 
-		TileEntitySmallWindmill tile = (TileEntitySmallWindmill)tileentity;
+		TileEntitySmallWaterwheel tile = (TileEntitySmallWaterwheel)tileentity;
 
 		//System.out.println("renderTileEntityAt");
 
@@ -103,7 +104,7 @@ public class RendererSmallWaterwheel  extends TileEntitySpecialRenderer  impleme
         this.bindTexture(windmillTextures);
 
 
-        ((ModelsmallWindMill) modelWaterwheel).renderinOut(null, 0,0,0, 0,0, 1.0f);
+        ((ModelSmallWaterwheel) modelWaterwheel).renderinOut(null, 0,0,0, 0,0, 1.0f);
         //傾きのスピード
         GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
 
