@@ -28,6 +28,7 @@ import shift.sextiarysector.block.BlockSSPane;
 import shift.sextiarysector.block.BlockShaft;
 import shift.sextiarysector.block.BlockShippingBox;
 import shift.sextiarysector.block.BlockSimpleMachine;
+import shift.sextiarysector.block.BlockSmallWaterwheel;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.block.BlockWindmill;
 import shift.sextiarysector.block.BlockWoodHopper;
@@ -51,6 +52,7 @@ import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import shift.sextiarysector.tileentity.TileEntityShaft;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
+import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -82,6 +84,7 @@ public class SSBlocks {
 
 	public static Block smallWindmill;
 	public static Block windmill;
+	public static Block smallWaterwheel;
 
 	public static Block millstone;
 	public static Block loom;
@@ -224,6 +227,10 @@ public class SSBlocks {
 		windmill = new BlockWindmill().setBlockName("ss.windmill").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerTileEntity(TileEntityWindmill.class, "Windmill");
 		GameRegistry.registerBlock(windmill, "Windmill");
+
+		smallWaterwheel = new BlockSmallWaterwheel().setBlockName("ss.small_waterwheel").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerTileEntity(TileEntitySmallWaterwheel.class, "SmallWaterwheel");
+		GameRegistry.registerBlock(smallWaterwheel, "SmallWaterwheel");
 
 		GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "SimpleMachine");
 		millstone = new BlockSimpleMachine("millstone",20,SSRecipes.millstone,1).setBlockName("ss.millstone").setCreativeTab(SextiarySectorAPI.TabSSMachine);
