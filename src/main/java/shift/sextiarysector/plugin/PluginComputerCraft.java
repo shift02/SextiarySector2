@@ -9,6 +9,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import dan200.computercraft.api.ComputerCraftAPI;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.turtle.ITurtleAccess;
@@ -18,11 +21,24 @@ import dan200.computercraft.api.turtle.TurtleSide;
 import dan200.computercraft.api.turtle.TurtleUpgradeType;
 import dan200.computercraft.api.turtle.TurtleVerb;
 
-public class PluginComputerCraft{
+public class PluginComputerCraft  implements IPlugin{
 
-	public static void initPlugin(){
+	@Override
+	public void prePlugin(FMLPreInitializationEvent event) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
+	@Override
+	public void initPlugin(FMLInitializationEvent event) {
 
 		ComputerCraftAPI.registerTurtleUpgrade(new TurtleGearTool(420,new ItemStack(SSItems.woodGear,1)));
+
+	}
+
+	@Override
+	public void postPlugin(FMLPostInitializationEvent event) {
+		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
@@ -144,5 +160,11 @@ public class PluginComputerCraft{
 		}
 
 	}
+
+	@Override
+	public String getModName() {
+		return "ComputerCraft";
+	}
+
 
 }

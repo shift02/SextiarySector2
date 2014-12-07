@@ -38,6 +38,12 @@ public class RecipesFurnaceCraft {
 			Items.slime_ball
 			}));
 
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.steelIngot, 1),
+				new Object[] {
+			"dustCoal",
+			"dustIron"
+			}));
+
 		p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.unit, 1),
 				new Object[] { "xxx", "xyx","xxx",
 			Character.valueOf('y'), SSItems.blueStoneSlimeBall,
@@ -50,6 +56,8 @@ public class RecipesFurnaceCraft {
 			Character.valueOf('x'), "ingotIron",
 			Character.valueOf('y'), "stickWood",
 			}));
+
+
 
         //液体カマド
         p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.fluidFurnace, 1),

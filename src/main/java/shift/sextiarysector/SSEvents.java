@@ -26,6 +26,8 @@ public class SSEvents {
     	if(event.getSide().isClient())MinecraftForge.EVENT_BUS.register(new TabManager());
     	MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
 
+    	//MinecraftForge.EVENT_BUS.register(new SantaEventHandler());
+
 	}
 
 }

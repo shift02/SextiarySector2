@@ -28,8 +28,10 @@ import shift.sextiarysector.block.BlockSSPane;
 import shift.sextiarysector.block.BlockShaft;
 import shift.sextiarysector.block.BlockShippingBox;
 import shift.sextiarysector.block.BlockSimpleMachine;
+import shift.sextiarysector.block.BlockSmallWaterwheel;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.block.BlockWindmill;
+import shift.sextiarysector.block.BlockWoodHopper;
 import shift.sextiarysector.item.ItemBlockBottle;
 import shift.sextiarysector.item.ItemBlockCrop;
 import shift.sextiarysector.item.ItemBlockFluidCrafter;
@@ -50,6 +52,7 @@ import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import shift.sextiarysector.tileentity.TileEntityShaft;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
+import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -65,25 +68,33 @@ public class SSBlocks {
 	public static Block bottle;
 	public static Block fluidCrafter;
 
+	public static Block woodHopper;
+
+	//GF
 	public static Block woodShaft;
 	public static Block stoneShaft;
-
+	public static Block steelShaft;
 
 	public static Block woodGearBox;
 	public static Block stoneGearBox;
+	public static Block steelGearBox;
 
 	public static Block woodGFTank;
 	public static Block stoneGFTank;
+	public static Block steelGFTank;
 
 	public static Block woodStoneGearShaft;
 
 	public static Block smallWindmill;
 	public static Block windmill;
+	public static Block smallWaterwheel;
 
 	public static Block millstone;
 	public static Block loom;
 
 	public static Block sawmill;
+
+	public static Block pulverizer;
 
 
 	public static Block hole;
@@ -151,6 +162,9 @@ public class SSBlocks {
 		hole = new BlockHole().setBlockName("ss.hole").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(hole, "Hole");
 
+		woodHopper = new BlockWoodHopper().setBlockName("ss.wood_hopper").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(woodHopper, "WoodHopper");
+
 		woodGrate = (new BlockSSPane(ID+":wood_grate", ID+":wood_grate", Material.wood, false,0)).setHardness(0.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodGrate, "WoodGrate");
 
@@ -191,6 +205,10 @@ public class SSBlocks {
 		stoneShaft = new BlockShaft(2).setBlockName("ss.stone_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeStone);
 		GameRegistry.registerBlock(stoneShaft,ItemBlockShaft.class, "StoneShaft");
 
+		steelShaft = new BlockShaft(3).setBlockName("ss.steel_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeMetal);
+		GameRegistry.registerBlock(steelShaft,ItemBlockShaft.class, "SteelShaft");
+
+
 		GameRegistry.registerTileEntity(TileEntityGearBox.class, "GearBox");
 		woodGearBox = new BlockGearBox(Material.wood,1).setBlockName("ss.wood_gear_box").setBlockTextureName("sextiarysector:machine/wood_gear_box").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(woodGearBox, "WoodGearBox");
@@ -198,13 +216,19 @@ public class SSBlocks {
 		stoneGearBox = new BlockGearBox(Material.rock,2).setBlockName("ss.stone_gear_box").setBlockTextureName("sextiarysector:machine/stone_gear_box").setStepSound(Block.soundTypeStone);
 		GameRegistry.registerBlock(stoneGearBox, "StoneGearBox");
 
+		steelGearBox = new BlockGearBox(Material.iron,3).setBlockName("ss.steel_gear_box").setBlockTextureName("sextiarysector:machine/steel_gear_box").setStepSound(Block.soundTypeMetal);
+		GameRegistry.registerBlock(steelGearBox, "SteelGearBox");
+
 
 		GameRegistry.registerTileEntity(TileEntityGFTank.class, "GFTank");
-		woodGFTank = new BlockGFTank(Material.wood,40,1).setBlockName("ss.wood_gf_tank").setBlockTextureName("sextiarysector:machine/wood_gf_tank").setStepSound(Block.soundTypeWood);
+		woodGFTank = new BlockGFTank(Material.wood,50,1).setBlockName("ss.wood_gf_tank").setBlockTextureName("sextiarysector:machine/wood_gf_tank").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(woodGFTank, "WoodGFTank");
 
-		stoneGFTank = new BlockGFTank(Material.rock,41,2).setBlockName("ss.stone_gf_tank").setBlockTextureName("sextiarysector:machine/stone_gf_tank").setStepSound(Block.soundTypeWood);
+		stoneGFTank = new BlockGFTank(Material.rock,51,2).setBlockName("ss.stone_gf_tank").setBlockTextureName("sextiarysector:machine/stone_gf_tank").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(stoneGFTank, "StoneGFTank");
+
+		steelGFTank = new BlockGFTank(Material.iron,52,3).setBlockName("ss.steel_gf_tank").setBlockTextureName("sextiarysector:machine/steel_gf_tank").setStepSound(Block.soundTypeMetal);
+		GameRegistry.registerBlock(steelGFTank, "SteelGFTank");
 
 
 		GameRegistry.registerTileEntity(TileEntityGearShaft.class, "GearShaft");
@@ -219,6 +243,10 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntityWindmill.class, "Windmill");
 		GameRegistry.registerBlock(windmill, "Windmill");
 
+		smallWaterwheel = new BlockSmallWaterwheel().setBlockName("ss.small_waterwheel").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerTileEntity(TileEntitySmallWaterwheel.class, "SmallWaterwheel");
+		GameRegistry.registerBlock(smallWaterwheel, "SmallWaterwheel");
+
 		GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "SimpleMachine");
 		millstone = new BlockSimpleMachine("millstone",20,SSRecipes.millstone,1).setBlockName("ss.millstone").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerBlock(millstone, "Millstone");
@@ -228,6 +256,10 @@ public class SSBlocks {
 
 		sawmill = new BlockSimpleMachine("sawmill",25,SSRecipes.sawmill,2).setBlockName("ss.sawmill").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerBlock(sawmill, "Sawmill");
+
+		pulverizer = new BlockSimpleMachine("pulverizer",30,SSRecipes.pulverizer,3).setBlockName("ss.pulverizer").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerBlock(pulverizer, "Pulverizer");
+
 
 		shippingBox = new BlockShippingBox().setBlockName("ss.shipping_box").setBlockTextureName("sextiarysector:shipping_box").setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(shippingBox, "ShippingBox");
