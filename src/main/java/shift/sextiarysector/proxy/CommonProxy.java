@@ -11,12 +11,15 @@ public class CommonProxy {
 
 	public int fluidCrafterType;
 
+	public int woodHopperType;
+
 	public int ShaftRenderType;
 
 	public int GearShaftRenderType;
 
 	public int smallWindMillType;
 	public int windMillType;
+	public int smallWaterwheel;
 
 	public int monitorType;
 

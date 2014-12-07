@@ -26,10 +26,11 @@ public class ItemScoop extends ItemTool{
     {
     	super(1.0F, p_i45343_1_, field_150916_c);
     	int i = p_i45343_1_.getHarvestLevel();
+    	this.setHarvestLevel("scoop", i);
     	if(i==0){
-    		this.setHarvestLevel("scoop", 0);
+    		this.setHarvestLevel("shovel", 0);
     	}else{
-    		this.setHarvestLevel("scoop", i-1);
+    		this.setHarvestLevel("shovel", i-1);
     	}
         this.setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
     }

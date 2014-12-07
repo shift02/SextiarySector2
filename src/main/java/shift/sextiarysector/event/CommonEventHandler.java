@@ -1,5 +1,8 @@
 package shift.sextiarysector.event;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -8,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -18,6 +22,7 @@ import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.event.BlockBottleEvent;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
+import shift.sextiarysector.item.ItemKnife;
 import shift.sextiarysector.module.ModuleAchievement;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -161,5 +166,50 @@ public class CommonEventHandler {
 		}
 
 	}
+
+	@SubscribeEvent
+    public void onLivingDrops(LivingDropsEvent event)
+    {
+
+		if (event.source.getSourceOfDamage() == null || event.source.getEntity() == null) {
+			return;
+		}
+
+		Entity entity = event.source.getEntity();
+
+		if (entity instanceof EntityPlayer)
+        {
+			EntityPlayer p = (EntityPlayer)entity;
+
+			ItemStack item = p.getCurrentEquippedItem();
+
+			if(item == null){
+				return;
+			}
+
+			if(item.getItem() instanceof ItemKnife){
+
+				double x = event.entityLiving.posX;
+				double y = event.entityLiving.posY;
+				double z = event.entityLiving.posZ;
+
+				if(event.entityLiving instanceof EntityCreeper){
+					event.drops.add(new EntityItem(event.entityLiving.worldObj, x, y, z, new ItemStack(Items.skull, 1, 4)));
+				}
+
+			}
+
+
+        }
+
+    }
+
+
+
+
+
+
+
+
 
 }

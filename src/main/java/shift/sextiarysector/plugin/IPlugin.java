@@ -1,11 +1,17 @@
 package shift.sextiarysector.plugin;
 
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+
 public interface IPlugin {
 
-	public void prePlugin();
+	public String getModName();
 
-	public void initPlugin();
+	public void prePlugin(FMLPreInitializationEvent event);
 
-	public void postPlugin();
+	public void initPlugin(FMLInitializationEvent event);
+
+	public void postPlugin(FMLPostInitializationEvent event);
 
 }

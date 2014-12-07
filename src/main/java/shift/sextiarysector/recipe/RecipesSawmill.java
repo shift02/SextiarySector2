@@ -10,7 +10,7 @@ public class RecipesSawmill {
     {
 
 		//
-		recipe.add(new ItemStack(Blocks.planks,1),new ItemStack(SSBlocks.woodPlate, 8));
+		recipe.add(new ItemStack(Blocks.planks,1),new ItemStack(SSBlocks.woodPlate, 4));
 
 
     }

@@ -32,7 +32,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	//public static final String MODID = "SextiarySector";
-    public static final String VERSION = "2.0.8";
+    public static final String VERSION = "2.0.9";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
@@ -91,7 +91,8 @@ public class SextiarySector {
     	((ArrayList) cc).add(ITileEntityProvider.class);
     	ExtendedClassSupport.loadAndGenerateNewExtendedClass(BlockCauldron.class, Block.class, BlockSSCauldron.class, ITileEntityProvider.class, cc);
     	*/
-
+    	SSPlugins.initModHelper();
+    	SSPlugins.prePlugins(event);
 
 	}
 
