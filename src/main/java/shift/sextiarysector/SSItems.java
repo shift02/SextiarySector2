@@ -24,11 +24,15 @@ public class SSItems {
 
 	public static Item woodGear;
 	public static Item stoneGear;
+	public static Item steelGear;
 
 	public static Item woodUnitGear;
 	public static Item stoneUnitGear;
+	public static Item steelUnitGear;
 
 	public static Item woodGFStorage;
+	public static Item stoneGFStorage;
+	public static Item steelGFStorage;
 
 	public static Item hammer;
 
@@ -46,6 +50,8 @@ public class SSItems {
 	public static Item coalDust;
 	public static Item ironDust;
 	public static Item goldDust;
+
+	public static Item steelIngot;
 
 	public static Item mithrilIngot;
 	public static Item orichalcumGem;
@@ -117,14 +123,26 @@ public class SSItems {
 		stoneGear = new Item().setUnlocalizedName("ss.stone_gear").setTextureName("sextiarysector:machine/stone_gear").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerItem(stoneGear, "StoneGear");
 
+		steelGear = new Item().setUnlocalizedName("ss.steel_gear").setTextureName("sextiarysector:machine/steel_gear").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerItem(steelGear, "SteelGear");
+
 		woodUnitGear = new Item().setUnlocalizedName("ss.wood_unit_gear").setTextureName("sextiarysector:machine/wood_unit_gear").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerItem(woodUnitGear, "WoodUnitGear");
 
 		stoneUnitGear = new Item().setUnlocalizedName("ss.stone_unit_gear").setTextureName("sextiarysector:machine/stone_unit_gear").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerItem(stoneUnitGear, "StoneUnitGear");
 
-		woodGFStorage = new ItemGearStorage(1, 10000, 1).setUnlocalizedName("ss.wood_gf_storage").setTextureName("sextiarysector:gearforce/gear_storage").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		steelUnitGear = new Item().setUnlocalizedName("ss.steel_unit_gear").setTextureName("sextiarysector:machine/steel_unit_gear").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerItem(steelUnitGear, "steelUnitGear");
+
+		woodGFStorage = new ItemGearStorage(1, 10000, 1).setUnlocalizedName("ss.wood_gf_storage").setTextureName("sextiarysector:gearforce/wood_gear_storage").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerItem(woodGFStorage, "WoodGFStorage");
+
+		stoneGFStorage = new ItemGearStorage(2, 10000, 2).setUnlocalizedName("ss.stone_gf_storage").setTextureName("sextiarysector:gearforce/stone_gear_storage").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerItem(stoneGFStorage, "StoneGFStorage");
+
+		steelGFStorage = new ItemGearStorage(3, 10000, 3).setUnlocalizedName("ss.steel_gf_storage").setTextureName("sextiarysector:gearforce/steel_gear_storage").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		GameRegistry.registerItem(steelGFStorage, "SteelGFStorage");
 
 		hammer = new ItemHammer().setUnlocalizedName("ss.hammer").setTextureName("sextiarysector:machine/hammer").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerItem(hammer, "Hammer");
@@ -156,6 +174,9 @@ public class SSItems {
 
 		goldDust = new Item().setUnlocalizedName("ss.gold_dust").setTextureName("sextiarysector:dust/gold_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(goldDust, "GoldDust");
+
+		steelIngot = new Item().setUnlocalizedName("ss.steel_ingot").setTextureName("sextiarysector:ingot/steel_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(steelIngot, "SteelIngot");
 
 		mithrilIngot = new Item().setUnlocalizedName("ss.mithril_ingot").setTextureName("sextiarysector:ingot/mithril_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(mithrilIngot, "MithrilIngot");
