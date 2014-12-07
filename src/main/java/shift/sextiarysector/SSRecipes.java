@@ -15,6 +15,7 @@ import shift.sextiarysector.recipe.RecipesMagicFuel;
 import shift.sextiarysector.recipe.RecipesMagicFurnace;
 import shift.sextiarysector.recipe.RecipesMillstone;
 import shift.sextiarysector.recipe.RecipesNormalBlock;
+import shift.sextiarysector.recipe.RecipesPulverizer;
 import shift.sextiarysector.recipe.RecipesSawmill;
 import shift.sextiarysector.recipe.RecipesTool;
 
@@ -28,6 +29,7 @@ public class SSRecipes {
 	public static RecipeSimpleMachine millstone;
 	public static RecipeSimpleMachine loom;
 	public static RecipeSimpleMachine sawmill;
+	public static RecipeSimpleMachine pulverizer;
 
 	public static void initRecipeLists(){
 
@@ -39,7 +41,7 @@ public class SSRecipes {
 		millstone = new RecipeSimpleMachine();
 		loom = new RecipeSimpleMachine();
 		sawmill = new RecipeSimpleMachine();
-
+		pulverizer = new RecipeSimpleMachine();
 	}
 
 	public static void initRecipes(){
@@ -68,6 +70,8 @@ public class SSRecipes {
 		RecipesLoom.addRecipes(loom);
 
 		RecipesSawmill.addRecipes(sawmill);
+
+		RecipesPulverizer.addRecipes(pulverizer);
 
 	}
 

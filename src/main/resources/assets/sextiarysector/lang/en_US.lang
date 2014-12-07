@@ -20,24 +20,29 @@ tile.ss.wood_hopper.name=Wood Hopper
 
 tile.ss.chunk_loader.name=Time Loader
 
+
 tile.ss.small_windmill.name=Small Windmill
 tile.ss.windmill.name=Windmill
 tile.ss.small_waterwheel.name=Small Waterwheel
 
 tile.ss.wood_shaft.name=Wood Shaft
 tile.ss.stone_shaft.name=Stone Shaft
+tile.ss.steel_shaft.name=Steel Shaft
 
 tile.ss.wood_gear_box.name=Wood Gear Box
 tile.ss.stone_gear_box.name=Stone Gear Box
+tile.ss.steel_gear_box.name=Steel Gear Box
 
 tile.ss.wood_gf_tank.name=Wood GF Tank
 tile.ss.stone_gf_tank.name=Stone GF Tank
+tile.ss.steel_gf_tank.name=Steel GF Tank
 
 tile.ss.wood_stone_gear_shaft.name=Wood Stone Gear Shaft
 
 tile.ss.millstone.name=Millstone
 tile.ss.loom.name=Loom
 tile.ss.sawmill.name=Sawmill
+tile.ss.pulverizer.name=Pulverizer
 
 tile.ss.blue_stone.name=Blue Stone Ore
 tile.ss.yellow_stone.name=Yellow Stone Ore
@@ -82,6 +87,8 @@ item.ss.coal_dust.name=Coal Dust
 item.ss.iron_dust.name=Iron Dust
 item.ss.gold_dust.name=Gold Dust
 
+item.ss.steel_ingot.name=Steel Ingot
+
 item.ss.mithril_ingot.name=Mithril Ingot
 item.ss.orichalcum_gem.name=Orichalcum
 
@@ -96,9 +103,11 @@ item.ss.unit.name=Unit
 
 item.ss.wood_gear.name=Wood Gear
 item.ss.stone_gear.name=Stone Gear
+item.ss.steel_gear.name=Steel Gear
 
 item.ss.wood_unit_gear.name=Wood Unit Gear
 item.ss.stone_unit_gear.name=Stone Unit Gear
+item.ss.steel_unit_gear.name=Steel Unit Gear
 
 item.ss.hammer.name=Hammer
 item.ss.calendar.name=Calendar
@@ -111,6 +120,8 @@ item.ss.season_stone_autumn.name=Season Stone -Autumn-
 item.ss.season_stone_winter.name=Season Stone -Winter-
 
 item.ss.wood_gf_storage.name=Wood GF Storage
+item.ss.stone_gf_storage.name=Stone GF Storage
+item.ss.steel_gf_storage.name=Steel GF Storage
 
 item.ss.string_bobbin.name=String Bobbin
 item.ss.cloth.name=Cloth
@@ -168,9 +179,11 @@ gui.ss.magic_furnace=Magic Furnace
 gui.ss.millstone=Millstone
 gui.ss.loom=Loom
 gui.ss.sawmill=Sawmill
+gui.ss.pulverizer=Pulverizer
 
 gui.ss.gf_tank_1=Wood GF Tank
 gui.ss.gf_tank_2=Stone GF Tank
+gui.ss.gf_tank_3=Steel GF Tank
 
 shop.ss.creeper=Simple Creeper Shop
 shop.ss.robot=Blue Robot Shop
@@ -226,5 +239,6 @@ nei.ss.magic_fuel=Magic Fuel
 nei.ss.millstone=Millstone Recipe
 nei.ss.loom=Loom Recipe
 nei.ss.sawmill=Sawmill Recipe
+nei.ss.pulverizer=Pulverizer Recipe
 
 nei.ss.fertilizer=Mutation Recipe

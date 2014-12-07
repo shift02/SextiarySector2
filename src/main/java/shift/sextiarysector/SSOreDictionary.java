@@ -14,9 +14,13 @@ public class SSOreDictionary {
 
 		OreDictionary.registerOre("gearWood", SSItems.woodGear);
 		OreDictionary.registerOre("gearStone", SSItems.stoneGear);
+		OreDictionary.registerOre("gearSteel", SSItems.steelGear);
 
+		OreDictionary.registerOre("dustCoal", SSItems.coalDust);
 		OreDictionary.registerOre("dustIron", SSItems.ironDust);
 		OreDictionary.registerOre("dustGold", SSItems.goldDust);
+
+		OreDictionary.registerOre("ingotSteel", SSItems.steelIngot);
 
 	}
 
