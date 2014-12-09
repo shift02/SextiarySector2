@@ -37,7 +37,7 @@ import shift.sextiarysector.item.ItemBlockCrop;
 import shift.sextiarysector.item.ItemBlockFluidCrafter;
 import shift.sextiarysector.item.ItemBlockGearShaft;
 import shift.sextiarysector.item.ItemBlockMonitor;
-import shift.sextiarysector.item.ItemBlockShaft;
+import shift.sextiarysector.item.ItemBlockDirection;
 import shift.sextiarysector.tileentity.TileEntityBlockBottle;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
@@ -200,13 +200,13 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntityShaft.class, "Shaft");
 
 		woodShaft = new BlockShaft(1).setBlockName("ss.wood_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
-		GameRegistry.registerBlock(woodShaft,ItemBlockShaft.class, "WoodShaft");
+		GameRegistry.registerBlock(woodShaft,ItemBlockDirection.class, "WoodShaft");
 
 		stoneShaft = new BlockShaft(2).setBlockName("ss.stone_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeStone);
-		GameRegistry.registerBlock(stoneShaft,ItemBlockShaft.class, "StoneShaft");
+		GameRegistry.registerBlock(stoneShaft,ItemBlockDirection.class, "StoneShaft");
 
 		steelShaft = new BlockShaft(3).setBlockName("ss.steel_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeMetal);
-		GameRegistry.registerBlock(steelShaft,ItemBlockShaft.class, "SteelShaft");
+		GameRegistry.registerBlock(steelShaft,ItemBlockDirection.class, "SteelShaft");
 
 
 		GameRegistry.registerTileEntity(TileEntityGearBox.class, "GearBox");
