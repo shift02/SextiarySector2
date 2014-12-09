@@ -2,6 +2,7 @@ package shift.sextiarysector.proxy;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class CommonProxy {
 
@@ -44,6 +45,11 @@ public class CommonProxy {
 	}
 
 	public void registerInventoryTabs()
+    {
+
+    }
+
+	public void setPluginCustomRenderers(FMLPreInitializationEvent event)
     {
 
     }

@@ -8,6 +8,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class PluginTHKaguya implements IPlugin{
 
@@ -36,6 +38,13 @@ public class PluginTHKaguya implements IPlugin{
 	@Override
 	public String getModName() {
 		return "THKaguya";
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void preClientPlugin(FMLPreInitializationEvent event) {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 
 }

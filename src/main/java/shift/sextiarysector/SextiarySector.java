@@ -92,6 +92,9 @@ public class SextiarySector {
     	ExtendedClassSupport.loadAndGenerateNewExtendedClass(BlockCauldron.class, Block.class, BlockSSCauldron.class, ITileEntityProvider.class, cc);
     	*/
     	SSPlugins.initModHelper();
+
+    	proxy.setPluginCustomRenderers(event);
+
     	SSPlugins.prePlugins(event);
 
 	}
@@ -117,7 +120,7 @@ public class SextiarySector {
 
     	if(event.getSide().isClient())SSPlayerTabs.initRecipes();
 
-    	SSPlugins.initModHelper();
+    	//SSPlugins.initModHelper();
 
     	SSPlugins.initPlugins(event);
 

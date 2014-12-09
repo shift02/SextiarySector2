@@ -18,12 +18,14 @@ public class SSPlugins {
 	public static boolean modDCsAppleMilk;
 	public static boolean modComputerCraft;
 	public static boolean modTHKaguya;
+	public static boolean modIC2;
 
 	public static void initModHelper() {
 
 		modDCsAppleMilk = Loader.isModLoaded("DCsAppleMilk") && Config.modDCsAppleMilk;
 		modComputerCraft = Loader.isModLoaded("ComputerCraft") && Config.modComputerCraft;
 		modTHKaguya = Loader.isModLoaded("THKaguyaMod")  && Config.modTHKaguya;
+		modIC2 = Loader.isModLoaded("IC2")  && Config.modIC2;
 
 		if (modDCsAppleMilk) {
 
@@ -65,6 +67,21 @@ public class SSPlugins {
 			} catch (Exception e) {
 
 				SextiarySector.Log.log(Level.WARN, "THKaguya integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+				SextiarySector.Log.catching(e);
+
+			}
+		}
+
+		if (modIC2) {
+
+			try {
+
+				SextiarySector.Log.info("IC2 Plugin is loaded");
+				plugins.add(new PluginIC2());
+
+			} catch (Exception e) {
+
+				SextiarySector.Log.log(Level.WARN, "IC2 integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
 				SextiarySector.Log.catching(e);
 
 			}

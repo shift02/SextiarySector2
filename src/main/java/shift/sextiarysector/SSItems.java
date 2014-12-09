@@ -56,6 +56,8 @@ public class SSItems {
 	public static Item mithrilIngot;
 	public static Item orichalcumGem;
 
+	public static Item ninjaIngot;
+
 	public static Item blueStoneSlimeBall;
 
 	//unit
@@ -183,6 +185,9 @@ public class SSItems {
 
 		orichalcumGem = new Item().setUnlocalizedName("ss.orichalcum_gem").setTextureName("sextiarysector:gem/orichalcum_gem").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(orichalcumGem, "OrichalcumGem");
+
+		ninjaIngot = new Item().setUnlocalizedName("ss.ninja_ingot").setTextureName("sextiarysector:ingot/ninja_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(ninjaIngot, "NinjaIngot");
 
 		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
