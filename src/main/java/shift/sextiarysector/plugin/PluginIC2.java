@@ -1,6 +1,12 @@
 package shift.sextiarysector.plugin;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.SSRecipes;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.block.BlockElectricMotor;
 import shift.sextiarysector.item.ItemBlockDirection;
@@ -15,6 +21,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class PluginIC2 implements IPlugin {
 
+
+	//1EU -> 3Power 2Speed
+
 	@Override
 	public String getModName() {
 		return "IC2";
@@ -22,6 +31,9 @@ public class PluginIC2 implements IPlugin {
 
 	public static int electricMotorType;
 	public static Block electricMotor;
+
+	public static Item ic2Dust;//3 Copper , 7 Tin
+	public static Item cable;
 
 	@Override
 	public void prePlugin(FMLPreInitializationEvent event) {
@@ -44,7 +56,22 @@ public class PluginIC2 implements IPlugin {
 
 	@Override
 	public void initPlugin(FMLInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
+
+		ic2Dust = GameRegistry.findItem("IC2", "itemDust");
+		cable = GameRegistry.findItem("IC2", "itemCable");
+
+		SSRecipes.pulverizer.add("oreCopper", new ItemStack(ic2Dust,2,3));
+		SSRecipes.pulverizer.add("oreTin", new ItemStack(ic2Dust,2,7));
+
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(this.electricMotor, 1),
+					new Object[] { "xzx", "xyx","pbp",
+				Character.valueOf('x'), "paneGlassColorless",
+				Character.valueOf('y'), "plankWood",
+				Character.valueOf('z'), SSBlocks.steelShaft,
+				Character.valueOf('b'), new ItemStack(cable,1,0),
+				Character.valueOf('p'), "plateDenseTin"
+				}));
+
 
 	}
 

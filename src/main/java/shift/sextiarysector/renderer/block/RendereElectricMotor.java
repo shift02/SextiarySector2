@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 import shift.sextiarysector.plugin.PluginIC2;
 import shift.sextiarysector.renderer.model.ModelElectricMotor;
-import shift.sextiarysector.tileentity.TileEntityDirection;
+import shift.sextiarysector.tileentity.TileEntityElectricMotor;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
@@ -68,7 +68,7 @@ public class RendereElectricMotor  extends TileEntitySpecialRenderer implements 
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {
 
-		TileEntityDirection tile = (TileEntityDirection)tileentity;
+		TileEntityElectricMotor tile = (TileEntityElectricMotor)tileentity;
 
 		//System.out.println("renderTileEntityAt");
 
@@ -99,10 +99,12 @@ public class RendereElectricMotor  extends TileEntitySpecialRenderer implements 
 			break;
         }
 
-        //傾きのスピード
-        //GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
-
         modelElectricMotor.render(null, 0,0,0, 0,0, 1.0f);
+
+        //傾きのスピード
+        GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
+
+
         modelElectricMotor.renderShaft(null, 0,0,0, 0,0, 1.0f);
 
         GL11.glPopMatrix();
