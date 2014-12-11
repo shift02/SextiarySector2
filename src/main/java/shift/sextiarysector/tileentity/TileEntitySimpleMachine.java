@@ -25,7 +25,7 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 	//作業の進捗
 	public int machineWorkProgressTime;
 
-	//作業の進捗の最大値 この数字になると完了する
+	//作業の進捗の最大値 この数字になると完了する 200Speed消費
 	public int machineMaxProgressTime = 2000;
 
 	//表示用

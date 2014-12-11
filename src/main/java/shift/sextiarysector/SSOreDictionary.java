@@ -1,6 +1,8 @@
 package shift.sextiarysector;
 
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class SSOreDictionary {
@@ -21,6 +23,13 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("dustGold", SSItems.goldDust);
 
 		OreDictionary.registerOre("ingotSteel", SSItems.steelIngot);
+
+		Item[] Knife = new Item[]{SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife};
+		for(int i =0;i<Knife.length;i++){
+			OreDictionary.registerOre("craftingToolWireCutter", new ItemStack(Knife[i],1,OreDictionary.WILDCARD_VALUE));
+			OreDictionary.registerOre("craftingToolKnife", new ItemStack(Knife[i],1,OreDictionary.WILDCARD_VALUE));
+		}
+
 
 	}
 
