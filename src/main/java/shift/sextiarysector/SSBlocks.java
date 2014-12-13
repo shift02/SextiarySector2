@@ -9,6 +9,7 @@ import shift.sextiarysector.block.BlockBottle;
 import shift.sextiarysector.block.BlockChunkLoader;
 import shift.sextiarysector.block.BlockFluidCrafter;
 import shift.sextiarysector.block.BlockFluidFurnace;
+import shift.sextiarysector.block.BlockFoodSmokers;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockGearShaft;
@@ -34,14 +35,15 @@ import shift.sextiarysector.block.BlockWindmill;
 import shift.sextiarysector.block.BlockWoodHopper;
 import shift.sextiarysector.item.ItemBlockBottle;
 import shift.sextiarysector.item.ItemBlockCrop;
+import shift.sextiarysector.item.ItemBlockDirection;
 import shift.sextiarysector.item.ItemBlockFluidCrafter;
 import shift.sextiarysector.item.ItemBlockGearShaft;
 import shift.sextiarysector.item.ItemBlockMonitor;
-import shift.sextiarysector.item.ItemBlockDirection;
 import shift.sextiarysector.tileentity.TileEntityBlockBottle;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
+import shift.sextiarysector.tileentity.TileEntityFoodSmokers;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
@@ -63,6 +65,7 @@ public class SSBlocks {
 
 	public static Block LargeFurnace;
 	public static Block fluidFurnace;
+	public static Block foodSmokers;
 	public static Block magicFurnace;
 
 	public static Block bottle;
@@ -146,6 +149,10 @@ public class SSBlocks {
 		fluidFurnace = new BlockFluidFurnace().setBlockName("ss.fluid_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(fluidFurnace, "FluidFurnace");
 		GameRegistry.registerTileEntity(TileEntityFluidFurnace.class, "FluidFurnace");
+
+		foodSmokers = new BlockFoodSmokers().setBlockName("ss.food_smokers").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(foodSmokers, "FoodSmokers");
+		GameRegistry.registerTileEntity(TileEntityFoodSmokers.class, "FoodSmokers");
 
 		magicFurnace = new BlockMagicFurnace().setBlockName("ss.magic_furnace").setCreativeTab(SextiarySectorAPI.TabSSMagic);
 		GameRegistry.registerBlock(magicFurnace, "MagicFurnace");

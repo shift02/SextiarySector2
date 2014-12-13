@@ -7,6 +7,7 @@ import shift.sextiarysector.recipe.RecipeSimpleFuel;
 import shift.sextiarysector.recipe.RecipeSimpleMachine;
 import shift.sextiarysector.recipe.RecipesCore;
 import shift.sextiarysector.recipe.RecipesFluidFurnace;
+import shift.sextiarysector.recipe.RecipesFoodSmokers;
 import shift.sextiarysector.recipe.RecipesFurnace;
 import shift.sextiarysector.recipe.RecipesFurnaceCraft;
 import shift.sextiarysector.recipe.RecipesLoom;
@@ -22,6 +23,7 @@ import shift.sextiarysector.recipe.RecipesTool;
 public class SSRecipes {
 
 	public static RecipeSimpleFluid fluidFurnace;
+	public static RecipeSimpleFluid foodSmokers;
 	public static RecipeSimpleMachine magicFurnace;
 
 	public static RecipeSimpleFuel magicFuel;
@@ -34,6 +36,7 @@ public class SSRecipes {
 	public static void initRecipeLists(){
 
 		fluidFurnace = new RecipeSimpleFluid();
+		foodSmokers = new RecipeSimpleFluid();
 		magicFurnace = new RecipeSimpleMachine();
 
 		magicFuel = new RecipeSimpleFuel();
@@ -60,6 +63,7 @@ public class SSRecipes {
 		RecipesFurnaceCraft.addRecipes(fm);
 
 		RecipesFluidFurnace.addRecipes(fluidFurnace);
+		RecipesFoodSmokers.addRecipes(foodSmokers);
 
 		RecipesMagicFurnace.addRecipes(magicFurnace);
 		RecipesMagicFuel.addRecipes(magicFuel);

@@ -10,12 +10,12 @@ import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 
 import shift.sextiarysector.plugin.PluginIC2;
-import shift.sextiarysector.renderer.model.ModelElectricMotor;
+import shift.sextiarysector.renderer.model.ModelMotor;
 import shift.sextiarysector.tileentity.TileEntityElectricMotor;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
-public class RendereElectricMotor  extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
+public class RendererElectricMotor  extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
 
 	public static final ResourceLocation MC_BLOCK_SHEET = new ResourceLocation("textures/atlas/blocks.png");
 
@@ -63,7 +63,7 @@ public class RendereElectricMotor  extends TileEntitySpecialRenderer implements 
 
 	private static final ResourceLocation electricMotorTextures = new ResourceLocation("sextiarysector:textures/models/electric_motor.png");
 
-	static public ModelElectricMotor modelElectricMotor = new ModelElectricMotor();
+	static public ModelMotor modelElectricMotor = new ModelMotor();
 
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {

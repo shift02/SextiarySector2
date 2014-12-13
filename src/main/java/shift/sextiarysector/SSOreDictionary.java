@@ -21,8 +21,13 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("dustCoal", SSItems.coalDust);
 		OreDictionary.registerOre("dustIron", SSItems.ironDust);
 		OreDictionary.registerOre("dustGold", SSItems.goldDust);
+		OreDictionary.registerOre("dustBluestone", SSItems.blueStoneDust);
+		OreDictionary.registerOre("dustYellowstone", SSItems.yellowStoneDust);
 
 		OreDictionary.registerOre("ingotSteel", SSItems.steelIngot);
+		OreDictionary.registerOre("ingotBluestone", SSItems.blueStoneIngot);
+		OreDictionary.registerOre("ingotYellowstone", SSItems.yellowStoneIngot);
+		OreDictionary.registerOre("ingotNinja", SSItems.ninjaIngot);
 
 		Item[] Knife = new Item[]{SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife};
 		for(int i =0;i<Knife.length;i++){

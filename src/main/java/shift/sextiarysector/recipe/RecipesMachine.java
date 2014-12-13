@@ -24,6 +24,12 @@ public class RecipesMachine {
         	'a', Blocks.furnace
         	});
 
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.energyRing, 2),
+				new Object[] { "xxx", "xyx","xxx",
+			Character.valueOf('y'), "ingotNinja",
+			Character.valueOf('x'), "ingotYellowstone"
+			}));
+
         Object[] material = new Object[]{"plankWood", "stone", "ingotSteel"};
         Item[] gear = new Item[]{SSItems.woodGear, SSItems.stoneGear, SSItems.steelGear};
         String[] gearOre = new String[]{"gearWood", "gearStone", "gearSteel"};

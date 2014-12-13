@@ -53,12 +53,18 @@ public class SSItems {
 
 	public static Item steelIngot;
 
+	public static Item blueStoneIngot;
+	public static Item yellowStoneIngot;
+
 	public static Item mithrilIngot;
 	public static Item orichalcumGem;
 
 	public static Item ninjaIngot;
 
 	public static Item blueStoneSlimeBall;
+
+
+	public static Item energyRing;
 
 	//unit
 	public static Item craftUnit;
@@ -110,6 +116,9 @@ public class SSItems {
 	public static Item greenPepper;
 
 	public static Item radish;
+
+	//料理
+	public static Item salt;
 
 	//装備
 	public static Item shiftHat;
@@ -180,6 +189,12 @@ public class SSItems {
 		steelIngot = new Item().setUnlocalizedName("ss.steel_ingot").setTextureName("sextiarysector:ingot/steel_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(steelIngot, "SteelIngot");
 
+		blueStoneIngot = new Item().setUnlocalizedName("ss.bluestone_ingot").setTextureName("sextiarysector:ingot/bluestone_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(blueStoneIngot, "BlueStoneIngot");
+
+		yellowStoneIngot = new Item().setUnlocalizedName("ss.yellowstone_ingot").setTextureName("sextiarysector:ingot/yellowstone_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(yellowStoneIngot, "YellowStoneIngot");
+
 		mithrilIngot = new Item().setUnlocalizedName("ss.mithril_ingot").setTextureName("sextiarysector:ingot/mithril_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(mithrilIngot, "MithrilIngot");
 
@@ -191,6 +206,10 @@ public class SSItems {
 
 		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
+
+
+		energyRing = new Item().setUnlocalizedName("ss.energy_ring").setTextureName("sextiarysector:energy_ring").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(energyRing, "EnergyRing");
 
 		//Unit
 		craftUnit = new ItemGuiUnit(201).setUnlocalizedName("ss.craft_unit").setTextureName("sextiarysector:unit/craft_unit").setCreativeTab(SextiarySectorAPI.TabSSCore);
@@ -279,6 +298,10 @@ public class SSItems {
 
 		radish = new ItemCrop(3, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.radish").setTextureName("sextiarysector:crop/radish");
 		GameRegistry.registerItem(radish, "Radish");
+
+		//料理
+		salt = new Item().setUnlocalizedName("ss.salt").setTextureName("sextiarysector:food/condiment/salt").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(salt, "Salt");
 
 		shiftHat = new ItemShiftHat().setUnlocalizedName("ss.shift_hat").setTextureName("sextiarysector:shift_hat");
 		GameRegistry.registerItem(shiftHat, "ShiftHat");
