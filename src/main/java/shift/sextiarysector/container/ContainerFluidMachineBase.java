@@ -9,20 +9,20 @@ import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
-import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
+import shift.sextiarysector.tileentity.TileEntityFluidMachineBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ContainerFluidFurnace extends Container
+public class ContainerFluidMachineBase extends Container
 {
-    private TileEntityFluidFurnace tileFurnace;
+    private TileEntityFluidMachineBase tileFurnace;
     private int lastFuel;
     private int lastFuelMax;
     private int workProgress;
     //private int lastFluid;
     //private int lastFluidID;
 
-    public ContainerFluidFurnace(InventoryPlayer p_i1812_1_, TileEntityFluidFurnace p_i1812_2_)
+    public ContainerFluidMachineBase(InventoryPlayer p_i1812_1_, TileEntityFluidMachineBase p_i1812_2_)
     {
         this.tileFurnace = p_i1812_2_;
         this.addSlotToContainer(new Slot(p_i1812_2_, 0, 56, 17));

@@ -3,6 +3,7 @@ package shift.sextiarysector.block;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,7 +13,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -21,12 +21,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.api.machine.item.IHammer;
 import shift.sextiarysector.tileentity.TileEntityDirection;
-import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
 import shift.sextiarysector.tileentity.TileEntityFluidMachineBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockFluidFurnace extends BlockFluidMachineBase{
+public abstract class BlockFluidMachineBase  extends BlockContainer{
 
 	private final Random furnaceRand = new Random();
 
@@ -39,8 +38,8 @@ public class BlockFluidFurnace extends BlockFluidMachineBase{
     @SideOnly(Side.CLIENT)
 	private IIcon furnaceIconTopOn;
 
-	public BlockFluidFurnace() {
-		super(Material.rock);
+	public BlockFluidMachineBase(Material material) {
+		super(material);
 		this.setHardness(1.0F);
 	}
 
@@ -61,7 +60,7 @@ public class BlockFluidFurnace extends BlockFluidMachineBase{
         }
         else
         {
-        	TileEntityFluidFurnace tileentityfurnace = (TileEntityFluidFurnace)par1World.getTileEntity(par2, par3, par4);
+        	TileEntityFluidMachineBase tileentityfurnace = (TileEntityFluidMachineBase)par1World.getTileEntity(par2, par3, par4);
 
         	if(par5EntityPlayer.getCurrentEquippedItem() != null){
         		if(par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof IHammer && ((IHammer)par5EntityPlayer.getCurrentEquippedItem().getItem()).canUse(par5EntityPlayer.getCurrentEquippedItem())){
@@ -160,12 +159,6 @@ public class BlockFluidFurnace extends BlockFluidMachineBase{
         this.furnaceIconFront[1] = par1IconRegister.registerIcon("furnace_front_off");
         this.furnaceIconTop = par1IconRegister.registerIcon("sextiarysector:fluid_furnace_top");
         this.furnaceIconTopOn = par1IconRegister.registerIcon("sextiarysector:fluid_furnace_top_on");
-    }
-
-	@Override
-	public TileEntity createNewTileEntity(World par1World, int p_149915_2_)
-    {
-        return new TileEntityFluidFurnace();
     }
 
 	@Override
@@ -308,5 +301,4 @@ public class BlockFluidFurnace extends BlockFluidMachineBase{
     {
         return Container.calcRedstoneFromInventory((IInventory)par1World.getTileEntity(par2, par3, par4));
     }
-
 }

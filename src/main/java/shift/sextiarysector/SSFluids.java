@@ -14,10 +14,14 @@ public class SSFluids {
 	public static Fluid takumiTea;
 	public static Fluid drinkingWater;
 
+	public static Fluid steam;
+
 	public static void initFluids(){
 
-		takumiTea =  new SSFluid("takumi_tea", 0x006400, 5, 2.0f);
-		drinkingWater =  new SSFluid("drinking_water", 0xF0FFFF, 4, 1.0f);
+		takumiTea =  new SSFluid("takumi_tea", 0, 0x006400, 5, 2.0f);
+		drinkingWater =  new SSFluid("drinking_water", 0, 0xF0FFFF, 4, 1.0f);
+
+		steam = new SSFluid("steam", 1, 0xFFFFFF, 1, 1.0f);
 
 	}
 
@@ -31,13 +35,15 @@ public class SSFluids {
 
 	public static class SSFluid extends Fluid {
 
+		private int type;
 		private int color;
 
 		public int moisture;
 		public float moistureSaturation;
 
-		public SSFluid(String fluidName, int color, int moisture, float moistureSaturation) {
+		public SSFluid(String fluidName, int type, int color, int moisture, float moistureSaturation) {
 			super(fluidName);
+			this.type = type;
 			this.color = color;
 			this.moisture = moisture;
 			this.moistureSaturation = moistureSaturation;
@@ -57,12 +63,20 @@ public class SSFluids {
 		@SideOnly(Side.CLIENT)
 		public IIcon getStillIcon()
 	    {
+			switch(type){
+				case 0:return ClientEventHandler.waterStill;
+				case 1:return ClientEventHandler.portal;
+			}
 	        return ClientEventHandler.waterStill;
 	    }
 
 		@SideOnly(Side.CLIENT)
 	    public IIcon getFlowingIcon()
 	    {
+			switch(type){
+			case 0:return ClientEventHandler.waterStill;
+			case 1:return ClientEventHandler.portal;
+			}
 	        return ClientEventHandler.waterStill;
 	    }
 

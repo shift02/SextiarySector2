@@ -6,11 +6,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.SSItems;
 import shift.sextiarysector.SSRecipes;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.block.BlockElectricMotor;
 import shift.sextiarysector.item.ItemBlockDirection;
-import shift.sextiarysector.renderer.block.RendereElectricMotor;
+import shift.sextiarysector.renderer.block.RendererElectricMotor;
 import shift.sextiarysector.tileentity.TileEntityElectricMotor;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -38,7 +39,7 @@ public class PluginIC2 implements IPlugin {
 	@Override
 	public void prePlugin(FMLPreInitializationEvent event) {
 
-		electricMotor = new BlockElectricMotor().setBlockName("ss.electric_motor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		electricMotor = new BlockElectricMotor().setBlockName("ss.electric_motor").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerBlock(electricMotor, ItemBlockDirection.class, "ElectricMotor");
 		GameRegistry.registerTileEntity(TileEntityElectricMotor.class, "ElectricMotor");
 
@@ -49,8 +50,8 @@ public class PluginIC2 implements IPlugin {
 	public void preClientPlugin(FMLPreInitializationEvent event) {
 
 		electricMotorType = cpw.mods.fml.client.registry.RenderingRegistry.getNextAvailableRenderId();
-		cpw.mods.fml.client.registry.RenderingRegistry.registerBlockHandler(new RendereElectricMotor());
-		cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElectricMotor.class, new RendereElectricMotor());
+		cpw.mods.fml.client.registry.RenderingRegistry.registerBlockHandler(new RendererElectricMotor());
+		cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElectricMotor.class, new RendererElectricMotor());
 
 	}
 
@@ -66,7 +67,7 @@ public class PluginIC2 implements IPlugin {
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(this.electricMotor, 1),
 					new Object[] { "xzx", "xyx","pbp",
 				Character.valueOf('x'), "paneGlassColorless",
-				Character.valueOf('y'), "plankWood",
+				Character.valueOf('y'), SSItems.energyRing,
 				Character.valueOf('z'), SSBlocks.steelShaft,
 				Character.valueOf('b'), new ItemStack(cable,1,0),
 				Character.valueOf('p'), "plateDenseTin"

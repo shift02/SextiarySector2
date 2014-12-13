@@ -4,6 +4,8 @@
 tile.ss.large_furnace.name=Large Furnace
 tile.ss.fluid_furnace.name=Fluid Furnace
 
+tile.ss.food_smokers.name=Food Smokers
+
 tile.ss.magic_furnace.name=Magic Furnace
 
 tile.ss.wood_grate.name=Wood Grate
@@ -75,6 +77,8 @@ monitor.type=Type
 monitor.creeper=Simple Creeper Shop
 monitor.robot=Blue Robot Shop
 
+tile.electric_motor.name=Electric Motor
+
 #Item
 item.ss.dust_waterlily.name=WaterLily Dust
 
@@ -89,12 +93,18 @@ item.ss.gold_dust.name=Gold Dust
 
 item.ss.steel_ingot.name=Steel Ingot
 
+item.ss.bluestone_ingot.name=Blue Stone Ingot
+item.ss.yellowstone_ingot.name=Yellow Stone Ingot
+
 item.ss.mithril_ingot.name=Mithril Ingot
 item.ss.orichalcum_gem.name=Orichalcum
 
 item.ss.ninja_ingot.name=Ninja Ingot
 
 item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
+
+
+item.ss.energy_ring.name=Energy Ring
 
 
 item.ss.craft_unit.name=Craft Unit
@@ -165,17 +175,24 @@ item.ss.green_pepper.name=Green Pepper
 
 item.ss.radish.name=Radish
 
+
+item.ss.salt.name=Salt
+
+
 item.ss.shift_hat.name=Shift's Hat
 
 #Fluid
 fluid.ss.takumi_tea=TAKUMI Tea
 fluid.ss.drinking_water=Drinking Water
 
+fluid.ss.steam=Steam
+
 #GUI
 container.large_furnace=Large Furnace
 container.sub.inventory=Buffer
 
 gui.ss.fluid_furnace=Fluid Furnace
+gui.ss.food_smokers=Food Smokers
 gui.ss.magic_furnace=Magic Furnace
 
 gui.ss.millstone=Millstone
@@ -233,9 +250,10 @@ nei.recipe=Recipes
 nei.ss.furnace.shaped=Furnace Shaped
 nei.ss.furnace.shapeless=Furnace Shapeless
 
-nei.ss.fluid_furnace.=Fluid Furnace
+nei.ss.fluid_furnace.=Fluid Furnace Recipe
+nei.ss.food_smokers.=Food Smokers Recipe
 
-nei.ss.magic_furnace=Magic Furnace
+nei.ss.magic_furnace=Magic Furnace Recipe
 nei.ss.magic_fuel=Magic Fuel
 
 nei.ss.millstone=Millstone Recipe

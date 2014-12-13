@@ -4,14 +4,14 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelElectricMotor extends ModelBase
+public class ModelMotor extends ModelBase
 {
   //fields
     ModelRenderer Shape1;
     ModelRenderer Shape2;
     ModelRenderer Shape3;
 
-  public ModelElectricMotor()
+  public ModelMotor()
   {
     textureWidth = 64;
     textureHeight = 64;
