@@ -22,6 +22,8 @@ public class CommonProxy {
 	public int windMillType;
 	public int smallWaterwheel;
 
+	public int fanType;
+
 	public int monitorType;
 
 	public int chestType;

@@ -37,7 +37,7 @@ public abstract class BlockMotor  extends BlockDirection{
 
 		ForgeDirection d = t.getDirection();
 
-		if(d.ordinal()>6){
+		if(d.ordinal()>5){
 			t.direction = d.getOrientation(0);
 		}else{
 			t.direction = d.getOrientation(d.ordinal()+1);

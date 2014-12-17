@@ -120,6 +120,10 @@ public class SSItems {
 	//料理
 	public static Item salt;
 
+	public static Item chickenSmoked;
+	public static Item porkchopSmoked;
+	public static Item beefSmoked;
+
 	//装備
 	public static Item shiftHat;
 
@@ -300,8 +304,18 @@ public class SSItems {
 		GameRegistry.registerItem(radish, "Radish");
 
 		//料理
-		salt = new Item().setUnlocalizedName("ss.salt").setTextureName("sextiarysector:food/condiment/salt").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		salt = new Item().setUnlocalizedName("ss.salt").setTextureName("sextiarysector:food/condiment/salt").setCreativeTab(SextiarySectorAPI.TabSSCooking);
 		GameRegistry.registerItem(salt, "Salt");
+
+		chickenSmoked = new ItemFoodDrink(2, 4.6f, 0, 0, 4, 2.0f, false).setUnlocalizedName("ss.chicken_smoked").setTextureName("sextiarysector:food/chicken_smoked").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+		GameRegistry.registerItem(chickenSmoked, "ChickenSmoked");
+
+		porkchopSmoked = new ItemFoodDrink(3, 7.6f, 0, 0, 4, 2.0f, false).setUnlocalizedName("ss.porkchop_smoked").setTextureName("sextiarysector:food/porkchop_smoked").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+		GameRegistry.registerItem(porkchopSmoked, "PorkchopSmoked");
+
+		beefSmoked = new ItemFoodDrink(3, 7.6f, 0, 0, 4, 2.0f, false).setUnlocalizedName("ss.beef_smoked").setTextureName("sextiarysector:food/beef_smoked").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+		GameRegistry.registerItem(beefSmoked, "BeefSmoked");
+
 
 		shiftHat = new ItemShiftHat().setUnlocalizedName("ss.shift_hat").setTextureName("sextiarysector:shift_hat");
 		GameRegistry.registerItem(shiftHat, "ShiftHat");

@@ -77,7 +77,8 @@ monitor.type=Type
 monitor.creeper=Simple Creeper Shop
 monitor.robot=Blue Robot Shop
 
-tile.electric_motor.name=Electric Motor
+tile.ss.electric_motor.name=Electric Motor
+tile.ss.tofu_motor.name=Tofu Motor
 
 #Item
 item.ss.dust_waterlily.name=WaterLily Dust
@@ -178,6 +179,10 @@ item.ss.radish.name=Radish
 
 item.ss.salt.name=Salt
 
+item.ss.chicken_smoked.name=Smoked Chicken
+item.ss.porkchop_smoked.name=Smoked Porkchop
+item.ss.beef_smoked.name=Smoked Beef
+
 
 item.ss.shift_hat.name=Shift's Hat
 
@@ -223,6 +228,7 @@ itemGroup.ss.core=SextiarySector -Core-
 itemGroup.ss.fluid=SextiarySector -Fluid-
 itemGroup.ss.machine=SextiarySector -Machine-
 itemGroup.ss.agriculture=SextiarySector -Agriculture-
+itemGroup.ss.cooking=SextiarySector -Cooking-
 itemGroup.ss.economy=SextiarySector -Economy-
 itemGroup.ss.magic=SextiarySector -Magic-
 
@@ -250,8 +256,8 @@ nei.recipe=Recipes
 nei.ss.furnace.shaped=Furnace Shaped
 nei.ss.furnace.shapeless=Furnace Shapeless
 
-nei.ss.fluid_furnace.=Fluid Furnace Recipe
-nei.ss.food_smokers.=Food Smokers Recipe
+nei.ss.fluid_furnace=Fluid Furnace Recipe
+nei.ss.food_smokers=Food Smokers Recipe
 
 nei.ss.magic_furnace=Magic Furnace Recipe
 nei.ss.magic_fuel=Magic Fuel

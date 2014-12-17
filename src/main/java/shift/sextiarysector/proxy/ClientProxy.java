@@ -15,6 +15,7 @@ import shift.sextiarysector.plugin.IPlugin;
 import shift.sextiarysector.plugin.SSPlugins;
 import shift.sextiarysector.renderer.block.RendererBlockBottle;
 import shift.sextiarysector.renderer.block.RendererChest;
+import shift.sextiarysector.renderer.block.RendererFan;
 import shift.sextiarysector.renderer.block.RendererFarmland;
 import shift.sextiarysector.renderer.block.RendererFluidCrafter;
 import shift.sextiarysector.renderer.block.RendererGearShaft;
@@ -27,6 +28,7 @@ import shift.sextiarysector.renderer.block.RendererWindmill;
 import shift.sextiarysector.renderer.block.RendererWoodHopper;
 import shift.sextiarysector.renderer.item.RenderGF;
 import shift.sextiarysector.tileentity.TileEntityBlockBottle;
+import shift.sextiarysector.tileentity.TileEntityFan;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
@@ -69,6 +71,8 @@ public class ClientProxy extends CommonProxy{
 		this.windMillType = RenderingRegistry.getNextAvailableRenderId();
 		this.smallWaterwheel = RenderingRegistry.getNextAvailableRenderId();
 
+		this.fanType = RenderingRegistry.getNextAvailableRenderId();
+
 		this.chestType = RenderingRegistry.getNextAvailableRenderId();
 
 		this.monitorType = RenderingRegistry.getNextAvailableRenderId();
@@ -90,6 +94,8 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerBlockHandler(new RendererSmallWindmill());
 		RenderingRegistry.registerBlockHandler(new RendererWindmill());
 		RenderingRegistry.registerBlockHandler(new RendererSmallWaterwheel());
+
+		RenderingRegistry.registerBlockHandler(new RendererFan());
 
 		RenderingRegistry.registerBlockHandler(new RendererChest());
 
@@ -115,6 +121,8 @@ public class ClientProxy extends CommonProxy{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySmallWindmill.class, new RendererSmallWindmill());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, new RendererWindmill());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySmallWaterwheel.class, new RendererSmallWaterwheel());
+
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFan.class, new RendererFan());
 
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySSChest.class, new RendererChest());

@@ -9,20 +9,20 @@ import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
-import shift.sextiarysector.plugin.PluginTofu;
-import shift.sextiarysector.renderer.model.ModelMotor;
-import shift.sextiarysector.tileentity.TileEntityTofuMotor;
+import shift.sextiarysector.SextiarySector;
+import shift.sextiarysector.renderer.model.ModelFan;
+import shift.sextiarysector.tileentity.TileEntityFan;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
-public class RendererTofuMotor  extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
+public class RendererFan  extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
 
 	public static final ResourceLocation MC_BLOCK_SHEET = new ResourceLocation("textures/atlas/blocks.png");
 
 	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+	public void renderInventoryBlock(Block block, int metadata, int modelId,RenderBlocks renderer) {
 
-		if(modelID!=this.getRenderId()){
+		if(modelId!=this.getRenderId()){
 			return ;
 		}
 
@@ -31,13 +31,12 @@ public class RendererTofuMotor  extends TileEntitySpecialRenderer implements ISi
         float scale = 0.0625f;
         GL11.glScalef(scale,scale,scale);
 
-        GL11.glRotatef(90, 1, 0, 0);
-        GL11.glRotatef(180, 0, 1, 0);
+        GL11.glRotatef(180, 1, 0, 0);
 
-        this.bind(tofuMotorTextures);
+        this.bind(this.fanShaftTextures);
 
-        modelElectricMotor.render(null, 0,0,0, 0,0, 1.0f);
-        modelElectricMotor.renderShaft(null, 0,0,0, 0,0, 1.0f);
+        modelFan.render(null, 0,0,0, 0,0, 1.0f);
+        modelFan.renderFan(null, 0,0,0, 0,0, 1.0f);
 
         GL11.glPopMatrix();
 
@@ -46,9 +45,8 @@ public class RendererTofuMotor  extends TileEntitySpecialRenderer implements ISi
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-			RenderBlocks renderer) {
-		return false;
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,Block block, int modelId, RenderBlocks renderer) {
+		return true;
 	}
 
 	@Override
@@ -58,62 +56,61 @@ public class RendererTofuMotor  extends TileEntitySpecialRenderer implements ISi
 
 	@Override
 	public int getRenderId() {
-		return  PluginTofu.tofuMotorType;
+		return SextiarySector.proxy.fanType;
 	}
 
-	private static final ResourceLocation tofuMotorTextures = new ResourceLocation("sextiarysector:textures/models/tofu_motor.png");
+	private static final ResourceLocation fanShaftTextures = new ResourceLocation("sextiarysector:textures/models/fan.png");
 
-	static public ModelMotor modelElectricMotor = new ModelMotor();
+	static public ModelFan modelFan = new ModelFan();
 
 	@Override
-	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {
+	public void renderTileEntityAt(TileEntity tileentity, double x,double y, double z, float p_147500_8_) {
 
-		TileEntityTofuMotor tile = (TileEntityTofuMotor)tileentity;
+		TileEntityFan tile = (TileEntityFan)tileentity;
 
 		//System.out.println("renderTileEntityAt");
 
 		GL11.glPushMatrix();
         GL11.glTranslatef((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F);
-        float scale = 0.0625f;
+        float scale = 0.0624f;
         GL11.glScalef(scale,scale,scale);
 
-        this.bindTexture(tofuMotorTextures);
+        this.bindTexture(fanShaftTextures);
 
         switch(tile.direction){
         case UP:
-            GL11.glRotatef(90, 1, 0, 0);
-            break;
-        case DOWN:
             GL11.glRotatef(90, -1, 0, 0);
             break;
-        case WEST:
-            GL11.glRotatef(90, 0, 1, 0);
+        case DOWN:
+            GL11.glRotatef(90, 1, 0, 0);
             break;
-        case EAST:
+        case WEST:
             GL11.glRotatef(90, 0, -1, 0);
             break;
-        case SOUTH:
+        case EAST:
+            GL11.glRotatef(90, 0, 1, 0);
+            break;
+        case NORTH:
             GL11.glRotatef(180, 0, 1, 0);
             break;
 		default:
 			break;
         }
 
-        modelElectricMotor.render(null, 0,0,0, 0,0, 1.0f);
+        modelFan.render(null, 0,0,0, 0,0, 1.0f);
 
         //傾きのスピード
         GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
 
-
-        modelElectricMotor.renderShaft(null, 0,0,0, 0,0, 1.0f);
+        modelFan.renderFan(null, 0,0,0, 0,0, 1.0f);
 
         GL11.glPopMatrix();
 
 	}
 
-
 	private static void bind(ResourceLocation res)
     {
         FMLClientHandler.instance().getClient().getTextureManager().bindTexture(res);
     }
+
 }

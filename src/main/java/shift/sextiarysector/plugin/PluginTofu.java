@@ -2,7 +2,7 @@ package shift.sextiarysector.plugin;
 
 import net.minecraft.block.Block;
 import shift.sextiarysector.api.SextiarySectorAPI;
-import shift.sextiarysector.block.BlockElectricMotor;
+import shift.sextiarysector.block.BlockTofuMotor;
 import shift.sextiarysector.item.ItemBlockDirection;
 import shift.sextiarysector.renderer.block.RendererTofuMotor;
 import shift.sextiarysector.tileentity.TileEntityTofuMotor;
@@ -25,9 +25,9 @@ public class PluginTofu  implements IPlugin{
 
 	@Override
 	public void prePlugin(FMLPreInitializationEvent event) {
-		tofuMotor = new BlockElectricMotor().setBlockName("ss.electric_motor").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		tofuMotor = new BlockTofuMotor().setBlockName("ss.tofu_motor").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerBlock(tofuMotor, ItemBlockDirection.class, "TofuMotor");
-		GameRegistry.registerTileEntity(TileEntityTofuMotor.class, "ElectricMotor");
+		GameRegistry.registerTileEntity(TileEntityTofuMotor.class, "TofuMotor");
 
 	}
 
