@@ -7,6 +7,7 @@ import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.block.BlockBottle;
 import shift.sextiarysector.block.BlockChunkLoader;
+import shift.sextiarysector.block.BlockFan;
 import shift.sextiarysector.block.BlockFluidCrafter;
 import shift.sextiarysector.block.BlockFluidFurnace;
 import shift.sextiarysector.block.BlockFoodSmokers;
@@ -40,6 +41,7 @@ import shift.sextiarysector.item.ItemBlockFluidCrafter;
 import shift.sextiarysector.item.ItemBlockGearShaft;
 import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.tileentity.TileEntityBlockBottle;
+import shift.sextiarysector.tileentity.TileEntityFan;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
@@ -99,6 +101,7 @@ public class SSBlocks {
 
 	public static Block pulverizer;
 
+	public static Block fan;
 
 	public static Block hole;
 
@@ -267,6 +270,9 @@ public class SSBlocks {
 		pulverizer = new BlockSimpleMachine("pulverizer",30,SSRecipes.pulverizer,3).setBlockName("ss.pulverizer").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerBlock(pulverizer, "Pulverizer");
 
+		fan =  new BlockFan().setBlockName("ss.fan");
+		GameRegistry.registerTileEntity(TileEntityFan.class, "Fan");
+		GameRegistry.registerBlock(fan, ItemBlockDirection.class, "Fan");
 
 		shippingBox = new BlockShippingBox().setBlockName("ss.shipping_box").setBlockTextureName("sextiarysector:shipping_box").setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(shippingBox, "ShippingBox");
