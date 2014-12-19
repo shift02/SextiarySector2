@@ -123,6 +123,7 @@ public class BlockMonitor extends BlockContainer{
 
 		public void setList(SSProductList[] list) {
 			this.sList = list;
+			this.list = list[0];
 		}
 
 	}

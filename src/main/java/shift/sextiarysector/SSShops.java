@@ -8,6 +8,7 @@ import shift.mceconomy2.api.shop.ProductItem;
 import shift.mceconomy2.api.shop.ProductList;
 import shift.sextiarysector.block.BlockBottle;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
+import shift.sextiarysector.item.ItemShopRing;
 
 public class SSShops {
 
@@ -61,6 +62,11 @@ public class SSShops {
 		}
 
 		MonitorType.creeper.setList(creepers);
+		SSProductList[] creepersR = new SSProductList[4];
+		for(int i=0; i<4; i++){
+			creepersR[i] = creepers[i].copySSProductList();
+		}
+		((ItemShopRing) SSItems.creeperRing).setList(creepersR);
 
 
 		SSProductList robot = new SSProductList("shop.ss.robot");
@@ -83,6 +89,14 @@ public class SSShops {
 		@Override
 		public String getProductListName() {
 			return this.name;
+		}
+
+		public SSProductList copySSProductList(){
+
+			SSProductList c = new SSProductList(name);
+			c.ProductItemList = this.ProductItemList;
+
+			return c;
 		}
 
 	}

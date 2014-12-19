@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
+import shift.sextiarysector.block.BlockBlueFire;
 import shift.sextiarysector.block.BlockBottle;
 import shift.sextiarysector.block.BlockChunkLoader;
 import shift.sextiarysector.block.BlockFan;
@@ -74,6 +75,8 @@ public class SSBlocks {
 	public static Block fluidCrafter;
 
 	public static Block woodHopper;
+
+	public static Block blueFire;
 
 	//GF
 	public static Block woodShaft;
@@ -183,6 +186,9 @@ public class SSBlocks {
 
 		chunkLoader = new BlockChunkLoader().setHardness(1.5F).setBlockName("ss.chunk_loader").setBlockTextureName("sextiarysector:time_loader");
 		GameRegistry.registerBlock(chunkLoader, "ChunkLoader");
+
+		blueFire = new BlockBlueFire().setBlockName("ss.blue_fire").setBlockTextureName("sextiarysector:blue_fire");
+		GameRegistry.registerBlock(blueFire, "BlueFire");
 
 		//鉱石
 		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSCore);
