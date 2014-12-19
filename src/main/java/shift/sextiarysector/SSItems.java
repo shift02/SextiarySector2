@@ -14,6 +14,7 @@ import shift.sextiarysector.item.ItemKnife;
 import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
 import shift.sextiarysector.item.ItemShiftHat;
+import shift.sextiarysector.item.ItemShopRing;
 import shift.sextiarysector.item.ItemWateringCan;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -68,6 +69,9 @@ public class SSItems {
 
 	//unit
 	public static Item craftUnit;
+
+	//ring
+	public static Item creeperRing;
 
 	//魔法
 	public static Item magicDust;
@@ -218,6 +222,10 @@ public class SSItems {
 		//Unit
 		craftUnit = new ItemGuiUnit(201).setUnlocalizedName("ss.craft_unit").setTextureName("sextiarysector:unit/craft_unit").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(craftUnit, "CraftUnit");
+
+		//Ring
+		creeperRing = new ItemShopRing().setUnlocalizedName("ss.creeper_ring").setTextureName("sextiarysector:ring/creeper_ring");
+		GameRegistry.registerItem(creeperRing, "CreeperRing");
 
 		//魔法
 		magicDust = new Item().setUnlocalizedName("ss.magic_dust").setTextureName("sextiarysector:dust/magic_dust").setCreativeTab(SextiarySectorAPI.TabSSMagic);

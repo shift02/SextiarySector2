@@ -110,6 +110,9 @@ item.ss.energy_ring.name=Energy Ring
 
 item.ss.craft_unit.name=Craft Unit
 
+item.ss.creeper_ring.name=Creeper Shop Ring
+
+
 item.ss.magic_dust.name=Magic Dust
 
 item.ss.unit.name=Unit
@@ -236,6 +239,8 @@ itemGroup.ss.magic=SextiarySector -Magic-
 player.tab.vanilla=Vanilla
 player.tab.equipment=Equipment
 player.tab.item.ss.craft_unit=Craft
+
+player.tab.item.ss.creeper_ring=Creeper Shop
 
 #Achievement
 stat.sell=Sell
