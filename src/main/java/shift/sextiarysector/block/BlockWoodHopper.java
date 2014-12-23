@@ -16,6 +16,7 @@ public class BlockWoodHopper extends BlockHopper{
 
 	public BlockWoodHopper(){
 		this.setHardness(0.5f);
+		this.setStepSound(soundTypeWood);
 		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
 	}
 

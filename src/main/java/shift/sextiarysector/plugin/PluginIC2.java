@@ -67,7 +67,7 @@ public class PluginIC2 implements IPlugin {
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(this.electricMotor, 1),
 					new Object[] { "xzx", "xyx","pbp",
 				Character.valueOf('x'), "paneGlassColorless",
-				Character.valueOf('y'), SSItems.energyRing,
+				Character.valueOf('y'), SSItems.energyReactor,
 				Character.valueOf('z'), SSBlocks.steelShaft,
 				Character.valueOf('b'), new ItemStack(cable,1,0),
 				Character.valueOf('p'), "plateDenseTin"

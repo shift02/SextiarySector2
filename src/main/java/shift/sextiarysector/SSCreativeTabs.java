@@ -14,7 +14,9 @@ public class SSCreativeTabs {
 		SextiarySectorAPI.TabSSCore = new CreativeTabSSCore();
 		SextiarySectorAPI.TabSSFluid = new CreativeTabSSFluid();
 		SextiarySectorAPI.TabSSMachine = new CreativeTabSSMachine();
+		SextiarySectorAPI.TabSSPlayer = new CreativeTabSSPlayer();
 		SextiarySectorAPI.TabSSAgriculture = new CreativeTabSSAgriculture();
+		SextiarySectorAPI.TabSSMining = new CreativeTabSSMining();
 		SextiarySectorAPI.TabSSCooking = new CreativeTabSSCooking();
 		SextiarySectorAPI.TabSSEconomy = new CreativeTabSSEconomy();
 		SextiarySectorAPI.TabSSMagic = new CreativeTabSSMagic();
@@ -78,6 +80,25 @@ public class SSCreativeTabs {
 
 	}
 
+	private static class CreativeTabSSPlayer extends CreativeTabs{
+
+		public CreativeTabSSPlayer() {
+			super("ss.player");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;//SSBlocks.LargeFurnace.g;
+		}
+
+		@SideOnly(Side.CLIENT)
+	    public ItemStack getIconItemStack()
+	    {
+			return new ItemStack(SSItems.ironRing,1);
+	    }
+
+	}
+
 	private static class CreativeTabSSAgriculture extends CreativeTabs{
 
 		public CreativeTabSSAgriculture() {
@@ -97,10 +118,10 @@ public class SSCreativeTabs {
 
 	}
 
-	private static class CreativeTabSSEconomy extends CreativeTabs{
+	private static class CreativeTabSSMining extends CreativeTabs{
 
-		public CreativeTabSSEconomy() {
-			super("ss.economy");
+		public CreativeTabSSMining() {
+			super("ss.mining");
 		}
 
 		@Override
@@ -111,7 +132,7 @@ public class SSCreativeTabs {
 		@SideOnly(Side.CLIENT)
 	    public ItemStack getIconItemStack()
 	    {
-			return new ItemStack(SSBlocks.creeperChest,1);
+			return new ItemStack(SSBlocks.ironLargeOre,1);
 	    }
 
 	}
@@ -131,6 +152,25 @@ public class SSCreativeTabs {
 	    public ItemStack getIconItemStack()
 	    {
 			return new ItemStack(SSItems.ironKnife,1);
+	    }
+
+	}
+
+	private static class CreativeTabSSEconomy extends CreativeTabs{
+
+		public CreativeTabSSEconomy() {
+			super("ss.economy");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;//SSBlocks.LargeFurnace.g;
+		}
+
+		@SideOnly(Side.CLIENT)
+	    public ItemStack getIconItemStack()
+	    {
+			return new ItemStack(SSBlocks.creeperChest,1);
 	    }
 
 	}

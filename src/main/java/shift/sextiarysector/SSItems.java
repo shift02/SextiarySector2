@@ -51,8 +51,12 @@ public class SSItems {
 	public static Item coalDust;
 	public static Item ironDust;
 	public static Item goldDust;
+	public static Item diamondDust;
+
+	public static Item mithrilDust;
 
 	public static Item steelIngot;
+	public static Item brassIngot;
 
 	public static Item blueStoneIngot;
 	public static Item yellowStoneIngot;
@@ -65,12 +69,14 @@ public class SSItems {
 	public static Item blueStoneSlimeBall;
 
 
-	public static Item energyRing;
+	public static Item energyReactor;
+	public static Item objectReactor;
 
 	//unit
 	public static Item craftUnit;
 
 	//ring
+	public static Item ironRing;
 	public static Item creeperRing;
 
 	//魔法
@@ -176,54 +182,70 @@ public class SSItems {
 		dustWaterLily = new Item().setUnlocalizedName("ss.dust_waterlily").setTextureName("sextiarysector:dust/waterlily_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(dustWaterLily, "DustWaterLily");
 
-		stoneDust = new Item().setUnlocalizedName("ss.stone_dust").setTextureName("sextiarysector:dust/stone_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		stoneDust = new Item().setUnlocalizedName("ss.stone_dust").setTextureName("sextiarysector:dust/stone_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(stoneDust, "StoneDust");
 
-		blueStoneDust = new Item().setUnlocalizedName("ss.dust_blue_stone").setTextureName("sextiarysector:dust/bluestone_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		blueStoneDust = new Item().setUnlocalizedName("ss.dust_blue_stone").setTextureName("sextiarysector:dust/bluestone_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(blueStoneDust, "DustBlueStone");
 
-		yellowStoneDust = new Item().setUnlocalizedName("ss.dust_yellow_stone").setTextureName("sextiarysector:dust/yellowstone_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		yellowStoneDust = new Item().setUnlocalizedName("ss.dust_yellow_stone").setTextureName("sextiarysector:dust/yellowstone_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(yellowStoneDust, "DustYellowStone");
 
-		coalDust = new Item().setUnlocalizedName("ss.coal_dust").setTextureName("sextiarysector:dust/coal_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		coalDust = new Item().setUnlocalizedName("ss.coal_dust").setTextureName("sextiarysector:dust/coal_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(coalDust, "CoalDust");
 
-		ironDust = new Item().setUnlocalizedName("ss.iron_dust").setTextureName("sextiarysector:dust/iron_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		ironDust = new Item().setUnlocalizedName("ss.iron_dust").setTextureName("sextiarysector:dust/iron_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(ironDust, "IronDust");
 
-		goldDust = new Item().setUnlocalizedName("ss.gold_dust").setTextureName("sextiarysector:dust/gold_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		goldDust = new Item().setUnlocalizedName("ss.gold_dust").setTextureName("sextiarysector:dust/gold_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(goldDust, "GoldDust");
 
-		steelIngot = new Item().setUnlocalizedName("ss.steel_ingot").setTextureName("sextiarysector:ingot/steel_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		diamondDust = new Item().setUnlocalizedName("ss.diamond_dust").setTextureName("sextiarysector:dust/diamond_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(diamondDust, "DiamondDust");
+
+		mithrilDust = new Item().setUnlocalizedName("ss.mithril_dust").setTextureName("sextiarysector:dust/mithril_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(mithrilDust, "MithrilDust");
+
+
+		steelIngot = new Item().setUnlocalizedName("ss.steel_ingot").setTextureName("sextiarysector:ingot/steel_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(steelIngot, "SteelIngot");
 
-		blueStoneIngot = new Item().setUnlocalizedName("ss.bluestone_ingot").setTextureName("sextiarysector:ingot/bluestone_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		brassIngot = new Item().setUnlocalizedName("ss.brass_ingot").setTextureName("sextiarysector:ingot/brass_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(brassIngot, "BrassIngot");
+
+		blueStoneIngot = new Item().setUnlocalizedName("ss.bluestone_ingot").setTextureName("sextiarysector:ingot/bluestone_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(blueStoneIngot, "BlueStoneIngot");
 
-		yellowStoneIngot = new Item().setUnlocalizedName("ss.yellowstone_ingot").setTextureName("sextiarysector:ingot/yellowstone_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		yellowStoneIngot = new Item().setUnlocalizedName("ss.yellowstone_ingot").setTextureName("sextiarysector:ingot/yellowstone_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(yellowStoneIngot, "YellowStoneIngot");
 
-		mithrilIngot = new Item().setUnlocalizedName("ss.mithril_ingot").setTextureName("sextiarysector:ingot/mithril_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		mithrilIngot = new Item().setUnlocalizedName("ss.mithril_ingot").setTextureName("sextiarysector:ingot/mithril_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(mithrilIngot, "MithrilIngot");
 
-		orichalcumGem = new Item().setUnlocalizedName("ss.orichalcum_gem").setTextureName("sextiarysector:gem/orichalcum_gem").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		orichalcumGem = new Item().setUnlocalizedName("ss.orichalcum_gem").setTextureName("sextiarysector:gem/orichalcum_gem").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(orichalcumGem, "OrichalcumGem");
 
-		ninjaIngot = new Item().setUnlocalizedName("ss.ninja_ingot").setTextureName("sextiarysector:ingot/ninja_ingot").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		ninjaIngot = new Item().setUnlocalizedName("ss.ninja_ingot").setTextureName("sextiarysector:ingot/ninja_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(ninjaIngot, "NinjaIngot");
 
 		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
 
 
-		energyRing = new Item().setUnlocalizedName("ss.energy_ring").setTextureName("sextiarysector:energy_ring").setCreativeTab(SextiarySectorAPI.TabSSCore);
-		GameRegistry.registerItem(energyRing, "EnergyRing");
+		energyReactor = new Item().setUnlocalizedName("ss.energy_reactor").setTextureName("sextiarysector:energy_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(energyReactor, "EnergyReactor");
+
+		objectReactor = new Item().setUnlocalizedName("ss.object_reactor").setTextureName("sextiarysector:object_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(objectReactor, "ObjectReactor");
 
 		//Unit
-		craftUnit = new ItemGuiUnit(201).setUnlocalizedName("ss.craft_unit").setTextureName("sextiarysector:unit/craft_unit").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		craftUnit = new ItemGuiUnit(201).setUnlocalizedName("ss.craft_unit").setTextureName("sextiarysector:unit/craft_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(craftUnit, "CraftUnit");
 
 		//Ring
+		ironRing = new Item().setUnlocalizedName("ss.iron_ring").setTextureName("sextiarysector:ring/iron_ring").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(ironRing, "IronRing");
+
 		creeperRing = new ItemShopRing().setUnlocalizedName("ss.creeper_ring").setTextureName("sextiarysector:ring/creeper_ring");
 		GameRegistry.registerItem(creeperRing, "CreeperRing");
 

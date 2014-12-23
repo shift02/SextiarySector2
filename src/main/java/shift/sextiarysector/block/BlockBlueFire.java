@@ -16,6 +16,11 @@ public class BlockBlueFire extends BlockFire{
 	public BlockBlueFire()
     {
         super();
+        this.setHardness(0.0F);
+        this.setLightLevel(1.0F);
+        this.setStepSound(soundTypeWood);
+        this.setBlockName("fire");
+        this.disableStats();
         this.setTickRandomly(true);
     }
 

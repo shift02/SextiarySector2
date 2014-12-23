@@ -24,7 +24,13 @@ public class RecipesMachine {
         	'a', Blocks.furnace
         	});
 
-        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.energyRing, 2),
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.energyReactor, 2),
+				new Object[] { "xxx", "xyx","xxx",
+			Character.valueOf('y'), "ingotBluestone",
+			Character.valueOf('x'), "ingotYellowstone"
+			}));
+
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.objectReactor, 2),
 				new Object[] { "xxx", "xyx","xxx",
 			Character.valueOf('y'), "ingotNinja",
 			Character.valueOf('x'), "ingotYellowstone"
@@ -123,6 +129,15 @@ public class RecipesMachine {
 			Character.valueOf('x'), SSItems.steelGFStorage,
 			Character.valueOf('z'), SSItems.steelUnitGear,
 			Character.valueOf('a'), "gemDiamond"
+			}));
+
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.fan, 1),
+				new Object[] { "yay", "zxz","zbz",
+			Character.valueOf('y'), "ingotBrass",
+			Character.valueOf('x'), "plateWood",
+			Character.valueOf('z'), "stone",
+			Character.valueOf('a'), Blocks.iron_bars,
+			Character.valueOf('b'), SSBlocks.steelShaft
 			}));
 
         //GF Item

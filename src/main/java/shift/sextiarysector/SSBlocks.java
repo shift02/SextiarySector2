@@ -169,7 +169,7 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntityBlockBottle.class, "Bottle");
 
 		fluidCrafter = new BlockFluidCrafter().setBlockName("ss.fluid_crafter").setBlockTextureName("glass");
-		GameRegistry.registerBlock(fluidCrafter,ItemBlockFluidCrafter.class, "FluidCrafter");
+		GameRegistry.registerBlock(fluidCrafter, ItemBlockFluidCrafter.class, "FluidCrafter");
 		GameRegistry.registerTileEntity(TileEntityFluidCrafter.class, "FluidCrafter");
 
 		hole = new BlockHole().setBlockName("ss.hole").setCreativeTab(SextiarySectorAPI.TabSSCore);
@@ -191,10 +191,10 @@ public class SSBlocks {
 		GameRegistry.registerBlock(blueFire, "BlueFire");
 
 		//鉱石
-		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerBlock(blueStoneOre, "BlueStoneOre");
 
-		yellowStoneOre = new BlockPowerStone().setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		yellowStoneOre = new BlockPowerStone().setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerBlock(yellowStoneOre, "YellowStoneOre");
 
 		mithrilOre = new BlockSSOre(null,2).setBlockName("ss.mithril_ore").setBlockTextureName("sextiarysector:ore/mithril_ore");

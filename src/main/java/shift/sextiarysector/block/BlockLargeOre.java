@@ -23,7 +23,7 @@ public class BlockLargeOre extends  Block{
 		this.setResistance(5.0F);
 		this.setStepSound(Block.soundTypeStone);
 		this.setHardness(3.0F);
-		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+		this.setCreativeTab(SextiarySectorAPI.TabSSMining);
 	}
 
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
