@@ -30,10 +30,12 @@ import org.lwjgl.opengl.GL11;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
 import shift.sextiarysector.api.agriculture.IFertilizer;
 import shift.sextiarysector.api.machine.energy.IGearForceGrid;
+import shift.sextiarysector.api.machine.item.IGearForceGridItem;
 import shift.sextiarysector.gui.GuiStatsNext;
 import shift.sextiarysector.item.TextureSeason;
 import shift.sextiarysector.module.FertilizerManager;
 import shift.sextiarysector.module.SeasonManager;
+import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.EquipmentType;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -213,10 +215,14 @@ public class ClientEventHandler {
         //	return;
        // }
 
-       // /*if(!(Item.itemsList[itemstack.itemID] instanceof ItemMachineHammer))
-        //{
-        //	return;
-        //}
+        if(EntityPlayerManager.getCustomPlayerData(player).getEquipmentStats().inventory.getStackInSlot(EquipmentType.Face.getSlot()[0]) == null){
+        	return;
+        }
+
+        if(!(EntityPlayerManager.getCustomPlayerData(player).getEquipmentStats().inventory.getStackInSlot(EquipmentType.Face.getSlot()[0]).getItem() instanceof IGearForceGridItem))
+        {
+        	return;
+        }
 
         if(target.typeOfHit != MovingObjectType.BLOCK)
         {
@@ -252,16 +258,20 @@ public class ClientEventHandler {
         float f1 = 0.002F;
 
         for(ForgeDirection d:ForgeDirection.VALID_DIRECTIONS){
+        	if(tileEntity.canIn(d)){
+        		this.drawInFromDirection((int)x, (int)y, (int)z, d0, d1, d2, d);
+        	}
+        }
+
+        GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
+
+        for(ForgeDirection d:ForgeDirection.VALID_DIRECTIONS){
         	if(tileEntity.canOut(d)){
         		this.drawOutFromDirection((int)x, (int)y, (int)z, d0, d1, d2, d);
         	}
         }
 
-        for(ForgeDirection d:ForgeDirection.VALID_DIRECTIONS){
-        	if(tileEntity.canIn(d)){
-        		this.drawOutFromDirection((int)x, (int)y, (int)z, d0, d1, d2, d);
-        	}
-        }
+
 
         GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
 
@@ -284,6 +294,8 @@ public class ClientEventHandler {
         axisAlignedBB = axisAlignedBB.expand(f1, f1, f1).getOffsetBoundingBox(-d0, -d1, -d2);
         this.drawOutlinedBoundingBox(axisAlignedBB);
 
+        GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
+
     }
 
     private void drawInFromDirection(int x, int y, int z, double d0, double d1, double d2, ForgeDirection d){
@@ -297,6 +309,8 @@ public class ClientEventHandler {
 		AxisAlignedBB axisAlignedBB2 =  AxisAlignedBB.getBoundingBox(x2, y2, z2, x2 + 1.0D, y2 + 1.0D, z2 + 1.0D);
         axisAlignedBB2 = axisAlignedBB2.expand(f1, f1, f1).getOffsetBoundingBox(-d0, -d1, -d2);
         this.drawOutlinedBoundingBox(axisAlignedBB2);
+
+        GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
 
     }
 

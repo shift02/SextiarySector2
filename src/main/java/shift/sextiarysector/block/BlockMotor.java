@@ -12,6 +12,7 @@ public abstract class BlockMotor  extends BlockDirection{
 
 	public BlockMotor() {
 		super(Material.iron);
+		this.setHardness(0.8F);
 	}
 
 	@Override

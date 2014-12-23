@@ -5,8 +5,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
 import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 
-public class TileEntityGearShaft extends TileEntityDirection implements IEnergyHandler {
+public class TileEntityGearShaft extends TileEntityDirection implements IEnergyHandler  ,IGearForceGrid{
 
 	public float rotateUpStep = 0;
 	public float rotateDownStep = 0;
@@ -130,5 +131,16 @@ public class TileEntityGearShaft extends TileEntityDirection implements IEnergyH
 	@Override
 	public long getMaxSpeedStored(ForgeDirection from) {
 		return storage.getMaxSpeedStored();
+	}
+
+
+	@Override
+	public boolean canIn(ForgeDirection from) {
+		return this.direction.getOpposite().ordinal() == from.ordinal();
+	}
+
+	@Override
+	public boolean canOut(ForgeDirection from) {
+		return this.direction.ordinal() == from.ordinal();
 	}
 }

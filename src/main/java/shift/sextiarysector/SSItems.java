@@ -7,6 +7,7 @@ import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.item.ItemCalendar;
 import shift.sextiarysector.item.ItemCrop;
 import shift.sextiarysector.item.ItemFoodDrink;
+import shift.sextiarysector.item.ItemGFContactLenses;
 import shift.sextiarysector.item.ItemGearStorage;
 import shift.sextiarysector.item.ItemGuiUnit;
 import shift.sextiarysector.item.ItemHammer;
@@ -136,6 +137,8 @@ public class SSItems {
 
 	//装備
 	public static Item shiftHat;
+
+	public static Item gfContactLenses;
 
 	public static void initItems(){
 
@@ -347,8 +350,12 @@ public class SSItems {
 		GameRegistry.registerItem(beefSmoked, "BeefSmoked");
 
 
+		//装備
 		shiftHat = new ItemShiftHat().setUnlocalizedName("ss.shift_hat").setTextureName("sextiarysector:shift_hat");
 		GameRegistry.registerItem(shiftHat, "ShiftHat");
+
+		gfContactLenses = new ItemGFContactLenses().setUnlocalizedName("ss.gf_contact_lenses").setTextureName("sextiarysector:face/gf_contact_lenses");
+		GameRegistry.registerItem(gfContactLenses, "GFContactLenses");
 
 	}
 
