@@ -32,6 +32,7 @@ public class SSShops {
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,0),500));
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,1),500));
 
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.gfContactLenses,1),300));
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.craftUnit,1),50000));
 
 			if(i==0){
