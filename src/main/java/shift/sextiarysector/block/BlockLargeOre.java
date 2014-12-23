@@ -5,9 +5,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 
 public class BlockLargeOre extends  Block{
@@ -42,7 +44,12 @@ public class BlockLargeOre extends  Block{
             if (item != null)
             {
                 ret.add(new ItemStack(item, 1, damageDropped(metadata)));
-                ret.add(new ItemStack(oreBlock, 1, damageDropped(metadata)));
+                if(world.getBlock(x, y, z)==SSBlocks.coalLargeOre){
+                	ret.add(new ItemStack(Items.coal, 2));
+                }else{
+                	ret.add(new ItemStack(oreBlock, 1, damageDropped(metadata)));
+                }
+
             }
         }
         return ret;

@@ -7,11 +7,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
 import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 import shift.sextiarysector.api.machine.item.GearForceItem;
 import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.container.ItemBox;
 
-public class TileEntitySimpleMachine extends TileEntityDirection implements ISidedInventory, IEnergyHandler {
+public class TileEntitySimpleMachine extends TileEntityDirection implements ISidedInventory, IEnergyHandler ,IGearForceGrid{
 
 	protected static final int[] slots_top = new int[] { 0 };
 	protected static final int[] slots_bottom = new int[] { 2, 1 };
@@ -385,6 +386,18 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 		nbt.setShort("WorkTime", (short)this.machineWorkProgressTime);
 		nbt.setInteger("inPower", this.inPower);
 		nbt.setInteger("inSpeed", this.inSpeed);
+	}
+
+
+	@Override
+	public boolean canIn(ForgeDirection from) {
+		return true;
+	}
+
+
+	@Override
+	public boolean canOut(ForgeDirection from) {
+		return false;
 	}
 
 }
