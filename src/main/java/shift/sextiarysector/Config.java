@@ -16,6 +16,8 @@ public class Config {
 	public static boolean modDCsAppleMilk;
 	public static boolean modComputerCraft;
 	public static boolean modTHKaguya;
+	public static boolean modIC2;
+	public static boolean modTofu;
 
 	public static void ConfigRead(FMLPreInitializationEvent event) {
 
@@ -52,6 +54,8 @@ public class Config {
 		modDCsAppleMilk = cfg.getBoolean("AppleMilk", "general", true, "");
 		modComputerCraft = cfg.getBoolean("ComputerCraft", "general", true, "");
 		modTHKaguya = cfg.getBoolean("THKaguya", "general", true, "");
+		modIC2 = cfg.getBoolean("IC2", "general", true, "");
+		modTofu = cfg.getBoolean("Tofu", "general", true, "");
 
 	}
 

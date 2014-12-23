@@ -14,7 +14,7 @@ public class ItemShiftHat extends ItemArmor{
 
 	public ItemShiftHat() {
 		super(ArmorMaterial.DIAMOND, 0, 0);
-		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+		this.setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 	}
 
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)

@@ -8,9 +8,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.tileentity.TileEntityDirection;
 
-public class ItemBlockShaft extends ItemBlock{
+public class ItemBlockDirection extends ItemBlock{
 
-	public ItemBlockShaft(Block par1) {
+	public ItemBlockDirection(Block par1) {
 		super(par1);
 	}
 

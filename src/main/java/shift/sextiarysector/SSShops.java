@@ -7,7 +7,9 @@ import shift.mceconomy2.api.MCEconomyAPI;
 import shift.mceconomy2.api.shop.ProductItem;
 import shift.mceconomy2.api.shop.ProductList;
 import shift.sextiarysector.block.BlockBottle;
+import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
+import shift.sextiarysector.item.ItemShopRing;
 
 public class SSShops {
 
@@ -21,6 +23,8 @@ public class SSShops {
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.blueStoneDust,2),320));
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.yellowStoneDust,2),320));
 
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.brassIngot,2),2300));
+
 			creepers[i].addItemProduct(new ProductItem(((BlockBottle) SSBlocks.bottle).getFluidItem(new FluidStack(SSFluids.takumiTea,1000)),216));
 
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.seasonStone,1),3000));
@@ -28,6 +32,7 @@ public class SSShops {
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,0),500));
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,1),500));
 
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.gfContactLenses,1),300));
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.craftUnit,1),50000));
 
 			if(i==0){
@@ -58,9 +63,16 @@ public class SSShops {
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.stoneDust,4),500));
 			}
 
+			creepers[i].addItemProduct(new ProductItem(BlockMonitor.getMonitor(MonitorType.creeper),100000));
+
 		}
 
 		MonitorType.creeper.setList(creepers);
+		SSProductList[] creepersR = new SSProductList[4];
+		for(int i=0; i<4; i++){
+			creepersR[i] = creepers[i].copySSProductList();
+		}
+		((ItemShopRing) SSItems.creeperRing).setList(creepersR);
 
 
 		SSProductList robot = new SSProductList("shop.ss.robot");
@@ -83,6 +95,14 @@ public class SSShops {
 		@Override
 		public String getProductListName() {
 			return this.name;
+		}
+
+		public SSProductList copySSProductList(){
+
+			SSProductList c = new SSProductList(name);
+			c.ProductItemList = this.ProductItemList;
+
+			return c;
 		}
 
 	}

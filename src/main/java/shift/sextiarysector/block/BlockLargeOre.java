@@ -5,6 +5,8 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -23,7 +25,7 @@ public class BlockLargeOre extends  Block{
 		this.setResistance(5.0F);
 		this.setStepSound(Block.soundTypeStone);
 		this.setHardness(3.0F);
-		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+		this.setCreativeTab(SextiarySectorAPI.TabSSMining);
 	}
 
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
@@ -42,7 +44,12 @@ public class BlockLargeOre extends  Block{
             if (item != null)
             {
                 ret.add(new ItemStack(item, 1, damageDropped(metadata)));
-                ret.add(new ItemStack(oreBlock, 1, damageDropped(metadata)));
+                if(oreBlock==Blocks.coal_ore){
+                	ret.add(new ItemStack(Items.coal, 2));
+                }else{
+                	ret.add(new ItemStack(oreBlock, 1, damageDropped(metadata)));
+                }
+
             }
         }
         return ret;

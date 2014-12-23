@@ -3,7 +3,6 @@ package shift.sextiarysector.block;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,10 +22,11 @@ import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.api.machine.item.IHammer;
 import shift.sextiarysector.tileentity.TileEntityDirection;
 import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
+import shift.sextiarysector.tileentity.TileEntityFluidMachineBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockFluidFurnace extends BlockContainer{
+public class BlockFluidFurnace extends BlockFluidMachineBase{
 
 	private final Random furnaceRand = new Random();
 
@@ -42,12 +42,13 @@ public class BlockFluidFurnace extends BlockContainer{
 	public BlockFluidFurnace() {
 		super(Material.rock);
 		this.setHardness(1.0F);
+		this.setStepSound(soundTypeStone);
 	}
 
 
 	public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
-		TileEntityFluidFurnace tileentityfurnace = (TileEntityFluidFurnace)world.getTileEntity(x, y, z);
+		TileEntityFluidMachineBase tileentityfurnace = (TileEntityFluidMachineBase)world.getTileEntity(x, y, z);
 		if(tileentityfurnace.isFuel())return 15;
 		return 0;
     }
@@ -143,7 +144,7 @@ public class BlockFluidFurnace extends BlockContainer{
     public IIcon getIcon(IBlockAccess p_149673_1_, int x, int y, int z, int side)
     {
 
-		TileEntityFluidFurnace tileEntity = (TileEntityFluidFurnace)p_149673_1_.getTileEntity(x, y, z);
+		TileEntityFluidMachineBase tileEntity = (TileEntityFluidMachineBase)p_149673_1_.getTileEntity(x, y, z);
 
     	int meta = tileEntity.getDirection().ordinal();//p_149673_1_.getBlockMetadata(x, y, z);
 
@@ -205,7 +206,7 @@ public class BlockFluidFurnace extends BlockContainer{
     {
         if (!keepFurnaceInventory)
         {
-        	TileEntityFluidFurnace tileentityfurnace = (TileEntityFluidFurnace)par1World.getTileEntity(par2, par3, par4);
+        	TileEntityFluidMachineBase tileentityfurnace = (TileEntityFluidMachineBase)par1World.getTileEntity(par2, par3, par4);
 
             if (tileentityfurnace != null)
             {
@@ -262,7 +263,7 @@ public class BlockFluidFurnace extends BlockContainer{
 	@SideOnly(Side.CLIENT)
     public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
     {
-		TileEntityFluidFurnace tileentityfurnace = (TileEntityFluidFurnace)p_149734_1_.getTileEntity(p_149734_2_, p_149734_3_, p_149734_4_);
+		TileEntityFluidMachineBase tileentityfurnace = (TileEntityFluidMachineBase)p_149734_1_.getTileEntity(p_149734_2_, p_149734_3_, p_149734_4_);
 
 
         if (tileentityfurnace.isFuel())

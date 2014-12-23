@@ -1,6 +1,8 @@
 package shift.sextiarysector;
 
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class SSOreDictionary {
@@ -19,8 +21,28 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("dustCoal", SSItems.coalDust);
 		OreDictionary.registerOre("dustIron", SSItems.ironDust);
 		OreDictionary.registerOre("dustGold", SSItems.goldDust);
+		OreDictionary.registerOre("dustDiamond", SSItems.diamondDust);
+		OreDictionary.registerOre("dustMithril", SSItems.mithrilDust);
+		OreDictionary.registerOre("dustBluestone", SSItems.blueStoneDust);
+		OreDictionary.registerOre("dustYellowstone", SSItems.yellowStoneDust);
 
 		OreDictionary.registerOre("ingotSteel", SSItems.steelIngot);
+		OreDictionary.registerOre("ingotBrass", SSItems.brassIngot);
+		OreDictionary.registerOre("ingotBluestone", SSItems.blueStoneIngot);
+		OreDictionary.registerOre("ingotYellowstone", SSItems.yellowStoneIngot);
+		OreDictionary.registerOre("ingotNinja", SSItems.ninjaIngot);
+		OreDictionary.registerOre("ingotMithril", SSItems.mithrilIngot);
+
+		OreDictionary.registerOre("oreMithril", SSBlocks.mithrilOre);
+
+		OreDictionary.registerOre("ringIron", SSItems.ironRing);
+
+		Item[] Knife = new Item[]{SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife};
+		for(int i =0;i<Knife.length;i++){
+			OreDictionary.registerOre("craftingToolWireCutter", new ItemStack(Knife[i],1,OreDictionary.WILDCARD_VALUE));
+			OreDictionary.registerOre("craftingToolKnife", new ItemStack(Knife[i],1,OreDictionary.WILDCARD_VALUE));
+		}
+
 
 	}
 

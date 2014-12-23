@@ -4,9 +4,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
 import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
 
-public class TileEntityMonitor extends TileEntityDirection implements IEnergyHandler{
+public class TileEntityMonitor extends TileEntityDirection implements IEnergyHandler ,IGearForceGrid{
 
 	public EnergyStorage storage = new EnergyStorage("Base", 1, 10000);
 	public MonitorType type = MonitorType.unknown;
@@ -104,6 +105,16 @@ public class TileEntityMonitor extends TileEntityDirection implements IEnergyHan
 	public long getMaxSpeedStored(ForgeDirection from) {
 		if(!this.canInterface(from))return 0;
 		return this.storage.getMaxSpeedStored();
+	}
+
+	@Override
+	public boolean canIn(ForgeDirection from) {
+		return from.ordinal() == ForgeDirection.DOWN.ordinal();
+	}
+
+	@Override
+	public boolean canOut(ForgeDirection from) {
+		return false;
 	}
 
 }

@@ -56,6 +56,90 @@ public class ItemBlockFluidCrafter extends ItemBlock{
 
     }
 
+	/*
+	//アイテム
+	@Override
+	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4,int par5, int par6, int par7, float par8, float par9, float par10)
+	{
+
+		if (par2EntityPlayer.isSneaking()) {
+			return super.onItemUse(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9,par10);
+		} else {
+			return false;
+		}
+
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    {
+
+		if (par3EntityPlayer.isSneaking()) {
+			return par1ItemStack;
+		} else {
+
+			if(par1ItemStack.getItemDamage()==0){
+				return this.onEmptyItemRightClick(par1ItemStack, par2World, par3EntityPlayer);
+			}
+
+		}
+
+
+		return par1ItemStack;
+
+    }
+
+	private ItemStack onEmptyItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    {
+
+		MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
+
+
+		if (movingobjectposition != null && movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+        {
+            int x = movingobjectposition.blockX;
+            int y = movingobjectposition.blockY;
+            int z = movingobjectposition.blockZ;
+
+            if (!par3EntityPlayer.canPlayerEdit(x, y, z, movingobjectposition.sideHit, par1ItemStack))
+            {
+                return par1ItemStack;
+            }
+
+            Block block = par2World.getBlock(x, y, z);
+
+            Fluid f = FluidRegistry.lookupFluidForBlock(block);
+
+            if(f!=null){
+
+            	if (par3EntityPlayer.capabilities.isCreativeMode)
+                {
+                    return par1ItemStack;
+                }
+
+            	ItemStack item = par1ItemStack.copy();
+            	item.stackSize = 1;
+            	item.setItemDamage(f.getID());
+
+                if (--par1ItemStack.stackSize <= 0)
+                {
+                    return item;
+                }
+
+                if (!par3EntityPlayer.inventory.addItemStackToInventory(item))
+                {
+                	par3EntityPlayer.dropPlayerItemWithRandomChoice(item, false);
+                }
+
+            	par2World.setBlockToAir(x, y, z);
+            }
+
+        }
+
+
+		return par1ItemStack;
+    }*/
+
 	@Override
 	public void addInformation(ItemStack itemstack,EntityPlayer par1EntityPlayer, List list , boolean flag)
     {
