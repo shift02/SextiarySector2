@@ -11,6 +11,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSItems;
+import shift.sextiarysector.block.BlockMonitor;
+import shift.sextiarysector.block.BlockMonitor.MonitorType;
 
 
 public class RecipesFurnaceCraft {
@@ -44,6 +46,12 @@ public class RecipesFurnaceCraft {
 			"dustIron"
 			}));
 
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.ninjaIngot, 1),
+				new Object[] {
+			"dustMithril",
+			"dustDiamond"
+			}));
+
 		p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.unit, 1),
 				new Object[] { "xxx", "xyx","xxx",
 			Character.valueOf('y'), SSItems.blueStoneSlimeBall,
@@ -55,6 +63,20 @@ public class RecipesFurnaceCraft {
 				new Object[] { "xxx", " y "," y ",
 			Character.valueOf('x'), "ingotIron",
 			Character.valueOf('y'), "stickWood",
+			}));
+
+        //鉄のリング
+        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.ironRing, 1),
+				new Object[] { " x ", "x x"," x ",
+			Character.valueOf('x'), "ingotIron",
+			}));
+
+        //クリーパーリング
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.creeperRing, 1),
+				new Object[] {
+        	"ringIron",
+			SSItems.objectReactor,
+			BlockMonitor.getMonitor(MonitorType.creeper)
 			}));
 
 
@@ -71,6 +93,13 @@ public class RecipesFurnaceCraft {
 				new Object[] { "xxx", "xyx","xxx",
 			Character.valueOf('x'), "cobblestone",
 			Character.valueOf('y'), SSItems.magicDust,
+			}));
+
+        //乾燥機
+        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.foodSmokers, 1),
+				new Object[] { "xxx", "xyx","xxx",
+			Character.valueOf('x'), "ingotSteel",
+			Character.valueOf('y'), Blocks.glass_pane,
 			}));
 
         //time

@@ -41,6 +41,7 @@ public class BlockMagicFurnace  extends BlockContainer{
 	public BlockMagicFurnace() {
 		super(Material.rock);
 		this.setHardness(1.0F);
+		this.setStepSound(soundTypeStone);
 	}
 
 	public int getLightValue(IBlockAccess world, int x, int y, int z)

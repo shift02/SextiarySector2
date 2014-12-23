@@ -25,6 +25,8 @@ public class BlockFoodSmokers extends BlockFluidMachineBase{
 
     public BlockFoodSmokers() {
 		super(Material.iron);
+		this.setHardness(1.0F);
+		this.setStepSound(soundTypeMetal);
 	}
 
     @Override

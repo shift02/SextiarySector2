@@ -46,6 +46,8 @@ tile.ss.loom.name=Loom
 tile.ss.sawmill.name=Sawmill
 tile.ss.pulverizer.name=Pulverizer
 
+tile.ss.fan.name=Fan
+
 tile.ss.blue_stone.name=Blue Stone Ore
 tile.ss.yellow_stone.name=Yellow Stone Ore
 
@@ -91,8 +93,13 @@ item.ss.dust_yellow_stone.name=Yellow Stone Dust
 item.ss.coal_dust.name=Coal Dust
 item.ss.iron_dust.name=Iron Dust
 item.ss.gold_dust.name=Gold Dust
+item.ss.diamond_dust.name=Diamond Dust
+
+item.ss.mithril_dust.name=Mithril Dust
+
 
 item.ss.steel_ingot.name=Steel Ingot
+item.ss.brass_ingot.name=Brass Ingot
 
 item.ss.bluestone_ingot.name=Blue Stone Ingot
 item.ss.yellowstone_ingot.name=Yellow Stone Ingot
@@ -105,11 +112,13 @@ item.ss.ninja_ingot.name=Ninja Ingot
 item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
 
 
-item.ss.energy_ring.name=Energy Ring
+item.ss.energy_reactor.name=Energy Reactor
+item.ss.object_reactor.name=Object Reactor
 
 
 item.ss.craft_unit.name=Craft Unit
 
+item.ss.iron_ring.name=Iron Ring
 item.ss.creeper_ring.name=Creeper Shop Ring
 
 
@@ -230,7 +239,9 @@ tooltip.season.winter=Winter
 itemGroup.ss.core=SextiarySector -Core-
 itemGroup.ss.fluid=SextiarySector -Fluid-
 itemGroup.ss.machine=SextiarySector -Machine-
+itemGroup.ss.player=SextiarySector -Player-
 itemGroup.ss.agriculture=SextiarySector -Agriculture-
+itemGroup.ss.mining=SextiarySector -Mining-
 itemGroup.ss.cooking=SextiarySector -Cooking-
 itemGroup.ss.economy=SextiarySector -Economy-
 itemGroup.ss.magic=SextiarySector -Magic-

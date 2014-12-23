@@ -31,7 +31,7 @@ public class RendererFan  extends TileEntitySpecialRenderer implements ISimpleBl
         float scale = 0.0625f;
         GL11.glScalef(scale,scale,scale);
 
-        GL11.glRotatef(180, 1, 0, 0);
+        //GL11.glRotatef(180, 1, 0, 0);
 
         this.bind(this.fanShaftTextures);
 

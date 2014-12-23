@@ -7,6 +7,7 @@ import shift.mceconomy2.api.MCEconomyAPI;
 import shift.mceconomy2.api.shop.ProductItem;
 import shift.mceconomy2.api.shop.ProductList;
 import shift.sextiarysector.block.BlockBottle;
+import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
 import shift.sextiarysector.item.ItemShopRing;
 
@@ -21,6 +22,8 @@ public class SSShops {
 			creepers[i] = new SSProductList("shop.ss.creeper");
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.blueStoneDust,2),320));
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.yellowStoneDust,2),320));
+
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.brassIngot,2),2300));
 
 			creepers[i].addItemProduct(new ProductItem(((BlockBottle) SSBlocks.bottle).getFluidItem(new FluidStack(SSFluids.takumiTea,1000)),216));
 
@@ -58,6 +61,8 @@ public class SSShops {
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.stoneDust,4),500));
 			}
+
+			creepers[i].addItemProduct(new ProductItem(BlockMonitor.getMonitor(MonitorType.creeper),100000));
 
 		}
 

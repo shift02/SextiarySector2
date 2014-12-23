@@ -5,8 +5,9 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 
-public class TileEntitySmallWaterwheel extends TileEntityDirection{
+public class TileEntitySmallWaterwheel extends TileEntityDirection implements IEnergyHandler,IGearForceGrid{
 
 	public float rotateStep = 0;
 
@@ -69,6 +70,49 @@ public class TileEntitySmallWaterwheel extends TileEntityDirection{
 		return true;
 	}
 
+	@Override
+	public int addEnergy(ForgeDirection from, int power, int speed,boolean simulate) {
+		return 0;
+	}
 
+	@Override
+	public int drawEnergy(ForgeDirection from, int power, int speed,boolean simulate) {
+		return 0;
+	}
+
+	@Override
+	public boolean canInterface(ForgeDirection from) {
+		return this.direction.getOpposite().ordinal() == from.ordinal();
+	}
+
+	@Override
+	public int getPowerStored(ForgeDirection from) {
+		return 0;
+	}
+
+	@Override
+	public long getSpeedStored(ForgeDirection from) {
+		return 0;
+	}
+
+	@Override
+	public int getMaxPowerStored(ForgeDirection from) {
+		return 0;
+	}
+
+	@Override
+	public long getMaxSpeedStored(ForgeDirection from) {
+		return 0;
+	}
+
+	@Override
+	public boolean canIn(ForgeDirection from) {
+		return false;
+	}
+
+	@Override
+	public boolean canOut(ForgeDirection from) {
+		return this.direction.getOpposite().ordinal() == from.ordinal();
+	}
 
 }

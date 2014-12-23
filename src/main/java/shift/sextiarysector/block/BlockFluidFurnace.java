@@ -42,6 +42,7 @@ public class BlockFluidFurnace extends BlockFluidMachineBase{
 	public BlockFluidFurnace() {
 		super(Material.rock);
 		this.setHardness(1.0F);
+		this.setStepSound(soundTypeStone);
 	}
 
 

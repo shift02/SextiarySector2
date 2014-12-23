@@ -11,16 +11,25 @@ import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
+import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+
+import org.lwjgl.opengl.GL11;
+
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
 import shift.sextiarysector.api.agriculture.IFertilizer;
+import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 import shift.sextiarysector.gui.GuiStatsNext;
 import shift.sextiarysector.item.TextureSeason;
 import shift.sextiarysector.module.FertilizerManager;
@@ -184,7 +193,7 @@ public class ClientEventHandler {
     }
 
 
-    /*
+
   //車軸の線の描写
     @SubscribeEvent
     public void onDrawBlockHighlight(DrawBlockHighlightEvent event) {
@@ -209,21 +218,21 @@ public class ClientEventHandler {
         //	return;
         //}
 
-        //if(target.typeOfHit != EnumMovingObjectType.TILE)
-        //{
-        //	return;
-        //}
+        if(target.typeOfHit != MovingObjectType.BLOCK)
+        {
+        	return;
+        }
 //
-        //if(player.worldObj.getBlockId(target.blockX, target.blockY, target.blockZ)!=PluginPI.Axle.blockID){
-        //	return;
-        //}
+        if(!(player.worldObj.getTileEntity(target.blockX, target.blockY, target.blockZ) instanceof IGearForceGrid)){
+        	return;
+        }
 
 
         double x = target.blockX;
     	double y = target.blockY;
     	double z = target.blockZ;
 
-    	//TileEntityAxle tileEntity = (TileEntityAxle)player.worldObj.getBlockTileEntity(target.blockX, target.blockY, target.blockZ);
+    	IGearForceGrid tileEntity = (IGearForceGrid)player.worldObj.getTileEntity(target.blockX, target.blockY, target.blockZ);
 
 		//if(tileEntity==null){
 		//	return  ;
@@ -236,15 +245,36 @@ public class ClientEventHandler {
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glDepthMask(false);
 
-		ForgeDirection d = ForgeDirection.getOrientation(event.target.sideHit);
-
-		d = d.getRotation(ForgeDirection.UP);
-
 		double d0 = player.lastTickPosX + (player.posX - player.lastTickPosX) * event.partialTicks;
         double d1 = player.lastTickPosY + (player.posY - player.lastTickPosY) * event.partialTicks;
         double d2 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * event.partialTicks;
 
         float f1 = 0.002F;
+
+        for(ForgeDirection d:ForgeDirection.VALID_DIRECTIONS){
+        	if(tileEntity.canOut(d)){
+        		this.drawOutFromDirection((int)x, (int)y, (int)z, d0, d1, d2, d);
+        	}
+        }
+
+        for(ForgeDirection d:ForgeDirection.VALID_DIRECTIONS){
+        	if(tileEntity.canIn(d)){
+        		this.drawOutFromDirection((int)x, (int)y, (int)z, d0, d1, d2, d);
+        	}
+        }
+
+        GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
+
+        GL11.glDepthMask(true);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
+
+
+    }
+
+    private void drawOutFromDirection(int x, int y, int z, double d0, double d1, double d2, ForgeDirection d){
+
+    	float f1 = 0.002F;
 
         GL11.glColor4f(1.0F, 0.0F, 0.0F, 0.8F);
         double x1 = x + d.offsetX;
@@ -254,22 +284,22 @@ public class ClientEventHandler {
         axisAlignedBB = axisAlignedBB.expand(f1, f1, f1).getOffsetBoundingBox(-d0, -d1, -d2);
         this.drawOutlinedBoundingBox(axisAlignedBB);
 
-        GL11.glColor4f(0.0F, 1.0F, 0.0F, 0.7F);
-        double x2 = x - d.offsetX;
-		double y2 = y - d.offsetY;
-		double z2 = z - d.offsetZ;
+    }
+
+    private void drawInFromDirection(int x, int y, int z, double d0, double d1, double d2, ForgeDirection d){
+
+    	float f1 = 0.002F;
+
+    	GL11.glColor4f(0.0F, 1.0F, 0.0F, 0.7F);
+        double x2 = x + d.offsetX;
+		double y2 = y + d.offsetY;
+		double z2 = z + d.offsetZ;
 		AxisAlignedBB axisAlignedBB2 =  AxisAlignedBB.getBoundingBox(x2, y2, z2, x2 + 1.0D, y2 + 1.0D, z2 + 1.0D);
         axisAlignedBB2 = axisAlignedBB2.expand(f1, f1, f1).getOffsetBoundingBox(-d0, -d1, -d2);
         this.drawOutlinedBoundingBox(axisAlignedBB2);
 
-        GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
+    }
 
-        GL11.glDepthMask(true);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_BLEND);
-
-
-    }*/
 
     private void drawOutlinedBoundingBox(AxisAlignedBB par1AxisAlignedBB)
     {
