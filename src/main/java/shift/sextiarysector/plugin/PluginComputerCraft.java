@@ -12,6 +12,8 @@ import shift.sextiarysector.api.machine.energy.IEnergyHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import dan200.computercraft.api.ComputerCraftAPI;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.turtle.ITurtleAccess;
@@ -164,6 +166,13 @@ public class PluginComputerCraft  implements IPlugin{
 	@Override
 	public String getModName() {
 		return "ComputerCraft";
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void preClientPlugin(FMLPreInitializationEvent event) {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 
 

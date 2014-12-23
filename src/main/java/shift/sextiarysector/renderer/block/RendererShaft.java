@@ -20,7 +20,6 @@ public class RendererShaft extends TileEntitySpecialRenderer implements ISimpleB
 
 	public static final ResourceLocation MC_BLOCK_SHEET = new ResourceLocation("textures/atlas/blocks.png");
 
-
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 

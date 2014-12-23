@@ -33,7 +33,7 @@ public class ItemKnife  extends ItemTool
     	}else{
     		this.setHarvestLevel("axe", i-1);
     	}
-        this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+        this.setCreativeTab(SextiarySectorAPI.TabSSCooking);
         FMLCommonHandler.instance().bus().register(this);
     }
 

@@ -8,10 +8,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
 import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 import shift.sextiarysector.api.machine.item.GearForceItem;
 import shift.sextiarysector.container.ItemBox;
 
-public class TileEntityGFTank extends TileEntityDirection implements ISidedInventory, IEnergyHandler {
+public class TileEntityGFTank extends TileEntityDirection implements ISidedInventory, IEnergyHandler ,IGearForceGrid{
 
 	protected static final int[] slots_top = new int[] { 0 };
 	protected static final int[] slots_bottom = new int[] { 1 };
@@ -291,6 +292,16 @@ public class TileEntityGFTank extends TileEntityDirection implements ISidedInven
 		items.writeToNBT(nbt);
 		nbt.setInteger("inPower", this.inPower);
 		nbt.setInteger("inSpeed", this.inSpeed);
+	}
+
+	@Override
+	public boolean canIn(ForgeDirection from) {
+		return this.getDirection().ordinal() != from.ordinal();
+	}
+
+	@Override
+	public boolean canOut(ForgeDirection from) {
+		return this.getDirection().ordinal() == from.ordinal();
 	}
 
 }

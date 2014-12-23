@@ -5,10 +5,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
+import shift.sextiarysector.block.BlockBlueFire;
 import shift.sextiarysector.block.BlockBottle;
 import shift.sextiarysector.block.BlockChunkLoader;
+import shift.sextiarysector.block.BlockFan;
 import shift.sextiarysector.block.BlockFluidCrafter;
 import shift.sextiarysector.block.BlockFluidFurnace;
+import shift.sextiarysector.block.BlockFoodSmokers;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockGearShaft;
@@ -34,14 +37,16 @@ import shift.sextiarysector.block.BlockWindmill;
 import shift.sextiarysector.block.BlockWoodHopper;
 import shift.sextiarysector.item.ItemBlockBottle;
 import shift.sextiarysector.item.ItemBlockCrop;
+import shift.sextiarysector.item.ItemBlockDirection;
 import shift.sextiarysector.item.ItemBlockFluidCrafter;
 import shift.sextiarysector.item.ItemBlockGearShaft;
 import shift.sextiarysector.item.ItemBlockMonitor;
-import shift.sextiarysector.item.ItemBlockShaft;
 import shift.sextiarysector.tileentity.TileEntityBlockBottle;
+import shift.sextiarysector.tileentity.TileEntityFan;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
+import shift.sextiarysector.tileentity.TileEntityFoodSmokers;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
@@ -63,12 +68,15 @@ public class SSBlocks {
 
 	public static Block LargeFurnace;
 	public static Block fluidFurnace;
+	public static Block foodSmokers;
 	public static Block magicFurnace;
 
 	public static Block bottle;
 	public static Block fluidCrafter;
 
 	public static Block woodHopper;
+
+	public static Block blueFire;
 
 	//GF
 	public static Block woodShaft;
@@ -96,6 +104,7 @@ public class SSBlocks {
 
 	public static Block pulverizer;
 
+	public static Block fan;
 
 	public static Block hole;
 
@@ -147,6 +156,10 @@ public class SSBlocks {
 		GameRegistry.registerBlock(fluidFurnace, "FluidFurnace");
 		GameRegistry.registerTileEntity(TileEntityFluidFurnace.class, "FluidFurnace");
 
+		foodSmokers = new BlockFoodSmokers().setBlockName("ss.food_smokers").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(foodSmokers, "FoodSmokers");
+		GameRegistry.registerTileEntity(TileEntityFoodSmokers.class, "FoodSmokers");
+
 		magicFurnace = new BlockMagicFurnace().setBlockName("ss.magic_furnace").setCreativeTab(SextiarySectorAPI.TabSSMagic);
 		GameRegistry.registerBlock(magicFurnace, "MagicFurnace");
 		GameRegistry.registerTileEntity(TileEntityMagicFurnace.class, "MagicFurnace");
@@ -156,7 +169,7 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntityBlockBottle.class, "Bottle");
 
 		fluidCrafter = new BlockFluidCrafter().setBlockName("ss.fluid_crafter").setBlockTextureName("glass");
-		GameRegistry.registerBlock(fluidCrafter,ItemBlockFluidCrafter.class, "FluidCrafter");
+		GameRegistry.registerBlock(fluidCrafter, ItemBlockFluidCrafter.class, "FluidCrafter");
 		GameRegistry.registerTileEntity(TileEntityFluidCrafter.class, "FluidCrafter");
 
 		hole = new BlockHole().setBlockName("ss.hole").setCreativeTab(SextiarySectorAPI.TabSSCore);
@@ -174,11 +187,14 @@ public class SSBlocks {
 		chunkLoader = new BlockChunkLoader().setHardness(1.5F).setBlockName("ss.chunk_loader").setBlockTextureName("sextiarysector:time_loader");
 		GameRegistry.registerBlock(chunkLoader, "ChunkLoader");
 
+		blueFire = new BlockBlueFire().setBlockName("ss.blue_fire").setBlockTextureName("sextiarysector:blue_fire");
+		GameRegistry.registerBlock(blueFire, "BlueFire");
+
 		//鉱石
-		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerBlock(blueStoneOre, "BlueStoneOre");
 
-		yellowStoneOre = new BlockPowerStone().setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		yellowStoneOre = new BlockPowerStone().setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerBlock(yellowStoneOre, "YellowStoneOre");
 
 		mithrilOre = new BlockSSOre(null,2).setBlockName("ss.mithril_ore").setBlockTextureName("sextiarysector:ore/mithril_ore");
@@ -200,13 +216,13 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntityShaft.class, "Shaft");
 
 		woodShaft = new BlockShaft(1).setBlockName("ss.wood_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
-		GameRegistry.registerBlock(woodShaft,ItemBlockShaft.class, "WoodShaft");
+		GameRegistry.registerBlock(woodShaft,ItemBlockDirection.class, "WoodShaft");
 
 		stoneShaft = new BlockShaft(2).setBlockName("ss.stone_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeStone);
-		GameRegistry.registerBlock(stoneShaft,ItemBlockShaft.class, "StoneShaft");
+		GameRegistry.registerBlock(stoneShaft,ItemBlockDirection.class, "StoneShaft");
 
 		steelShaft = new BlockShaft(3).setBlockName("ss.steel_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeMetal);
-		GameRegistry.registerBlock(steelShaft,ItemBlockShaft.class, "SteelShaft");
+		GameRegistry.registerBlock(steelShaft,ItemBlockDirection.class, "SteelShaft");
 
 
 		GameRegistry.registerTileEntity(TileEntityGearBox.class, "GearBox");
@@ -260,6 +276,9 @@ public class SSBlocks {
 		pulverizer = new BlockSimpleMachine("pulverizer",30,SSRecipes.pulverizer,3).setBlockName("ss.pulverizer").setCreativeTab(SextiarySectorAPI.TabSSMachine);
 		GameRegistry.registerBlock(pulverizer, "Pulverizer");
 
+		fan =  new BlockFan().setBlockName("ss.fan");
+		GameRegistry.registerTileEntity(TileEntityFan.class, "Fan");
+		GameRegistry.registerBlock(fan, ItemBlockDirection.class, "Fan");
 
 		shippingBox = new BlockShippingBox().setBlockName("ss.shipping_box").setBlockTextureName("sextiarysector:shipping_box").setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(shippingBox, "ShippingBox");

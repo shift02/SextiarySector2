@@ -204,6 +204,14 @@ public class CommonEventHandler {
 
     }
 
+	/*
+	@SubscribeEvent
+	public void onFluidRegisterEvent(FluidRegisterEvent event) {
+
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluid(event.fluidID), new ItemStack(SSBlocks.fluidCrafter,1,event.fluidID), new ItemStack(SSBlocks.fluidCrafter,1,0));
+
+	}*/
+
 
 
 
