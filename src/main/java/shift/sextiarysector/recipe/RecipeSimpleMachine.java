@@ -53,7 +53,7 @@ public class RecipeSimpleMachine {
         }
         while (!this.checkItem(item, (ItemStack)entry.getKey()));
 
-        return (ItemStack) entry.getValue();
+        return ((ItemStack) entry.getValue()).copy();
 
         //return metaSimpleMachineList.get( (Arrays.asList( item.itemID, item.getItemDamage() ) ));
     }

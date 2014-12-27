@@ -33,16 +33,18 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
     private CropType type;
     private Item drop;
     private CropStatus status;
+    private Block farmland;
     private boolean re_harvest;
 
     private static Random r = new Random();
 
-    public BlockSSCrop(CropType type, CropStatus status, Item drop, Boolean re_harvest)
+    public BlockSSCrop(CropType type, CropStatus status,Block farmland, Item drop, Boolean re_harvest)
     {
         this.setTickRandomly(true);
         this.type = type;
         this.drop = drop;
         this.status = status;
+        this.farmland = farmland;
         this.re_harvest = re_harvest;
 
         if(type.equals(CropType.Normal)){
@@ -64,9 +66,24 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
     @Override
 	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6,float par7, float par8, float par9) {
 
-    	//if(par1World.isRemote)return true;
+    	if(par5EntityPlayer.getCurrentEquippedItem()!= null && par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof ItemShears){
 
-    	if(this.getStatus().i.length == 4 && par1World.getBlockMetadata(x, y, z)==3&&par5EntityPlayer.getCurrentEquippedItem()!= null&&par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof ItemShears){
+    		return this.doHarvestFromShears(par1World, x, y, z, par5EntityPlayer);
+
+    	}
+
+
+    	if(this.hasFarmland(par1World, x, y, z)){
+    		return par1World.getBlock(x, y-1, z).onBlockActivated(par1World, x, y-1, z, par5EntityPlayer, par6, par7, par8, par9);
+    	}
+
+    	return false;
+
+    }
+
+    private boolean doHarvestFromShears(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer){
+
+    	if(this.re_harvest && this.getStatus().isReHarvest() && par1World.getBlockMetadata(x, y, z)==3){
 
     		ItemStack item = this.getAfter(par1World, x, y, z);
 
@@ -101,18 +118,17 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     	}
 
+		return false;
+    }
 
-    	if(this.hasFarmland(par1World, x, y, z)){
-    		return par1World.getBlock(x, y-1, z).onBlockActivated(par1World, x, y-1, z, par5EntityPlayer, par6, par7, par8, par9);
-    	}
-
-    	return false;
-
+    public boolean canBlockStay(World p_149718_1_, int p_149718_2_, int p_149718_3_, int p_149718_4_)
+    {
+        return  p_149718_1_.getBlock(p_149718_2_, p_149718_3_ - 1, p_149718_4_) == this.farmland;
     }
 
     protected boolean canPlaceBlockOn(Block p_149854_1_)
     {
-        return /*p_149854_1_ == Blocks.farmland ||*/ p_149854_1_ == SSBlocks.farmland;
+        return p_149854_1_ == this.farmland;
     }
 
     @Override
@@ -282,20 +298,32 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     public static class CropStatus{
 
-    	public int i[] ;//= new int[3];
+    	private int days[] ;//= new int[3];
 
     	public Season[] season;
 
 		public CropStatus(int[] i1,Season... s){
 
-    		this.i= i1;
+    		this.days= i1;
     		this.season= s;
 
     	}
 
-    	public Season[] getSeason() {
+    	public synchronized int[] getDays() {
+			return days;
+		}
+
+		private synchronized void setDay(int[] day) {
+			this.days = day;
+		}
+
+		public Season[] getSeason() {
 			return season;
 		}
+
+    	public boolean isReHarvest(){
+    		return this.days.length == 4;
+    	}
 
     }
 

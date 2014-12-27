@@ -14,8 +14,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+import shift.sextiarysector.api.agriculture.IFarmland;
 
-public class TileEntityFarmland extends TileEntity implements IFluidHandler{
+public class TileEntityFarmland extends TileEntity implements IFluidHandler , IFarmland{
 
 	//水
 	protected FluidTank water = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
@@ -43,8 +44,8 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler{
 	}
 
 	//肥料
-	public String fertilizer;
-	public ItemStack fertilizerItem;
+	//public String fertilizer;
+	private ItemStack fertilizerItem;
 
 	public ItemStack getFertilizer() {
 		return fertilizerItem;
@@ -74,9 +75,9 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler{
 	@Override
 	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
 		super.readFromNBT(par1nbtTagCompound);
-		if(par1nbtTagCompound.hasKey("fertilizer")){
-			this.fertilizer = par1nbtTagCompound.getString("fertilizer");
-		}
+		//if(par1nbtTagCompound.hasKey("fertilizer")){
+		//	this.fertilizer = par1nbtTagCompound.getString("fertilizer");
+		//}
 		if(par1nbtTagCompound.hasKey("fertilizeritem")){
 			this.fertilizerItem = ItemStack.loadItemStackFromNBT(par1nbtTagCompound.getCompoundTag("fertilizeritem"));
 		}
@@ -87,7 +88,7 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler{
 	@Override
 	public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
 		super.writeToNBT(par1nbtTagCompound);
-		if(fertilizer!=null)par1nbtTagCompound.setString("fertilizer", fertilizer);
+		//if(fertilizer!=null)par1nbtTagCompound.setString("fertilizer", fertilizer);
 		if(fertilizerItem!=null){
 			NBTTagCompound itemNBT =new NBTTagCompound();
 			fertilizerItem.writeToNBT(itemNBT);
