@@ -51,7 +51,7 @@ public class RendererFarmland  implements ISimpleBlockRenderingHandler{
 		if(t!=null&&t.getFertilizer()!=null){
 
 			if(FertilizerManager.getFertilizer(t.getFertilizer())!=null){
-				renderer.setOverrideBlockTexture(FertilizerManager.getFertilizer(t.getFertilizer()).getFertilizerIcon());
+				renderer.setOverrideBlockTexture(FertilizerManager.getFertilizerIcon(t.getFertilizer()).getFertilizerIcon());
 			}else{
 				t.setFertilizer(null);
 			}

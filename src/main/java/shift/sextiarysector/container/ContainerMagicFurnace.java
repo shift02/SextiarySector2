@@ -18,7 +18,6 @@ public class ContainerMagicFurnace extends Container
     private int lastCookTime;
     private int lastBurnTime;
     private int lastItemBurnTime;
-    private static final String __OBFID = "CL_00001748";
 
     public ContainerMagicFurnace(InventoryPlayer p_i1812_1_, TileEntityMagicFurnace p_i1812_2_)
     {
@@ -137,7 +136,7 @@ public class ContainerMagicFurnace extends Container
                         return null;
                     }
                 }
-                else if (TileEntityMagicFurnace.isItemFuel(itemstack1))
+                else if (tileFurnace.isItemFuel(itemstack1))
                 {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {

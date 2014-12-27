@@ -30,7 +30,7 @@ public class RecipesFurnaceCraft {
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.slime_ball, 2),
 				new Object[] {
 			SSItems.dustWaterLily,
-			"craftingSugar",
+			"condimentSugar",
 			Items.water_bucket,
 			}));
 
@@ -108,6 +108,53 @@ public class RecipesFurnaceCraft {
 			Character.valueOf('x'), "ingotIron",
 			Character.valueOf('y'), Blocks.obsidian,
 			Character.valueOf('z'), Items.clock,
+			}));
+
+        //料理
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.curryRice, 1),
+				new Object[] {
+        	"containerWoodBowl",
+			"condimentCurryPowder",
+			"cookingRice",
+			"cropPotato",
+			"cropCarrot"
+			}));
+
+
+        //スープ
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.carrotSoup, 1),
+				new Object[] {
+        	"containerWoodBowl",
+			"fluidWater",
+			"cropCarrot"
+			}));
+
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.cornSoup, 1),
+				new Object[] {
+        	"containerWoodBowl",
+			"fluidWater",
+			"cropCorn"
+			}));
+
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.eggSoup, 1),
+				new Object[] {
+        	"containerWoodBowl",
+			"fluidWater",
+			"eggChicken"
+			}));
+
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.onionSoup, 1),
+				new Object[] {
+        	"containerWoodBowl",
+			"fluidWater",
+			"cropOnion"
+			}));
+
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.tomatoSoup, 1),
+				new Object[] {
+        	"containerWoodBowl",
+			"fluidWater",
+			"cropTomato"
 			}));
 
     }

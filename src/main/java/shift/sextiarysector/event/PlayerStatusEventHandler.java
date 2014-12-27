@@ -66,7 +66,7 @@ public class PlayerStatusEventHandler {
 
 		EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-		SextiarySectorAPI.addMoistureExhaustion(player, event.ammount * 0.4f);
+		SextiarySectorAPI.addMoistureExhaustion(player, event.ammount * 0.3f);
 
 	}
 
@@ -91,9 +91,9 @@ public class PlayerStatusEventHandler {
 		}
 
 		if (player.isSprinting()) {
-			SextiarySectorAPI.addMoistureExhaustion(player, 0.8f * i);
-		} else {
 			SextiarySectorAPI.addMoistureExhaustion(player, 0.2f * i);
+		} else {
+			SextiarySectorAPI.addMoistureExhaustion(player, 0.05f * i);
 		}
 
 	}

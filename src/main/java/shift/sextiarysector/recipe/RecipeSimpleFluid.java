@@ -55,7 +55,7 @@ public class RecipeSimpleFluid {
         }
         while (!this.checkItem(item, (ItemStack)entry.getKey()));
 
-        return (ItemStack) ((Object[])entry.getValue())[0];
+        return ((ItemStack) ((Object[])entry.getValue())[0]).copy();
 
         //return metaSimpleMachineList.get( (Arrays.asList( item.itemID, item.getItemDamage() ) ));
     }
@@ -89,7 +89,7 @@ public class RecipeSimpleFluid {
         }
         while (!this.checkItem(item, (ItemStack)entry.getKey()));
 
-        return (FluidStack) ((Object[])entry.getValue())[1];
+        return ((FluidStack) ((Object[])entry.getValue())[1]).copy();
 
         //return metaSimpleMachineList.get( (Arrays.asList( item.itemID, item.getItemDamage() ) ));
     }

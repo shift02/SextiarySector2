@@ -11,8 +11,9 @@ public class RecipesFurnace {
     {
 		GameRegistry.addSmelting(new ItemStack(SSItems.ironDust),new ItemStack(Items.iron_ingot),0.1f);
 		GameRegistry.addSmelting(new ItemStack(SSItems.goldDust),new ItemStack(Items.gold_ingot),0.1f);
-		GameRegistry.addSmelting(new ItemStack(SSItems.blueStoneDust),new ItemStack(SSItems.blueStoneIngot),0.1f);
-		GameRegistry.addSmelting(new ItemStack(SSItems.yellowStoneDust),new ItemStack(SSItems.yellowStoneIngot),0.1f);
+
+		GameRegistry.addSmelting(new ItemStack(SSItems.laver),new ItemStack(SSItems.laverRoasted),0.1f);
+
     }
 
 }

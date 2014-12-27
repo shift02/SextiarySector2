@@ -86,17 +86,6 @@ public class RendererHole implements ISimpleBlockRenderingHandler {
         //IIcon iicon = BlockLiquid.getLiquidIcon("water_still");
         //this.renderer.renderFaceYPos(block, (double)x, (double)((float)y - 1.0F + (15f/16f)), (double)z, iicon);
 
-
-        if(world.getBlockMetadata(x, y, z)==1){
-        	this.renderer.setRenderBounds(minx, 0.3125F, minz, maxx , 0.9375F, maxz);
-            this.renderer.setOverrideBlockTexture(Blocks.water.getIcon(0, 0));
-        	this.renderer.renderStandardBlock(block, x, y, z,ForgeDirection.getOrientation(1));
-        	this.renderer.clearOverrideBlockTexture();
-
-        	this.renderer.clearOverrideBlockTexture();
-        }
-
-
         this.renderer.field_152631_f = false;
         this.renderer.renderAllFaces = false;
 
@@ -137,7 +126,7 @@ public class RendererHole implements ISimpleBlockRenderingHandler {
 
 	}
 
-	private boolean isSame(IBlockAccess p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_ ,Block b, ForgeDirection d){
+	protected boolean isSame(IBlockAccess p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_ ,Block b, ForgeDirection d){
 
 		if(p_149743_1_.getBlock(p_149743_2_ + d.offsetX, p_149743_3_ + d.offsetY, p_149743_4_ + d.offsetZ) == b)return true;
 
