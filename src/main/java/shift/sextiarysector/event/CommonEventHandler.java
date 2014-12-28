@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSFluids.SSFluid;
@@ -142,7 +143,7 @@ public class CommonEventHandler {
 		World world = event.world;
         EntityLivingBase living = event.entityLiving;
 
-        if(world.rand.nextInt(14) != 0)return;
+        if(world.rand.nextInt(12) != 0)return;
 
         if (living instanceof IMob)
         {
@@ -156,10 +157,31 @@ public class CommonEventHandler {
 
             if(!BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x, z), Type.BEACH))return;
 
-            System.out.println("AAA");
             world.setBlock(x, y, z, SSBlocks.sandpit);
 
         }
+    }
+
+	@SubscribeEvent
+    public void onSpawns( WorldEvent.PotentialSpawns event)
+    {
+
+		World world = event.world;
+
+        if(world.rand.nextInt(6) != 0)return;
+
+        int x = (int)event.x;
+        int y = (int)event.y;
+        int z = (int)event.z;
+
+        if(!world.getBlock(x, y, z).isAir(world, x, y, z))return;
+
+        if(world.getBlock(x, y-1, z) != Blocks.sand)return;
+
+        if(!BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x, z), Type.BEACH))return;
+
+        world.setBlock(x, y, z, SSBlocks.sandpit);
+
     }
 
 	/** */
