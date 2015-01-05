@@ -21,10 +21,10 @@ public class RecipesFurnaceCraft {
     {
 
 		//飲み物
-		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.drinkingWaterSmallBottle, 1),
-				new Object[] {
-			new ItemStack(Items.potionitem),
-			}));
+		//p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.drinkingWaterBottle, 1),
+		//		new Object[] {
+		//	new ItemStack(Items.potionitem),
+		//	}));
 
 		//スライム
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.slime_ball, 2),
@@ -36,7 +36,7 @@ public class RecipesFurnaceCraft {
 
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.blueStoneSlimeBall, 1),
 				new Object[] {
-			SSItems.blueStoneDust,
+			"dustBluestone",
 			Items.slime_ball
 			}));
 
@@ -56,6 +56,12 @@ public class RecipesFurnaceCraft {
 				new Object[] { "xxx", "xyx","xxx",
 			Character.valueOf('y'), SSItems.blueStoneSlimeBall,
 			Character.valueOf('x'), "cobblestone",
+			}));
+
+		p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.emptyBottle, 8),
+        		new Object[] {
+        	"x", "x",
+        	'x', "paneGlassColorless",
 			}));
 
 		//Hammer

@@ -39,7 +39,7 @@ public class PluginIC2 implements IPlugin {
 	@Override
 	public void prePlugin(FMLPreInitializationEvent event) {
 
-		electricMotor = new BlockElectricMotor().setBlockName("ss.electric_motor").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		electricMotor = new BlockElectricMotor().setBlockName("ss.electric_motor").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(electricMotor, ItemBlockDirection.class, "ElectricMotor");
 		GameRegistry.registerTileEntity(TileEntityElectricMotor.class, "ElectricMotor");
 

@@ -35,7 +35,7 @@ public class BlockGFTank  extends BlockDirection{
 		this.guiID = gui;
 		this.type = type;
 		this.setHardness(0.8F);
-		this.setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		this.setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 	}
 
 	@Override

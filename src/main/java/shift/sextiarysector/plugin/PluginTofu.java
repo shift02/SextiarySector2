@@ -25,7 +25,7 @@ public class PluginTofu  implements IPlugin{
 
 	@Override
 	public void prePlugin(FMLPreInitializationEvent event) {
-		tofuMotor = new BlockTofuMotor().setBlockName("ss.tofu_motor").setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		tofuMotor = new BlockTofuMotor().setBlockName("ss.tofu_motor").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(tofuMotor, ItemBlockDirection.class, "TofuMotor");
 		GameRegistry.registerTileEntity(TileEntityTofuMotor.class, "TofuMotor");
 

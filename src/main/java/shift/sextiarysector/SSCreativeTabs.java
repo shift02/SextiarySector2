@@ -13,13 +13,13 @@ public class SSCreativeTabs {
 
 		SextiarySectorAPI.TabSSCore = new CreativeTabSSCore();
 		SextiarySectorAPI.TabSSFluid = new CreativeTabSSFluid();
-		SextiarySectorAPI.TabSSMachine = new CreativeTabSSMachine();
 		SextiarySectorAPI.TabSSPlayer = new CreativeTabSSPlayer();
 		SextiarySectorAPI.TabSSAgriculture = new CreativeTabSSAgriculture();
 		SextiarySectorAPI.TabSSFishery = new CreativeTabSSFishery();
 		SextiarySectorAPI.TabSSMining = new CreativeTabSSMining();
-		SextiarySectorAPI.TabSSTransport = new CreativeTabSSTransport();
+		SextiarySectorAPI.TabSSIndustry = new CreativeTabSSIndustry();
 		SextiarySectorAPI.TabSSCooking = new CreativeTabSSCooking();
+		SextiarySectorAPI.TabSSTransport = new CreativeTabSSTransport();
 		SextiarySectorAPI.TabSSEconomy = new CreativeTabSSEconomy();
 		SextiarySectorAPI.TabSSMagic = new CreativeTabSSMagic();
 
@@ -58,26 +58,7 @@ public class SSCreativeTabs {
 		@SideOnly(Side.CLIENT)
 	    public ItemStack getIconItemStack()
 	    {
-			return new ItemStack(SSBlocks.bottle,1);
-	    }
-
-	}
-
-	private static class CreativeTabSSMachine extends CreativeTabs{
-
-		public CreativeTabSSMachine() {
-			super("ss.machine");
-		}
-
-		@Override
-		public Item getTabIconItem() {
-			return null;//SSBlocks.LargeFurnace.g;
-		}
-
-		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSBlocks.woodShaft,1);
+			return new ItemStack(SSItems.emptyBottle,1);
 	    }
 
 	}
@@ -158,10 +139,10 @@ public class SSCreativeTabs {
 
 	}
 
-	private static class CreativeTabSSTransport extends CreativeTabs{
+	private static class CreativeTabSSIndustry extends CreativeTabs{
 
-		public CreativeTabSSTransport() {
-			super("ss.transport");
+		public CreativeTabSSIndustry() {
+			super("ss.industry");
 		}
 
 		@Override
@@ -172,10 +153,11 @@ public class SSCreativeTabs {
 		@SideOnly(Side.CLIENT)
 	    public ItemStack getIconItemStack()
 	    {
-			return new ItemStack(SSItems.mineboatChest,1);
+			return new ItemStack(SSBlocks.woodShaft,1);
 	    }
 
 	}
+
 
 	private static class CreativeTabSSCooking extends CreativeTabs{
 
@@ -195,6 +177,26 @@ public class SSCreativeTabs {
 	    }
 
 	}
+
+	private static class CreativeTabSSTransport extends CreativeTabs{
+
+		public CreativeTabSSTransport() {
+			super("ss.transport");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;//SSBlocks.LargeFurnace.g;
+		}
+
+		@SideOnly(Side.CLIENT)
+	    public ItemStack getIconItemStack()
+	    {
+			return new ItemStack(SSItems.mineboatChest,1);
+	    }
+
+	}
+
 
 	private static class CreativeTabSSEconomy extends CreativeTabs{
 
