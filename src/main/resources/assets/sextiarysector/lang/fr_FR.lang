@@ -1,0 +1,287 @@
+#French fr_FR
+
+#Block
+tile.ss.large_furnace.name=Grand four
+tile.ss.fluid_furnace.name=Four à fluide
+
+tile.ss.food_smokers.name=Fumoire
+
+tile.ss.magic_furnace.name=Four magique
+
+tile.ss.wood_grate.name=Grille en bois
+
+tile.ss.wood_plate.name=Assiette en bois
+
+tile.ss.hole.name=Trou
+tile.ss.farmland.name=Terre agricole
+
+tile.ss.bottle.name=Bouteille de fluide
+tile.ss.fluid_crafter.name=Etabli de fluide
+
+tile.ss.wood_hopper.name=Trémie en bois
+
+tile.ss.chunk_loader.name=Chargeur de temps
+
+
+tile.ss.small_windmill.name=Petite éolienne
+tile.ss.windmill.name=Éolienne
+tile.ss.small_waterwheel.name=Petite noria
+
+tile.ss.wood_shaft.name=Puits en bois
+tile.ss.stone_shaft.name=Puits en pierre
+tile.ss.steel_shaft.name=Puits en acier
+
+tile.ss.wood_gear_box.name=Boîte de mécanisme en bois
+tile.ss.stone_gear_box.name=Boîte de mécanisme en pierre
+tile.ss.steel_gear_box.name=Boîte de mécanisme en acier
+
+tile.ss.wood_gf_tank.name=Réservoir GF en bois
+tile.ss.stone_gf_tank.name=Réservoir GF en pierre
+tile.ss.steel_gf_tank.name=Réservoir GF en acier
+
+tile.ss.wood_stone_gear_shaft.name=Puits mécanique en pierre et en bois
+
+tile.ss.millstone.name=Meule
+tile.ss.loom.name=Métier à tisser
+tile.ss.sawmill.name=Scierie
+tile.ss.pulverizer.name=Pulvériseur
+
+tile.ss.fan.name=Ventilateur
+
+tile.ss.blue_stone.name=Minerai de pierre bleue
+tile.ss.yellow_stone.name=Minerai de pierre jaune
+
+tile.ss.mithril_ore.name=Minerai de mithril 
+tile.ss.orichalcum_ore.name=Minerai d'orichalcum
+
+tile.ss.coal_large_ore.name=Grand minerai de charbon
+tile.ss.iron_large_ore.name=Grand minerai de fer
+tile.ss.gold_large_ore.name=Grand minerai d'or
+
+tile.ss.creeper_chest.name=Coffre de marchand de pousse
+tile.ss.shipping_box.name=Boîte d'expédition
+
+tile.ss.turnip.name=Graine de navet
+tile.ss.cucumber.name=Graine de concombre
+
+tile.ss.onion.name=Graine d'oignon
+tile.ss.tomato.name=Graine de tomate
+tile.ss.corn.name=Graine de maïs
+
+tile.ss.eggplant.name=Graine d'aubergine
+tile.ss.sweet_potato.name=Graine de patate douce
+tile.ss.green_pepper.name=Graine de poivron vert
+
+tile.ss.radish.name=Graine de radis
+
+tile.ss.monitor.name=Moniteur
+monitor.type=Type
+monitor.creeper=Magasin de pousse simple
+monitor.robot=Magasin du robot bleu
+
+tile.ss.electric_motor.name=Moteur électrique
+tile.ss.tofu_motor.name=Moteur de tofu
+
+#Item
+item.ss.dust_waterlily.name=Poussière de nénuphar
+
+item.ss.stone_dust.name=Poussière de pierre
+
+item.ss.dust_blue_stone.name=Poussière de pierre bleue
+item.ss.dust_yellow_stone.name=Poussière de pierre jaune
+
+item.ss.coal_dust.name=Poussière de charbon
+item.ss.iron_dust.name=Poussière de fer
+item.ss.gold_dust.name=Poussière d'or
+item.ss.diamond_dust.name=Poussière de diamant
+
+item.ss.mithril_dust.name=Poussière de mithril 
+
+
+item.ss.steel_ingot.name=Lingot d'acier
+item.ss.brass_ingot.name=Lingot de laiton
+
+item.ss.bluestone_ingot.name=Lingot de pierre bleue
+item.ss.yellowstone_ingot.name=Lingot de pierre jaune
+
+item.ss.mithril_ingot.name=Lingot de mithril
+item.ss.orichalcum_gem.name=Orichalcum
+
+item.ss.ninja_ingot.name=Lingot de ninja 
+
+item.ss.blue_stone_slime_ball.name=Boule de pituite en pierre bleue
+
+
+item.ss.energy_reactor.name=Réacteur d'énergie
+item.ss.object_reactor.name=Réacteur d'objet
+
+
+item.ss.craft_unit.name=Unité artisanale
+
+item.ss.iron_ring.name=Anneau de fer
+item.ss.creeper_ring.name=Anneau de magasin de pousse
+
+
+item.ss.magic_dust.name=Poussière magique
+
+item.ss.unit.name=Unité
+
+item.ss.wood_gear.name=Mécanisme en bois
+item.ss.stone_gear.name=Mécanisme en pierre
+item.ss.steel_gear.name=Mécanisme en acier
+
+item.ss.wood_unit_gear.name=Mécanisme d'unité en bois
+item.ss.stone_unit_gear.name=Mécanisme d'unité en pierre
+item.ss.steel_unit_gear.name=Mécanisme d'unité en acier
+
+item.ss.hammer.name=Marteau
+item.ss.calendar.name=Calendrier
+
+item.ss.calendar.name=Calendrier
+item.ss.season_stone.name=Pierre de saison
+item.ss.season_stone_spring.name=Pierre de saison -Printemps-
+item.ss.season_stone_summer.name=Pierre de saison -Été-
+item.ss.season_stone_autumn.name=Pierre de saison -Automne-
+item.ss.season_stone_winter.name=Pierre de saison -Hiver-
+
+item.ss.wood_gf_storage.name=Stockage GF en bois
+item.ss.stone_gf_storage.name=Stockage GF en pierre
+item.ss.steel_gf_storage.name=Stockage GF en acier
+
+item.ss.string_bobbin.name=Bobine de fils
+item.ss.cloth.name=Tissu
+item.ss.canvas.name=Toile
+
+item.ss.drinking_water_small_bottle.name=Petite bouteille d'eau potable
+
+
+item.ss.wood_scoop.name=Écope en bois
+item.ss.stone_scoop.name=Écope en pierre
+item.ss.iron_scoop.name=Écope en fer
+item.ss.gold_scoop.name=Écope en or
+item.ss.diamond_scoop.name=Écope en diamant
+
+item.ss.wood_knife.name=Couteau en bois
+item.ss.stone_knife.name=Couteau en pierre
+item.ss.iron_knife.name=Couteau en fer
+item.ss.gold_knife.name=Couteau en or
+item.ss.diamond_knife.name=Couteau en diamant
+
+item.ss.wood_watering_can.name=Arrosoir en bois
+
+item.ss.crop.big=Gros
+
+item.ss.turnip.name=Navet
+item.ss.cucumber.name=Concombre
+
+item.ss.iron_turnip.name=Navet de fer
+
+item.ss.onion.name=Oignon
+item.ss.tomato.name=Tomate
+item.ss.corn.name=Maïs
+
+item.ss.golden_corn.name=Maïs doré
+
+item.ss.eggplant.name=Aubergine
+item.ss.sweet_potato.name=patate douce
+item.ss.green_pepper.name=Poivron vert
+
+item.ss.radish.name=Radis
+
+
+item.ss.salt.name=Sel
+
+item.ss.chicken_smoked.name=Poulet fumé
+item.ss.porkchop_smoked.name=Cotelette de porc fumé
+item.ss.beef_smoked.name=Boeuf fumé
+
+
+item.ss.shift_hat.name=Chapeau d'élévation
+item.ss.gf_contact_lenses.name=Lentilles de contact GF
+
+#Fluid
+fluid.ss.takumi_tea=Thé TAKUMI
+fluid.ss.drinking_water=Eau potable
+
+fluid.ss.steam=Vapeur
+
+#GUI
+container.large_furnace=Grand four
+container.sub.inventory=Tampon
+
+gui.ss.fluid_furnace=Four à fluide
+gui.ss.food_smokers=Fumoir
+gui.ss.magic_furnace=Four magique
+
+gui.ss.millstone=Meule
+gui.ss.loom=Métier à tisser
+gui.ss.sawmill=Scirie
+gui.ss.pulverizer=Pulvériseur
+
+gui.ss.gf_tank_1=Réservoir GF en bois
+gui.ss.gf_tank_2=Réservoir GF en pierre
+gui.ss.gf_tank_3=Réservoir GF d'acier
+
+shop.ss.creeper=Magasin de pousse simple
+shop.ss.robot=Magasin du robot bleu
+
+#ToolTip
+tooltip.season.pm=PM
+tooltip.season.am=AM
+
+tooltip.season=Saison
+tooltip.season.seed=Saison
+tooltip.season.spring=Printemps
+tooltip.season.summer=Été
+tooltip.season.autumn=Automne
+tooltip.season.winter=Hiver
+
+#Tab
+itemGroup.ss.core=SextiarySector -Coeur-
+itemGroup.ss.fluid=SextiarySector -Fluide-
+itemGroup.ss.machine=SextiarySector -Machine-
+itemGroup.ss.player=SextiarySector -Joueur-
+itemGroup.ss.agriculture=SextiarySector -Agriculture-
+itemGroup.ss.mining=SextiarySector -Minage-
+itemGroup.ss.cooking=SextiarySector -Cuisine-
+itemGroup.ss.economy=SextiarySector -Économie-
+itemGroup.ss.magic=SextiarySector -Magie-
+
+#Player Tab
+player.tab.vanilla=Vanilla
+player.tab.equipment=Équipement
+player.tab.item.ss.craft_unit=Artisanat
+
+player.tab.item.ss.creeper_ring=Magasin de pousse
+
+#Achievement
+stat.sell=Vendre
+
+achievement.ss.economy=SextiarySector -Économie-
+
+achievement.creeper_firework=Creeper Monger
+achievement.creeper_firework.desc=The attempt to communicate with fireworks !
+
+achievement.creeper_chest=Coffre de pousse
+achievement.creeper_chest.desc=Santa Creeper ?
+
+achievement.shipping=Boîte d'expédition
+achievement.shipping.desc=Trying to shipment
+
+#NEI
+nei.recipe=Recette
+nei.ss.furnace.shaped=Four formé
+nei.ss.furnace.shapeless=Four sans forme
+
+nei.ss.fluid_furnace=Recette du four à fluide
+nei.ss.food_smokers=Recette du fumoir
+
+nei.ss.magic_furnace=Recette du four magique
+nei.ss.magic_fuel=Carburant magique
+
+nei.ss.millstone=Recette de la meule
+nei.ss.loom=Recette du métier à tisser
+nei.ss.sawmill=Recette de la scierie
+nei.ss.pulverizer=Recette du pulvériseur
+
+nei.ss.fertilizer=Recette de mutation
