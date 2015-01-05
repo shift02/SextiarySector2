@@ -1,11 +1,14 @@
 package shift.sextiarysector;
 
+import java.util.ArrayList;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import shift.mceconomy2.api.MCEconomyAPI;
+import shift.mceconomy2.api.shop.IProductItem;
+import shift.mceconomy2.api.shop.IProductList;
 import shift.mceconomy2.api.shop.ProductItem;
-import shift.mceconomy2.api.shop.ProductList;
 import shift.sextiarysector.block.BlockBottle;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
@@ -23,7 +26,7 @@ public class SSShops {
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.blueStoneDust,2),320));
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.yellowStoneDust,2),320));
 
-			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.brassIngot,2),2300));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.brassIngot,2),230));
 
 			creepers[i].addItemProduct(new ProductItem(((BlockBottle) SSBlocks.bottle).getFluidItem(new FluidStack(SSFluids.takumiTea,1000)),216));
 
@@ -38,6 +41,8 @@ public class SSShops {
 			if(i==0){
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.turnip,1),180));
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.cucumber,1),360));
+
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.rice,1),280));
 			}
 
 			if(i==1){
@@ -63,6 +68,8 @@ public class SSShops {
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.stoneDust,4),500));
 			}
 
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.curryPowder,4),200));
+
 			creepers[i].addItemProduct(new ProductItem(BlockMonitor.getMonitor(MonitorType.creeper),100000));
 
 		}
@@ -82,8 +89,9 @@ public class SSShops {
 
 	}
 
-	public static class SSProductList extends ProductList{
+	public static class SSProductList implements IProductList{
 
+		public ArrayList<IProductItem> productItemList = new ArrayList<IProductItem>();
 		String name;
 		public int id;
 
@@ -99,10 +107,25 @@ public class SSShops {
 
 		public SSProductList copySSProductList(){
 
-			SSProductList c = new SSProductList(name);
-			c.ProductItemList = this.ProductItemList;
+			SSProductList c = new SSProductList(this.name);
+			c.productItemList = this.getProductList();
 
 			return c;
+		}
+
+		@Override
+		public void addItemProduct(IProductItem item) {
+			productItemList.add(item);
+		}
+
+		@Override
+		public int getItemProductSize() {
+			return productItemList.size();
+		}
+
+		@Override
+		public ArrayList<IProductItem> getProductList() {
+			return productItemList;
 		}
 
 	}
@@ -141,6 +164,11 @@ public class SSShops {
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.radish), 220);
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.radish,1,1), 2200);
+
+
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.rice), 400);
+
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.rice,1,1), 4000);
 
 	}
 

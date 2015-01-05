@@ -37,22 +37,7 @@ public class BlockSSFarmland extends BlockFarmland  implements ITileEntityProvid
 
 		if(FertilizerManager.getFertilizer(par5EntityPlayer.getCurrentEquippedItem())!=null && par1World.isAirBlock(x, y+1, z)){
 
-			TileEntityFarmland t = (TileEntityFarmland) par1World.getTileEntity(x, y, z);
-
-			if(t.getFertilizer()!=null){
-				return false;
-			}
-
-			t.setFertilizer(FertilizerManager.getFertilizer(par5EntityPlayer.getCurrentEquippedItem()).getFertilizer());
-
-			if (!par5EntityPlayer.capabilities.isCreativeMode && !par1World.isRemote)
-	        {
-	            --par5EntityPlayer.getCurrentEquippedItem().stackSize;
-	        }
-
-			par1World.markBlockForUpdate(x, y, z);
-
-			return true;
+			return this.setFertilizer(par1World, x, y, z, par5EntityPlayer);
 
 		}
 
@@ -100,6 +85,27 @@ public class BlockSSFarmland extends BlockFarmland  implements ITileEntityProvid
 		}
 
 		return false;
+	}
+
+	private boolean setFertilizer(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer){
+
+		TileEntityFarmland t = (TileEntityFarmland) par1World.getTileEntity(x, y, z);
+
+		if(t.getFertilizer()!=null){
+			return false;
+		}
+
+		t.setFertilizer(FertilizerManager.getFertilizer(par5EntityPlayer.getCurrentEquippedItem()).getFertilizer());
+
+		if (!par5EntityPlayer.capabilities.isCreativeMode && !par1World.isRemote)
+        {
+            --par5EntityPlayer.getCurrentEquippedItem().stackSize;
+        }
+
+		par1World.markBlockForUpdate(x, y, z);
+
+		return true;
+
 	}
 
 	public boolean addWater(World par1World, int x, int y, int z){

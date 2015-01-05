@@ -16,14 +16,16 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
-import shift.sextiarysector.api.machine.item.GearForceItem;
 import shift.sextiarysector.container.ItemBox;
 
 public abstract class TileEntityFluidMachineBase  extends TileEntityDirection  implements ISidedInventory, IFluidHandler {
 
-	protected static final int[] slots_top = new int[] { 0 };
-	protected static final int[] slots_bottom = new int[] { 2, 1 };
+	protected static final int[] slots_top = new int[] { 0, 4 };
+	protected static final int[] slots_bottom = new int[] { 2, 1, 3, 5 };
 	protected static final int[] slots_sides = new int[] { 1 };
+
+	protected static final int[] material = new int[] { 0 };
+	protected static final int[] empty_bottle = new int[] { 4 };
 
 	//0 素材 ,1 燃料 ,2 完成品 ,3 素材のコンテナ ,4 空のボトル , 5 液体の入ったボトル
 	protected ItemBox items = new ItemBox("Base", 6);
@@ -159,9 +161,16 @@ public abstract class TileEntityFluidMachineBase  extends TileEntityDirection  i
 
 		if(TileEntityFurnace.isItemFuel(this.items.getStackInSlot(1))){
 			this.fuel = this.fuelMax = TileEntityFurnace.getItemBurnTime(this.items.getStackInSlot(1));
-			this.items.reduceStackSize(1, 1);
+
+			if(this.items.getStackInSlot(1).stackSize == 1){
+				this.items.setInventorySlotContents(1, this.items.getStackInSlot(1).getItem().getContainerItem(this.items.getStackInSlot(1)));
+			}else{
+				this.items.reduceStackSize(1, 1);
+			}
+
 			this.markDirty();
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
 		}
 
 	}
@@ -340,20 +349,39 @@ public abstract class TileEntityFluidMachineBase  extends TileEntityDirection  i
 	public void closeInventory() {
 	}
 
+	/*入れる*/
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 
 		if (i == 1) {
-			return GearForceItem.manager.isGearForceItem(itemstack);
+			return TileEntityFurnace.getItemBurnTime(itemstack) > 0;
 		}
 
-		return i != 2;
+		return i == 0 || i == 1 || i == 4 ;
 	}
 
 	//ISidedInventory関係
+	//0 素材 ,1 燃料 ,2 完成品 ,3 素材のコンテナ ,4 空のボトル , 5 液体の入ったボトル
 	@Override
 	public int[] getAccessibleSlotsFromSide(int var1) {
-		return var1 == 0 ? slots_bottom : (var1 == 1 ? slots_top : slots_sides);
+
+		if(var1 == 0){
+			return slots_bottom;
+		}
+
+		if(var1 == 1){
+			return slots_top;
+		}
+
+		if(var1 == this.getDirection().ordinal()){
+			return this.material;
+		}
+
+		if(var1 == this.getDirection().getOpposite().ordinal()){
+			return this.empty_bottle;
+		}
+
+		return slots_sides;
 	}
 
 	@Override
@@ -364,7 +392,16 @@ public abstract class TileEntityFluidMachineBase  extends TileEntityDirection  i
 	@Override
 	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_)
     {
-        return p_102008_3_ != 0 || p_102008_1_ != 1 || p_102008_2_.getItem() == Items.bucket;
+
+		if(p_102008_1_ == 2 || p_102008_1_ == 3 || p_102008_1_ == 5){
+			return true;
+		}
+
+		if(p_102008_3_ == 0 && p_102008_2_.getItem() == Items.bucket){
+			return true;
+		}
+
+        return false;
     }
 
 	//IFluidHandler関係

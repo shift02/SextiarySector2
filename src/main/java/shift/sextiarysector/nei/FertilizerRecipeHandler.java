@@ -160,7 +160,7 @@ public class FertilizerRecipeHandler  extends TemplateSSRecipeHandler{
 		return "SS_Fertilizer";
 	}
 	private ArrayList<IFertilizer> getRecipe(){
-		return FertilizerManager.fertilizers;
+		return FertilizerManager.normal;
 	}
 	String getGuiRecipeName(){
 		return "ss.fertilizer";

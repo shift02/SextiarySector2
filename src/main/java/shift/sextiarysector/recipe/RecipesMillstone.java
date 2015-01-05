@@ -21,6 +21,7 @@ public class RecipesMillstone {
 		//Mod
 		recipe.add(new ItemStack(Blocks.waterlily,1),new ItemStack(SSItems.dustWaterLily, 4));
 
+		recipe.add("cropRice",new ItemStack(SSItems.whiteRice, 2));
 
     }
 

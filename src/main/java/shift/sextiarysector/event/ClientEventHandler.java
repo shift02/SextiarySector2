@@ -137,7 +137,7 @@ public class ClientEventHandler {
 
     	if(event.map.getTextureType()==0){
 
-    		for(IFertilizer f : ((FertilizerManager)AgricultureAPI.fertilizerManager).fertilizers){
+    		for(IFertilizer f : ((FertilizerManager)AgricultureAPI.fertilizerManager).fertilizerIcons){
     			f.registerFertilizerIcons(event.map);
     		}
 

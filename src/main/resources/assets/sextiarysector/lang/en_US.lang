@@ -74,6 +74,10 @@ tile.ss.green_pepper.name=Green Pepper Seed
 
 tile.ss.radish.name=Radish Seed
 
+tile.ss.rice.name=Rice Seed
+
+tile.ss.sandpit.name=Sandpit
+
 tile.ss.monitor.name=Monitor
 monitor.type=Type
 monitor.creeper=Simple Creeper Shop
@@ -169,6 +173,11 @@ item.ss.diamond_knife.name=Diamond Knife
 
 item.ss.wood_watering_can.name=Wood Watering Can
 
+item.ss.mineboat_chest.name=Mineboat Chest
+
+item.ss.laver.name=Laver
+
+
 item.ss.crop.big=Big
 
 item.ss.turnip.name=Turnip
@@ -188,12 +197,29 @@ item.ss.green_pepper.name=Green Pepper
 
 item.ss.radish.name=Radish
 
+item.ss.rice.name=Rice
+
+
+item.ss.white_rice.name=White Rice
 
 item.ss.salt.name=Salt
+item.ss.curry_powder.name=Curry Powder
+
+item.ss.laver_roasted.name=Laver Roasted
 
 item.ss.chicken_smoked.name=Smoked Chicken
 item.ss.porkchop_smoked.name=Smoked Porkchop
 item.ss.beef_smoked.name=Smoked Beef
+
+item.ss.curry_rice.name=Curry Rice
+
+item.ss.carrot_soup.name=Carrot Soup
+item.ss.corn_soup.name=Corn Soup
+item.ss.egg_soup.name=Egg Soup
+item.ss.mushroom_stew.name=Mushroom Stew
+item.ss.onion_soup.name=Onion Soup
+item.ss.ender_soup.name=Ender Soup
+item.ss.tomato_soup.name=Tomato Soup
 
 
 item.ss.shift_hat.name=Shift's Hat
@@ -208,6 +234,8 @@ fluid.ss.steam=Steam
 #GUI
 container.large_furnace=Large Furnace
 container.sub.inventory=Buffer
+
+container.mineboat_chest=Mineboat Chest
 
 gui.ss.fluid_furnace=Fluid Furnace
 gui.ss.food_smokers=Food Smokers
@@ -242,7 +270,9 @@ itemGroup.ss.fluid=SextiarySector -Fluid-
 itemGroup.ss.machine=SextiarySector -Machine-
 itemGroup.ss.player=SextiarySector -Player-
 itemGroup.ss.agriculture=SextiarySector -Agriculture-
+itemGroup.ss.fishery=SextiarySector -Fishery-
 itemGroup.ss.mining=SextiarySector -Mining-
+itemGroup.ss.transport=SextiarySector -Transport-
 itemGroup.ss.cooking=SextiarySector -Cooking-
 itemGroup.ss.economy=SextiarySector -Economy-
 itemGroup.ss.magic=SextiarySector -Magic-
