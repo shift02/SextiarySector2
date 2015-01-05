@@ -30,7 +30,7 @@ public class BlockGearBox  extends BlockDirection{
 		super(p_i45386_1_);
 		this.type = type;
 		this.setHardness(1.0F);
-		this.setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		this.setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 	}
 
 	@Override

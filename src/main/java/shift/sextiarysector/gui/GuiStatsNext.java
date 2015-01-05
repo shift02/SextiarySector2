@@ -30,7 +30,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import shift.sextiarysector.module.ModuleAchievement;
+import shift.sextiarysector.module.ModuleStatistics;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -514,7 +514,7 @@ public class GuiStatsNext extends GuiScreen implements IProgressMeter
                 {
                     flag = true;
                 }
-                else if (ModuleAchievement.objectSellStats[i] != null && GuiStatsNext.this.field_146546_t.writeStat(ModuleAchievement.objectSellStats[i]) > 0)
+                else if (ModuleStatistics.objectSellStats[i] != null && GuiStatsNext.this.field_146546_t.writeStat(ModuleStatistics.objectSellStats[i]) > 0)
                 {
                     flag = true;
                 }
@@ -552,8 +552,8 @@ public class GuiStatsNext extends GuiScreen implements IProgressMeter
                     }
                     else if (StatsBlock.this.field_148217_o == 3)
                     {
-                        statbase = ModuleAchievement.objectSellStats[j];
-                        statbase1 = ModuleAchievement.objectSellStats[k];
+                        statbase = ModuleStatistics.objectSellStats[j];
+                        statbase1 = ModuleStatistics.objectSellStats[k];
                     }
 
                     if (statbase != null || statbase1 != null)
@@ -641,7 +641,7 @@ public class GuiStatsNext extends GuiScreen implements IProgressMeter
             this.func_148209_a(StatList.objectCraftStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 115, p_148126_3_, p_148126_1_ % 2 == 0);
             this.func_148209_a(StatList.objectUseStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 165, p_148126_3_, p_148126_1_ % 2 == 0);
             this.func_148209_a(statcrafting, p_148126_2_ + GuiStatsNext.this.shift + 215, p_148126_3_, p_148126_1_ % 2 == 0);
-            this.func_148209_a((StatCrafting)ModuleAchievement.objectSellStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 265, p_148126_3_, p_148126_1_ % 2 == 0);
+            this.func_148209_a((StatCrafting)ModuleStatistics.objectSellStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 265, p_148126_3_, p_148126_1_ % 2 == 0);
 
         }
 
@@ -731,7 +731,7 @@ public class GuiStatsNext extends GuiScreen implements IProgressMeter
                 {
                     flag = true;
                 }
-                else if (ModuleAchievement.objectSellStats[i] != null && GuiStatsNext.this.field_146546_t.writeStat(ModuleAchievement.objectSellStats[i]) > 0)
+                else if (ModuleStatistics.objectSellStats[i] != null && GuiStatsNext.this.field_146546_t.writeStat(ModuleStatistics.objectSellStats[i]) > 0)
                 {
                     flag = true;
                 }
@@ -770,8 +770,8 @@ public class GuiStatsNext extends GuiScreen implements IProgressMeter
                     //
                     else if (StatsItem.this.field_148217_o == 3)
                     {
-                        statbase = ModuleAchievement.objectSellStats[j];
-                        statbase1 = ModuleAchievement.objectSellStats[k];
+                        statbase = ModuleStatistics.objectSellStats[j];
+                        statbase1 = ModuleStatistics.objectSellStats[k];
                     }
 
                     if (statbase != null || statbase1 != null)
@@ -856,7 +856,7 @@ public class GuiStatsNext extends GuiScreen implements IProgressMeter
             this.func_148209_a(StatList.objectBreakStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 115, p_148126_3_, p_148126_1_ % 2 == 0);
             this.func_148209_a(StatList.objectCraftStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 165, p_148126_3_, p_148126_1_ % 2 == 0);
             this.func_148209_a(statcrafting, p_148126_2_ + GuiStatsNext.this.shift + 215, p_148126_3_, p_148126_1_ % 2 == 0);
-            this.func_148209_a(ModuleAchievement.objectSellStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 265, p_148126_3_, p_148126_1_ % 2 == 0);
+            this.func_148209_a(ModuleStatistics.objectSellStats[k1], p_148126_2_ + GuiStatsNext.this.shift + 265, p_148126_3_, p_148126_1_ % 2 == 0);
 
         }
 
