@@ -1,0 +1,178 @@
+package shift.sextiarysector;
+
+import java.util.ArrayList;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraft.stats.AchievementList;
+import net.minecraftforge.common.AchievementPage;
+import net.minecraftforge.oredict.OreDictionary;
+import shift.sextiarysector.achievement.AchievementBase;
+import shift.sextiarysector.achievement.AchievementCraft;
+import shift.sextiarysector.achievement.AchievementCrop;
+import shift.sextiarysector.achievement.AchievementFurnace;
+import shift.sextiarysector.achievement.AchievementPageAgriculture;
+import shift.sextiarysector.achievement.AchievementPageBase;
+import shift.sextiarysector.achievement.AchievementPageEconomy;
+import shift.sextiarysector.achievement.AchievementPageIndustry;
+import shift.sextiarysector.achievement.AchievementPickup;
+
+public class SSAchievement {
+
+	private static ArrayList<Achievement> core = new ArrayList<Achievement>();
+	private static ArrayList<Achievement> agriculture = new ArrayList<Achievement>();
+	private static ArrayList<Achievement> mining = new ArrayList<Achievement>();
+	private static ArrayList<Achievement> industry = new ArrayList<Achievement>();
+	private static ArrayList<Achievement> economy = new ArrayList<Achievement>();
+
+	//Core
+	public static Achievement moisture;
+	public static Achievement bottle;
+	public static Achievement drinkingWater;
+	public static Achievement craftFurnace;
+
+	//Agriculture
+	public static Achievement seed;
+	public static Achievement scoop;
+	public static Achievement farmland;
+	public static Achievement wateringCan;
+	public static Achievement hole;
+	public static Achievement paddy;
+
+	public static Achievement turnip;
+	public static Achievement ironTurnip;
+
+	public static Achievement cucumber;
+
+
+	public static Achievement onion;
+
+	public static Achievement tomato;
+
+	public static Achievement corn;
+	public static Achievement goldenCorn;
+
+
+	public static Achievement eggplant;
+
+	public static Achievement sweetPotato;
+
+	public static Achievement greenPepper;
+
+
+	public static Achievement radish;
+
+
+	public static Achievement rice;
+
+	//Mining
+	public static Achievement blueStoneDust;
+
+	//Industry
+	public static Achievement blueStoneSlimeBall;
+
+	public static Achievement woodGear;
+	public static Achievement smallWindmill;
+	public static Achievement millstone;
+	public static Achievement loom;
+
+	public static Achievement stoneGear;
+	public static Achievement windmill;
+	public static Achievement sawmill;
+
+	public static Achievement steelGear;
+	public static Achievement smallWaterwheel;
+	public static Achievement pulverizer;
+
+	//Economy
+	public static Achievement creeperFirework;
+	public static Achievement creeperChest;
+	public static Achievement shipping;
+
+	public static void initAchievements(){
+
+		moisture = new AchievementBase("moisture", 3, -1, new ItemStack(Items.water_bucket), (Achievement)null, core).initIndependentStat().registerStat();
+		bottle = new AchievementCraft("bottle", 1, 1, new ItemStack(SSItems.emptyBottle), AchievementList.buildWorkBench, core).registerStat();
+		drinkingWater = new AchievementFurnace("drinking_water", 3, 1, new ItemStack(SSItems.drinkingWaterBottle), bottle, core).registerStat();
+		craftFurnace = new AchievementCraft("craft_furnace", -1, -1, new ItemStack(SSBlocks.LargeFurnace), AchievementList.buildWorkBench, core).registerStat();
+
+		AchievementPage.registerAchievementPage(new AchievementPageBase("achievement.ss.core", core));
+
+		seed = new AchievementBase("seed", -8, -2, new ItemStack(SSBlocks.tomato), (Achievement)null, agriculture).initIndependentStat().registerStat();
+		scoop =new AchievementCraft("scoop", -6, -3, new ItemStack(SSItems.woodScoop), AchievementList.buildWorkBench, agriculture).registerStat();
+		farmland = new AchievementBase("farmland", -4, -4, new ItemStack(Items.wooden_hoe), scoop, agriculture).registerStat();
+		wateringCan = new AchievementCraft("watering_can", 1, -2, new ItemStack(SSItems.woodWateringCan,1,OreDictionary.WILDCARD_VALUE), AchievementList.buildWorkBench, agriculture).registerStat();
+		hole = new AchievementBase("hole", -4, -2, new ItemStack(SSItems.ironScoop), scoop, agriculture).registerStat();
+		paddy = new AchievementBase("paddy", -2, -2, new ItemStack(Items.water_bucket), hole, agriculture).registerStat();
+
+
+		int spring = 1;
+		turnip = new AchievementCrop("turnip", -7, spring, new ItemStack(SSItems.turnip), SSBlocks.turnip, seed, agriculture).registerStat();
+		ironTurnip = new AchievementPickup("iron_turnip", -5, spring - 1, new ItemStack(SSItems.ironTurnip), turnip, agriculture).registerStat();
+
+		cucumber = new AchievementCrop("cucumber", -7, spring + 4, new ItemStack(SSItems.cucumber), SSBlocks.cucumber, seed, agriculture).registerStat();
+
+		int summer = 10;
+		onion = new AchievementCrop("onion", -7, summer, new ItemStack(SSItems.onion), SSBlocks.onion, seed, agriculture).registerStat();
+
+		tomato = new AchievementCrop("tomato", -7, summer + 4, new ItemStack(SSItems.tomato), SSBlocks.tomato, seed, agriculture).registerStat();
+
+		corn = new AchievementCrop("corn", -7, summer + 8, new ItemStack(SSItems.corn), SSBlocks.corn, seed, agriculture).registerStat();
+		goldenCorn = new AchievementPickup("golden_corn", -5, summer + 7, new ItemStack(SSItems.goldenCorn), corn, agriculture).registerStat();
+
+		int autumn = 23;
+		eggplant = new AchievementCrop("eggplant", -7, autumn, new ItemStack(SSItems.eggplant), SSBlocks.eggplant, seed, agriculture).registerStat();
+
+		sweetPotato = new AchievementCrop("sweet_potato", -7, autumn + 4, new ItemStack(SSItems.sweetPotato), SSBlocks.sweetPotato, seed, agriculture).registerStat();
+
+		greenPepper = new AchievementCrop("green_pepper", -7, autumn + 8, new ItemStack(SSItems.greenPepper), SSBlocks.greenPepper, seed, agriculture).registerStat();
+
+		int winter = 36;
+
+		radish = new AchievementCrop("radish", -7, winter, new ItemStack(SSItems.radish), SSBlocks.radish, seed, agriculture).registerStat();
+
+		int spring2 = 41;
+
+		rice = new AchievementCrop("rice", -7, spring2, new ItemStack(SSItems.rice), SSBlocks.rice, seed, agriculture).registerStat();
+
+		AchievementPage.registerAchievementPage(new AchievementPageAgriculture("achievement.ss.agriculture", agriculture));
+
+		//鉱業
+
+		blueStoneDust  = new AchievementPickup("bluestone_dust", 0, 0, new ItemStack(SSItems.blueStoneDust), AchievementList.buildPickaxe, mining).registerStat();
+
+		AchievementPage.registerAchievementPage(new AchievementPageBase("achievement.ss.mining", mining));
+
+		//工業
+
+		blueStoneSlimeBall = new AchievementFurnace("bluestone_slime_ball", -4, -1, new ItemStack(SSItems.blueStoneSlimeBall), blueStoneDust, industry).registerStat();
+
+
+		woodGear = new AchievementCraft("wood_gear", -2, 0, new ItemStack(SSItems.woodGear), blueStoneSlimeBall, industry).registerStat();
+		smallWindmill  = new AchievementCraft("small_windmill", -1, -2, new ItemStack(SSBlocks.smallWindmill), woodGear, industry).registerStat();
+		millstone = new AchievementCraft("millstone", -1, 2, new ItemStack(SSBlocks.millstone), woodGear, industry).registerStat();
+		loom = new AchievementCraft("loom", -1, 3, new ItemStack(SSBlocks.loom), woodGear, industry).registerStat();
+
+		stoneGear = new AchievementCraft("stone_gear", 1, 0, new ItemStack(SSItems.stoneGear), woodGear, industry).registerStat();
+		windmill = new AchievementCraft("windmill", 2, -2, new ItemStack(SSBlocks.windmill), stoneGear, industry).registerStat();
+		sawmill = new AchievementCraft("sawmill", 2, 2, new ItemStack(SSBlocks.sawmill), stoneGear, industry).registerStat();
+
+		steelGear = new AchievementCraft("steel_gear", 4, 0, new ItemStack(SSItems.steelGear), stoneGear, industry).registerStat();
+		smallWaterwheel = new AchievementCraft("small_waterwheel", 5, -2, new ItemStack(SSBlocks.smallWaterwheel), steelGear, industry).registerStat();
+		pulverizer = new AchievementCraft("pulverizer", 5, 2, new ItemStack(SSBlocks.pulverizer), steelGear, industry).registerStat();
+
+		AchievementPage.registerAchievementPage(new AchievementPageIndustry("achievement.ss.industry", industry));
+
+		creeperFirework = new AchievementBase("creeper_firework", 0, 0, new ItemStack(Items.fireworks), (Achievement)null,economy).initIndependentStat().registerStat();
+		creeperChest = new AchievementBase("creeper_chest", 1, -2, new ItemStack(SSBlocks.creeperChest), creeperFirework,economy).registerStat();
+		shipping = new AchievementBase("shipping", 3, -2, new ItemStack(SSBlocks.shippingBox), creeperChest,economy).registerStat();
+
+		AchievementPage.registerAchievementPage(new AchievementPageEconomy("achievement.ss.economy", economy));
+
+	}
+
+
+
+
+}

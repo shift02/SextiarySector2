@@ -5,6 +5,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class Config {
 
+	//Potion
+	public static int burn;
+
 	//Biome
 	public static int magicDesert;
 
@@ -38,6 +41,10 @@ public class Config {
 			cfg.save();
 		}
 
+	}
+
+	public static void configForPotion(Configuration cfg) {
+		burn = cfg.getInt("BurnID", "potion", 25, 25, 255, "");
 	}
 
 	public static void configForBiome(Configuration cfg) {
