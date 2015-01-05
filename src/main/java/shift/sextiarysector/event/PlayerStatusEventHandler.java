@@ -9,6 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import shift.sextiarysector.api.SextiarySectorAPI;
@@ -66,7 +67,66 @@ public class PlayerStatusEventHandler {
 
 		EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-		SextiarySectorAPI.addMoistureExhaustion(player, event.ammount * 0.3f);
+		SextiarySectorAPI.addMoistureExhaustion(player, event.ammount * 0.1f);
+
+	}
+
+	//攻撃
+	@SubscribeEvent
+	public void onAttackEntityEvent(AttackEntityEvent event) {
+
+		if (event.entityLiving.worldObj.isRemote|| !(event.entityLiving instanceof EntityPlayer)) {
+			return;
+		}
+
+		EntityPlayer player = (EntityPlayer) event.entityLiving;
+
+		SextiarySectorAPI.addMoistureExhaustion(player, 0.1f);
+
+	}
+
+
+	/**
+	 * スタミナ関係
+	 */
+
+	// ブロック破壊
+	@SubscribeEvent
+	public void onBlockBreakEventS(BreakEvent event) {
+
+		if (event.world.isRemote) {
+			return;
+		}
+
+		EntityPlayer player = event.getPlayer();
+
+		float i = 0.75f;
+
+		if (BiomeDictionary
+				.isBiomeOfType(
+						event.world.getBiomeGenForCoords(event.x, event.y),
+						Type.DESERT)) {
+			i *= 4;
+		}
+		if (event.world.getBlock(event.x, event.y, event.z).getMaterial() == Material.sand) {
+			i *= 2;
+		}
+
+		SextiarySectorAPI.addStaminaExhaustion(player, i);
+
+	}
+
+	// ダメージ
+	@SubscribeEvent
+	public void onLivingHurtEvent2(LivingHurtEvent event) {
+
+		if (event.entityLiving.worldObj.isRemote || !(event.entityLiving instanceof EntityPlayer)) {
+			return;
+		}
+
+		EntityPlayer player = (EntityPlayer) event.entityLiving;
+
+		SextiarySectorAPI.addStaminaExhaustion(player, event.ammount * 5.0f);
 
 	}
 
@@ -91,55 +151,24 @@ public class PlayerStatusEventHandler {
 		}
 
 		if (player.isSprinting()) {
-			SextiarySectorAPI.addMoistureExhaustion(player, 0.2f * i);
+			SextiarySectorAPI.addStaminaExhaustion(player, 2.2f * i);
 		} else {
-			SextiarySectorAPI.addMoistureExhaustion(player, 0.05f * i);
+			SextiarySectorAPI.addStaminaExhaustion(player, 0.5f * i);
 		}
 
 	}
 
-	/**
-	 * スタミナ関係
-	 */
-
-	// ブロック破壊
+	//攻撃
 	@SubscribeEvent
-	public void onBlockBreakEventS(BreakEvent event) {
+	public void onAttackEntityEvent2(AttackEntityEvent event) {
 
-		if (event.world.isRemote) {
-			return;
-		}
-
-		EntityPlayer player = event.getPlayer();
-
-		float i = 0.075f;
-
-		if (BiomeDictionary
-				.isBiomeOfType(
-						event.world.getBiomeGenForCoords(event.x, event.y),
-						Type.DESERT)) {
-			i *= 4;
-		}
-		if (event.world.getBlock(event.x, event.y, event.z).getMaterial() == Material.sand) {
-			i *= 2;
-		}
-
-		SextiarySectorAPI.addStaminaExhaustion(player, i);
-
-	}
-
-	// ダメージ
-	@SubscribeEvent
-	public void onLivingHurtEvent2(LivingHurtEvent event) {
-
-		if (event.entityLiving.worldObj.isRemote
-				|| !(event.entityLiving instanceof EntityPlayer)) {
+		if (event.entityLiving.worldObj.isRemote|| !(event.entityLiving instanceof EntityPlayer)) {
 			return;
 		}
 
 		EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-		SextiarySectorAPI.addStaminaExhaustion(player, event.ammount * 5.0f);
+		SextiarySectorAPI.addStaminaExhaustion(player, 1.4f);
 
 	}
 
@@ -160,17 +189,13 @@ public class PlayerStatusEventHandler {
 
 			if (player.isPlayerFullyAsleep()) {
 
-				if (EntityPlayerManager.getMoistureStats(player)
-						.getMoistureLevel() > 4
-						&& player.getFoodStats().getFoodLevel() > 4) {
-					EntityPlayerManager.getStaminaStats(player).addStats(1000,
-							500);
+				if (EntityPlayerManager.getMoistureStats(player).getMoistureLevel() > 4&& player.getFoodStats().getFoodLevel() > 4) {
+					EntityPlayerManager.getStaminaStats(player).addStats(1000,500);
 				} else {
-					EntityPlayerManager.getStaminaStats(player).addStats(300,
-							100);
+					EntityPlayerManager.getStaminaStats(player).addStats(300,100);
 				}
-				player.getFoodStats().addExhaustion(34f);
-				SextiarySectorAPI.addMoistureExhaustion(player, 34f);
+				player.getFoodStats().addExhaustion(21.0f);
+				SextiarySectorAPI.addMoistureExhaustion(player, 21.0f);
 
 				// System.out.println("LivingSleepingEvent");
 			}

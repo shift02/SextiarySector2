@@ -6,10 +6,13 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.terraingen.OreGenEvent;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import shift.sextiarysector.SSBlocks;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -24,6 +27,8 @@ public class WorldEventHandler {
 	private WorldGenMinable coaLargeGen;
 	private WorldGenMinable ironLarge;
 	private WorldGenMinable goldLarge;
+
+	private WorldGenLakes springWater;
 
 	private int chunk_X;
 	private int chunk_Z;
@@ -67,6 +72,26 @@ public class WorldEventHandler {
 
 	}
 
+	@SubscribeEvent
+    public void onPopulateChunkEvent(PopulateChunkEvent.Post event) {
+
+		if(event.world.rand.nextInt(32)!=0)return;
+
+		this.randomGenerato = event.rand;
+		this.chunk_X = event.chunkX *16;
+		this.chunk_Z = event.chunkZ *16;
+		this.currentWorld = event.world;
+		this.biome = event.world.getBiomeGenForCoords(chunk_X +16, chunk_Z +16);
+
+		this.springWater = new WorldGenLakes(SSBlocks.drinkingWater);
+		if(BiomeDictionary.isBiomeOfType(biome, Type.FOREST)){
+			this.genStandard(1, springWater, 60, 126);
+
+		}
+
+	}
+
+
 	protected void genStandardOre1(int par1, WorldGenerator par2WorldGenerator, int par3, int par4)
     {
         for (int l = 0; l < par1; ++l)
@@ -75,6 +100,19 @@ public class WorldEventHandler {
             int j1 = this.randomGenerato.nextInt(par4 - par3) + par3;
             int k1 = this.chunk_Z + this.randomGenerato.nextInt(16);
             par2WorldGenerator.generate(this.currentWorld, this.randomGenerato, i1, j1, k1);
+        }
+    }
+
+	protected void genStandard(int par1, WorldGenerator par2WorldGenerator, int par3, int par4)
+    {
+		for (int l = 0; l < par1; ++l)
+        {
+            int i1 = this.chunk_X + this.randomGenerato.nextInt(16);
+            int j1 = this.randomGenerato.nextInt(par4 - par3) + par3;
+            int k1 = this.chunk_Z + this.randomGenerato.nextInt(16);
+            if(par2WorldGenerator.generate(this.currentWorld, this.randomGenerato, i1, j1, k1)){
+            }
+
         }
     }
 

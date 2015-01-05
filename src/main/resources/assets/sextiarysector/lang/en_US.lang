@@ -119,6 +119,9 @@ item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
 item.ss.energy_reactor.name=Energy Reactor
 item.ss.object_reactor.name=Object Reactor
 
+item.ss.empty_bottle.name=Empty Bottle
+item.ss.water_bottle.name=Water Bottle
+item.ss.lava_bottle.name=Lava Bottle
 
 item.ss.craft_unit.name=Craft Unit
 
@@ -155,8 +158,6 @@ item.ss.steel_gf_storage.name=Steel GF Storage
 item.ss.string_bobbin.name=String Bobbin
 item.ss.cloth.name=Cloth
 item.ss.canvas.name=Canvas
-
-item.ss.drinking_water_small_bottle.name=Drinking Water Small Bottle
 
 
 item.ss.wood_scoop.name=Wood Scoop
@@ -221,6 +222,8 @@ item.ss.onion_soup.name=Onion Soup
 item.ss.ender_soup.name=Ender Soup
 item.ss.tomato_soup.name=Tomato Soup
 
+item.ss.drinking_water_bottle.name=Drinking Water Bottle
+item.ss.takumi_tea_bottle.name=TAKUMI Tea Bottle
 
 item.ss.shift_hat.name=Shift's Hat
 item.ss.gf_contact_lenses.name=GF Contact Lenses
@@ -228,8 +231,12 @@ item.ss.gf_contact_lenses.name=GF Contact Lenses
 #Fluid
 fluid.ss.takumi_tea=TAKUMI Tea
 fluid.ss.drinking_water=Drinking Water
+fluid.ss.steam=Steam
 
 fluid.ss.steam=Steam
+
+#Potion
+ss.potion.burn=Burn
 
 #GUI
 container.large_furnace=Large Furnace
@@ -256,6 +263,7 @@ shop.ss.robot=Blue Robot Shop
 #ToolTip
 tooltip.season.pm=PM
 tooltip.season.am=AM
+tooltip.season.day=Day
 
 tooltip.season=Season
 tooltip.season.seed=Season
@@ -267,13 +275,13 @@ tooltip.season.winter=Winter
 #Tab
 itemGroup.ss.core=SextiarySector -Core-
 itemGroup.ss.fluid=SextiarySector -Fluid-
-itemGroup.ss.machine=SextiarySector -Machine-
 itemGroup.ss.player=SextiarySector -Player-
 itemGroup.ss.agriculture=SextiarySector -Agriculture-
 itemGroup.ss.fishery=SextiarySector -Fishery-
 itemGroup.ss.mining=SextiarySector -Mining-
-itemGroup.ss.transport=SextiarySector -Transport-
+itemGroup.ss.industry=SextiarySector -Industry-
 itemGroup.ss.cooking=SextiarySector -Cooking-
+itemGroup.ss.transport=SextiarySector -Transport-
 itemGroup.ss.economy=SextiarySector -Economy-
 itemGroup.ss.magic=SextiarySector -Magic-
 
@@ -287,16 +295,162 @@ player.tab.item.ss.creeper_ring=Creeper Shop
 #Achievement
 stat.sell=Sell
 
-achievement.ss.economy=SextiarySector -Economy-
+achievement.ss.core=SS2 -Core-
 
-achievement.creeper_firework=Creeper Monger
-achievement.creeper_firework.desc=The attempt to communicate with fireworks !
+achievement.ss.moisture=Moisture
+achievement.ss.moisture.desc=Let the hydration
+achievement.ss.moisture.desc2=Slippery skin
 
-achievement.creeper_chest=Creeper Chest
-achievement.creeper_chest.desc=Santa Creeper ?
+achievement.ss.bottle=Bottle
+achievement.ss.bottle.desc=Craft a bottle
+achievement.ss.bottle.desc2=Strengthening bottle
 
-achievement.shipping=Shipping Block
-achievement.shipping.desc=Trying to shipment
+achievement.ss.drinking_water=Drinking Water
+achievement.ss.drinking_water.desc=Smelting a water bottle
+achievement.ss.drinking_water.desc2=Delicious !
+
+achievement.ss.craft_furnace=Craft Furnace
+achievement.ss.craft_furnace.desc=Craft a large furnace
+achievement.ss.craft_furnace.desc2=Complex craft
+
+
+achievement.ss.agriculture=SS2 -Agriculture-
+
+achievement.ss.data=Crop Data
+
+achievement.ss.seed=First Seed
+achievement.ss.seed.desc=Buy a seed
+achievement.ss.seed.desc2=Increase
+
+achievement.ss.scoop=Scoop
+achievement.ss.scoop.desc=Craft a scoop
+achievement.ss.scoop.desc2=Friendly touch
+
+achievement.ss.farmland=Farmland
+achievement.ss.farmland.desc=Use a scoop to vanilla farmland
+achievement.ss.farmland.desc2=Strong !
+
+achievement.ss.watering_can=Watering Can
+achievement.ss.watering_can.desc=Craft a watering can
+achievement.ss.watering_can.desc2=The spear fun water
+
+achievement.ss.hole=Hole
+achievement.ss.hole.desc=Use a scoop to dirt
+achievement.ss.hole.desc2=The Who is a hole here ?
+
+achievement.ss.paddy=Paddy
+achievement.ss.paddy.desc=Use a water bucket to hole
+achievement.ss.paddy.desc2=Grow rice !
+
+##
+achievement.ss.turnip=Turnip
+achievement.ss.turnip.desc=Pickup a turnip
+
+achievement.ss.iron_turnip=Iron Turnip
+achievement.ss.iron_turnip.desc=Pickup a iron turnip
+
+achievement.ss.cucumber=Cucumber
+achievement.ss.cucumber.desc=Pickup a cucumber
+
+
+achievement.ss.onion=Onion
+achievement.ss.onion.desc=Pickup a onion
+
+achievement.ss.tomato=Tomato
+achievement.ss.tomato.desc=Pickup a tomato
+
+achievement.ss.corn=Corn
+achievement.ss.corn.desc=Pickup a corn
+
+achievement.ss.golden_corn=Golden Corn
+achievement.ss.golden_corn.desc=Pickup a golden corn
+
+
+achievement.ss.eggplant=Eggplant
+achievement.ss.eggplant.desc=Pickup a eggplant
+
+achievement.ss.sweet_potato=Sweet Potato
+achievement.ss.sweet_potato.desc=Pickup a sweet potato
+
+achievement.ss.green_pepper=Green Pepper
+achievement.ss.green_pepper.desc=Pickup a green pepper
+
+
+achievement.ss.radish=Radish
+achievement.ss.radish.desc=Pickup a radish
+
+
+achievement.ss.rice=Rice
+achievement.ss.rice.desc=Pickup a rice
+
+achievement.ss.mining=SS2 -Mining-
+
+achievement.ss.bluestone_dust=Color is different !
+achievement.ss.bluestone_dust.desc=Pickup a bluestone dust
+achievement.ss.bluestone_dust.desc2=Beautiful !
+
+achievement.ss.industry=SS2 -Industry-
+
+achievement.ss.bluestone_slime_ball=Mysterious slime
+achievement.ss.bluestone_slime_ball.desc=Craft a bluestone slime ball
+achievement.ss.bluestone_slime_ball.desc2=How nice
+
+
+achievement.ss.wood_gear=New power
+achievement.ss.wood_gear.desc=Craft a wood gear
+achievement.ss.wood_gear.desc2=Its name GF !
+
+achievement.ss.small_windmill=Force of the wind
+achievement.ss.small_windmill.desc=Craft a small windmill
+achievement.ss.small_windmill.desc2=It's a good wind
+
+achievement.ss.millstone=The machine
+achievement.ss.millstone.desc=Craft a millstone
+achievement.ss.millstone.desc2=Flour I ish
+
+achievement.ss.loom=Cloth !
+achievement.ss.loom.desc=Craft a loom
+achievement.ss.loom.desc2=It is rid from naked!
+
+
+achievement.ss.stone_gear=Power ups
+achievement.ss.stone_gear.desc=Craft a stone gear
+achievement.ss.stone_gear.desc2=Even stone ?
+
+achievement.ss.windmill=Updraft
+achievement.ss.windmill.desc=Craft a windmill
+achievement.ss.windmill.desc2=Crying wind
+
+achievement.ss.sawmill=Blade ?
+achievement.ss.sawmill.desc=Craft a sawmill
+achievement.ss.sawmill.desc2=Let dismantling together !
+
+
+achievement.ss.steel_gear=The power of steel
+achievement.ss.steel_gear.desc=Craft a steel gear
+achievement.ss.steel_gear.desc2=Coal shortage ?
+
+achievement.ss.small_waterwheel=The power of water
+achievement.ss.small_waterwheel.desc=Craft a small waterwheel
+achievement.ss.small_waterwheel.desc2=Do not close the lava !
+
+achievement.ss.pulverizer=Industrial era
+achievement.ss.pulverizer.desc=Craft a pulverizer
+achievement.ss.pulverizer.desc2=Double it !
+
+achievement.ss.economy=SS2 -Economy-
+
+achievement.ss.creeper_firework=Creeper Monger
+achievement.ss.creeper_firework.desc=The attempt to communicate with fireworks
+achievement.ss.creeper_firework.desc2=Explosion !
+
+achievement.ss.creeper_chest=Creeper Chest
+achievement.ss.creeper_chest.desc=Let's go to bed in a separate
+achievement.ss.creeper_chest.desc2=Santa Creeper ?
+
+achievement.ss.shipping=Shipping Block
+achievement.ss.shipping.desc=Trying to shipment
+achievement.ss.shipping.desc=I'm millionaire !
 
 #NEI
 nei.recipe=Recipes

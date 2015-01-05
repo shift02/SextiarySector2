@@ -75,7 +75,7 @@ public class RecipesMachine {
 
         	p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(shaft[i], 4),
     				new Object[] { "xzx", "xyx","xzx",
-    			Character.valueOf('y'), SSItems.blueStoneDust,
+    			Character.valueOf('y'), "dustBluestone",
     			Character.valueOf('x'), material[i],
     			Character.valueOf('z'), SSItems.blueStoneSlimeBall
     			}));
