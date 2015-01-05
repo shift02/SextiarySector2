@@ -1,82 +1,42 @@
 package shift.sextiarysector.module;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
 import net.minecraft.stats.StatBase;
 import net.minecraft.stats.StatCrafting;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.AchievementPage;
-import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SextiarySector;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-public class ModuleAchievement implements IModule {
+public class ModuleStatistics implements IModule {
 
 
-	private static ModuleAchievement instance;
+	private static ModuleStatistics instance;
 
 	public static StatBase[] objectSellStats = new StatBase[32000];
 
-	private ModuleAchievement() {
+	private ModuleStatistics() {
 	}
 
-	public static ModuleAchievement getInstance() {
+	public static ModuleStatistics getInstance() {
 		if(instance==null){
-			instance = new ModuleAchievement();
+			instance = new ModuleStatistics();
 		}
 		return instance;
 	}
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-
-		initEconomy();
-
 	}
 
-	private ArrayList<Achievement> economy = new ArrayList<Achievement>();
-
-	public static Achievement creeperFirework;
-
-	public static Achievement creeperChest;
-
-	public static Achievement shipping;
-
-	private void initEconomy() {
-
-		creeperFirework = new SSAchievement("creeper_firework", 0, 0, new ItemStack(Items.fireworks), (Achievement)null,economy).initIndependentStat().registerStat();
-		creeperChest = new SSAchievement("creeper_chest", 1, -2, new ItemStack(SSBlocks.creeperChest), creeperFirework,economy).registerStat();
-		shipping = new SSAchievement("shipping", 3, -2, new ItemStack(SSBlocks.shippingBox), creeperChest,economy).registerStat();
-
-		AchievementPage.registerAchievementPage(new AchievementPage("achievement.ss.economy", economy.toArray(new Achievement[0])){
-			public String getName()
-		    {
-		        return StatCollector.translateToLocal(super.getName());
-		    }
-		});
-
-	}
-
-	private static class SSAchievement extends Achievement{
-
-		public SSAchievement(String p_i45302_1_,int p_i45302_3_, int p_i45302_4_, ItemStack p_i45302_5_,Achievement p_i45302_6_,ArrayList<Achievement>a) {
-			super("achievement.ss"+p_i45302_1_, p_i45302_1_, p_i45302_3_, p_i45302_4_, p_i45302_5_,p_i45302_6_);
-			a.add(this);
-		}
-
-	}
 
 	@Override
 	public void load(FMLInitializationEvent event) {

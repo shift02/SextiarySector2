@@ -29,8 +29,8 @@ public class ContainerFluidMachineBase extends Container
         this.addSlotToContainer(new Slot(p_i1812_2_, 1, 56, 53));
         this.addSlotToContainer(new SlotFurnace(p_i1812_1_.player, p_i1812_2_, 2, 107, 53));
         this.addSlotToContainer(new SlotFurnace(p_i1812_1_.player, p_i1812_2_, 3, 125, 53));
-        this.addSlotToContainer(new Slot(p_i1812_2_, 4, 152, 17));
-        this.addSlotToContainer(new Slot(p_i1812_2_, 5, 152, 53));
+        this.addSlotToContainer(new SlotFluid(p_i1812_2_, 4, 152, 17));
+        this.addSlotToContainer(new SlotFluid(p_i1812_2_, 5, 152, 53));
         int i;
 
         for (i = 0; i < 3; ++i)

@@ -7,6 +7,8 @@ import java.util.List;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngameMenu;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -31,6 +33,7 @@ import shift.sextiarysector.api.agriculture.AgricultureAPI;
 import shift.sextiarysector.api.agriculture.IFertilizer;
 import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 import shift.sextiarysector.api.machine.item.IGearForceGridItem;
+import shift.sextiarysector.gui.GuiAchievementsNext;
 import shift.sextiarysector.gui.GuiStatsNext;
 import shift.sextiarysector.item.TextureSeason;
 import shift.sextiarysector.module.FertilizerManager;
@@ -38,6 +41,7 @@ import shift.sextiarysector.module.SeasonManager;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.EquipmentType;
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -48,6 +52,7 @@ public class ClientEventHandler {
     public static Minecraft mc = FMLClientHandler.instance().getClient();
 
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public void onGuiOpenEvent(GuiOpenEvent event) {
 
     	if(event.gui instanceof GuiStats&&!(event.gui instanceof GuiStatsNext)){
@@ -82,6 +87,13 @@ public class ClientEventHandler {
     		//System.out.println("GuiOpenEvent");
     	}
 
+    	if(event.gui instanceof GuiAchievements){
+
+    		GuiScreen gui =  ObfuscationReflectionHelper.getPrivateValue(GuiAchievements.class, (GuiAchievements)event.gui, "field_146562_a");
+    		event.gui = new GuiAchievementsNext(gui ,mc.thePlayer.getStatFileWriter());
+
+    	}
+
     }
 
     @SubscribeEvent
@@ -98,6 +110,7 @@ public class ClientEventHandler {
     }
 
     public static IIcon slotGF;
+    public static IIcon slotFluid;
 
     public static IIcon[] itemGF;
 
@@ -114,6 +127,7 @@ public class ClientEventHandler {
 
 
     		slotGF = event.map.registerIcon("sextiarysector:gui/slot_gf");
+    		slotFluid = event.map.registerIcon("sextiarysector:gui/slot_fluid");
 
     		itemGF = new IIcon[2];
     		itemGF[0] = event.map.registerIcon("sextiarysector:damage/damage_0");

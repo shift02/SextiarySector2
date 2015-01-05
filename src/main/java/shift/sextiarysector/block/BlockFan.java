@@ -14,7 +14,7 @@ public class BlockFan  extends BlockDirection{
 		this.setBlockTextureName("planks_oak");
 		this.setHardness(1.0F);
 		this.setStepSound(soundTypeStone);
-		this.setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		this.setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 	}
 
 	@Override

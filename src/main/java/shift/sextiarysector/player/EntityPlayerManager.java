@@ -6,6 +6,7 @@ import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
+import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.api.IPlayerManager;
 import shift.sextiarysector.packet.PacketPlayerData;
 import shift.sextiarysector.packet.SSPacketHandler;
@@ -49,6 +50,8 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 		if (!entityPlayer.worldObj.isRemote)
         {
 			getMoistureStats(entityPlayer).addStats(par1, par2);
+			//Achievement
+			entityPlayer.addStat(SSAchievement.moisture, 1);
         }
 	}
 

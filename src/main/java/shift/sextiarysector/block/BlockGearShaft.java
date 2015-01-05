@@ -29,7 +29,7 @@ public class BlockGearShaft  extends BlockDirection{
 		super(Material.wood);
 		this.setType(type);
 		this.setHardness(0.8F);
-		this.setCreativeTab(SextiarySectorAPI.TabSSMachine);
+		this.setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 
 	}
 

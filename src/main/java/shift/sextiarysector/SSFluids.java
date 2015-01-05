@@ -18,10 +18,10 @@ public class SSFluids {
 
 	public static void initFluids(){
 
-		takumiTea =  new SSFluid("takumi_tea", 0, 0x006400, 5, 2.0f);
-		drinkingWater =  new SSFluid("drinking_water", 0, 0xF0FFFF, 4, 1.0f);
+		takumiTea =  new SSFluid("TakumiTea", 0, 0x006400, 5, 2.0f).setUnlocalizedName("takumi_tea");
+		drinkingWater =  new SSFluid("DrinkingWater", 0, 0x87CEFA, 4, 1.0f).setUnlocalizedName("drinking_water");
 
-		steam = new SSFluid("steam", 1, 0xFFFFFF, 1, 1.0f);
+		steam = new SSFluid("Steam", 1, 0xFFFFFF, 1, 1.0f).setUnlocalizedName("steam");
 
 	}
 
@@ -30,6 +30,12 @@ public class SSFluids {
 		for(int i=1;i<=FluidRegistry.getRegisteredFluids().size();i++){
 			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluid(i), new ItemStack(SSBlocks.fluidCrafter,1,i), new ItemStack(SSBlocks.fluidCrafter,1,0));
 		}
+
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.WATER, new ItemStack(SSItems.waterBottle,1), new ItemStack(SSItems.emptyBottle,1));
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.LAVA, new ItemStack(SSItems.lavaBottle,1), new ItemStack(SSItems.emptyBottle,1));
+
+		FluidContainerRegistry.registerFluidContainer(takumiTea, new ItemStack(SSItems.takumiTeaBottle,1), new ItemStack(SSItems.emptyBottle,1));
+		FluidContainerRegistry.registerFluidContainer(drinkingWater, new ItemStack(SSItems.drinkingWaterBottle,1), new ItemStack(SSItems.emptyBottle,1));
 
 	}
 
@@ -74,7 +80,7 @@ public class SSFluids {
 	    public IIcon getFlowingIcon()
 	    {
 			switch(type){
-			case 0:return ClientEventHandler.waterStill;
+			case 0:return ClientEventHandler.waterFlow;
 			case 1:return ClientEventHandler.portal;
 			}
 	        return ClientEventHandler.waterStill;

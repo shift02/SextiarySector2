@@ -10,8 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import shift.mceconomy2.api.MCEconomyAPI;
+import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSItems;
-import shift.sextiarysector.module.ModuleAchievement;
+import shift.sextiarysector.module.ModuleStatistics;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -53,8 +54,8 @@ public class BlockShippingBox extends Block{
 		}
 
 		MCEconomyAPI.addPlayerMP(par5EntityPlayer, i,false);
-		par5EntityPlayer.addStat(ModuleAchievement.objectSellStats[Item.getIdFromItem(item.getItem())], 1);
-		par5EntityPlayer.addStat(ModuleAchievement.shipping, 1);
+		par5EntityPlayer.addStat(ModuleStatistics.objectSellStats[Item.getIdFromItem(item.getItem())], 1);
+		par5EntityPlayer.addStat(SSAchievement.shipping, 1);
 		item.stackSize--;
 		world.playSoundAtEntity(par5EntityPlayer, "damage.fallsmall", 1.0F, 1.0F);
 		return true;
