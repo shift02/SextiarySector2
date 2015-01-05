@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
+import shift.sextiarysector.block.BlcokPaddy;
 import shift.sextiarysector.block.BlockBlueFire;
 import shift.sextiarysector.block.BlockBottle;
 import shift.sextiarysector.block.BlockChunkLoader;
@@ -28,6 +29,7 @@ import shift.sextiarysector.block.BlockSSCrop.CropType;
 import shift.sextiarysector.block.BlockSSFarmland;
 import shift.sextiarysector.block.BlockSSOre;
 import shift.sextiarysector.block.BlockSSPane;
+import shift.sextiarysector.block.BlockSandpit;
 import shift.sextiarysector.block.BlockShaft;
 import shift.sextiarysector.block.BlockShippingBox;
 import shift.sextiarysector.block.BlockSimpleMachine;
@@ -53,6 +55,7 @@ import shift.sextiarysector.tileentity.TileEntityGearShaft;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
+import shift.sextiarysector.tileentity.TileEntityPaddy;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import shift.sextiarysector.tileentity.TileEntityShaft;
@@ -67,9 +70,15 @@ public class SSBlocks {
 	public static String ID = "sextiarysector";
 
 	public static Block LargeFurnace;
+
+	//public static Block craftFurnace;
+	//public static Block stoneFrame;
+
 	public static Block fluidFurnace;
 	public static Block foodSmokers;
 	public static Block magicFurnace;
+
+
 
 	public static Block bottle;
 	public static Block fluidCrafter;
@@ -132,6 +141,7 @@ public class SSBlocks {
 	public static Block monitor;
 
 	public static Block farmland;
+	public static Block paddy;
 
 	public static Block turnip;
 	public static Block cucumber;
@@ -146,11 +156,24 @@ public class SSBlocks {
 
 	public static Block radish;
 
+	public static Block rice;
+
+
+	//水産
+	public static Block sandpit;
+
 	public static void initBlicks(){
 
 		LargeFurnace = new BlockLargeFurnace().setBlockName("ss.large_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(LargeFurnace, "LargeFurnace");
 		GameRegistry.registerTileEntity(TileEntityLargeFurnace.class, "LargeFurnace");
+
+		//craftFurnace = new BlockCraftFurnace().setBlockName("ss.large_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		//GameRegistry.registerBlock(craftFurnace, "CraftFurnace");
+		//GameRegistry.registerTileEntity(TileEntityCraftFurnace.class, "CraftFurnace");
+		//stoneFrame = new BlockStoneFrame().setBlockName("ss.stone_frame").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		//GameRegistry.registerBlock(stoneFrame, "StoneFrame");
+		//GameRegistry.registerTileEntity(TileEntityStoneFrame.class, "StoneFrame");
 
 		fluidFurnace = new BlockFluidFurnace().setBlockName("ss.fluid_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(fluidFurnace, "FluidFurnace");
@@ -296,37 +319,50 @@ public class SSBlocks {
 		GameRegistry.registerBlock(farmland,"Farmland");
 		GameRegistry.registerTileEntity(TileEntityFarmland.class, "SSFarmland");
 
+		paddy = new BlcokPaddy().setBlockName("ss.paddy").setBlockTextureName("farmland").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
+		GameRegistry.registerBlock(paddy,"Paddy");
+		GameRegistry.registerTileEntity(TileEntityPaddy.class, "SSPaddy");
+
 		//野菜
 		GameRegistry.registerTileEntity(TileEntitySSCrop.class, "SSCrop");
 
-		turnip = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,3,4},Season.SPRING), SSItems.turnip, false).setBlockName("ss.turnip").setBlockTextureName("turnip");
+		turnip = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,3,4},Season.SPRING), farmland, SSItems.turnip, false).setBlockName("ss.turnip").setBlockTextureName("turnip");
 		GameRegistry.registerBlock(turnip,ItemBlockCrop.class,"BlockTurnip");
 
-		cucumber = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{2,6,10,3},Season.SPRING), SSItems.cucumber, true).setBlockName("ss.cucumber").setBlockTextureName("cucumber");
+		cucumber = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{2,6,10,3},Season.SPRING), farmland, SSItems.cucumber, true).setBlockName("ss.cucumber").setBlockTextureName("cucumber");
 		GameRegistry.registerBlock(cucumber,ItemBlockCrop.class,"BlockCucumber");
 
-
-		onion = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,4,8},Season.SUMMER), SSItems.onion, false).setBlockName("ss.onion").setBlockTextureName("onion");
+		onion = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,4,8},Season.SUMMER), farmland, SSItems.onion, false).setBlockName("ss.onion").setBlockTextureName("onion");
 		GameRegistry.registerBlock(onion,ItemBlockCrop.class,"BlockOnion");
 
-		tomato = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{4,10,14,2},Season.SUMMER), SSItems.tomato, true).setBlockName("ss.tomato").setBlockTextureName("tomato");
+		tomato = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{4,10,14,2},Season.SUMMER), farmland, SSItems.tomato, true).setBlockName("ss.tomato").setBlockTextureName("tomato");
 		GameRegistry.registerBlock(tomato,ItemBlockCrop.class,"BlockTomato");
 
-		corn = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{5,10,16,4},Season.SUMMER), SSItems.corn, true).setBlockName("ss.corn").setBlockTextureName("corn");
+		corn = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{5,10,16,4},Season.SUMMER), farmland, SSItems.corn, true).setBlockName("ss.corn").setBlockTextureName("corn");
 		GameRegistry.registerBlock(corn,ItemBlockCrop.class,"BlockCorn");
 
 
-		eggplant = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{3,7,12,3},Season.AUTUMN), SSItems.eggplant, true).setBlockName("ss.eggplant").setBlockTextureName("eggplant");
+		eggplant = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{3,7,12,3},Season.AUTUMN), farmland, SSItems.eggplant, true).setBlockName("ss.eggplant").setBlockTextureName("eggplant");
 		GameRegistry.registerBlock(eggplant,ItemBlockCrop.class,"BlockEggplant");
 
-		sweetPotato = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,4,6,2},Season.AUTUMN), SSItems.sweetPotato, true).setBlockName("ss.sweet_potato").setBlockTextureName("sweet_potato");
+		sweetPotato = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,4,6,2},Season.AUTUMN), farmland, SSItems.sweetPotato, true).setBlockName("ss.sweet_potato").setBlockTextureName("sweet_potato");
 		GameRegistry.registerBlock(sweetPotato,ItemBlockCrop.class,"BlockSweetPotato");
 
-		greenPepper = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{4,8,14,3},Season.AUTUMN), SSItems.greenPepper, true).setBlockName("ss.green_pepper").setBlockTextureName("green_pepper");
+		greenPepper = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{4,8,14,3},Season.AUTUMN), farmland, SSItems.greenPepper, true).setBlockName("ss.green_pepper").setBlockTextureName("green_pepper");
 		GameRegistry.registerBlock(greenPepper,ItemBlockCrop.class,"BlockGreenPepper");
 
-		radish = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,3,4},Season.WINTER), SSItems.radish, false).setBlockName("ss.radish").setBlockTextureName("radish");
+		radish = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,3,4},Season.WINTER), farmland, SSItems.radish, false).setBlockName("ss.radish").setBlockTextureName("radish");
 		GameRegistry.registerBlock(radish,ItemBlockCrop.class,"BlockRadish");
+
+		//米
+
+		rice = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{28,46,68},Season.SPRING,Season.SUMMER,Season.AUTUMN), paddy, SSItems.radish, false).setBlockName("ss.rice").setBlockTextureName("rice");
+		GameRegistry.registerBlock(rice,ItemBlockCrop.class,"BlockRice");
+
+
+		//水産
+		sandpit = new BlockSandpit().setBlockName("ss.sandpit").setBlockTextureName("sand");
+		GameRegistry.registerBlock(sandpit, "Sandpit");
 
 		//initVanillaBlock();
 

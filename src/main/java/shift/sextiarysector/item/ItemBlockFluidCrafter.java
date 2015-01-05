@@ -20,6 +20,7 @@ public class ItemBlockFluidCrafter extends ItemBlock{
 
 	public ItemBlockFluidCrafter(Block par1) {
 		super(par1);
+		this.setHasSubtypes(true);
 	}
 
 	public int getMetadata(int p_77647_1_)

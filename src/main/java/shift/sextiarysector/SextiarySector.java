@@ -15,6 +15,7 @@ import shift.sextiarysector.module.IModule;
 import shift.sextiarysector.module.ModuleAchievement;
 import shift.sextiarysector.module.ModuleAgriculture;
 import shift.sextiarysector.module.ModuleChunkLoader;
+import shift.sextiarysector.module.ModuleSandpit;
 import shift.sextiarysector.module.ModuleSeason;
 import shift.sextiarysector.packet.SSPacketHandler;
 import shift.sextiarysector.player.EntityPlayerManager;
@@ -32,7 +33,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	//public static final String MODID = "SextiarySector";
-    public static final String VERSION = "2.1.0";
+    public static final String VERSION = "2.1.1";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
@@ -67,6 +68,7 @@ public class SextiarySector {
     	modules.add(ModuleChunkLoader.getInstance());
     	modules.add(ModuleSeason.getInstance());
     	modules.add(ModuleAgriculture.getInstance());
+    	modules.add(ModuleSandpit.getInstance());
 
     	SSRecipes.initRecipeLists();
 
@@ -76,6 +78,7 @@ public class SextiarySector {
     	SSFluids.initFluids();
     	SSItems.initItems();
     	SSBlocks.initBlicks();
+    	SSEntitys.initEntity();
 
     	NetworkRegistry.INSTANCE.registerGuiHandler(this, new SSGuiHandler());
 

@@ -13,11 +13,12 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SextiarySector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockHole extends Block{
+public class BlockHole extends Block {
 
 	public BlockHole() {
 		super(Material.grass);
@@ -56,7 +57,7 @@ public class BlockHole extends Block{
 
 	public void addWater(World w, int x, int y, int z){
 
-		w.setBlockMetadataWithNotify(x, y, z, 1, 4);
+		w.setBlock(x, y, z, SSBlocks.paddy);
 		w.markBlockForUpdate(x, y, z);
 
 		for(int i = 2;i<6;i++){

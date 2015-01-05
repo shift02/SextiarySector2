@@ -1,20 +1,26 @@
 package shift.sextiarysector.event;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSFluids.SSFluid;
@@ -133,9 +139,11 @@ public class CommonEventHandler {
 	@SubscribeEvent
     public void onSpawn(LivingSpawnEvent.CheckSpawn event)
     {
-		/*
+
 		World world = event.world;
         EntityLivingBase living = event.entityLiving;
+
+        if(world.rand.nextInt(12) != 0)return;
 
         if (living instanceof IMob)
         {
@@ -143,13 +151,37 @@ public class CommonEventHandler {
             int y = (int)event.y;
             int z = (int)event.z;
 
-            System.out.println( x+" : "+ y + " : "+ z);
+            if(!world.getBlock(x, y, z).isAir(world, x, y, z))return;
 
-            if(world.getBlock(x, y-1, z)!=Blocks.stone){
-            	world.setBlock(x, y, z, Blocks.stone);
-            }
+            if(world.getBlock(x, y-1, z) != Blocks.sand)return;
 
-        }*/
+            if(!BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x, z), Type.BEACH))return;
+
+            world.setBlock(x, y, z, SSBlocks.sandpit);
+
+        }
+    }
+
+	@SubscribeEvent
+    public void onSpawns( WorldEvent.PotentialSpawns event)
+    {
+
+		World world = event.world;
+
+        if(world.rand.nextInt(6) != 0)return;
+
+        int x = (int)event.x;
+        int y = (int)event.y;
+        int z = (int)event.z;
+
+        if(!world.getBlock(x, y, z).isAir(world, x, y, z))return;
+
+        if(world.getBlock(x, y-1, z) != Blocks.sand)return;
+
+        if(!BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x, z), Type.BEACH))return;
+
+        world.setBlock(x, y, z, SSBlocks.sandpit);
+
     }
 
 	/** */

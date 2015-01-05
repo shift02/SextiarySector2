@@ -16,7 +16,9 @@ public class SSCreativeTabs {
 		SextiarySectorAPI.TabSSMachine = new CreativeTabSSMachine();
 		SextiarySectorAPI.TabSSPlayer = new CreativeTabSSPlayer();
 		SextiarySectorAPI.TabSSAgriculture = new CreativeTabSSAgriculture();
+		SextiarySectorAPI.TabSSFishery = new CreativeTabSSFishery();
 		SextiarySectorAPI.TabSSMining = new CreativeTabSSMining();
+		SextiarySectorAPI.TabSSTransport = new CreativeTabSSTransport();
 		SextiarySectorAPI.TabSSCooking = new CreativeTabSSCooking();
 		SextiarySectorAPI.TabSSEconomy = new CreativeTabSSEconomy();
 		SextiarySectorAPI.TabSSMagic = new CreativeTabSSMagic();
@@ -118,6 +120,25 @@ public class SSCreativeTabs {
 
 	}
 
+	private static class CreativeTabSSFishery extends CreativeTabs{
+
+		public CreativeTabSSFishery() {
+			super("ss.fishery");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;//SSBlocks.LargeFurnace.g;
+		}
+
+		@SideOnly(Side.CLIENT)
+	    public ItemStack getIconItemStack()
+	    {
+			return new ItemStack(SSItems.laver,1);
+	    }
+
+	}
+
 	private static class CreativeTabSSMining extends CreativeTabs{
 
 		public CreativeTabSSMining() {
@@ -133,6 +154,25 @@ public class SSCreativeTabs {
 	    public ItemStack getIconItemStack()
 	    {
 			return new ItemStack(SSBlocks.ironLargeOre,1);
+	    }
+
+	}
+
+	private static class CreativeTabSSTransport extends CreativeTabs{
+
+		public CreativeTabSSTransport() {
+			super("ss.transport");
+		}
+
+		@Override
+		public Item getTabIconItem() {
+			return null;//SSBlocks.LargeFurnace.g;
+		}
+
+		@SideOnly(Side.CLIENT)
+	    public ItemStack getIconItemStack()
+	    {
+			return new ItemStack(SSItems.mineboatChest,1);
 	    }
 
 	}
