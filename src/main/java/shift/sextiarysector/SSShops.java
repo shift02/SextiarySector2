@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 import shift.mceconomy2.api.MCEconomyAPI;
 import shift.mceconomy2.api.shop.IProductItem;
 import shift.mceconomy2.api.shop.IProductList;
 import shift.mceconomy2.api.shop.ProductItem;
-import shift.sextiarysector.block.BlockBottle;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
 import shift.sextiarysector.item.ItemShopRing;
@@ -28,7 +26,7 @@ public class SSShops {
 
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.brassIngot,2),230));
 
-			creepers[i].addItemProduct(new ProductItem(((BlockBottle) SSBlocks.bottle).getFluidItem(new FluidStack(SSFluids.takumiTea,1000)),216));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.takumiTeaBottle,2), 216));
 
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.seasonStone,1),3000));
 

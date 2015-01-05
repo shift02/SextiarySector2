@@ -13,6 +13,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SextiarySector;
 import cpw.mods.fml.relauncher.Side;
@@ -48,6 +49,7 @@ public class BlockHole extends Block {
 
         }else if(itemstack.getItem() == Items.water_bucket  && p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_)==0){
         	this.addWater(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_);
+        	p_149727_5_.addStat(SSAchievement.paddy, 1);
         	return true;
         }
 

@@ -14,6 +14,8 @@ public class RecipesFurnace {
 
 		GameRegistry.addSmelting(new ItemStack(SSItems.laver),new ItemStack(SSItems.laverRoasted),0.1f);
 
+		GameRegistry.addSmelting(new ItemStack(SSItems.waterBottle),new ItemStack(SSItems.drinkingWaterBottle),0.1f);
+
     }
 
 }

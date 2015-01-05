@@ -2,6 +2,7 @@ package shift.sextiarysector;
 
 import net.minecraftforge.common.MinecraftForge;
 import shift.sextiarysector.api.event.VanillaFoodHandler;
+import shift.sextiarysector.event.AchievementEventHandler;
 import shift.sextiarysector.event.ClientEventHandler;
 import shift.sextiarysector.event.CommonEventHandler;
 import shift.sextiarysector.event.HUDEventHandler;
@@ -24,7 +25,10 @@ public class SSEvents {
     	MinecraftForge.EVENT_BUS.register(new VanillaFoodHandler());
     	if(event.getSide().isClient())MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
     	if(event.getSide().isClient())MinecraftForge.EVENT_BUS.register(new TabManager());
+    	MinecraftForge.EVENT_BUS.register(new WorldEventHandler());
     	MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
+
+    	MinecraftForge.EVENT_BUS.register(new AchievementEventHandler());
 
     	//MinecraftForge.EVENT_BUS.register(new SantaEventHandler());
 
