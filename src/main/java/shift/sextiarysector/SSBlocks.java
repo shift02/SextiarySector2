@@ -360,8 +360,8 @@ public class SSBlocks {
 		GameRegistry.registerBlock(radish,ItemBlockCrop.class,"BlockRadish");
 
 		//米
-
-		rice = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{28,46,68},Season.SPRING,Season.SUMMER,Season.AUTUMN), paddy, SSItems.radish, false).setBlockName("ss.rice").setBlockTextureName("rice");
+		///28,46,68
+		rice = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{28,46,68},Season.SPRING,Season.SUMMER,Season.AUTUMN), paddy, SSItems.rice, false).setBlockName("ss.rice").setBlockTextureName("rice");
 		GameRegistry.registerBlock(rice,ItemBlockCrop.class,"BlockRice");
 
 
