@@ -85,6 +85,33 @@ public class PlayerStatusEventHandler {
 
 	}
 
+	//ジャンプ
+	@SubscribeEvent
+	public void onLivingJump2(LivingJumpEvent event) {
+
+		if (!(event.entityLiving instanceof EntityPlayer)) {
+			return;
+		}
+
+		if (event.entityLiving.worldObj.isRemote) {
+			return;
+		}
+
+		EntityPlayer player = (EntityPlayer) event.entityLiving;
+
+		float i = 1;
+
+		if (BiomeDictionary.isBiomeOfType(player.worldObj.getBiomeGenForCoords((int) player.posX, (int) player.posY), Type.DESERT)) {
+			i = 2;
+		}
+
+		if (player.isSprinting()) {
+			SextiarySectorAPI.addMoistureExhaustion(player, 0.1f * i);
+		} else {
+			SextiarySectorAPI.addMoistureExhaustion(player, 0.05f * i);
+		}
+
+	}
 
 	/**
 	 * スタミナ関係
