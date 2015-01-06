@@ -14,6 +14,7 @@ tile.ss.wood_plate.name=Wood Plate
 
 tile.ss.hole.name=Hole
 tile.ss.farmland.name=Farm Land
+tile.ss.paddy.name=Paddy
 
 tile.ss.bottle.name=Fluid Bottle
 tile.ss.fluid_crafter.name=Fluid Crafter
