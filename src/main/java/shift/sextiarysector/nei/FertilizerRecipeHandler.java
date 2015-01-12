@@ -7,12 +7,11 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector.api.agriculture.IFertilizer;
-import shift.sextiarysector.module.FertilizerManager;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
-public class FertilizerRecipeHandler  extends TemplateSSRecipeHandler{
+public abstract class FertilizerRecipeHandler  extends TemplateSSRecipeHandler{
 
 	public class FertilizerPair extends CachedRecipe
     {
@@ -153,31 +152,18 @@ public class FertilizerRecipeHandler  extends TemplateSSRecipeHandler{
         drawProgressBar(74, 23, 176, 14, 24, 16, 48, 0);
     }
 
-	private Class<? extends FertilizerRecipeHandler> getHandlerClass(){
-		return FertilizerRecipeHandler.class;
-	}
-	private String getHandlerName(){
-		return "SS_Fertilizer";
-	}
-	private ArrayList<IFertilizer> getRecipe(){
-		return FertilizerManager.normal;
-	}
-	String getGuiRecipeName(){
-		return "ss.fertilizer";
-	}
+	public abstract Class<? extends FertilizerRecipeHandler> getHandlerClass();
+	public abstract String getHandlerName();
+	public abstract ArrayList<IFertilizer> getRecipe();
+	public abstract String getGuiRecipeName();
 
-	public Class<? extends GuiContainer> getGuiClass(){
-		return null;
-	}
+	public abstract Class<? extends GuiContainer> getGuiClass();
 
 	@Override
 	public String getRecipeName() {
 		return I18n.format("nei."+getGuiRecipeName());
 	}
-
 	@Override
-	public String getGuiTexture() {
-		return "sextiarysector:textures/guis/fertilizer_nei.png";
-	}
+	public abstract String getGuiTexture();
 
 }

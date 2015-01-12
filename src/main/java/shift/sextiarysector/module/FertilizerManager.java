@@ -30,8 +30,8 @@ public class FertilizerManager implements IFertilizerManager {
 
 		switch(type){
 
-		case Normal:normal.add(fertilizer);
-		case Paddy : paddy.add(fertilizer);
+		case Normal:normal.add(fertilizer);break;
+		case Paddy : paddy.add(fertilizer);break;
 
 		}
 	}

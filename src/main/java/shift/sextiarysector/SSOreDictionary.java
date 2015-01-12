@@ -31,11 +31,25 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("fluidWater", new ItemStack(Items.potionitem, 1 ,0));
 
 		//素材 プレート
-		OreDictionary.registerOre("plateWood", SSBlocks.woodPlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodOakPlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodBirchPlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodSprucePlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodJunglePlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodAcaciaPlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodBigOakPlate);
+
+		OreDictionary.registerOre("plankWood", SSBlocks.woodOakPlate);
+		OreDictionary.registerOre("plankWood", SSBlocks.woodBirchPlate);
+		OreDictionary.registerOre("plankWood", SSBlocks.woodSprucePlate);
+		OreDictionary.registerOre("plankWood", SSBlocks.woodJunglePlate);
+		OreDictionary.registerOre("plankWood", SSBlocks.woodAcaciaPlate);
+		OreDictionary.registerOre("plankWood", SSBlocks.woodBigOakPlate);
 
 		OreDictionary.registerOre("gearWood", SSItems.woodGear);
 		OreDictionary.registerOre("gearStone", SSItems.stoneGear);
 		OreDictionary.registerOre("gearSteel", SSItems.steelGear);
+		OreDictionary.registerOre("gearNinja", SSItems.ninjaGear);
+		OreDictionary.registerOre("gearOrichalcum", SSItems.orichalcumGear);
 
 		OreDictionary.registerOre("dustCoal", SSItems.coalDust);
 		OreDictionary.registerOre("dustIron", SSItems.ironDust);
@@ -51,6 +65,8 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("ingotYellowstone", SSItems.yellowStoneIngot);
 		OreDictionary.registerOre("ingotNinja", SSItems.ninjaIngot);
 		OreDictionary.registerOre("ingotMithril", SSItems.mithrilIngot);
+
+		OreDictionary.registerOre("gemOrichalcum", SSItems.orichalcumGem);
 
 		OreDictionary.registerOre("oreMithril", SSBlocks.mithrilOre);
 

@@ -1,6 +1,5 @@
 package shift.sextiarysector.item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,14 +13,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemFoodCrop extends ItemFoodDrink{
 
-	public static ArrayList<Item> crops = new ArrayList<Item>();
+	//public static ArrayList<Item> crops = new ArrayList<Item>();
 
 
-	public ItemFoodCrop(int food, float foodM, int drink, float drinkM,int stamina, float staminaM, boolean p_i45339_3_) {
+	public ItemFoodCrop(List list, int food, float foodM, int drink, float drinkM,int stamina, float staminaM, boolean p_i45339_3_) {
 		super(food, foodM, drink, drinkM, stamina, staminaM, p_i45339_3_);
 		this.hasSubtypes = true;
 
-		crops.add(this);
+		list.add(this);
 
 		this.setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
 

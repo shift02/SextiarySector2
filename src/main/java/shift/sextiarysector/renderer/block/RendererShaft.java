@@ -38,8 +38,12 @@ public class RendererShaft extends TileEntitySpecialRenderer implements ISimpleB
         	this.bind(woodShaftTextures);
         }else if(block == SSBlocks.stoneShaft){
         	this.bind(stoneShaftTextures);
-        } if(block == SSBlocks.steelShaft){
+        } else if(block == SSBlocks.steelShaft){
         	this.bind(this.steelShaftTextures);
+        }else if(block == SSBlocks.ninjaShaft){
+        	this.bind(ninjaShaftTextures);
+        }else if(block == SSBlocks.orichalcumShaft){
+        	this.bind(orichalcumShaftTextures);
         }
 
         modelShaft.render(null, 0,0,0, 0,0, 1.0f);
@@ -71,6 +75,8 @@ public class RendererShaft extends TileEntitySpecialRenderer implements ISimpleB
 	private static final ResourceLocation woodShaftTextures = new ResourceLocation("sextiarysector:textures/models/wood_shaft.png");
 	private static final ResourceLocation stoneShaftTextures = new ResourceLocation("sextiarysector:textures/models/stone_shaft.png");
 	private static final ResourceLocation steelShaftTextures = new ResourceLocation("sextiarysector:textures/models/steel_shaft.png");
+	private static final ResourceLocation ninjaShaftTextures = new ResourceLocation("sextiarysector:textures/models/ninja_shaft.png");
+	private static final ResourceLocation orichalcumShaftTextures = new ResourceLocation("sextiarysector:textures/models/orichalcum_shaft.png");
 
 	static public ModelShaft modelShaft = new ModelShaft();
 
@@ -90,6 +96,8 @@ public class RendererShaft extends TileEntitySpecialRenderer implements ISimpleB
         	case 1:this.bindTexture(woodShaftTextures);break;
         	case 2:this.bindTexture(stoneShaftTextures);break;
         	case 3:this.bindTexture(steelShaftTextures);break;
+        	case 4:this.bindTexture(ninjaShaftTextures);break;
+        	case 5:this.bindTexture(orichalcumShaftTextures);break;
         }
 
 
