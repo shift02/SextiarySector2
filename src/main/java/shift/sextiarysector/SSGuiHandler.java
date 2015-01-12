@@ -22,8 +22,10 @@ import shift.sextiarysector.gui.GuiLoom;
 import shift.sextiarysector.gui.GuiMagicFurnace;
 import shift.sextiarysector.gui.GuiMillstone;
 import shift.sextiarysector.gui.GuiPulverizer;
+import shift.sextiarysector.gui.GuiRollingMachine;
 import shift.sextiarysector.gui.GuiSawmill;
 import shift.sextiarysector.gui.GuiTabCrafting;
+import shift.sextiarysector.gui.GuiTimeMachine;
 import shift.sextiarysector.gui.IServerGuiElement;
 import shift.sextiarysector.tileentity.TileEntityCraftFurnace;
 import shift.sextiarysector.tileentity.TileEntityFluidMachineBase;
@@ -62,6 +64,8 @@ public class SSGuiHandler implements IGuiHandler {
 		case 21:
 		case 25:
 		case 30:
+		case 35:
+		case 40:
 			return new ContainerSimpleMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
 		case 50:
@@ -124,6 +128,10 @@ public class SSGuiHandler implements IGuiHandler {
 		case 25:return new GuiSawmill(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
 		case 30:return new GuiPulverizer(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+
+		case 35:return new GuiRollingMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+
+		case 40:return new GuiTimeMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
 		case 50:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),1);
 		case 51:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),2);

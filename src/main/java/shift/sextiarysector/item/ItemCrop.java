@@ -13,10 +13,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemCrop extends Item{
 
-	public ItemCrop() {
+	public ItemCrop(List list) {
 		this.hasSubtypes = true;
 
-		ItemFoodCrop.crops.add(this);
+		list.add(this);
 
 		this.setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
 

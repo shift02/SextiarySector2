@@ -10,7 +10,15 @@ tile.ss.magic_furnace.name=Magic Furnace
 
 tile.ss.wood_grate.name=Wood Grate
 
-tile.ss.wood_plate.name=Wood Plate
+tile.ss.oak_wood_plate.name=Oak Wood Plate
+tile.ss.birch_wood_plate.name=Birch Wood Plate
+tile.ss.spruce_wood_plate.name=Spruce Wood Plate
+tile.ss.jungle_wood_plate.name=Jungle Wood Plate
+tile.ss.acacia_wood_plate.name=Acacia Wood Plate
+tile.ss.big_oak_wood_plate.name=Big Oak Wood Plate
+
+tile.ss.iron_plate.name=Iron Plate
+tile.ss.gold_plate.name=Gold Plate
 
 tile.ss.hole.name=Hole
 tile.ss.farmland.name=Farm Land
@@ -31,21 +39,32 @@ tile.ss.small_waterwheel.name=Small Waterwheel
 tile.ss.wood_shaft.name=Wood Shaft
 tile.ss.stone_shaft.name=Stone Shaft
 tile.ss.steel_shaft.name=Steel Shaft
+tile.ss.ninja_shaft.name=Ninja Shaft
+tile.ss.orichalcum_shaft.name=Orichalcum Shaft
 
 tile.ss.wood_gear_box.name=Wood Gear Box
 tile.ss.stone_gear_box.name=Stone Gear Box
 tile.ss.steel_gear_box.name=Steel Gear Box
+tile.ss.ninja_gear_box.name=Ninja Gear Box
+tile.ss.orichalcum_gear_box.name=Orichalcum Gear Box
 
 tile.ss.wood_gf_tank.name=Wood GF Tank
 tile.ss.stone_gf_tank.name=Stone GF Tank
 tile.ss.steel_gf_tank.name=Steel GF Tank
+tile.ss.ninja_gf_tank.name=Ninja GF Tank
+tile.ss.orichalcum_gf_tank.name=Orichalcum GF Tank
 
 tile.ss.wood_stone_gear_shaft.name=Wood Stone Gear Shaft
+tile.ss.stone_steel_gear_shaft.name=Stone Steel Gear Shaft
+tile.ss.steel_ninja_gear_shaft.name=Steel Ninja Gear Shaft
+tile.ss.ninja_orichalcum_gear_shaft.name=Ninja Orichalcum Gear Shaft
 
 tile.ss.millstone.name=Millstone
 tile.ss.loom.name=Loom
 tile.ss.sawmill.name=Sawmill
 tile.ss.pulverizer.name=Pulverizer
+tile.ss.rolling_machine.name=Rolling Machine
+tile.ss.time_machine.name=Time Machine
 
 tile.ss.fan.name=Fan
 
@@ -64,10 +83,12 @@ tile.ss.shipping_box.name=Shipping Box
 
 tile.ss.turnip.name=Turnip Seed
 tile.ss.cucumber.name=Cucumber Seed
+tile.ss.iron_turnip.name=Iron Turnip Seed
 
 tile.ss.onion.name=Onion Seed
 tile.ss.tomato.name=Tomato Seed
 tile.ss.corn.name=Corn Seed
+tile.ss.golden_corn.name=Golden Corn Seed
 
 tile.ss.eggplant.name=Eggplant Seed
 tile.ss.sweet_potato.name=Sweet Potato Seed
@@ -137,10 +158,20 @@ item.ss.unit.name=Unit
 item.ss.wood_gear.name=Wood Gear
 item.ss.stone_gear.name=Stone Gear
 item.ss.steel_gear.name=Steel Gear
+item.ss.ninja_gear.name=Ninja Gear
+item.ss.orichalcum_gear.name=Orichalcum Gear
 
 item.ss.wood_unit_gear.name=Wood Unit Gear
 item.ss.stone_unit_gear.name=Stone Unit Gear
 item.ss.steel_unit_gear.name=Steel Unit Gear
+item.ss.ninja_unit_gear.name=Ninja Unit Gear
+item.ss.orichalcum_unit_gear.name=Orichalcum Unit Gear
+
+item.ss.wood_gf_storage.name=Wood GF Storage
+item.ss.stone_gf_storage.name=Stone GF Storage
+item.ss.steel_gf_storage.name=Steel GF Storage
+item.ss.ninja_gf_storage.name=Ninja GF Storage
+item.ss.orichalcum_gf_storage.name=Orichalcum GF Storage
 
 item.ss.hammer.name=Hammer
 item.ss.calendar.name=Calendar
@@ -152,9 +183,6 @@ item.ss.season_stone_summer.name=Season Stone -Summer-
 item.ss.season_stone_autumn.name=Season Stone -Autumn-
 item.ss.season_stone_winter.name=Season Stone -Winter-
 
-item.ss.wood_gf_storage.name=Wood GF Storage
-item.ss.stone_gf_storage.name=Stone GF Storage
-item.ss.steel_gf_storage.name=Steel GF Storage
 
 item.ss.string_bobbin.name=String Bobbin
 item.ss.cloth.name=Cloth
@@ -196,6 +224,8 @@ item.ss.golden_corn.name=Golden Corn
 item.ss.eggplant.name=Eggplant
 item.ss.sweet_potato.name=Sweet Potato
 item.ss.green_pepper.name=Green Pepper
+
+item.ss.blue_potato.name=Blue Potato
 
 item.ss.radish.name=Radish
 
@@ -253,6 +283,8 @@ gui.ss.millstone=Millstone
 gui.ss.loom=Loom
 gui.ss.sawmill=Sawmill
 gui.ss.pulverizer=Pulverizer
+gui.ss.rolling_machine=Rolling Machine
+gui.ss.time_machine=Time Machine
 
 gui.ss.gf_tank_1=Wood GF Tank
 gui.ss.gf_tank_2=Stone GF Tank
@@ -439,6 +471,26 @@ achievement.ss.pulverizer=Industrial era
 achievement.ss.pulverizer.desc=Craft a pulverizer
 achievement.ss.pulverizer.desc2=Double it !
 
+achievement.ss.fan=Oh ~ ~ ~
+achievement.ss.fan.desc=Craft a fan
+achievement.ss.fan.desc2=Blue flame ?
+
+achievement.ss.ninja_gear=The power of mystery ?
+achievement.ss.ninja_gear.desc=Craft a ninja gear
+achievement.ss.ninja_gear.desc2=Japan !
+
+achievement.ss.rolling_machine=Cutting board
+achievement.ss.rolling_machine.desc=Craft a rolling machine
+achievement.ss.rolling_machine.desc2=Pretty it's cutting board !
+
+achievement.ss.orichalcum_gear=The power of mystery !
+achievement.ss.orichalcum_gear.desc=Craft a orichalcum gear
+achievement.ss.orichalcum_gear.desc2=End content
+
+achievement.ss.time_machine=Time Machine
+achievement.ss.time_machine.desc=Craft a time machine
+achievement.ss.time_machine.desc2=World line is different !
+
 achievement.ss.economy=SS2 -Economy-
 
 achievement.ss.creeper_firework=Creeper Monger
@@ -468,5 +520,8 @@ nei.ss.millstone=Millstone Recipe
 nei.ss.loom=Loom Recipe
 nei.ss.sawmill=Sawmill Recipe
 nei.ss.pulverizer=Pulverizer Recipe
+nei.ss.rolling_machine=Rolling Machine Recipe
+nei.ss.time_machine=Time Machine Recipe
 
-nei.ss.fertilizer=Mutation Recipe
+nei.ss.fertilizer_farmland=Farmland Mutation Recipe
+nei.ss.fertilizer_paddy=Paddy Mutation Recipe

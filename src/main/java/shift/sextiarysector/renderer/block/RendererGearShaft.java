@@ -6,9 +6,11 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;
 
+import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.renderer.model.ModelGearShaftDown;
 import shift.sextiarysector.renderer.model.ModelGearShaftUp;
@@ -43,14 +45,18 @@ public class RendererGearShaft extends TileEntitySpecialRenderer implements ISim
         }
 
 
-        /*
-        if(block == SSBlocks.woodShaft){
-        	this.bind(woodShaftTextures);
-        }else if(block == SSBlocks.stoneShaft){
-        	this.bind(stoneShaftTextures);
-        }*/
 
-        this.bind(woodShaftTextures);
+        if(block == SSBlocks.woodStoneGearShaft){
+        	this.bind(woodShaftTextures);
+        }else if(block == SSBlocks.stoneSteelGearShaft){
+        	this.bind(stoneShaftTextures);
+        }else if(block == SSBlocks.steelNinjaGearShaft){
+        	this.bind(steelShaftTextures);
+        }else if(block == SSBlocks.ninjaOrichalcumGearShaft){
+        	this.bind(ninjaShaftTextures);
+        }
+
+        //this.bind(woodShaftTextures);
 
         m.render(null, 0,0,0, 0,0, 1.0f);
 
@@ -85,9 +91,10 @@ public class RendererGearShaft extends TileEntitySpecialRenderer implements ISim
 		return SextiarySector.instance.proxy.GearShaftRenderType;
 	}
 
-	private static final ResourceLocation woodShaftTextures = new ResourceLocation("sextiarysector:textures/models/gear_shaft.png");
-
-	private static final ResourceLocation stoneShaftTextures = new ResourceLocation("sextiarysector:textures/models/stone_shaft.png");
+	private static final ResourceLocation woodShaftTextures = new ResourceLocation("sextiarysector:textures/models/wood_gear_shaft.png");
+	private static final ResourceLocation stoneShaftTextures = new ResourceLocation("sextiarysector:textures/models/stone_gear_shaft.png");
+	private static final ResourceLocation steelShaftTextures = new ResourceLocation("sextiarysector:textures/models/steel_gear_shaft.png");
+	private static final ResourceLocation ninjaShaftTextures = new ResourceLocation("sextiarysector:textures/models/ninja_gear_shaft.png");
 
 	static public ModelGearShaftUp modelShaftUp = new ModelGearShaftUp();
 	static public ModelGearShaftDown modelShaftDown = new ModelGearShaftDown();
@@ -104,7 +111,12 @@ public class RendererGearShaft extends TileEntitySpecialRenderer implements ISim
         float scale = 0.0625f;
         GL11.glScalef(scale,scale,scale);
 
-        this.bindTexture(woodShaftTextures);
+        switch(tile.getMaxPowerStored(ForgeDirection.UP)){
+    	case 1:this.bindTexture(woodShaftTextures);break;
+    	case 2:this.bindTexture(stoneShaftTextures);break;
+    	case 3:this.bindTexture(steelShaftTextures);break;
+    	case 4:this.bindTexture(ninjaShaftTextures);break;
+        }
 
 
         switch(tile.direction){

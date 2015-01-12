@@ -7,7 +7,6 @@ import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
 import shift.sextiarysector.api.agriculture.FarmlandType;
 import shift.sextiarysector.api.agriculture.SimpleFertilizer;
-import shift.sextiarysector.item.ItemFoodCrop;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -38,12 +37,18 @@ public class ModuleAgriculture implements IModule {
 
 		String t = "sextiarysector:fertilizer/";
 
-		for(Item item :ItemFoodCrop.crops){
+		for(Item item :SSItems.farmlandCrops){
 			AgricultureAPI.fertilizerManager.registerFertilizer(FarmlandType.Normal, new SimpleFertilizer("bone",t+"bone",new ItemStack(Items.dye, 1, 15), new ItemStack(item), new ItemStack(item,1,1)));
+		}
+
+		for(Item item :SSItems.paddyCrops){
+			AgricultureAPI.fertilizerManager.registerFertilizer(FarmlandType.Paddy, new SimpleFertilizer("bone",t+"bone",new ItemStack(Items.dye, 1, 15), new ItemStack(item), new ItemStack(item,1,1)));
 		}
 
 		AgricultureAPI.fertilizerManager.registerFertilizer(FarmlandType.Normal, new SimpleFertilizer("stone",t+"stone",new ItemStack(SSItems.stoneDust), new ItemStack(SSItems.corn), new ItemStack(SSItems.goldenCorn)));
 		AgricultureAPI.fertilizerManager.registerFertilizer(FarmlandType.Normal, new SimpleFertilizer("stone",t+"stone",new ItemStack(SSItems.stoneDust), new ItemStack(SSItems.turnip), new ItemStack(SSItems.ironTurnip)));
+
+		AgricultureAPI.fertilizerManager.registerFertilizer(FarmlandType.Normal, new SimpleFertilizer("water_lily",t+"water_lily",new ItemStack(SSItems.dustWaterLily), new ItemStack(SSItems.sweetPotato), new ItemStack(SSItems.bluePotato)));
 
 		//AgricultureAPI.fertilizerManager.registerFertilizer(new SimpleFertilizer("bone",t+"bone",new ItemStack(Items.dye, 4, 15), new ItemStack(SSItems.cucumber), new ItemStack(SSItems.tomato)));
 

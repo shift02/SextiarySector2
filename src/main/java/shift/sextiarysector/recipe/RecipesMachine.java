@@ -36,14 +36,14 @@ public class RecipesMachine {
 			Character.valueOf('x'), "ingotYellowstone"
 			}));
 
-        Object[] material = new Object[]{"plankWood", "stone", "ingotSteel"};
-        Item[] gear = new Item[]{SSItems.woodGear, SSItems.stoneGear, SSItems.steelGear};
-        String[] gearOre = new String[]{"gearWood", "gearStone", "gearSteel"};
-		Item[] unit = new Item[]{SSItems.woodUnitGear, SSItems.stoneUnitGear, SSItems.steelUnitGear};
-		Item[] storage = new Item[]{SSItems.woodGFStorage, SSItems.stoneGFStorage, SSItems.steelGFStorage};
-		Block[] shaft = new Block[]{SSBlocks.woodShaft, SSBlocks.stoneShaft, SSBlocks.steelShaft};
-		Block[] tank = new Block[]{SSBlocks.woodGFTank, SSBlocks.stoneGFTank, SSBlocks.steelGFTank};
-		Block[] box = new Block[]{SSBlocks.woodGearBox, SSBlocks.stoneGearBox, SSBlocks.steelGearBox};
+        Object[] material = new Object[]{"plankWood", "stone", "ingotSteel", "ingotNinja", "gemOrichalcum"};
+        Item[] gear = new Item[]{SSItems.woodGear, SSItems.stoneGear, SSItems.steelGear, SSItems.ninjaGear, SSItems.orichalcumGear};
+        String[] gearOre = new String[]{"gearWood", "gearStone", "gearSteel", "gearNinja", "gearOrichalcum"};
+		Item[] unit = new Item[]{SSItems.woodUnitGear, SSItems.stoneUnitGear, SSItems.steelUnitGear, SSItems.ninjaUnitGear, SSItems.orichalcumUnitGear};
+		Item[] storage = new Item[]{SSItems.woodGFStorage, SSItems.stoneGFStorage, SSItems.steelGFStorage, SSItems.ninjaGFStorage, SSItems.orichalcumGFStorage};
+		Block[] shaft = new Block[]{SSBlocks.woodShaft, SSBlocks.stoneShaft, SSBlocks.steelShaft, SSBlocks.ninjaShaft, SSBlocks.orichalcumShaft};
+		Block[] tank = new Block[]{SSBlocks.woodGFTank, SSBlocks.stoneGFTank, SSBlocks.steelGFTank, SSBlocks.ninjaGFTank, SSBlocks.orichalcumGFTank};
+		Block[] box = new Block[]{SSBlocks.woodGearBox, SSBlocks.stoneGearBox, SSBlocks.steelGearBox, SSBlocks.ninjaGearBox, SSBlocks.orichalcumGearBox};
 
         //GF Block
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.smallWindmill, 1),
@@ -71,7 +71,7 @@ public class RecipesMachine {
 			Character.valueOf('y'), SSBlocks.steelShaft
 			}));
 
-        for(int i=0;i<3;i++){
+        for(int i=0;i<5;i++){
 
         	p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(shaft[i], 4),
     				new Object[] { "xzx", "xyx","xzx",
@@ -97,7 +97,25 @@ public class RecipesMachine {
 
         }
 
+        Block[] gearShaft = new Block[]{SSBlocks.woodStoneGearShaft, SSBlocks.stoneSteelGearShaft, SSBlocks.steelNinjaGearShaft, SSBlocks.ninjaOrichalcumGearShaft};
 
+        for(int i=0;i<4;i++){
+
+        	p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(gearShaft[i], 1, 1),
+    				new Object[] { "y", "z", "x",
+    			Character.valueOf('y'), shaft[i],
+    			Character.valueOf('x'), shaft[i+1],
+    			Character.valueOf('z'), SSItems.energyReactor
+    			}));
+
+        	p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(gearShaft[i], 1, 0),
+    				new Object[] { "y", "z", "x",
+    			Character.valueOf('y'), shaft[i+1],
+    			Character.valueOf('x'), shaft[i],
+    			Character.valueOf('z'), SSItems.energyReactor
+    			}));
+
+        }
 
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.millstone, 1),
 				new Object[] { "yyy", "aza","yxy",
@@ -140,9 +158,25 @@ public class RecipesMachine {
 			Character.valueOf('b'), SSBlocks.steelShaft
 			}));
 
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.rollingMachine, 1),
+				new Object[] { "yay", "aza","yxy",
+			Character.valueOf('y'), "plankWood",
+			Character.valueOf('x'), SSItems.ninjaGFStorage,
+			Character.valueOf('z'), SSItems.ninjaUnitGear,
+			Character.valueOf('a'), "ingotIron"
+			}));
+
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.timeMachine, 1),
+				new Object[] { "yay", "aza","yxy",
+			Character.valueOf('y'), "plankWood",
+			Character.valueOf('x'), SSItems.orichalcumGFStorage,
+			Character.valueOf('z'), SSItems.orichalcumUnitGear,
+			Character.valueOf('a'), SSBlocks.chunkLoader
+			}));
+
         //GF Item
 
-		for(int i=0;i<3;i++){
+		for(int i=0;i<5;i++){
 
 			p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(gear[i], 2),
 					new Object[] { " x ", "xyx"," x ",

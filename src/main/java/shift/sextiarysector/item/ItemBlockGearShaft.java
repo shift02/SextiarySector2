@@ -14,6 +14,7 @@ public class ItemBlockGearShaft extends ItemBlock{
 
 	public ItemBlockGearShaft(Block par1) {
 		super(par1);
+		this.hasSubtypes = true;
 	}
 
 	public int getMetadata(int p_77647_1_)
