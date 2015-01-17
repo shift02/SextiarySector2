@@ -9,6 +9,7 @@ public class CommonProxy {
 	public int holeType;
 
 	public int bottleType;
+	public int squareType;
 
 	public int fluidCrafterType;
 
@@ -30,6 +31,7 @@ public class CommonProxy {
 
 	public int farmlandType;
 	public int paddyType;
+	public int woodType;
 
 
 	public EntityPlayer getClientPlayer(){

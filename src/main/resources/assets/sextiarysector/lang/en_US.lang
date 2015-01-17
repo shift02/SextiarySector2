@@ -23,9 +23,11 @@ tile.ss.gold_plate.name=Gold Plate
 tile.ss.hole.name=Hole
 tile.ss.farmland.name=Farm Land
 tile.ss.paddy.name=Paddy
+tile.ss.wood.name=Wood
 
 tile.ss.bottle.name=Fluid Bottle
 tile.ss.fluid_crafter.name=Fluid Crafter
+tile.ss.square.name=Wood Square
 
 tile.ss.wood_hopper.name=Wood Hopper
 
@@ -257,6 +259,7 @@ item.ss.drinking_water_bottle.name=Drinking Water Bottle
 item.ss.takumi_tea_bottle.name=TAKUMI Tea Bottle
 
 item.ss.shift_hat.name=Shift's Hat
+item.ss.rucksack.name=Rucksack
 item.ss.gf_contact_lenses.name=GF Contact Lenses
 
 #Fluid
@@ -278,6 +281,8 @@ container.mineboat_chest=Mineboat Chest
 gui.ss.fluid_furnace=Fluid Furnace
 gui.ss.food_smokers=Food Smokers
 gui.ss.magic_furnace=Magic Furnace
+
+gui.ss.rucksack=Rucksack
 
 gui.ss.millstone=Millstone
 gui.ss.loom=Loom
@@ -322,6 +327,8 @@ itemGroup.ss.magic=SextiarySector -Magic-
 player.tab.vanilla=Vanilla
 player.tab.equipment=Equipment
 player.tab.item.ss.craft_unit=Craft
+
+player.tab.item.ss.rucksack=Rucksack
 
 player.tab.item.ss.creeper_ring=Creeper Shop
 

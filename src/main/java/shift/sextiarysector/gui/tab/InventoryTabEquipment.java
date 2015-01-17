@@ -11,16 +11,12 @@ public class InventoryTabEquipment extends AbstractTab {
 
 	private static Minecraft mc = FMLClientHandler.instance().getClient();
 
-	EquipmentType type;
-	ItemStack item;
+	private EquipmentType type;
+	private ItemStack item;
 
 	public InventoryTabEquipment(EquipmentType type,ItemStack item){
 		this.type = type;
 		this.item = item;
-	}
-
-	private boolean hasItem(){
-		return false;
 	}
 
 	private ItemStack getSlotItem(){

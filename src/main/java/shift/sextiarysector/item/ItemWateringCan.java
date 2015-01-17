@@ -16,6 +16,7 @@ import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.block.BlockSSCrop;
 import shift.sextiarysector.block.BlockSSFarmland;
+import shift.sextiarysector.block.BlockWood;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -59,7 +60,7 @@ public class ItemWateringCan extends Item{
 		int z = par6;
 
 
-		if(par3World.getBlock(x, y, z) != SSBlocks.farmland && !(par3World.getBlock(x, y, z) instanceof BlockSSCrop)){
+		if(par3World.getBlock(x, y, z) != SSBlocks.farmland && par3World.getBlock(x, y, z) != SSBlocks.wood && !(par3World.getBlock(x, y, z) instanceof BlockSSCrop)){
 			return false;
 		}
 
@@ -70,6 +71,23 @@ public class ItemWateringCan extends Item{
 		if(b instanceof BlockSSFarmland){
 
 			boolean f = ((BlockSSFarmland) b).addWater(par3World, x, y, z);
+
+			if(f){
+
+				if(par3World.isRemote){
+					this.spawnParticle(par3World, x, y+1, z);
+				}else{
+					par3World.playSoundAtEntity(par2EntityPlayer, "liquid.water", 1.0F, 1.0F);
+					par1ItemStack.damageItem(1, par2EntityPlayer);
+				}
+
+				return true;
+
+			}
+
+		}else if(b instanceof BlockWood){
+
+			boolean f = ((BlockWood) b).addWater(par3World, x, y, z);
 
 			if(f){
 

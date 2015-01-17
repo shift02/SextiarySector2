@@ -1,9 +1,11 @@
 package shift.sextiarysector.nei;
 
+import java.awt.Point;
 import java.util.List;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
+import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.guihook.GuiContainerManager;
 import codechicken.nei.guihook.IContainerInputHandler;
 import codechicken.nei.guihook.IContainerTooltipHandler;
@@ -43,6 +45,12 @@ public abstract class TemplateSSRecipeHandler extends TemplateRecipeHandler{
 
 		List<String> s =super.handleTooltip(gui, currenttip, recipe);
 
+		formatRecipe(s);
+
+		Point mousepos = GuiDraw.getMousePosition();
+		Point offset = gui.getRecipePosition(recipe);
+		this.drawTooltip(recipe, mousepos.x - offset.x, mousepos.y - offset.y, s);
+
 		return formatRecipe(s);
 
     }
@@ -62,6 +70,11 @@ public abstract class TemplateSSRecipeHandler extends TemplateRecipeHandler{
 
 		return currenttip;
 
+	}
+
+	//ツールチップ用のメソッド
+	public List<String> drawTooltip(int recipe, int offsetx, int offsety, List<String> currenttip){
+		return currenttip;
 	}
 
 }

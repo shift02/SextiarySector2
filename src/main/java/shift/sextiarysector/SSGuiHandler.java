@@ -10,6 +10,7 @@ import shift.sextiarysector.container.ContainerGFTank;
 import shift.sextiarysector.container.ContainerLargeFurnace;
 import shift.sextiarysector.container.ContainerMagicFurnace;
 import shift.sextiarysector.container.ContainerPlayerNext;
+import shift.sextiarysector.container.ContainerRucksack;
 import shift.sextiarysector.container.ContainerSimpleMachine;
 import shift.sextiarysector.container.ContainerTabWorkbench;
 import shift.sextiarysector.gui.GuiCraftFurnace;
@@ -23,10 +24,12 @@ import shift.sextiarysector.gui.GuiMagicFurnace;
 import shift.sextiarysector.gui.GuiMillstone;
 import shift.sextiarysector.gui.GuiPulverizer;
 import shift.sextiarysector.gui.GuiRollingMachine;
+import shift.sextiarysector.gui.GuiRucksack;
 import shift.sextiarysector.gui.GuiSawmill;
 import shift.sextiarysector.gui.GuiTabCrafting;
 import shift.sextiarysector.gui.GuiTimeMachine;
 import shift.sextiarysector.gui.IServerGuiElement;
+import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.tileentity.TileEntityCraftFurnace;
 import shift.sextiarysector.tileentity.TileEntityFluidMachineBase;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
@@ -78,6 +81,9 @@ public class SSGuiHandler implements IGuiHandler {
 
 		case 200 : return new ContainerPlayerNext(player.inventory, player);
 		case 201 : return new ContainerTabWorkbench(player.inventory, world, x, y, z);
+
+		case 205 : return new ContainerRucksack(player.inventory);
+		case 206 : return new ContainerRucksack(player.inventory, EntityPlayerManager.getEquipmentStats(player).inventory);
 
 		}
 
@@ -141,6 +147,9 @@ public class SSGuiHandler implements IGuiHandler {
 
 		case 200:return new GuiInventoryNext(player);
 		case 201:return new GuiTabCrafting(player.inventory, world, x, y, z);
+
+		case 205:return new GuiRucksack(player.inventory);
+		case 206:return new GuiRucksack(player.inventory, EntityPlayerManager.getEquipmentStats(player).inventory);
 
 		}
 

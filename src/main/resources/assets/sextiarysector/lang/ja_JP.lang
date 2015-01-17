@@ -1,0 +1,472 @@
+#Japanese ja_JP
+
+#Block
+tile.ss.large_furnace.name=大型かまど
+tile.ss.fluid_furnace.name=流体かまど
+
+tile.ss.food_smokers.name=燻製器
+
+tile.ss.magic_furnace.name=魔法かまど
+
+tile.ss.wood_grate.name=木の格子
+
+tile.ss.wood_plate.name=木の板
+
+tile.ss.hole.name=穴
+tile.ss.farmland.name=農地
+tile.ss.paddy.name=水田
+
+tile.ss.bottle.name=液体ボトル
+tile.ss.fluid_crafter.name=流体クラフター
+
+tile.ss.wood_hopper.name=木のホッパー
+
+tile.ss.chunk_loader.name=タイムローダー
+
+
+tile.ss.small_windmill.name=小さい風車
+tile.ss.windmill.name=風車
+tile.ss.small_waterwheel.name=小さい水車
+
+tile.ss.wood_shaft.name=木のシャフト
+tile.ss.stone_shaft.name=石のシャフト
+tile.ss.steel_shaft.name=鋼のシャフト
+
+tile.ss.wood_gear_box.name=木のギアボックス
+tile.ss.stone_gear_box.name=石のギアボックス
+tile.ss.steel_gear_box.name=鋼のギアボックス
+
+tile.ss.wood_gf_tank.name=木のGFタンク
+tile.ss.stone_gf_tank.name=石のGFタンク
+tile.ss.steel_gf_tank.name=鋼のGFタンク
+
+tile.ss.wood_stone_gear_shaft.name=木と石のギアシャフト
+
+tile.ss.millstone.name=石臼
+tile.ss.loom.name=織機
+tile.ss.sawmill.name=製材機
+tile.ss.pulverizer.name=粉砕機
+
+tile.ss.fan.name=ファン
+
+tile.ss.blue_stone.name=ブルーストーン鉱石
+tile.ss.yellow_stone.name=イエローストーン鉱石
+
+tile.ss.mithril_ore.name=ミスリル鉱石
+tile.ss.orichalcum_ore.name=オリハルコン鉱石
+
+tile.ss.coal_large_ore.name=大きな石炭鉱石
+tile.ss.iron_large_ore.name=大きな鉄鉱石
+tile.ss.gold_large_ore.name=大きな金鉱石
+
+tile.ss.creeper_chest.name=クリーパーチェスト
+tile.ss.shipping_box.name=出荷箱
+
+tile.ss.turnip.name=カブの種
+tile.ss.cucumber.name=キュウリの種
+
+tile.ss.onion.name=タマネギの種
+tile.ss.tomato.name=トマトの種
+tile.ss.corn.name=トウモロコシの種
+
+tile.ss.eggplant.name=ナスの種
+tile.ss.sweet_potato.name=サツマイモの種
+tile.ss.green_pepper.name=ピーマンの種
+
+tile.ss.radish.name=大根の種
+
+tile.ss.rice.name=米の種
+
+tile.ss.sandpit.name=砂場
+
+tile.ss.monitor.name=モニター
+monitor.type=店種
+monitor.creeper=クリーパーショップ
+monitor.robot=ロボットショップ
+
+tile.ss.electric_motor.name=電気モーター
+tile.ss.tofu_motor.name=豆腐モーター
+
+#Item
+item.ss.dust_waterlily.name=蓮の粉
+
+item.ss.stone_dust.name=石の粉
+
+item.ss.dust_blue_stone.name=ブルーストーン
+item.ss.dust_yellow_stone.name=イエローストーン
+
+item.ss.coal_dust.name=石炭の粉
+item.ss.iron_dust.name=鉄の粉
+item.ss.gold_dust.name=金の粉
+item.ss.diamond_dust.name=ダイヤの粉
+
+item.ss.mithril_dust.name=ミスリルの粉
+
+
+item.ss.steel_ingot.name=鋼鉄インゴット
+item.ss.brass_ingot.name=真鍮インゴット
+
+item.ss.bluestone_ingot.name=ブルーストーンインゴット
+item.ss.yellowstone_ingot.name=イエローストーンインゴット
+
+item.ss.mithril_ingot.name=ミスリルインゴット
+item.ss.orichalcum_gem.name=オリハルコン
+
+item.ss.ninja_ingot.name=ニンジャインゴット
+
+item.ss.blue_stone_slime_ball.name=ブルーストーンのボール
+
+
+item.ss.energy_reactor.name=エネルギーリアクター
+item.ss.object_reactor.name=オブジェクトリアクター
+
+item.ss.empty_bottle.name=空のボトル
+item.ss.water_bottle.name=水入りボトル
+item.ss.lava_bottle.name=溶岩入りボトル
+
+item.ss.craft_unit.name=クラフトユニット
+
+item.ss.iron_ring.name=鉄のリング
+item.ss.creeper_ring.name=クリーパーショップリング
+
+
+item.ss.magic_dust.name=魔法の粉
+
+item.ss.unit.name=ユニット
+
+item.ss.wood_gear.name=木の歯車
+item.ss.stone_gear.name=石の歯車
+item.ss.steel_gear.name=鋼の歯車
+
+item.ss.wood_unit_gear.name=木のギアユニット
+item.ss.stone_unit_gear.name=石のギアユニット
+item.ss.steel_unit_gear.name=鋼のギアユニット
+
+item.ss.hammer.name=ハンマー
+item.ss.calendar.name=カレンダー
+
+item.ss.calendar.name=カレンダー
+item.ss.season_stone.name=シーズンストーン
+item.ss.season_stone_spring.name=シーズンストーン -春-
+item.ss.season_stone_summer.name=シーズンストーン -夏-
+item.ss.season_stone_autumn.name=シーズンストーン -秋-
+item.ss.season_stone_winter.name=シーズンストーン -冬-
+
+item.ss.wood_gf_storage.name=木のGFストレージ
+item.ss.stone_gf_storage.name=石のGFストレージ
+item.ss.steel_gf_storage.name=鋼のGFストレージ
+
+item.ss.string_bobbin.name=糸のボビン
+item.ss.cloth.name=布
+item.ss.canvas.name=粗布
+
+
+item.ss.wood_scoop.name=木のスコップ
+item.ss.stone_scoop.name=石のスコップ
+item.ss.iron_scoop.name=鉄のスコップ
+item.ss.gold_scoop.name=金のスコップ
+item.ss.diamond_scoop.name=ダイヤのスコップ
+
+item.ss.wood_knife.name=木のナイフ
+item.ss.stone_knife.name=石のナイフ
+item.ss.iron_knife.name=鉄のナイフ
+item.ss.gold_knife.name=金のナイフ
+item.ss.diamond_knife.name=ダイヤのナイフ
+
+item.ss.wood_watering_can.name=木のジョウロ
+
+item.ss.mineboat_chest.name=チェスト付きボート
+
+item.ss.laver.name=海苔
+
+
+item.ss.crop.big=大きい
+
+item.ss.turnip.name=カブ
+item.ss.cucumber.name=キュウリ
+
+item.ss.iron_turnip.name=鉄カブ
+
+item.ss.onion.name=タマネギ
+item.ss.tomato.name=トマト
+item.ss.corn.name=トウモロコシ
+
+item.ss.golden_corn.name=金トウモロコシ
+
+item.ss.eggplant.name=ナス
+item.ss.sweet_potato.name=サツマイモ
+item.ss.green_pepper.name=ピーマン
+
+item.ss.radish.name=大根
+
+item.ss.rice.name=米
+
+
+item.ss.white_rice.name=白米
+
+item.ss.salt.name=塩
+item.ss.curry_powder.name=カレーパウダー
+
+item.ss.laver_roasted.name=焼き海苔
+
+item.ss.chicken_smoked.name=スモークチキン
+item.ss.porkchop_smoked.name=スモークポーク
+item.ss.beef_smoked.name=スモークビーフ
+
+item.ss.curry_rice.name=カレーライス
+
+item.ss.carrot_soup.name=にんじんスープ
+item.ss.corn_soup.name=コーンスープ
+item.ss.egg_soup.name=たまごスープ
+item.ss.mushroom_stew.name=きのこソテー
+item.ss.onion_soup.name=玉ねぎスープ
+item.ss.ender_soup.name=エンダースープ
+item.ss.tomato_soup.name=トマトスープ
+
+item.ss.drinking_water_bottle.name=飲料水入りボトル
+item.ss.takumi_tea_bottle.name=匠茶入りボトル
+
+item.ss.shift_hat.name=Shiftの帽子
+item.ss.gf_contact_lenses.name=GFコンタクトレンズ
+
+#Fluid
+fluid.ss.takumi_tea=匠茶
+fluid.ss.drinking_water=飲料水
+fluid.ss.steam=蒸気
+
+fluid.ss.steam=蒸気
+
+#Potion
+ss.potion.burn=Burn
+
+#GUI
+container.large_furnace=大型かまど
+container.sub.inventory=バッファー
+
+container.mineboat_chest=チェスト付きボート
+
+gui.ss.fluid_furnace=流体かまど
+gui.ss.food_smokers=燻製器
+gui.ss.magic_furnace=魔法かまど
+
+gui.ss.millstone=石臼
+gui.ss.loom=織機
+gui.ss.sawmill=製材機
+gui.ss.pulverizer=粉砕機
+
+gui.ss.gf_tank_1=木のGFタンク
+gui.ss.gf_tank_2=石のGFタンク
+gui.ss.gf_tank_3=鋼のGFタンク
+
+shop.ss.creeper=クリーパーショップ
+shop.ss.robot=ロボットショップ
+
+#ToolTip
+tooltip.season.pm=PM
+tooltip.season.am=AM
+tooltip.season.day=日
+
+tooltip.season=季節
+tooltip.season.seed=栽培期間
+tooltip.season.spring=春
+tooltip.season.summer=夏
+tooltip.season.autumn=秋
+tooltip.season.winter=冬
+
+#Tab
+itemGroup.ss.core=SextiarySector -Core-
+itemGroup.ss.fluid=SextiarySector -Fluid-
+itemGroup.ss.player=SextiarySector -Player-
+itemGroup.ss.agriculture=SextiarySector -Agriculture-
+itemGroup.ss.fishery=SextiarySector -Fishery-
+itemGroup.ss.mining=SextiarySector -Mining-
+itemGroup.ss.industry=SextiarySector -Industry-
+itemGroup.ss.cooking=SextiarySector -Cooking-
+itemGroup.ss.transport=SextiarySector -Transport-
+itemGroup.ss.economy=SextiarySector -Economy-
+itemGroup.ss.magic=SextiarySector -Magic-
+
+#Player Tab
+player.tab.vanilla=バニラ
+player.tab.equipment=装備
+player.tab.item.ss.craft_unit=クラフト
+
+player.tab.item.ss.creeper_ring=クリーパーショップ
+
+#Achievement
+stat.sell=Sell
+
+achievement.ss.core=SS2 -Core-
+
+achievement.ss.moisture=Moisture
+achievement.ss.moisture.desc=Let the hydration
+achievement.ss.moisture.desc2=Slippery skin
+
+achievement.ss.bottle=Bottle
+achievement.ss.bottle.desc=Craft a bottle
+achievement.ss.bottle.desc2=Strengthening bottle
+
+achievement.ss.drinking_water=Drinking Water
+achievement.ss.drinking_water.desc=Smelting a water bottle
+achievement.ss.drinking_water.desc2=Delicious !
+
+achievement.ss.craft_furnace=Craft Furnace
+achievement.ss.craft_furnace.desc=Craft a large furnace
+achievement.ss.craft_furnace.desc2=Complex craft
+
+
+achievement.ss.agriculture=SS2 -Agriculture-
+
+achievement.ss.data=Crop Data
+
+achievement.ss.seed=First Seed
+achievement.ss.seed.desc=Buy a seed
+achievement.ss.seed.desc2=Increase
+
+achievement.ss.scoop=Scoop
+achievement.ss.scoop.desc=Craft a scoop
+achievement.ss.scoop.desc2=Friendly touch
+
+achievement.ss.farmland=Farmland
+achievement.ss.farmland.desc=Use a scoop to vanilla farmland
+achievement.ss.farmland.desc2=Strong !
+
+achievement.ss.watering_can=Watering Can
+achievement.ss.watering_can.desc=Craft a watering can
+achievement.ss.watering_can.desc2=The spear fun water
+
+achievement.ss.hole=Hole
+achievement.ss.hole.desc=Use a scoop to dirt
+achievement.ss.hole.desc2=The Who is a hole here ?
+
+achievement.ss.paddy=Paddy
+achievement.ss.paddy.desc=Use a water bucket to hole
+achievement.ss.paddy.desc2=Grow rice !
+
+##
+achievement.ss.turnip=Turnip
+achievement.ss.turnip.desc=Pickup a turnip
+
+achievement.ss.iron_turnip=Iron Turnip
+achievement.ss.iron_turnip.desc=Pickup a iron turnip
+
+achievement.ss.cucumber=Cucumber
+achievement.ss.cucumber.desc=Pickup a cucumber
+
+
+achievement.ss.onion=Onion
+achievement.ss.onion.desc=Pickup a onion
+
+achievement.ss.tomato=Tomato
+achievement.ss.tomato.desc=Pickup a tomato
+
+achievement.ss.corn=Corn
+achievement.ss.corn.desc=Pickup a corn
+
+achievement.ss.golden_corn=Golden Corn
+achievement.ss.golden_corn.desc=Pickup a golden corn
+
+
+achievement.ss.eggplant=Eggplant
+achievement.ss.eggplant.desc=Pickup a eggplant
+
+achievement.ss.sweet_potato=Sweet Potato
+achievement.ss.sweet_potato.desc=Pickup a sweet potato
+
+achievement.ss.green_pepper=Green Pepper
+achievement.ss.green_pepper.desc=Pickup a green pepper
+
+
+achievement.ss.radish=Radish
+achievement.ss.radish.desc=Pickup a radish
+
+
+achievement.ss.rice=Rice
+achievement.ss.rice.desc=Pickup a rice
+
+achievement.ss.mining=SS2 -Mining-
+
+achievement.ss.bluestone_dust=Color is different !
+achievement.ss.bluestone_dust.desc=Pickup a bluestone dust
+achievement.ss.bluestone_dust.desc2=Beautiful !
+
+achievement.ss.industry=SS2 -Industry-
+
+achievement.ss.bluestone_slime_ball=Mysterious slime
+achievement.ss.bluestone_slime_ball.desc=Craft a bluestone slime ball
+achievement.ss.bluestone_slime_ball.desc2=How nice
+
+
+achievement.ss.wood_gear=New power
+achievement.ss.wood_gear.desc=Craft a wood gear
+achievement.ss.wood_gear.desc2=Its name GF !
+
+achievement.ss.small_windmill=Force of the wind
+achievement.ss.small_windmill.desc=Craft a small windmill
+achievement.ss.small_windmill.desc2=It's a good wind
+
+achievement.ss.millstone=The machine
+achievement.ss.millstone.desc=Craft a millstone
+achievement.ss.millstone.desc2=Flour I ish
+
+achievement.ss.loom=Cloth !
+achievement.ss.loom.desc=Craft a loom
+achievement.ss.loom.desc2=It is rid from naked!
+
+
+achievement.ss.stone_gear=Power ups
+achievement.ss.stone_gear.desc=Craft a stone gear
+achievement.ss.stone_gear.desc2=Even stone ?
+
+achievement.ss.windmill=Updraft
+achievement.ss.windmill.desc=Craft a windmill
+achievement.ss.windmill.desc2=Crying wind
+
+achievement.ss.sawmill=Blade ?
+achievement.ss.sawmill.desc=Craft a sawmill
+achievement.ss.sawmill.desc2=Let dismantling together !
+
+
+achievement.ss.steel_gear=The power of steel
+achievement.ss.steel_gear.desc=Craft a steel gear
+achievement.ss.steel_gear.desc2=Coal shortage ?
+
+achievement.ss.small_waterwheel=The power of water
+achievement.ss.small_waterwheel.desc=Craft a small waterwheel
+achievement.ss.small_waterwheel.desc2=Do not close the lava !
+
+achievement.ss.pulverizer=Industrial era
+achievement.ss.pulverizer.desc=Craft a pulverizer
+achievement.ss.pulverizer.desc2=Double it !
+
+achievement.ss.economy=SS2 -Economy-
+
+achievement.ss.creeper_firework=Creeper Monger
+achievement.ss.creeper_firework.desc=The attempt to communicate with fireworks
+achievement.ss.creeper_firework.desc2=Explosion !
+
+achievement.ss.creeper_chest=Creeper Chest
+achievement.ss.creeper_chest.desc=Let's go to bed in a separate
+achievement.ss.creeper_chest.desc2=Santa Creeper ?
+
+achievement.ss.shipping=Shipping Block
+achievement.ss.shipping.desc=Trying to shipment
+achievement.ss.shipping.desc=I'm millionaire !
+
+#NEI
+nei.recipe=Recipes
+nei.ss.furnace.shaped=Furnace Shaped
+nei.ss.furnace.shapeless=Furnace Shapeless
+
+nei.ss.fluid_furnace=Fluid Furnace Recipe
+nei.ss.food_smokers=Food Smokers Recipe
+
+nei.ss.magic_furnace=Magic Furnace Recipe
+nei.ss.magic_fuel=Magic Fuel
+
+nei.ss.millstone=Millstone Recipe
+nei.ss.loom=Loom Recipe
+nei.ss.sawmill=Sawmill Recipe
+nei.ss.pulverizer=Pulverizer Recipe
+
+nei.ss.fertilizer=Mutation Recipe
