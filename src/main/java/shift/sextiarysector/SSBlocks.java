@@ -5,7 +5,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
-import shift.sextiarysector.block.BlcokPaddy;
 import shift.sextiarysector.block.BlockBlueFire;
 import shift.sextiarysector.block.BlockChunkLoader;
 import shift.sextiarysector.block.BlockFan;
@@ -20,6 +19,7 @@ import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockLargeOre;
 import shift.sextiarysector.block.BlockMagicFurnace;
 import shift.sextiarysector.block.BlockMonitor;
+import shift.sextiarysector.block.BlockPaddy;
 import shift.sextiarysector.block.BlockPowerStone;
 import shift.sextiarysector.block.BlockSSChest;
 import shift.sextiarysector.block.BlockSSCrop;
@@ -35,12 +35,13 @@ import shift.sextiarysector.block.BlockShippingBox;
 import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.block.BlockSmallWaterwheel;
 import shift.sextiarysector.block.BlockSmallWindmill;
+import shift.sextiarysector.block.BlockSquare;
 import shift.sextiarysector.block.BlockWindmill;
+import shift.sextiarysector.block.BlockWood;
 import shift.sextiarysector.block.BlockWoodHopper;
 import shift.sextiarysector.item.ItemBlockCrop;
 import shift.sextiarysector.item.ItemBlockDirection;
 import shift.sextiarysector.item.ItemBlockFluidCrafter;
-import shift.sextiarysector.item.ItemBlockFood;
 import shift.sextiarysector.item.ItemBlockGearShaft;
 import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.tileentity.TileEntityFan;
@@ -61,7 +62,9 @@ import shift.sextiarysector.tileentity.TileEntityShaft;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
 import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
+import shift.sextiarysector.tileentity.TileEntitySquare;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
+import shift.sextiarysector.tileentity.TileEntityWood;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SSBlocks {
@@ -83,6 +86,8 @@ public class SSBlocks {
 	public static Block fluidCrafter;
 
 	public static Block woodHopper;
+
+	public static Block square;
 
 	public static Block blueFire;
 
@@ -168,6 +173,7 @@ public class SSBlocks {
 	//農業
 	public static Block farmland;
 	public static Block paddy;
+	public static Block wood;
 
 	public static Block turnip;
 	public static Block cucumber;
@@ -228,6 +234,10 @@ public class SSBlocks {
 
 		woodHopper = new BlockWoodHopper().setBlockName("ss.wood_hopper").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodHopper, "WoodHopper");
+
+		square = new BlockSquare().setBlockName("ss.square");
+		GameRegistry.registerBlock(square, ItemBlockDirection.class, "Square");
+		GameRegistry.registerTileEntity(TileEntitySquare.class, "Square");
 
 		woodGrate = (new BlockSSPane(ID+":wood_grate", ID+":wood_grate", Material.wood, false,0)).setHardness(0.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodGrate, "WoodGrate");
@@ -407,9 +417,13 @@ public class SSBlocks {
 		GameRegistry.registerBlock(farmland,"Farmland");
 		GameRegistry.registerTileEntity(TileEntityFarmland.class, "SSFarmland");
 
-		paddy = new BlcokPaddy().setBlockName("ss.paddy").setBlockTextureName("farmland").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
-		GameRegistry.registerBlock(paddy,ItemBlockFood.class, "Paddy");
+		paddy = new BlockPaddy().setBlockName("ss.paddy").setBlockTextureName("farmland").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
+		GameRegistry.registerBlock(paddy, "Paddy");
 		GameRegistry.registerTileEntity(TileEntityPaddy.class, "SSPaddy");
+
+		wood = new BlockWood().setBlockName("ss.wood").setBlockTextureName("sextiarysector:wood").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
+		GameRegistry.registerBlock(wood, "Wood");
+		GameRegistry.registerTileEntity(TileEntityWood.class, "SSWood");
 
 		//野菜
 		GameRegistry.registerTileEntity(TileEntitySSCrop.class, "SSCrop");

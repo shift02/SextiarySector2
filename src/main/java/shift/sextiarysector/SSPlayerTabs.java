@@ -14,6 +14,8 @@ public class SSPlayerTabs {
 
 	public static AbstractTab craft;
 
+	public static AbstractTab rucksack;
+
 	public static AbstractTab creeperShop;
 
 	public static void initRecipes(){
@@ -23,6 +25,9 @@ public class SSPlayerTabs {
 
 		craft = new InventoryTabEquipment(EquipmentType.Unit, new ItemStack(SSItems.craftUnit));
 		TabManager.registerTab(craft);
+
+		rucksack = new InventoryTabEquipment(EquipmentType.Bag, new ItemStack(SSItems.rucksack));
+		TabManager.registerTab(rucksack);
 
 		creeperShop = new InventoryTabEquipment(EquipmentType.Ring, new ItemStack(SSItems.creeperRing));
 		TabManager.registerTab(creeperShop);

@@ -18,6 +18,7 @@ import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemKnife;
 import shift.sextiarysector.item.ItemLavaBottle;
 import shift.sextiarysector.item.ItemMineboat;
+import shift.sextiarysector.item.ItemRucksack;
 import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
 import shift.sextiarysector.item.ItemShiftHat;
@@ -188,6 +189,7 @@ public class SSItems {
 	//装備
 	public static Item shiftHat;
 
+	public static Item rucksack;
 	public static Item gfContactLenses;
 
 	public static void initItems(){
@@ -483,6 +485,9 @@ public class SSItems {
 		//装備
 		shiftHat = new ItemShiftHat().setUnlocalizedName("ss.shift_hat").setTextureName("sextiarysector:shift_hat");
 		GameRegistry.registerItem(shiftHat, "ShiftHat");
+
+		rucksack = new ItemRucksack().setUnlocalizedName("ss.rucksack").setTextureName("sextiarysector:rucksack");
+		GameRegistry.registerItem(rucksack, "Rucksack");
 
 		gfContactLenses = new ItemGFContactLenses().setUnlocalizedName("ss.gf_contact_lenses").setTextureName("sextiarysector:face/gf_contact_lenses");
 		GameRegistry.registerItem(gfContactLenses, "GFContactLenses");

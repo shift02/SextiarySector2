@@ -38,12 +38,14 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("plateWood", SSBlocks.woodAcaciaPlate);
 		OreDictionary.registerOre("plateWood", SSBlocks.woodBigOakPlate);
 
+		/*
 		OreDictionary.registerOre("plankWood", SSBlocks.woodOakPlate);
 		OreDictionary.registerOre("plankWood", SSBlocks.woodBirchPlate);
 		OreDictionary.registerOre("plankWood", SSBlocks.woodSprucePlate);
 		OreDictionary.registerOre("plankWood", SSBlocks.woodJunglePlate);
 		OreDictionary.registerOre("plankWood", SSBlocks.woodAcaciaPlate);
 		OreDictionary.registerOre("plankWood", SSBlocks.woodBigOakPlate);
+		*/
 
 		OreDictionary.registerOre("gearWood", SSItems.woodGear);
 		OreDictionary.registerOre("gearStone", SSItems.stoneGear);

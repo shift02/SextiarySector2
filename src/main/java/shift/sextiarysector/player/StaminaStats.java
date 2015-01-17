@@ -70,7 +70,7 @@ public class StaminaStats {
         {
             ++this.staminaTimer;
 
-            if (this.staminaTimer >= 80)
+            if (this.staminaTimer >= 160)
             {
                 par1EntityPlayer.heal(1.0F);
                 this.addExhaustion(3.0F);

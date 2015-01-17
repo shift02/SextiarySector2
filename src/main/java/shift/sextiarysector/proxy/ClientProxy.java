@@ -27,7 +27,9 @@ import shift.sextiarysector.renderer.block.RendererPaddy;
 import shift.sextiarysector.renderer.block.RendererShaft;
 import shift.sextiarysector.renderer.block.RendererSmallWaterwheel;
 import shift.sextiarysector.renderer.block.RendererSmallWindmill;
+import shift.sextiarysector.renderer.block.RendererSquare;
 import shift.sextiarysector.renderer.block.RendererWindmill;
+import shift.sextiarysector.renderer.block.RendererWood;
 import shift.sextiarysector.renderer.block.RendererWoodHopper;
 import shift.sextiarysector.renderer.entity.RenderMineboat;
 import shift.sextiarysector.renderer.item.RenderGF;
@@ -40,6 +42,7 @@ import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntityShaft;
 import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
+import shift.sextiarysector.tileentity.TileEntitySquare;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -63,6 +66,8 @@ public class ClientProxy extends CommonProxy{
 
 		this.bottleType = RenderingRegistry.getNextAvailableRenderId();
 
+		this.squareType = RenderingRegistry.getNextAvailableRenderId();
+
 		this.fluidCrafterType = RenderingRegistry.getNextAvailableRenderId();
 
 		this.woodHopperType = RenderingRegistry.getNextAvailableRenderId();
@@ -85,9 +90,13 @@ public class ClientProxy extends CommonProxy{
 
 		this.paddyType = RenderingRegistry.getNextAvailableRenderId();
 
+		this.woodType = RenderingRegistry.getNextAvailableRenderId();
+
 		RenderingRegistry.registerBlockHandler(new RendererHole());
 
 		RenderingRegistry.registerBlockHandler(new RendererBlockBottle());
+
+		RenderingRegistry.registerBlockHandler(new RendererSquare());
 
 		RenderingRegistry.registerBlockHandler(new RendererFluidCrafter());
 
@@ -109,6 +118,8 @@ public class ClientProxy extends CommonProxy{
 
 		RenderingRegistry.registerBlockHandler(new RendererFarmland());
 		RenderingRegistry.registerBlockHandler(new RendererPaddy());
+		RenderingRegistry.registerBlockHandler(new RendererWood());
+
 
 		this.setCustomClientRenderers();
 
@@ -122,6 +133,8 @@ public class ClientProxy extends CommonProxy{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShaft.class, new RendererShaft());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockBottle.class, new RendererBlockBottle());
+
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySquare.class, new RendererSquare());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFluidCrafter.class, new RendererFluidCrafter());
 

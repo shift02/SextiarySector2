@@ -8,8 +8,8 @@ public enum EquipmentType {
 	Necklace("necklace",new int[]{0}),
 	Ring("ring",new int[]{1,2,3}),
 	Face("face",new int[]{4}),
-	Hand("hand",new int[]{5}),
-	Bag("bag",new int[]{6}),
+	Bag("bag",  new int[]{5}),
+	Hand("hand",new int[]{6}),
 	Belt("belt",new int[]{7}),
 	Unit("unit",new int[]{8,9,10,11,12,13,14,15}),
 	Other("other",new int[]{16,17,18,19})
@@ -51,8 +51,8 @@ public enum EquipmentType {
 			return Ring;
 
 		case 4 : return Face;
-		case 5 : return Hand;
-		case 6 : return Bag;
+		case 5 : return Bag;
+		case 6 : return Hand;
 		case 7 : return Belt;
 
 		case 8 :

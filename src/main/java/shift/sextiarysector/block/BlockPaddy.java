@@ -18,9 +18,9 @@ import shift.sextiarysector.tileentity.TileEntityPaddy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlcokPaddy extends BlockContainer{
+public class BlockPaddy extends BlockContainer{
 
-	public BlcokPaddy() {
+	public BlockPaddy() {
 		super(Material.grass);
 		this.setLightOpacity(255);
 		this.setStepSound(soundTypeGrass);
