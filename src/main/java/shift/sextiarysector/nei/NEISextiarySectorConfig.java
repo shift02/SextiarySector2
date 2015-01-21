@@ -2,6 +2,7 @@ package shift.sextiarysector.nei;
 
 import shift.sextiarysector.gui.GuiFluidFurnace;
 import shift.sextiarysector.gui.GuiFoodSmokers;
+import shift.sextiarysector.gui.GuiFreezer;
 import shift.sextiarysector.gui.GuiLargeFurnace;
 import shift.sextiarysector.gui.GuiLoom;
 import shift.sextiarysector.gui.GuiMagicFurnace;
@@ -60,6 +61,10 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 		API.registerRecipeHandler(new MagicFuelRecipeHandler());
 		API.registerUsageHandler(new MagicFuelRecipeHandler());
 
+		API.registerRecipeHandler(new FreezerRecipeHandler());
+		API.registerUsageHandler(new FreezerRecipeHandler());
+		API.registerRecipeHandler(new IceFuelRecipeHandler());
+		API.registerUsageHandler(new IceFuelRecipeHandler());
 
 		API.registerRecipeHandler(new FertilizerFarmlandRecipeHandler());
 		API.registerUsageHandler(new FertilizerFarmlandRecipeHandler());
@@ -84,6 +89,7 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 		API.registerGuiOverlay(GuiFluidFurnace.class, "SS_FluidFurnace");
 		API.registerGuiOverlay(GuiFoodSmokers.class, "SS_FoodSmokers");
 		API.registerGuiOverlay(GuiMagicFurnace.class, "SS_MagicFurnace");
+		API.registerGuiOverlay(GuiFreezer.class, "SS_Freezer");
 
 		API.registerGuiOverlay(GuiMillstone.class, "SS_Millstone");
 		API.registerGuiOverlay(GuiLoom.class, "SS_Loom");

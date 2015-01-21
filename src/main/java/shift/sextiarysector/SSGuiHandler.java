@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import shift.sextiarysector.container.ContainerCraftFurnace;
 import shift.sextiarysector.container.ContainerFluidMachineBase;
+import shift.sextiarysector.container.ContainerFreezer;
 import shift.sextiarysector.container.ContainerGFTank;
 import shift.sextiarysector.container.ContainerLargeFurnace;
 import shift.sextiarysector.container.ContainerMagicFurnace;
@@ -16,6 +17,7 @@ import shift.sextiarysector.container.ContainerTabWorkbench;
 import shift.sextiarysector.gui.GuiCraftFurnace;
 import shift.sextiarysector.gui.GuiFluidFurnace;
 import shift.sextiarysector.gui.GuiFoodSmokers;
+import shift.sextiarysector.gui.GuiFreezer;
 import shift.sextiarysector.gui.GuiGFTank;
 import shift.sextiarysector.gui.GuiInventoryNext;
 import shift.sextiarysector.gui.GuiLargeFurnace;
@@ -32,6 +34,7 @@ import shift.sextiarysector.gui.IServerGuiElement;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.tileentity.TileEntityCraftFurnace;
 import shift.sextiarysector.tileentity.TileEntityFluidMachineBase;
+import shift.sextiarysector.tileentity.TileEntityFreezer;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
@@ -62,6 +65,7 @@ public class SSGuiHandler implements IGuiHandler {
 			return new ContainerFluidMachineBase(player.inventory, (TileEntityFluidMachineBase) world.getTileEntity(x, y, z));
 
 		case 5 : return new ContainerCraftFurnace(player.inventory, (TileEntityCraftFurnace) world.getTileEntity(x, y, z));
+		case 6 : return new ContainerFreezer(player.inventory, (TileEntityFreezer) world.getTileEntity(x, y, z));
 
 		case 20:
 		case 21:
@@ -127,6 +131,7 @@ public class SSGuiHandler implements IGuiHandler {
 		case 2 : return new GuiFoodSmokers(player.inventory, (TileEntityFluidMachineBase) world.getTileEntity(x, y, z));
 
 		case 5 : return new GuiCraftFurnace(player.inventory, (TileEntityCraftFurnace) world.getTileEntity(x, y, z));
+		case 6 : return new GuiFreezer(player.inventory, (TileEntityFreezer) world.getTileEntity(x, y, z));
 
 		case 20:return new GuiMillstone(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 		case 21:return new GuiLoom(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));

@@ -7,6 +7,7 @@ tile.ss.fluid_furnace.name=Fluid Furnace
 tile.ss.food_smokers.name=Food Smokers
 
 tile.ss.magic_furnace.name=Magic Furnace
+tile.ss.freezer.name=Freezer
 
 tile.ss.wood_grate.name=Wood Grate
 
@@ -267,7 +268,8 @@ fluid.ss.takumi_tea=TAKUMI Tea
 fluid.ss.drinking_water=Drinking Water
 fluid.ss.steam=Steam
 
-fluid.ss.steam=Steam
+fluid.ss.iron=Iron Fluid
+fluid.ss.gold=Gold Fluid
 
 #Potion
 ss.potion.burn=Burn
@@ -281,6 +283,7 @@ container.mineboat_chest=Mineboat Chest
 gui.ss.fluid_furnace=Fluid Furnace
 gui.ss.food_smokers=Food Smokers
 gui.ss.magic_furnace=Magic Furnace
+gui.ss.freezer=Freezer
 
 gui.ss.rucksack=Rucksack
 
@@ -522,6 +525,9 @@ nei.ss.food_smokers=Food Smokers Recipe
 
 nei.ss.magic_furnace=Magic Furnace Recipe
 nei.ss.magic_fuel=Magic Fuel
+
+nei.ss.freezer=Freezer Recipe
+nei.ss.ice=fuel=Ice Fuel
 
 nei.ss.millstone=Millstone Recipe
 nei.ss.loom=Loom Recipe

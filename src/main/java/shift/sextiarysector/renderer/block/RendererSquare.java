@@ -139,6 +139,8 @@ public class RendererSquare extends TileEntitySpecialRenderer implements
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_LIGHTING);
 
+		GL11.glColor3f(1,1,1);
+
 
 		float scale = 0.0625f;
 		// float scale = 0.125f;
