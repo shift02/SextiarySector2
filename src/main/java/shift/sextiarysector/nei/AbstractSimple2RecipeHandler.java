@@ -20,14 +20,14 @@ import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
-public abstract class AbstractSimpleRecipeHandler  extends TemplateSSRecipeHandler{
+public abstract class AbstractSimple2RecipeHandler extends TemplateSSRecipeHandler{
 
 	public class SimpleMachinePair extends CachedRecipe
     {
         public SimpleMachinePair(ItemStack ingred, ItemStack result)
         {
             ingred.stackSize = 1;
-            this.ingred = new PositionedStack(ingred, 51, 6);
+            this.ingred = new PositionedStack(ingred, 51, 42);
             this.result = new PositionedStack(result, 111, 24);
         }
 
@@ -37,7 +37,7 @@ public abstract class AbstractSimpleRecipeHandler  extends TemplateSSRecipeHandl
         		ingred.get(i).stackSize = 1;
         	}
             //ingred.stackSize = 1;
-            this.ingred = new PositionedStack(ingred, 51, 6);
+            this.ingred = new PositionedStack(ingred, 51, 42);
             this.result = new PositionedStack(result, 111, 24);
         }
 
@@ -68,7 +68,7 @@ public abstract class AbstractSimpleRecipeHandler  extends TemplateSSRecipeHandl
 	public static class FuelPair
     {
         public FuelPair(ItemStack ingred, int burnTime) {
-            this.stack = new PositionedStack(ingred, 51, 42, false);
+            this.stack = new PositionedStack(ingred, 51, 6, false);
             this.burnTime = burnTime;
         }
 
@@ -234,7 +234,7 @@ public abstract class AbstractSimpleRecipeHandler  extends TemplateSSRecipeHandl
             }
     }
 
-	abstract Class<? extends AbstractSimpleRecipeHandler> getHandlerClass();
+	abstract Class<? extends AbstractSimple2RecipeHandler> getHandlerClass();
 	abstract String getHandlerName();
 	abstract RecipeSimpleMachine getRecipe();
 	abstract String getGuiRecipeName();
@@ -246,4 +246,5 @@ public abstract class AbstractSimpleRecipeHandler  extends TemplateSSRecipeHandl
 	public String getRecipeName() {
 		return I18n.format("nei."+getGuiRecipeName());
 	}
+
 }

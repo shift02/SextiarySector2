@@ -231,14 +231,19 @@ public abstract class TileEntityFluidMachineBase  extends TileEntityDirection  i
             FluidStack fluidstack = this.getFluidResult(this.items.getStackInSlot(0));
 
             //item
-            if (this.items.getStackInSlot(2) == null)
-            {
-                this.setInventorySlotContents(2, itemstack.copy());
+            if(itemstack!=null){
+
+            	if (this.items.getStackInSlot(2) == null)
+                {
+                    this.setInventorySlotContents(2, itemstack.copy());
+                }
+                else if (this.items.getStackInSlot(2).isItemEqual(itemstack))
+                {
+                	this.items.getStackInSlot(2).stackSize += itemstack.stackSize;
+                }
+
             }
-            else if (this.items.getStackInSlot(2).isItemEqual(itemstack))
-            {
-            	this.items.getStackInSlot(2).stackSize += itemstack.stackSize;
-            }
+
 
             //CItem
             if(this.items.getStackInSlot(0).getItem().hasContainerItem(this.items.getStackInSlot(0))){

@@ -16,12 +16,18 @@ public class SSFluids {
 
 	public static Fluid steam;
 
+	public static Fluid iron;
+	public static Fluid gold;
+
 	public static void initFluids(){
 
 		takumiTea =  new SSFluid("TakumiTea", 0, 0x006400, 5, 2.0f).setUnlocalizedName("takumi_tea");
 		drinkingWater =  new SSFluid("DrinkingWater", 0, 0x87CEFA, 4, 1.0f).setUnlocalizedName("drinking_water");
 
 		steam = new SSFluid("Steam", 1, 0xFFFFFF, 1, 1.0f).setUnlocalizedName("steam");
+
+		iron = new SSFluid("Iron", 2, 0xFF1493, 1, 1.0f).setUnlocalizedName("iron");
+		gold = new SSFluid("Gold", 2, 0xFFD700, 1, 1.0f).setUnlocalizedName("gold");
 
 	}
 
@@ -72,6 +78,7 @@ public class SSFluids {
 			switch(type){
 				case 0:return ClientEventHandler.waterStill;
 				case 1:return ClientEventHandler.portal;
+				case 2:return ClientEventHandler.lavaStill;
 			}
 	        return ClientEventHandler.waterStill;
 	    }
@@ -82,6 +89,7 @@ public class SSFluids {
 			switch(type){
 			case 0:return ClientEventHandler.waterFlow;
 			case 1:return ClientEventHandler.portal;
+			case 2:return ClientEventHandler.lavaFlow;
 			}
 	        return ClientEventHandler.waterStill;
 	    }

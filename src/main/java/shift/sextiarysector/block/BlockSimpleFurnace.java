@@ -13,7 +13,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -21,11 +20,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.tileentity.TileEntityDirection;
-import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
+import shift.sextiarysector.tileentity.TileEntitySimpleFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockMagicFurnace  extends BlockContainer{
+public abstract class BlockSimpleFurnace  extends BlockContainer{
 
 	private final Random furnaceRand = new Random();
 
@@ -38,20 +37,19 @@ public class BlockMagicFurnace  extends BlockContainer{
 
     private int GUIID;
 
-	public BlockMagicFurnace() {
+	public BlockSimpleFurnace(int guiID) {
 		super(Material.rock);
 		this.setHardness(1.0F);
 		this.setStepSound(soundTypeStone);
+		this.GUIID = guiID;
 	}
 
 	public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
-		TileEntityMagicFurnace tileentityfurnace = (TileEntityMagicFurnace)world.getTileEntity(x, y, z);
+		TileEntitySimpleFurnace tileentityfurnace = (TileEntitySimpleFurnace)world.getTileEntity(x, y, z);
 		if(tileentityfurnace.isFuel())return 15;
 		return 0;
-    }
-
-	@Override
+    }@Override
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         if (par1World.isRemote)
@@ -60,20 +58,15 @@ public class BlockMagicFurnace  extends BlockContainer{
         }
         else
         {
-        	TileEntityMagicFurnace tileentityfurnace = (TileEntityMagicFurnace)par1World.getTileEntity(par2, par3, par4);
+        	TileEntitySimpleFurnace tileentityfurnace = (TileEntitySimpleFurnace)par1World.getTileEntity(par2, par3, par4);
 
             if (tileentityfurnace != null)
             {
-                par5EntityPlayer.openGui(SextiarySector.instance, 90, par1World, par2, par3, par4);
+                par5EntityPlayer.openGui(SextiarySector.instance, this.GUIID, par1World, par2, par3, par4);
             }
 
             return true;
         }
-    }
-
-	public static void updateFurnaceBlockState(boolean par0, World par1World, int par2, int par3, int par4)
-    {
-
     }
 
     /**
@@ -145,7 +138,7 @@ public class BlockMagicFurnace  extends BlockContainer{
     public IIcon getIcon(IBlockAccess p_149673_1_, int x, int y, int z, int side)
     {
     	//System.out.println("Icon");
-    	TileEntityMagicFurnace tileEntity = (TileEntityMagicFurnace)p_149673_1_.getTileEntity(x, y, z);
+    	TileEntitySimpleFurnace tileEntity = (TileEntitySimpleFurnace)p_149673_1_.getTileEntity(x, y, z);
 
     	int meta = p_149673_1_.getBlockMetadata(x, y, z);
 
@@ -163,20 +156,10 @@ public class BlockMagicFurnace  extends BlockContainer{
      */
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("sextiarysector:magic/furnace_side");
-        this.furnaceIconFront[0] = par1IconRegister.registerIcon("sextiarysector:magic/furnace_front_on");
-        this.furnaceIconFront[1] = par1IconRegister.registerIcon("sextiarysector:magic/furnace_front_off");
-        this.furnaceIconTop = par1IconRegister.registerIcon("sextiarysector:magic/furnace_top");
-    }
-
-
-    /**
-     * Returns a new instance of a block's tile entity class. Called on placing the block.
-     */
-    @Override
-	public TileEntity createNewTileEntity(World par1World, int p_149915_2_)
-    {
-        return new TileEntityMagicFurnace();
+        this.blockIcon = par1IconRegister.registerIcon(this.getTextureName()+"_side");
+        this.furnaceIconFront[0] = par1IconRegister.registerIcon(this.getTextureName()+"_front_on");
+        this.furnaceIconFront[1] = par1IconRegister.registerIcon(this.getTextureName()+"_front_off");
+        this.furnaceIconTop = par1IconRegister.registerIcon(this.getTextureName()+"_top");
     }
 
     /**
@@ -219,7 +202,7 @@ public class BlockMagicFurnace  extends BlockContainer{
     {
         if (!keepFurnaceInventory)
         {
-        	TileEntityMagicFurnace tileentityfurnace = (TileEntityMagicFurnace)par1World.getTileEntity(par2, par3, par4);
+        	TileEntitySimpleFurnace tileentityfurnace = (TileEntitySimpleFurnace)par1World.getTileEntity(par2, par3, par4);
 
             if (tileentityfurnace != null)
             {
@@ -276,7 +259,7 @@ public class BlockMagicFurnace  extends BlockContainer{
 	@SideOnly(Side.CLIENT)
     public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
     {
-		TileEntityMagicFurnace tileentityfurnace = (TileEntityMagicFurnace)p_149734_1_.getTileEntity(p_149734_2_, p_149734_3_, p_149734_4_);
+		TileEntitySimpleFurnace tileentityfurnace = (TileEntitySimpleFurnace)p_149734_1_.getTileEntity(p_149734_2_, p_149734_3_, p_149734_4_);
 
 
         if (tileentityfurnace.isFuel())

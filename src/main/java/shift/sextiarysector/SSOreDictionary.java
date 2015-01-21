@@ -77,6 +77,11 @@ public class SSOreDictionary {
 
 		OreDictionary.registerOre("ringIron", SSItems.ironRing);
 
+
+		//液体金属
+		OreDictionary.registerOre("fluidIron", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.iron.getID()));
+		OreDictionary.registerOre("fluidGold", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.gold.getID()));
+
 		Item[] Knife = new Item[]{SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife};
 		for(int i =0;i<Knife.length;i++){
 			OreDictionary.registerOre("craftingToolWireCutter", new ItemStack(Knife[i],1,OreDictionary.WILDCARD_VALUE));
@@ -117,6 +122,7 @@ public class SSOreDictionary {
 
 		//飲み物
 		OreDictionary.registerOre("fluidWater", new ItemStack(SSBlocks.fluidCrafter, 1, FluidRegistry.WATER.getID()));
+
 
 
 	}

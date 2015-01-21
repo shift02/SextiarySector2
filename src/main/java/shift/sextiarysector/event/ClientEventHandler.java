@@ -119,6 +119,9 @@ public class ClientEventHandler {
 
     public static IIcon portal;
 
+    public static IIcon lavaFlow;
+    public static IIcon lavaStill;
+
     @SubscribeEvent
 	public void PreTextureStitchEvent(TextureStitchEvent.Pre event){
 
@@ -142,6 +145,8 @@ public class ClientEventHandler {
     		waterFlow = event.map.registerIcon("sextiarysector:fluid/water_flow");
     		waterStill = event.map.registerIcon("sextiarysector:fluid/water_still");
     		portal = event.map.registerIcon("sextiarysector:fluid/portal");
+    		lavaFlow = event.map.registerIcon("sextiarysector:fluid/lava_flow");
+    		lavaStill = event.map.registerIcon("sextiarysector:fluid/lava_still");
     	}
 
     }

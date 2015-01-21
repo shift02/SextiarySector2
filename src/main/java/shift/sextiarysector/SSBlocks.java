@@ -11,13 +11,14 @@ import shift.sextiarysector.block.BlockFan;
 import shift.sextiarysector.block.BlockFluidCrafter;
 import shift.sextiarysector.block.BlockFluidFurnace;
 import shift.sextiarysector.block.BlockFoodSmokers;
+import shift.sextiarysector.block.BlockFreezer;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockGearShaft;
 import shift.sextiarysector.block.BlockHole;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockLargeOre;
-import shift.sextiarysector.block.BlockMagicFurnace;
+import shift.sextiarysector.block.BlockMagiFurnace;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockPaddy;
 import shift.sextiarysector.block.BlockPowerStone;
@@ -49,6 +50,7 @@ import shift.sextiarysector.tileentity.TileEntityFarmland;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
 import shift.sextiarysector.tileentity.TileEntityFoodSmokers;
+import shift.sextiarysector.tileentity.TileEntityFreezer;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
@@ -79,6 +81,7 @@ public class SSBlocks {
 	public static Block fluidFurnace;
 	public static Block foodSmokers;
 	public static Block magicFurnace;
+	public static Block freezer;
 
 
 
@@ -217,9 +220,13 @@ public class SSBlocks {
 		GameRegistry.registerBlock(foodSmokers, "FoodSmokers");
 		GameRegistry.registerTileEntity(TileEntityFoodSmokers.class, "FoodSmokers");
 
-		magicFurnace = new BlockMagicFurnace().setBlockName("ss.magic_furnace").setCreativeTab(SextiarySectorAPI.TabSSMagic);
+		magicFurnace = new BlockMagiFurnace().setBlockName("ss.magic_furnace").setBlockTextureName("sextiarysector:magic/furnace").setCreativeTab(SextiarySectorAPI.TabSSMagic);
 		GameRegistry.registerBlock(magicFurnace, "MagicFurnace");
 		GameRegistry.registerTileEntity(TileEntityMagicFurnace.class, "MagicFurnace");
+
+		freezer = new BlockFreezer().setBlockName("ss.freezer").setBlockTextureName("sextiarysector:ice/freezer").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(freezer, "Freezer");
+		GameRegistry.registerTileEntity(TileEntityFreezer.class, "Freezer");
 
 		//bottle = new BlockBottle().setBlockName("ss.bottle").setBlockTextureName("glass");
 		//GameRegistry.registerBlock(bottle,ItemBlockBottle.class, "Bottle");
