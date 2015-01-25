@@ -38,6 +38,9 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("plateWood", SSBlocks.woodAcaciaPlate);
 		OreDictionary.registerOre("plateWood", SSBlocks.woodBigOakPlate);
 
+		OreDictionary.registerOre("plateIron", SSBlocks.ironPlate);
+		OreDictionary.registerOre("plateGold", SSBlocks.goldPlate);
+
 		/*
 		OreDictionary.registerOre("plankWood", SSBlocks.woodOakPlate);
 		OreDictionary.registerOre("plankWood", SSBlocks.woodBirchPlate);

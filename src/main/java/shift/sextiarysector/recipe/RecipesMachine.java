@@ -195,7 +195,7 @@ public class RecipesMachine {
 		}
 
 
-		for(int i=0;i<3;i++){
+		for(int i=0;i<5;i++){
 
 			 p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(storage[i], 1),
 						new Object[] { " y ", "xzx","xzx",

@@ -242,7 +242,7 @@ public class SSBlocks {
 		woodHopper = new BlockWoodHopper().setBlockName("ss.wood_hopper").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodHopper, "WoodHopper");
 
-		square = new BlockSquare().setBlockName("ss.square");
+		square = new BlockSquare().setBlockName("ss.square").setBlockTextureName("planks_oak");
 		GameRegistry.registerBlock(square, ItemBlockDirection.class, "Square");
 		GameRegistry.registerTileEntity(TileEntitySquare.class, "Square");
 
