@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import shift.sextiarysector.gui.GuiMagicFurnace;
 import shift.sextiarysector.recipe.RecipeSimpleMachine;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
@@ -238,7 +238,7 @@ public abstract class AbstractSimpleRecipeHandler  extends TemplateSSRecipeHandl
 	abstract String getHandlerName();
 	abstract RecipeSimpleMachine getRecipe();
 	abstract String getGuiRecipeName();
-	public abstract Class<? extends GuiMagicFurnace> getGuiClass();
+	public abstract Class<? extends GuiContainer> getGuiClass();
 	abstract String getFuelHandlerName();
 	abstract int getFuelTime(ItemStack item);
 

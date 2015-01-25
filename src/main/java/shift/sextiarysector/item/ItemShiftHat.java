@@ -22,6 +22,7 @@ public class ItemShiftHat extends ItemArmor{
         return "sextiarysector:textures/models/shift_hat.png";
     }
 
+	@SideOnly(Side.CLIENT)
 	public static ModelShiftHat model = new ModelShiftHat();
 
 	@SideOnly(Side.CLIENT)

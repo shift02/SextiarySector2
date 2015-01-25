@@ -84,6 +84,13 @@ public class SSAchievement {
 	public static Achievement steelGear;
 	public static Achievement smallWaterwheel;
 	public static Achievement pulverizer;
+	public static Achievement fan;
+
+	public static Achievement ninjaGear;
+	public static Achievement rollingMachine;
+
+	public static Achievement orichalcumGear;
+	public static Achievement timeMachine;
 
 	//Economy
 	public static Achievement creeperFirework;
@@ -161,12 +168,22 @@ public class SSAchievement {
 		steelGear = new AchievementCraft("steel_gear", 4, 0, new ItemStack(SSItems.steelGear), stoneGear, industry).registerStat();
 		smallWaterwheel = new AchievementCraft("small_waterwheel", 5, -2, new ItemStack(SSBlocks.smallWaterwheel), steelGear, industry).registerStat();
 		pulverizer = new AchievementCraft("pulverizer", 5, 2, new ItemStack(SSBlocks.pulverizer), steelGear, industry).registerStat();
+		fan = new AchievementCraft("fan", 5, 4, new ItemStack(SSBlocks.fan), steelGear, industry).registerStat();
+
+		ninjaGear = new AchievementCraft("ninja_gear", 7, 0, new ItemStack(SSItems.ninjaGear), steelGear, industry).registerStat();
+		rollingMachine = new AchievementCraft("rolling_machine", 7, 2, new ItemStack(SSBlocks.rollingMachine), ninjaGear, industry).registerStat();
+
+		orichalcumGear = new AchievementCraft("orichalcum_gear", 10, 0, new ItemStack(SSItems.orichalcumGear), ninjaGear, industry).registerStat();
+		timeMachine = new AchievementCraft("time_machine", 10, 2, new ItemStack(SSBlocks.timeMachine), orichalcumGear, industry).registerStat();
 
 		AchievementPage.registerAchievementPage(new AchievementPageIndustry("achievement.ss.industry", industry));
 
+		//経済
 		creeperFirework = new AchievementBase("creeper_firework", 0, 0, new ItemStack(Items.fireworks), (Achievement)null,economy).initIndependentStat().registerStat();
 		creeperChest = new AchievementBase("creeper_chest", 1, -2, new ItemStack(SSBlocks.creeperChest), creeperFirework,economy).registerStat();
 		shipping = new AchievementBase("shipping", 3, -2, new ItemStack(SSBlocks.shippingBox), creeperChest,economy).registerStat();
+
+
 
 		AchievementPage.registerAchievementPage(new AchievementPageEconomy("achievement.ss.economy", economy));
 

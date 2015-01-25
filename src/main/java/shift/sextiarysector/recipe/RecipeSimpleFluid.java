@@ -36,6 +36,7 @@ public class RecipeSimpleFluid {
         	ArrayList<ItemStack> items = OreDictionary.getOres(key);
         	for(int i = 0; i< items.size() ; i++){
         		if(checkItem(item,items.get(i))){
+        			if((ItemStack) oreSimpleMachineList.get(key)[0] == null)return null;
         			return ((ItemStack) oreSimpleMachineList.get(key)[0]).copy();
         		}
         	}
@@ -55,6 +56,8 @@ public class RecipeSimpleFluid {
         }
         while (!this.checkItem(item, (ItemStack)entry.getKey()));
 
+        if(((ItemStack) ((Object[])entry.getValue())[0]) == null)return null;
+
         return ((ItemStack) ((Object[])entry.getValue())[0]).copy();
 
         //return metaSimpleMachineList.get( (Arrays.asList( item.itemID, item.getItemDamage() ) ));
@@ -70,6 +73,7 @@ public class RecipeSimpleFluid {
         	ArrayList<ItemStack> items = OreDictionary.getOres(key);
         	for(int i = 0; i< items.size() ; i++){
         		if(checkItem(item,items.get(i))){
+        			if((FluidStack) oreSimpleMachineList.get(key)[1] == null)return null;
         			return ((FluidStack) oreSimpleMachineList.get(key)[1]).copy();
         		}
         	}
@@ -88,6 +92,8 @@ public class RecipeSimpleFluid {
             entry = (Entry)iterator.next();
         }
         while (!this.checkItem(item, (ItemStack)entry.getKey()));
+
+        if((FluidStack) ((Object[])entry.getValue())[1] == null)return null;
 
         return ((FluidStack) ((Object[])entry.getValue())[1]).copy();
 

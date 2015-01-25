@@ -31,11 +31,30 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("fluidWater", new ItemStack(Items.potionitem, 1 ,0));
 
 		//素材 プレート
-		OreDictionary.registerOre("plateWood", SSBlocks.woodPlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodOakPlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodBirchPlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodSprucePlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodJunglePlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodAcaciaPlate);
+		OreDictionary.registerOre("plateWood", SSBlocks.woodBigOakPlate);
+
+		OreDictionary.registerOre("plateIron", SSBlocks.ironPlate);
+		OreDictionary.registerOre("plateGold", SSBlocks.goldPlate);
+
+		/*
+		OreDictionary.registerOre("plankWood", SSBlocks.woodOakPlate);
+		OreDictionary.registerOre("plankWood", SSBlocks.woodBirchPlate);
+		OreDictionary.registerOre("plankWood", SSBlocks.woodSprucePlate);
+		OreDictionary.registerOre("plankWood", SSBlocks.woodJunglePlate);
+		OreDictionary.registerOre("plankWood", SSBlocks.woodAcaciaPlate);
+		OreDictionary.registerOre("plankWood", SSBlocks.woodBigOakPlate);
+		*/
 
 		OreDictionary.registerOre("gearWood", SSItems.woodGear);
 		OreDictionary.registerOre("gearStone", SSItems.stoneGear);
 		OreDictionary.registerOre("gearSteel", SSItems.steelGear);
+		OreDictionary.registerOre("gearNinja", SSItems.ninjaGear);
+		OreDictionary.registerOre("gearOrichalcum", SSItems.orichalcumGear);
 
 		OreDictionary.registerOre("dustCoal", SSItems.coalDust);
 		OreDictionary.registerOre("dustIron", SSItems.ironDust);
@@ -52,12 +71,19 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("ingotNinja", SSItems.ninjaIngot);
 		OreDictionary.registerOre("ingotMithril", SSItems.mithrilIngot);
 
+		OreDictionary.registerOre("gemOrichalcum", SSItems.orichalcumGem);
+
 		OreDictionary.registerOre("oreMithril", SSBlocks.mithrilOre);
 
 		OreDictionary.registerOre("oreIron", SSItems.ironTurnip);
 		OreDictionary.registerOre("oreGold", SSItems.goldenCorn);
 
 		OreDictionary.registerOre("ringIron", SSItems.ironRing);
+
+
+		//液体金属
+		OreDictionary.registerOre("fluidIron", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.iron.getID()));
+		OreDictionary.registerOre("fluidGold", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.gold.getID()));
 
 		Item[] Knife = new Item[]{SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife};
 		for(int i =0;i<Knife.length;i++){
@@ -99,6 +125,7 @@ public class SSOreDictionary {
 
 		//飲み物
 		OreDictionary.registerOre("fluidWater", new ItemStack(SSBlocks.fluidCrafter, 1, FluidRegistry.WATER.getID()));
+
 
 
 	}
