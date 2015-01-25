@@ -46,6 +46,12 @@ public class RecipesCore {
         	'x', "plateWood",
         	}));
 
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.rucksack, 1),
+        		new Object[] {
+        	"xxx","x x", "xxx",
+        	'x', SSItems.cloth,
+        	}));
+
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.mineboatChest, 1),
         		new Object[] {
         	"x", "y",

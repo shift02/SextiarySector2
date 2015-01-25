@@ -108,6 +108,14 @@ public class RecipesFurnaceCraft {
 			Character.valueOf('y'), SSItems.magicDust,
 			}));
 
+        //フリーザー
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSBlocks.freezer, 1),
+				new Object[] {
+			SSItems.objectReactor,
+			Blocks.ice,
+			Blocks.furnace,
+			}));
+
         //乾燥機
         p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.foodSmokers, 1),
 				new Object[] { "xxx", "xyx","xxx",
