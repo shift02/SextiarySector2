@@ -268,6 +268,23 @@ public abstract class SimpleFluidRecipeHandler  extends TemplateSSRecipeHandler 
 
 	}
 
+	public List<String> drawTooltip(int recipe, int offsetx, int offsety, List<String> currenttip){
+
+		if(((SimpleFluidPair)this.arecipes.get(recipe)).fluidStack == null)return currenttip;
+
+		if(42<offsety && offsety<77 && 226 < offsetx && offsetx < 261){
+
+			FluidStack f =((SimpleFluidPair)this.arecipes.get(recipe)).fluidStack;
+
+			currenttip.add(f.getLocalizedName());
+			currenttip.add(String.format("%1$,3d", f.amount) + " mB");
+
+		}
+
+		return currenttip;
+
+	}
+
 	abstract Class<? extends SimpleFluidRecipeHandler> getHandlerClass();
 	abstract String getHandlerName();
 	abstract RecipeSimpleFluid getRecipe();

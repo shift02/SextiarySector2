@@ -1,5 +1,6 @@
 package shift.sextiarysector.nei;
 
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector.SSRecipes;
 import shift.sextiarysector.gui.GuiMagicFurnace;
@@ -29,7 +30,7 @@ public class MagicFurnaceRecipeHandler extends AbstractSimpleRecipeHandler{
 	}
 
 	@Override
-	public Class<? extends GuiMagicFurnace> getGuiClass() {
+	public Class<? extends GuiContainer> getGuiClass() {
 		return GuiMagicFurnace.class;
 	}
 

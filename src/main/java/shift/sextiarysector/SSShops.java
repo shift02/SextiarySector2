@@ -68,6 +68,8 @@ public class SSShops {
 
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.curryPowder,4),200));
 
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.orichalcumGem,1),9999));
+
 			creepers[i].addItemProduct(new ProductItem(BlockMonitor.getMonitor(MonitorType.creeper),100000));
 
 		}

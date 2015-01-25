@@ -34,6 +34,13 @@ public class RecipesFurnaceCraft {
 			Items.water_bucket,
 			}));
 
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.drinkingWaterBottle, 2),
+				new Object[] {
+			SSItems.emptyBottle,
+			SSItems.emptyBottle,
+			SSItems.waterBottle,
+			}));
+
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.blueStoneSlimeBall, 1),
 				new Object[] {
 			"dustBluestone",
@@ -99,6 +106,14 @@ public class RecipesFurnaceCraft {
 				new Object[] { "xxx", "xyx","xxx",
 			Character.valueOf('x'), "cobblestone",
 			Character.valueOf('y'), SSItems.magicDust,
+			}));
+
+        //フリーザー
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSBlocks.freezer, 1),
+				new Object[] {
+			SSItems.objectReactor,
+			Blocks.ice,
+			Blocks.furnace,
 			}));
 
         //乾燥機
@@ -170,10 +185,19 @@ public class RecipesFurnaceCraft {
 
 		for( Map.Entry<ItemStack, ItemStack> e : ((HashMap<ItemStack,ItemStack>)FurnaceRecipes.smelting().getSmeltingList()).entrySet()){
 
+			if(e.getValue().getItem().hasContainerItem(e.getValue().copy()) && e.getKey().getItem().hasContainerItem(e.getKey().copy()) ){
+				if(checkItem(e.getValue().getItem().getContainerItem(e.getValue().copy()), e.getKey().getItem().getContainerItem(e.getKey().copy())))continue;
+			}
+
     		FurnaceCraftingManager.getInstance().addShapelessRecipe(e.getValue(), new Object[]{e.getKey()});
 
     	}
 
+    }
+
+	private static boolean checkItem(ItemStack p_151397_1_, ItemStack p_151397_2_)
+    {
+        return p_151397_2_.getItem() == p_151397_1_.getItem() && (p_151397_2_.getItemDamage() == 32767 || p_151397_2_.getItemDamage() == p_151397_1_.getItemDamage());
     }
 
 }

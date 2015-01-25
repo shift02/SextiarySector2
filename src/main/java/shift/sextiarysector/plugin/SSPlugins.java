@@ -20,6 +20,7 @@ public class SSPlugins {
 	public static boolean modTHKaguya;
 	public static boolean modIC2;
 	public static boolean modTofu;
+	public static boolean modTcon;
 
 	public static void initModHelper() {
 
@@ -28,6 +29,7 @@ public class SSPlugins {
 		modTHKaguya = Loader.isModLoaded("THKaguyaMod")  && Config.modTHKaguya;
 		modIC2 = Loader.isModLoaded("IC2")  && Config.modIC2;
 		modTofu = Loader.isModLoaded("TofuCraft")  && Config.modTofu;
+		modTcon = Loader.isModLoaded("TConstruct")  && Config.modTcon;
 
 		if (modDCsAppleMilk) {
 
@@ -98,7 +100,22 @@ public class SSPlugins {
 
 			} catch (Exception e) {
 
-				SextiarySector.Log.log(Level.WARN, "IC2 integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+				SextiarySector.Log.log(Level.WARN, "TofuCraft integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+				SextiarySector.Log.catching(e);
+
+			}
+		}
+
+		if (modTcon) {
+
+			try {
+
+				SextiarySector.Log.info("TConstruct Plugin is loaded");
+				plugins.add(new PluginTcon());
+
+			} catch (Exception e) {
+
+				SextiarySector.Log.log(Level.WARN, "TConstruct integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
 				SextiarySector.Log.catching(e);
 
 			}

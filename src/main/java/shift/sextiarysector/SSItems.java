@@ -1,5 +1,7 @@
 package shift.sextiarysector;
 
+import java.util.ArrayList;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import shift.sextiarysector.api.SextiarySectorAPI;
@@ -16,6 +18,7 @@ import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemKnife;
 import shift.sextiarysector.item.ItemLavaBottle;
 import shift.sextiarysector.item.ItemMineboat;
+import shift.sextiarysector.item.ItemRucksack;
 import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
 import shift.sextiarysector.item.ItemShiftHat;
@@ -33,14 +36,20 @@ public class SSItems {
 	public static Item woodGear;
 	public static Item stoneGear;
 	public static Item steelGear;
+	public static Item ninjaGear;
+	public static Item orichalcumGear;
 
 	public static Item woodUnitGear;
 	public static Item stoneUnitGear;
 	public static Item steelUnitGear;
+	public static Item ninjaUnitGear;
+	public static Item orichalcumUnitGear;
 
 	public static Item woodGFStorage;
 	public static Item stoneGFStorage;
 	public static Item steelGFStorage;
+	public static Item ninjaGFStorage;
+	public static Item orichalcumGFStorage;
 
 	public static Item hammer;
 
@@ -124,6 +133,9 @@ public class SSItems {
 	public static Item laver;
 
 	//野菜
+	public static ArrayList<Item> farmlandCrops = new ArrayList<Item>();
+	public static ArrayList<Item> paddyCrops = new ArrayList<Item>();
+
 	public static Item turnip;
 	public static Item cucumber;
 
@@ -139,6 +151,8 @@ public class SSItems {
 	public static Item eggplant;
 	public static Item sweetPotato;
 	public static Item greenPepper;
+
+	public static Item bluePotato;
 
 	public static Item radish;
 
@@ -175,6 +189,7 @@ public class SSItems {
 	//装備
 	public static Item shiftHat;
 
+	public static Item rucksack;
 	public static Item gfContactLenses;
 
 	public static void initItems(){
@@ -191,6 +206,13 @@ public class SSItems {
 		steelGear = new Item().setUnlocalizedName("ss.steel_gear").setTextureName("sextiarysector:machine/steel_gear").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(steelGear, "SteelGear");
 
+		ninjaGear = new Item().setUnlocalizedName("ss.ninja_gear").setTextureName("sextiarysector:machine/ninja_gear").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerItem(ninjaGear, "NinjaGear");
+
+		orichalcumGear = new Item().setUnlocalizedName("ss.orichalcum_gear").setTextureName("sextiarysector:machine/orichalcum_gear").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerItem(orichalcumGear, "OrichalcumGear");
+
+
 		woodUnitGear = new Item().setUnlocalizedName("ss.wood_unit_gear").setTextureName("sextiarysector:machine/wood_unit_gear").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(woodUnitGear, "WoodUnitGear");
 
@@ -200,6 +222,13 @@ public class SSItems {
 		steelUnitGear = new Item().setUnlocalizedName("ss.steel_unit_gear").setTextureName("sextiarysector:machine/steel_unit_gear").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(steelUnitGear, "steelUnitGear");
 
+		ninjaUnitGear = new Item().setUnlocalizedName("ss.ninja_unit_gear").setTextureName("sextiarysector:machine/ninja_unit_gear").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerItem(ninjaUnitGear, "NinjaUnitGear");
+
+		orichalcumUnitGear = new Item().setUnlocalizedName("ss.orichalcum_unit_gear").setTextureName("sextiarysector:machine/orichalcum_unit_gear").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerItem(orichalcumUnitGear, "OrichalcumUnitGear");
+
+
 		woodGFStorage = new ItemGearStorage(1, 10000, 1).setUnlocalizedName("ss.wood_gf_storage").setTextureName("sextiarysector:gearforce/wood_gear_storage").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(woodGFStorage, "WoodGFStorage");
 
@@ -208,6 +237,13 @@ public class SSItems {
 
 		steelGFStorage = new ItemGearStorage(3, 10000, 3).setUnlocalizedName("ss.steel_gf_storage").setTextureName("sextiarysector:gearforce/steel_gear_storage").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(steelGFStorage, "SteelGFStorage");
+
+		ninjaGFStorage = new ItemGearStorage(4, 10000, 4).setUnlocalizedName("ss.ninja_gf_storage").setTextureName("sextiarysector:gearforce/ninja_gear_storage").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerItem(ninjaGFStorage, "NinjaGFStorage");
+
+		orichalcumGFStorage = new ItemGearStorage(5, 10000, 5).setUnlocalizedName("ss.orichalcum_gf_storage").setTextureName("sextiarysector:gearforce/orichalcum_gear_storage").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerItem(orichalcumGFStorage, "OrichalcumGFStorage");
+
 
 		hammer = new ItemHammer().setUnlocalizedName("ss.hammer").setTextureName("sextiarysector:machine/hammer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(hammer, "Hammer");
@@ -351,43 +387,47 @@ public class SSItems {
 		GameRegistry.registerItem(laver, "Laver");
 
 		//野菜
-		turnip = new ItemFoodCrop(3, 1, 1, 4, 0, 0, false).setUnlocalizedName("ss.turnip").setTextureName("sextiarysector:food/vegetable/turnip");
+		turnip = new ItemFoodCrop(farmlandCrops, 3, 1, 1, 4, 0, 0, false).setUnlocalizedName("ss.turnip").setTextureName("sextiarysector:food/vegetable/turnip");
 		GameRegistry.registerItem(turnip, "Turnip");
 
-		cucumber = new ItemFoodCrop(1, 1, 3, 4, 0, 2, false).setUnlocalizedName("ss.cucumber").setTextureName("sextiarysector:food/vegetable/cucumber");
+		cucumber = new ItemFoodCrop(farmlandCrops, 1, 1, 3, 4, 0, 2, false).setUnlocalizedName("ss.cucumber").setTextureName("sextiarysector:food/vegetable/cucumber");
 		GameRegistry.registerItem(cucumber, "Cucumber");
 
-		ironTurnip = new ItemFoodCrop(0, 1, 0, 0, 0, 0, false).setUnlocalizedName("ss.iron_turnip").setTextureName("sextiarysector:food/vegetable/iron_turnip");
+		ironTurnip = new ItemFoodCrop(farmlandCrops, 0, 1, 0, 0, 0, 0, false).setUnlocalizedName("ss.iron_turnip").setTextureName("sextiarysector:food/vegetable/iron_turnip");
 		GameRegistry.registerItem(ironTurnip, "IronTurnip");
 
 
-		onion = new ItemFoodCrop(2, 1, 1, 0, 0, 0, false).setUnlocalizedName("ss.onion").setTextureName("sextiarysector:food/vegetable/onion");
+		onion = new ItemFoodCrop(farmlandCrops, 2, 1, 1, 0, 0, 0, false).setUnlocalizedName("ss.onion").setTextureName("sextiarysector:food/vegetable/onion");
 		GameRegistry.registerItem(onion, "Onion");
 
-		tomato = new ItemFoodCrop(1, 1, 4, 5, 0, 0, false).setUnlocalizedName("ss.tomato").setTextureName("sextiarysector:food/vegetable/tomato");
+		tomato = new ItemFoodCrop(farmlandCrops, 1, 1, 4, 5, 0, 0, false).setUnlocalizedName("ss.tomato").setTextureName("sextiarysector:food/vegetable/tomato");
 		GameRegistry.registerItem(tomato, "Tomato");
 
-		corn = new ItemFoodCrop(0, 1, 1, 6, 4, 2, false).setUnlocalizedName("ss.corn").setTextureName("sextiarysector:food/vegetable/corn");
+		corn = new ItemFoodCrop(farmlandCrops, 0, 1, 1, 6, 4, 2, false).setUnlocalizedName("ss.corn").setTextureName("sextiarysector:food/vegetable/corn");
 		GameRegistry.registerItem(corn, "corn");
 
-		goldenCorn = new ItemFoodCrop(0, 2, 0, 0, 0, 0, false).setUnlocalizedName("ss.golden_corn").setTextureName("sextiarysector:food/vegetable/golden_corn");
+		goldenCorn = new ItemFoodCrop(farmlandCrops, 0, 2, 0, 0, 0, 0, false).setUnlocalizedName("ss.golden_corn").setTextureName("sextiarysector:food/vegetable/golden_corn");
 		GameRegistry.registerItem(goldenCorn, "GoldCorn");
 
 
-		eggplant = new ItemFoodCrop(1, 1, 4, 2, 0, 0, false).setUnlocalizedName("ss.eggplant").setTextureName("sextiarysector:food/vegetable/eggplant");
+		eggplant = new ItemFoodCrop(farmlandCrops, 1, 1, 4, 2, 0, 0, false).setUnlocalizedName("ss.eggplant").setTextureName("sextiarysector:food/vegetable/eggplant");
 		GameRegistry.registerItem(eggplant, "Eggplant");
 
-		sweetPotato = new ItemFoodCrop(4, 1, 0, 0, 6, 0, false).setUnlocalizedName("ss.sweet_potato").setTextureName("sextiarysector:food/vegetable/sweet_potato");
+		sweetPotato = new ItemFoodCrop(farmlandCrops, 4, 1, 0, 0, 6, 0, false).setUnlocalizedName("ss.sweet_potato").setTextureName("sextiarysector:food/vegetable/sweet_potato");
 		GameRegistry.registerItem(sweetPotato, "SweetPotato");
 
-		greenPepper = new ItemFoodCrop(2, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.green_pepper").setTextureName("sextiarysector:food/vegetable/green_pepper");
+		greenPepper = new ItemFoodCrop(farmlandCrops, 2, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.green_pepper").setTextureName("sextiarysector:food/vegetable/green_pepper");
 		GameRegistry.registerItem(greenPepper, "GreenPepper");
 
 
-		radish = new ItemFoodCrop(3, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.radish").setTextureName("sextiarysector:food/vegetable/radish");
+		bluePotato = new ItemFoodCrop(paddyCrops, 1, 0, 5, 8, 2, 0, false).setUnlocalizedName("ss.blue_potato").setTextureName("sextiarysector:food/vegetable/blue_potato");
+		GameRegistry.registerItem(bluePotato, "BluePotato");
+
+
+		radish = new ItemFoodCrop(farmlandCrops, 3, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.radish").setTextureName("sextiarysector:food/vegetable/radish");
 		GameRegistry.registerItem(radish, "Radish");
 
-		rice = new ItemCrop().setUnlocalizedName("ss.rice").setTextureName("sextiarysector:food/grain/rice").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
+		rice = new ItemCrop(paddyCrops).setUnlocalizedName("ss.rice").setTextureName("sextiarysector:food/grain/rice").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
 		GameRegistry.registerItem(rice, "Rice");
 
 		//料理
@@ -445,6 +485,9 @@ public class SSItems {
 		//装備
 		shiftHat = new ItemShiftHat().setUnlocalizedName("ss.shift_hat").setTextureName("sextiarysector:shift_hat");
 		GameRegistry.registerItem(shiftHat, "ShiftHat");
+
+		rucksack = new ItemRucksack().setUnlocalizedName("ss.rucksack").setTextureName("sextiarysector:rucksack");
+		GameRegistry.registerItem(rucksack, "Rucksack");
 
 		gfContactLenses = new ItemGFContactLenses().setUnlocalizedName("ss.gf_contact_lenses").setTextureName("sextiarysector:face/gf_contact_lenses");
 		GameRegistry.registerItem(gfContactLenses, "GFContactLenses");
