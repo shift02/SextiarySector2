@@ -52,7 +52,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ClientProxy extends CommonProxy{
 
-
+	@SideOnly(Side.CLIENT)
+	public shift.sextiarysector.renderer.model.ModelShiftHat model = new shift.sextiarysector.renderer.model.ModelShiftHat();
 
 	@Override
 	public EntityPlayer getClientPlayer(){
@@ -209,5 +210,9 @@ public class ClientProxy extends CommonProxy{
 
 
     }
+
+	public Object getShiftHat(){
+		return model;
+	}
 
 }

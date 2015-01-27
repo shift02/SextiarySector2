@@ -11,8 +11,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class StaminaStats {
 
 	/** The player's stamina level. */
-    private int staminaLevel = 1000;
-    private final static int MAX_STAMINA_LEVEL = 1000;
+    private int staminaLevel = 100;
+    private final static int MAX_STAMINA_LEVEL = 100;
 	private final static int MAX_PREV_STAMINA_LEVEL = 20;
 
     /** The player's food saturation. */

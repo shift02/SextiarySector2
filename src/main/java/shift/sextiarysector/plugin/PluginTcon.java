@@ -67,6 +67,13 @@ public class PluginTcon  implements IPlugin{
 	@Override
 	public void postPlugin(FMLPostInitializationEvent event) {
 
+		if(event.getSide().isClient())clientPost();
+
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void clientPost(){
+
 		ArrayList<tconstruct.client.tabs.AbstractTab> tabs = tconstruct.client.tabs.TabRegistry.getTabList();
 
 		for(int i=1;i<tabs.size();i++){
