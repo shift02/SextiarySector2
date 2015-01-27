@@ -153,7 +153,7 @@ public class PlayerStatusEventHandler {
 
 		EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-		SextiarySectorAPI.addStaminaExhaustion(player, event.ammount * 5.0f);
+		SextiarySectorAPI.addStaminaExhaustion(player, event.ammount * 2.0f);
 
 	}
 
@@ -217,9 +217,9 @@ public class PlayerStatusEventHandler {
 			if (player.isPlayerFullyAsleep()) {
 
 				if (EntityPlayerManager.getMoistureStats(player).getMoistureLevel() > 4&& player.getFoodStats().getFoodLevel() > 4) {
-					EntityPlayerManager.getStaminaStats(player).addStats(1000,500);
+					EntityPlayerManager.getStaminaStats(player).addStats(100, 20.0f);
 				} else {
-					EntityPlayerManager.getStaminaStats(player).addStats(300,100);
+					EntityPlayerManager.getStaminaStats(player).addStats(40, 0.0f);
 				}
 				player.getFoodStats().addExhaustion(21.0f);
 				SextiarySectorAPI.addMoistureExhaustion(player, 21.0f);

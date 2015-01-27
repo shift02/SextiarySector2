@@ -34,7 +34,7 @@ public abstract class BlockFluidMachineBase  extends BlockContainer{
     @SideOnly(Side.CLIENT)
     private IIcon furnaceIconTop;
     @SideOnly(Side.CLIENT)
-    private IIcon[] furnaceIconFront = new IIcon[2];
+    private IIcon[] furnaceIconFront;
     @SideOnly(Side.CLIENT)
 	private IIcon furnaceIconTopOn;
 
@@ -155,6 +155,7 @@ public abstract class BlockFluidMachineBase  extends BlockContainer{
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("furnace_side");
+        this.furnaceIconFront = new IIcon[2];
         this.furnaceIconFront[0] = par1IconRegister.registerIcon("furnace_front_on");
         this.furnaceIconFront[1] = par1IconRegister.registerIcon("furnace_front_off");
         this.furnaceIconTop = par1IconRegister.registerIcon("sextiarysector:fluid_furnace_top");
@@ -260,7 +261,7 @@ public abstract class BlockFluidMachineBase  extends BlockContainer{
 
         if (tileentityfurnace.isFuel())
         {
-            int l = p_149734_1_.getBlockMetadata(p_149734_2_, p_149734_3_, p_149734_4_);
+            int l = tileentityfurnace.getDirection().ordinal();
             float f = (float)p_149734_2_ + 0.5F;
             float f1 = (float)p_149734_3_ + 0.0F + p_149734_5_.nextFloat() * 6.0F / 16.0F;
             float f2 = (float)p_149734_4_ + 0.5F;

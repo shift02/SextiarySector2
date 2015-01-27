@@ -59,5 +59,9 @@ public class CommonProxy {
 
     }
 
+	public Object getShiftHat(){
+		return null;
+	}
+
 
 }
