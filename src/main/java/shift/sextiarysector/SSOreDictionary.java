@@ -27,6 +27,13 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("containerWoodBowl", Items.bowl);
 		OreDictionary.registerOre("containerBucket", Items.bucket);
 
+		OreDictionary.registerOre("craftingString", new ItemStack(Items.string,1,0));
+
+		for(int i=0;i<16;i++){
+			OreDictionary.registerOre("craftingSmallCloth", new ItemStack(Blocks.wool,1,i));
+		}
+
+
 		OreDictionary.registerOre("fluidWater", Items.water_bucket);
 		OreDictionary.registerOre("fluidWater", new ItemStack(Items.potionitem, 1 ,0));
 
@@ -80,6 +87,12 @@ public class SSOreDictionary {
 
 		OreDictionary.registerOre("ringIron", SSItems.ironRing);
 
+		OreDictionary.registerOre("craftingSmallCloth", SSItems.cloth);
+		OreDictionary.registerOre("craftingCloth", SSItems.cloth);
+		OreDictionary.registerOre("craftingFilterCloth", SSItems.cloth);
+
+		OreDictionary.registerOre("craftingSmallCloth", SSItems.smallCloth);
+		OreDictionary.registerOre("craftingFilterCloth", SSItems.smallCloth);
 
 		//液体金属
 		OreDictionary.registerOre("fluidIron", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.iron.getID()));

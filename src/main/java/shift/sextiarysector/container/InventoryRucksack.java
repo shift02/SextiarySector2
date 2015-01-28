@@ -175,7 +175,7 @@ public class InventoryRucksack  implements IInventory
         if(inventoryPlayer instanceof InventoryPlayer){
         	((InventoryPlayer)inventoryPlayer).mainInventory[((InventoryPlayer)inventoryPlayer).currentItem] = result;
         }else if(inventoryPlayer instanceof InventoryPlayerNext){
-
+        	inventoryPlayer.setInventorySlotContents(EquipmentType.Bag.getSlot()[0], result);
         }
 
     }
