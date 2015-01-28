@@ -21,6 +21,7 @@ public class SSPlugins {
 	public static boolean modIC2;
 	public static boolean modTofu;
 	public static boolean modTcon;
+	public static boolean modCleaver;
 
 	public static void initModHelper() {
 
@@ -30,6 +31,7 @@ public class SSPlugins {
 		modIC2 = Loader.isModLoaded("IC2")  && Config.modIC2;
 		modTofu = Loader.isModLoaded("TofuCraft")  && Config.modTofu;
 		modTcon = Loader.isModLoaded("TConstruct")  && Config.modTcon;
+		modCleaver = Loader.isModLoaded("schr0.cleaver")  && Config.modCleaver;
 
 		if (modDCsAppleMilk) {
 
@@ -116,6 +118,21 @@ public class SSPlugins {
 			} catch (Exception e) {
 
 				SextiarySector.Log.log(Level.WARN, "TConstruct integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+				SextiarySector.Log.catching(e);
+
+			}
+		}
+
+		if (modCleaver) {
+
+			try {
+
+				SextiarySector.Log.info("Cleaver Plugin is loaded");
+				plugins.add(new PluginCleaver());
+
+			} catch (Exception e) {
+
+				SextiarySector.Log.log(Level.WARN, "Cleaver integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
 				SextiarySector.Log.catching(e);
 
 			}

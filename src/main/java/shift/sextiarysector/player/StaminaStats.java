@@ -19,7 +19,7 @@ public class StaminaStats {
     private float staminaSaturationLevel = 5.0F;
 
     //Packet用
-    private int lastStaminaLevel = 1000 ;
+    private int lastStaminaLevel = 100 ;
     private float lastSaturationLevel = 0;
 
     /** The player's food exhaustion. */

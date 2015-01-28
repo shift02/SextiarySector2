@@ -70,6 +70,7 @@ public class SextiarySector {
     	modules.add(ModuleAgriculture.getInstance());
     	modules.add(ModuleSandpit.getInstance());
 
+    	SSRecipes.deleteVanillaRecipe();
     	SSRecipes.initRecipeLists();
 
     	SextiarySectorAPI.playerManager = EntityPlayerManager.instance;

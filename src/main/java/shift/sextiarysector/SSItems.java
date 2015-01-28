@@ -107,6 +107,7 @@ public class SSItems {
 
 	//布
 	public static Item stringBobbin;
+	public static Item smallCloth;
 	public static Item cloth;
 	public static Item canvas;
 
@@ -342,6 +343,9 @@ public class SSItems {
 		//布
 		stringBobbin = new Item().setUnlocalizedName("ss.string_bobbin").setTextureName("sextiarysector:loom/string_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(stringBobbin, "StringBobbin");
+
+		smallCloth = new Item().setUnlocalizedName("ss.small_cloth").setTextureName("sextiarysector:loom/small_cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(smallCloth, "SmallCloth");
 
 		cloth = new Item().setUnlocalizedName("ss.cloth").setTextureName("sextiarysector:loom/cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(cloth, "Cloth");

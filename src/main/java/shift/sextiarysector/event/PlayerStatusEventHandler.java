@@ -7,10 +7,10 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
+import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.event.PlayerEatenEvent;
@@ -147,13 +147,14 @@ public class PlayerStatusEventHandler {
 	@SubscribeEvent
 	public void onLivingHurtEvent2(LivingHurtEvent event) {
 
+
 		if (event.entityLiving.worldObj.isRemote || !(event.entityLiving instanceof EntityPlayer)) {
 			return;
 		}
 
 		EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-		SextiarySectorAPI.addStaminaExhaustion(player, event.ammount * 2.0f);
+		SextiarySectorAPI.addStaminaExhaustion(player, event.ammount * 1.2f);
 
 	}
 
@@ -199,8 +200,40 @@ public class PlayerStatusEventHandler {
 
 	}
 
-	// ベットで回復
+
+	//ベットで回復
 	@SubscribeEvent
+	public void LivingSleepingEvent(PlayerWakeUpEvent event) {
+
+		if (event.entityPlayer.worldObj.isRemote) {
+			return;
+		}
+
+		if (!(event.entityPlayer instanceof EntityPlayer)) {
+			return;
+		}
+
+		if (!event.entityLiving.worldObj.isRemote) {
+
+			EntityPlayer player = (EntityPlayer) event.entityPlayer;
+
+
+			if (EntityPlayerManager.getMoistureStats(player).getMoistureLevel() > 4&& player.getFoodStats().getFoodLevel() > 4) {
+				EntityPlayerManager.getStaminaStats(player).addStats(100, 20.0f);
+			} else {
+				EntityPlayerManager.getStaminaStats(player).addStats(40, 0.0f);
+			}
+			player.getFoodStats().addExhaustion(21.0f);
+			SextiarySectorAPI.addMoistureExhaustion(player, 21.0f);
+
+
+		}
+
+	}
+
+
+	// ベットで回復
+	/*@SubscribeEvent
 	public void LivingSleepingEvent(LivingUpdateEvent event) {
 		if (event.entityLiving.worldObj.isRemote) {
 			return;
@@ -229,6 +262,6 @@ public class PlayerStatusEventHandler {
 
 		}
 
-	}
+	}*/
 
 }
