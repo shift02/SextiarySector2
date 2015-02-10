@@ -13,6 +13,7 @@ import shift.sextiarysector.container.ContainerMagicFurnace;
 import shift.sextiarysector.container.ContainerPlayerNext;
 import shift.sextiarysector.container.ContainerRucksack;
 import shift.sextiarysector.container.ContainerSimpleMachine;
+import shift.sextiarysector.container.ContainerSteamMotor;
 import shift.sextiarysector.container.ContainerTabWorkbench;
 import shift.sextiarysector.gui.GuiCraftFurnace;
 import shift.sextiarysector.gui.GuiFluidFurnace;
@@ -28,6 +29,7 @@ import shift.sextiarysector.gui.GuiPulverizer;
 import shift.sextiarysector.gui.GuiRollingMachine;
 import shift.sextiarysector.gui.GuiRucksack;
 import shift.sextiarysector.gui.GuiSawmill;
+import shift.sextiarysector.gui.GuiSteamMotor;
 import shift.sextiarysector.gui.GuiTabCrafting;
 import shift.sextiarysector.gui.GuiTimeMachine;
 import shift.sextiarysector.gui.IServerGuiElement;
@@ -39,6 +41,7 @@ import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
+import shift.sextiarysector.tileentity.TileEntitySteamMotor;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class SSGuiHandler implements IGuiHandler {
@@ -78,8 +81,11 @@ public class SSGuiHandler implements IGuiHandler {
 		case 50:
 		case 51:
 		case 52:
+		case 53:
+		case 54:
 			return new ContainerGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z));
 
+		case 60:return new ContainerSteamMotor(player.inventory, (TileEntitySteamMotor) world.getTileEntity(x, y, z));
 
 		case 90 : return new ContainerMagicFurnace(player.inventory, (TileEntityMagicFurnace) world.getTileEntity(x, y, z));
 
@@ -147,6 +153,10 @@ public class SSGuiHandler implements IGuiHandler {
 		case 50:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),1);
 		case 51:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),2);
 		case 52:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),3);
+		case 53:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),4);
+		case 54:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),5);
+
+		case 60:return new GuiSteamMotor(player.inventory, (TileEntitySteamMotor) world.getTileEntity(x, y, z));
 
 		case 90:return new GuiMagicFurnace(player.inventory, (TileEntityMagicFurnace) world.getTileEntity(x, y, z));
 

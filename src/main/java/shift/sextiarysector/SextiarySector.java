@@ -14,6 +14,7 @@ import shift.sextiarysector.item.GearForceItemManager;
 import shift.sextiarysector.module.IModule;
 import shift.sextiarysector.module.ModuleAgriculture;
 import shift.sextiarysector.module.ModuleChunkLoader;
+import shift.sextiarysector.module.ModuleFigure;
 import shift.sextiarysector.module.ModuleSandpit;
 import shift.sextiarysector.module.ModuleSeason;
 import shift.sextiarysector.module.ModuleStatistics;
@@ -69,6 +70,7 @@ public class SextiarySector {
     	modules.add(ModuleSeason.getInstance());
     	modules.add(ModuleAgriculture.getInstance());
     	modules.add(ModuleSandpit.getInstance());
+    	modules.add(ModuleFigure.getInstance());
 
     	SSRecipes.deleteVanillaRecipe();
     	SSRecipes.initRecipeLists();

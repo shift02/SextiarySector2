@@ -39,6 +39,13 @@ public class RecipesCore {
         	'y', "stickWood",
         	}));
 
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.fleshBobbin, 1),
+        		new Object[] {
+        	"xxx", "xyx", "xxx",
+        	'x', SSItems.dryingFlesh,
+        	'y', "stickWood",
+        	}));
+
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.woodHopper, 1),
         		new Object[] {
         	"y y", "yxy", " y ",

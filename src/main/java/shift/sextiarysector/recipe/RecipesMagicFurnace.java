@@ -13,6 +13,8 @@ public class RecipesMagicFurnace {
 		recipe.add(new ItemStack(Items.slime_ball,1),new ItemStack(Items.ender_pearl, 1));
 		recipe.add(new ItemStack(Items.gunpowder,1),new ItemStack(Items.blaze_powder, 1));
 
+		recipe.add("ingotSilver",new ItemStack(SSItems.mithrilIngot));
+
 		recipe.add("dustBluestone",new ItemStack(SSItems.blueStoneIngot));
 		recipe.add("dustYellowstone",new ItemStack(SSItems.yellowStoneIngot));
 

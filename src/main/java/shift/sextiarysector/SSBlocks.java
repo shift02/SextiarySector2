@@ -8,6 +8,7 @@ import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.block.BlockBlueFire;
 import shift.sextiarysector.block.BlockChunkLoader;
 import shift.sextiarysector.block.BlockFan;
+import shift.sextiarysector.block.BlockFigure;
 import shift.sextiarysector.block.BlockFluidCrafter;
 import shift.sextiarysector.block.BlockFluidFurnace;
 import shift.sextiarysector.block.BlockFoodSmokers;
@@ -22,6 +23,7 @@ import shift.sextiarysector.block.BlockMagiFurnace;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockPaddy;
 import shift.sextiarysector.block.BlockPowerStone;
+import shift.sextiarysector.block.BlockPump;
 import shift.sextiarysector.block.BlockSSChest;
 import shift.sextiarysector.block.BlockSSCrop;
 import shift.sextiarysector.block.BlockSSCrop.CropStatus;
@@ -31,22 +33,26 @@ import shift.sextiarysector.block.BlockSSFluid;
 import shift.sextiarysector.block.BlockSSOre;
 import shift.sextiarysector.block.BlockSSPane;
 import shift.sextiarysector.block.BlockSandpit;
+import shift.sextiarysector.block.BlockSaw;
 import shift.sextiarysector.block.BlockShaft;
 import shift.sextiarysector.block.BlockShippingBox;
 import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.block.BlockSmallWaterwheel;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.block.BlockSquare;
+import shift.sextiarysector.block.BlockSteamMotor;
 import shift.sextiarysector.block.BlockWindmill;
 import shift.sextiarysector.block.BlockWood;
 import shift.sextiarysector.block.BlockWoodHopper;
 import shift.sextiarysector.item.ItemBlockCrop;
 import shift.sextiarysector.item.ItemBlockDirection;
+import shift.sextiarysector.item.ItemBlockFigure;
 import shift.sextiarysector.item.ItemBlockFluidCrafter;
 import shift.sextiarysector.item.ItemBlockGearShaft;
 import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.tileentity.TileEntityFan;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
+import shift.sextiarysector.tileentity.TileEntityFigure;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
 import shift.sextiarysector.tileentity.TileEntityFoodSmokers;
@@ -58,13 +64,16 @@ import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
 import shift.sextiarysector.tileentity.TileEntityPaddy;
+import shift.sextiarysector.tileentity.TileEntityPump;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
+import shift.sextiarysector.tileentity.TileEntitySaw;
 import shift.sextiarysector.tileentity.TileEntityShaft;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
 import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector.tileentity.TileEntitySquare;
+import shift.sextiarysector.tileentity.TileEntitySteamMotor;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
 import shift.sextiarysector.tileentity.TileEntityWood;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -83,8 +92,6 @@ public class SSBlocks {
 	public static Block magicFurnace;
 	public static Block freezer;
 
-
-
 	//public static Block bottle;
 	public static Block fluidCrafter;
 
@@ -93,6 +100,8 @@ public class SSBlocks {
 	public static Block square;
 
 	public static Block blueFire;
+
+	public static Block figure;
 
 	//液体
 	public static Block drinkingWater;
@@ -124,15 +133,20 @@ public class SSBlocks {
 	public static Block smallWindmill;
 	public static Block windmill;
 	public static Block smallWaterwheel;
+	public static Block steamMotor;
 
 	public static Block millstone;
 	public static Block loom;
 
 	public static Block sawmill;
 
+	public static Block pump;
+
+
 	public static Block pulverizer;
 
 	public static Block fan;
+	public static Block saw;
 
 	public static Block rollingMachine;
 
@@ -159,6 +173,10 @@ public class SSBlocks {
 	//鉱石
 	public static Block blueStoneOre;
 	public static Block yellowStoneOre;
+
+	public static Block copperOre;
+	public static Block zincOre;
+	public static Block silverOre;
 
 	public static Block mithrilOre;
 	public static Block orichalcumOre;
@@ -282,6 +300,11 @@ public class SSBlocks {
 		blueFire = new BlockBlueFire().setBlockName("ss.blue_fire").setBlockTextureName("sextiarysector:blue_fire");
 		GameRegistry.registerBlock(blueFire, "BlueFire");
 
+
+		figure = new BlockFigure().setBlockName("ss.figure").setBlockTextureName("sextiarysector:figure").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(figure, ItemBlockFigure.class, "Figure");
+		GameRegistry.registerTileEntity(TileEntityFigure.class, "SSFigure");
+
 		drinkingWater = new BlockSSFluid(SSFluids.drinkingWater).setBlockName("ss.drinking_water").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(drinkingWater, "DrinkingWater");
 
@@ -291,6 +314,15 @@ public class SSBlocks {
 
 		yellowStoneOre = new BlockPowerStone().setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerBlock(yellowStoneOre, "YellowStoneOre");
+
+		copperOre = new BlockSSOre(null, 1).setBlockName("ss.copper_ore").setBlockTextureName("sextiarysector:ore/copper_ore");
+		GameRegistry.registerBlock(copperOre, "CopperOre");
+
+		zincOre = new BlockSSOre(null, 1).setBlockName("ss.zinc_ore").setBlockTextureName("sextiarysector:ore/zinc_ore");
+		GameRegistry.registerBlock(zincOre, "ZincOre");
+
+		silverOre = new BlockSSOre(null,2).setBlockName("ss.silver_ore").setBlockTextureName("sextiarysector:ore/silver_ore");
+		GameRegistry.registerBlock(silverOre, "SilverOre");
 
 		mithrilOre = new BlockSSOre(null,2).setBlockName("ss.mithril_ore").setBlockTextureName("sextiarysector:ore/mithril_ore");
 		GameRegistry.registerBlock(mithrilOre, "MithrilOre");
@@ -385,6 +417,11 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntitySmallWaterwheel.class, "SmallWaterwheel");
 		GameRegistry.registerBlock(smallWaterwheel, "SmallWaterwheel");
 
+		steamMotor = new BlockSteamMotor().setBlockName("ss.steam_motor").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerTileEntity(TileEntitySteamMotor.class, "SteamMotor");
+		GameRegistry.registerBlock(steamMotor, ItemBlockDirection.class, "SteamMotor");
+
+
 		GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "SimpleMachine");
 		millstone = new BlockSimpleMachine("millstone",20,SSRecipes.millstone,1).setBlockName("ss.millstone").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(millstone, "Millstone");
@@ -395,12 +432,20 @@ public class SSBlocks {
 		sawmill = new BlockSimpleMachine("sawmill",25,SSRecipes.sawmill,2).setBlockName("ss.sawmill").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(sawmill, "Sawmill");
 
+		pump = new BlockPump().setBlockTextureName("sextiarysector:machine/pump").setBlockName("ss.pump");
+		GameRegistry.registerTileEntity(TileEntityPump.class, "SSPump");
+		GameRegistry.registerBlock(pump,  "pump");
+
 		pulverizer = new BlockSimpleMachine("pulverizer",30,SSRecipes.pulverizer,3).setBlockName("ss.pulverizer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(pulverizer, "Pulverizer");
 
 		fan =  new BlockFan().setBlockName("ss.fan");
 		GameRegistry.registerTileEntity(TileEntityFan.class, "Fan");
 		GameRegistry.registerBlock(fan, ItemBlockDirection.class, "Fan");
+
+		saw = new BlockSaw().setBlockName("ss.saw");
+		GameRegistry.registerTileEntity(TileEntitySaw.class, "Saw");
+		GameRegistry.registerBlock(saw, ItemBlockDirection.class, "Saw");
 
 		rollingMachine = new BlockSimpleMachine("rolling_machine",35,SSRecipes.rollingMachine,4).setBlockName("ss.rolling_machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(rollingMachine, "RollingMachine");

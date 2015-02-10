@@ -21,6 +21,10 @@ public class WorldEventHandler {
 	private WorldGenMinable bluestoneGen;
 	private WorldGenMinable yellowstoneGen;
 
+	private WorldGenMinable copperOreGen;
+	private WorldGenMinable zincOreGen;
+	private WorldGenMinable silverOreGen;
+
 	private WorldGenMinable mithrilOreGen;
 	private WorldGenMinable orichalcumOreGen;
 
@@ -49,6 +53,10 @@ public class WorldEventHandler {
 		this.bluestoneGen = new WorldGenMinable(SSBlocks.blueStoneOre, 7);
 		this.yellowstoneGen = new WorldGenMinable(SSBlocks.yellowStoneOre, 7);
 
+		copperOreGen = new WorldGenMinable(SSBlocks.copperOre, 14);
+		zincOreGen = new WorldGenMinable(SSBlocks.zincOre, 8);
+		silverOreGen = new WorldGenMinable(SSBlocks.silverOre, 8);
+
 		mithrilOreGen = new WorldGenMinable(SSBlocks.mithrilOre, 8);
 		orichalcumOreGen = new WorldGenMinable(SSBlocks.orichalcumOre, 7);
 
@@ -59,6 +67,10 @@ public class WorldEventHandler {
 
 		this.genStandardOre1(8, this.bluestoneGen, 0, 16);
 		this.genStandardOre1(8, this.yellowstoneGen, 0, 16);
+
+		this.genStandardOre1(20, this.copperOreGen, 0, 64);
+		this.genStandardOre1(12, this.zincOreGen, 0, 64);
+		this.genStandardOre1(2, this.silverOreGen, 0, 32);
 
 		if(BiomeDictionary.isBiomeOfType(biome, MAGICAL)){
 			this.genStandardOre1(4, mithrilOreGen, 0, 32);

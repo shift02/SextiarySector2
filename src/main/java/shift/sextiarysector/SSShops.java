@@ -10,6 +10,7 @@ import shift.mceconomy2.api.shop.IProductList;
 import shift.mceconomy2.api.shop.ProductItem;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
+import shift.sextiarysector.item.ItemFigureBox;
 import shift.sextiarysector.item.ItemShopRing;
 
 public class SSShops {
@@ -30,6 +31,8 @@ public class SSShops {
 
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.seasonStone,1),3000));
 
+			creepers[i].addItemProduct(new ProductItem(((ItemFigureBox) SSItems.figureBox).getEditionFigureBox("figure_beginner"), 300));
+
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,0),500));
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,1),500));
 
@@ -41,6 +44,8 @@ public class SSShops {
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.cucumber,1),360));
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.rice,1),280));
+
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.mithrilIngot,1),1400));
 			}
 
 			if(i==1){
