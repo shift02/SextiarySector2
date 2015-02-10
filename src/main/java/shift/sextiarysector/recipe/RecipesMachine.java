@@ -48,7 +48,7 @@ public class RecipesMachine {
         //GF Block
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.smallWindmill, 1),
 				new Object[] { "xzx", "zyz","xzx",
-			Character.valueOf('y'), SSItems.blueStoneSlimeBall,
+			Character.valueOf('y'), SSBlocks.woodShaft,
 			Character.valueOf('x'), "plankWood",
 			Character.valueOf('z'), Blocks.wool
 			}));
@@ -61,14 +61,23 @@ public class RecipesMachine {
 
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.windmill, 1),
 				new Object[] { " x ", "xyx"," x ",
-			Character.valueOf('y'), SSItems.blueStoneSlimeBall,
+			Character.valueOf('y'), SSBlocks.stoneShaft,
 			Character.valueOf('x'), SSItems.canvas
 			}));
 
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.smallWaterwheel, 1),
 				new Object[] { "xxx", "xyx","xxx",
 			Character.valueOf('x'), "plateWood",
-			Character.valueOf('y'), SSBlocks.steelShaft
+			Character.valueOf('y'), SSBlocks.stoneShaft
+			}));
+
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.steamMotor, 1),
+				new Object[] { "xzx", "xyx","pbp",
+			Character.valueOf('x'), "paneGlassColorless",
+			Character.valueOf('y'), SSItems.energyReactor,
+			Character.valueOf('z'), SSBlocks.steelShaft,
+			Character.valueOf('b'), new ItemStack(SSItems.dustWaterLily,1,0),
+			Character.valueOf('p'), "ingotSteel"
 			}));
 
         for(int i=0;i<5;i++){
@@ -155,6 +164,15 @@ public class RecipesMachine {
 			Character.valueOf('x'), "plateWood",
 			Character.valueOf('z'), "stone",
 			Character.valueOf('a'), Blocks.iron_bars,
+			Character.valueOf('b'), SSBlocks.steelShaft
+			}));
+
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.saw, 1),
+				new Object[] { "yay", "zxz","zbz",
+			Character.valueOf('y'), "ingotBrass",
+			Character.valueOf('x'), "plateIron",
+			Character.valueOf('z'), "stone",
+			Character.valueOf('a'), "dustDiamond",
 			Character.valueOf('b'), SSBlocks.steelShaft
 			}));
 

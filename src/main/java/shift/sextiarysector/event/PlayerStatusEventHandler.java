@@ -7,6 +7,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
@@ -228,6 +229,39 @@ public class PlayerStatusEventHandler {
 
 
 		}
+
+	}
+
+	/** スタミナのボーナス */
+	@SubscribeEvent
+	public void livingDashEvent(LivingUpdateEvent event) {
+
+		//if (event.entityLiving.worldObj.isRemote) {
+		//	return;
+		//}
+
+		if (!(event.entityLiving instanceof EntityPlayer)) {
+			return;
+		}
+
+		EntityPlayer player = (EntityPlayer) event.entityLiving;
+
+		if(EntityPlayerManager.getStaminaStats(player).getStaminaLevel()<20){
+
+			player.motionX *= 0.5;
+			//player.motionY *= 0.5;
+			player.motionZ *= 0.5;
+
+		}else if(player.isSprinting() && !player.isAirBorne){
+
+			player.motionX *= 1.4;
+			//player.motionY *= 1.4;
+			player.motionZ *= 1.4;
+
+		}
+
+
+
 
 	}
 

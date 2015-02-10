@@ -26,6 +26,11 @@ public class TileEntityWindmill extends TileEntityDirection  implements IEnergyH
 
 	public void updateClientEntity()
 	{
+
+		if(!this.isWork()){
+			return;
+		}
+
 		if(this.rotateStep>360){
 			this.rotateStep-=360;
 		}
@@ -37,11 +42,35 @@ public class TileEntityWindmill extends TileEntityDirection  implements IEnergyH
 	public void updateServerEntity()
 	{
 		TileEntity t =this.worldObj.getTileEntity(xCoord-this.direction.offsetX, yCoord-this.direction.offsetY, zCoord-this.direction.offsetZ);
-		if(t!=null && t instanceof IEnergyHandler){
+		if(t!=null && t instanceof IEnergyHandler && this.isWork()){
 
 			((IEnergyHandler)t).addEnergy(this.direction, 2, 20, false);
 		}
 
+	}
+
+	boolean isWork(){
+
+		ForgeDirection d1 = this.getDirection().getRotation(ForgeDirection.UP);
+
+		int ra1 = 3;
+		for(int i=ra1*-1;i<=ra1;i++){
+
+			int ra2 = 3;
+			for(int j=ra2*-1;j<=ra2;j++){
+				int x = xCoord + d1.offsetX * j;
+				int y = yCoord + i;
+				int z = zCoord + d1.offsetZ * j;
+
+				if(i==0&& j == 0)continue;
+
+				if(!this.worldObj.isAirBlock(x, y, z))return false;
+
+			}
+
+		}
+
+		return true;
 	}
 
 	public float getRotateStep() {

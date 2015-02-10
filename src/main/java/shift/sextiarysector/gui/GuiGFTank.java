@@ -18,6 +18,8 @@ public class GuiGFTank  extends GUIGearMachine{
 	private static final ResourceLocation woodGuiTextures = new ResourceLocation("sextiarysector:textures/guis/machine/wood_gf_tank.png");
 	private static final ResourceLocation stoneGuiTextures = new ResourceLocation("sextiarysector:textures/guis/machine/stone_gf_tank.png");
 	private static final ResourceLocation steelGuiTextures = new ResourceLocation("sextiarysector:textures/guis/machine/steel_gf_tank.png");
+	private static final ResourceLocation ninjaGuiTextures = new ResourceLocation("sextiarysector:textures/guis/machine/ninja_gf_tank.png");
+	private static final ResourceLocation orichalcumGuiTextures = new ResourceLocation("sextiarysector:textures/guis/machine/orichalcum_gf_tank.png");
 	private int type;
     protected final TileEntityGFTank tankInventory;
     float s =0;
@@ -160,6 +162,8 @@ public class GuiGFTank  extends GUIGearMachine{
 		case 1:return this.woodGuiTextures;
 		case 2:return this.stoneGuiTextures;
 		case 3:return this.steelGuiTextures;
+		case 4:return this.ninjaGuiTextures;
+		case 5:return this.orichalcumGuiTextures;
 		}
 		return this.woodGuiTextures;
 	}

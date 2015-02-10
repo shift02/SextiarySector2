@@ -19,15 +19,18 @@ import shift.sextiarysector.renderer.block.RendererBlockBottle;
 import shift.sextiarysector.renderer.block.RendererChest;
 import shift.sextiarysector.renderer.block.RendererFan;
 import shift.sextiarysector.renderer.block.RendererFarmland;
+import shift.sextiarysector.renderer.block.RendererFigure;
 import shift.sextiarysector.renderer.block.RendererFluidCrafter;
 import shift.sextiarysector.renderer.block.RendererGearShaft;
 import shift.sextiarysector.renderer.block.RendererHole;
 import shift.sextiarysector.renderer.block.RendererMonitor;
 import shift.sextiarysector.renderer.block.RendererPaddy;
+import shift.sextiarysector.renderer.block.RendererSaw;
 import shift.sextiarysector.renderer.block.RendererShaft;
 import shift.sextiarysector.renderer.block.RendererSmallWaterwheel;
 import shift.sextiarysector.renderer.block.RendererSmallWindmill;
 import shift.sextiarysector.renderer.block.RendererSquare;
+import shift.sextiarysector.renderer.block.RendererSteamMotor;
 import shift.sextiarysector.renderer.block.RendererWindmill;
 import shift.sextiarysector.renderer.block.RendererWood;
 import shift.sextiarysector.renderer.block.RendererWoodHopper;
@@ -35,14 +38,17 @@ import shift.sextiarysector.renderer.entity.RenderMineboat;
 import shift.sextiarysector.renderer.item.RenderGF;
 import shift.sextiarysector.tileentity.TileEntityBlockBottle;
 import shift.sextiarysector.tileentity.TileEntityFan;
+import shift.sextiarysector.tileentity.TileEntityFigure;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
+import shift.sextiarysector.tileentity.TileEntitySaw;
 import shift.sextiarysector.tileentity.TileEntityShaft;
 import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector.tileentity.TileEntitySquare;
+import shift.sextiarysector.tileentity.TileEntitySteamMotor;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -80,8 +86,10 @@ public class ClientProxy extends CommonProxy{
 		this.smallWindMillType = RenderingRegistry.getNextAvailableRenderId();
 		this.windMillType = RenderingRegistry.getNextAvailableRenderId();
 		this.smallWaterwheel = RenderingRegistry.getNextAvailableRenderId();
+		this.steamMotorType = RenderingRegistry.getNextAvailableRenderId();
 
 		this.fanType = RenderingRegistry.getNextAvailableRenderId();
+		this.sawType = RenderingRegistry.getNextAvailableRenderId();
 
 		this.chestType = RenderingRegistry.getNextAvailableRenderId();
 
@@ -110,8 +118,10 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerBlockHandler(new RendererSmallWindmill());
 		RenderingRegistry.registerBlockHandler(new RendererWindmill());
 		RenderingRegistry.registerBlockHandler(new RendererSmallWaterwheel());
+		RenderingRegistry.registerBlockHandler(new RendererSteamMotor());
 
 		RenderingRegistry.registerBlockHandler(new RendererFan());
+		RenderingRegistry.registerBlockHandler(new RendererSaw());
 
 		RenderingRegistry.registerBlockHandler(new RendererChest());
 
@@ -137,6 +147,8 @@ public class ClientProxy extends CommonProxy{
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySquare.class, new RendererSquare());
 
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFigure.class, new RendererFigure());
+
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFluidCrafter.class, new RendererFluidCrafter());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGearShaft.class, new RendererGearShaft());
@@ -144,8 +156,10 @@ public class ClientProxy extends CommonProxy{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySmallWindmill.class, new RendererSmallWindmill());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, new RendererWindmill());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySmallWaterwheel.class, new RendererSmallWaterwheel());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySteamMotor.class, new RendererSteamMotor());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFan.class, new RendererFan());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySaw.class, new RendererSaw());
 
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySSChest.class, new RendererChest());

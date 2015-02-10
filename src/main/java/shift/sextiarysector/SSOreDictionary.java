@@ -37,6 +37,8 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("fluidWater", Items.water_bucket);
 		OreDictionary.registerOre("fluidWater", new ItemStack(Items.potionitem, 1 ,0));
 
+		OreDictionary.registerOre("craftingMagic", Items.nether_star);
+
 		//素材 プレート
 		OreDictionary.registerOre("plateWood", SSBlocks.woodOakPlate);
 		OreDictionary.registerOre("plateWood", SSBlocks.woodBirchPlate);
@@ -67,6 +69,8 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("dustIron", SSItems.ironDust);
 		OreDictionary.registerOre("dustGold", SSItems.goldDust);
 		OreDictionary.registerOre("dustDiamond", SSItems.diamondDust);
+		OreDictionary.registerOre("dustCopper", SSItems.copperDust);
+		OreDictionary.registerOre("dustZinc", SSItems.zincDust);
 		OreDictionary.registerOre("dustMithril", SSItems.mithrilDust);
 		OreDictionary.registerOre("dustBluestone", SSItems.blueStoneDust);
 		OreDictionary.registerOre("dustYellowstone", SSItems.yellowStoneDust);
@@ -76,9 +80,16 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("ingotBluestone", SSItems.blueStoneIngot);
 		OreDictionary.registerOre("ingotYellowstone", SSItems.yellowStoneIngot);
 		OreDictionary.registerOre("ingotNinja", SSItems.ninjaIngot);
+		OreDictionary.registerOre("ingotCopper", SSItems.copperIngot);
+		OreDictionary.registerOre("ingotZinc", SSItems.zincIngot);
+		OreDictionary.registerOre("ingotSilver", SSItems.silverIngot);
 		OreDictionary.registerOre("ingotMithril", SSItems.mithrilIngot);
 
 		OreDictionary.registerOre("gemOrichalcum", SSItems.orichalcumGem);
+
+		OreDictionary.registerOre("oreCopper", SSBlocks.copperOre);
+		OreDictionary.registerOre("oreZinc", SSBlocks.zincOre);
+		OreDictionary.registerOre("oreSilver", SSBlocks.silverOre);
 
 		OreDictionary.registerOre("oreMithril", SSBlocks.mithrilOre);
 

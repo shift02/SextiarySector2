@@ -9,6 +9,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+import shift.sextiarysector.SSFluids;
+import shift.sextiarysector.block.BlockBlueFire;
 
 public class TileEntitySquare extends TileEntityDirection  implements  IFluidHandler{
 
@@ -34,14 +36,17 @@ public class TileEntitySquare extends TileEntityDirection  implements  IFluidHan
 
 	private void updateServerEntity() {
 
-		if((lastFluid)!=(tank.getFluidAmount()/100)){
-			this.lastFluid = (tank.getFluidAmount()/100);
+		if((lastFluid)!=(tank.getFluidAmount()/10)){
+			this.lastFluid = (tank.getFluidAmount()/10);
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 
 		if(this.direction.ordinal() != ForgeDirection.UP.ordinal() && this.tank.getFluidAmount() > 0)this.chargeFluid();
+		if(canChargeSteam())this.chargeSteam();
 
 	}
+
+
 
 	private void chargeFluid(){
 
@@ -52,6 +57,26 @@ public class TileEntitySquare extends TileEntityDirection  implements  IFluidHan
 				FluidStack fs = this.tank.getFluid().copy();
 				if(fs.amount> 500)fs.amount=500;
 				int i = f.fill(this.getDirection().getOpposite(), fs, true);
+				this.tank.drain(i, true);
+				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			}
+
+		}
+
+	}
+
+	private boolean canChargeSteam(){
+		return this.tank.getFluidAmount() >= 10 && this.tank.getFluid().getFluid().getName().equals("water") && this.worldObj.getBlock(xCoord, yCoord - 1, zCoord) instanceof BlockBlueFire;
+	}
+
+	private void chargeSteam(){
+
+		if(this.worldObj.getTileEntity(xCoord, yCoord  + 1, zCoord) instanceof IFluidHandler){
+			IFluidHandler f = (IFluidHandler) this.worldObj.getTileEntity(xCoord, yCoord  + 1, zCoord);
+
+			if(f.canFill(ForgeDirection.DOWN, SSFluids.steam)){
+				FluidStack fs = new FluidStack(SSFluids.steam, 10);
+				int i = f.fill(ForgeDirection.DOWN, fs, true);
 				this.tank.drain(i, true);
 				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			}

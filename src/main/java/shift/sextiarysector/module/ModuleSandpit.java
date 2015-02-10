@@ -36,17 +36,20 @@ public class ModuleSandpit implements IModule {
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
 
-		BlockSandpit.addShell(new ItemStack(Items.stick), 20);
+		BlockSandpit.addShell(new ItemStack(Items.stick), 25);
 
-		BlockSandpit.addShell(new ItemStack(Items.glass_bottle), 2);
+		BlockSandpit.addShell(new ItemStack(Items.glass_bottle), 7);
 
-		BlockSandpit.addShell(new ShellEntry(new ItemStack(Items.book), 3).setEnchant());
+		BlockSandpit.addShell(new ShellEntry(new ItemStack(Items.book), 5).setEnchant());
 
-		BlockSandpit.addShell(new ItemStack(SSItems.laver), 12);
+		BlockSandpit.addShell(new ItemStack(SSItems.laver), 16);
 
-		BlockSandpit.addShell(new ItemStack(Items.redstone), 3);
-		BlockSandpit.addShell(new ItemStack(SSItems.blueStoneDust), 3);
-		BlockSandpit.addShell(new ItemStack(SSItems.yellowStoneDust), 3);
+		BlockSandpit.addShell(new ItemStack(Items.redstone), 5);
+		BlockSandpit.addShell(new ItemStack(SSItems.blueStoneDust), 5);
+		BlockSandpit.addShell(new ItemStack(SSItems.yellowStoneDust), 5);
+
+		BlockSandpit.addShell(new ItemStack(SSItems.mithrilDust), 3);
+		BlockSandpit.addShell(new ItemStack(SSItems.orichalcumGem), 1);
 
 	}
 

@@ -2,7 +2,6 @@ package shift.sextiarysector.player;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import shift.sextiarysector.Config;
 import cpw.mods.fml.relauncher.Side;
@@ -85,9 +84,9 @@ public class StaminaStats {
             {
                 if (par1EntityPlayer.getHealth() > 10.0F || i.getDifficultyId() >= 3 || par1EntityPlayer.getHealth() > 1.0F && i.getDifficultyId() >= 2)
                 {
-                	if(!par1EntityPlayer.isPlayerSleeping()){
-                		par1EntityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
-                	}
+                	//if(!par1EntityPlayer.isPlayerSleeping()){
+                	//	par1EntityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
+                	//}
                     //par1EntityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
                 }
 

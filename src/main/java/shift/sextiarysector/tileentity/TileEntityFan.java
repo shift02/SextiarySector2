@@ -90,7 +90,7 @@ public class TileEntityFan extends TileEntityDirection  implements IEnergyHandle
 
 	}
 
-	private boolean canWork(){
+	public boolean canWork(){
 
 		return speed >= 14;
 
