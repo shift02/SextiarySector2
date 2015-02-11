@@ -34,7 +34,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	//public static final String MODID = "SextiarySector";
-    public static final String VERSION = "2.1.3";
+    public static final String VERSION = "2.1.4";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;

@@ -3,6 +3,7 @@ package shift.sextiarysector;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.block.BlockBlueFire;
@@ -213,6 +214,8 @@ public class SSBlocks {
 
 	public static Block rice;
 
+	public static Block redMushroom;
+
 
 	//水産
 	public static Block sandpit;
@@ -254,7 +257,7 @@ public class SSBlocks {
 		GameRegistry.registerBlock(fluidCrafter, ItemBlockFluidCrafter.class, "FluidCrafter");
 		GameRegistry.registerTileEntity(TileEntityFluidCrafter.class, "FluidCrafter");
 
-		hole = new BlockHole().setBlockName("ss.hole").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		hole = new BlockHole().setBlockName("ss.hole").setBlockTextureName("dirt").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(hole, "Hole");
 
 		woodHopper = new BlockWoodHopper().setBlockName("ss.wood_hopper").setCreativeTab(SextiarySectorAPI.TabSSCore);
@@ -439,11 +442,11 @@ public class SSBlocks {
 		pulverizer = new BlockSimpleMachine("pulverizer",30,SSRecipes.pulverizer,3).setBlockName("ss.pulverizer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(pulverizer, "Pulverizer");
 
-		fan =  new BlockFan().setBlockName("ss.fan");
+		fan =  new BlockFan().setBlockName("ss.fan").setBlockTextureName("stone");
 		GameRegistry.registerTileEntity(TileEntityFan.class, "Fan");
 		GameRegistry.registerBlock(fan, ItemBlockDirection.class, "Fan");
 
-		saw = new BlockSaw().setBlockName("ss.saw");
+		saw = new BlockSaw().setBlockName("ss.saw").setBlockTextureName("stone");
 		GameRegistry.registerTileEntity(TileEntitySaw.class, "Saw");
 		GameRegistry.registerBlock(saw, ItemBlockDirection.class, "Saw");
 
@@ -464,12 +467,11 @@ public class SSBlocks {
 		GameRegistry.registerBlock(monitor,ItemBlockMonitor.class, "Monitor");
 		GameRegistry.registerTileEntity(TileEntityMonitor.class, "SSMonitor");
 
-
 		farmland = new BlockSSFarmland().setBlockName("ss.farmland").setBlockTextureName("farmland").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
 		GameRegistry.registerBlock(farmland,"Farmland");
 		GameRegistry.registerTileEntity(TileEntityFarmland.class, "SSFarmland");
 
-		paddy = new BlockPaddy().setBlockName("ss.paddy").setBlockTextureName("farmland").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
+		paddy = new BlockPaddy().setBlockName("ss.paddy").setBlockTextureName("dirt").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
 		GameRegistry.registerBlock(paddy, "Paddy");
 		GameRegistry.registerTileEntity(TileEntityPaddy.class, "SSPaddy");
 
@@ -519,6 +521,9 @@ public class SSBlocks {
 		///28,46,68
 		rice = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{28,46,68},Season.SPRING,Season.SUMMER,Season.AUTUMN), paddy, SSItems.rice, false).setBlockName("ss.rice").setBlockTextureName("rice");
 		GameRegistry.registerBlock(rice,ItemBlockCrop.class,"BlockRice");
+
+		redMushroom = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{6,8,14},Season.SPRING,Season.SUMMER), wood, Item.getItemFromBlock(Blocks.red_mushroom), false).setBlockName("ss.mushroom_red").setBlockTextureName("mushroom_red");
+		GameRegistry.registerBlock(redMushroom, ItemBlockCrop.class, "BlockRedMushroom");
 
 
 		//水産

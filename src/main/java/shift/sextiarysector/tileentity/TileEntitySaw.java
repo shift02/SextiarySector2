@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
@@ -83,7 +84,7 @@ public class TileEntitySaw  extends TileEntityDirection  implements IEnergyHandl
 
 		Block b = this.worldObj.getBlock(xCoord + this.getDirection().offsetX, yCoord + this.getDirection().offsetY, zCoord + this.getDirection().offsetZ);
 
-		if(b != null && b.isNormalCube()){
+		if(b != null && b.isNormalCube() && b.getBlockHardness(worldObj, xCoord + this.getDirection().offsetX, yCoord + this.getDirection().offsetY, zCoord + this.getDirection().offsetZ) != -1.0f){
 			this.worldObj.func_147480_a(this.xCoord + this.getDirection().offsetX, this.yCoord + this.getDirection().offsetY, this.zCoord + this.getDirection().offsetZ, true);
 			this.worldObj.removeTileEntity(xCoord + this.getDirection().offsetX, yCoord + this.getDirection().offsetY, zCoord + this.getDirection().offsetZ);
 		}
@@ -97,6 +98,7 @@ public class TileEntitySaw  extends TileEntityDirection  implements IEnergyHandl
 		List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)null, aabb, null);
 
 		for(Entity e :list){
+			if(e instanceof EntityItem)continue;
 			e.attackEntityFrom(DamageSource.cactus, 1.0f);
 		}
 

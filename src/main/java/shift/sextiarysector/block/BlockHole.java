@@ -1,5 +1,6 @@
 package shift.sextiarysector.block;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -94,6 +95,15 @@ public class BlockHole extends Block {
 		}
 
 	}
+
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    {
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+
+        ret.add(new ItemStack(Blocks.dirt, 1));
+
+        return ret;
+    }
 
 	//当たり判定
 	public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
