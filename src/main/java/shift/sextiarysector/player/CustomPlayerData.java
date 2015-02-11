@@ -6,8 +6,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import shift.sextiarysector.packet.SSPacketHandler;
 import shift.sextiarysector.packet.PacketPlayerData;
+import shift.sextiarysector.packet.SSPacketHandler;
 
 public class CustomPlayerData implements IExtendedEntityProperties{
 
@@ -53,7 +53,7 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 
 		this.moisture.readNBT(compound);
 
-		this.moisture.readNBT(compound);
+		this.stamina.readNBT(compound);
 
 		this.equipment.readNBT(compound);
 

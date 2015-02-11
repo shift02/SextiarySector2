@@ -26,10 +26,23 @@ public class RecipesCore {
         	'x', "paneGlassColorless",
         	}));
 
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.smallCloth, 1),
+        		new Object[] {
+        	"xx", "xx",
+        	'x', "craftingString",
+        	}));
+
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.stringBobbin, 1),
         		new Object[] {
         	"xxx", "xyx", "xxx",
         	'x', Items.string,
+        	'y', "stickWood",
+        	}));
+
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.fleshBobbin, 1),
+        		new Object[] {
+        	"xxx", "xyx", "xxx",
+        	'x', SSItems.dryingFlesh,
         	'y', "stickWood",
         	}));
 

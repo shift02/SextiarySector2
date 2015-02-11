@@ -14,6 +14,7 @@ import shift.sextiarysector.item.GearForceItemManager;
 import shift.sextiarysector.module.IModule;
 import shift.sextiarysector.module.ModuleAgriculture;
 import shift.sextiarysector.module.ModuleChunkLoader;
+import shift.sextiarysector.module.ModuleFigure;
 import shift.sextiarysector.module.ModuleSandpit;
 import shift.sextiarysector.module.ModuleSeason;
 import shift.sextiarysector.module.ModuleStatistics;
@@ -33,7 +34,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	//public static final String MODID = "SextiarySector";
-    public static final String VERSION = "2.1.3";
+    public static final String VERSION = "2.1.4";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
@@ -69,7 +70,9 @@ public class SextiarySector {
     	modules.add(ModuleSeason.getInstance());
     	modules.add(ModuleAgriculture.getInstance());
     	modules.add(ModuleSandpit.getInstance());
+    	modules.add(ModuleFigure.getInstance());
 
+    	SSRecipes.deleteVanillaRecipe();
     	SSRecipes.initRecipeLists();
 
     	SextiarySectorAPI.playerManager = EntityPlayerManager.instance;

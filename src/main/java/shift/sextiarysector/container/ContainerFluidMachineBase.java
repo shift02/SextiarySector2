@@ -173,19 +173,19 @@ public class ContainerFluidMachineBase extends Container
                         return null;
                     }
                 }
-                else if (p_82846_2_ >= 3 && p_82846_2_ < 30)
+                else if (p_82846_2_ >= 6 && p_82846_2_ < 33)
                 {
-                    if (!this.mergeItemStack(itemstack1, 30, 39, false))
+                    if (!this.mergeItemStack(itemstack1, 33, 42, false))
                     {
                         return null;
                     }
                 }
-                else if (p_82846_2_ >= 30 && p_82846_2_ < 39 && !this.mergeItemStack(itemstack1, 3, 30, false))
+                else if (p_82846_2_ >= 33 && p_82846_2_ < 42 && !this.mergeItemStack(itemstack1, 6, 33, false))
                 {
                     return null;
                 }
             }
-            else if (!this.mergeItemStack(itemstack1, 3, 39, false))
+            else if (!this.mergeItemStack(itemstack1, 6, 42, false))
             {
                 return null;
             }

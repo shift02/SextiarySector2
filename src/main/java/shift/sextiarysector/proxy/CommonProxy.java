@@ -22,8 +22,10 @@ public class CommonProxy {
 	public int smallWindMillType;
 	public int windMillType;
 	public int smallWaterwheel;
+	public int steamMotorType;
 
 	public int fanType;
+	public int sawType;
 
 	public int monitorType;
 
@@ -58,6 +60,10 @@ public class CommonProxy {
     {
 
     }
+
+	public Object getShiftHat(){
+		return null;
+	}
 
 
 }

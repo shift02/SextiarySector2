@@ -33,7 +33,7 @@ public abstract class BlockSimpleFurnace  extends BlockContainer{
     @SideOnly(Side.CLIENT)
     private IIcon furnaceIconTop;
     @SideOnly(Side.CLIENT)
-    private IIcon[] furnaceIconFront = new IIcon[2];
+    private IIcon[] furnaceIconFront;
 
     private int GUIID;
 
@@ -157,6 +157,7 @@ public abstract class BlockSimpleFurnace  extends BlockContainer{
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon(this.getTextureName()+"_side");
+        this.furnaceIconFront = new IIcon[2];
         this.furnaceIconFront[0] = par1IconRegister.registerIcon(this.getTextureName()+"_front_on");
         this.furnaceIconFront[1] = par1IconRegister.registerIcon(this.getTextureName()+"_front_off");
         this.furnaceIconTop = par1IconRegister.registerIcon(this.getTextureName()+"_top");

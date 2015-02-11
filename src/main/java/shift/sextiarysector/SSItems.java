@@ -9,6 +9,7 @@ import shift.sextiarysector.item.ItemBottle;
 import shift.sextiarysector.item.ItemCalendar;
 import shift.sextiarysector.item.ItemCrop;
 import shift.sextiarysector.item.ItemDrink;
+import shift.sextiarysector.item.ItemFigureBox;
 import shift.sextiarysector.item.ItemFoodCrop;
 import shift.sextiarysector.item.ItemFoodDrink;
 import shift.sextiarysector.item.ItemGFContactLenses;
@@ -69,6 +70,9 @@ public class SSItems {
 	public static Item goldDust;
 	public static Item diamondDust;
 
+	public static Item copperDust;
+	public static Item zincDust;
+
 	public static Item mithrilDust;
 
 	public static Item steelIngot;
@@ -76,6 +80,10 @@ public class SSItems {
 
 	public static Item blueStoneIngot;
 	public static Item yellowStoneIngot;
+
+	public static Item copperIngot;
+	public static Item zincIngot;
+	public static Item silverIngot;
 
 	public static Item mithrilIngot;
 	public static Item orichalcumGem;
@@ -107,10 +115,15 @@ public class SSItems {
 
 	//布
 	public static Item stringBobbin;
+	public static Item smallCloth;
 	public static Item cloth;
 	public static Item canvas;
+	public static Item dryingFlesh;
+	public static Item fleshBobbin;
 
 	//public static Item bottle;
+
+	public static Item figureBox;
 
 	//道具
 	public static Item woodScoop;
@@ -279,6 +292,12 @@ public class SSItems {
 		diamondDust = new Item().setUnlocalizedName("ss.diamond_dust").setTextureName("sextiarysector:dust/diamond_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(diamondDust, "DiamondDust");
 
+		copperDust = new Item().setUnlocalizedName("ss.copper_dust").setTextureName("sextiarysector:dust/copper_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(copperDust, "CopperDust");
+
+		zincDust = new Item().setUnlocalizedName("ss.zinc_dust").setTextureName("sextiarysector:dust/zinc_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(zincDust, "ZincDust");
+
 		mithrilDust = new Item().setUnlocalizedName("ss.mithril_dust").setTextureName("sextiarysector:dust/mithril_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(mithrilDust, "MithrilDust");
 
@@ -294,6 +313,16 @@ public class SSItems {
 
 		yellowStoneIngot = new Item().setUnlocalizedName("ss.yellowstone_ingot").setTextureName("sextiarysector:ingot/yellowstone_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(yellowStoneIngot, "YellowStoneIngot");
+
+		copperIngot = new Item().setUnlocalizedName("ss.copper_ingot").setTextureName("sextiarysector:ingot/copper_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(copperIngot, "CopperIngot");
+
+		zincIngot = new Item().setUnlocalizedName("ss.zinc_ingot").setTextureName("sextiarysector:ingot/zinc_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(zincIngot, "ZincIngot");
+
+		silverIngot = new Item().setUnlocalizedName("ss.silver_ingot").setTextureName("sextiarysector:ingot/silver_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(silverIngot, "SilverIngot");
+
 
 		mithrilIngot = new Item().setUnlocalizedName("ss.mithril_ingot").setTextureName("sextiarysector:ingot/mithril_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(mithrilIngot, "MithrilIngot");
@@ -343,15 +372,26 @@ public class SSItems {
 		stringBobbin = new Item().setUnlocalizedName("ss.string_bobbin").setTextureName("sextiarysector:loom/string_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(stringBobbin, "StringBobbin");
 
+		smallCloth = new Item().setUnlocalizedName("ss.small_cloth").setTextureName("sextiarysector:loom/small_cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(smallCloth, "SmallCloth");
+
 		cloth = new Item().setUnlocalizedName("ss.cloth").setTextureName("sextiarysector:loom/cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(cloth, "Cloth");
 
 		canvas = new Item().setUnlocalizedName("ss.canvas").setTextureName("sextiarysector:loom/canvas").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(canvas, "Canvas");
 
+		dryingFlesh = new Item().setUnlocalizedName("ss.drying_flesh").setTextureName("sextiarysector:loom/drying_flesh").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(dryingFlesh, "DryingFlesh");
+
+		fleshBobbin = new Item().setUnlocalizedName("ss.flesh_bobbin").setTextureName("sextiarysector:loom/flesh_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(fleshBobbin, "FleshBobbin");
+
 		//bottle  = new ItemBlockBottle().setUnlocalizedName("ss.bottle").setTextureName("sextiarysector:drink/empty_bottle");
 		//GameRegistry.registerItem(bottle, "Bottle");
 
+		figureBox = new ItemFigureBox().setUnlocalizedName("ss.figure_box").setTextureName("sextiarysector:figure_box").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(figureBox, "FigureBox");
 
 		//道具
 		woodScoop = new ItemScoop(ToolMaterial.WOOD).setUnlocalizedName("ss.wood_scoop").setTextureName("wood_scoop");

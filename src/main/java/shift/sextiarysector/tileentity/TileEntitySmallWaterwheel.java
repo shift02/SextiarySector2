@@ -45,7 +45,7 @@ public class TileEntitySmallWaterwheel extends TileEntityDirection implements IE
 		TileEntity t =this.worldObj.getTileEntity(xCoord-this.direction.offsetX, yCoord-this.direction.offsetY, zCoord-this.direction.offsetZ);
 		if(t!=null && t instanceof IEnergyHandler && this.isWork()){
 
-			((IEnergyHandler)t).addEnergy(this.direction, 3, 20, false);
+			((IEnergyHandler)t).addEnergy(this.direction, 2, 40, false);
 		}
 
 	}
@@ -59,11 +59,30 @@ public class TileEntitySmallWaterwheel extends TileEntityDirection implements IE
 		ForgeDirection d1 = this.getDirection().getRotation(ForgeDirection.UP);
 		ForgeDirection d2 = this.getDirection().getRotation(ForgeDirection.UP).getOpposite();
 
-		Block b1 = this.getWorldObj().getBlock(xCoord + d1.offsetX, yCoord - 1, zCoord + d1.offsetZ);
-		Block b2 = this.getWorldObj().getBlock(xCoord, yCoord - 1, zCoord);
-		Block b3 = this.getWorldObj().getBlock(xCoord + d2.offsetX, yCoord - 1, zCoord + d1.offsetZ);
+		for(int i=0;i<2;i++){
 
-		if(!(b1 instanceof BlockLiquid) || !(b2 instanceof BlockLiquid) || !(b3 instanceof BlockLiquid)){
+			int ra = 1;
+			for(int j=ra*-1;j<=ra;j++){
+				int x = xCoord + d1.offsetX * j;
+				int y = yCoord + i;
+				int z = zCoord + d1.offsetZ * j;
+
+				if(i==0&& j == 0)continue;
+
+				if(!this.worldObj.isAirBlock(x, y, z))return false;
+
+			}
+
+
+
+		}
+
+
+		Block b31 = this.getWorldObj().getBlock(xCoord + d1.offsetX, yCoord - 1, zCoord + d1.offsetZ);
+		Block b32 = this.getWorldObj().getBlock(xCoord, yCoord - 1, zCoord);
+		Block b33 = this.getWorldObj().getBlock(xCoord + d2.offsetX, yCoord - 1, zCoord + d1.offsetZ);
+
+		if(!(b31 instanceof BlockLiquid) || !(b32 instanceof BlockLiquid) || !(b33 instanceof BlockLiquid)){
 			return false;
 		}
 

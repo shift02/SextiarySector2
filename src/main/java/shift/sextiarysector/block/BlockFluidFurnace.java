@@ -35,7 +35,7 @@ public class BlockFluidFurnace extends BlockFluidMachineBase{
     @SideOnly(Side.CLIENT)
     private IIcon furnaceIconTop;
     @SideOnly(Side.CLIENT)
-    private IIcon[] furnaceIconFront = new IIcon[2];
+    private IIcon[] furnaceIconFront;
     @SideOnly(Side.CLIENT)
 	private IIcon furnaceIconTopOn;
 
@@ -157,6 +157,7 @@ public class BlockFluidFurnace extends BlockFluidMachineBase{
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("furnace_side");
+        this.furnaceIconFront = new IIcon[2];
         this.furnaceIconFront[0] = par1IconRegister.registerIcon("furnace_front_on");
         this.furnaceIconFront[1] = par1IconRegister.registerIcon("furnace_front_off");
         this.furnaceIconTop = par1IconRegister.registerIcon("sextiarysector:fluid_furnace_top");
@@ -259,44 +260,6 @@ public class BlockFluidFurnace extends BlockFluidMachineBase{
         }
 
 	}
-
-	@SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
-    {
-		TileEntityFluidMachineBase tileentityfurnace = (TileEntityFluidMachineBase)p_149734_1_.getTileEntity(p_149734_2_, p_149734_3_, p_149734_4_);
-
-
-        if (tileentityfurnace.isFuel())
-        {
-            int l = p_149734_1_.getBlockMetadata(p_149734_2_, p_149734_3_, p_149734_4_);
-            float f = (float)p_149734_2_ + 0.5F;
-            float f1 = (float)p_149734_3_ + 0.0F + p_149734_5_.nextFloat() * 6.0F / 16.0F;
-            float f2 = (float)p_149734_4_ + 0.5F;
-            float f3 = 0.52F;
-            float f4 = p_149734_5_.nextFloat() * 0.6F - 0.3F;
-
-            if (l == 4)
-            {
-                p_149734_1_.spawnParticle("smoke", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
-                p_149734_1_.spawnParticle("flame", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
-            }
-            else if (l == 5)
-            {
-                p_149734_1_.spawnParticle("smoke", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
-                p_149734_1_.spawnParticle("flame", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
-            }
-            else if (l == 2)
-            {
-                p_149734_1_.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
-                p_149734_1_.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
-            }
-            else if (l == 3)
-            {
-                p_149734_1_.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
-                p_149734_1_.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
-            }
-        }
-    }
 
 	@Override
 	public boolean hasComparatorInputOverride()

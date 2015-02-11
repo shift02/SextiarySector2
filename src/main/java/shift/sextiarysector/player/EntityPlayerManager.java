@@ -24,7 +24,7 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 	private final static int MAX_MOISTURE_LEVEL = 20;
 	private final static int MAX_PREVMOISTURE_LEVEL = 20;
 
-	private final static int MAX_STAMINA_LEVEL = 1000;
+	private final static int MAX_STAMINA_LEVEL = 100;
 	private final static int MAX_PREV_STAMINA_LEVEL = 20;
 
 	/*

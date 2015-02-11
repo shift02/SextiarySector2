@@ -33,7 +33,7 @@ public class BlockLargeFurnace extends BlockContainer{
     @SideOnly(Side.CLIENT)
     private IIcon furnaceIconTop;
     @SideOnly(Side.CLIENT)
-    private IIcon[] furnaceIconFront = new IIcon[2];
+    private IIcon[] furnaceIconFront;
 
     private int GUIID;
 
@@ -128,10 +128,6 @@ public class BlockLargeFurnace extends BlockContainer{
 
     @Override
 	@SideOnly(Side.CLIENT)
-
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
     public IIcon getIcon(int par1, int par2)
     {
 
@@ -139,6 +135,7 @@ public class BlockLargeFurnace extends BlockContainer{
 
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess p_149673_1_, int x, int y, int z, int side)
     {
@@ -154,14 +151,10 @@ public class BlockLargeFurnace extends BlockContainer{
 
     @Override
 	@SideOnly(Side.CLIENT)
-
-    /**
-     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
-     * is the only chance you get to register icons.
-     */
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("furnace_side");
+        this.furnaceIconFront = new IIcon[2];
         this.furnaceIconFront[0] = par1IconRegister.registerIcon("furnace_front_on");
         this.furnaceIconFront[1] = par1IconRegister.registerIcon("furnace_front_off");
         this.furnaceIconTop = par1IconRegister.registerIcon("sextiarysector:furnace_top");

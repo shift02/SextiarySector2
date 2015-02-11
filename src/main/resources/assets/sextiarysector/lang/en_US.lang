@@ -34,10 +34,13 @@ tile.ss.wood_hopper.name=Wood Hopper
 
 tile.ss.chunk_loader.name=Time Loader
 
+tile.ss.figure.name=Figure
+
 
 tile.ss.small_windmill.name=Small Windmill
 tile.ss.windmill.name=Windmill
 tile.ss.small_waterwheel.name=Small Waterwheel
+tile.ss.steam_motor.name=Steam Motor
 
 tile.ss.wood_shaft.name=Wood Shaft
 tile.ss.stone_shaft.name=Stone Shaft
@@ -69,10 +72,17 @@ tile.ss.pulverizer.name=Pulverizer
 tile.ss.rolling_machine.name=Rolling Machine
 tile.ss.time_machine.name=Time Machine
 
+
 tile.ss.fan.name=Fan
+tile.ss.saw.name=Saw
+tile.ss.pump.name=Pump
 
 tile.ss.blue_stone.name=Blue Stone Ore
 tile.ss.yellow_stone.name=Yellow Stone Ore
+
+tile.ss.copper_ore.name=Copper Ore
+tile.ss.zinc_ore.name=Zinc Ore
+tile.ss.silver_ore.name=Silver Ore
 
 tile.ss.mithril_ore.name=Mithril Ore
 tile.ss.orichalcum_ore.name=Orichalcum Ore
@@ -101,6 +111,8 @@ tile.ss.radish.name=Radish Seed
 
 tile.ss.rice.name=Rice Seed
 
+tile.ss.mushroom_red.name=Red Mushroom Seed
+
 tile.ss.sandpit.name=Sandpit
 
 tile.ss.monitor.name=Monitor
@@ -124,6 +136,9 @@ item.ss.iron_dust.name=Iron Dust
 item.ss.gold_dust.name=Gold Dust
 item.ss.diamond_dust.name=Diamond Dust
 
+item.ss.copper_dust.name=Copper Dust
+item.ss.zinc_dust.name=Zinc Dust
+
 item.ss.mithril_dust.name=Mithril Dust
 
 
@@ -132,6 +147,10 @@ item.ss.brass_ingot.name=Brass Ingot
 
 item.ss.bluestone_ingot.name=Blue Stone Ingot
 item.ss.yellowstone_ingot.name=Yellow Stone Ingot
+
+item.ss.copper_ingot.name=Copper Ingot
+item.ss.zinc_ingot.name=Zinc Ingot
+item.ss.silver_ingot.name=Silver Ingot
 
 item.ss.mithril_ingot.name=Mithril Ingot
 item.ss.orichalcum_gem.name=Orichalcum
@@ -189,7 +208,12 @@ item.ss.season_stone_winter.name=Season Stone -Winter-
 
 item.ss.string_bobbin.name=String Bobbin
 item.ss.cloth.name=Cloth
+item.ss.small_cloth.name=Small Cloth
 item.ss.canvas.name=Canvas
+item.ss.drying_flesh.name=Drying Flesh
+item.ss.flesh_bobbin.name=Flesh Bobbin
+
+item.ss.figure_box.name=Figure Box
 
 
 item.ss.wood_scoop.name=Wood Scoop
@@ -287,6 +311,8 @@ gui.ss.freezer=Freezer
 
 gui.ss.rucksack=Rucksack
 
+gui.ss.steam_motor=Steam Motor
+
 gui.ss.millstone=Millstone
 gui.ss.loom=Loom
 gui.ss.sawmill=Sawmill
@@ -297,6 +323,8 @@ gui.ss.time_machine=Time Machine
 gui.ss.gf_tank_1=Wood GF Tank
 gui.ss.gf_tank_2=Stone GF Tank
 gui.ss.gf_tank_3=Steel GF Tank
+gui.ss.gf_tank_4=Ninja GF Tank
+gui.ss.gf_tank_5=Orichalcum GF Tank
 
 shop.ss.creeper=Simple Creeper Shop
 shop.ss.robot=Blue Robot Shop
@@ -312,6 +340,13 @@ tooltip.season.spring=Spring
 tooltip.season.summer=Summer
 tooltip.season.autumn=Autumn
 tooltip.season.winter=Winter
+
+tooltip.name=Name
+tooltip.edition=Edition
+
+#Edition
+edition.creative=CreativeTab
+edition.figure_beginner=Figure Beginner
 
 #Tab
 itemGroup.ss.core=SextiarySector -Core-
@@ -464,6 +499,10 @@ achievement.ss.windmill=Updraft
 achievement.ss.windmill.desc=Craft a windmill
 achievement.ss.windmill.desc2=Crying wind
 
+achievement.ss.small_waterwheel=The power of water
+achievement.ss.small_waterwheel.desc=Craft a small waterwheel
+achievement.ss.small_waterwheel.desc2=Do not close the lava !
+
 achievement.ss.sawmill=Blade ?
 achievement.ss.sawmill.desc=Craft a sawmill
 achievement.ss.sawmill.desc2=Let dismantling together !
@@ -473,9 +512,9 @@ achievement.ss.steel_gear=The power of steel
 achievement.ss.steel_gear.desc=Craft a steel gear
 achievement.ss.steel_gear.desc2=Coal shortage ?
 
-achievement.ss.small_waterwheel=The power of water
-achievement.ss.small_waterwheel.desc=Craft a small waterwheel
-achievement.ss.small_waterwheel.desc2=Do not close the lava !
+achievement.ss.steam_motor=The power of steam
+achievement.ss.steam_motor.desc=Craft a small steam motor
+achievement.ss.steam_motor.desc2=Industrial revolution
 
 achievement.ss.pulverizer=Industrial era
 achievement.ss.pulverizer.desc=Craft a pulverizer
@@ -484,6 +523,10 @@ achievement.ss.pulverizer.desc2=Double it !
 achievement.ss.fan=Oh ~ ~ ~
 achievement.ss.fan.desc=Craft a fan
 achievement.ss.fan.desc2=Blue flame ?
+
+achievement.ss.saw=Block Breaker
+achievement.ss.saw.desc=Craft a saw
+achievement.ss.saw.desc2=Just destroy
 
 achievement.ss.ninja_gear=The power of mystery ?
 achievement.ss.ninja_gear.desc=Craft a ninja gear
