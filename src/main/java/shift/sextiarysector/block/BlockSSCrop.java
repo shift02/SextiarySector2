@@ -174,7 +174,12 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     public int getRenderType()
     {
-        return 6;
+    	if(type.equals(CropType.Normal)){
+    		return 6;
+    	}else{
+    		return 1;
+    	}
+
     }
 
     protected Item func_149866_i()

@@ -1,6 +1,10 @@
 package shift.sextiarysector;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.ShapedRecipes;
 import shift.sextiarysector.recipe.FurnaceCraftingManager;
 import shift.sextiarysector.recipe.RecipeSimpleFluid;
 import shift.sextiarysector.recipe.RecipeSimpleFuel;
@@ -23,6 +27,7 @@ import shift.sextiarysector.recipe.RecipesRollingMachine;
 import shift.sextiarysector.recipe.RecipesSawmill;
 import shift.sextiarysector.recipe.RecipesTimeMachine;
 import shift.sextiarysector.recipe.RecipesTool;
+import shift.sextiarysector.recipe.RecipesVanilla;
 
 public class SSRecipes {
 
@@ -65,6 +70,7 @@ public class SSRecipes {
 
 		RecipesFurnace.addRecipes();
 
+		RecipesVanilla.addRecipes(m);
 		RecipesNormalBlock.addRecipes(m);
 		RecipesMachine.addRecipes(m);
 		RecipesCore.addRecipes(m);
@@ -98,5 +104,28 @@ public class SSRecipes {
 
 
 	}
+
+	public static  void deleteVanillaRecipe(){
+
+		CraftingManager m = CraftingManager.getInstance();
+		ItemStack wool = new ItemStack(Blocks.wool);
+
+		for(int i=0;i< m.getRecipeList().size();i++){
+
+			IRecipe re = (IRecipe)m.getRecipeList().get(i);
+			if(re != null &&re.getRecipeOutput()!=null && re.getRecipeOutput().isItemEqual(wool) && re instanceof ShapedRecipes){
+				m.getRecipeList().remove(i);
+				return ;
+			}
+
+		}
+
+
+	}
+
+
+
+
+
 
 }

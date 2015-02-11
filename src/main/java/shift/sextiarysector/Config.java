@@ -22,6 +22,8 @@ public class Config {
 	public static boolean modIC2;
 	public static boolean modTofu;
 	public static boolean modTcon;
+	public static boolean modCleaver;
+
 
 	public static void ConfigRead(FMLPreInitializationEvent event) {
 
@@ -65,7 +67,18 @@ public class Config {
 		modIC2 = cfg.getBoolean("IC2", "general", true, "");
 		modTofu = cfg.getBoolean("Tofu", "general", true, "");
 		modTcon = cfg.getBoolean("Tcon", "general", true, "");
+		modCleaver = cfg.getBoolean("Cleaver", "general", true, "");
 
 	}
+
+
+
+
+
+
+
+
+
+
 
 }

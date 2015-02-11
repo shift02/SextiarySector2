@@ -38,4 +38,5 @@ public class BlockFan  extends BlockDirection{
 		return new TileEntityFan();
 	}
 
+
 }

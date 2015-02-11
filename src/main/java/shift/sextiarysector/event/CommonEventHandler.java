@@ -20,9 +20,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.SSAchievement;
@@ -161,6 +161,47 @@ public class CommonEventHandler {
 
 	/**クリーパーチェスト*/
 	@SubscribeEvent
+	public void LivingSleepingEvent(PlayerWakeUpEvent event) {
+
+		if (event.entityPlayer.worldObj.isRemote) {
+			return;
+		}
+
+		if (!(event.entityPlayer instanceof EntityPlayerMP)) {
+			return;
+		}
+
+		EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
+
+		if(!player.func_147099_x().hasAchievementUnlocked(SSAchievement.creeperFirework)||player.func_147099_x().hasAchievementUnlocked(SSAchievement.creeperChest)){
+			return;
+		}
+
+		int x = (int) player.posX;
+	    int y = (int) player.posY;
+	    int z = (int) player.posZ;
+	    World world = player.worldObj;
+
+	    int range = 1;
+	    for (int i = -range; i < range; i++){
+	    	for (int j = -range; j < range; j++) {
+	    		for(int k = -range; k < range; k++){
+	    			if (world.isAirBlock(x + i, y + k, z + j)) {
+	    				if (generateChest(world, x + i, y + k, z + j)) {
+	    					player.addStat(SSAchievement.creeperChest, 1);
+	    					return;
+	    				}
+	    			}
+	    		}
+	    	}
+	    }
+
+	}
+
+
+	/**クリーパーチェスト*/
+	/*
+	@SubscribeEvent
 	public void livingSleepingEvent(LivingUpdateEvent event) {
 		if (event.entityLiving.worldObj.isRemote) {
 			return;
@@ -204,7 +245,7 @@ public class CommonEventHandler {
 
 		}
 
-	}
+	}*/
 
 	protected boolean generateChest(World world, int x, int y, int z)
 	{

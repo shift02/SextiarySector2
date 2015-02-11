@@ -1,5 +1,6 @@
 package shift.sextiarysector.recipe;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSItems;
@@ -25,6 +26,8 @@ public class RecipesTimeMachine {
 		recipe.add(new ItemStack(SSItems.radish),new ItemStack(SSBlocks.radish, 1));
 
 		recipe.add(new ItemStack(SSItems.rice),new ItemStack(SSBlocks.rice, 1));
+
+		recipe.add(new ItemStack(Blocks.red_mushroom),new ItemStack(SSBlocks.redMushroom, 1));
 
     }
 

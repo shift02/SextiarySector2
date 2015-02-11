@@ -78,6 +78,8 @@ public class ModuleStatistics implements IModule {
         		SextiarySector.Log.catching(e);
             }catch (ArrayIndexOutOfBoundsException e){
             	SextiarySector.Log.catching(e);
+            }catch (NoClassDefFoundError e){
+            	SextiarySector.Log.catching(e);
             }
 
         }

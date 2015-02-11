@@ -53,6 +53,14 @@ public class RecipesFurnaceCraft {
 			"dustIron"
 			}));
 
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.brassIngot, 1),
+				new Object[] {
+			"dustCopper",
+			"dustCopper",
+			"dustZinc"
+			}));
+
+
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.ninjaIngot, 1),
 				new Object[] {
 			"dustMithril",
@@ -69,6 +77,16 @@ public class RecipesFurnaceCraft {
         		new Object[] {
         	"x", "x",
         	'x', "paneGlassColorless",
+			}));
+
+		p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.orichalcumGem, 1),
+        		new Object[] {
+        	"xyb", "aza", "byx",
+        	'x', "ingotBrass",
+        	'y', "ingotSilver",
+        	'z', "craftingMagic",
+        	'a', "ingotMithril",
+        	'b', "ingotGold"
 			}));
 
 		//Hammer

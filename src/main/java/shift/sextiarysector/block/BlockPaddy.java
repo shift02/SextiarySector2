@@ -1,5 +1,6 @@
 package shift.sextiarysector.block;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.BlockContainer;
@@ -7,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
@@ -110,6 +112,15 @@ public class BlockPaddy extends BlockContainer{
 
 		return false;
 	}
+
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    {
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+
+        ret.add(new ItemStack(Blocks.dirt, 1));
+
+        return ret;
+    }
 
 	//ブロックの線
 	public void setBlockBoundsForItemRender()

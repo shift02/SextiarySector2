@@ -1,6 +1,8 @@
 package shift.sextiarysector.plugin;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.block.BlockTofuMotor;
 import shift.sextiarysector.item.ItemBlockDirection;
@@ -23,6 +25,8 @@ public class PluginTofu  implements IPlugin{
 	public static int tofuMotorType;
 	public static Block tofuMotor;
 
+	public static Item filterCloth;
+
 	@Override
 	public void prePlugin(FMLPreInitializationEvent event) {
 		tofuMotor = new BlockTofuMotor().setBlockName("ss.tofu_motor").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
@@ -43,7 +47,9 @@ public class PluginTofu  implements IPlugin{
 
 	@Override
 	public void initPlugin(FMLInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
+
+		filterCloth = GameRegistry.findItem("TofuCraft", "filterCloth");
+		OreDictionary.registerOre("craftingFilterCloth", filterCloth);
 
 	}
 
