@@ -150,6 +150,14 @@ public class RecipesMachine {
 			Character.valueOf('a'), "ingotIron"
 			}));
 
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.pump, 1),
+				new Object[] { "yyy", "axy","yzy",
+			Character.valueOf('x'), SSItems.stoneUnitGear,
+			Character.valueOf('y'), "plateWood",
+			Character.valueOf('z'), SSItems.stoneGear,
+			Character.valueOf('a'), SSBlocks.woodGrate,
+			}));
+
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.pulverizer, 1),
 				new Object[] { "yay", "aza","yxy",
 			Character.valueOf('y'), "plankWood",

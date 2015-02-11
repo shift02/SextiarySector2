@@ -33,11 +33,13 @@ public class SSShops {
 
 			creepers[i].addItemProduct(new ProductItem(((ItemFigureBox) SSItems.figureBox).getEditionFigureBox("figure_beginner"), 300));
 
-			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,0),500));
-			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,1),500));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,0), 260));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.woodStoneGearShaft,1,1), 260));
 
-			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.gfContactLenses,1),300));
-			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.craftUnit,1),50000));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.gfContactLenses,1), 300));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.craftUnit,1), 50000));
+
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.wood,1), 180));
 
 			if(i==0){
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.turnip,1),180));
