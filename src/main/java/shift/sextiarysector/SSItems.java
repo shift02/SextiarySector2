@@ -12,6 +12,7 @@ import shift.sextiarysector.item.ItemDrink;
 import shift.sextiarysector.item.ItemFigureBox;
 import shift.sextiarysector.item.ItemFoodCrop;
 import shift.sextiarysector.item.ItemFoodDrink;
+import shift.sextiarysector.item.ItemFullBottle;
 import shift.sextiarysector.item.ItemGFContactLenses;
 import shift.sextiarysector.item.ItemGearStorage;
 import shift.sextiarysector.item.ItemGuiUnit;
@@ -24,7 +25,9 @@ import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
 import shift.sextiarysector.item.ItemShiftHat;
 import shift.sextiarysector.item.ItemShopRing;
+import shift.sextiarysector.item.ItemSimpleBucket;
 import shift.sextiarysector.item.ItemSoup;
+import shift.sextiarysector.item.ItemUnit;
 import shift.sextiarysector.item.ItemWaterBottle;
 import shift.sextiarysector.item.ItemWateringCan;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -92,7 +95,6 @@ public class SSItems {
 
 	public static Item blueStoneSlimeBall;
 
-
 	public static Item energyReactor;
 	public static Item objectReactor;
 
@@ -100,11 +102,19 @@ public class SSItems {
 	public static Item emptyBottle;
 	public static Item waterBottle;
 	public static Item lavaBottle;
+	public static Item sapBottle;
 
-
+	public static Item steamBucket;
+	public static Item ironFluidBucket;
+	public static Item goldFluidBucket;
 
 	//unit
 	public static Item craftUnit;
+
+	public static Item attackUnit;
+	public static Item defenseUnit;
+	public static Item attackRustUnit;
+	public static Item defenseRustUnit;
 
 	//ring
 	public static Item ironRing;
@@ -160,7 +170,6 @@ public class SSItems {
 
 	public static Item goldenCorn;
 
-
 	public static Item eggplant;
 	public static Item sweetPotato;
 	public static Item greenPepper;
@@ -170,7 +179,6 @@ public class SSItems {
 	public static Item radish;
 
 	public static Item rice;
-
 
 	//料理
 	public static Item whiteRice;
@@ -184,6 +192,7 @@ public class SSItems {
 	public static Item porkchopSmoked;
 	public static Item beefSmoked;
 
+	public static Item riceBall;
 	public static Item curryRice;
 
 	public static Item carrotSoup;
@@ -193,6 +202,8 @@ public class SSItems {
 	public static Item onionSoup;
 	public static Item enderSoup;
 	public static Item tomatoSoup;
+
+	public static Item chocolate;
 
 	//飲み物
 	//public static Item drinkingWaterSmallBottle;
@@ -205,7 +216,7 @@ public class SSItems {
 	public static Item rucksack;
 	public static Item gfContactLenses;
 
-	public static void initItems(){
+	public static void initItems() {
 
 		unit = new Item().setUnlocalizedName("ss.unit").setTextureName("sextiarysector:machine/unit").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(unit, "Unit");
@@ -225,7 +236,6 @@ public class SSItems {
 		orichalcumGear = new Item().setUnlocalizedName("ss.orichalcum_gear").setTextureName("sextiarysector:machine/orichalcum_gear").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(orichalcumGear, "OrichalcumGear");
 
-
 		woodUnitGear = new Item().setUnlocalizedName("ss.wood_unit_gear").setTextureName("sextiarysector:machine/wood_unit_gear").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(woodUnitGear, "WoodUnitGear");
 
@@ -241,7 +251,6 @@ public class SSItems {
 		orichalcumUnitGear = new Item().setUnlocalizedName("ss.orichalcum_unit_gear").setTextureName("sextiarysector:machine/orichalcum_unit_gear").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(orichalcumUnitGear, "OrichalcumUnitGear");
 
-
 		woodGFStorage = new ItemGearStorage(1, 10000, 1).setUnlocalizedName("ss.wood_gf_storage").setTextureName("sextiarysector:gearforce/wood_gear_storage").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(woodGFStorage, "WoodGFStorage");
 
@@ -256,7 +265,6 @@ public class SSItems {
 
 		orichalcumGFStorage = new ItemGearStorage(5, 10000, 5).setUnlocalizedName("ss.orichalcum_gf_storage").setTextureName("sextiarysector:gearforce/orichalcum_gear_storage").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(orichalcumGFStorage, "OrichalcumGFStorage");
-
 
 		hammer = new ItemHammer().setUnlocalizedName("ss.hammer").setTextureName("sextiarysector:machine/hammer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(hammer, "Hammer");
@@ -301,7 +309,6 @@ public class SSItems {
 		mithrilDust = new Item().setUnlocalizedName("ss.mithril_dust").setTextureName("sextiarysector:dust/mithril_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(mithrilDust, "MithrilDust");
 
-
 		steelIngot = new Item().setUnlocalizedName("ss.steel_ingot").setTextureName("sextiarysector:ingot/steel_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(steelIngot, "SteelIngot");
 
@@ -323,7 +330,6 @@ public class SSItems {
 		silverIngot = new Item().setUnlocalizedName("ss.silver_ingot").setTextureName("sextiarysector:ingot/silver_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(silverIngot, "SilverIngot");
 
-
 		mithrilIngot = new Item().setUnlocalizedName("ss.mithril_ingot").setTextureName("sextiarysector:ingot/mithril_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(mithrilIngot, "MithrilIngot");
 
@@ -336,7 +342,6 @@ public class SSItems {
 		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
 
-
 		energyReactor = new Item().setUnlocalizedName("ss.energy_reactor").setTextureName("sextiarysector:energy_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(energyReactor, "EnergyReactor");
 
@@ -344,6 +349,7 @@ public class SSItems {
 		GameRegistry.registerItem(objectReactor, "ObjectReactor");
 
 		//液体
+		//ボトル
 		emptyBottle = new ItemBottle().setUnlocalizedName("ss.empty_bottle").setTextureName("sextiarysector:fluid/empty_bottle");
 		GameRegistry.registerItem(emptyBottle, "EmptyBottle");
 
@@ -353,9 +359,34 @@ public class SSItems {
 		lavaBottle = new ItemLavaBottle().setUnlocalizedName("ss.lava_bottle").setTextureName("sextiarysector:fluid/lava_bottle");
 		GameRegistry.registerItem(lavaBottle, "LavaBottle");
 
+		sapBottle = new ItemFullBottle().setUnlocalizedName("ss.sap_bottle").setTextureName("sextiarysector:fluid/sap_bottle");
+		GameRegistry.registerItem(sapBottle, "SapBottle");
+
+		//バケツ
+		steamBucket = new ItemSimpleBucket().setUnlocalizedName("ss.steam_bucket").setTextureName("sextiarysector:fluid/steam_bucket");
+		GameRegistry.registerItem(steamBucket, "SteamBucket");
+
+		ironFluidBucket = new ItemSimpleBucket().setUnlocalizedName("ss.iron_fluid_bucket").setTextureName("sextiarysector:fluid/iron_fluid_bucket");
+		GameRegistry.registerItem(ironFluidBucket, "IronFluidBucket");
+
+		goldFluidBucket = new ItemSimpleBucket().setUnlocalizedName("ss.gold_fluid_bucket").setTextureName("sextiarysector:fluid/gold_fluid_bucket");
+		GameRegistry.registerItem(goldFluidBucket, "GoldFluidBucket");
+
 		//Unit
 		craftUnit = new ItemGuiUnit(201).setUnlocalizedName("ss.craft_unit").setTextureName("sextiarysector:unit/craft_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(craftUnit, "CraftUnit");
+
+		attackUnit = new ItemUnit().setUnlocalizedName("ss.attack_unit").setTextureName("sextiarysector:unit/attack_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(attackUnit, "AttackUnit");
+
+		defenseUnit = new ItemUnit().setUnlocalizedName("ss.defense_unit").setTextureName("sextiarysector:unit/defense_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(defenseUnit, "DefenseUnit");
+
+		attackRustUnit = new ItemUnit().setUnlocalizedName("ss.attack_rust_unit").setTextureName("sextiarysector:unit/attack_rust_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(attackRustUnit, "AttackRustUnit");
+
+		defenseRustUnit = new ItemUnit().setUnlocalizedName("ss.defense_rust_unit").setTextureName("sextiarysector:unit/defense_rust_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(defenseRustUnit, "DefenseRustUnit");
 
 		//Ring
 		ironRing = new Item().setUnlocalizedName("ss.iron_ring").setTextureName("sextiarysector:ring/iron_ring").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
@@ -436,7 +467,6 @@ public class SSItems {
 		ironTurnip = new ItemFoodCrop(farmlandCrops, 0, 1, 0, 0, 0, 0, false).setUnlocalizedName("ss.iron_turnip").setTextureName("sextiarysector:food/vegetable/iron_turnip");
 		GameRegistry.registerItem(ironTurnip, "IronTurnip");
 
-
 		onion = new ItemFoodCrop(farmlandCrops, 2, 1, 1, 0, 0, 0, false).setUnlocalizedName("ss.onion").setTextureName("sextiarysector:food/vegetable/onion");
 		GameRegistry.registerItem(onion, "Onion");
 
@@ -449,7 +479,6 @@ public class SSItems {
 		goldenCorn = new ItemFoodCrop(farmlandCrops, 0, 2, 0, 0, 0, 0, false).setUnlocalizedName("ss.golden_corn").setTextureName("sextiarysector:food/vegetable/golden_corn");
 		GameRegistry.registerItem(goldenCorn, "GoldCorn");
 
-
 		eggplant = new ItemFoodCrop(farmlandCrops, 1, 1, 4, 2, 0, 0, false).setUnlocalizedName("ss.eggplant").setTextureName("sextiarysector:food/vegetable/eggplant");
 		GameRegistry.registerItem(eggplant, "Eggplant");
 
@@ -459,10 +488,8 @@ public class SSItems {
 		greenPepper = new ItemFoodCrop(farmlandCrops, 2, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.green_pepper").setTextureName("sextiarysector:food/vegetable/green_pepper");
 		GameRegistry.registerItem(greenPepper, "GreenPepper");
 
-
 		bluePotato = new ItemFoodCrop(paddyCrops, 1, 0, 5, 8, 2, 0, false).setUnlocalizedName("ss.blue_potato").setTextureName("sextiarysector:food/vegetable/blue_potato");
 		GameRegistry.registerItem(bluePotato, "BluePotato");
-
 
 		radish = new ItemFoodCrop(farmlandCrops, 3, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.radish").setTextureName("sextiarysector:food/vegetable/radish");
 		GameRegistry.registerItem(radish, "Radish");
@@ -492,9 +519,11 @@ public class SSItems {
 		beefSmoked = new ItemFoodDrink(3, 7.6f, 0, 0, 4, 2.0f, false).setUnlocalizedName("ss.beef_smoked").setTextureName("sextiarysector:food/meat/beef_smoked").setCreativeTab(SextiarySectorAPI.TabSSCooking);
 		GameRegistry.registerItem(beefSmoked, "BeefSmoked");
 
-		curryRice = new ItemFoodDrink(9, 12.6f, 0, 0, 10, 2.0f, false).setUnlocalizedName("ss.curry_rice").setTextureName("sextiarysector:food/rice/curry_rice").setCreativeTab(SextiarySectorAPI.TabSSCooking);
-		GameRegistry.registerItem(curryRice, "CurryRice");
+		riceBall = new ItemFoodDrink(4, 0.6f, 0, 0, 4, 6.0f, false).setUnlocalizedName("ss.rice_ball").setTextureName("sextiarysector:food/rice/rice_ball").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+		GameRegistry.registerItem(riceBall, "RiceBall");
 
+		curryRice = new ItemFoodDrink(9, 12.6f, 0, 0, 15, 2.0f, false).setUnlocalizedName("ss.curry_rice").setTextureName("sextiarysector:food/rice/curry_rice").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+		GameRegistry.registerItem(curryRice, "CurryRice");
 
 		carrotSoup = new ItemSoup(2, 0.6f, 4, 1, 0, 0.0f, false).setUnlocalizedName("ss.carrot_soup").setTextureName("sextiarysector:food/soup/carrot_soup");
 		GameRegistry.registerItem(carrotSoup, "CarrotSoup");
@@ -514,6 +543,8 @@ public class SSItems {
 		tomatoSoup = new ItemSoup(1, 0.6f, 3, 4.0f, 0, 0.0f, false).setUnlocalizedName("ss.tomato_soup").setTextureName("sextiarysector:food/soup/tomato_soup");
 		GameRegistry.registerItem(tomatoSoup, "TomatoSoup");
 
+		chocolate = new ItemFoodDrink(2, 1.2f, 0, 0, 6, 4.0f, false).setUnlocalizedName("ss.chocolate").setTextureName("sextiarysector:food/dessert/chocolate").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+		GameRegistry.registerItem(chocolate, "Chocolate");
 
 		//飲み物
 		drinkingWaterBottle = new ItemDrink(0, 2.5f, 3, 6.5f, 0, 0, false).setUnlocalizedName("ss.drinking_water_bottle").setTextureName("sextiarysector:fluid/drinking_water_bottle");
@@ -533,10 +564,5 @@ public class SSItems {
 		GameRegistry.registerItem(gfContactLenses, "GFContactLenses");
 
 	}
-
-
-
-
-
 
 }

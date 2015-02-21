@@ -9,8 +9,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
-import net.minecraftforge.common.ForgeHooks;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.MoistureStats;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -25,27 +23,29 @@ public class HUDEventHandler {
 
     protected final Random rand = new Random();
 
-
-	private boolean ARMOR = false;
+    public static boolean visibleStamina = false;
+    public static boolean visibleMoisture = false;
+	//private boolean ARMOR = false;
 
     public static Minecraft mc = FMLClientHandler.instance().getClient();
 
     //描写のEvent
     @SubscribeEvent
-    public void onRenderGameOverlayEvent(RenderGameOverlayEvent event) {
+    public void onRenderGameOverlayEventPre(RenderGameOverlayEvent.Pre event) {
 
         int width = event.resolution.getScaledWidth();
         int height = event.resolution.getScaledHeight();
 
-        if(event.type == ElementType.FOOD && mc.playerController.shouldDrawHUD()){
+        /*if(event.type == ElementType.FOOD && mc.playerController.shouldDrawHUD()){
         	renderMoisture( width, height);
 
         	renderStamina( width, height);
 
         	//renderSeason( width, height);
 
-        }
+        }*/
 
+        /*
         if(event.type == ElementType.ARMOR&&ForgeHooks.getTotalArmorValue(mc.thePlayer)>0){
         	//System.out.println("AIR");
 
@@ -58,25 +58,75 @@ public class HUDEventHandler {
             	GuiIngameForge.left_height-=(left_height-29);
             	ARMOR =true;
             }
-        }
+        }*/
 
+
+        if (event.type == RenderGameOverlayEvent.ElementType.ALL)
+        {
+          visibleStamina = GuiIngameForge.renderFood | GuiIngameForge.renderHealthMount | GuiIngameForge.renderHealth;
+          visibleMoisture = GuiIngameForge.renderFood | GuiIngameForge.renderHealthMount | GuiIngameForge.renderHealth;
+        }
+        else if (event.type == RenderGameOverlayEvent.ElementType.ARMOR)
+        {
+          if (visibleStamina)
+          {
+            renderStamina(width, height);
+            visibleStamina = false;
+          }
+        }
+        else if ((event.type == RenderGameOverlayEvent.ElementType.HOTBAR) && (mc.playerController.shouldDrawHUD()))
+        {
+          if (visibleMoisture)
+          {
+            renderMoisture(width, height);
+            visibleMoisture = false;
+          }
+          if (visibleStamina)
+          {
+            renderStamina(width, height);
+            visibleStamina = false;
+          }
+        }
 
 
     }
 
-    //アイテムテキストずらし
     @SubscribeEvent
     public void onRenderGameOverlayEventPost(RenderGameOverlayEvent.Post event) {
+
+    	int width = event.resolution.getScaledWidth();
+        int height = event.resolution.getScaledHeight();
+
+    	if ((event.type == RenderGameOverlayEvent.ElementType.FOOD) || (event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT))
+    	{
+			if (visibleMoisture) {
+				renderMoisture(width, height);
+				visibleMoisture = false;
+			}
+			if (visibleStamina) {
+				renderStamina(width, height);
+				visibleStamina = false;
+			}
+		}
+
+    }
+
+    //アイテムテキストずらし
+    //@SubscribeEvent
+    //public void onRenderGameOverlayEventPost(RenderGameOverlayEvent.Post event) {
 
     	/*if(event.type == ElementType.EXPERIENCE||event.type == ElementType.JUMPBAR){
 
         }*/
 
-    }
+    //}
 
 
     protected void renderMoisture(int width, int height)
     {
+
+    	if(!visibleMoisture) return;
+        visibleMoisture = false;
 
     	//mc.thePlayer.addStat(StatList.distanceByBoatStat, 2);
 		//System.out.println("StatList");
@@ -88,7 +138,10 @@ public class HUDEventHandler {
         int updateCounter = mc.ingameGUI.getUpdateCounter()+2;
 
         int left = width / 2 + 91;
-        int top = height - right_height -10;
+        //int top = height - right_height -10;
+        int top = height - GuiIngameForge.right_height;
+
+        GuiIngameForge.right_height += 10;
         //right_height += 10;
         boolean unused = false;// Unused flag in vanilla, seems to be part of a 'fade out' mechanic
 
@@ -150,6 +203,9 @@ public class HUDEventHandler {
     protected void renderStamina(int width, int height)
     {
 
+    	if(!visibleStamina) return;
+        visibleStamina = false;
+
     	mc.mcProfiler.startSection("stamina");
 
         bind(icons);
@@ -157,7 +213,8 @@ public class HUDEventHandler {
         int updateCounter = mc.ingameGUI.getUpdateCounter()+1;
 
         int left = width / 2 - 82;
-        int top = height - left_height -10;
+        int top = height - GuiIngameForge.left_height;//left_height -10;
+        GuiIngameForge.left_height += 10;
         //right_height += 10;
         boolean unused = false;// Unused flag in vanilla, seems to be part of a 'fade out' mechanic
 

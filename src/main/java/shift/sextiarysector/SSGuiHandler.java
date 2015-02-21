@@ -9,6 +9,7 @@ import shift.sextiarysector.container.ContainerFluidMachineBase;
 import shift.sextiarysector.container.ContainerFreezer;
 import shift.sextiarysector.container.ContainerGFTank;
 import shift.sextiarysector.container.ContainerLargeFurnace;
+import shift.sextiarysector.container.ContainerMPRepair;
 import shift.sextiarysector.container.ContainerMagicFurnace;
 import shift.sextiarysector.container.ContainerPlayerNext;
 import shift.sextiarysector.container.ContainerRucksack;
@@ -23,6 +24,7 @@ import shift.sextiarysector.gui.GuiGFTank;
 import shift.sextiarysector.gui.GuiInventoryNext;
 import shift.sextiarysector.gui.GuiLargeFurnace;
 import shift.sextiarysector.gui.GuiLoom;
+import shift.sextiarysector.gui.GuiMPRepair;
 import shift.sextiarysector.gui.GuiMagicFurnace;
 import shift.sextiarysector.gui.GuiMillstone;
 import shift.sextiarysector.gui.GuiPulverizer;
@@ -48,9 +50,8 @@ public class SSGuiHandler implements IGuiHandler {
 
 	public static ArrayList<IServerGuiElement> list = new ArrayList<IServerGuiElement>();
 
-
 	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world,int x, int y, int z) {
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		//System.out.println(ID);
 
 		/*
@@ -60,15 +61,21 @@ public class SSGuiHandler implements IGuiHandler {
 			return null;
 		}*/
 
-		switch(ID){
+		switch (ID) {
 
-		case 0 : return new ContainerLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));
-		case 1 :
-		case 2 :
+		case 0:
+			return new ContainerLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));
+		case 1:
+		case 2:
 			return new ContainerFluidMachineBase(player.inventory, (TileEntityFluidMachineBase) world.getTileEntity(x, y, z));
 
-		case 5 : return new ContainerCraftFurnace(player.inventory, (TileEntityCraftFurnace) world.getTileEntity(x, y, z));
-		case 6 : return new ContainerFreezer(player.inventory, (TileEntityFreezer) world.getTileEntity(x, y, z));
+		case 5:
+			return new ContainerCraftFurnace(player.inventory, (TileEntityCraftFurnace) world.getTileEntity(x, y, z));
+		case 6:
+			return new ContainerFreezer(player.inventory, (TileEntityFreezer) world.getTileEntity(x, y, z));
+
+		case 10:
+			return new ContainerMPRepair(player.inventory, world, x, y, z, player);
 
 		case 20:
 		case 21:
@@ -85,15 +92,21 @@ public class SSGuiHandler implements IGuiHandler {
 		case 54:
 			return new ContainerGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z));
 
-		case 60:return new ContainerSteamMotor(player.inventory, (TileEntitySteamMotor) world.getTileEntity(x, y, z));
+		case 60:
+			return new ContainerSteamMotor(player.inventory, (TileEntitySteamMotor) world.getTileEntity(x, y, z));
 
-		case 90 : return new ContainerMagicFurnace(player.inventory, (TileEntityMagicFurnace) world.getTileEntity(x, y, z));
+		case 90:
+			return new ContainerMagicFurnace(player.inventory, (TileEntityMagicFurnace) world.getTileEntity(x, y, z));
 
-		case 200 : return new ContainerPlayerNext(player.inventory, player);
-		case 201 : return new ContainerTabWorkbench(player.inventory, world, x, y, z);
+		case 200:
+			return new ContainerPlayerNext(player.inventory, player);
+		case 201:
+			return new ContainerTabWorkbench(player.inventory, world, x, y, z);
 
-		case 205 : return new ContainerRucksack(player.inventory);
-		case 206 : return new ContainerRucksack(player.inventory, EntityPlayerManager.getEquipmentStats(player).inventory);
+		case 205:
+			return new ContainerRucksack(player.inventory);
+		case 206:
+			return new ContainerRucksack(player.inventory, EntityPlayerManager.getEquipmentStats(player).inventory);
 
 		}
 
@@ -124,47 +137,71 @@ public class SSGuiHandler implements IGuiHandler {
 
 		return null;
 
-
 	}
 
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world,int x, int y, int z) {
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 
-		switch(ID){
+		switch (ID) {
 
-		case 0 : return new GuiLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));
-		case 1 : return new GuiFluidFurnace(player.inventory, (TileEntityFluidMachineBase) world.getTileEntity(x, y, z));
-		case 2 : return new GuiFoodSmokers(player.inventory, (TileEntityFluidMachineBase) world.getTileEntity(x, y, z));
+		case 0:
+			return new GuiLargeFurnace(player.inventory, (TileEntityLargeFurnace) world.getTileEntity(x, y, z));
+		case 1:
+			return new GuiFluidFurnace(player.inventory, (TileEntityFluidMachineBase) world.getTileEntity(x, y, z));
+		case 2:
+			return new GuiFoodSmokers(player.inventory, (TileEntityFluidMachineBase) world.getTileEntity(x, y, z));
 
-		case 5 : return new GuiCraftFurnace(player.inventory, (TileEntityCraftFurnace) world.getTileEntity(x, y, z));
-		case 6 : return new GuiFreezer(player.inventory, (TileEntityFreezer) world.getTileEntity(x, y, z));
+		case 5:
+			return new GuiCraftFurnace(player.inventory, (TileEntityCraftFurnace) world.getTileEntity(x, y, z));
+		case 6:
+			return new GuiFreezer(player.inventory, (TileEntityFreezer) world.getTileEntity(x, y, z));
 
-		case 20:return new GuiMillstone(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
-		case 21:return new GuiLoom(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+		case 10:
+			return new GuiMPRepair(player.inventory, world, x, y, z);
 
-		case 25:return new GuiSawmill(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+		case 20:
+			return new GuiMillstone(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+		case 21:
+			return new GuiLoom(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
-		case 30:return new GuiPulverizer(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+		case 25:
+			return new GuiSawmill(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
-		case 35:return new GuiRollingMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+		case 30:
+			return new GuiPulverizer(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
-		case 40:return new GuiTimeMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+		case 35:
+			return new GuiRollingMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
-		case 50:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),1);
-		case 51:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),2);
-		case 52:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),3);
-		case 53:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),4);
-		case 54:return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z),5);
+		case 40:
+			return new GuiTimeMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
-		case 60:return new GuiSteamMotor(player.inventory, (TileEntitySteamMotor) world.getTileEntity(x, y, z));
+		case 50:
+			return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z), 1);
+		case 51:
+			return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z), 2);
+		case 52:
+			return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z), 3);
+		case 53:
+			return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z), 4);
+		case 54:
+			return new GuiGFTank(player.inventory, (TileEntityGFTank) world.getTileEntity(x, y, z), 5);
 
-		case 90:return new GuiMagicFurnace(player.inventory, (TileEntityMagicFurnace) world.getTileEntity(x, y, z));
+		case 60:
+			return new GuiSteamMotor(player.inventory, (TileEntitySteamMotor) world.getTileEntity(x, y, z));
 
-		case 200:return new GuiInventoryNext(player);
-		case 201:return new GuiTabCrafting(player.inventory, world, x, y, z);
+		case 90:
+			return new GuiMagicFurnace(player.inventory, (TileEntityMagicFurnace) world.getTileEntity(x, y, z));
 
-		case 205:return new GuiRucksack(player.inventory);
-		case 206:return new GuiRucksack(player.inventory, EntityPlayerManager.getEquipmentStats(player).inventory);
+		case 200:
+			return new GuiInventoryNext(player);
+		case 201:
+			return new GuiTabCrafting(player.inventory, world, x, y, z);
+
+		case 205:
+			return new GuiRucksack(player.inventory);
+		case 206:
+			return new GuiRucksack(player.inventory, EntityPlayerManager.getEquipmentStats(player).inventory);
 
 		}
 
