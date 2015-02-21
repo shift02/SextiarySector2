@@ -30,11 +30,33 @@ tile.ss.bottle.name=Fluid Bottle
 tile.ss.fluid_crafter.name=Fluid Crafter
 tile.ss.square.name=Wood Square
 
+tile.ss.iron_pipe.name=Iron Pipe
+
+
 tile.ss.wood_hopper.name=Wood Hopper
 
 tile.ss.chunk_loader.name=Time Loader
 
 tile.ss.figure.name=Figure
+
+
+tile.ss.drinking_water.name=Drinking Water
+tile.ss.hot_springs.name=Hot Springs
+
+
+tile.ss.blue_stone.name=Blue Stone Ore
+tile.ss.yellow_stone.name=Yellow Stone Ore
+
+tile.ss.copper_ore.name=Copper Ore
+tile.ss.zinc_ore.name=Zinc Ore
+tile.ss.silver_ore.name=Silver Ore
+
+tile.ss.mithril_ore.name=Mithril Ore
+tile.ss.orichalcum_ore.name=Orichalcum Ore
+
+tile.ss.coal_large_ore.name=Coal Large Ore
+tile.ss.iron_large_ore.name=Iron Large Ore
+tile.ss.gold_large_ore.name=Gold Large Ore
 
 
 tile.ss.small_windmill.name=Small Windmill
@@ -77,19 +99,6 @@ tile.ss.fan.name=Fan
 tile.ss.saw.name=Saw
 tile.ss.pump.name=Pump
 
-tile.ss.blue_stone.name=Blue Stone Ore
-tile.ss.yellow_stone.name=Yellow Stone Ore
-
-tile.ss.copper_ore.name=Copper Ore
-tile.ss.zinc_ore.name=Zinc Ore
-tile.ss.silver_ore.name=Silver Ore
-
-tile.ss.mithril_ore.name=Mithril Ore
-tile.ss.orichalcum_ore.name=Orichalcum Ore
-
-tile.ss.coal_large_ore.name=Coal Large Ore
-tile.ss.iron_large_ore.name=Iron Large Ore
-tile.ss.gold_large_ore.name=Gold Large Ore
 
 tile.ss.creeper_chest.name=Creeper Monger Chest
 tile.ss.shipping_box.name=Shipping Box
@@ -115,6 +124,10 @@ tile.ss.mushroom_red.name=Red Mushroom Seed
 
 tile.ss.sandpit.name=Sandpit
 
+tile.ss.boarding_buoy.name=Boarding Buoy
+tile.ss.powered_buoy.name=Powered Buoy
+tile.ss.detector_buoy.name=Detector Buoy
+
 tile.ss.monitor.name=Monitor
 monitor.type=Type
 monitor.creeper=Simple Creeper Shop
@@ -124,6 +137,37 @@ tile.ss.electric_motor.name=Electric Motor
 tile.ss.tofu_motor.name=Tofu Motor
 
 #Item
+item.ss.unit.name=Unit
+
+item.ss.wood_gear.name=Wood Gear
+item.ss.stone_gear.name=Stone Gear
+item.ss.steel_gear.name=Steel Gear
+item.ss.ninja_gear.name=Ninja Gear
+item.ss.orichalcum_gear.name=Orichalcum Gear
+
+item.ss.wood_unit_gear.name=Wood Unit Gear
+item.ss.stone_unit_gear.name=Stone Unit Gear
+item.ss.steel_unit_gear.name=Steel Unit Gear
+item.ss.ninja_unit_gear.name=Ninja Unit Gear
+item.ss.orichalcum_unit_gear.name=Orichalcum Unit Gear
+
+item.ss.wood_gf_storage.name=Wood GF Storage
+item.ss.stone_gf_storage.name=Stone GF Storage
+item.ss.steel_gf_storage.name=Steel GF Storage
+item.ss.ninja_gf_storage.name=Ninja GF Storage
+item.ss.orichalcum_gf_storage.name=Orichalcum GF Storage
+
+item.ss.hammer.name=Hammer
+
+item.ss.calendar.name=Calendar
+item.ss.season_stone.name=Season Stone
+item.ss.season_stone_spring.name=Season Stone -Spring-
+item.ss.season_stone_summer.name=Season Stone -Summer-
+item.ss.season_stone_autumn.name=Season Stone -Autumn-
+item.ss.season_stone_winter.name=Season Stone -Winter-
+
+
+
 item.ss.dust_waterlily.name=WaterLily Dust
 
 item.ss.stone_dust.name=Stone Dust
@@ -159,51 +203,33 @@ item.ss.ninja_ingot.name=Ninja Ingot
 
 item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
 
-
 item.ss.energy_reactor.name=Energy Reactor
 item.ss.object_reactor.name=Object Reactor
+
+
 
 item.ss.empty_bottle.name=Empty Bottle
 item.ss.water_bottle.name=Water Bottle
 item.ss.lava_bottle.name=Lava Bottle
+item.ss.sap_bottle.name=Sap Bottle
+
+item.ss.steam_bucket.name=Steam Bucket
+item.ss.iron_fluid_bucket.name=Iron Fluid Bucket
+item.ss.gold_fluid_bucket.name=Gold Fluid Bucket
+
 
 item.ss.craft_unit.name=Craft Unit
+item.ss.attack_unit.name=Attack Unit
+item.ss.defense_unit.name=Defense Unit
+item.ss.attack_rust_unit.name=Attack Rust Unit
+item.ss.defense_rust_unit.name=Defense Rust Unit
+
 
 item.ss.iron_ring.name=Iron Ring
 item.ss.creeper_ring.name=Creeper Shop Ring
 
 
 item.ss.magic_dust.name=Magic Dust
-
-item.ss.unit.name=Unit
-
-item.ss.wood_gear.name=Wood Gear
-item.ss.stone_gear.name=Stone Gear
-item.ss.steel_gear.name=Steel Gear
-item.ss.ninja_gear.name=Ninja Gear
-item.ss.orichalcum_gear.name=Orichalcum Gear
-
-item.ss.wood_unit_gear.name=Wood Unit Gear
-item.ss.stone_unit_gear.name=Stone Unit Gear
-item.ss.steel_unit_gear.name=Steel Unit Gear
-item.ss.ninja_unit_gear.name=Ninja Unit Gear
-item.ss.orichalcum_unit_gear.name=Orichalcum Unit Gear
-
-item.ss.wood_gf_storage.name=Wood GF Storage
-item.ss.stone_gf_storage.name=Stone GF Storage
-item.ss.steel_gf_storage.name=Steel GF Storage
-item.ss.ninja_gf_storage.name=Ninja GF Storage
-item.ss.orichalcum_gf_storage.name=Orichalcum GF Storage
-
-item.ss.hammer.name=Hammer
-item.ss.calendar.name=Calendar
-
-item.ss.calendar.name=Calendar
-item.ss.season_stone.name=Season Stone
-item.ss.season_stone_spring.name=Season Stone -Spring-
-item.ss.season_stone_summer.name=Season Stone -Summer-
-item.ss.season_stone_autumn.name=Season Stone -Autumn-
-item.ss.season_stone_winter.name=Season Stone -Winter-
 
 
 item.ss.string_bobbin.name=String Bobbin
@@ -270,6 +296,7 @@ item.ss.chicken_smoked.name=Smoked Chicken
 item.ss.porkchop_smoked.name=Smoked Porkchop
 item.ss.beef_smoked.name=Smoked Beef
 
+item.ss.rice_ball.name=Rice Ball
 item.ss.curry_rice.name=Curry Rice
 
 item.ss.carrot_soup.name=Carrot Soup
@@ -279,6 +306,8 @@ item.ss.mushroom_stew.name=Mushroom Stew
 item.ss.onion_soup.name=Onion Soup
 item.ss.ender_soup.name=Ender Soup
 item.ss.tomato_soup.name=Tomato Soup
+
+item.ss.chocolate.name=Chocolate
 
 item.ss.drinking_water_bottle.name=Drinking Water Bottle
 item.ss.takumi_tea_bottle.name=TAKUMI Tea Bottle
@@ -290,13 +319,16 @@ item.ss.gf_contact_lenses.name=GF Contact Lenses
 #Fluid
 fluid.ss.takumi_tea=TAKUMI Tea
 fluid.ss.drinking_water=Drinking Water
+fluid.ss.hot_springs=Hot Springs
 fluid.ss.steam=Steam
+fluid.ss.sap=Sap
 
 fluid.ss.iron=Iron Fluid
 fluid.ss.gold=Gold Fluid
 
 #Potion
 ss.potion.burn=Burn
+ss.potion.hot_springs=Hot Springs
 
 #GUI
 container.large_furnace=Large Furnace
@@ -347,6 +379,9 @@ tooltip.edition=Edition
 #Edition
 edition.creative=CreativeTab
 edition.figure_beginner=Figure Beginner
+edition.ore_festival=Ore Festival
+
+edition.schr0_cleaver=Schr0 Cleaver
 
 #Tab
 itemGroup.ss.core=SextiarySector -Core-

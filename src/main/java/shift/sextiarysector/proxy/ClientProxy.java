@@ -25,6 +25,7 @@ import shift.sextiarysector.renderer.block.RendererGearShaft;
 import shift.sextiarysector.renderer.block.RendererHole;
 import shift.sextiarysector.renderer.block.RendererMonitor;
 import shift.sextiarysector.renderer.block.RendererPaddy;
+import shift.sextiarysector.renderer.block.RendererPipe;
 import shift.sextiarysector.renderer.block.RendererSaw;
 import shift.sextiarysector.renderer.block.RendererShaft;
 import shift.sextiarysector.renderer.block.RendererSmallWaterwheel;
@@ -42,6 +43,7 @@ import shift.sextiarysector.tileentity.TileEntityFigure;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
+import shift.sextiarysector.tileentity.TileEntityPipe;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntitySaw;
 import shift.sextiarysector.tileentity.TileEntityShaft;
@@ -56,13 +58,13 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ClientProxy extends CommonProxy{
+public class ClientProxy extends CommonProxy {
 
 	@SideOnly(Side.CLIENT)
 	public shift.sextiarysector.renderer.model.ModelShiftHat model = new shift.sextiarysector.renderer.model.ModelShiftHat();
 
 	@Override
-	public EntityPlayer getClientPlayer(){
+	public EntityPlayer getClientPlayer() {
 		return Minecraft.getMinecraft().thePlayer;
 	}
 
@@ -78,6 +80,8 @@ public class ClientProxy extends CommonProxy{
 		this.fluidCrafterType = RenderingRegistry.getNextAvailableRenderId();
 
 		this.woodHopperType = RenderingRegistry.getNextAvailableRenderId();
+
+		this.pipeType = RenderingRegistry.getNextAvailableRenderId();
 
 		this.ShaftRenderType = RenderingRegistry.getNextAvailableRenderId();
 
@@ -111,6 +115,8 @@ public class ClientProxy extends CommonProxy{
 
 		RenderingRegistry.registerBlockHandler(new RendererWoodHopper());
 
+		RenderingRegistry.registerBlockHandler(new RendererPipe());
+
 		RenderingRegistry.registerBlockHandler(new RendererShaft());
 
 		RenderingRegistry.registerBlockHandler(new RendererGearShaft());
@@ -131,7 +137,6 @@ public class ClientProxy extends CommonProxy{
 		RenderingRegistry.registerBlockHandler(new RendererPaddy());
 		RenderingRegistry.registerBlockHandler(new RendererWood());
 
-
 		this.setCustomClientRenderers();
 
 	}
@@ -147,6 +152,8 @@ public class ClientProxy extends CommonProxy{
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySquare.class, new RendererSquare());
 
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RendererPipe());
+
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFigure.class, new RendererFigure());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFluidCrafter.class, new RendererFluidCrafter());
@@ -161,12 +168,11 @@ public class ClientProxy extends CommonProxy{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFan.class, new RendererFan());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySaw.class, new RendererSaw());
 
-
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySSChest.class, new RendererChest());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMonitor.class, new RendererMonitor());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMineboatChest.class, new RenderMineboat());
-        RenderingRegistry.registerEntityRenderingHandler(EntityMineboat.class, new RenderMineboat());
+		RenderingRegistry.registerEntityRenderingHandler(EntityMineboat.class, new RenderMineboat());
 
 	}
 
@@ -175,26 +181,28 @@ public class ClientProxy extends CommonProxy{
 		MinecraftForgeClient.registerItemRenderer(item, new RenderGF());
 	}
 
-	public void openGUI(int id){
+	@Override
+	public void openGUI(int id) {
 		PacketHandler.INSTANCE.sendToServer(new PacketGuiId(id));
 	}
 
+	@Override
 	public void registerInventoryTabs()
-    {
+	{
 		/*
-        if (!Loader.isModLoaded("TConstruct") || TabRegistry.getTabList().size() < 3)
-        {
-            TabRegistry.registerTab(new InventoryTabVanilla());
-        }
+		if (!Loader.isModLoaded("TConstruct") || TabRegistry.getTabList().size() < 3)
+		{
+		    TabRegistry.registerTab(new InventoryTabVanilla());
+		}
 
-        TabRegistry.registerTab(new InventoryTabSextiarysector());
-        TabRegistry.registerTab(new InventoryTabSextiarysector());
-        TabRegistry.registerTab(new InventoryTabSextiarysector());
-        TabRegistry.registerTab(new InventoryTabSextiarysector());
-        TabRegistry.registerTab(new InventoryTabSextiarysector());
-        TabRegistry.registerTab(new InventoryTabSextiarysector());
-        TabRegistry.registerTab(new InventoryTabSextiarysector());
-        */
+		TabRegistry.registerTab(new InventoryTabSextiarysector());
+		TabRegistry.registerTab(new InventoryTabSextiarysector());
+		TabRegistry.registerTab(new InventoryTabSextiarysector());
+		TabRegistry.registerTab(new InventoryTabSextiarysector());
+		TabRegistry.registerTab(new InventoryTabSextiarysector());
+		TabRegistry.registerTab(new InventoryTabSextiarysector());
+		TabRegistry.registerTab(new InventoryTabSextiarysector());
+		*/
 		TabManager.initTabManager();
 		//TabManager.registerTab(new InventoryTabEquipment());
 		//TabManager.registerTab(new InventoryTabEquipment());
@@ -203,12 +211,13 @@ public class ClientProxy extends CommonProxy{
 		//TabManager.registerTab(new InventoryTabEquipment());
 		//TabManager.registerTab(new InventoryTabEquipment());
 
-    }
+	}
 
+	@Override
 	public void setPluginCustomRenderers(FMLPreInitializationEvent event)
-    {
+	{
 
-		for(IPlugin p : SSPlugins.plugins)
+		for (IPlugin p : SSPlugins.plugins)
 		{
 			try {
 
@@ -216,16 +225,16 @@ public class ClientProxy extends CommonProxy{
 
 			} catch (Exception e) {
 
-				SextiarySector.Log.log(Level.WARN, p.getModName() +" integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+				SextiarySector.Log.log(Level.WARN, p.getModName() + " integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
 				SextiarySector.Log.catching(e);
 
 			}
 		}
 
+	}
 
-    }
-
-	public Object getShiftHat(){
+	@Override
+	public Object getShiftHat() {
 		return model;
 	}
 

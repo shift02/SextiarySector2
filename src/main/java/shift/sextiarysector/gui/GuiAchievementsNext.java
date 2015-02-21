@@ -6,9 +6,10 @@ import java.util.Random;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.GuiOptionButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.IProgressMeter;
+import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -30,7 +31,7 @@ import org.lwjgl.opengl.GL12;
 
 import shift.sextiarysector.achievement.IAchievementIcon;
 
-public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
+public class GuiAchievementsNext extends GuiAchievements{
 
 	private static final int field_146572_y = AchievementList.minDisplayColumn * 24 - 112;
     private static final int field_146571_z = AchievementList.minDisplayRow * 24 - 112;
@@ -51,7 +52,7 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
     protected double field_146573_x;
     private int field_146554_D;
     private StatFileWriter field_146556_E;
-    private boolean field_146558_F = true;
+    protected boolean progress = true;
 
     private int currentPage = -1;
     private GuiButton button;
@@ -59,6 +60,7 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
 
     public GuiAchievementsNext(GuiScreen p_i45026_1_, StatFileWriter p_i45026_2_)
     {
+    	super(p_i45026_1_, p_i45026_2_);
         this.field_146562_a = p_i45026_1_;
         this.field_146556_E = p_i45026_2_;
         short short1 = 141;
@@ -78,6 +80,7 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
     /**
      * Adds the buttons (and other controls) to the screen in question.
      */
+    @Override
     public void initGui()
     {
         this.mc.getNetHandler().addToSendQueue(new C16PacketClientStatus(C16PacketClientStatus.EnumState.REQUEST_STATS));
@@ -86,9 +89,10 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
         this.buttonList.add(button = new GuiButton(2, (width - field_146555_f) / 2 + 24, height / 2 + 74, 125, 20, AchievementPage.getTitle(currentPage)));
     }
 
+    @Override
     protected void actionPerformed(GuiButton p_146284_1_)
     {
-        if (!this.field_146558_F)
+        if (!this.progress)
         {
             if (p_146284_1_.id == 1)
             {
@@ -110,6 +114,7 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
     /**
      * Fired when a key is typed. This is the equivalent of KeyListener.keyTyped(KeyEvent e).
      */
+    @Override
     protected void keyTyped(char p_73869_1_, int p_73869_2_)
     {
         if (p_73869_2_ == this.mc.gameSettings.keyBindInventory.getKeyCode())
@@ -119,16 +124,22 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
         }
         else
         {
-            super.keyTyped(p_73869_1_, p_73869_2_);
+        	if (p_73869_2_ == 1)
+            {
+                this.mc.displayGuiScreen((GuiScreen)null);
+                this.mc.setIngameFocus();
+            }
+
         }
     }
 
     /**
      * Draws the screen and all the components in it.
      */
+    @Override
     public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_)
     {
-        if (this.field_146558_F)
+        if (this.progress)
         {
             this.drawDefaultBackground();
             this.drawCenteredString(this.fontRendererObj, I18n.format("multiplayer.downloadingStats", new Object[0]), this.width / 2, this.height / 2, 16777215);
@@ -225,20 +236,22 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
         }
     }
 
+    @Override
     public void func_146509_g()
     {
-        if (this.field_146558_F)
+        if (this.progress)
         {
-            this.field_146558_F = false;
+            this.progress = false;
         }
     }
 
     /**
      * Called from the main game loop to update the screen.
      */
+    @Override
     public void updateScreen()
     {
-        if (!this.field_146558_F)
+        if (!this.progress)
         {
             this.field_146569_s = this.field_146567_u;
             this.field_146568_t = this.field_146566_v;
@@ -258,6 +271,7 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
         }
     }
 
+    @Override
     protected void func_146553_h()
     {
         int i = (this.width - this.field_146555_f) / 2;
@@ -265,6 +279,7 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
         this.fontRendererObj.drawString(I18n.format("gui.achievements", new Object[0]), i + 15, j + 5, 4210752);
     }
 
+    @Override
     protected void func_146552_b(int p_146552_1_, int p_146552_2_, float p_146552_3_)
     {
         int k = MathHelper.floor_double(this.field_146569_s + (this.field_146567_u - this.field_146569_s) * (double)p_146552_3_);
@@ -499,7 +514,7 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
         GL11.glDepthFunc(GL11.GL_LEQUAL);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-        super.drawScreen(p_146552_1_, p_146552_2_, p_146552_3_);
+        this.drawButton(p_146552_1_, p_146552_2_, p_146552_3_);
 
         if (achievement != null)
         {
@@ -564,6 +579,21 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_LIGHTING);
         RenderHelper.disableStandardItemLighting();
+    }
+
+    public void drawButton(int p_73863_1_, int p_73863_2_, float p_73863_3_)
+    {
+        int k;
+
+        for (k = 0; k < this.buttonList.size(); ++k)
+        {
+            ((GuiButton)this.buttonList.get(k)).drawButton(this.mc, p_73863_1_, p_73863_2_);
+        }
+
+        for (k = 0; k < this.labelList.size(); ++k)
+        {
+            ((GuiLabel)this.labelList.get(k)).func_146159_a(this.mc, p_73863_1_, p_73863_2_);
+        }
     }
 
     private void setBrightness(int j2, int i3){
@@ -631,7 +661,7 @@ public class GuiAchievementsNext extends GuiScreen implements IProgressMeter{
      */
     public boolean doesGuiPauseGame()
     {
-        return !this.field_146558_F;
+        return !this.progress;
     }
 
 }

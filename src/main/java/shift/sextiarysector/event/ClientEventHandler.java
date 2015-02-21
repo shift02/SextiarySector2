@@ -8,6 +8,7 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.IProgressMeter;
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.renderer.Tessellator;
@@ -87,8 +88,9 @@ public class ClientEventHandler {
     		//System.out.println("GuiOpenEvent");
     	}
 
-    	if(event.gui instanceof GuiAchievements){
+    	if(event.gui instanceof GuiAchievements && !(event.gui instanceof GuiAchievementsNext)){
 
+    		((IProgressMeter)event.gui).func_146509_g();
     		GuiScreen gui =  ObfuscationReflectionHelper.getPrivateValue(GuiAchievements.class, (GuiAchievements)event.gui, "field_146562_a");
     		event.gui = new GuiAchievementsNext(gui ,mc.thePlayer.getStatFileWriter());
 

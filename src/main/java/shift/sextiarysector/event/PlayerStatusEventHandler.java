@@ -1,23 +1,37 @@
 package shift.sextiarysector.event;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import shift.sextiarysector.SSPotions;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.event.PlayerEatenEvent;
+import shift.sextiarysector.module.ModuleHotSprings;
 import shift.sextiarysector.player.EntityPlayerManager;
+import shift.sextiarysector.player.MoistureStats;
+import shift.sextiarysector.player.StaminaStats;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 
+/***
+ *
+ * プレイヤー関係のEvent
+ *
+ * @author Shift02
+ * @SpecialThanks Furia
+ */
 public class PlayerStatusEventHandler {
 
 	/** 食べ物を食べた時の動作 */
@@ -62,7 +76,7 @@ public class PlayerStatusEventHandler {
 	@SubscribeEvent
 	public void onLivingHurtEvent(LivingHurtEvent event) {
 
-		if (event.entityLiving.worldObj.isRemote|| !(event.entityLiving instanceof EntityPlayer)) {
+		if (event.entityLiving.worldObj.isRemote || !(event.entityLiving instanceof EntityPlayer)) {
 			return;
 		}
 
@@ -76,7 +90,7 @@ public class PlayerStatusEventHandler {
 	@SubscribeEvent
 	public void onAttackEntityEvent(AttackEntityEvent event) {
 
-		if (event.entityLiving.worldObj.isRemote|| !(event.entityLiving instanceof EntityPlayer)) {
+		if (event.entityLiving.worldObj.isRemote || !(event.entityLiving instanceof EntityPlayer)) {
 			return;
 		}
 
@@ -148,7 +162,6 @@ public class PlayerStatusEventHandler {
 	@SubscribeEvent
 	public void onLivingHurtEvent2(LivingHurtEvent event) {
 
-
 		if (event.entityLiving.worldObj.isRemote || !(event.entityLiving instanceof EntityPlayer)) {
 			return;
 		}
@@ -191,7 +204,7 @@ public class PlayerStatusEventHandler {
 	@SubscribeEvent
 	public void onAttackEntityEvent2(AttackEntityEvent event) {
 
-		if (event.entityLiving.worldObj.isRemote|| !(event.entityLiving instanceof EntityPlayer)) {
+		if (event.entityLiving.worldObj.isRemote || !(event.entityLiving instanceof EntityPlayer)) {
 			return;
 		}
 
@@ -200,7 +213,6 @@ public class PlayerStatusEventHandler {
 		SextiarySectorAPI.addStaminaExhaustion(player, 1.4f);
 
 	}
-
 
 	//ベットで回復
 	@SubscribeEvent
@@ -216,10 +228,9 @@ public class PlayerStatusEventHandler {
 
 		if (!event.entityLiving.worldObj.isRemote) {
 
-			EntityPlayer player = (EntityPlayer) event.entityPlayer;
+			EntityPlayer player = event.entityPlayer;
 
-
-			if (EntityPlayerManager.getMoistureStats(player).getMoistureLevel() > 4&& player.getFoodStats().getFoodLevel() > 4) {
+			if (EntityPlayerManager.getMoistureStats(player).getMoistureLevel() > 4 && player.getFoodStats().getFoodLevel() > 4) {
 				EntityPlayerManager.getStaminaStats(player).addStats(100, 20.0f);
 			} else {
 				EntityPlayerManager.getStaminaStats(player).addStats(40, 0.0f);
@@ -227,12 +238,132 @@ public class PlayerStatusEventHandler {
 			player.getFoodStats().addExhaustion(21.0f);
 			SextiarySectorAPI.addMoistureExhaustion(player, 21.0f);
 
-
 		}
 
 	}
 
+	//Special Thanks ,Furia
+	@SubscribeEvent
+	public void playerUpdateEvent(TickEvent.PlayerTickEvent event) {
+		this.playerNoMoveEvent(event.player);
+		this.playerSittingEvent(event.player);
+		this.playerSpaEvent(event.player);
+	}
+
+	private void playerNoMoveEvent(EntityPlayer player) {
+
+		if (player.worldObj.getTotalWorldTime() % 120 != 0) return;
+
+		if (!player.isSneaking()) return;
+
+		StaminaStats stats = EntityPlayerManager.getStaminaStats(player);
+		if (stats == null) return;
+
+		if (!stats.needStamina()) return;
+
+		MoistureStats moistStats = EntityPlayerManager.getMoistureStats(player);
+		if (moistStats == null) return;
+
+		if (moistStats.getMoistureLevel() < 10)
+			return;
+
+		if (player.lastTickPosX == player.posX
+				&& player.lastTickPosY == player.posY
+				&& player.lastTickPosZ == player.posZ
+				&& player.motionX == 0
+				&& player.motionY == 0
+				&& player.motionZ == 0) {
+
+			stats.addStats(1, 0.1f);
+			moistStats.addExhaustion(0.8f);
+			player.addExhaustion(0.8f);
+			generateRandomParticles(player, "happyVillager");
+		}
+	}
+
+	private void playerSittingEvent(EntityPlayer player) {
+
+		if (player.worldObj.getTotalWorldTime() % 70 != 0)
+			return;
+
+		if (!player.isRiding()) return;
+
+		StaminaStats stats = EntityPlayerManager.getStaminaStats(player);
+		if (stats == null) return;
+
+		if (!stats.needStamina()) return;
+
+		MoistureStats moistStats = EntityPlayerManager.getMoistureStats(player);
+		if (moistStats == null) return;
+
+		if (moistStats.getMoistureLevel() < 10)
+			return;
+
+		if (player.lastTickPosX == player.posX
+				&& player.lastTickPosY == player.posY
+				&& player.lastTickPosZ == player.posZ
+				&& player.motionX == 0
+				&& player.motionY == 0
+				&& player.motionZ == 0) {
+
+			stats.addStats(1, 0.0f);
+			moistStats.addExhaustion(1.4f);
+			player.addExhaustion(0.05f);
+			this.generateRandomParticles(player, "happyVillager");
+		}
+
+	}
+
+	private void playerSpaEvent(EntityPlayer player) {
+
+		if (player.worldObj.getTotalWorldTime() % 200 != 0)
+			return;
+
+		StaminaStats stats = EntityPlayerManager.getStaminaStats(player);
+		if (stats == null)
+			return;
+
+		if (!stats.needStamina())
+			return;
+
+		//spaEffect
+		if (!player.isInWater())
+			return;
+
+		int i = MathHelper.floor_double(player.posX);
+		int j = MathHelper.floor_double(player.boundingBox.minY);
+		int k = MathHelper.floor_double(player.posZ);
+
+		for (int offset = 0; offset <= 1; offset++) {
+			Block spaBlock = player.worldObj.getBlock(i, j + offset, k);
+			int meta = player.worldObj.getBlockMetadata(i, j + offset, k);
+			if (spaBlock == null) continue;
+
+			if (ModuleHotSprings.isHotSprings(spaBlock, meta)) {
+				player.addPotionEffect(new PotionEffect(SSPotions.hotSprings.getId(), 400, 2));
+				generateRandomParticles(player, "happyVillager");
+				break;
+			}
+		}
+	}
+
+	private void generateRandomParticles(EntityPlayer player, String particleName)
+	{
+		for (int i = 0; i < 5; ++i)
+		{
+			double d0 = player.getRNG().nextGaussian() * 0.02D;
+			double d1 = player.getRNG().nextGaussian() * 0.02D;
+			double d2 = player.getRNG().nextGaussian() * 0.02D;
+			player.worldObj.spawnParticle(particleName,
+					player.posX + player.getRNG().nextFloat() * player.width * 2.0F - player.width,
+					player.posY + 0.2D + player.getRNG().nextFloat() * player.height,
+					player.posZ + player.getRNG().nextFloat() * player.width * 2.0F - player.width,
+					d0, d1, d2);
+		}
+	}
+
 	/** スタミナのボーナス */
+	/*
 	@SubscribeEvent
 	public void livingDashEvent(LivingUpdateEvent event) {
 
@@ -263,8 +394,7 @@ public class PlayerStatusEventHandler {
 
 
 
-	}
-
+	}*/
 
 	// ベットで回復
 	/*@SubscribeEvent
