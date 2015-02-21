@@ -76,15 +76,58 @@ public class RendererSquare extends TileEntitySpecialRenderer implements
 
 		GL11.glPushMatrix();
 
+		GL11.glTranslatef((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F);
+
+		float scale = 0.0625f;
+		// float scale = 0.125f;
+		GL11.glScalef(scale, scale, scale);
+		GL11.glRotatef(180, 1, 0, 0);
+		switch (tile.direction) {
+		case WEST:
+			GL11.glRotatef(90, 0, 1, 0);
+			break;
+		case EAST:
+			GL11.glRotatef(90, 0, -1, 0);
+			break;
+		case NORTH:
+			GL11.glRotatef(180, 0, 1, 0);
+		default:
+			break;
+		}
+
+		if (tile.direction.ordinal() == ForgeDirection.UP.ordinal()) {
+			this.bindTexture(squareTextures);
+		} else if (tile.direction.ordinal() == ForgeDirection.DOWN.ordinal()) {
+			this.bindTexture(squareUunderTextures);
+		} else {
+			this.bindTexture(squareTextures);
+			modelSquare.renderConnection(null, 0, 0, 0, 0, 0, 1.0f);
+		}
+
+		modelSquare.render(null, 0, 0, 0, 0, 0, 1.0f);
+
+
+		GL11.glPopMatrix();
+
+        GL11.glPushMatrix();
+
+
 		GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_LIGHT0);
 
+        //GL11.glDisable(GL11.GL_DEPTH_TEST);
+
         GL11.glColor3f(1,1,1);
 
-		GL11.glTranslatef((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F);
+
+
+        GL11.glTranslatef((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F);
+
+		// float scale = 0.125f;
+
 
 		if(tile.hasFluid()){
 
@@ -136,39 +179,16 @@ public class RendererSquare extends TileEntitySpecialRenderer implements
 
 		}
 
+		//GL11.glEnable(GL11.GL_DEPTH_TEST);
+
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_LIGHTING);
+
+
 
 		GL11.glColor3f(1,1,1);
 
 
-		float scale = 0.0625f;
-		// float scale = 0.125f;
-		GL11.glScalef(scale, scale, scale);
-		GL11.glRotatef(180, 1, 0, 0);
-		switch (tile.direction) {
-		case WEST:
-			GL11.glRotatef(90, 0, 1, 0);
-			break;
-		case EAST:
-			GL11.glRotatef(90, 0, -1, 0);
-			break;
-		case NORTH:
-			GL11.glRotatef(180, 0, 1, 0);
-		default:
-			break;
-		}
-
-		if (tile.direction.ordinal() == ForgeDirection.UP.ordinal()) {
-			this.bindTexture(squareTextures);
-		} else if (tile.direction.ordinal() == ForgeDirection.DOWN.ordinal()) {
-			this.bindTexture(squareUunderTextures);
-		} else {
-			this.bindTexture(squareTextures);
-			modelSquare.renderConnection(null, 0, 0, 0, 0, 0, 1.0f);
-		}
-
-		modelSquare.render(null, 0, 0, 0, 0, 0, 1.0f);
 
 		GL11.glPopMatrix();
 
