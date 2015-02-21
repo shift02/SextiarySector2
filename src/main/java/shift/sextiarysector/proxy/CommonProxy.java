@@ -15,6 +15,8 @@ public class CommonProxy {
 
 	public int woodHopperType;
 
+	public int pipeType;
+
 	public int ShaftRenderType;
 
 	public int GearShaftRenderType;
@@ -35,8 +37,7 @@ public class CommonProxy {
 	public int paddyType;
 	public int woodType;
 
-
-	public EntityPlayer getClientPlayer(){
+	public EntityPlayer getClientPlayer() {
 		return null;
 	}
 
@@ -47,23 +48,22 @@ public class CommonProxy {
 
 	}
 
-	public void openGUI(int id){
+	public void openGUI(int id) {
 
 	}
 
 	public void registerInventoryTabs()
-    {
+	{
 
-    }
-
-	public void setPluginCustomRenderers(FMLPreInitializationEvent event)
-    {
-
-    }
-
-	public Object getShiftHat(){
-		return null;
 	}
 
+	public void setPluginCustomRenderers(FMLPreInitializationEvent event)
+	{
+
+	}
+
+	public Object getShiftHat() {
+		return null;
+	}
 
 }

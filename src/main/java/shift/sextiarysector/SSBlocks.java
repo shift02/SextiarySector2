@@ -7,7 +7,9 @@ import net.minecraft.item.Item;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.block.BlockBlueFire;
+import shift.sextiarysector.block.BlockBoardingBuoy;
 import shift.sextiarysector.block.BlockChunkLoader;
+import shift.sextiarysector.block.BlockDetectorBuoy;
 import shift.sextiarysector.block.BlockFan;
 import shift.sextiarysector.block.BlockFigure;
 import shift.sextiarysector.block.BlockFluidCrafter;
@@ -18,12 +20,15 @@ import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockGearShaft;
 import shift.sextiarysector.block.BlockHole;
+import shift.sextiarysector.block.BlockHotSprings;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockLargeOre;
 import shift.sextiarysector.block.BlockMagiFurnace;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockPaddy;
+import shift.sextiarysector.block.BlockPipe;
 import shift.sextiarysector.block.BlockPowerStone;
+import shift.sextiarysector.block.BlockPoweredBuoy;
 import shift.sextiarysector.block.BlockPump;
 import shift.sextiarysector.block.BlockSSChest;
 import shift.sextiarysector.block.BlockSSCrop;
@@ -45,6 +50,7 @@ import shift.sextiarysector.block.BlockSteamMotor;
 import shift.sextiarysector.block.BlockWindmill;
 import shift.sextiarysector.block.BlockWood;
 import shift.sextiarysector.block.BlockWoodHopper;
+import shift.sextiarysector.item.ItemBlockBuoyBase;
 import shift.sextiarysector.item.ItemBlockCrop;
 import shift.sextiarysector.item.ItemBlockDirection;
 import shift.sextiarysector.item.ItemBlockFigure;
@@ -65,6 +71,7 @@ import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
 import shift.sextiarysector.tileentity.TileEntityPaddy;
+import shift.sextiarysector.tileentity.TileEntityPipe;
 import shift.sextiarysector.tileentity.TileEntityPump;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
@@ -100,12 +107,15 @@ public class SSBlocks {
 
 	public static Block square;
 
+	public static Block ironPipe;
+
 	public static Block blueFire;
 
 	public static Block figure;
 
 	//液体
 	public static Block drinkingWater;
+	public static Block hotSprings;
 
 	//GF
 	public static Block woodShaft;
@@ -143,7 +153,6 @@ public class SSBlocks {
 
 	public static Block pump;
 
-
 	public static Block pulverizer;
 
 	public static Block fan;
@@ -157,14 +166,12 @@ public class SSBlocks {
 
 	public static Block woodGrate;
 
-
 	public static Block woodOakPlate;
 	public static Block woodBirchPlate;
 	public static Block woodSprucePlate;
 	public static Block woodJunglePlate;
 	public static Block woodAcaciaPlate;
 	public static Block woodBigOakPlate;
-
 
 	public static Block ironPlate;
 	public static Block goldPlate;
@@ -216,11 +223,15 @@ public class SSBlocks {
 
 	public static Block redMushroom;
 
-
 	//水産
 	public static Block sandpit;
 
-	public static void initBlicks(){
+	//輸送
+	public static Block boardingBuoy;
+	public static Block poweredBuoy;
+	public static Block detectorBuoy;
+
+	public static void initBlicks() {
 
 		LargeFurnace = new BlockLargeFurnace().setBlockName("ss.large_furnace").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(LargeFurnace, "LargeFurnace");
@@ -267,35 +278,36 @@ public class SSBlocks {
 		GameRegistry.registerBlock(square, ItemBlockDirection.class, "Square");
 		GameRegistry.registerTileEntity(TileEntitySquare.class, "Square");
 
-		woodGrate = (new BlockSSPane(ID+":wood_grate", ID+":wood_grate", Material.wood, false,0)).setHardness(0.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		ironPipe = new BlockPipe().setBlockName("ss.iron_pipe").setBlockTextureName("planks_oak");
+		GameRegistry.registerBlock(ironPipe, "IronPipe");
+		GameRegistry.registerTileEntity(TileEntityPipe.class, "SSPipe");
+
+		woodGrate = (new BlockSSPane(ID + ":wood_grate", ID + ":wood_grate", Material.wood, false, 0)).setHardness(0.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodGrate, "WoodGrate");
 
-
-		woodOakPlate = (new BlockSSPane("planks_oak", "planks_oak", Material.wood, false,1)).setHardness(0.5F).setBlockName("ss.oak_wood_plate").setBlockTextureName(ID+":plate/wood_oak_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		woodOakPlate = (new BlockSSPane("planks_oak", "planks_oak", Material.wood, false, 1)).setHardness(0.5F).setBlockName("ss.oak_wood_plate").setBlockTextureName(ID + ":plate/wood_oak_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodOakPlate, "WoodOakPlate");
 
-		woodBirchPlate = (new BlockSSPane("planks_birch", "planks_birch", Material.wood, false,1)).setHardness(0.5F).setBlockName("ss.birch_wood_plate").setBlockTextureName(ID+":plate/wood_birch_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		woodBirchPlate = (new BlockSSPane("planks_birch", "planks_birch", Material.wood, false, 1)).setHardness(0.5F).setBlockName("ss.birch_wood_plate").setBlockTextureName(ID + ":plate/wood_birch_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodBirchPlate, "WoodBirchPlate");
 
-		woodSprucePlate = (new BlockSSPane("planks_spruce", "planks_spruce", Material.wood, false,1)).setHardness(0.5F).setBlockName("ss.spruce_wood_plate").setBlockTextureName(ID+":plate/wood_spruce_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		woodSprucePlate = (new BlockSSPane("planks_spruce", "planks_spruce", Material.wood, false, 1)).setHardness(0.5F).setBlockName("ss.spruce_wood_plate").setBlockTextureName(ID + ":plate/wood_spruce_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodSprucePlate, "WoodSprucePlate");
 
-		woodJunglePlate = (new BlockSSPane("planks_jungle", "planks_jungle", Material.wood, false,1)).setHardness(0.5F).setBlockName("ss.jungle_wood_plate").setBlockTextureName(ID+":plate/wood_jungle_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		woodJunglePlate = (new BlockSSPane("planks_jungle", "planks_jungle", Material.wood, false, 1)).setHardness(0.5F).setBlockName("ss.jungle_wood_plate").setBlockTextureName(ID + ":plate/wood_jungle_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodJunglePlate, "WoodJunglePlate");
 
-		woodAcaciaPlate = (new BlockSSPane("planks_acacia", "planks_acacia", Material.wood, false,1)).setHardness(0.5F).setBlockName("ss.acacia_wood_plate").setBlockTextureName(ID+":plate/wood_acacia_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		woodAcaciaPlate = (new BlockSSPane("planks_acacia", "planks_acacia", Material.wood, false, 1)).setHardness(0.5F).setBlockName("ss.acacia_wood_plate").setBlockTextureName(ID + ":plate/wood_acacia_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodAcaciaPlate, "WoodAcaciaPlate");
 
-		woodBigOakPlate = (new BlockSSPane("planks_big_oak", "planks_big_oak", Material.wood, false,1)).setHardness(0.5F).setBlockName("ss.big_oak_wood_plate").setBlockTextureName(ID+":plate/wood_big_oak_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		woodBigOakPlate = (new BlockSSPane("planks_big_oak", "planks_big_oak", Material.wood, false, 1)).setHardness(0.5F).setBlockName("ss.big_oak_wood_plate").setBlockTextureName(ID + ":plate/wood_big_oak_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodBigOakPlate, "WoodBigOakPlate");
 
-
-		ironPlate = (new BlockSSPane("iron_block", ID+":iron_block_top", Material.iron, true,1)).setHardness(0.5F).setBlockName("ss.iron_plate").setBlockTextureName(ID+":plate/iron_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		ironPlate = (new BlockSSPane("iron_block", ID + ":iron_block_top", Material.iron, true, 1)).setHardness(0.5F).setBlockName("ss.iron_plate").setBlockTextureName(ID + ":plate/iron_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(ironPlate, "IronPlate");
 
-		goldPlate = (new BlockSSPane("gold_block", ID+":gold_block_top", Material.iron, true,1)).setHardness(0.5F).setBlockName("ss.gold_plate").setBlockTextureName(ID+":plate/gold_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		goldPlate = (new BlockSSPane("gold_block", ID + ":gold_block_top", Material.iron, true, 1)).setHardness(0.5F).setBlockName("ss.gold_plate").setBlockTextureName(ID + ":plate/gold_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(goldPlate, "GoldPlate");
-
 
 		chunkLoader = new BlockChunkLoader().setHardness(1.5F).setBlockName("ss.chunk_loader").setBlockTextureName("sextiarysector:time_loader");
 		GameRegistry.registerBlock(chunkLoader, "ChunkLoader");
@@ -303,13 +315,16 @@ public class SSBlocks {
 		blueFire = new BlockBlueFire().setBlockName("ss.blue_fire").setBlockTextureName("sextiarysector:blue_fire");
 		GameRegistry.registerBlock(blueFire, "BlueFire");
 
-
 		figure = new BlockFigure().setBlockName("ss.figure").setBlockTextureName("sextiarysector:figure").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(figure, ItemBlockFigure.class, "Figure");
 		GameRegistry.registerTileEntity(TileEntityFigure.class, "SSFigure");
 
+		//液体
 		drinkingWater = new BlockSSFluid(SSFluids.drinkingWater).setBlockName("ss.drinking_water").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(drinkingWater, "DrinkingWater");
+
+		hotSprings = new BlockHotSprings(SSFluids.hotSprings).setBlockName("ss.hot_springs").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(hotSprings, "HotSprings");
 
 		//鉱石
 		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
@@ -324,76 +339,73 @@ public class SSBlocks {
 		zincOre = new BlockSSOre(null, 1).setBlockName("ss.zinc_ore").setBlockTextureName("sextiarysector:ore/zinc_ore");
 		GameRegistry.registerBlock(zincOre, "ZincOre");
 
-		silverOre = new BlockSSOre(null,2).setBlockName("ss.silver_ore").setBlockTextureName("sextiarysector:ore/silver_ore");
+		silverOre = new BlockSSOre(null, 2).setBlockName("ss.silver_ore").setBlockTextureName("sextiarysector:ore/silver_ore");
 		GameRegistry.registerBlock(silverOre, "SilverOre");
 
-		mithrilOre = new BlockSSOre(null,2).setBlockName("ss.mithril_ore").setBlockTextureName("sextiarysector:ore/mithril_ore");
+		mithrilOre = new BlockSSOre(null, 2).setBlockName("ss.mithril_ore").setBlockTextureName("sextiarysector:ore/mithril_ore");
 		GameRegistry.registerBlock(mithrilOre, "MithrilOre");
 
-		orichalcumOre = new BlockSSOre(SSItems.orichalcumGem,3).setBlockName("ss.orichalcum_ore").setBlockTextureName("sextiarysector:ore/orichalcum_ore");
+		orichalcumOre = new BlockSSOre(SSItems.orichalcumGem, 3).setBlockName("ss.orichalcum_ore").setBlockTextureName("sextiarysector:ore/orichalcum_ore");
 		GameRegistry.registerBlock(orichalcumOre, "OrichalcumOre");
 
-		coalLargeOre = new BlockLargeOre(SSItems.coalDust,Blocks.coal_ore,1).setBlockName("ss.coal_large_ore").setBlockTextureName("sextiarysector:ore/coal_large_ore");
+		coalLargeOre = new BlockLargeOre(SSItems.coalDust, Blocks.coal_ore, 1).setBlockName("ss.coal_large_ore").setBlockTextureName("sextiarysector:ore/coal_large_ore");
 		GameRegistry.registerBlock(coalLargeOre, "CoalLargeOre");
 
-		ironLargeOre = new BlockLargeOre(SSItems.ironDust,Blocks.iron_ore,2).setBlockName("ss.iron_large_ore").setBlockTextureName("sextiarysector:ore/iron_large_ore");
+		ironLargeOre = new BlockLargeOre(SSItems.ironDust, Blocks.iron_ore, 2).setBlockName("ss.iron_large_ore").setBlockTextureName("sextiarysector:ore/iron_large_ore");
 		GameRegistry.registerBlock(ironLargeOre, "IronLargeOre");
 
-		goldLargeOre = new BlockLargeOre(SSItems.goldDust,Blocks.gold_ore,2).setBlockName("ss.gold_large_ore").setBlockTextureName("sextiarysector:ore/gold_large_ore");
+		goldLargeOre = new BlockLargeOre(SSItems.goldDust, Blocks.gold_ore, 2).setBlockName("ss.gold_large_ore").setBlockTextureName("sextiarysector:ore/gold_large_ore");
 		GameRegistry.registerBlock(goldLargeOre, "GoldLargeOre");
 
 		//GF
 		GameRegistry.registerTileEntity(TileEntityShaft.class, "Shaft");
 
 		woodShaft = new BlockShaft(1).setBlockName("ss.wood_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
-		GameRegistry.registerBlock(woodShaft,ItemBlockDirection.class, "WoodShaft");
+		GameRegistry.registerBlock(woodShaft, ItemBlockDirection.class, "WoodShaft");
 
 		stoneShaft = new BlockShaft(2).setBlockName("ss.stone_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeStone);
-		GameRegistry.registerBlock(stoneShaft,ItemBlockDirection.class, "StoneShaft");
+		GameRegistry.registerBlock(stoneShaft, ItemBlockDirection.class, "StoneShaft");
 
 		steelShaft = new BlockShaft(3).setBlockName("ss.steel_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeMetal);
-		GameRegistry.registerBlock(steelShaft,ItemBlockDirection.class, "SteelShaft");
+		GameRegistry.registerBlock(steelShaft, ItemBlockDirection.class, "SteelShaft");
 
 		ninjaShaft = new BlockShaft(4).setBlockName("ss.ninja_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeMetal);
-		GameRegistry.registerBlock(ninjaShaft,ItemBlockDirection.class, "NinjaShaft");
+		GameRegistry.registerBlock(ninjaShaft, ItemBlockDirection.class, "NinjaShaft");
 
 		orichalcumShaft = new BlockShaft(5).setBlockName("ss.orichalcum_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeMetal);
-		GameRegistry.registerBlock(orichalcumShaft,ItemBlockDirection.class, "OrichalcumShaft");
-
+		GameRegistry.registerBlock(orichalcumShaft, ItemBlockDirection.class, "OrichalcumShaft");
 
 		GameRegistry.registerTileEntity(TileEntityGearBox.class, "GearBox");
-		woodGearBox = new BlockGearBox(Material.wood,1).setBlockName("ss.wood_gear_box").setBlockTextureName("sextiarysector:machine/wood_gear_box").setStepSound(Block.soundTypeWood);
+		woodGearBox = new BlockGearBox(Material.wood, 1).setBlockName("ss.wood_gear_box").setBlockTextureName("sextiarysector:machine/wood_gear_box").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(woodGearBox, "WoodGearBox");
 
-		stoneGearBox = new BlockGearBox(Material.rock,2).setBlockName("ss.stone_gear_box").setBlockTextureName("sextiarysector:machine/stone_gear_box").setStepSound(Block.soundTypeStone);
+		stoneGearBox = new BlockGearBox(Material.rock, 2).setBlockName("ss.stone_gear_box").setBlockTextureName("sextiarysector:machine/stone_gear_box").setStepSound(Block.soundTypeStone);
 		GameRegistry.registerBlock(stoneGearBox, "StoneGearBox");
 
-		steelGearBox = new BlockGearBox(Material.iron,3).setBlockName("ss.steel_gear_box").setBlockTextureName("sextiarysector:machine/steel_gear_box").setStepSound(Block.soundTypeMetal);
+		steelGearBox = new BlockGearBox(Material.iron, 3).setBlockName("ss.steel_gear_box").setBlockTextureName("sextiarysector:machine/steel_gear_box").setStepSound(Block.soundTypeMetal);
 		GameRegistry.registerBlock(steelGearBox, "SteelGearBox");
 
-		ninjaGearBox = new BlockGearBox(Material.iron,4).setBlockName("ss.ninja_gear_box").setBlockTextureName("sextiarysector:machine/ninja_gear_box").setStepSound(Block.soundTypeMetal);
+		ninjaGearBox = new BlockGearBox(Material.iron, 4).setBlockName("ss.ninja_gear_box").setBlockTextureName("sextiarysector:machine/ninja_gear_box").setStepSound(Block.soundTypeMetal);
 		GameRegistry.registerBlock(ninjaGearBox, "NinjaGearBox");
 
-		orichalcumGearBox = new BlockGearBox(Material.iron,5).setBlockName("ss.orichalcum_gear_box").setBlockTextureName("sextiarysector:machine/orichalcum_gear_box").setStepSound(Block.soundTypeMetal);
+		orichalcumGearBox = new BlockGearBox(Material.iron, 5).setBlockName("ss.orichalcum_gear_box").setBlockTextureName("sextiarysector:machine/orichalcum_gear_box").setStepSound(Block.soundTypeMetal);
 		GameRegistry.registerBlock(orichalcumGearBox, "OrichalcumGearBox");
 
-
 		GameRegistry.registerTileEntity(TileEntityGFTank.class, "GFTank");
-		woodGFTank = new BlockGFTank(Material.wood,50,1).setBlockName("ss.wood_gf_tank").setBlockTextureName("sextiarysector:machine/wood_gf_tank").setStepSound(Block.soundTypeWood);
+		woodGFTank = new BlockGFTank(Material.wood, 50, 1).setBlockName("ss.wood_gf_tank").setBlockTextureName("sextiarysector:machine/wood_gf_tank").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(woodGFTank, "WoodGFTank");
 
-		stoneGFTank = new BlockGFTank(Material.rock,51,2).setBlockName("ss.stone_gf_tank").setBlockTextureName("sextiarysector:machine/stone_gf_tank").setStepSound(Block.soundTypeWood);
+		stoneGFTank = new BlockGFTank(Material.rock, 51, 2).setBlockName("ss.stone_gf_tank").setBlockTextureName("sextiarysector:machine/stone_gf_tank").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(stoneGFTank, "StoneGFTank");
 
-		steelGFTank = new BlockGFTank(Material.iron,52,3).setBlockName("ss.steel_gf_tank").setBlockTextureName("sextiarysector:machine/steel_gf_tank").setStepSound(Block.soundTypeMetal);
+		steelGFTank = new BlockGFTank(Material.iron, 52, 3).setBlockName("ss.steel_gf_tank").setBlockTextureName("sextiarysector:machine/steel_gf_tank").setStepSound(Block.soundTypeMetal);
 		GameRegistry.registerBlock(steelGFTank, "SteelGFTank");
 
-		ninjaGFTank = new BlockGFTank(Material.iron,53,4).setBlockName("ss.ninja_gf_tank").setBlockTextureName("sextiarysector:machine/ninja_gf_tank").setStepSound(Block.soundTypeMetal);
+		ninjaGFTank = new BlockGFTank(Material.iron, 53, 4).setBlockName("ss.ninja_gf_tank").setBlockTextureName("sextiarysector:machine/ninja_gf_tank").setStepSound(Block.soundTypeMetal);
 		GameRegistry.registerBlock(ninjaGFTank, "NinjaGFTank");
 
-		orichalcumGFTank = new BlockGFTank(Material.iron,54,5).setBlockName("ss.orichalcum_gf_tank").setBlockTextureName("sextiarysector:machine/orichalcum_gf_tank").setStepSound(Block.soundTypeMetal);
+		orichalcumGFTank = new BlockGFTank(Material.iron, 54, 5).setBlockName("ss.orichalcum_gf_tank").setBlockTextureName("sextiarysector:machine/orichalcum_gf_tank").setStepSound(Block.soundTypeMetal);
 		GameRegistry.registerBlock(orichalcumGFTank, "OrichalcumGFTank");
-
 
 		GameRegistry.registerTileEntity(TileEntityGearShaft.class, "GearShaft");
 		woodStoneGearShaft = new BlockGearShaft(1).setBlockName("ss.wood_stone_gear_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
@@ -424,25 +436,24 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntitySteamMotor.class, "SteamMotor");
 		GameRegistry.registerBlock(steamMotor, ItemBlockDirection.class, "SteamMotor");
 
-
 		GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "SimpleMachine");
-		millstone = new BlockSimpleMachine("millstone",20,SSRecipes.millstone,1).setBlockName("ss.millstone").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		millstone = new BlockSimpleMachine("millstone", 20, SSRecipes.millstone, 1).setBlockName("ss.millstone").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(millstone, "Millstone");
 
-		loom = new BlockSimpleMachine("loom",21,SSRecipes.loom,1).setBlockName("ss.loom").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		loom = new BlockSimpleMachine("loom", 21, SSRecipes.loom, 1).setBlockName("ss.loom").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(loom, "Loom");
 
-		sawmill = new BlockSimpleMachine("sawmill",25,SSRecipes.sawmill,2).setBlockName("ss.sawmill").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		sawmill = new BlockSimpleMachine("sawmill", 25, SSRecipes.sawmill, 2).setBlockName("ss.sawmill").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(sawmill, "Sawmill");
 
 		pump = new BlockPump().setBlockTextureName("sextiarysector:machine/pump").setBlockName("ss.pump");
 		GameRegistry.registerTileEntity(TileEntityPump.class, "SSPump");
-		GameRegistry.registerBlock(pump,  "pump");
+		GameRegistry.registerBlock(pump, "pump");
 
-		pulverizer = new BlockSimpleMachine("pulverizer",30,SSRecipes.pulverizer,3).setBlockName("ss.pulverizer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		pulverizer = new BlockSimpleMachine("pulverizer", 30, SSRecipes.pulverizer, 3).setBlockName("ss.pulverizer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(pulverizer, "Pulverizer");
 
-		fan =  new BlockFan().setBlockName("ss.fan").setBlockTextureName("stone");
+		fan = new BlockFan().setBlockName("ss.fan").setBlockTextureName("stone");
 		GameRegistry.registerTileEntity(TileEntityFan.class, "Fan");
 		GameRegistry.registerBlock(fan, ItemBlockDirection.class, "Fan");
 
@@ -450,10 +461,10 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntitySaw.class, "Saw");
 		GameRegistry.registerBlock(saw, ItemBlockDirection.class, "Saw");
 
-		rollingMachine = new BlockSimpleMachine("rolling_machine",35,SSRecipes.rollingMachine,4).setBlockName("ss.rolling_machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		rollingMachine = new BlockSimpleMachine("rolling_machine", 35, SSRecipes.rollingMachine, 4).setBlockName("ss.rolling_machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(rollingMachine, "RollingMachine");
 
-		timeMachine = new BlockSimpleMachine("time_machine",40,SSRecipes.timeMachine,5).setBlockName("ss.time_machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		timeMachine = new BlockSimpleMachine("time_machine", 40, SSRecipes.timeMachine, 5).setBlockName("ss.time_machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(timeMachine, "TimeMachine");
 
 		shippingBox = new BlockShippingBox().setBlockName("ss.shipping_box").setBlockTextureName("sextiarysector:shipping_box").setCreativeTab(SextiarySectorAPI.TabSSEconomy);
@@ -464,11 +475,11 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntitySSChest.class, "SSChest");
 
 		monitor = new BlockMonitor().setBlockName("ss.monitor").setBlockTextureName("stone");
-		GameRegistry.registerBlock(monitor,ItemBlockMonitor.class, "Monitor");
+		GameRegistry.registerBlock(monitor, ItemBlockMonitor.class, "Monitor");
 		GameRegistry.registerTileEntity(TileEntityMonitor.class, "SSMonitor");
 
 		farmland = new BlockSSFarmland().setBlockName("ss.farmland").setBlockTextureName("farmland").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
-		GameRegistry.registerBlock(farmland,"Farmland");
+		GameRegistry.registerBlock(farmland, "Farmland");
 		GameRegistry.registerTileEntity(TileEntityFarmland.class, "SSFarmland");
 
 		paddy = new BlockPaddy().setBlockName("ss.paddy").setBlockTextureName("dirt").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
@@ -482,56 +493,62 @@ public class SSBlocks {
 		//野菜
 		GameRegistry.registerTileEntity(TileEntitySSCrop.class, "SSCrop");
 
-		turnip = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,3,4},Season.SPRING), farmland, SSItems.turnip, false).setBlockName("ss.turnip").setBlockTextureName("turnip");
-		GameRegistry.registerBlock(turnip,ItemBlockCrop.class,"BlockTurnip");
+		turnip = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 2, 3, 4 }, Season.SPRING), farmland, SSItems.turnip, false).setBlockName("ss.turnip").setBlockTextureName("turnip");
+		GameRegistry.registerBlock(turnip, ItemBlockCrop.class, "BlockTurnip");
 
-		cucumber = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{2,6,10,3},Season.SPRING), farmland, SSItems.cucumber, true).setBlockName("ss.cucumber").setBlockTextureName("cucumber");
-		GameRegistry.registerBlock(cucumber,ItemBlockCrop.class,"BlockCucumber");
+		cucumber = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 2, 6, 10, 3 }, Season.SPRING), farmland, SSItems.cucumber, true).setBlockName("ss.cucumber").setBlockTextureName("cucumber");
+		GameRegistry.registerBlock(cucumber, ItemBlockCrop.class, "BlockCucumber");
 
-		ironTurnip = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{4,8,12},Season.SPRING), farmland, SSItems.ironTurnip, false).setBlockName("ss.iron_turnip").setBlockTextureName("iron_turnip");
-		GameRegistry.registerBlock(ironTurnip,ItemBlockCrop.class,"BlockIronTurnip");
+		ironTurnip = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 4, 8, 12 }, Season.SPRING), farmland, SSItems.ironTurnip, false).setBlockName("ss.iron_turnip").setBlockTextureName("iron_turnip");
+		GameRegistry.registerBlock(ironTurnip, ItemBlockCrop.class, "BlockIronTurnip");
 
+		onion = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 2, 4, 8 }, Season.SUMMER), farmland, SSItems.onion, false).setBlockName("ss.onion").setBlockTextureName("onion");
+		GameRegistry.registerBlock(onion, ItemBlockCrop.class, "BlockOnion");
 
-		onion = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,4,8},Season.SUMMER), farmland, SSItems.onion, false).setBlockName("ss.onion").setBlockTextureName("onion");
-		GameRegistry.registerBlock(onion,ItemBlockCrop.class,"BlockOnion");
+		tomato = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 4, 10, 14, 2 }, Season.SUMMER), farmland, SSItems.tomato, true).setBlockName("ss.tomato").setBlockTextureName("tomato");
+		GameRegistry.registerBlock(tomato, ItemBlockCrop.class, "BlockTomato");
 
-		tomato = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{4,10,14,2},Season.SUMMER), farmland, SSItems.tomato, true).setBlockName("ss.tomato").setBlockTextureName("tomato");
-		GameRegistry.registerBlock(tomato,ItemBlockCrop.class,"BlockTomato");
+		corn = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 5, 10, 16, 4 }, Season.SUMMER), farmland, SSItems.corn, true).setBlockName("ss.corn").setBlockTextureName("corn");
+		GameRegistry.registerBlock(corn, ItemBlockCrop.class, "BlockCorn");
 
-		corn = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{5,10,16,4},Season.SUMMER), farmland, SSItems.corn, true).setBlockName("ss.corn").setBlockTextureName("corn");
-		GameRegistry.registerBlock(corn,ItemBlockCrop.class,"BlockCorn");
+		goldenCorn = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 7, 12, 18, 4 }, Season.SUMMER), farmland, SSItems.goldenCorn, true).setBlockName("ss.golden_corn").setBlockTextureName("golden_corn");
+		GameRegistry.registerBlock(goldenCorn, ItemBlockCrop.class, "BlockGoldenCorn");
 
-		goldenCorn = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{7,12,18,4},Season.SUMMER), farmland, SSItems.goldenCorn, true).setBlockName("ss.golden_corn").setBlockTextureName("golden_corn");
-		GameRegistry.registerBlock(goldenCorn,ItemBlockCrop.class,"BlockGoldenCorn");
+		eggplant = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 3, 7, 12, 3 }, Season.AUTUMN), farmland, SSItems.eggplant, true).setBlockName("ss.eggplant").setBlockTextureName("eggplant");
+		GameRegistry.registerBlock(eggplant, ItemBlockCrop.class, "BlockEggplant");
 
+		sweetPotato = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 2, 4, 6, 2 }, Season.AUTUMN), farmland, SSItems.sweetPotato, true).setBlockName("ss.sweet_potato").setBlockTextureName("sweet_potato");
+		GameRegistry.registerBlock(sweetPotato, ItemBlockCrop.class, "BlockSweetPotato");
 
-		eggplant = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{3,7,12,3},Season.AUTUMN), farmland, SSItems.eggplant, true).setBlockName("ss.eggplant").setBlockTextureName("eggplant");
-		GameRegistry.registerBlock(eggplant,ItemBlockCrop.class,"BlockEggplant");
+		greenPepper = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 4, 8, 14, 3 }, Season.AUTUMN), farmland, SSItems.greenPepper, true).setBlockName("ss.green_pepper").setBlockTextureName("green_pepper");
+		GameRegistry.registerBlock(greenPepper, ItemBlockCrop.class, "BlockGreenPepper");
 
-		sweetPotato = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,4,6,2},Season.AUTUMN), farmland, SSItems.sweetPotato, true).setBlockName("ss.sweet_potato").setBlockTextureName("sweet_potato");
-		GameRegistry.registerBlock(sweetPotato,ItemBlockCrop.class,"BlockSweetPotato");
-
-		greenPepper = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{4,8,14,3},Season.AUTUMN), farmland, SSItems.greenPepper, true).setBlockName("ss.green_pepper").setBlockTextureName("green_pepper");
-		GameRegistry.registerBlock(greenPepper,ItemBlockCrop.class,"BlockGreenPepper");
-
-		radish = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{2,3,4},Season.WINTER), farmland, SSItems.radish, false).setBlockName("ss.radish").setBlockTextureName("radish");
-		GameRegistry.registerBlock(radish,ItemBlockCrop.class,"BlockRadish");
+		radish = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 2, 3, 4 }, Season.WINTER), farmland, SSItems.radish, false).setBlockName("ss.radish").setBlockTextureName("radish");
+		GameRegistry.registerBlock(radish, ItemBlockCrop.class, "BlockRadish");
 
 		//米
 		///28,46,68
-		rice = new BlockSSCrop(CropType.Normal, new CropStatus(new int[]{28,46,68},Season.SPRING,Season.SUMMER,Season.AUTUMN), paddy, SSItems.rice, false).setBlockName("ss.rice").setBlockTextureName("rice");
-		GameRegistry.registerBlock(rice,ItemBlockCrop.class,"BlockRice");
+		rice = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 28, 46, 68 }, Season.SPRING, Season.SUMMER, Season.AUTUMN), paddy, SSItems.rice, false).setBlockName("ss.rice").setBlockTextureName("rice");
+		GameRegistry.registerBlock(rice, ItemBlockCrop.class, "BlockRice");
 
-		redMushroom = new BlockSSCrop(CropType.Close, new CropStatus(new int[]{6,8,14},Season.SPRING,Season.SUMMER), wood, Item.getItemFromBlock(Blocks.red_mushroom), false).setBlockName("ss.mushroom_red").setBlockTextureName("mushroom_red");
+		redMushroom = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 6, 8, 14 }, Season.SPRING, Season.SUMMER), wood, Item.getItemFromBlock(Blocks.red_mushroom), false).setBlockName("ss.mushroom_red").setBlockTextureName("mushroom_red");
 		GameRegistry.registerBlock(redMushroom, ItemBlockCrop.class, "BlockRedMushroom");
-
 
 		//水産
 		sandpit = new BlockSandpit().setBlockName("ss.sandpit").setBlockTextureName("sand");
 		GameRegistry.registerBlock(sandpit, "Sandpit");
 
-		//initVanillaBlock();
+		//輸送
+		boardingBuoy = new BlockBoardingBuoy().setBlockName("ss.boarding_buoy").setBlockTextureName("sextiarysector:buoy/boarding_buoy");
+		GameRegistry.registerBlock(boardingBuoy, ItemBlockBuoyBase.class, "BoardingBuoy");
 
+		poweredBuoy = new BlockPoweredBuoy().setBlockName("ss.powered_buoy").setBlockTextureName("sextiarysector:buoy/powered_buoy");
+		GameRegistry.registerBlock(poweredBuoy, ItemBlockBuoyBase.class, "PoweredBuoy");
+
+		detectorBuoy = new BlockDetectorBuoy().setBlockName("ss.detector_buoy").setBlockTextureName("sextiarysector:buoy/detector_buoy");
+		GameRegistry.registerBlock(detectorBuoy, ItemBlockBuoyBase.class, "DetectorBuoy");
+
+		//initVanillaBlock();
 
 	}
 

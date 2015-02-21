@@ -9,7 +9,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class SSOreDictionary {
 
-	public static void init(){
+	public static void init() {
 
 		OreDictionary.registerOre("condimentSugar", Items.sugar);
 
@@ -24,18 +24,19 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("cookingVegetable", Items.potato);
 		OreDictionary.registerOre("cookingVegetable", Items.carrot);
 
+		OreDictionary.registerOre("condimentCocoa", new ItemStack(Items.dye, 1, 3));
+
 		OreDictionary.registerOre("containerWoodBowl", Items.bowl);
 		OreDictionary.registerOre("containerBucket", Items.bucket);
 
-		OreDictionary.registerOre("craftingString", new ItemStack(Items.string,1,0));
+		OreDictionary.registerOre("craftingString", new ItemStack(Items.string, 1, 0));
 
-		for(int i=0;i<16;i++){
-			OreDictionary.registerOre("craftingSmallCloth", new ItemStack(Blocks.wool,1,i));
+		for (int i = 0; i < 16; i++) {
+			OreDictionary.registerOre("craftingSmallCloth", new ItemStack(Blocks.wool, 1, i));
 		}
 
-
 		OreDictionary.registerOre("fluidWater", Items.water_bucket);
-		OreDictionary.registerOre("fluidWater", new ItemStack(Items.potionitem, 1 ,0));
+		OreDictionary.registerOre("fluidWater", new ItemStack(Items.potionitem, 1, 0));
 
 		OreDictionary.registerOre("craftingMagic", Items.nether_star);
 
@@ -105,25 +106,33 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("craftingSmallCloth", SSItems.smallCloth);
 		OreDictionary.registerOre("craftingFilterCloth", SSItems.smallCloth);
 
-		//液体金属
+		//液体
 		OreDictionary.registerOre("fluidIron", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.iron.getID()));
 		OreDictionary.registerOre("fluidGold", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.gold.getID()));
 
-		Item[] Knife = new Item[]{SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife};
-		for(int i =0;i<Knife.length;i++){
-			OreDictionary.registerOre("craftingToolWireCutter", new ItemStack(Knife[i],1,OreDictionary.WILDCARD_VALUE));
-			OreDictionary.registerOre("craftingToolKnife", new ItemStack(Knife[i],1,OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("fluidIron", new ItemStack(SSItems.ironFluidBucket));
+		OreDictionary.registerOre("fluidGold", new ItemStack(SSItems.goldFluidBucket));
+
+		Item[] Knife = new Item[] { SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife };
+		for (int i = 0; i < Knife.length; i++) {
+			OreDictionary.registerOre("craftingToolWireCutter", new ItemStack(Knife[i], 1, OreDictionary.WILDCARD_VALUE));
+			OreDictionary.registerOre("craftingToolKnife", new ItemStack(Knife[i], 1, OreDictionary.WILDCARD_VALUE));
 		}
+
+		OreDictionary.registerOre("fluidSap", new ItemStack(SSItems.sapBottle));
 
 		//食べ物
 
 		OreDictionary.registerOre("condimentCurryPowder", SSItems.curryPowder);
+		OreDictionary.registerOre("condimentSalt", SSItems.salt);
+
+		OreDictionary.registerOre("algaLaver", SSItems.laver);
+		OreDictionary.registerOre("cookingLaver", SSItems.laverRoasted);
 
 		OreDictionary.registerOre("cropTurnip", SSItems.turnip);
 		OreDictionary.registerOre("cookingVegetable", SSItems.turnip);
 		OreDictionary.registerOre("cropCucumber", SSItems.cucumber);
 		OreDictionary.registerOre("cookingVegetable", SSItems.cucumber);
-
 
 		OreDictionary.registerOre("cropOnion", SSItems.onion);
 		OreDictionary.registerOre("cookingVegetable", SSItems.onion);
@@ -131,17 +140,14 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("cookingVegetable", SSItems.tomato);
 		OreDictionary.registerOre("cropCorn", SSItems.corn);
 
-
 		OreDictionary.registerOre("cropEggplant", SSItems.eggplant);
 		OreDictionary.registerOre("cookingVegetable", SSItems.eggplant);
 		OreDictionary.registerOre("cropSweetPotato", SSItems.sweetPotato);
 		OreDictionary.registerOre("cropGreenPepper", SSItems.greenPepper);
 		OreDictionary.registerOre("cookingVegetable", SSItems.greenPepper);
 
-
 		OreDictionary.registerOre("cropRadish", SSItems.radish);
 		OreDictionary.registerOre("cookingVegetable", SSItems.radish);
-
 
 		OreDictionary.registerOre("cropRice", SSItems.rice);
 
@@ -149,8 +155,7 @@ public class SSOreDictionary {
 
 		//飲み物
 		OreDictionary.registerOre("fluidWater", new ItemStack(SSBlocks.fluidCrafter, 1, FluidRegistry.WATER.getID()));
-
-
+		OreDictionary.registerOre("fluidSteam", new ItemStack(SSItems.steamBucket));
 
 	}
 

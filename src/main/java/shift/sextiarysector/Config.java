@@ -7,6 +7,7 @@ public class Config {
 
 	//Potion
 	public static int burn;
+	public static int hotSprings;
 
 	//Biome
 	public static int magicDesert;
@@ -24,7 +25,6 @@ public class Config {
 	public static boolean modTcon;
 	public static boolean modCleaver;
 
-
 	public static void ConfigRead(FMLPreInitializationEvent event) {
 
 		Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
@@ -33,6 +33,7 @@ public class Config {
 
 			cfg.load();
 			configForBiome(cfg);
+			configForPotion(cfg);
 
 			configForPlayer(cfg);
 
@@ -48,6 +49,7 @@ public class Config {
 
 	public static void configForPotion(Configuration cfg) {
 		burn = cfg.getInt("BurnID", "potion", 25, 25, 255, "");
+		hotSprings = cfg.getInt("HotSpringsID", "potion", 26, 25, 255, "");
 	}
 
 	public static void configForBiome(Configuration cfg) {
@@ -70,15 +72,5 @@ public class Config {
 		modCleaver = cfg.getBoolean("Cleaver", "general", true, "");
 
 	}
-
-
-
-
-
-
-
-
-
-
 
 }
