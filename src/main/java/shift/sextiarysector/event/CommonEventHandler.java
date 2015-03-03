@@ -12,7 +12,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.stats.Achievement;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -22,7 +21,6 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -32,7 +30,6 @@ import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSFluids.SSFluid;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.event.BlockBottleEvent;
-import shift.sextiarysector.block.BlockFigure;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
 import shift.sextiarysector.item.ItemKnife;
@@ -69,30 +66,6 @@ public class CommonEventHandler {
 			}
 
 		}
-
-	}
-
-	@SubscribeEvent
-	public void onAchievementEvent(AchievementEvent event) {
-
-		Achievement achievement = event.achievement;
-		EntityPlayer player = event.entityPlayer;
-		ItemStack item = achievement.theItemStack;
-
-		if (item == null) return;
-
-		if (((EntityPlayerMP) player).func_147099_x().hasAchievementUnlocked(achievement)) return;
-
-		ItemStack f = new ItemStack(SSBlocks.figure);
-		BlockFigure.setFigureItem(f, item.copy(), "achievement");
-
-		if (!player.inventory.addItemStackToInventory(f))
-		{
-			if (player.worldObj.isRemote) return;
-			player.dropPlayerItemWithRandomChoice(f, false);
-		}
-
-		player.inventory.markDirty();
 
 	}
 

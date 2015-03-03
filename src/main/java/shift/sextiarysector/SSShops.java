@@ -3,7 +3,9 @@ package shift.sextiarysector;
 import java.util.ArrayList;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import shift.mceconomy2.api.MCEconomyAPI;
 import shift.mceconomy2.api.shop.IProductItem;
 import shift.mceconomy2.api.shop.IProductList;
@@ -141,6 +143,8 @@ public class SSShops {
 	}
 
 	public static void initPurchase() {
+
+		MCEconomyAPI.addPurchaseItem(new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE), 25);
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.turnip), 280);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.cucumber), 350);

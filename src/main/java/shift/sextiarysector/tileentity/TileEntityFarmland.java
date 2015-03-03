@@ -9,21 +9,22 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+import shift.sextiarysector.SSFluids;
 import shift.sextiarysector.api.agriculture.IFarmland;
 
-public class TileEntityFarmland extends TileEntity implements IFluidHandler , IFarmland{
+public class TileEntityFarmland extends TileEntity implements IFluidHandler, IFarmland {
 
 	//水
 	protected FluidTank water = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
 
+	@Override
 	public void updateEntity() {
 
-		if(!this.worldObj.isRemote){
+		if (!this.worldObj.isRemote) {
 			this.updateServerEntity();
 		}
 
@@ -31,12 +32,12 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler , IF
 
 	public void updateServerEntity() {
 
-		if(this.getBlockMetadata()==0&&water.getFluidAmount()>500){
+		if (this.getBlockMetadata() == 0 && water.getFluidAmount() > 500) {
 			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 4);
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 
-		if(this.getBlockMetadata()==1&&water.getFluidAmount()<=500){
+		if (this.getBlockMetadata() == 1 && water.getFluidAmount() <= 500) {
 			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 4);
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
@@ -52,23 +53,25 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler , IF
 	}
 
 	public void setFertilizer(ItemStack fertilizer) {
-		if(fertilizer==null){
+		if (fertilizer == null) {
 			this.fertilizerItem = null;
-		}else{
+		} else {
 			this.fertilizerItem = fertilizer.copy();
 		}
 
 	}
 
-	public void clearFertilizer(){
+	public void clearFertilizer() {
 		this.fertilizerItem = null;
 	}
 
-	public boolean canGrowth(){
-		return water.getFluidAmount()>=500;
+	@Override
+	public boolean canGrowth() {
+		return water.getFluidAmount() >= 500;
 	}
 
-	public void growth(){
+	@Override
+	public void growth() {
 		this.water.drain(500, true);
 	}
 
@@ -78,7 +81,7 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler , IF
 		//if(par1nbtTagCompound.hasKey("fertilizer")){
 		//	this.fertilizer = par1nbtTagCompound.getString("fertilizer");
 		//}
-		if(par1nbtTagCompound.hasKey("fertilizeritem")){
+		if (par1nbtTagCompound.hasKey("fertilizeritem")) {
 			this.fertilizerItem = ItemStack.loadItemStackFromNBT(par1nbtTagCompound.getCompoundTag("fertilizeritem"));
 		}
 
@@ -89,8 +92,8 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler , IF
 	public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
 		super.writeToNBT(par1nbtTagCompound);
 		//if(fertilizer!=null)par1nbtTagCompound.setString("fertilizer", fertilizer);
-		if(fertilizerItem!=null){
-			NBTTagCompound itemNBT =new NBTTagCompound();
+		if (fertilizerItem != null) {
+			NBTTagCompound itemNBT = new NBTTagCompound();
 			fertilizerItem.writeToNBT(itemNBT);
 			par1nbtTagCompound.setTag("fertilizeritem", itemNBT);
 		}
@@ -114,7 +117,7 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler , IF
 	@Override
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
 
-		if(!this.canFill(from, resource.getFluid())){
+		if (!this.canFill(from, resource.getFluid())) {
 			return 0;
 		}
 
@@ -123,7 +126,7 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler , IF
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection from, FluidStack resource,boolean doDrain) {
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
 		return null;
 	}
 
@@ -134,7 +137,7 @@ public class TileEntityFarmland extends TileEntity implements IFluidHandler , IF
 
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return fluid.getID()==FluidRegistry.WATER.getID();
+		return fluid.getID() == SSFluids.drinkingWater.getID();
 	}
 
 	@Override
