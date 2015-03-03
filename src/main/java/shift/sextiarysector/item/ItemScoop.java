@@ -55,7 +55,7 @@ public class ItemScoop extends ItemTool {
 				Block block1 = SSBlocks.hole;
 				p_77648_3_.playSoundEffect(p_77648_4_ + 0.5F, p_77648_5_ + 0.5F, p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
 
-				p_77648_2_.addStat(SSAchievement.hole, 1);
+				if (!p_77648_3_.isRemote) p_77648_2_.addStat(SSAchievement.hole, 1);
 				if (p_77648_3_.isRemote)
 				{
 					return true;
@@ -72,7 +72,7 @@ public class ItemScoop extends ItemTool {
 				Block block1 = SSBlocks.farmland;
 				p_77648_3_.playSoundEffect(p_77648_4_ + 0.5F, p_77648_5_ + 0.5F, p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
 
-				p_77648_2_.addStat(SSAchievement.farmland, 1);
+				if (!p_77648_3_.isRemote) p_77648_2_.addStat(SSAchievement.farmland, 1);
 				if (p_77648_3_.isRemote)
 				{
 					return true;

@@ -1,6 +1,7 @@
 package shift.sextiarysector.entity;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -128,6 +129,13 @@ public class EntityMineboatTank extends EntityMineboat implements IFluidHandler 
 	{
 		super.killMineBoat(par1DamageSource);
 		this.func_145778_a(Item.getItemFromBlock(SSBlocks.tank), 1, 0.0F);
+	}
+
+	@Override
+	//ここに重要な事がある。
+	public boolean interactFirst(EntityPlayer par1EntityPlayer)
+	{
+		return true;
 	}
 
 	/* IFluidHandler */

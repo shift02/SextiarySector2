@@ -16,20 +16,21 @@ import shift.sextiarysector.api.season.SeasonAPI;
 import shift.sextiarysector.block.BlockSSCrop;
 import shift.sextiarysector.block.BlockSSCrop.CropStatus;
 
-public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
+public class TileEntitySSCrop extends TileEntity implements IFluidHandler {
 
 	private int lastMinutes = 0;
-	private int lastDay =0;
+	private int lastDay = 0;
 
 	//成長何日目か
-	private int day=0;
+	private int day = 0;
 
 	//再収穫
-	private int day2=0;
+	private int day2 = 0;
 
+	@Override
 	public void updateEntity() {
 
-		if(!this.worldObj.isRemote){
+		if (!this.worldObj.isRemote) {
 			this.updateServerEntity();
 		}
 
@@ -37,33 +38,33 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 
 	public void updateServerEntity() {
 
-		if(this.getBlockMetadata()==4 && !this.getStatus().isReHarvest()){
+		if (this.getBlockMetadata() == 4 && !this.getStatus().isReHarvest()) {
 			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 3, 0);
 		}
 
-		if(lastMinutes==0){
-			lastMinutes=SeasonAPI.getMinute(getWorldObj());
+		if (lastMinutes == 0) {
+			lastMinutes = SeasonAPI.getMinute(getWorldObj());
 		}
 
-		if(lastMinutes==SeasonAPI.getMinute(getWorldObj())&&lastDay!=SeasonAPI.getDay(getWorldObj())){
+		if (lastMinutes == SeasonAPI.getMinute(getWorldObj()) && lastDay != SeasonAPI.getDay(getWorldObj())) {
 
 			Season[] s = this.getStatus().getSeason();
 
 			boolean notB = false;
-			for(int i = 0;i<s.length;i++){
-				if(s[i].equals(SeasonAPI.getSeason(getWorldObj()))){
-					notB =true;
+			for (int i = 0; i < s.length; i++) {
+				if (s[i].equals(SeasonAPI.getSeason(getWorldObj()))) {
+					notB = true;
 					break;
 				}
 			}
 
-			if(!notB){
+			if (!notB) {
 				this.worldObj.func_147480_a(this.xCoord, this.yCoord, this.zCoord, false);
 				this.worldObj.removeTileEntity(xCoord, yCoord, zCoord);
-				return ;
+				return;
 			}
 
-			if(this.hasFarmland()&&this.canGrowth()){
+			if (this.hasFarmland() && this.canGrowth()) {
 
 				this.growth();
 
@@ -73,43 +74,42 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 
 	}
 
-	public boolean hasFarmland(){
-		return this.worldObj.getTileEntity(this.xCoord,this.yCoord-1,this.zCoord) instanceof IFarmland;
+	public boolean hasFarmland() {
+		return this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord) instanceof IFarmland;
 	}
 
-	private boolean canGrowth(){
+	private boolean canGrowth() {
 
-		if(this.getBlockMetadata()==3){
+		if (this.getBlockMetadata() == 3) {
 			return false;
 		}
 
-		return ((IFarmland)this.worldObj.getTileEntity(this.xCoord,this.yCoord-1,this.zCoord)).canGrowth();
+		return ((IFarmland) this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord)).canGrowth();
 
 	}
 
-	private void growth(){
+	private void growth() {
 
 		day++;
 
 		this.lastDay = SeasonAPI.getDay(getWorldObj());
 
-		((IFarmland)this.worldObj.getTileEntity(this.xCoord,this.yCoord-1,this.zCoord)).growth();
+		((IFarmland) this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord)).growth();
 
 		BlockSSCrop crop = (BlockSSCrop) this.getBlockType();
 
-		if(this.getBlockMetadata()<3){
+		if (this.getBlockMetadata() < 3) {
 
-			if(this.day < this.getStatus().getDays()[this.getBlockMetadata()])return;
+			if (this.day < this.getStatus().getDays()[this.getBlockMetadata()]) return;
 
-			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getBlockMetadata()+1, 4);
+			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getBlockMetadata() + 1, 4);
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
-
-		}else if( crop.canReHarvest() && this.getBlockMetadata()==4 && this.getStatus().isReHarvest() ){
+		} else if (crop.canReHarvest() && this.getBlockMetadata() == 4 && this.getStatus().isReHarvest()) {
 
 			day2++;
 
-			if(day2 < this.getStatus().getDays()[3])return ;
+			if (day2 < this.getStatus().getDays()[3]) return;
 
 			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 3, 4);
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
@@ -118,23 +118,23 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 
 	}
 
-	public void onHarvest(){
+	public void onHarvest() {
 
 		this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 4, 4);
-		this.day2=0;
+		this.day2 = 0;
 		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
 	}
 
-	private CropStatus getStatus(){
-		return ((BlockSSCrop)this.getBlockType()).getStatus();
+	private CropStatus getStatus() {
+		return ((BlockSSCrop) this.getBlockType()).getStatus();
 	}
 
-	private IFarmland getFarmland(){
-		return ((IFarmland)this.worldObj.getTileEntity(this.xCoord,this.yCoord-1,this.zCoord));
+	private IFarmland getFarmland() {
+		return ((IFarmland) this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord));
 	}
 
-	private BlockSSCrop getCrop(){
+	private BlockSSCrop getCrop() {
 		return (BlockSSCrop) this.worldObj.getBlock(xCoord, yCoord, zCoord);
 	}
 
@@ -169,10 +169,11 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 
+	//液体
 	@Override
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
 
-		if(this.hasFarmland()){
+		if (this.hasFarmland()) {
 			return this.getFarmland().fill(from, resource, doFill);
 		}
 
@@ -180,9 +181,9 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection from, FluidStack resource,boolean doDrain) {
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
 
-		if(this.hasFarmland()){
+		if (this.hasFarmland()) {
 			return this.getFarmland().drain(from, resource, doDrain);
 		}
 
@@ -192,7 +193,7 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 	@Override
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
 
-		if(this.hasFarmland()){
+		if (this.hasFarmland()) {
 			return this.getFarmland().drain(from, maxDrain, doDrain);
 		}
 
@@ -202,7 +203,7 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
 
-		if(this.hasFarmland()){
+		if (this.hasFarmland()) {
 			return this.getFarmland().canFill(from, fluid);
 		}
 
@@ -212,7 +213,7 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 	@Override
 	public boolean canDrain(ForgeDirection from, Fluid fluid) {
 
-		if(this.hasFarmland()){
+		if (this.hasFarmland()) {
 			return this.getFarmland().canDrain(from, fluid);
 		}
 
@@ -222,7 +223,7 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler{
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
 
-		if(this.hasFarmland()){
+		if (this.hasFarmland()) {
 			return this.getFarmland().getTankInfo(from);
 		}
 

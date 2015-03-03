@@ -38,8 +38,9 @@ public class RecipesTool {
 		for (int i = 0; i < wateringCan.length; i++) {
 
 			p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(wateringCan[i], 1, (wateringCan[i].getMaxDamage() - 1)),
-					new Object[] { "yyy", " yy",
+					new Object[] { "yxy", " yy",
 							Character.valueOf('y'), material[i],
+							Character.valueOf('x'), "craftingFilterCloth",
 					}));
 		}
 

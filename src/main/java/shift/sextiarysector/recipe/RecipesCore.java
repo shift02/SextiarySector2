@@ -74,6 +74,13 @@ public class RecipesCore {
 						'y', "ingotCopper",
 				}));
 
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.shippingBox, 1),
+				new Object[] {
+						"yyy", "yxy", "yyy",
+						'x', Blocks.ender_chest,
+						'y', "plateWood",
+				}));
+
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.rucksack, 1),
 				new Object[] {
 						"xxx", "x x", "xxx",
@@ -84,6 +91,13 @@ public class RecipesCore {
 				new Object[] {
 						"x", "y",
 						'x', Blocks.chest,
+						'y', Items.boat,
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.mineboatTank, 1),
+				new Object[] {
+						"x", "y",
+						'x', SSBlocks.tank,
 						'y', Items.boat,
 				}));
 
