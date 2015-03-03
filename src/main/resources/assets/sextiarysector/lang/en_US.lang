@@ -30,7 +30,9 @@ tile.ss.bottle.name=Fluid Bottle
 tile.ss.fluid_crafter.name=Fluid Crafter
 tile.ss.square.name=Wood Square
 
-tile.ss.iron_pipe.name=Iron Pipe
+tile.ss.tank.name=Tank
+tile.ss.funnel.name=Funnel
+tile.ss.copper_pipe.name=Copper Pipe
 
 
 tile.ss.wood_hopper.name=Wood Hopper
@@ -39,6 +41,7 @@ tile.ss.chunk_loader.name=Time Loader
 
 tile.ss.figure.name=Figure
 
+tile.ss.trap.name=Trap
 
 tile.ss.drinking_water.name=Drinking Water
 tile.ss.hot_springs.name=Hot Springs
@@ -254,9 +257,16 @@ item.ss.iron_knife.name=Iron Knife
 item.ss.gold_knife.name=Gold Knife
 item.ss.diamond_knife.name=Diamond Knife
 
+item.ss.copper_shovel.name=Copper Shovel
+item.ss.copper_pickaxe.name=Copper Pickaxe
+item.ss.copper_axe.name=Copper Axe
+item.ss.copper_sword.name=Copper Sword
+item.ss.copper_hoe.name=Copper Hoe
+
 item.ss.wood_watering_can.name=Wood Watering Can
 
 item.ss.mineboat_chest.name=Mineboat Chest
+item.ss.mineboat_tank.name=Mineboat Tank
 
 item.ss.laver.name=Laver
 
@@ -340,6 +350,7 @@ gui.ss.fluid_furnace=Fluid Furnace
 gui.ss.food_smokers=Food Smokers
 gui.ss.magic_furnace=Magic Furnace
 gui.ss.freezer=Freezer
+gui.ss.funnel=Fluid Funnel
 
 gui.ss.rucksack=Rucksack
 
@@ -378,6 +389,7 @@ tooltip.edition=Edition
 
 #Edition
 edition.creative=CreativeTab
+edition.achievement=Achievement
 edition.figure_beginner=Figure Beginner
 edition.ore_festival=Ore Festival
 

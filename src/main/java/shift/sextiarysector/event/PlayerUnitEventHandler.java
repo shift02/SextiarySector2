@@ -25,6 +25,8 @@ public class PlayerUnitEventHandler {
 
 		EntityPlayer player = (EntityPlayer) event.entityLiving;
 
+		if (player.capabilities.isCreativeMode) return;
+
 		if (EntityPlayerManager.getStaminaStats(player).getStaminaLevel() < 5) {
 
 			player.motionX *= 0.8;
@@ -43,7 +45,7 @@ public class PlayerUnitEventHandler {
 
 	public float getMaxMove() {
 
-		return 2.4f;
+		return 3.4f;
 
 	}
 
