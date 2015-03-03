@@ -120,11 +120,14 @@ public class SSOreDictionary {
 		}
 
 		OreDictionary.registerOre("fluidSap", new ItemStack(SSItems.sapBottle));
+		OreDictionary.registerOre("fluidSap", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.sap.getID()));
 
 		//食べ物
 
 		OreDictionary.registerOre("condimentCurryPowder", SSItems.curryPowder);
 		OreDictionary.registerOre("condimentSalt", SSItems.salt);
+		//OreDictionary.registerOre("salt", SSItems.salt);
+		//OreDictionary.registerOre("itemSalt", SSItems.salt);
 
 		OreDictionary.registerOre("algaLaver", SSItems.laver);
 		OreDictionary.registerOre("cookingLaver", SSItems.laverRoasted);

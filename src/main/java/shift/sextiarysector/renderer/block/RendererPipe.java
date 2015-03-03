@@ -62,7 +62,7 @@ public class RendererPipe extends TileEntitySpecialRenderer implements ISimpleBl
 		return SextiarySector.proxy.pipeType;
 	}
 
-	private static final ResourceLocation fanShaftTextures = new ResourceLocation("sextiarysector:textures/models/iron_pipe.png");
+	private static final ResourceLocation fanShaftTextures = new ResourceLocation("sextiarysector:textures/models/copper_pipe.png");
 
 	static public ModelPipe modelPipe = new ModelPipe();
 
@@ -75,6 +75,7 @@ public class RendererPipe extends TileEntitySpecialRenderer implements ISimpleBl
 		GL11.glTranslated(x1 + 0.5F, y1 + 0.5F, z1 + 0.5F);
 		float scale = 0.0624f;
 		GL11.glScalef(scale, scale, scale);
+		GL11.glDisable(GL11.GL_LIGHTING);
 
 		this.bindTexture(fanShaftTextures);
 
@@ -94,6 +95,7 @@ public class RendererPipe extends TileEntitySpecialRenderer implements ISimpleBl
 
 		}
 
+		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPopMatrix();
 
 	}

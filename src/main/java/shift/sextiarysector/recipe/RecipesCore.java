@@ -60,6 +60,20 @@ public class RecipesCore {
 						'x', "plateWood",
 				}));
 
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.tank, 1),
+				new Object[] {
+						"xyx", "y y", "xyx",
+						'x', Items.stick,
+						'y', "paneGlassColorless",
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.funnel, 1),
+				new Object[] {
+						"y y", "yxy", " y ",
+						'x', SSBlocks.tank,
+						'y', "ingotCopper",
+				}));
+
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.rucksack, 1),
 				new Object[] {
 						"xxx", "x x", "xxx",

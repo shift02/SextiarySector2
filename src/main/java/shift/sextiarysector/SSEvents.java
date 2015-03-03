@@ -6,6 +6,7 @@ import shift.sextiarysector.event.AchievementEventHandler;
 import shift.sextiarysector.event.ClientEventHandler;
 import shift.sextiarysector.event.CommonEventHandler;
 import shift.sextiarysector.event.HUDEventHandler;
+import shift.sextiarysector.event.OreDictionaryEventHandler;
 import shift.sextiarysector.event.PlayerStatusEventHandler;
 import shift.sextiarysector.event.PlayerUnitEventHandler;
 import shift.sextiarysector.event.WorldEventHandler;
@@ -31,6 +32,8 @@ public class SSEvents {
 		FMLCommonHandler.instance().bus().register(new PlayerStatusEventHandler());
 		MinecraftForge.EVENT_BUS.register(new PlayerUnitEventHandler());
 		MinecraftForge.EVENT_BUS.register(new VanillaFoodHandler());
+
+		MinecraftForge.EVENT_BUS.register(new OreDictionaryEventHandler());
 
 		if (event.getSide().isClient()) {
 			MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
