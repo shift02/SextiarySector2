@@ -170,10 +170,10 @@ public class RecipesFurnaceCraft {
 				}));
 
 		//パイプ
-		p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.ironPipe, 4),
+		p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.copperPipe, 4),
 				new Object[] {
 						"x", "x", "x",
-						'x', "ingotIron",
+						'x', "ingotCopper",
 				}));
 
 		//料理

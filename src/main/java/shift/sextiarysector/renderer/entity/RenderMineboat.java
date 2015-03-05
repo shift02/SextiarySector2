@@ -17,14 +17,14 @@ public class RenderMineboat extends RenderBoat{
 
 	private static final ResourceLocation field_110782_f = new ResourceLocation("textures/entity/boat.png");
 
-	protected final RenderBlocks field_94145_f;
+	protected final RenderBlocks blockrender;
 
 	public RenderMineboat()
     {
         this.shadowSize = 0.5F;
         this.modelBoat = new ModelMineboat();
         //
-        this.field_94145_f = new RenderBlocks();
+        this.blockrender = new RenderBlocks();
     }
 
 	public void renderMineboat(EntityMineboat par1EntityBoat, double par2, double par4, double par6, float par8, float par9)
@@ -78,7 +78,7 @@ public class RenderMineboat extends RenderBoat{
     {
         float f1 = par1EntityMineboat.getBrightness(par2);
         GL11.glPushMatrix();
-        this.field_94145_f.renderBlockAsItem(par3Block, par4, f1);
+        this.blockrender.renderBlockAsItem(par3Block, par4, f1);
         GL11.glPopMatrix();
     }
 

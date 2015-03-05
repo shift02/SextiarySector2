@@ -17,7 +17,7 @@ public class ModuleSandpit implements IModule {
 	}
 
 	public static ModuleSandpit getInstance() {
-		if(instance==null){
+		if (instance == null) {
 			instance = new ModuleSandpit();
 		}
 		return instance;
@@ -36,17 +36,17 @@ public class ModuleSandpit implements IModule {
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
 
-		BlockSandpit.addShell(new ItemStack(Items.stick), 25);
+		BlockSandpit.addShell(new ItemStack(Items.stick), 45);
 
-		BlockSandpit.addShell(new ItemStack(Items.glass_bottle), 7);
+		BlockSandpit.addShell(new ItemStack(Items.glass_bottle), 14);
 
-		BlockSandpit.addShell(new ShellEntry(new ItemStack(Items.book), 5).setEnchant());
+		BlockSandpit.addShell(new ShellEntry(new ItemStack(Items.book), 10).setEnchant());
 
-		BlockSandpit.addShell(new ItemStack(SSItems.laver), 16);
+		BlockSandpit.addShell(new ItemStack(SSItems.laver), 26);
 
-		BlockSandpit.addShell(new ItemStack(Items.redstone), 5);
-		BlockSandpit.addShell(new ItemStack(SSItems.blueStoneDust), 5);
-		BlockSandpit.addShell(new ItemStack(SSItems.yellowStoneDust), 5);
+		BlockSandpit.addShell(new ItemStack(Items.redstone), 8);
+		BlockSandpit.addShell(new ItemStack(SSItems.blueStoneDust), 8);
+		BlockSandpit.addShell(new ItemStack(SSItems.yellowStoneDust), 8);
 
 		BlockSandpit.addShell(new ItemStack(SSItems.mithrilDust), 3);
 		BlockSandpit.addShell(new ItemStack(SSItems.orichalcumGem), 1);

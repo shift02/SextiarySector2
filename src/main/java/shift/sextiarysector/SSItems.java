@@ -2,8 +2,12 @@ package shift.sextiarysector;
 
 import java.util.ArrayList;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemSpade;
+import net.minecraft.item.ItemSword;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.item.ItemBottle;
 import shift.sextiarysector.item.ItemCalendar;
@@ -20,7 +24,10 @@ import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemKnife;
 import shift.sextiarysector.item.ItemLavaBottle;
 import shift.sextiarysector.item.ItemMineboat;
+import shift.sextiarysector.item.ItemMineboatTank;
 import shift.sextiarysector.item.ItemRucksack;
+import shift.sextiarysector.item.ItemSSAxe;
+import shift.sextiarysector.item.ItemSSPickaxe;
 import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
 import shift.sextiarysector.item.ItemShiftHat;
@@ -30,6 +37,7 @@ import shift.sextiarysector.item.ItemSoup;
 import shift.sextiarysector.item.ItemUnit;
 import shift.sextiarysector.item.ItemWaterBottle;
 import shift.sextiarysector.item.ItemWateringCan;
+import shift.sextiarysector.module.ModuleToolMaterial;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SSItems {
@@ -148,10 +156,18 @@ public class SSItems {
 	public static Item goldKnife;
 	public static Item diamondKnife;
 
+	//道具 バニラ
+	public static Item copperShovel;
+	public static Item copperPickaxe;
+	public static Item copperAxe;
+	public static Item copperSword;
+	public static Item copperHoe;
+
 	public static Item woodWateringCan;
 
 	//水産
 	public static Item mineboatChest;
+	public static Item mineboatTank;
 
 	public static Item laver;
 
@@ -447,12 +463,28 @@ public class SSItems {
 		GameRegistry.registerItem(goldKnife, "GoldKnife");
 		GameRegistry.registerItem(diamondKnife, "DiamondKnife");
 
+		//バニラ
+		copperShovel = new ItemSpade(ModuleToolMaterial.copper).setUnlocalizedName("ss.copper_shovel").setTextureName("sextiarysector:tool/copper_shovel").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(copperShovel, "CopperShovel");
+		copperPickaxe = new ItemSSPickaxe(ModuleToolMaterial.copper).setUnlocalizedName("ss.copper_pickaxe").setTextureName("sextiarysector:tool/copper_pickaxe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(copperPickaxe, "CopperPickaxe");
+		copperAxe = new ItemSSAxe(ModuleToolMaterial.copper).setUnlocalizedName("ss.copper_axe").setTextureName("sextiarysector:tool/copper_axe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(copperAxe, "CopperAxe");
+		copperSword = new ItemSword(ModuleToolMaterial.copper).setUnlocalizedName("ss.copper_sword").setTextureName("sextiarysector:tool/copper_sword").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(copperSword, "CopperSword");
+		copperHoe = new ItemHoe(ModuleToolMaterial.copper).setUnlocalizedName("ss.copper_hoe").setTextureName("sextiarysector:tool/copper_hoe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(copperHoe, "CopperHoe");
+		//Item i = Items.iron_axe;
+
 		woodWateringCan = new ItemWateringCan(ToolMaterial.WOOD).setUnlocalizedName("ss.wood_watering_can").setTextureName("wood_watering_can");
 		GameRegistry.registerItem(woodWateringCan, "WoodWateringCan");
 
 		//水産
 		mineboatChest = new ItemMineboat().setUnlocalizedName("ss.mineboat_chest").setTextureName("sextiarysector:mineboat_chest");
 		GameRegistry.registerItem(mineboatChest, "MineboatChest");
+
+		mineboatTank = new ItemMineboatTank().setUnlocalizedName("ss.mineboat_tank").setTextureName("sextiarysector:mineboat_tank");
+		GameRegistry.registerItem(mineboatTank, "MineboatTank");
 
 		laver = new Item().setUnlocalizedName("ss.laver").setTextureName("sextiarysector:food/fish/laver").setCreativeTab(SextiarySectorAPI.TabSSFishery);
 		GameRegistry.registerItem(laver, "Laver");
@@ -522,7 +554,7 @@ public class SSItems {
 		riceBall = new ItemFoodDrink(4, 0.6f, 0, 0, 4, 6.0f, false).setUnlocalizedName("ss.rice_ball").setTextureName("sextiarysector:food/rice/rice_ball").setCreativeTab(SextiarySectorAPI.TabSSCooking);
 		GameRegistry.registerItem(riceBall, "RiceBall");
 
-		curryRice = new ItemFoodDrink(9, 12.6f, 0, 0, 15, 2.0f, false).setUnlocalizedName("ss.curry_rice").setTextureName("sextiarysector:food/rice/curry_rice").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+		curryRice = new ItemFoodDrink(9, 12.6f, 0, 0, 15, 2.0f, false).setUnlocalizedName("ss.curry_rice").setTextureName("sextiarysector:food/rice/curry_rice").setContainerItem(Items.bowl).setCreativeTab(SextiarySectorAPI.TabSSCooking);
 		GameRegistry.registerItem(curryRice, "CurryRice");
 
 		carrotSoup = new ItemSoup(2, 0.6f, 4, 1, 0, 0.0f, false).setUnlocalizedName("ss.carrot_soup").setTextureName("sextiarysector:food/soup/carrot_soup");

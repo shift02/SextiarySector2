@@ -18,6 +18,8 @@ import shift.sextiarysector.module.ModuleHotSprings;
 import shift.sextiarysector.module.ModuleSandpit;
 import shift.sextiarysector.module.ModuleSeason;
 import shift.sextiarysector.module.ModuleStatistics;
+import shift.sextiarysector.module.ModuleToolMaterial;
+import shift.sextiarysector.module.ModuleTrap;
 import shift.sextiarysector.packet.SSPacketHandler;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.plugin.SSPlugins;
@@ -30,18 +32,18 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-@Mod(modid = SextiarySectorAPI.MODID, version = SextiarySector.VERSION, dependencies = SextiarySector.DEPENDENCY)
+@Mod(modid = SextiarySector.MODID, version = SextiarySector.VERSION, dependencies = SextiarySector.DEPENDENCY)
 public class SextiarySector {
 
-	//public static final String MODID = "SextiarySector";
-	public static final String VERSION = "2.1.6";
+	public static final String MODID = "SextiarySector";
+	public static final String VERSION = "2.1.7";
 
 	@Mod.Instance("SextiarySector")
 	public static SextiarySector instance;
 
 	public static final String DEPENDENCY = "";//"required-after:mceconomy2";
 
-	@SidedProxy(clientSide = "shift.sextiarysector.proxy.ClientProxy", serverSide = "shift.sextiarysector.proxy.CommonProxy")
+	@SidedProxy(modId = MODID, clientSide = "shift.sextiarysector.proxy.ClientProxy", serverSide = "shift.sextiarysector.proxy.CommonProxy")
 	public static CommonProxy proxy;
 
 	public static final Logger Log = LogManager.getLogger(SextiarySectorAPI.MODID);
@@ -70,9 +72,15 @@ public class SextiarySector {
 		modules.add(ModuleChunkLoader.getInstance());
 		modules.add(ModuleSeason.getInstance());
 		modules.add(ModuleAgriculture.getInstance());
+		modules.add(ModuleTrap.getInstance());
 		modules.add(ModuleSandpit.getInstance());
 		modules.add(ModuleHotSprings.getInstance());
 		modules.add(ModuleFigure.getInstance());
+		modules.add(ModuleToolMaterial.getInstance());
+
+		for (IModule m : modules) {
+			m.preInit(event);
+		}
 
 		SSRecipes.deleteVanillaRecipe();
 		SSRecipes.initRecipeLists();
@@ -89,10 +97,6 @@ public class SextiarySector {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new SSGuiHandler());
 
 		SSOreDictionary.init();
-
-		for (IModule m : modules) {
-			m.preInit(event);
-		}
 
 		/*
 		GameRegistry.registerTileEntity(TileEmptyCauldron.class, "SSCauldron");

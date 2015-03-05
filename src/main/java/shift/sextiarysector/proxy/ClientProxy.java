@@ -11,6 +11,7 @@ import shift.mceconomy2.packet.PacketHandler;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.entity.EntityMineboat;
 import shift.sextiarysector.entity.EntityMineboatChest;
+import shift.sextiarysector.entity.EntityMineboatTank;
 import shift.sextiarysector.gui.tab.TabManager;
 import shift.sextiarysector.packet.PacketGuiId;
 import shift.sextiarysector.plugin.IPlugin;
@@ -21,6 +22,7 @@ import shift.sextiarysector.renderer.block.RendererFan;
 import shift.sextiarysector.renderer.block.RendererFarmland;
 import shift.sextiarysector.renderer.block.RendererFigure;
 import shift.sextiarysector.renderer.block.RendererFluidCrafter;
+import shift.sextiarysector.renderer.block.RendererFunnel;
 import shift.sextiarysector.renderer.block.RendererGearShaft;
 import shift.sextiarysector.renderer.block.RendererHole;
 import shift.sextiarysector.renderer.block.RendererMonitor;
@@ -32,10 +34,12 @@ import shift.sextiarysector.renderer.block.RendererSmallWaterwheel;
 import shift.sextiarysector.renderer.block.RendererSmallWindmill;
 import shift.sextiarysector.renderer.block.RendererSquare;
 import shift.sextiarysector.renderer.block.RendererSteamMotor;
+import shift.sextiarysector.renderer.block.RendererTank;
 import shift.sextiarysector.renderer.block.RendererWindmill;
 import shift.sextiarysector.renderer.block.RendererWood;
 import shift.sextiarysector.renderer.block.RendererWoodHopper;
 import shift.sextiarysector.renderer.entity.RenderMineboat;
+import shift.sextiarysector.renderer.entity.RenderMineboatTank;
 import shift.sextiarysector.renderer.item.RenderGF;
 import shift.sextiarysector.tileentity.TileEntityBlockBottle;
 import shift.sextiarysector.tileentity.TileEntityFan;
@@ -51,6 +55,7 @@ import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector.tileentity.TileEntitySquare;
 import shift.sextiarysector.tileentity.TileEntitySteamMotor;
+import shift.sextiarysector.tileentity.TileEntityTank;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -81,6 +86,8 @@ public class ClientProxy extends CommonProxy {
 
 		this.woodHopperType = RenderingRegistry.getNextAvailableRenderId();
 
+		this.tankType = RenderingRegistry.getNextAvailableRenderId();
+		this.funnelType = RenderingRegistry.getNextAvailableRenderId();
 		this.pipeType = RenderingRegistry.getNextAvailableRenderId();
 
 		this.ShaftRenderType = RenderingRegistry.getNextAvailableRenderId();
@@ -115,6 +122,8 @@ public class ClientProxy extends CommonProxy {
 
 		RenderingRegistry.registerBlockHandler(new RendererWoodHopper());
 
+		RenderingRegistry.registerBlockHandler(new RendererTank());
+		RenderingRegistry.registerBlockHandler(new RendererFunnel());
 		RenderingRegistry.registerBlockHandler(new RendererPipe());
 
 		RenderingRegistry.registerBlockHandler(new RendererShaft());
@@ -152,6 +161,8 @@ public class ClientProxy extends CommonProxy {
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySquare.class, new RendererSquare());
 
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RendererPipe());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFigure.class, new RendererFigure());
@@ -172,6 +183,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMonitor.class, new RendererMonitor());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMineboatChest.class, new RenderMineboat());
+		RenderingRegistry.registerEntityRenderingHandler(EntityMineboatTank.class, new RenderMineboatTank());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMineboat.class, new RenderMineboat());
 
 	}

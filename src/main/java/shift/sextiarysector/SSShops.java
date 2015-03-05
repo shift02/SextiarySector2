@@ -3,7 +3,9 @@ package shift.sextiarysector;
 import java.util.ArrayList;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import shift.mceconomy2.api.MCEconomyAPI;
 import shift.mceconomy2.api.shop.IProductItem;
 import shift.mceconomy2.api.shop.IProductList;
@@ -15,9 +17,11 @@ import shift.sextiarysector.item.ItemShopRing;
 
 public class SSShops {
 
+	public static SSProductList[] creepers;
+
 	public static void initShops() {
 
-		SSProductList[] creepers = new SSProductList[4];
+		creepers = new SSProductList[4];
 
 		for (int i = 0; i < 4; i++) {
 
@@ -86,16 +90,17 @@ public class SSShops {
 		}
 
 		MonitorType.creeper.setList(creepers);
-		SSProductList[] creepersR = new SSProductList[4];
-		for (int i = 0; i < 4; i++) {
-			creepersR[i] = creepers[i].copySSProductList();
-		}
-		((ItemShopRing) SSItems.creeperRing).setList(creepersR);
+		//SSProductList[] creepersR = new SSProductList[4];
+		//for (int i = 0; i < 4; i++) {
+		//	creepersR[i] = creepers[i].copySSProductList();
+		//}
+		//((ItemShopRing) SSItems.creeperRing).setList(creepersR);
+		((ItemShopRing) SSItems.creeperRing).setList(creepers);
 
 		SSProductList robot = new SSProductList("shop.ss.robot");
 		MonitorType.robot.setList(robot);
 
-		robot.addItemProduct(new ProductItem(new ItemStack(Blocks.chest, 1), 250));
+		robot.addItemProduct(new ProductItem(new ItemStack(Blocks.lava, 1), 250));
 
 	}
 
@@ -141,6 +146,8 @@ public class SSShops {
 	}
 
 	public static void initPurchase() {
+
+		MCEconomyAPI.addPurchaseItem(new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE), 25);
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.turnip), 280);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.cucumber), 350);

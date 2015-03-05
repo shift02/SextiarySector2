@@ -5,8 +5,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
+import shift.mceconomy2.api.shop.ProductItem;
 import shift.sextiarysector.SSFluids;
+import shift.sextiarysector.SSItems;
 import shift.sextiarysector.SSRecipes;
+import shift.sextiarysector.SSShops;
+import shift.sextiarysector.item.ItemFigureBox;
 import shift.sextiarysector.module.ModuleFigure;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -50,6 +54,10 @@ public class PluginCleaver implements IPlugin {
 		ModuleFigure.addFigure("schr0_cleaver", new ItemStack(itemCleaverBlaze, 1), 20);
 		ModuleFigure.addFigure("schr0_cleaver", new ItemStack(itemCleaverSoul, 1), 20);
 		ModuleFigure.addFigure("schr0_cleaver", new ItemStack(itemCleaverOgre, 1), 20);
+
+		for (int i = 0; i < 4; i++) {
+			SSShops.creepers[i].addItemProduct(new ProductItem(((ItemFigureBox) SSItems.figureBox).getEditionFigureBox("schr0_cleaver"), 500));
+		}
 
 	}
 

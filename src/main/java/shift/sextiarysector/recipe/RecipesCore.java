@@ -60,6 +60,27 @@ public class RecipesCore {
 						'x', "plateWood",
 				}));
 
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.tank, 1),
+				new Object[] {
+						"xyx", "y y", "xyx",
+						'x', Items.stick,
+						'y', "paneGlassColorless",
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.funnel, 1),
+				new Object[] {
+						"y y", "yxy", " y ",
+						'x', SSBlocks.tank,
+						'y', "ingotCopper",
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.shippingBox, 1),
+				new Object[] {
+						"yyy", "yxy", "yyy",
+						'x', Blocks.ender_chest,
+						'y', "plateWood",
+				}));
+
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.rucksack, 1),
 				new Object[] {
 						"xxx", "x x", "xxx",
@@ -70,6 +91,13 @@ public class RecipesCore {
 				new Object[] {
 						"x", "y",
 						'x', Blocks.chest,
+						'y', Items.boat,
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.mineboatTank, 1),
+				new Object[] {
+						"x", "y",
+						'x', SSBlocks.tank,
 						'y', Items.boat,
 				}));
 
