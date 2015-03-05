@@ -13,7 +13,6 @@ import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -50,19 +49,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ClientEventHandler {
 
 	@SideOnly(Side.CLIENT)
-    public static Minecraft mc = FMLClientHandler.instance().getClient();
+	public static Minecraft mc = FMLClientHandler.instance().getClient();
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void onGuiOpenEvent(GuiOpenEvent event) {
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onGuiOpenEvent(GuiOpenEvent event) {
 
-    	if(event.gui instanceof GuiStats&&!(event.gui instanceof GuiStatsNext)){
+		if (event.gui instanceof GuiStats && !(event.gui instanceof GuiStatsNext)) {
 
-    		/*
-    		Class<GuiStats> c = GuiStats.class;
+			/*
+			Class<GuiStats> c = GuiStats.class;
 
-    		Field f1;
-    		GuiScreen m = null;
+			Field f1;
+			GuiScreen m = null;
 			try {
 				f1 = c.getDeclaredField( "parentGui" );
 				f1.setAccessible( true );
@@ -81,118 +80,111 @@ public class ClientEventHandler {
 				e.printStackTrace();
 			}*/
 
-				event.gui = new GuiStatsNext(new GuiIngameMenu(),mc.thePlayer.getStatFileWriter());
+			event.gui = new GuiStatsNext(new GuiIngameMenu(), mc.thePlayer.getStatFileWriter());
 
+			//System.out.println("GuiOpenEvent");
+		}
 
+		if (event.gui instanceof GuiAchievements && !(event.gui instanceof GuiAchievementsNext)) {
 
-    		//System.out.println("GuiOpenEvent");
-    	}
+			((IProgressMeter) event.gui).func_146509_g();
+			GuiScreen gui = ObfuscationReflectionHelper.getPrivateValue(GuiAchievements.class, (GuiAchievements) event.gui, "field_146562_a");
+			event.gui = new GuiAchievementsNext(gui, mc.thePlayer.getStatFileWriter());
 
-    	if(event.gui instanceof GuiAchievements && !(event.gui instanceof GuiAchievementsNext)){
+		}
 
-    		((IProgressMeter)event.gui).func_146509_g();
-    		GuiScreen gui =  ObfuscationReflectionHelper.getPrivateValue(GuiAchievements.class, (GuiAchievements)event.gui, "field_146562_a");
-    		event.gui = new GuiAchievementsNext(gui ,mc.thePlayer.getStatFileWriter());
+	}
 
-    	}
+	@SubscribeEvent
+	public void onItemTooltipEvent(ItemTooltipEvent event) {
 
-    }
+		ItemStack itemStack = event.itemStack;
+		List<String> toolTip = event.toolTip;
 
-    @SubscribeEvent
-    public void onItemTooltipEvent(ItemTooltipEvent event) {
+		if (itemStack.getItem() == Items.clock) {
+			toolTip.add(SeasonManager.getInstance().getTime2(this.mc.theWorld));
+		}
 
+	}
 
-    	ItemStack itemStack = event.itemStack;
-    	List<String> toolTip = event.toolTip;
+	public static IIcon slotGF;
+	public static IIcon slotFluid;
 
-    	if(itemStack.getItem()==Items.clock){
-    		toolTip.add(SeasonManager.getInstance().getTime2(this.mc.theWorld));
-    	}
+	public static IIcon[] itemGF;
 
-    }
+	public static IIcon waterFlow;
+	public static IIcon waterStill;
 
-    public static IIcon slotGF;
-    public static IIcon slotFluid;
+	public static IIcon portal;
 
-    public static IIcon[] itemGF;
+	public static IIcon lavaFlow;
+	public static IIcon lavaStill;
 
-    public static IIcon waterFlow;
-    public static IIcon waterStill;
+	@SubscribeEvent
+	public void PreTextureStitchEvent(TextureStitchEvent.Pre event) {
 
-    public static IIcon portal;
+		//Item
+		if (event.map.getTextureType() == 1) {
 
-    public static IIcon lavaFlow;
-    public static IIcon lavaStill;
+			slotGF = event.map.registerIcon("sextiarysector:gui/slot_gf");
+			slotFluid = event.map.registerIcon("sextiarysector:gui/slot_fluid");
 
-    @SubscribeEvent
-	public void PreTextureStitchEvent(TextureStitchEvent.Pre event){
+			itemGF = new IIcon[2];
+			itemGF[0] = event.map.registerIcon("sextiarysector:damage/damage_0");
+			itemGF[1] = event.map.registerIcon("sextiarysector:damage/damage_1");
 
-    	//Item
-    	if(event.map.getTextureType()==1){
+			for (EquipmentType type : EquipmentType.values()) {
+				type.registerIcon(event.map);
+			}
 
+		} else {
+			waterFlow = event.map.registerIcon("sextiarysector:fluid/water_flow");
+			waterStill = event.map.registerIcon("sextiarysector:fluid/water_still");
+			portal = event.map.registerIcon("sextiarysector:fluid/portal");
+			lavaFlow = event.map.registerIcon("sextiarysector:fluid/lava_flow");
+			lavaStill = event.map.registerIcon("sextiarysector:fluid/lava_still");
+		}
 
-    		slotGF = event.map.registerIcon("sextiarysector:gui/slot_gf");
-    		slotFluid = event.map.registerIcon("sextiarysector:gui/slot_fluid");
+	}
 
-    		itemGF = new IIcon[2];
-    		itemGF[0] = event.map.registerIcon("sextiarysector:damage/damage_0");
-    		itemGF[1] = event.map.registerIcon("sextiarysector:damage/damage_1");
+	@SubscribeEvent
+	public void preFertilizerTextureStitchEvent(TextureStitchEvent.Pre event) {
 
-    		for(EquipmentType type :EquipmentType.values()){
-    			type.registerIcon(event.map);
-    		}
+		if (event.map.getTextureType() == 0) {
 
+			for (IFertilizer f : ((FertilizerManager) AgricultureAPI.fertilizerManager).fertilizerIcons) {
+				f.registerFertilizerIcons(event.map);
+			}
 
-    	}else{
-    		waterFlow = event.map.registerIcon("sextiarysector:fluid/water_flow");
-    		waterStill = event.map.registerIcon("sextiarysector:fluid/water_still");
-    		portal = event.map.registerIcon("sextiarysector:fluid/portal");
-    		lavaFlow = event.map.registerIcon("sextiarysector:fluid/lava_flow");
-    		lavaStill = event.map.registerIcon("sextiarysector:fluid/lava_still");
-    	}
+		}
 
-    }
+	}
 
-    @SubscribeEvent
-	public void preFertilizerTextureStitchEvent(TextureStitchEvent.Pre event){
+	@SubscribeEvent
+	public void preVanillaTextureStitchEvent(TextureStitchEvent.Pre event) {
 
-    	if(event.map.getTextureType()==0){
+		//Item
+		if (event.map.getTextureType() == 0) {
 
-    		for(IFertilizer f : ((FertilizerManager)AgricultureAPI.fertilizerManager).fertilizerIcons){
-    			f.registerFertilizerIcons(event.map);
-    		}
+			IIcon icon = new TextureSeason("sextiarysector:vanilla/leaves_birch");
 
-    	}
-
-    }
-
-    @SubscribeEvent
-	public void preVanillaTextureStitchEvent(TextureStitchEvent.Pre event){
-
-    	//Item
-    	if(event.map.getTextureType()==0){
-
-    		IIcon icon = new TextureSeason("sextiarysector:vanilla/leaves_birch");
-
-    		((TextureMap)event.map).setTextureEntry("sextiarysector:vanilla/leaves_birch", (TextureAtlasSprite)icon);
-
-
+			event.map.setTextureEntry("sextiarysector:vanilla/leaves_birch", (TextureAtlasSprite) icon);
 
 			try {
 
 				Field f;
 
-				BlockLeaves birch = (BlockLeaves) Blocks.leaves;
-	    		Class<BlockLeaves> c = BlockLeaves.class;
+				BlockLeaves birch = Blocks.leaves;
+				Class<BlockLeaves> c = BlockLeaves.class;
 				f = c.getDeclaredField("field_150129_M");
 
 				f.setAccessible(true);
 
-				IIcon[] a = (IIcon[])Array.get(f.get(birch), 0);
+				IIcon[] a = (IIcon[]) Array.get(f.get(birch), 0);
 
-	    		Array.set(a, 2, icon);
+				Array.set(a, 2, icon);
 
-	    		//System.out.println("AAAAA");
+				//System.out.println("AAAAA");
 
 			} catch (SecurityException e) {
 				e.printStackTrace();
@@ -209,161 +201,150 @@ public class ClientEventHandler {
 				e.printStackTrace();
 			}
 
+		}
 
+	}
 
-    	}
+	//車軸の線の描写
+	@SubscribeEvent
+	public void onDrawBlockHighlight(DrawBlockHighlightEvent event) {
 
-    }
+		EntityPlayer player = event.player;
+		ItemStack itemstack = event.currentItem;
+		MovingObjectPosition target = event.target;
 
+		if (player == null)
+		{
+			return;
+		}
 
+		//if(itemstack == null)
+		//{
+		//	return;
+		// }
 
-  //車軸の線の描写
-    @SubscribeEvent
-    public void onDrawBlockHighlight(DrawBlockHighlightEvent event) {
+		if (EntityPlayerManager.getCustomPlayerData(player).getEquipmentStats().inventory.getStackInSlot(EquipmentType.Face.getSlot()[0]) == null) {
+			return;
+		}
 
-    	EntityPlayer player = event.player;
-        ItemStack itemstack = event.currentItem;
-        MovingObjectPosition target = event.target;
+		if (!(EntityPlayerManager.getCustomPlayerData(player).getEquipmentStats().inventory.getStackInSlot(EquipmentType.Face.getSlot()[0]).getItem() instanceof IGearForceGridItem))
+		{
+			return;
+		}
 
-        if(player == null)
-        {
-        	return;
-        }
+		if (target.typeOfHit != MovingObjectType.BLOCK)
+		{
+			return;
+		}
+		//
+		if (!(player.worldObj.getTileEntity(target.blockX, target.blockY, target.blockZ) instanceof IGearForceGrid)) {
+			return;
+		}
 
+		double x = target.blockX;
+		double y = target.blockY;
+		double z = target.blockZ;
 
-        //if(itemstack == null)
-        //{
-        //	return;
-       // }
-
-        if(EntityPlayerManager.getCustomPlayerData(player).getEquipmentStats().inventory.getStackInSlot(EquipmentType.Face.getSlot()[0]) == null){
-        	return;
-        }
-
-        if(!(EntityPlayerManager.getCustomPlayerData(player).getEquipmentStats().inventory.getStackInSlot(EquipmentType.Face.getSlot()[0]).getItem() instanceof IGearForceGridItem))
-        {
-        	return;
-        }
-
-        if(target.typeOfHit != MovingObjectType.BLOCK)
-        {
-        	return;
-        }
-//
-        if(!(player.worldObj.getTileEntity(target.blockX, target.blockY, target.blockZ) instanceof IGearForceGrid)){
-        	return;
-        }
-
-
-        double x = target.blockX;
-    	double y = target.blockY;
-    	double z = target.blockZ;
-
-    	IGearForceGrid tileEntity = (IGearForceGrid)player.worldObj.getTileEntity(target.blockX, target.blockY, target.blockZ);
+		IGearForceGrid tileEntity = (IGearForceGrid) player.worldObj.getTileEntity(target.blockX, target.blockY, target.blockZ);
 
 		//if(tileEntity==null){
 		//	return  ;
 		//}/
 
 		GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        //GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
-        GL11.glLineWidth(2.0F);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glDepthMask(false);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		//GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
+		GL11.glLineWidth(2.0F);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glDepthMask(false);
 
 		double d0 = player.lastTickPosX + (player.posX - player.lastTickPosX) * event.partialTicks;
-        double d1 = player.lastTickPosY + (player.posY - player.lastTickPosY) * event.partialTicks;
-        double d2 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * event.partialTicks;
+		double d1 = player.lastTickPosY + (player.posY - player.lastTickPosY) * event.partialTicks;
+		double d2 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * event.partialTicks;
 
-        float f1 = 0.002F;
+		float f1 = 0.002F;
 
-        for(ForgeDirection d:ForgeDirection.VALID_DIRECTIONS){
-        	if(tileEntity.canIn(d)){
-        		this.drawInFromDirection((int)x, (int)y, (int)z, d0, d1, d2, d);
-        	}
-        }
+		for (ForgeDirection d : ForgeDirection.VALID_DIRECTIONS) {
+			if (tileEntity.canIn(d)) {
+				this.drawInFromDirection((int) x, (int) y, (int) z, d0, d1, d2, d);
+			}
+		}
 
-        GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
+		GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
 
-        for(ForgeDirection d:ForgeDirection.VALID_DIRECTIONS){
-        	if(tileEntity.canOut(d)){
-        		this.drawOutFromDirection((int)x, (int)y, (int)z, d0, d1, d2, d);
-        	}
-        }
+		for (ForgeDirection d : ForgeDirection.VALID_DIRECTIONS) {
+			if (tileEntity.canOut(d)) {
+				this.drawOutFromDirection((int) x, (int) y, (int) z, d0, d1, d2, d);
+			}
+		}
 
+		GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
 
+		GL11.glDepthMask(true);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
 
-        GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
+	}
 
-        GL11.glDepthMask(true);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_BLEND);
+	private void drawOutFromDirection(int x, int y, int z, double d0, double d1, double d2, ForgeDirection d) {
 
+		float f1 = 0.002F;
 
-    }
-
-    private void drawOutFromDirection(int x, int y, int z, double d0, double d1, double d2, ForgeDirection d){
-
-    	float f1 = 0.002F;
-
-        GL11.glColor4f(1.0F, 0.0F, 0.0F, 0.8F);
-        double x1 = x + d.offsetX;
+		GL11.glColor4f(1.0F, 0.0F, 0.0F, 0.8F);
+		double x1 = x + d.offsetX;
 		double y1 = y + d.offsetY;
 		double z1 = z + d.offsetZ;
-		AxisAlignedBB axisAlignedBB =  AxisAlignedBB.getBoundingBox(x1, y1, z1, x1 + 1.0D, y1 + 1.0D, z1 + 1.0D);
-        axisAlignedBB = axisAlignedBB.expand(f1, f1, f1).getOffsetBoundingBox(-d0, -d1, -d2);
-        this.drawOutlinedBoundingBox(axisAlignedBB);
+		AxisAlignedBB axisAlignedBB = AxisAlignedBB.getBoundingBox(x1, y1, z1, x1 + 1.0D, y1 + 1.0D, z1 + 1.0D);
+		axisAlignedBB = axisAlignedBB.expand(f1, f1, f1).getOffsetBoundingBox(-d0, -d1, -d2);
+		this.drawOutlinedBoundingBox(axisAlignedBB);
 
-        GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
+		GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
 
-    }
+	}
 
-    private void drawInFromDirection(int x, int y, int z, double d0, double d1, double d2, ForgeDirection d){
+	private void drawInFromDirection(int x, int y, int z, double d0, double d1, double d2, ForgeDirection d) {
 
-    	float f1 = 0.002F;
+		float f1 = 0.002F;
 
-    	GL11.glColor4f(0.0F, 1.0F, 0.0F, 0.7F);
-        double x2 = x + d.offsetX;
+		GL11.glColor4f(0.0F, 1.0F, 0.0F, 0.7F);
+		double x2 = x + d.offsetX;
 		double y2 = y + d.offsetY;
 		double z2 = z + d.offsetZ;
-		AxisAlignedBB axisAlignedBB2 =  AxisAlignedBB.getBoundingBox(x2, y2, z2, x2 + 1.0D, y2 + 1.0D, z2 + 1.0D);
-        axisAlignedBB2 = axisAlignedBB2.expand(f1, f1, f1).getOffsetBoundingBox(-d0, -d1, -d2);
-        this.drawOutlinedBoundingBox(axisAlignedBB2);
+		AxisAlignedBB axisAlignedBB2 = AxisAlignedBB.getBoundingBox(x2, y2, z2, x2 + 1.0D, y2 + 1.0D, z2 + 1.0D);
+		axisAlignedBB2 = axisAlignedBB2.expand(f1, f1, f1).getOffsetBoundingBox(-d0, -d1, -d2);
+		this.drawOutlinedBoundingBox(axisAlignedBB2);
 
-        GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
+		GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
 
-    }
+	}
 
-
-    private void drawOutlinedBoundingBox(AxisAlignedBB par1AxisAlignedBB)
-    {
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawing(3);
-        tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.minY, par1AxisAlignedBB.minZ);
-        tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.minY, par1AxisAlignedBB.minZ);
-        tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.minY, par1AxisAlignedBB.maxZ);
-        tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.minY, par1AxisAlignedBB.maxZ);
-        tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.minY, par1AxisAlignedBB.minZ);
-        tessellator.draw();
-        tessellator.startDrawing(3);
-        tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.minZ);
-        tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.minZ);
-        tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.maxZ);
-        tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.maxZ);
-        tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.minZ);
-        tessellator.draw();
-        tessellator.startDrawing(1);
-        tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.minY, par1AxisAlignedBB.minZ);
-        tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.minZ);
-        tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.minY, par1AxisAlignedBB.minZ);
-        tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.minZ);
-        tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.minY, par1AxisAlignedBB.maxZ);
-        tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.maxZ);
-        tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.minY, par1AxisAlignedBB.maxZ);
-        tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.maxZ);
-        tessellator.draw();
-    }
-
+	private void drawOutlinedBoundingBox(AxisAlignedBB par1AxisAlignedBB)
+	{
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawing(3);
+		tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.minY, par1AxisAlignedBB.minZ);
+		tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.minY, par1AxisAlignedBB.minZ);
+		tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.minY, par1AxisAlignedBB.maxZ);
+		tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.minY, par1AxisAlignedBB.maxZ);
+		tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.minY, par1AxisAlignedBB.minZ);
+		tessellator.draw();
+		tessellator.startDrawing(3);
+		tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.minZ);
+		tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.minZ);
+		tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.maxZ);
+		tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.maxZ);
+		tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.minZ);
+		tessellator.draw();
+		tessellator.startDrawing(1);
+		tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.minY, par1AxisAlignedBB.minZ);
+		tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.minZ);
+		tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.minY, par1AxisAlignedBB.minZ);
+		tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.minZ);
+		tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.minY, par1AxisAlignedBB.maxZ);
+		tessellator.addVertex(par1AxisAlignedBB.maxX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.maxZ);
+		tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.minY, par1AxisAlignedBB.maxZ);
+		tessellator.addVertex(par1AxisAlignedBB.minX, par1AxisAlignedBB.maxY, par1AxisAlignedBB.maxZ);
+		tessellator.draw();
+	}
 
 }

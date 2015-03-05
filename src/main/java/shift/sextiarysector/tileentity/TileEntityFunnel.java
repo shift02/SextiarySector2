@@ -70,6 +70,7 @@ public class TileEntityFunnel extends TileEntity implements ISidedInventory, IFl
 		this.getUPFluidEntity();
 
 		this.addFluidBlock();
+		this.getUPFluidBlock();
 
 	}
 
@@ -88,6 +89,33 @@ public class TileEntityFunnel extends TileEntity implements ISidedInventory, IFl
 
 		int i = f.fill(ForgeDirection.DOWN.getOpposite(), fs, true);
 		this.tank.drain(i, true);
+
+	}
+
+	private void getUPFluidBlock() {
+
+		TileEntity t = this.worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
+
+		if (!(t instanceof IFluidHandler)) return;
+
+		IFluidHandler f = (IFluidHandler) t;
+
+		if (this.tank.getFluid() == null) {
+
+			if (f.getTankInfo(ForgeDirection.UP.getOpposite()) != null && f.getTankInfo(ForgeDirection.UP.getOpposite())[0].fluid != null && f.canDrain(ForgeDirection.UP.getOpposite(), f.getTankInfo(ForgeDirection.UP.getOpposite())[0].fluid.getFluid())) {
+
+				FluidStack fs = f.drain(ForgeDirection.UP.getOpposite(), 50, true);
+				this.tank.fill(fs, true);
+			}
+
+		} else if (f.canDrain(ForgeDirection.UP.getOpposite(), this.tank.getFluid().getFluid())) {
+			FluidStack fs = f.drain(ForgeDirection.UP.getOpposite(), 50, false);
+
+			int fill = this.tank.fill(fs, true);
+
+			f.drain(ForgeDirection.UP.getOpposite(), fill, true);
+
+		}
 
 	}
 

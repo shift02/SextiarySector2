@@ -369,8 +369,9 @@ gui.ss.gf_tank_3=Steel GF Tank
 gui.ss.gf_tank_4=Ninja GF Tank
 gui.ss.gf_tank_5=Orichalcum GF Tank
 
+#Shop
 shop.ss.creeper=Simple Creeper Shop
-shop.ss.robot=Blue Robot Shop
+shop.ss.robot=Red Robot Shop
 
 #ToolTip
 tooltip.season.pm=PM
@@ -437,6 +438,18 @@ achievement.ss.drinking_water.desc2=Delicious !
 achievement.ss.craft_furnace=Craft Furnace
 achievement.ss.craft_furnace.desc=Craft a large furnace
 achievement.ss.craft_furnace.desc2=Complex craft
+
+achievement.ss.hammer=Hammer !
+achievement.ss.hammer.desc=Craft a large hammer
+achievement.ss.hammer.desc2=invincible ?
+
+achievement.ss.fluid_furnace=Melted
+achievement.ss.fluid_furnace.desc=Craft a fluid furnace
+achievement.ss.fluid_furnace.desc2=It melts in touch
+
+achievement.ss.freezer=Latest refrigerator
+achievement.ss.freezer.desc=Craft a freezer
+achievement.ss.freezer.desc2=It's ...
 
 
 achievement.ss.agriculture=SS2 -Agriculture-
@@ -513,6 +526,18 @@ achievement.ss.mining=SS2 -Mining-
 achievement.ss.bluestone_dust=Color is different !
 achievement.ss.bluestone_dust.desc=Pickup a bluestone dust
 achievement.ss.bluestone_dust.desc2=Beautiful !
+
+achievement.ss.copper_ore=New ore
+achievement.ss.copper_ore.desc=Pickup a copper ore
+achievement.ss.copper_ore.desc2=Three
+
+achievement.ss.silver_ore=Assassination prevention
+achievement.ss.silver_ore.desc=Pickup a silver ore
+achievement.ss.silver_ore.desc2=Photo ?
+
+achievement.ss.mithril_ore=Beginning of the magic
+achievement.ss.mithril_ore.desc=Pickup a mithril ore
+achievement.ss.mithril_ore.desc2=Ring ?
 
 achievement.ss.industry=SS2 -Industry-
 
@@ -603,7 +628,7 @@ achievement.ss.creeper_chest.desc2=Santa Creeper ?
 
 achievement.ss.shipping=Shipping Block
 achievement.ss.shipping.desc=Trying to shipment
-achievement.ss.shipping.desc=I'm millionaire !
+achievement.ss.shipping.desc2=I'm millionaire !
 
 #NEI
 nei.recipe=Recipes
