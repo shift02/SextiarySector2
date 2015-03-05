@@ -9,6 +9,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import shift.mceconomy2.gui.HUDMP;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.MoistureStats;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -18,87 +19,90 @@ public class HUDEventHandler {
 
 	public static final ResourceLocation icons = new ResourceLocation("sextiarysector:textures/guis/icons.png");
 
-    public static int left_height = 39;
-    public static int right_height = 39;
+	public static int left_height = 39;
+	public static int right_height = 39;
 
-    protected final Random rand = new Random();
+	protected final Random rand = new Random();
 
-    public static boolean visibleStamina = false;
-    public static boolean visibleMoisture = false;
+	public static boolean visibleStamina = false;
+	public static boolean visibleMoisture = false;
 	//private boolean ARMOR = false;
 
-    public static Minecraft mc = FMLClientHandler.instance().getClient();
+	public static Minecraft mc = FMLClientHandler.instance().getClient();
 
-    //描写のEvent
-    @SubscribeEvent
-    public void onRenderGameOverlayEventPre(RenderGameOverlayEvent.Pre event) {
+	public static boolean isPM = false;
 
-        int width = event.resolution.getScaledWidth();
-        int height = event.resolution.getScaledHeight();
+	//描写のEvent
+	@SubscribeEvent
+	public void onRenderGameOverlayEventPre(RenderGameOverlayEvent.Pre event) {
 
-        /*if(event.type == ElementType.FOOD && mc.playerController.shouldDrawHUD()){
-        	renderMoisture( width, height);
+		int width = event.resolution.getScaledWidth();
+		int height = event.resolution.getScaledHeight();
 
-        	renderStamina( width, height);
+		/*if(event.type == ElementType.FOOD && mc.playerController.shouldDrawHUD()){
+			renderMoisture( width, height);
 
-        	//renderSeason( width, height);
+			renderStamina( width, height);
 
-        }*/
+			//renderSeason( width, height);
 
-        /*
-        if(event.type == ElementType.ARMOR&&ForgeHooks.getTotalArmorValue(mc.thePlayer)>0){
-        	//System.out.println("AIR");
+		}*/
 
-            if(!ARMOR){
+		/*
+		if(event.type == ElementType.ARMOR&&ForgeHooks.getTotalArmorValue(mc.thePlayer)>0){
+			//System.out.println("AIR");
 
-            	GuiIngameForge.left_height+=(left_height-29);
+		    if(!ARMOR){
 
-            	ARMOR =false;
-            }else{
-            	GuiIngameForge.left_height-=(left_height-29);
-            	ARMOR =true;
-            }
-        }*/
+		    	GuiIngameForge.left_height+=(left_height-29);
 
+		    	ARMOR =false;
+		    }else{
+		    	GuiIngameForge.left_height-=(left_height-29);
+		    	ARMOR =true;
+		    }
+		}*/
 
-        if (event.type == RenderGameOverlayEvent.ElementType.ALL)
-        {
-          visibleStamina = GuiIngameForge.renderFood | GuiIngameForge.renderHealthMount | GuiIngameForge.renderHealth;
-          visibleMoisture = GuiIngameForge.renderFood | GuiIngameForge.renderHealthMount | GuiIngameForge.renderHealth;
-        }
-        else if (event.type == RenderGameOverlayEvent.ElementType.ARMOR)
-        {
-          if (visibleStamina)
-          {
-            renderStamina(width, height);
-            visibleStamina = false;
-          }
-        }
-        else if ((event.type == RenderGameOverlayEvent.ElementType.HOTBAR) && (mc.playerController.shouldDrawHUD()))
-        {
-          if (visibleMoisture)
-          {
-            renderMoisture(width, height);
-            visibleMoisture = false;
-          }
-          if (visibleStamina)
-          {
-            renderStamina(width, height);
-            visibleStamina = false;
-          }
-        }
+		if (event.type == RenderGameOverlayEvent.ElementType.ALL)
+		{
+			visibleStamina = GuiIngameForge.renderFood | GuiIngameForge.renderHealthMount | GuiIngameForge.renderHealth;
+			visibleMoisture = GuiIngameForge.renderFood | GuiIngameForge.renderHealthMount | GuiIngameForge.renderHealth;
+		}
+		else if (event.type == RenderGameOverlayEvent.ElementType.ARMOR)
+		{
+			if (visibleStamina)
+			{
+				renderStamina(width, height);
+				visibleStamina = false;
+			}
+		}
+		else if ((event.type == RenderGameOverlayEvent.ElementType.HOTBAR) && (mc.playerController.shouldDrawHUD()))
+		{
+			if (visibleMoisture)
+			{
+				renderMoisture(width, height);
+				visibleMoisture = false;
+			}
+			if (visibleStamina)
+			{
+				renderStamina(width, height);
+				visibleStamina = false;
+			}
+		}
 
+		HUDMP.isRenderer = false;
+		isPM = true;
 
-    }
+	}
 
-    @SubscribeEvent
-    public void onRenderGameOverlayEventPost(RenderGameOverlayEvent.Post event) {
+	@SubscribeEvent
+	public void onRenderGameOverlayEventPost(RenderGameOverlayEvent.Post event) {
 
-    	int width = event.resolution.getScaledWidth();
-        int height = event.resolution.getScaledHeight();
+		int width = event.resolution.getScaledWidth();
+		int height = event.resolution.getScaledHeight();
 
-    	if ((event.type == RenderGameOverlayEvent.ElementType.FOOD) || (event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT))
-    	{
+		if ((event.type == RenderGameOverlayEvent.ElementType.FOOD) || (event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT))
+		{
 			if (visibleMoisture) {
 				renderMoisture(width, height);
 				visibleMoisture = false;
@@ -107,188 +111,192 @@ public class HUDEventHandler {
 				renderStamina(width, height);
 				visibleStamina = false;
 			}
+
+			if (isPM) {
+				HUDMP.renderMoney(width, height);
+				HUDMP.renderAddMoney(width, height);
+				isPM = false;
+				HUDMP.isRenderer = false;
+			}
+
 		}
 
-    }
+	}
 
-    //アイテムテキストずらし
-    //@SubscribeEvent
-    //public void onRenderGameOverlayEventPost(RenderGameOverlayEvent.Post event) {
+	//アイテムテキストずらし
+	//@SubscribeEvent
+	//public void onRenderGameOverlayEventPost(RenderGameOverlayEvent.Post event) {
 
-    	/*if(event.type == ElementType.EXPERIENCE||event.type == ElementType.JUMPBAR){
+	/*if(event.type == ElementType.EXPERIENCE||event.type == ElementType.JUMPBAR){
 
-        }*/
+	}*/
 
-    //}
+	//}
 
+	protected void renderMoisture(int width, int height)
+	{
 
-    protected void renderMoisture(int width, int height)
-    {
+		if (!visibleMoisture) return;
+		visibleMoisture = false;
 
-    	if(!visibleMoisture) return;
-        visibleMoisture = false;
-
-    	//mc.thePlayer.addStat(StatList.distanceByBoatStat, 2);
+		//mc.thePlayer.addStat(StatList.distanceByBoatStat, 2);
 		//System.out.println("StatList");
 
-        mc.mcProfiler.startSection("moisture");
+		mc.mcProfiler.startSection("moisture");
 
-        bind(icons);
+		bind(icons);
 
-        int updateCounter = mc.ingameGUI.getUpdateCounter()+2;
+		int updateCounter = mc.ingameGUI.getUpdateCounter() + 2;
 
-        int left = width / 2 + 91;
-        //int top = height - right_height -10;
-        int top = height - GuiIngameForge.right_height;
+		int left = width / 2 + 91;
+		//int top = height - right_height -10;
+		int top = height - GuiIngameForge.right_height;
 
-        GuiIngameForge.right_height += 10;
-        //right_height += 10;
-        boolean unused = false;// Unused flag in vanilla, seems to be part of a 'fade out' mechanic
+		GuiIngameForge.right_height += 10;
+		//right_height += 10;
+		boolean unused = false;// Unused flag in vanilla, seems to be part of a 'fade out' mechanic
 
+		MoistureStats stats = EntityPlayerManager.getMoistureStats(mc.thePlayer);
+		int level = EntityPlayerManager.getPrevMoistureLevel(mc.thePlayer);
+		//int levelLast = stats.getPrevFoodLevel();
 
+		//System.out.println("BBB "+level+" : "+stats.getMoistureLevel()+" : "+stats.getSaturationLevel());
 
-        MoistureStats  stats = EntityPlayerManager.getMoistureStats(mc.thePlayer);
-        int level = EntityPlayerManager.getPrevMoistureLevel(mc.thePlayer);
-        //int levelLast = stats.getPrevFoodLevel();
+		for (int i = 0; i < 10; ++i)
+		{
+			int idx = i * 2 + 1;
+			int x = left - i * 8 - 9;
+			int y = top;
+			int icon = 0;
+			byte backgound = 0;
 
-        //System.out.println("BBB "+level+" : "+stats.getMoistureLevel()+" : "+stats.getSaturationLevel());
+			int iconY = 0;
+			int iconX = 0;
 
-        for (int i = 0; i < 10; ++i)
-        {
-            int idx = i * 2 + 1;
-            int x = left - i * 8 - 9;
-            int y = top;
-            int icon = 0;
-            byte backgound = 0;
+			if (mc.thePlayer.isPotionActive(Potion.hunger))
+			{
+				iconX += 27;
+				backgound = 3;
+			}
 
-            int iconY = 0;
-            int iconX = 0;
+			if (unused) backgound = 1; //Probably should be a += 1 but vanilla never uses this
 
-            if (mc.thePlayer.isPotionActive(Potion.hunger))
-            {
-                iconX += 27;
-                backgound = 3;
-            }
+			if (stats.getSaturationLevel() <= 0.0F && updateCounter % (level * 3 + 1) == 0)
+			{
+				y = top + (rand.nextInt(3) - 1);
+			}
 
-            if (unused) backgound = 1; //Probably should be a += 1 but vanilla never uses this
+			drawTexturedModalRect(x, y, iconX, iconY, 9, 9);
 
-            if (stats.getSaturationLevel() <= 0.0F && updateCounter % (level * 3 + 1) == 0)
-            {
-                y = top + (rand.nextInt(3) - 1);
-            }
+			/*
+			if (unused)
+			{
+			    if (idx < levelLast)
+			        drawTexturedModalRect(x, y, icon , iconY, 9, 9);
+			    else if (idx == levelLast)
+			        drawTexturedModalRect(x, y, icon + 9, iconY, 9, 9);
+			}*/
 
-            drawTexturedModalRect(x, y, iconX , iconY, 9, 9);
+			if (idx < level) {
+				drawTexturedModalRect(x, y, iconX + 9, iconY, 9, 9);
+			} else if (idx == level) {
+				drawTexturedModalRect(x, y, iconX + 18, iconY, 9, 9);
+			}
+		}
 
-            /*
-            if (unused)
-            {
-                if (idx < levelLast)
-                    drawTexturedModalRect(x, y, icon , iconY, 9, 9);
-                else if (idx == levelLast)
-                    drawTexturedModalRect(x, y, icon + 9, iconY, 9, 9);
-            }*/
+		mc.mcProfiler.endSection();
+		bind(Gui.icons);
 
-            if (idx < level){
-                drawTexturedModalRect(x, y, iconX +9, iconY, 9, 9);
-            }else if (idx == level){
-                drawTexturedModalRect(x, y, iconX +18, iconY, 9, 9);
-            }
-        }
+	}
 
-        mc.mcProfiler.endSection();
-        bind(Gui.icons);
+	protected void renderStamina(int width, int height)
+	{
 
-    }
+		if (!visibleStamina) return;
+		visibleStamina = false;
 
-    protected void renderStamina(int width, int height)
-    {
+		mc.mcProfiler.startSection("stamina");
 
-    	if(!visibleStamina) return;
-        visibleStamina = false;
+		bind(icons);
 
-    	mc.mcProfiler.startSection("stamina");
+		int updateCounter = mc.ingameGUI.getUpdateCounter() + 1;
 
-        bind(icons);
+		int left = width / 2 - 82;
+		int top = height - GuiIngameForge.left_height;//left_height -10;
+		GuiIngameForge.left_height += 10;
+		//right_height += 10;
+		boolean unused = false;// Unused flag in vanilla, seems to be part of a 'fade out' mechanic
 
-        int updateCounter = mc.ingameGUI.getUpdateCounter()+1;
+		int level = EntityPlayerManager.getPrevStaminaLevel(mc.thePlayer);
 
-        int left = width / 2 - 82;
-        int top = height - GuiIngameForge.left_height;//left_height -10;
-        GuiIngameForge.left_height += 10;
-        //right_height += 10;
-        boolean unused = false;// Unused flag in vanilla, seems to be part of a 'fade out' mechanic
+		for (int i = 0; i < 10; ++i)
+		{
+			int idx = i * 2 + 1;
+			int x = left + i * 8 - 9;
+			int y = top;
+			int icon = 0;
+			byte backgound = 0;
 
+			int iconY = 9;
+			int iconX = 0;
 
-        int level = EntityPlayerManager.getPrevStaminaLevel(mc.thePlayer);
+			/*
+			if (mc.thePlayer.isPotionActive(Potion.hunger))
+			{
+			    icon += 36;
+			    backgound = 13;
+			}*/
+			if (unused) backgound = 1; //Probably should be a += 1 but vanilla never uses this
 
-        for (int i = 0; i < 10; ++i)
-        {
-            int idx = i * 2 + 1;
-            int x = left + i * 8 - 9;
-            int y = top;
-            int icon = 0;
-            byte backgound = 0;
+			/*
+			if (mc.thePlayer.getFoodStats().getSaturationLevel() <= 0.0F && updateCounter % (level * 3 + 1) == 0)
+			{
+			    y = top + (rand.nextInt(3) - 1);
+			}
+			*/
 
-            int iconY = 9;
-            int iconX = 0;
+			drawTexturedModalRect(x, y, icon + backgound * 9, iconY, 9, 9);
 
-            /*
-            if (mc.thePlayer.isPotionActive(Potion.hunger))
-            {
-                icon += 36;
-                backgound = 13;
-            }*/
-            if (unused) backgound = 1; //Probably should be a += 1 but vanilla never uses this
+			/*
+			if (unused)
+			{
+			    if (idx < levelLast)
+			        drawTexturedModalRect(x, y, icon , iconY, 9, 9);
+			    else if (idx == levelLast)
+			        drawTexturedModalRect(x, y, icon + 9, iconY, 9, 9);
+			}*/
 
-            /*
-            if (mc.thePlayer.getFoodStats().getSaturationLevel() <= 0.0F && updateCounter % (level * 3 + 1) == 0)
-            {
-                y = top + (rand.nextInt(3) - 1);
-            }
-            */
+			if (idx < level) {
+				drawTexturedModalRect(x, y, icon + 9, iconY, 9, 9);
+			} else if (idx == level) {
+				drawTexturedModalRect(x, y, icon + 18, iconY, 9, 9);
+			}
+		}
 
-            drawTexturedModalRect(x, y, icon + backgound * 9, iconY, 9, 9);
+		mc.mcProfiler.endSection();
+		bind(Gui.icons);
 
-            /*
-            if (unused)
-            {
-                if (idx < levelLast)
-                    drawTexturedModalRect(x, y, icon , iconY, 9, 9);
-                else if (idx == levelLast)
-                    drawTexturedModalRect(x, y, icon + 9, iconY, 9, 9);
-            }*/
+	}
 
-            if (idx < level){
-                drawTexturedModalRect(x, y, icon +9, iconY, 9, 9);
-            }else if (idx == level){
-                drawTexturedModalRect(x, y, icon +18, iconY, 9, 9);
-            }
-        }
+	private void bind(ResourceLocation res)
+	{
+		FMLClientHandler.instance().getClient().getTextureManager().bindTexture(res);
+	}
 
-        mc.mcProfiler.endSection();
-        bind(Gui.icons);
+	/** 描写位でのX Y テクスチャでのX Y 大きさ X Y */
+	public void drawTexturedModalRect(int par1, int par2, int par3, int par4, int par5, int par6)
+	{
+		float zLevel = -90.0F;
 
-    }
-
-    private void bind(ResourceLocation res)
-    {
-        FMLClientHandler.instance().getClient().getTextureManager().bindTexture(res);
-    }
-
-    /** 描写位でのX Y テクスチャでのX Y 大きさ X Y */
-    public void drawTexturedModalRect(int par1, int par2, int par3, int par4, int par5, int par6)
-    {
-        float zLevel = -90.0F;
-
-        float f = 0.00390625F;
-        float f1 = 0.00390625F;
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV((par1 + 0), (par2 + par6), zLevel, ((par3 + 0) * f), ((par4 + par6) * f1));
-        tessellator.addVertexWithUV((par1 + par5), (par2 + par6), zLevel, ((par3 + par5) * f), ((par4 + par6) * f1));
-        tessellator.addVertexWithUV((par1 + par5), (par2 + 0), zLevel, ((par3 + par5) * f), ((par4 + 0) * f1));
-        tessellator.addVertexWithUV((par1 + 0), (par2 + 0), zLevel, ((par3 + 0) * f), ((par4 + 0) * f1));
-        tessellator.draw();
-    }
+		float f = 0.00390625F;
+		float f1 = 0.00390625F;
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV((par1 + 0), (par2 + par6), zLevel, ((par3 + 0) * f), ((par4 + par6) * f1));
+		tessellator.addVertexWithUV((par1 + par5), (par2 + par6), zLevel, ((par3 + par5) * f), ((par4 + par6) * f1));
+		tessellator.addVertexWithUV((par1 + par5), (par2 + 0), zLevel, ((par3 + par5) * f), ((par4 + 0) * f1));
+		tessellator.addVertexWithUV((par1 + 0), (par2 + 0), zLevel, ((par3 + 0) * f), ((par4 + 0) * f1));
+		tessellator.draw();
+	}
 
 }

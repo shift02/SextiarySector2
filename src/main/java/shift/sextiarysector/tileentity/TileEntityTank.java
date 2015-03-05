@@ -39,9 +39,9 @@ public class TileEntityTank extends TileEntity implements IFluidHandler {
 
 	private void updateServerEntity() {
 
-		if (this.tank.getFluidAmount() * (0.01f) != lastAmount) {
+		if (this.tank.getFluidAmount() * (0.1f) != lastAmount) {
 			//System.out.println(this.tank.getFluidAmount());
-			lastAmount = (int) (this.tank.getFluidAmount() * (0.01f));
+			lastAmount = (int) (this.tank.getFluidAmount() * (0.1f));
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
 		}

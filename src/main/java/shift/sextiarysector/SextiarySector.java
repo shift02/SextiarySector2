@@ -43,7 +43,7 @@ public class SextiarySector {
 
 	public static final String DEPENDENCY = "";//"required-after:mceconomy2";
 
-	@SidedProxy(clientSide = "shift.sextiarysector.proxy.ClientProxy", serverSide = "shift.sextiarysector.proxy.CommonProxy")
+	@SidedProxy(modId = MODID, clientSide = "shift.sextiarysector.proxy.ClientProxy", serverSide = "shift.sextiarysector.proxy.CommonProxy")
 	public static CommonProxy proxy;
 
 	public static final Logger Log = LogManager.getLogger(SextiarySectorAPI.MODID);

@@ -204,10 +204,10 @@ public class SSBlocks {
 	public static Block ironLargeOre;
 	public static Block goldLargeOre;
 
+	//経済
 	public static Block shippingBox;
 	public static Block creeperChest;
 
-	//経済
 	public static Block monitor;
 
 	//農業
