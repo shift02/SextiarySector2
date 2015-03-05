@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import shift.sextiarysector.container.ContainerCraftFurnace;
 import shift.sextiarysector.container.ContainerFluidMachineBase;
 import shift.sextiarysector.container.ContainerFreezer;
+import shift.sextiarysector.container.ContainerFunnel;
 import shift.sextiarysector.container.ContainerGFTank;
 import shift.sextiarysector.container.ContainerLargeFurnace;
 import shift.sextiarysector.container.ContainerMPRepair;
@@ -20,6 +21,7 @@ import shift.sextiarysector.gui.GuiCraftFurnace;
 import shift.sextiarysector.gui.GuiFluidFurnace;
 import shift.sextiarysector.gui.GuiFoodSmokers;
 import shift.sextiarysector.gui.GuiFreezer;
+import shift.sextiarysector.gui.GuiFunnel;
 import shift.sextiarysector.gui.GuiGFTank;
 import shift.sextiarysector.gui.GuiInventoryNext;
 import shift.sextiarysector.gui.GuiLargeFurnace;
@@ -39,6 +41,7 @@ import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.tileentity.TileEntityCraftFurnace;
 import shift.sextiarysector.tileentity.TileEntityFluidMachineBase;
 import shift.sextiarysector.tileentity.TileEntityFreezer;
+import shift.sextiarysector.tileentity.TileEntityFunnel;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
@@ -76,6 +79,8 @@ public class SSGuiHandler implements IGuiHandler {
 
 		case 10:
 			return new ContainerMPRepair(player.inventory, world, x, y, z, player);
+		case 11:
+			return new ContainerFunnel(player.inventory, (TileEntityFunnel) world.getTileEntity(x, y, z));
 
 		case 20:
 		case 21:
@@ -158,6 +163,9 @@ public class SSGuiHandler implements IGuiHandler {
 
 		case 10:
 			return new GuiMPRepair(player.inventory, world, x, y, z);
+
+		case 11:
+			return new GuiFunnel(player.inventory, (TileEntityFunnel) world.getTileEntity(x, y, z));
 
 		case 20:
 			return new GuiMillstone(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));

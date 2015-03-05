@@ -30,7 +30,9 @@ tile.ss.bottle.name=Fluid Bottle
 tile.ss.fluid_crafter.name=Fluid Crafter
 tile.ss.square.name=Wood Square
 
-tile.ss.iron_pipe.name=Iron Pipe
+tile.ss.tank.name=Tank
+tile.ss.funnel.name=Funnel
+tile.ss.copper_pipe.name=Copper Pipe
 
 
 tile.ss.wood_hopper.name=Wood Hopper
@@ -39,6 +41,7 @@ tile.ss.chunk_loader.name=Time Loader
 
 tile.ss.figure.name=Figure
 
+tile.ss.trap.name=Trap
 
 tile.ss.drinking_water.name=Drinking Water
 tile.ss.hot_springs.name=Hot Springs
@@ -254,9 +257,16 @@ item.ss.iron_knife.name=Iron Knife
 item.ss.gold_knife.name=Gold Knife
 item.ss.diamond_knife.name=Diamond Knife
 
+item.ss.copper_shovel.name=Copper Shovel
+item.ss.copper_pickaxe.name=Copper Pickaxe
+item.ss.copper_axe.name=Copper Axe
+item.ss.copper_sword.name=Copper Sword
+item.ss.copper_hoe.name=Copper Hoe
+
 item.ss.wood_watering_can.name=Wood Watering Can
 
 item.ss.mineboat_chest.name=Mineboat Chest
+item.ss.mineboat_tank.name=Mineboat Tank
 
 item.ss.laver.name=Laver
 
@@ -340,6 +350,7 @@ gui.ss.fluid_furnace=Fluid Furnace
 gui.ss.food_smokers=Food Smokers
 gui.ss.magic_furnace=Magic Furnace
 gui.ss.freezer=Freezer
+gui.ss.funnel=Fluid Funnel
 
 gui.ss.rucksack=Rucksack
 
@@ -358,8 +369,9 @@ gui.ss.gf_tank_3=Steel GF Tank
 gui.ss.gf_tank_4=Ninja GF Tank
 gui.ss.gf_tank_5=Orichalcum GF Tank
 
+#Shop
 shop.ss.creeper=Simple Creeper Shop
-shop.ss.robot=Blue Robot Shop
+shop.ss.robot=Red Robot Shop
 
 #ToolTip
 tooltip.season.pm=PM
@@ -378,6 +390,7 @@ tooltip.edition=Edition
 
 #Edition
 edition.creative=CreativeTab
+edition.achievement=Achievement
 edition.figure_beginner=Figure Beginner
 edition.ore_festival=Ore Festival
 
@@ -425,6 +438,18 @@ achievement.ss.drinking_water.desc2=Delicious !
 achievement.ss.craft_furnace=Craft Furnace
 achievement.ss.craft_furnace.desc=Craft a large furnace
 achievement.ss.craft_furnace.desc2=Complex craft
+
+achievement.ss.hammer=Hammer !
+achievement.ss.hammer.desc=Craft a large hammer
+achievement.ss.hammer.desc2=invincible ?
+
+achievement.ss.fluid_furnace=Melted
+achievement.ss.fluid_furnace.desc=Craft a fluid furnace
+achievement.ss.fluid_furnace.desc2=It melts in touch
+
+achievement.ss.freezer=Latest refrigerator
+achievement.ss.freezer.desc=Craft a freezer
+achievement.ss.freezer.desc2=It's ...
 
 
 achievement.ss.agriculture=SS2 -Agriculture-
@@ -501,6 +526,18 @@ achievement.ss.mining=SS2 -Mining-
 achievement.ss.bluestone_dust=Color is different !
 achievement.ss.bluestone_dust.desc=Pickup a bluestone dust
 achievement.ss.bluestone_dust.desc2=Beautiful !
+
+achievement.ss.copper_ore=New ore
+achievement.ss.copper_ore.desc=Pickup a copper ore
+achievement.ss.copper_ore.desc2=Three
+
+achievement.ss.silver_ore=Assassination prevention
+achievement.ss.silver_ore.desc=Pickup a silver ore
+achievement.ss.silver_ore.desc2=Photo ?
+
+achievement.ss.mithril_ore=Beginning of the magic
+achievement.ss.mithril_ore.desc=Pickup a mithril ore
+achievement.ss.mithril_ore.desc2=Ring ?
 
 achievement.ss.industry=SS2 -Industry-
 
@@ -591,7 +628,7 @@ achievement.ss.creeper_chest.desc2=Santa Creeper ?
 
 achievement.ss.shipping=Shipping Block
 achievement.ss.shipping.desc=Trying to shipment
-achievement.ss.shipping.desc=I'm millionaire !
+achievement.ss.shipping.desc2=I'm millionaire !
 
 #NEI
 nei.recipe=Recipes

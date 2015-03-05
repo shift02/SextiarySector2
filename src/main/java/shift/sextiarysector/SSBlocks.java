@@ -16,6 +16,7 @@ import shift.sextiarysector.block.BlockFluidCrafter;
 import shift.sextiarysector.block.BlockFluidFurnace;
 import shift.sextiarysector.block.BlockFoodSmokers;
 import shift.sextiarysector.block.BlockFreezer;
+import shift.sextiarysector.block.BlockFunnel;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockGearShaft;
@@ -47,6 +48,8 @@ import shift.sextiarysector.block.BlockSmallWaterwheel;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.block.BlockSquare;
 import shift.sextiarysector.block.BlockSteamMotor;
+import shift.sextiarysector.block.BlockTank;
+import shift.sextiarysector.block.BlockTrap;
 import shift.sextiarysector.block.BlockWindmill;
 import shift.sextiarysector.block.BlockWood;
 import shift.sextiarysector.block.BlockWoodHopper;
@@ -56,6 +59,7 @@ import shift.sextiarysector.item.ItemBlockDirection;
 import shift.sextiarysector.item.ItemBlockFigure;
 import shift.sextiarysector.item.ItemBlockFluidCrafter;
 import shift.sextiarysector.item.ItemBlockGearShaft;
+import shift.sextiarysector.item.ItemBlockMeta;
 import shift.sextiarysector.item.ItemBlockMonitor;
 import shift.sextiarysector.tileentity.TileEntityFan;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
@@ -64,6 +68,7 @@ import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
 import shift.sextiarysector.tileentity.TileEntityFoodSmokers;
 import shift.sextiarysector.tileentity.TileEntityFreezer;
+import shift.sextiarysector.tileentity.TileEntityFunnel;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
@@ -82,6 +87,8 @@ import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector.tileentity.TileEntitySquare;
 import shift.sextiarysector.tileentity.TileEntitySteamMotor;
+import shift.sextiarysector.tileentity.TileEntityTank;
+import shift.sextiarysector.tileentity.TileEntityTrap;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
 import shift.sextiarysector.tileentity.TileEntityWood;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -107,11 +114,15 @@ public class SSBlocks {
 
 	public static Block square;
 
-	public static Block ironPipe;
+	public static Block tank;
+	public static Block funnel;
+	public static Block copperPipe;
 
 	public static Block blueFire;
 
 	public static Block figure;
+
+	public static Block trap;
 
 	//液体
 	public static Block drinkingWater;
@@ -193,10 +204,10 @@ public class SSBlocks {
 	public static Block ironLargeOre;
 	public static Block goldLargeOre;
 
+	//経済
 	public static Block shippingBox;
 	public static Block creeperChest;
 
-	//経済
 	public static Block monitor;
 
 	//農業
@@ -278,8 +289,16 @@ public class SSBlocks {
 		GameRegistry.registerBlock(square, ItemBlockDirection.class, "Square");
 		GameRegistry.registerTileEntity(TileEntitySquare.class, "Square");
 
-		ironPipe = new BlockPipe().setBlockName("ss.iron_pipe").setBlockTextureName("planks_oak");
-		GameRegistry.registerBlock(ironPipe, "IronPipe");
+		tank = new BlockTank().setBlockName("ss.tank").setBlockTextureName("glass").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(tank, "Tank");
+		GameRegistry.registerTileEntity(TileEntityTank.class, "SSTank");
+
+		funnel = new BlockFunnel().setBlockName("ss.funnel").setBlockTextureName("sextiarysector:funnel").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(funnel, "Funnel");
+		GameRegistry.registerTileEntity(TileEntityFunnel.class, "Funnel");
+
+		copperPipe = new BlockPipe().setBlockName("ss.copper_pipe").setBlockTextureName("planks_oak");
+		GameRegistry.registerBlock(copperPipe, "CopperPipe");
 		GameRegistry.registerTileEntity(TileEntityPipe.class, "SSPipe");
 
 		woodGrate = (new BlockSSPane(ID + ":wood_grate", ID + ":wood_grate", Material.wood, false, 0)).setHardness(0.5F).setBlockName("ss.wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
@@ -318,6 +337,10 @@ public class SSBlocks {
 		figure = new BlockFigure().setBlockName("ss.figure").setBlockTextureName("sextiarysector:figure").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(figure, ItemBlockFigure.class, "Figure");
 		GameRegistry.registerTileEntity(TileEntityFigure.class, "SSFigure");
+
+		trap = new BlockTrap().setBlockName("ss.trap").setBlockTextureName("sextiarysector:wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(trap, ItemBlockMeta.class, "Trap");
+		GameRegistry.registerTileEntity(TileEntityTrap.class, "SSTrap");
 
 		//液体
 		drinkingWater = new BlockSSFluid(SSFluids.drinkingWater).setBlockName("ss.drinking_water").setCreativeTab(SextiarySectorAPI.TabSSCore);
