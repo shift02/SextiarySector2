@@ -24,7 +24,7 @@ public class ItemShopRing extends Item implements IEquipment, ISSEquipment {
 	public AbstractTab tab;
 
 	@SideOnly(Side.CLIENT)
-	public boolean isRing = false;
+	public boolean isRing;
 
 	public ItemShopRing() {
 		this.setMaxStackSize(1);

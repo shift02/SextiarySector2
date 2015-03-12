@@ -25,10 +25,19 @@ public class PotionSS extends Potion {
 
 	}
 
+	/*
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getStatusIconIndex()
+	{
+		return this.iconID;
+	}*/
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasStatusIcon()
 	{
+		//net.minecraft.client.Minecraft.getMinecraft().getTextureManager().bindTexture(field_147001_a);
 		return false;
 	}
 

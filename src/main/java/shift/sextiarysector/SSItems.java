@@ -174,6 +174,7 @@ public class SSItems {
 	//野菜
 	public static ArrayList<Item> farmlandCrops = new ArrayList<Item>();
 	public static ArrayList<Item> paddyCrops = new ArrayList<Item>();
+	public static ArrayList<Item> woodCrops = new ArrayList<Item>();
 
 	public static Item turnip;
 	public static Item cucumber;
@@ -195,6 +196,8 @@ public class SSItems {
 	public static Item radish;
 
 	public static Item rice;
+
+	public static Item shiitake;
 
 	//料理
 	public static Item whiteRice;
@@ -528,6 +531,9 @@ public class SSItems {
 
 		rice = new ItemCrop(paddyCrops).setUnlocalizedName("ss.rice").setTextureName("sextiarysector:food/grain/rice").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
 		GameRegistry.registerItem(rice, "Rice");
+
+		shiitake = new ItemFoodCrop(woodCrops, 2, 1, 0, 0, 2, 0, false).setUnlocalizedName("ss.shiitake").setTextureName("sextiarysector:food/mushroom/shiitake");
+		GameRegistry.registerItem(shiitake, "Shiitake");
 
 		//料理
 		whiteRice = new Item().setUnlocalizedName("ss.white_rice").setTextureName("sextiarysector:food/grain/white_rice").setCreativeTab(SextiarySectorAPI.TabSSCooking);

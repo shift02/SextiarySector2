@@ -3,7 +3,7 @@ sourceSets.main {
     resources.srcDirs project.projectDir.name
 }
  
-version = "2.1.7.b-${project.minecraft.version}"
+version = "2.1.7.d-${project.minecraft.version}"
 
 minecraft {
     // replacing stuff in the source
@@ -17,7 +17,7 @@ compile fileTree(dir: 'api', include: '*.jar')
 }
 
 //コンパイル時の文字コード指定とJavaのバージョン指定。この書式じゃないとgradle2.0では動かない。
-  [compileJava, compileTestJava,recompMinecraft, makeStart].each{
+  [compileJava, compileTestJava,recompMinecraft].each{
         it.options.encoding = 'UTF-8'
         it.options.compilerArgs += ['-source', '1.7', '-target', '1.7']
     }

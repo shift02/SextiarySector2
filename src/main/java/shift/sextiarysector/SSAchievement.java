@@ -65,6 +65,8 @@ public class SSAchievement {
 
 	public static Achievement rice;
 
+	public static Achievement shiitake;
+
 	//Mining
 	public static Achievement blueStoneDust;
 	public static Achievement copperOre;
@@ -147,6 +149,9 @@ public class SSAchievement {
 
 		int spring2 = 41;
 		rice = new AchievementCrop("rice", -7, spring2, new ItemStack(SSItems.rice), SSBlocks.rice, seed, agriculture).registerStat();
+
+		int spring3 = 46;
+		shiitake = new AchievementCrop("shiitake", -7, spring3, new ItemStack(SSItems.shiitake), SSBlocks.shiitake, seed, agriculture).registerStat();
 
 		AchievementPage.registerAchievementPage(new AchievementPageAgriculture("achievement.ss.agriculture", agriculture));
 
