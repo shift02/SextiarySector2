@@ -124,6 +124,8 @@ tile.ss.radish.name=Radish Seed
 tile.ss.rice.name=Rice Seed
 
 tile.ss.mushroom_red.name=Red Mushroom Seed
+tile.ss.shiitake.name=Shiitake Seed
+
 
 tile.ss.sandpit.name=Sandpit
 
@@ -293,6 +295,8 @@ item.ss.blue_potato.name=Blue Potato
 item.ss.radish.name=Radish
 
 item.ss.rice.name=Rice
+
+item.ss.shiitake.name=Shiitake
 
 
 item.ss.white_rice.name=White Rice
@@ -520,6 +524,9 @@ achievement.ss.radish.desc=Pickup a radish
 
 achievement.ss.rice=Rice
 achievement.ss.rice.desc=Pickup a rice
+
+achievement.ss.shiitake=Shiitake
+achievement.ss.shiitake.desc=Pickup a shiitake
 
 achievement.ss.mining=SS2 -Mining-
 
