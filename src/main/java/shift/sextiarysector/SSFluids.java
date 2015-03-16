@@ -14,6 +14,7 @@ public class SSFluids {
 
 	public static Fluid takumiTea;
 	public static Fluid drinkingWater;
+	public static Fluid springWater;
 	public static Fluid hotSprings;
 
 	public static Fluid steam;
@@ -28,6 +29,7 @@ public class SSFluids {
 
 		takumiTea = new SSFluid("TakumiTea", 0, 0x006400, 5, 2.0f).setUnlocalizedName("takumi_tea");
 		drinkingWater = new SSFluid("DrinkingWater", 0, 0x87CEFA, 4, 1.0f).setUnlocalizedName("drinking_water");
+		springWater = new SSFluid("SpringWater", 0, 0x87CEFA, 4, 1.0f).setUnlocalizedName("spring_water");
 		hotSprings = new SSFluid("HotSprings", 0, 0xFFFFFF, 4, 1.0f).setUnlocalizedName("hot_springs");
 
 		steam = new SSFluid("Steam", 1, 0xFFFFFF, 1, 1.0f).setUnlocalizedName("steam").setGaseous(true);

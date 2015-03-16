@@ -9,6 +9,7 @@ import shift.sextiarysector.recipe.FurnaceCraftingManager;
 import shift.sextiarysector.recipe.RecipeSimpleFluid;
 import shift.sextiarysector.recipe.RecipeSimpleFuel;
 import shift.sextiarysector.recipe.RecipeSimpleMachine;
+import shift.sextiarysector.recipe.RecipesArmor;
 import shift.sextiarysector.recipe.RecipesCore;
 import shift.sextiarysector.recipe.RecipesFluidFurnace;
 import shift.sextiarysector.recipe.RecipesFoodSmokers;
@@ -46,7 +47,7 @@ public class SSRecipes {
 	public static RecipeSimpleMachine rollingMachine;
 	public static RecipeSimpleMachine timeMachine;
 
-	public static void initRecipeLists(){
+	public static void initRecipeLists() {
 
 		fluidFurnace = new RecipeSimpleFluid();
 		foodSmokers = new RecipeSimpleFluid();
@@ -64,7 +65,7 @@ public class SSRecipes {
 		timeMachine = new RecipeSimpleMachine();
 	}
 
-	public static void initRecipes(){
+	public static void initRecipes() {
 
 		CraftingManager m = CraftingManager.getInstance();
 
@@ -75,6 +76,7 @@ public class SSRecipes {
 		RecipesMachine.addRecipes(m);
 		RecipesCore.addRecipes(m);
 		RecipesTool.addRecipes(m);
+		RecipesArmor.addRecipes(m);
 
 		FurnaceCraftingManager fm = FurnaceCraftingManager.getInstance();
 
@@ -102,30 +104,23 @@ public class SSRecipes {
 
 		RecipesTimeMachine.addRecipes(timeMachine);
 
-
 	}
 
-	public static  void deleteVanillaRecipe(){
+	public static void deleteVanillaRecipe() {
 
 		CraftingManager m = CraftingManager.getInstance();
 		ItemStack wool = new ItemStack(Blocks.wool);
 
-		for(int i=0;i< m.getRecipeList().size();i++){
+		for (int i = 0; i < m.getRecipeList().size(); i++) {
 
-			IRecipe re = (IRecipe)m.getRecipeList().get(i);
-			if(re != null &&re.getRecipeOutput()!=null && re.getRecipeOutput().isItemEqual(wool) && re instanceof ShapedRecipes){
+			IRecipe re = (IRecipe) m.getRecipeList().get(i);
+			if (re != null && re.getRecipeOutput() != null && re.getRecipeOutput().isItemEqual(wool) && re instanceof ShapedRecipes) {
 				m.getRecipeList().remove(i);
-				return ;
+				return;
 			}
 
 		}
 
-
 	}
-
-
-
-
-
 
 }

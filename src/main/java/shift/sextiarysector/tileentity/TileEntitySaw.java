@@ -10,10 +10,10 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 
-public class TileEntitySaw  extends TileEntityDirection  implements IEnergyHandler ,IGearForceGrid{
+public class TileEntitySaw  extends TileEntityDirection  implements IGFEnergyHandler ,IGearForceGrid{
 
 	public float rotateStep = 360;
 	private int speed = 0;
@@ -167,18 +167,18 @@ public class TileEntitySaw  extends TileEntityDirection  implements IEnergyHandl
 	}
 
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getSpeedStored(ForgeDirection from) {
 		return storage.getSpeedStored();
 	}
 
 	@Override
 	public int getMaxPowerStored(ForgeDirection from) {
-		return storage.getMaxPowerStored();
+		return storage.getMaxPower();
 	}
 
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
-		return storage.getMaxSpeedStored();
+	public int getMaxSpeedStored(ForgeDirection from) {
+		return storage.getMaxSpeed();
 	}
 
 	@Override

@@ -138,7 +138,7 @@ public class EnergyStorage implements IEnergyStorage {
 	@Override
 	public int addEnergy(int maxPower, int maxSpeed, boolean simulate) {
 
-		if(!this.isTransmissionGear()&&maxPower!=this.getMaxPowerStored()){
+		if(!this.isTransmissionGear()&&maxPower!=this.getMaxPower()){
 			return 0;
 		}
 
@@ -155,7 +155,7 @@ public class EnergyStorage implements IEnergyStorage {
 	@Override
 	public int drawEnergy(int maxPower, int maxSpeed, boolean simulate) {
 
-		if(!this.isTransmissionGear()&&maxPower!=this.getMaxPowerStored()){
+		if(!this.isTransmissionGear()&&maxPower!=this.getMaxPower()){
 			return 0;
 		}
 
@@ -194,12 +194,12 @@ public class EnergyStorage implements IEnergyStorage {
 	}
 
 	@Override
-	public int getMaxPowerStored() {
+	public int getMaxPower() {
 		return powerCapacity;
 	}
 
 	@Override
-	public int getMaxSpeedStored() {
+	public int getMaxSpeed() {
 		return speedCapacity;
 	}
 

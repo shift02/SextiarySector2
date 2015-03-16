@@ -15,28 +15,28 @@ import net.minecraft.util.EnumChatFormatting;
  * @version 1.0.0
  * @author Shift02
  */
-public class ItemGearForce  extends Item implements IGearForceItem{
+public class ItemGearForce extends Item implements IGearForceItem {
 
 	int power;
 	int speed;
 
 	int slot;
 
-	public ItemGearForce(int power, int maxSpeed, int slot){
+	public ItemGearForce(int power, int maxSpeed, int slot) {
 
 		this.setMaxStackSize(1);
-        this.setNoRepair();
+		this.setNoRepair();
 
-		this.power=power;
-		this.speed=maxSpeed;
+		this.power = power;
+		this.speed = maxSpeed;
 
-		this.slot=slot;
+		this.slot = slot;
 
 	}
 
 	@Override
-    public void addInformation(ItemStack itemStack, EntityPlayer par3EntityPlayer, List list, boolean par4)
-    {
+	public void addInformation(ItemStack itemStack, EntityPlayer par3EntityPlayer, List list, boolean par4)
+	{
 
 		/*
 		if(!par3EntityPlayer.capabilities.isCreativeMode){
@@ -50,31 +50,46 @@ public class ItemGearForce  extends Item implements IGearForceItem{
 		int power = GearForceItem.manager.getPower(itemStack);
 		int speed = GearForceItem.manager.getSpeed(itemStack);
 
-		list.add(""+ EnumChatFormatting.RED + "Power " + EnumChatFormatting.GRAY + power +" / "+this.getMaxPowerStored(itemStack)+ "");
-		list.add(""+ EnumChatFormatting.BLUE + "Speed " + EnumChatFormatting.GRAY + nf.format(speed) +" / "+ nf.format(this.getMaxSpeedStored(itemStack))+ "");
+		list.add("" + EnumChatFormatting.RED + "Power " + EnumChatFormatting.GRAY + power + " / " + this.getMaxPower(itemStack) + "");
+		list.add("" + EnumChatFormatting.BLUE + "Speed " + EnumChatFormatting.GRAY + nf.format(speed) + " / " + nf.format(this.getMaxSpeed(itemStack)) + "");
 
-    }
+	}
 
 	@Override
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
+	public boolean showDurabilityBar(ItemStack stack)
+	{
+
+		if (GearForceItem.manager.getSpeed(stack) == 0) return false;
+
+		return true;//stack.isItemDamaged();
+	}
+
+	@Override
+	public double getDurabilityForDisplay(ItemStack stack)
+	{
+		return 1.0D - ((double) GearForceItem.manager.getSpeed(stack) / (double) this.getMaxSpeed(stack));
+	}
+
+	@Override
+	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
+	{
 		ItemStack empty = new ItemStack(this);
 		ItemStack full = new ItemStack(this);
 
-		GearForceItem.manager.setEnergy(empty, this.getMaxPowerStored(empty), 0);
-		GearForceItem.manager.setEnergy(full, this.getMaxPowerStored(empty), this.getMaxSpeedStored(full));
+		GearForceItem.manager.setEnergy(empty, this.getMaxPower(empty), 0);
+		GearForceItem.manager.setEnergy(full, this.getMaxPower(empty), this.getMaxSpeed(full));
 
 		par3List.add(empty);
 		par3List.add(full);
-    }
+	}
 
 	@Override
-	public int getMaxPowerStored(ItemStack container) {
+	public int getMaxPower(ItemStack container) {
 		return this.power;
 	}
 
 	@Override
-	public int getMaxSpeedStored(ItemStack container) {
+	public int getMaxSpeed(ItemStack container) {
 		return this.speed;
 	}
 
@@ -85,7 +100,7 @@ public class ItemGearForce  extends Item implements IGearForceItem{
 
 	@Override
 	public boolean canSetSlot(int power) {
-		return slot>=power;
+		return slot >= power;
 	}
 
 }

@@ -14,10 +14,10 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fluids.IFluidHandler;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 
-public class TileEntityPump extends TileEntityDirection implements IFluidHandler, IEnergyHandler, IGearForceGrid {
+public class TileEntityPump extends TileEntityDirection implements IFluidHandler, IGFEnergyHandler, IGearForceGrid {
 
 	protected FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
 
@@ -165,18 +165,18 @@ public class TileEntityPump extends TileEntityDirection implements IFluidHandler
 	}
 
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getSpeedStored(ForgeDirection from) {
 		return storage.getSpeedStored();
 	}
 
 	@Override
 	public int getMaxPowerStored(ForgeDirection from) {
-		return storage.getMaxPowerStored();
+		return storage.getMaxPower();
 	}
 
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
-		return storage.getMaxSpeedStored();
+	public int getMaxSpeedStored(ForgeDirection from) {
+		return storage.getMaxSpeed();
 	}
 
 	@Override

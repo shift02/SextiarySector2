@@ -228,6 +228,7 @@ item.ss.attack_unit.name=Attack Unit
 item.ss.defense_unit.name=Defense Unit
 item.ss.attack_rust_unit.name=Attack Rust Unit
 item.ss.defense_rust_unit.name=Defense Rust Unit
+item.ss.pickaxe_unit.name=Pickaxe Unit
 
 
 item.ss.iron_ring.name=Iron Ring
@@ -264,6 +265,11 @@ item.ss.copper_pickaxe.name=Copper Pickaxe
 item.ss.copper_axe.name=Copper Axe
 item.ss.copper_sword.name=Copper Sword
 item.ss.copper_hoe.name=Copper Hoe
+
+item.ss.copper_helmet.name=Copper Helmet
+item.ss.copper_chestplate.name=Copper Chestplate
+item.ss.copper_leggings.name=Copper Leggings
+item.ss.copper_boots.name=Copper Boots
 
 item.ss.wood_watering_can.name=Wood Watering Can
 
@@ -333,6 +339,7 @@ item.ss.gf_contact_lenses.name=GF Contact Lenses
 #Fluid
 fluid.ss.takumi_tea=TAKUMI Tea
 fluid.ss.drinking_water=Drinking Water
+fluid.ss.spring_water=Spring Water
 fluid.ss.hot_springs=Hot Springs
 fluid.ss.steam=Steam
 fluid.ss.sap=Sap
