@@ -82,6 +82,7 @@ import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import shift.sextiarysector.tileentity.TileEntitySaw;
 import shift.sextiarysector.tileentity.TileEntityShaft;
+import shift.sextiarysector.tileentity.TileEntityShippingBox;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
 import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
@@ -127,6 +128,8 @@ public class SSBlocks {
 	//液体
 	public static Block drinkingWater;
 	public static Block hotSprings;
+
+	public static Block season;
 
 	//GF
 	public static Block woodShaft;
@@ -233,6 +236,7 @@ public class SSBlocks {
 	public static Block rice;
 
 	public static Block redMushroom;
+	public static Block shiitake;
 
 	//水産
 	public static Block sandpit;
@@ -269,7 +273,7 @@ public class SSBlocks {
 
 		freezer = new BlockFreezer().setBlockName("ss.freezer").setBlockTextureName("sextiarysector:ice/freezer").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(freezer, "Freezer");
-		GameRegistry.registerTileEntity(TileEntityFreezer.class, "Freezer");
+		GameRegistry.registerTileEntity(TileEntityFreezer.class, "SSFreezer");
 
 		//bottle = new BlockBottle().setBlockName("ss.bottle").setBlockTextureName("glass");
 		//GameRegistry.registerBlock(bottle,ItemBlockBottle.class, "Bottle");
@@ -343,11 +347,14 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntityTrap.class, "SSTrap");
 
 		//液体
-		drinkingWater = new BlockSSFluid(SSFluids.drinkingWater).setBlockName("ss.drinking_water").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		drinkingWater = new BlockSSFluid(SSFluids.springWater).setBlockName("ss.drinking_water").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(drinkingWater, "DrinkingWater");
 
 		hotSprings = new BlockHotSprings(SSFluids.hotSprings).setBlockName("ss.hot_springs").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(hotSprings, "HotSprings");
+
+		//season = new BlockSeasonFluid(SSFluids.season).setBlockName("ss.season").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		//GameRegistry.registerBlock(season, "Season");
 
 		//鉱石
 		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
@@ -492,6 +499,7 @@ public class SSBlocks {
 
 		shippingBox = new BlockShippingBox().setBlockName("ss.shipping_box").setBlockTextureName("sextiarysector:shipping_box").setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(shippingBox, "ShippingBox");
+		GameRegistry.registerTileEntity(TileEntityShippingBox.class, "ShippingBox");
 
 		creeperChest = new BlockSSChest(6).setBlockName("ss.creeper_chest").setHardness(2.5F).setStepSound(Block.soundTypeWood).setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(creeperChest, "CreeperChest");
@@ -556,6 +564,9 @@ public class SSBlocks {
 
 		redMushroom = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 6, 8, 14 }, Season.SPRING, Season.SUMMER), wood, Item.getItemFromBlock(Blocks.red_mushroom), false).setBlockName("ss.mushroom_red").setBlockTextureName("mushroom_red");
 		GameRegistry.registerBlock(redMushroom, ItemBlockCrop.class, "BlockRedMushroom");
+
+		shiitake = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 3, 5, 12 }, Season.SPRING), wood, SSItems.shiitake, false).setBlockName("ss.shiitake").setBlockTextureName("shiitake");
+		GameRegistry.registerBlock(shiitake, ItemBlockCrop.class, "BlockShiitake");
 
 		//水産
 		sandpit = new BlockSandpit().setBlockName("ss.sandpit").setBlockTextureName("sand");

@@ -36,7 +36,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	public static final String MODID = "SextiarySector";
-	public static final String VERSION = "2.1.7";
+	public static final String VERSION = "2.1.8";
 
 	@Mod.Instance("SextiarySector")
 	public static SextiarySector instance;
@@ -90,6 +90,7 @@ public class SextiarySector {
 		SSCreativeTabs.initCreativeTabs();
 		SSFluids.initFluids();
 		SSPotions.initPotions();
+		SSMaterials.preInitMaterial();
 		SSItems.initItems();
 		SSBlocks.initBlicks();
 		SSEntitys.initEntity();

@@ -13,8 +13,7 @@ import shift.sextiarysector.packet.SSPacketHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
-
-public class EntityPlayerManager  implements IPlayerManager{//implements {//IPlayerTracker{
+public class EntityPlayerManager implements IPlayerManager {//implements {//IPlayerTracker{
 
 	//@SideOnly(Side.CLIENT)
 	//public static Minecraft mc = FMLClientHandler.instance().getClient();
@@ -41,45 +40,45 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 
 	public static EntityPlayerManager instance = new EntityPlayerManager();
 
-	private EntityPlayerManager(){
+	private EntityPlayerManager() {
 
 	}
 
 	@Override
 	public void addMoistureStats(EntityPlayer entityPlayer, int par1, float par2) {
 		if (!entityPlayer.worldObj.isRemote)
-        {
+		{
 			getMoistureStats(entityPlayer).addStats(par1, par2);
 			//Achievement
 			entityPlayer.addStat(SSAchievement.moisture, 1);
-        }
+		}
 	}
 
 	@Override
 	public void addStaminaStats(EntityPlayer entityPlayer, int par1, float par2) {
 		if (!entityPlayer.worldObj.isRemote)
-        {
+		{
 			getStaminaStats(entityPlayer).addStats(par1, par2);
-        }
+		}
 	}
 
 	@Override
-	public void addMoistureExhaustion(EntityPlayer entityPlayer,float par1)
-    {
+	public void addMoistureExhaustion(EntityPlayer entityPlayer, float par1)
+	{
 		if (!entityPlayer.worldObj.isRemote)
-        {
+		{
 			getMoistureStats(entityPlayer).addExhaustion(par1);
-        }
-    }
+		}
+	}
 
 	@Override
-	public void addStaminaExhaustion(EntityPlayer entityPlayer,float par1)
-    {
+	public void addStaminaExhaustion(EntityPlayer entityPlayer, float par1)
+	{
 		if (!entityPlayer.worldObj.isRemote)
-        {
+		{
 			getStaminaStats(entityPlayer).addExhaustion(par1);
-        }
-    }
+		}
+	}
 
 	//触らない
 
@@ -87,7 +86,7 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 	@SubscribeEvent
 	public void LivingUpdateEvent(LivingUpdateEvent event)
 	{
-		if(!event.entityLiving.worldObj.isRemote && event.entityLiving instanceof EntityPlayer){
+		if (!event.entityLiving.worldObj.isRemote && event.entityLiving instanceof EntityPlayer) {
 
 			onUpdateEntity((EntityPlayer) event.entityLiving);
 
@@ -96,8 +95,7 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 	}
 
 	public static void onUpdateEntity(EntityPlayer entityPlayer)
-    {
-
+	{
 
 		getCustomPlayerData(entityPlayer).onUpdateEntity(entityPlayer);
 
@@ -144,7 +142,7 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 
 
 		if (lM != m.getMoistureLevel() || m.getSaturationLevel() == 0.0F != wM  ||  lS != s.getStaminaLevel() || s.getSaturationLevel() == 0.0F != wS)
-        {
+		{
 			entityPlayer.playerNetServerHandler.sendPacketToPlayer(getPacketUpdate(m.getMoistureLevel(),m.getSaturationLevel(),s.getStaminaLevel(),s.getSaturationLevel()));
 			lastMoistureLevel.put(name, m.getMoistureLevel());
 			lastStaminaLevel.put(name, s.getStaminaLevel());
@@ -155,40 +153,55 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 			m.writeNBT(nbt);
 			s.writeNBT(nbt);
 
-        }*/
+		}*/
 
-    }
+	}
 
 	@SubscribeEvent
 	public void onPlayerDropsEvent(PlayerDropsEvent event)
 	{
-		this.getCustomPlayerData(event.entityPlayer).getEquipmentStats().inventory.dropAllItems();
-	}
-
-	private void oneton(){
-
+		if (!event.entityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")) {
+			this.getCustomPlayerData(event.entityPlayer).getEquipmentStats().inventory.dropAllItems();
+		}
 
 	}
 
+	@SubscribeEvent
+	public void onPlayerCloneEvent(net.minecraftforge.event.entity.player.PlayerEvent.Clone event)
+	{
+
+		if (!event.wasDeath) return;
+
+		if (event.entityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")) {
+
+			this.getCustomPlayerData(event.entityPlayer).setEquipmentStats(this.getEquipmentStats(event.original));
+
+		}
+
+	}
+
+	private void oneton() {
+
+	}
 
 	/** Playerのデータの登録*/
 	@SubscribeEvent
-    public void onEntityConstructing(EntityEvent.EntityConstructing event) {
-        if (event.entity instanceof EntityPlayer) {
-        	EntityPlayerManager.register((EntityPlayer)event.entity);
-        }
-    }
+	public void onEntityConstructing(EntityEvent.EntityConstructing event) {
+		if (event.entity instanceof EntityPlayer) {
+			EntityPlayerManager.register((EntityPlayer) event.entity);
+		}
+	}
 
-	public static void register(EntityPlayer entityPlayer){
+	public static void register(EntityPlayer entityPlayer) {
 		entityPlayer.registerExtendedProperties(kye, new CustomPlayerData());
 	}
 
-	public static CustomPlayerData getCustomPlayerData(EntityPlayer entityPlayer){
+	public static CustomPlayerData getCustomPlayerData(EntityPlayer entityPlayer) {
 		return (CustomPlayerData) entityPlayer.getExtendedProperties(kye);
 	}
 
 	public static MoistureStats getMoistureStats(EntityPlayer entityPlayer)
-    {
+	{
 		return getCustomPlayerData(entityPlayer).getMoisture();
 
 		/*
@@ -202,10 +215,10 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 			return moistureMap.get(name);
 		}*/
 
-    }
+	}
 
 	public static StaminaStats getStaminaStats(EntityPlayer entityPlayer)
-    {
+	{
 
 		return getCustomPlayerData(entityPlayer).getStamina();
 
@@ -220,9 +233,9 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 			return staminaMap.get(name);
 		}*/
 
-    }
+	}
 
-	public static EquipmentStats getEquipmentStats(EntityPlayer entityPlayer){
+	public static EquipmentStats getEquipmentStats(EntityPlayer entityPlayer) {
 		return getCustomPlayerData(entityPlayer).getEquipmentStats();
 	}
 
@@ -292,21 +305,21 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 	}*/
 
 	//GUI用
-    public static int getPrevMoistureLevel(EntityPlayer entityPlayer)
-    {
+	public static int getPrevMoistureLevel(EntityPlayer entityPlayer)
+	{
 
-		return getMoistureStats(entityPlayer).getMoistureLevel()/(MAX_MOISTURE_LEVEL/MAX_PREVMOISTURE_LEVEL);
+		return getMoistureStats(entityPlayer).getMoistureLevel() / (MAX_MOISTURE_LEVEL / MAX_PREVMOISTURE_LEVEL);
 
-    }
+	}
 
-    public static int getPrevStaminaLevel(EntityPlayer entityPlayer)
-    {
+	public static int getPrevStaminaLevel(EntityPlayer entityPlayer)
+	{
 
-    	return getStaminaStats(entityPlayer).getStaminaLevel()/(MAX_STAMINA_LEVEL/MAX_PREV_STAMINA_LEVEL);
+		return getStaminaStats(entityPlayer).getStaminaLevel() / (MAX_STAMINA_LEVEL / MAX_PREV_STAMINA_LEVEL);
 
-    }
+	}
 
-    /*
+	/*
 	@Override
 	public void onPlayerLogin(EntityPlayer player){
 		//プレイヤーがログインした時の処理
@@ -355,9 +368,9 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 
 	}
 
-*/
+	*/
 
-    @SubscribeEvent
+	@SubscribeEvent
 	/* ワールドに入った時に呼ばれるイベント。 */
 	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
 
@@ -368,19 +381,19 @@ public class EntityPlayerManager  implements IPlayerManager{//implements {//IPla
 		}
 	}
 
-    @SubscribeEvent
+	@SubscribeEvent
 	public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
 		//プレイヤーがディメンション間を移動したときの処理
 
-    	if(!event.player.worldObj.isRemote)SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
+		if (!event.player.worldObj.isRemote) SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
 
 	}
 
-    @SubscribeEvent
+	@SubscribeEvent
 	public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
 		//プレイヤーがリスポーンした時の処理
-    	//System.out.println("onPlayerRespawn");
-    	if(!event.player.worldObj.isRemote)SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
+		//System.out.println("onPlayerRespawn");
+		if (!event.player.worldObj.isRemote) SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
 
 	}
 

@@ -2,10 +2,10 @@ package shift.sextiarysector.tileentity;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 
-public class TileEntityWindmill extends TileEntityDirection  implements IEnergyHandler ,IGearForceGrid{
+public class TileEntityWindmill extends TileEntityDirection  implements IGFEnergyHandler ,IGearForceGrid{
 
 	public float rotateStep = 0;
 
@@ -42,9 +42,9 @@ public class TileEntityWindmill extends TileEntityDirection  implements IEnergyH
 	public void updateServerEntity()
 	{
 		TileEntity t =this.worldObj.getTileEntity(xCoord-this.direction.offsetX, yCoord-this.direction.offsetY, zCoord-this.direction.offsetZ);
-		if(t!=null && t instanceof IEnergyHandler && this.isWork()){
+		if(t!=null && t instanceof IGFEnergyHandler && this.isWork()){
 
-			((IEnergyHandler)t).addEnergy(this.direction, 2, 20, false);
+			((IGFEnergyHandler)t).addEnergy(this.direction, 2, 20, false);
 		}
 
 	}
@@ -98,7 +98,7 @@ public class TileEntityWindmill extends TileEntityDirection  implements IEnergyH
 	}
 
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getSpeedStored(ForgeDirection from) {
 		return 0;
 	}
 
@@ -108,7 +108,7 @@ public class TileEntityWindmill extends TileEntityDirection  implements IEnergyH
 	}
 
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
+	public int getMaxSpeedStored(ForgeDirection from) {
 		return 0;
 	}
 

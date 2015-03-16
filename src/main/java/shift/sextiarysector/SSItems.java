@@ -26,6 +26,7 @@ import shift.sextiarysector.item.ItemLavaBottle;
 import shift.sextiarysector.item.ItemMineboat;
 import shift.sextiarysector.item.ItemMineboatTank;
 import shift.sextiarysector.item.ItemRucksack;
+import shift.sextiarysector.item.ItemSSArmor;
 import shift.sextiarysector.item.ItemSSAxe;
 import shift.sextiarysector.item.ItemSSPickaxe;
 import shift.sextiarysector.item.ItemScoop;
@@ -124,6 +125,8 @@ public class SSItems {
 	public static Item attackRustUnit;
 	public static Item defenseRustUnit;
 
+	public static Item pickaxeUnit;
+
 	//ring
 	public static Item ironRing;
 	public static Item creeperRing;
@@ -163,6 +166,12 @@ public class SSItems {
 	public static Item copperSword;
 	public static Item copperHoe;
 
+	//防具
+	public static Item copperHelmet;
+	public static Item copperChestplate;
+	public static Item copperLeggings;
+	public static Item copperBoots;
+
 	public static Item woodWateringCan;
 
 	//水産
@@ -174,6 +183,7 @@ public class SSItems {
 	//野菜
 	public static ArrayList<Item> farmlandCrops = new ArrayList<Item>();
 	public static ArrayList<Item> paddyCrops = new ArrayList<Item>();
+	public static ArrayList<Item> woodCrops = new ArrayList<Item>();
 
 	public static Item turnip;
 	public static Item cucumber;
@@ -195,6 +205,8 @@ public class SSItems {
 	public static Item radish;
 
 	public static Item rice;
+
+	public static Item shiitake;
 
 	//料理
 	public static Item whiteRice;
@@ -404,6 +416,9 @@ public class SSItems {
 		defenseRustUnit = new ItemUnit().setUnlocalizedName("ss.defense_rust_unit").setTextureName("sextiarysector:unit/defense_rust_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(defenseRustUnit, "DefenseRustUnit");
 
+		pickaxeUnit = new ItemUnit().setUnlocalizedName("ss.pickaxe_unit").setTextureName("sextiarysector:unit/pickaxe_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(pickaxeUnit, "PickaxeUnit");
+
 		//Ring
 		ironRing = new Item().setUnlocalizedName("ss.iron_ring").setTextureName("sextiarysector:ring/iron_ring").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(ironRing, "IronRing");
@@ -464,18 +479,32 @@ public class SSItems {
 		GameRegistry.registerItem(diamondKnife, "DiamondKnife");
 
 		//バニラ
-		copperShovel = new ItemSpade(ModuleToolMaterial.copper).setUnlocalizedName("ss.copper_shovel").setTextureName("sextiarysector:tool/copper_shovel").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		copperShovel = new ItemSpade(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_shovel").setTextureName("sextiarysector:tool/copper_shovel").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(copperShovel, "CopperShovel");
-		copperPickaxe = new ItemSSPickaxe(ModuleToolMaterial.copper).setUnlocalizedName("ss.copper_pickaxe").setTextureName("sextiarysector:tool/copper_pickaxe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		copperPickaxe = new ItemSSPickaxe(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_pickaxe").setTextureName("sextiarysector:tool/copper_pickaxe").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(copperPickaxe, "CopperPickaxe");
-		copperAxe = new ItemSSAxe(ModuleToolMaterial.copper).setUnlocalizedName("ss.copper_axe").setTextureName("sextiarysector:tool/copper_axe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		copperAxe = new ItemSSAxe(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_axe").setTextureName("sextiarysector:tool/copper_axe").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(copperAxe, "CopperAxe");
-		copperSword = new ItemSword(ModuleToolMaterial.copper).setUnlocalizedName("ss.copper_sword").setTextureName("sextiarysector:tool/copper_sword").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		copperSword = new ItemSword(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_sword").setTextureName("sextiarysector:tool/copper_sword").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(copperSword, "CopperSword");
-		copperHoe = new ItemHoe(ModuleToolMaterial.copper).setUnlocalizedName("ss.copper_hoe").setTextureName("sextiarysector:tool/copper_hoe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		copperHoe = new ItemHoe(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_hoe").setTextureName("sextiarysector:tool/copper_hoe").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(copperHoe, "CopperHoe");
 		//Item i = Items.iron_axe;
 
+		//防具
+		copperHelmet = new ItemSSArmor(ModuleToolMaterial.copperArmor, 0, 0).setUnlocalizedName("ss.copper_helmet").setTextureName("sextiarysector:armor/copper_helmet");
+		GameRegistry.registerItem(copperHelmet, "CopperHelmet");
+
+		copperChestplate = new ItemSSArmor(ModuleToolMaterial.copperArmor, 0, 1).setUnlocalizedName("ss.copper_chestplate").setTextureName("sextiarysector:armor/copper_chestplate");
+		GameRegistry.registerItem(copperChestplate, "CopperChestplate");
+
+		copperLeggings = new ItemSSArmor(ModuleToolMaterial.copperArmor, 0, 2).setUnlocalizedName("ss.copper_leggings").setTextureName("sextiarysector:armor/copper_leggings");
+		GameRegistry.registerItem(copperLeggings, "CopperLeggings");
+
+		copperBoots = new ItemSSArmor(ModuleToolMaterial.copperArmor, 0, 3).setUnlocalizedName("ss.copper_boots").setTextureName("sextiarysector:armor/copper_boots");
+		GameRegistry.registerItem(copperBoots, "CopperBoots");
+
+		//水やり
 		woodWateringCan = new ItemWateringCan(ToolMaterial.WOOD).setUnlocalizedName("ss.wood_watering_can").setTextureName("wood_watering_can");
 		GameRegistry.registerItem(woodWateringCan, "WoodWateringCan");
 
@@ -528,6 +557,9 @@ public class SSItems {
 
 		rice = new ItemCrop(paddyCrops).setUnlocalizedName("ss.rice").setTextureName("sextiarysector:food/grain/rice").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
 		GameRegistry.registerItem(rice, "Rice");
+
+		shiitake = new ItemFoodCrop(woodCrops, 2, 1, 0, 0, 2, 0, false).setUnlocalizedName("ss.shiitake").setTextureName("sextiarysector:food/mushroom/shiitake");
+		GameRegistry.registerItem(shiitake, "Shiitake");
 
 		//料理
 		whiteRice = new Item().setUnlocalizedName("ss.white_rice").setTextureName("sextiarysector:food/grain/white_rice").setCreativeTab(SextiarySectorAPI.TabSSCooking);

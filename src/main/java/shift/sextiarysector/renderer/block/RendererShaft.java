@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SextiarySector;
+import shift.sextiarysector.fmp.IShaft;
 import shift.sextiarysector.renderer.model.ModelShaft;
 import shift.sextiarysector.tileentity.TileEntityShaft;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -23,36 +24,36 @@ public class RendererShaft extends TileEntitySpecialRenderer implements ISimpleB
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 
-		if(modelID!=this.getRenderId()){
-			return ;
+		if (modelID != this.getRenderId()) {
+			return;
 		}
 
 		GL11.glPushMatrix();
 
-        float scale = 0.0625f;
-        GL11.glScalef(scale,scale,scale);
+		float scale = 0.0625f;
+		GL11.glScalef(scale, scale, scale);
 
-        GL11.glRotatef(90, 1, 0, 0);
+		GL11.glRotatef(90, 1, 0, 0);
 
-        if(block == SSBlocks.woodShaft){
-        	this.bind(woodShaftTextures);
-        }else if(block == SSBlocks.stoneShaft){
-        	this.bind(stoneShaftTextures);
-        } else if(block == SSBlocks.steelShaft){
-        	this.bind(this.steelShaftTextures);
-        }else if(block == SSBlocks.ninjaShaft){
-        	this.bind(ninjaShaftTextures);
-        }else if(block == SSBlocks.orichalcumShaft){
-        	this.bind(orichalcumShaftTextures);
-        }
+		if (block == SSBlocks.woodShaft) {
+			this.bind(woodShaftTextures);
+		} else if (block == SSBlocks.stoneShaft) {
+			this.bind(stoneShaftTextures);
+		} else if (block == SSBlocks.steelShaft) {
+			this.bind(this.steelShaftTextures);
+		} else if (block == SSBlocks.ninjaShaft) {
+			this.bind(ninjaShaftTextures);
+		} else if (block == SSBlocks.orichalcumShaft) {
+			this.bind(orichalcumShaftTextures);
+		}
 
-        modelShaft.render(null, 0,0,0, 0,0, 1.0f);
-        modelShaft.renderIn(null, 0,0,0, 0,0, 1.0f);
-        modelShaft.renderOut(null, 0,0,0, 0,0, 1.0f);
+		modelShaft.render(null, 0, 0, 0, 0, 0, 1.0f);
+		modelShaft.renderIn(null, 0, 0, 0, 0, 0, 1.0f);
+		modelShaft.renderOut(null, 0, 0, 0, 0, 0, 1.0f);
 
-        GL11.glPopMatrix();
+		GL11.glPopMatrix();
 
-        this.bind(MC_BLOCK_SHEET);
+		this.bind(MC_BLOCK_SHEET);
 
 	}
 
@@ -83,105 +84,178 @@ public class RendererShaft extends TileEntitySpecialRenderer implements ISimpleB
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {
 
-		TileEntityShaft tile = (TileEntityShaft)tileentity;
+		TileEntityShaft tile = (TileEntityShaft) tileentity;
 
 		//System.out.println("renderTileEntityAt");
 
 		GL11.glPushMatrix();
-        GL11.glTranslatef((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F);
-        float scale = 0.0625f;
-        GL11.glScalef(scale,scale,scale);
+		GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
+		float scale = 0.0625f;
+		GL11.glScalef(scale, scale, scale);
 
-        switch(tile.getStorage().getMaxPowerStored()){
-        	case 1:this.bindTexture(woodShaftTextures);break;
-        	case 2:this.bindTexture(stoneShaftTextures);break;
-        	case 3:this.bindTexture(steelShaftTextures);break;
-        	case 4:this.bindTexture(ninjaShaftTextures);break;
-        	case 5:this.bindTexture(orichalcumShaftTextures);break;
-        }
+		switch (tile.getStorage().getMaxPower()) {
+		case 1:
+			this.bindTexture(woodShaftTextures);
+			break;
+		case 2:
+			this.bindTexture(stoneShaftTextures);
+			break;
+		case 3:
+			this.bindTexture(steelShaftTextures);
+			break;
+		case 4:
+			this.bindTexture(ninjaShaftTextures);
+			break;
+		case 5:
+			this.bindTexture(orichalcumShaftTextures);
+			break;
+		}
 
-
-        switch(tile.direction){
-        case UP:
-            GL11.glRotatef(90, 1, 0, 0);
-            break;
-        case DOWN:
-            GL11.glRotatef(90, -1, 0, 0);
-            break;
-        case WEST:
-            GL11.glRotatef(90, 0, 1, 0);
-            break;
-        case EAST:
-            GL11.glRotatef(90, 0, -1, 0);
-            break;
-        case SOUTH:
-            GL11.glRotatef(180, 0, 1, 0);
-            break;
+		switch (tile.direction) {
+		case UP:
+			GL11.glRotatef(90, 1, 0, 0);
+			break;
+		case DOWN:
+			GL11.glRotatef(90, -1, 0, 0);
+			break;
+		case WEST:
+			GL11.glRotatef(90, 0, 1, 0);
+			break;
+		case EAST:
+			GL11.glRotatef(90, 0, -1, 0);
+			break;
+		case SOUTH:
+			GL11.glRotatef(180, 0, 1, 0);
+			break;
 		default:
 			break;
-        }
+		}
 
-        if(!this.isIn(tileentity)){
-        	modelShaft.renderIn(null, 0,0,0, 0,0, 1.0f);
-        }
+		if (!this.isIn(tileentity)) {
+			modelShaft.renderIn(null, 0, 0, 0, 0, 0, 1.0f);
+		}
 
-        if(!this.isOut(tileentity)){
-        	modelShaft.renderOut(null, 0,0,0, 0,0, 1.0f);
-        }
+		if (!this.isOut(tileentity)) {
+			modelShaft.renderOut(null, 0, 0, 0, 0, 0, 1.0f);
+		}
 
-        //傾きのスピード
-        GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
+		//傾きのスピード
+		GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
 
-        modelShaft.render(null, 0,0,0, 0,0, 1.0f);
+		modelShaft.render(null, 0, 0, 0, 0, 0, 1.0f);
 
-        GL11.glPopMatrix();
+		GL11.glPopMatrix();
 
 	}
 
+	public static void renderTileEntityAt2(TileEntity tileentity, double x, double y, double z, float f) {
+
+		if (!(tileentity instanceof IShaft)) return;
+
+		IShaft tile = (IShaft) tileentity;
+
+		//System.out.println("renderTileEntityAt");
+
+		GL11.glPushMatrix();
+		GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
+		float scale = 0.0625f;
+		GL11.glScalef(scale, scale, scale);
+
+		switch (tile.getStorage().getMaxPower()) {
+		case 1:
+			bind(woodShaftTextures);
+			break;
+		case 2:
+			bind(stoneShaftTextures);
+			break;
+		case 3:
+			bind(steelShaftTextures);
+			break;
+		case 4:
+			bind(ninjaShaftTextures);
+			break;
+		case 5:
+			bind(orichalcumShaftTextures);
+			break;
+		}
+
+		switch (tile.getDirection()) {
+		case UP:
+			GL11.glRotatef(90, 1, 0, 0);
+			break;
+		case DOWN:
+			GL11.glRotatef(90, -1, 0, 0);
+			break;
+		case WEST:
+			GL11.glRotatef(90, 0, 1, 0);
+			break;
+		case EAST:
+			GL11.glRotatef(90, 0, -1, 0);
+			break;
+		case SOUTH:
+			GL11.glRotatef(180, 0, 1, 0);
+			break;
+		default:
+			break;
+		}
+
+		if (!isIn(tileentity)) {
+			modelShaft.renderIn(null, 0, 0, 0, 0, 0, 1.0f);
+		}
+
+		if (!isOut(tileentity)) {
+			modelShaft.renderOut(null, 0, 0, 0, 0, 0, 1.0f);
+		}
+
+		//傾きのスピード
+		GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
+
+		modelShaft.render(null, 0, 0, 0, 0, 0, 1.0f);
+
+		GL11.glPopMatrix();
+
+	}
 
 	private static void bind(ResourceLocation res)
-    {
-        FMLClientHandler.instance().getClient().getTextureManager().bindTexture(res);
-    }
+	{
+		FMLClientHandler.instance().getClient().getTextureManager().bindTexture(res);
+	}
 
+	public static boolean isOut(TileEntity tileentity) {
 
-	public boolean isOut(TileEntity tileentity){
+		IShaft tile = (IShaft) tileentity;
 
-		TileEntityShaft tile = (TileEntityShaft) tileentity;
+		int x = tileentity.xCoord + tile.getDirection().offsetX;
+		int y = tileentity.yCoord + tile.getDirection().offsetY;
+		int z = tileentity.zCoord + tile.getDirection().offsetZ;
 
-		int x = tile.xCoord + tile.direction.offsetX;
-		int y = tile.yCoord + tile.direction.offsetY;
-		int z = tile.zCoord + tile.direction.offsetZ;
+		TileEntity tile2 = tileentity.getWorldObj().getTileEntity(x, y, z);
 
-		TileEntity tile2 = tile.getWorldObj().getTileEntity(x, y, z);
-
-		if(tile2 instanceof TileEntityShaft && ((TileEntityShaft) tile2).getOutDirection().ordinal()==tile.getOutDirection().ordinal()){
+		if (tile2 instanceof IShaft && ((IShaft) tile2).getDirection().ordinal() == tile.getDirection().ordinal()) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 
 	}
 
-	public boolean isIn(TileEntity tileentity){
+	public static boolean isIn(TileEntity tileentity) {
 
-		TileEntityShaft tile = (TileEntityShaft) tileentity;
+		IShaft tile = (IShaft) tileentity;
 
-		int x = tile.xCoord - tile.direction.offsetX;
-		int y = tile.yCoord - tile.direction.offsetY;
-		int z = tile.zCoord - tile.direction.offsetZ;
+		int x = tileentity.xCoord - tile.getDirection().offsetX;
+		int y = tileentity.yCoord - tile.getDirection().offsetY;
+		int z = tileentity.zCoord - tile.getDirection().offsetZ;
 
-		TileEntity tile2 = tile.getWorldObj().getTileEntity(x, y, z);
+		TileEntity tile2 = tileentity.getWorldObj().getTileEntity(x, y, z);
 
-		if(tile2 instanceof TileEntityShaft && ((TileEntityShaft) tile2).getOutDirection().ordinal()==tile.getOutDirection().ordinal()){
+		if (tile2 instanceof IShaft && ((IShaft) tile2).getDirection().ordinal() == tile.getDirection().ordinal()) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 
 	}
-
-
 
 	/*
 	public static boolean isOut(TileEntity tileentity){

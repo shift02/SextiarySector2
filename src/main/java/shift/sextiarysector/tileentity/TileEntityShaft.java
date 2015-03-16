@@ -4,28 +4,31 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import shift.sextiarysector.api.machine.energy.IGearForceGrid;
+import shift.sextiarysector.fmp.IShaft;
 
-public class TileEntityShaft extends TileEntityDirection implements IEnergyHandler  ,IGearForceGrid{
+public class TileEntityShaft extends TileEntityDirection implements IGFEnergyHandler, IGearForceGrid, IShaft {
 
 	public float rotateStep = 360;
-	private EnergyStorage storage = new EnergyStorage("Base", 1, 320, 160);
+	private final EnergyStorage storage = new EnergyStorage("Base", 1, 320, 160);
 	// 表示用
 	public int lastSpeed = 0;
 	private final int cooltime = 0;
 
-	public TileEntityShaft(){
+	public TileEntityShaft() {
 
 	}
 
-	public TileEntityShaft(int i){
+	public TileEntityShaft(int i) {
 		this.getStorage().setPowerCapacity(i);
 	}
 
 	@Override
 	public void updateEntity() {
+
 		super.updateEntity();
+
 		if (this.worldObj.isRemote) {
 			this.updateClientEntity();
 		} else {
@@ -42,7 +45,7 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 				yCoord + this.getInDirection().offsetY,
 				zCoord + this.getInDirection().offsetZ);
 
-		if (t instanceof TileEntityShaft&& ((TileEntityShaft) t).getDirection().ordinal() == this.direction.ordinal()) {
+		if (t instanceof IShaft && ((IShaft) t).getDirection().ordinal() == this.direction.ordinal()) {
 			return;
 		}
 
@@ -50,17 +53,17 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 		 * if(this.rotateStep>=360){ this.rotateStep-=360; }
 		 */
 
-		this.rotateStep += (float)this.lastSpeed/10.0f;
+		this.rotateStep += this.lastSpeed / 10.0f;
 
-		t = this.worldObj.getTileEntity(xCoord + this.getOutDirection().offsetX,yCoord + this.getOutDirection().offsetY,zCoord + this.getOutDirection().offsetZ);
+		t = this.worldObj.getTileEntity(xCoord + this.getOutDirection().offsetX, yCoord + this.getOutDirection().offsetY, zCoord + this.getOutDirection().offsetZ);
 
-		for (int i = 2; t instanceof TileEntityShaft&& ((TileEntityShaft) t).getDirection().ordinal() == this.direction.ordinal(); i++) {
+		for (int i = 2; t instanceof IShaft && ((IShaft) t).getDirection().ordinal() == this.direction.ordinal(); i++) {
 			// System.out.println("b");
-			((TileEntityShaft) t).rotateStep = this.rotateStep;
+			((IShaft) t).setRotateStep(this.rotateStep);
 
 			//if(this.worldObj.rand.nextInt(30)==1)this.worldObj.spawnParticle("reddust", t.xCoord+0.5f, t.yCoord+0.5f, t.zCoord+0.5f, -0.3D, 0.0D, 1.0D);
 
-			t = this.worldObj.getTileEntity(xCoord+ this.getOutDirection().offsetX * i,yCoord + this.getOutDirection().offsetY * i,zCoord + this.getOutDirection().offsetZ * i);
+			t = this.worldObj.getTileEntity(xCoord + this.getOutDirection().offsetX * i, yCoord + this.getOutDirection().offsetY * i, zCoord + this.getOutDirection().offsetZ * i);
 		}
 
 	}
@@ -68,14 +71,14 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 	public void updateServerEntity() {
 
 		if (this.getStorage().getSpeedStored() != lastSpeed) {
-			lastSpeed = (int) (this.getStorage().getSpeedStored());
+			lastSpeed = (this.getStorage().getSpeedStored());
 			// PacketDispatcher.sendPacketToAllPlayers(this.getDescriptionPacket());
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
 		}
 
 		if (this.getStorage().getSpeedStored() > 0) {
-			this.getStorage().drawEnergy(this.getStorage().getMaxPowerStored(), 10, false);
+			this.getStorage().drawEnergy(this.getStorage().getMaxPower(), 10, false);
 		}
 
 		/*
@@ -107,8 +110,8 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 
 	public int getShaftLength() {
 
-		TileEntityShaft in = this.getInTileEntityShaft();
-		TileEntityShaft out = this.getOutTileEntityShaft();
+		TileEntity in = (TileEntity) this.getInTileEntityShaft();
+		TileEntity out = (TileEntity) this.getOutTileEntityShaft();
 
 		int x = Math.abs(in.xCoord - out.yCoord);
 		int y = Math.abs(in.yCoord - out.yCoord);
@@ -118,41 +121,42 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 
 	}
 
-	public TileEntityShaft getInTileEntityShaft() {
+	@Override
+	public IShaft getInTileEntityShaft() {
 
 		if (this.isInShaft()) {
 			return this;
 		} else {
-			return ((TileEntityShaft) this.getInTileEntity())
-					.getInTileEntityShaft();
+			return ((IShaft) this.getInTileEntity()).getInTileEntityShaft();
 		}
 
 	}
 
-	public TileEntityShaft getOutTileEntityShaft() {
+	@Override
+	public IShaft getOutTileEntityShaft() {
 
 		if (this.isOutShaft()) {
 			return this;
 		} else {
-			return ((TileEntityShaft) this.getOutTileEntity()).getOutTileEntityShaft();
+			return ((IShaft) this.getOutTileEntity()).getOutTileEntityShaft();
 		}
 
 	}
 
 	public boolean isInShaft() {
-		return !(this.getInTileEntity() instanceof TileEntityShaft)|| ((TileEntityShaft) this.getInTileEntity()).getDirection().ordinal() != this.getDirection().ordinal();
+		return !(this.getInTileEntity() instanceof IShaft) || ((IShaft) this.getInTileEntity()).getDirection().ordinal() != this.getDirection().ordinal();
 	}
 
 	public boolean isOutShaft() {
-		return !(this.getOutTileEntity() instanceof TileEntityShaft)|| ((TileEntityShaft) this.getOutTileEntity()).getDirection().ordinal() != this.getDirection().ordinal();
+		return !(this.getOutTileEntity() instanceof IShaft) || ((IShaft) this.getOutTileEntity()).getDirection().ordinal() != this.getDirection().ordinal();
 	}
 
 	public TileEntity getInTileEntity() {
-		return this.worldObj.getTileEntity(xCoord+ this.getInDirection().offsetX, yCoord+ this.getInDirection().offsetY, zCoord+ this.getInDirection().offsetZ);
+		return this.worldObj.getTileEntity(xCoord + this.getInDirection().offsetX, yCoord + this.getInDirection().offsetY, zCoord + this.getInDirection().offsetZ);
 	}
 
 	public TileEntity getOutTileEntity() {
-		return this.worldObj.getTileEntity(xCoord+ this.getOutDirection().offsetX,yCoord + this.getOutDirection().offsetY,zCoord + this.getOutDirection().offsetZ);
+		return this.worldObj.getTileEntity(xCoord + this.getOutDirection().offsetX, yCoord + this.getOutDirection().offsetY, zCoord + this.getOutDirection().offsetZ);
 	}
 
 	public ForgeDirection getInDirection() {
@@ -178,8 +182,14 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 		par1nbtTagCompound.setInteger("lastSpeed", lastSpeed);
 	}
 
+	@Override
 	public float getRotateStep() {
 		return rotateStep / 2.0f;
+	}
+
+	@Override
+	public void setRotateStep(float r) {
+		this.rotateStep = r;
 	}
 
 	@Override
@@ -187,10 +197,12 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 		return direction;
 	}
 
+	@Override
 	public void setDirection(ForgeDirection d) {
 		direction = d;
 	}
 
+	@Override
 	public EnergyStorage getStorage() {
 
 		//if(storage==null){
@@ -202,15 +214,15 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 
 	// EnergyStorageの利用
 	@Override
-	public int addEnergy(ForgeDirection from, int power, int speed,boolean simulate) {
+	public int addEnergy(ForgeDirection from, int power, int speed, boolean simulate) {
 
 		if (this.getInDirection().ordinal() != from.ordinal())
 			return 0;
 
-		if (!(this.getOutTileEntity() instanceof IEnergyHandler) || power != this.getStorage().getMaxPowerStored())
+		if (!(this.getOutTileEntity() instanceof IGFEnergyHandler) || power != this.getStorage().getMaxPower())
 			return 0;
 
-		int i = ((IEnergyHandler) this.getOutTileEntity()).addEnergy(from,power, speed, simulate);
+		int i = ((IGFEnergyHandler) this.getOutTileEntity()).addEnergy(from, power, speed, simulate);
 
 		// storage.addEnergy(power, speed, simulate);
 		if (!simulate)
@@ -249,7 +261,7 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 	}
 
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getSpeedStored(ForgeDirection from) {
 
 		return this.getStorage().getSpeedStored();
 
@@ -258,14 +270,14 @@ public class TileEntityShaft extends TileEntityDirection implements IEnergyHandl
 	@Override
 	public int getMaxPowerStored(ForgeDirection from) {
 
-		return this.getStorage().getMaxPowerStored();
+		return this.getStorage().getMaxPower();
 
 	}
 
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
+	public int getMaxSpeedStored(ForgeDirection from) {
 
-		return this.getStorage().getMaxSpeedStored();
+		return this.getStorage().getMaxSpeed();
 
 	}
 

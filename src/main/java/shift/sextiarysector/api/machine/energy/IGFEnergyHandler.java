@@ -3,14 +3,14 @@ package shift.sextiarysector.api.machine.energy;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
- * IEnergyHandler TileEntity用のエネルギーインターフェース <br>
+ * IGFEnergyHandler TileEntity用のエネルギーインターフェース <br>
  * TileEntityに実装して使ってください。
  * @see IEnergyStorage
  * @see EnergyStorage
- * @version 1.0.0
+ * @version 1.1.0
  * @author Shift02
  */
-public interface IEnergyHandler {
+public interface IGFEnergyHandler {
 
 	/**
 	 * addEnergy エレルギーの追加
@@ -32,7 +32,6 @@ public interface IEnergyHandler {
 	 */
 	int drawEnergy(ForgeDirection from, int power, int speed, boolean simulate);
 
-
 	/**
 	 * canInterface 繋がるか
 	 * @param from 方角
@@ -52,7 +51,7 @@ public interface IEnergyHandler {
 	 * @param from 方角
 	 * @return その方角の現在の速度の量
 	 */
-	long getSpeedStored(ForgeDirection from);
+	int getSpeedStored(ForgeDirection from);
 
 	/**
 	 * getMaxPowerStored 力の最大値(容量)の取得
@@ -66,6 +65,6 @@ public interface IEnergyHandler {
 	 * @param from 方角
 	 * @return 最大値(容量)
 	 */
-	long getMaxSpeedStored(ForgeDirection from);
+	int getMaxSpeedStored(ForgeDirection from);
 
 }
