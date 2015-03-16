@@ -45,7 +45,8 @@ public class SSShops {
 
 			//creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.attackUnit, 1), 2400));
 			//creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.defenseUnit, 1), 3600));
-			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.craftUnit, 1), 6800));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.craftUnit, 1), 5300));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.pickaxeUnit, 1), 6800));
 
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.wood, 1), 180));
 

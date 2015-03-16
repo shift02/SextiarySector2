@@ -82,6 +82,7 @@ import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import shift.sextiarysector.tileentity.TileEntitySaw;
 import shift.sextiarysector.tileentity.TileEntityShaft;
+import shift.sextiarysector.tileentity.TileEntityShippingBox;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
 import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
@@ -346,7 +347,7 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntityTrap.class, "SSTrap");
 
 		//液体
-		drinkingWater = new BlockSSFluid(SSFluids.drinkingWater).setBlockName("ss.drinking_water").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		drinkingWater = new BlockSSFluid(SSFluids.springWater).setBlockName("ss.drinking_water").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(drinkingWater, "DrinkingWater");
 
 		hotSprings = new BlockHotSprings(SSFluids.hotSprings).setBlockName("ss.hot_springs").setCreativeTab(SextiarySectorAPI.TabSSCore);
@@ -498,6 +499,7 @@ public class SSBlocks {
 
 		shippingBox = new BlockShippingBox().setBlockName("ss.shipping_box").setBlockTextureName("sextiarysector:shipping_box").setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(shippingBox, "ShippingBox");
+		GameRegistry.registerTileEntity(TileEntityShippingBox.class, "ShippingBox");
 
 		creeperChest = new BlockSSChest(6).setBlockName("ss.creeper_chest").setHardness(2.5F).setStepSound(Block.soundTypeWood).setCreativeTab(SextiarySectorAPI.TabSSEconomy);
 		GameRegistry.registerBlock(creeperChest, "CreeperChest");

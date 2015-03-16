@@ -9,10 +9,10 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 import shift.sextiarysector.packet.PacketPlayerData;
 import shift.sextiarysector.packet.SSPacketHandler;
 
-public class CustomPlayerData implements IExtendedEntityProperties{
+public class CustomPlayerData implements IExtendedEntityProperties {
 
 	/** 水分 */
-	private MoistureStats moisture ;
+	private MoistureStats moisture;
 
 	/** スタミナ */
 	private StaminaStats stamina;
@@ -24,18 +24,17 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 	//private TabStats tab;
 
 	public void onUpdateEntity(EntityPlayer entityPlayer)
-    {
+	{
 
-		if(moisture.isPacket()||stamina.isPacket()){
+		if (moisture.isPacket() || stamina.isPacket()) {
 			SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
 			//.out.println("onUpdateEntity");
 		}
-		//System.out.println("AAA"+this.moisture.getMoistureLevel()+" : "+this.stamina.getStaminaLevel());
 
 		this.moisture.onUpdate(entityPlayer);
 		this.stamina.onUpdate(entityPlayer);
 
-    }
+	}
 
 	@Override
 	public void saveNBTData(NBTTagCompound compound) {
@@ -88,10 +87,13 @@ public class CustomPlayerData implements IExtendedEntityProperties{
 		this.stamina = stamina;
 	}
 
-	public EquipmentStats getEquipmentStats(){
+	public EquipmentStats getEquipmentStats() {
 		return equipment;
 	}
 
+	public void setEquipmentStats(EquipmentStats e) {
+		this.equipment = e;
+	}
 
 	//@SideOnly(Side.CLIENT)
 	//public void setTabList(ArrayList<AbstractTab> tabList){

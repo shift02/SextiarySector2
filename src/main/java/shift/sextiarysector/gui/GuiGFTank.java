@@ -138,8 +138,8 @@ public class GuiGFTank  extends GUIGearMachine{
 		int p3 = tankInventory.storage.getPowerStored();
 		long s3 = tankInventory.storage.getSpeedStored();
 
-		int p2_1 = tankInventory.storage.getMaxPowerStored();
-		long s2_1 = tankInventory.storage.getMaxSpeedStored();
+		int p2_1 = tankInventory.storage.getMaxPower();
+		long s2_1 = tankInventory.storage.getMaxSpeed();
 
 		arraylist3.add(0,"" + EnumChatFormatting.RESET+ "Machine Storage" + EnumChatFormatting.RESET );
 		arraylist3.add(1,"" + EnumChatFormatting.RED + "Power" + EnumChatFormatting.RESET );

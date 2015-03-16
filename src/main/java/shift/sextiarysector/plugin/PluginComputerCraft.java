@@ -8,7 +8,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SSItems;
-import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -106,12 +106,12 @@ public class PluginComputerCraft  implements IPlugin{
 			}
 
 			TileEntity t = world.getTileEntity(newX, newY, newZ);
-			if(t instanceof IEnergyHandler){
+			if(t instanceof IGFEnergyHandler){
 
 				if(verb==TurtleVerb.Attack){
-					return this.addEnergy(turtle, (IEnergyHandler) t,ForgeDirection.getOrientation(direction) );
+					return this.addEnergy(turtle, (IGFEnergyHandler) t,ForgeDirection.getOrientation(direction) );
 				}else{
-					return this.getEnergy(turtle, (IEnergyHandler) t, ForgeDirection.getOrientation(direction) );
+					return this.getEnergy(turtle, (IGFEnergyHandler) t, ForgeDirection.getOrientation(direction) );
 				}
 
 			}
@@ -119,7 +119,7 @@ public class PluginComputerCraft  implements IPlugin{
 			return TurtleCommandResult.failure();
 		}
 
-		private TurtleCommandResult addEnergy(ITurtleAccess turtle,IEnergyHandler h,ForgeDirection direction){
+		private TurtleCommandResult addEnergy(ITurtleAccess turtle,IGFEnergyHandler h,ForgeDirection direction){
 
 			if(turtle.getFuelLevel()>0){
 
@@ -136,7 +136,7 @@ public class PluginComputerCraft  implements IPlugin{
 		}
 
 
-		private TurtleCommandResult getEnergy(ITurtleAccess turtle,IEnergyHandler h,ForgeDirection direction){
+		private TurtleCommandResult getEnergy(ITurtleAccess turtle,IGFEnergyHandler h,ForgeDirection direction){
 
 			int i = h.drawEnergy(direction.getOpposite(), 1, 100, true)/10;
 			if(i>0){

@@ -1,11 +1,12 @@
 package shift.sextiarysector.api.machine.item;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public interface IHammer {
 
-	public boolean canUse(ItemStack item);
+	public boolean canUse(ItemStack item, EntityPlayer player, int damage);
 
-	public boolean use(ItemStack item);
+	public boolean use(ItemStack item, EntityPlayer player, int damage);
 
 }

@@ -3,11 +3,11 @@ package shift.sextiarysector.tileentity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
 
-public class TileEntityMonitor extends TileEntityDirection implements IEnergyHandler ,IGearForceGrid{
+public class TileEntityMonitor extends TileEntityDirection implements IGFEnergyHandler ,IGearForceGrid{
 
 	public EnergyStorage storage = new EnergyStorage("Base", 1, 10000);
 	public MonitorType type = MonitorType.unknown;
@@ -90,7 +90,7 @@ public class TileEntityMonitor extends TileEntityDirection implements IEnergyHan
 	}
 
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getSpeedStored(ForgeDirection from) {
 		if(!this.canInterface(from))return 0;
 		return 0;
 	}
@@ -98,13 +98,13 @@ public class TileEntityMonitor extends TileEntityDirection implements IEnergyHan
 	@Override
 	public int getMaxPowerStored(ForgeDirection from) {
 		if(!this.canInterface(from))return 0;
-		return this.storage.getMaxPowerStored();
+		return this.storage.getMaxPower();
 	}
 
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
+	public int getMaxSpeedStored(ForgeDirection from) {
 		if(!this.canInterface(from))return 0;
-		return this.storage.getMaxSpeedStored();
+		return this.storage.getMaxSpeed();
 	}
 
 	@Override

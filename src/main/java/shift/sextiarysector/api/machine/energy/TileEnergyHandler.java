@@ -7,7 +7,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEnergyHandler extends TileEntity implements IEnergyHandler {
+public class TileEnergyHandler extends TileEntity implements IGFEnergyHandler {
 
 	EnergyStorage storage = new EnergyStorage("Base",1,1000);
 
@@ -42,7 +42,7 @@ public class TileEnergyHandler extends TileEntity implements IEnergyHandler {
 	}
 
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getSpeedStored(ForgeDirection from) {
 
 		return storage.getSpeedStored();
 
@@ -51,14 +51,14 @@ public class TileEnergyHandler extends TileEntity implements IEnergyHandler {
 	@Override
 	public int getMaxPowerStored(ForgeDirection from) {
 
-		return storage.getMaxPowerStored();
+		return storage.getMaxPower();
 
 	}
 
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
+	public int getMaxSpeedStored(ForgeDirection from) {
 
-		return storage.getMaxSpeedStored();
+		return storage.getMaxSpeed();
 
 	}
 

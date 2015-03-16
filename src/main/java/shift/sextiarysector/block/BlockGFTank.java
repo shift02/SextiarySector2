@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.api.SextiarySectorAPI;
-import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import shift.sextiarysector.tileentity.TileEntityDirection;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import cpw.mods.fml.relauncher.Side;
@@ -71,7 +71,7 @@ public class BlockGFTank  extends BlockDirection{
 
 		TileEntity t = par1IBlockAccess.getTileEntity(par2 + d.offsetX, par3 + d.offsetY, par4 + d.offsetZ);
 
-		if(t instanceof IEnergyHandler && ((IEnergyHandler) t).canInterface(d.getOpposite()))return in;
+		if(t instanceof IGFEnergyHandler && ((IGFEnergyHandler) t).canInterface(d.getOpposite()))return in;
 
 		return this.blockIcon;
     }

@@ -12,11 +12,11 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
-import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 import shift.sextiarysector.container.ItemBox;
 
-public class TileEntitySteamMotor extends TileEntityDirection  implements IEnergyHandler, IGearForceGrid, ISidedInventory, IFluidHandler{
+public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEnergyHandler, IGearForceGrid, ISidedInventory, IFluidHandler{
 
 	protected static final int[] slots_top = new int[] { 0 };
 	protected static final int[] slots_bottom = new int[] { 1 };
@@ -93,9 +93,9 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IEnerg
 		}
 
 		TileEntity t =this.worldObj.getTileEntity(xCoord-this.direction.offsetX, yCoord-this.direction.offsetY, zCoord-this.direction.offsetZ);
-		if(t!=null && t instanceof IEnergyHandler && this.canWork()){
+		if(t!=null && t instanceof IGFEnergyHandler && this.canWork()){
 
-			((IEnergyHandler)t).addEnergy(this.direction, 3, use, false);
+			((IGFEnergyHandler)t).addEnergy(this.direction, 3, use, false);
 		}
 
 	}
@@ -286,7 +286,7 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IEnerg
 	}
 
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getSpeedStored(ForgeDirection from) {
 		return 0;
 	}
 
@@ -296,7 +296,7 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IEnerg
 	}
 
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
+	public int getMaxSpeedStored(ForgeDirection from) {
 		return 0;
 	}
 

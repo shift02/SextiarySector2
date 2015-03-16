@@ -4,10 +4,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 
-public class TileEntityGearBox extends TileEntityDirection implements IEnergyHandler ,IGearForceGrid{
+public class TileEntityGearBox extends TileEntityDirection implements IGFEnergyHandler ,IGearForceGrid{
 
 	public EnergyStorage storage = new EnergyStorage("Base", 1, 960, 160);
 
@@ -51,11 +51,11 @@ public class TileEntityGearBox extends TileEntityDirection implements IEnergyHan
 
 			TileEntity t = this.worldObj.getTileEntity(x, y, z);
 
-			if(t instanceof IEnergyHandler){
+			if(t instanceof IGFEnergyHandler){
 
-				int j = ((IEnergyHandler) t).addEnergy(d.getOpposite(), this.storage.getMaxPowerStored(), i, false);
+				int j = ((IGFEnergyHandler) t).addEnergy(d.getOpposite(), this.storage.getMaxPower(), i, false);
 
-				this.storage.drawEnergy(this.storage.getMaxPowerStored(), j, false);
+				this.storage.drawEnergy(this.storage.getMaxPower(), j, false);
 
 			}
 
@@ -77,7 +77,7 @@ public class TileEntityGearBox extends TileEntityDirection implements IEnergyHan
 
 			TileEntity t = this.worldObj.getTileEntity(x, y, z);
 
-			if(t instanceof IEnergyHandler && ((IEnergyHandler) t).addEnergy(d.getOpposite(), this.storage.getMaxPowerStored(), 1, true)>0){
+			if(t instanceof IGFEnergyHandler && ((IGFEnergyHandler) t).addEnergy(d.getOpposite(), this.storage.getMaxPower(), 1, true)>0){
 				i++;
 			}
 
@@ -134,7 +134,7 @@ public class TileEntityGearBox extends TileEntityDirection implements IEnergyHan
 	}
 
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getSpeedStored(ForgeDirection from) {
 
 		return storage.getSpeedStored();
 
@@ -143,14 +143,14 @@ public class TileEntityGearBox extends TileEntityDirection implements IEnergyHan
 	@Override
 	public int getMaxPowerStored(ForgeDirection from) {
 
-		return storage.getMaxPowerStored();
+		return storage.getMaxPower();
 
 	}
 
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
+	public int getMaxSpeedStored(ForgeDirection from) {
 
-		return storage.getMaxSpeedStored();
+		return storage.getMaxSpeed();
 
 	}
 
