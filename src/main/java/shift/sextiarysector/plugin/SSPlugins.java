@@ -22,16 +22,18 @@ public class SSPlugins {
 	public static boolean modTofu;
 	public static boolean modTcon;
 	public static boolean modCleaver;
+	public static boolean modFMP;
 
 	public static void initModHelper() {
 
 		modDCsAppleMilk = Loader.isModLoaded("DCsAppleMilk") && Config.modDCsAppleMilk;
 		modComputerCraft = Loader.isModLoaded("ComputerCraft") && Config.modComputerCraft;
-		modTHKaguya = Loader.isModLoaded("THKaguyaMod")  && Config.modTHKaguya;
-		modIC2 = Loader.isModLoaded("IC2")  && Config.modIC2;
-		modTofu = Loader.isModLoaded("TofuCraft")  && Config.modTofu;
-		modTcon = Loader.isModLoaded("TConstruct")  && Config.modTcon;
-		modCleaver = Loader.isModLoaded("schr0.cleaver")  && Config.modCleaver;
+		modTHKaguya = Loader.isModLoaded("THKaguyaMod") && Config.modTHKaguya;
+		modIC2 = Loader.isModLoaded("IC2") && Config.modIC2;
+		modTofu = Loader.isModLoaded("TofuCraft") && Config.modTofu;
+		modTcon = Loader.isModLoaded("TConstruct") && Config.modTcon;
+		modCleaver = Loader.isModLoaded("schr0.cleaver") && Config.modCleaver;
+		modFMP = Loader.isModLoaded("ForgeMultipart") && Config.modFMP;
 
 		if (modDCsAppleMilk) {
 
@@ -138,20 +140,35 @@ public class SSPlugins {
 			}
 		}
 
+		if (modFMP) {
+
+			try {
+
+				SextiarySector.Log.info("ForgeMultipart Plugin is loaded");
+				plugins.add(new PluginFMP());
+
+			} catch (Exception e) {
+
+				SextiarySector.Log.log(Level.WARN, "ForgeMultipart integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+				SextiarySector.Log.catching(e);
+
+			}
+		}
+
 	}
 
 	public static void prePlugins(FMLPreInitializationEvent event) {
 
-		for(IPlugin p : plugins)
+		for (IPlugin p : plugins)
 		{
 			try {
 
-				SextiarySector.Log.info(p.getModName()+" Plugin is pre init");
+				SextiarySector.Log.info(p.getModName() + " Plugin is pre init");
 				p.prePlugin(event);
 
 			} catch (Exception e) {
 
-				SextiarySector.Log.log(Level.WARN, p.getModName() +" integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+				SextiarySector.Log.log(Level.WARN, p.getModName() + " integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
 				SextiarySector.Log.catching(e);
 
 			}
@@ -161,16 +178,16 @@ public class SSPlugins {
 
 	public static void initPlugins(FMLInitializationEvent event) {
 
-		for(IPlugin p : plugins)
+		for (IPlugin p : plugins)
 		{
 			try {
 
-				SextiarySector.Log.info(p.getModName()+" Plugin is init");
+				SextiarySector.Log.info(p.getModName() + " Plugin is init");
 				p.initPlugin(event);
 
 			} catch (Exception e) {
 
-				SextiarySector.Log.log(Level.WARN, p.getModName() +" integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+				SextiarySector.Log.log(Level.WARN, p.getModName() + " integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
 				SextiarySector.Log.catching(e);
 
 			}
@@ -180,16 +197,16 @@ public class SSPlugins {
 
 	public static void postPlugins(FMLPostInitializationEvent event) {
 
-		for(IPlugin p : plugins)
+		for (IPlugin p : plugins)
 		{
 			try {
 
-				SextiarySector.Log.info(p.getModName()+" Plugin is post init");
+				SextiarySector.Log.info(p.getModName() + " Plugin is post init");
 				p.postPlugin(event);
 
 			} catch (Exception e) {
 
-				SextiarySector.Log.log(Level.WARN, p.getModName() +" integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+				SextiarySector.Log.log(Level.WARN, p.getModName() + " integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
 				SextiarySector.Log.catching(e);
 
 			}

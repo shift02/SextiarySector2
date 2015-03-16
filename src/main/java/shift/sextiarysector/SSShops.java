@@ -45,7 +45,8 @@ public class SSShops {
 
 			//creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.attackUnit, 1), 2400));
 			//creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.defenseUnit, 1), 3600));
-			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.craftUnit, 1), 6800));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.craftUnit, 1), 5300));
+			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.pickaxeUnit, 1), 6800));
 
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.wood, 1), 180));
 
@@ -54,6 +55,7 @@ public class SSShops {
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.cucumber, 1), 360));
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.rice, 1), 280));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.shiitake, 1), 210));
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.mithrilIngot, 1), 1400));
 			}
@@ -182,6 +184,10 @@ public class SSShops {
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.rice), 400);
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.rice, 1, 1), 4000);
+
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.shiitake), 310);
+
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.shiitake, 1, 1), 3100);
 
 	}
 

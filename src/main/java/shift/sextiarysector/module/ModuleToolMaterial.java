@@ -1,6 +1,7 @@
 package shift.sextiarysector.module;
 
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -20,12 +21,16 @@ public class ModuleToolMaterial implements IModule {
 		return instance;
 	}
 
-	public static ToolMaterial copper;
+	public static ToolMaterial copperTool;
+
+	public static ArmorMaterial copperArmor;
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 
-		copper = EnumHelper.addToolMaterial("copper", 2, 200, 4.0F, 1.0F, 10);
+		copperTool = EnumHelper.addToolMaterial("copper", 2, 200, 4.0F, 1.0F, 10);
+
+		copperArmor = EnumHelper.addArmorMaterial("copper", 2, new int[] { 2, 4, 4, 1 }, 7);
 
 	}
 

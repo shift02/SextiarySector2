@@ -4,10 +4,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 
-public class TileEntityGearShaft extends TileEntityDirection implements IEnergyHandler  ,IGearForceGrid{
+public class TileEntityGearShaft extends TileEntityDirection implements IGFEnergyHandler  ,IGearForceGrid{
 
 	public float rotateUpStep = 0;
 	public float rotateDownStep = 0;
@@ -41,26 +41,26 @@ public class TileEntityGearShaft extends TileEntityDirection implements IEnergyH
 
 	private void updateServerEntity() {
 
-		if(!(this.getOutTileEntity() instanceof IEnergyHandler)){
+		if(!(this.getOutTileEntity() instanceof IGFEnergyHandler)){
 			return;
 		}
 
-		IEnergyHandler out = (IEnergyHandler) this.getOutTileEntity();
+		IGFEnergyHandler out = (IGFEnergyHandler) this.getOutTileEntity();
 
-		int i = storage.drawEnergy(storage.getMaxPowerStored(), storage.getMaxSpeedStored(), true);
+		int i = storage.drawEnergy(storage.getMaxPower(), storage.getMaxSpeed(), true);
 
 		if(this.isUP()){
 
 			int add = (int)((float)i/4.0f);
-			int a = out.addEnergy(getDirection().getOpposite(), this.storage.getMaxPowerStored()+1, add, true);
-			storage.drawEnergy(storage.getMaxPowerStored(), a*4, false);
-			out.addEnergy(getDirection().getOpposite(), this.storage.getMaxPowerStored()+1, add, false);
+			int a = out.addEnergy(getDirection().getOpposite(), this.storage.getMaxPower()+1, add, true);
+			storage.drawEnergy(storage.getMaxPower(), a*4, false);
+			out.addEnergy(getDirection().getOpposite(), this.storage.getMaxPower()+1, add, false);
 
 		}else{
 
-			int a = out.addEnergy(getDirection().getOpposite(), this.storage.getMaxPowerStored(), i, true);
-			storage.drawEnergy(storage.getMaxPowerStored(), a, false);
-			out.addEnergy(getDirection().getOpposite(), this.storage.getMaxPowerStored(), i, false);
+			int a = out.addEnergy(getDirection().getOpposite(), this.storage.getMaxPower(), i, true);
+			storage.drawEnergy(storage.getMaxPower(), a, false);
+			out.addEnergy(getDirection().getOpposite(), this.storage.getMaxPower(), i, false);
 
 		}
 
@@ -93,9 +93,9 @@ public class TileEntityGearShaft extends TileEntityDirection implements IEnergyH
 		if(!this.canInterface(from))return 0;
 
 
-		if(power==this.storage.getMaxPowerStored() && this.isUP()){
+		if(power==this.storage.getMaxPower() && this.isUP()){
 			return this.storage.addEnergy(power, speed, simulate);
-		}else if(power==this.storage.getMaxPowerStored()+1 && !this.isUP()){
+		}else if(power==this.storage.getMaxPower()+1 && !this.isUP()){
 			return (int)((float)this.storage.addEnergy(power-1, speed*4, simulate)/4.0f);
 		}
 
@@ -119,18 +119,18 @@ public class TileEntityGearShaft extends TileEntityDirection implements IEnergyH
 	}
 
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getSpeedStored(ForgeDirection from) {
 		return storage.getSpeedStored();
 	}
 
 	@Override
 	public int getMaxPowerStored(ForgeDirection from) {
-		return storage.getMaxPowerStored();
+		return storage.getMaxPower();
 	}
 
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
-		return storage.getMaxSpeedStored();
+	public int getMaxSpeedStored(ForgeDirection from) {
+		return storage.getMaxSpeed();
 	}
 
 

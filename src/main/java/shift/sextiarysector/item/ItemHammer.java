@@ -1,10 +1,31 @@
 package shift.sextiarysector.item;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeHooks;
 import shift.sextiarysector.api.machine.item.IHammer;
 
 public class ItemHammer extends Item implements IHammer {
+
+	public ItemHammer() {
+
+		this.setHarvestLevel("hammer", 1);
+		this.maxStackSize = 1;
+		this.setMaxDamage(140);
+
+	}
+
+	@Override
+	public float getDigSpeed(ItemStack stack, Block block, int meta)
+	{
+		if (ForgeHooks.isToolEffective(stack, block, meta))
+		{
+			return 6.0f;
+		}
+		return super.getDigSpeed(stack, block, meta);
+	}
 
 	/*
 	@Override
@@ -25,13 +46,18 @@ public class ItemHammer extends Item implements IHammer {
 	}*/
 
 	@Override
-	public boolean canUse(ItemStack item) {
+	public boolean canUse(ItemStack item, EntityPlayer player, int damage) {
 		return true;
 	}
 
 	@Override
-	public boolean use(ItemStack item) {
+	public boolean use(ItemStack item, EntityPlayer player, int damage) {
+
+		//item.setItemDamage(damage);
+		item.damageItem(damage, player);
+
 		return true;
+
 	}
 
 }

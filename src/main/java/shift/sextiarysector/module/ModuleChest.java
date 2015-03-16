@@ -24,7 +24,6 @@ public class ModuleChest implements IModule {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
@@ -32,16 +31,15 @@ public class ModuleChest implements IModule {
 	public void load(FMLInitializationEvent event) {
 
 		ChestGenHooks pyramidDesertyChest = ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST);
-		pyramidDesertyChest.addItem(new WeightedRandomChestContent(new ItemStack(SSItems.attackRustUnit), 1, 1, 1));
+		pyramidDesertyChest.addItem(new WeightedRandomChestContent(new ItemStack(SSItems.attackRustUnit), 1, 1, 2));
 
 		ChestGenHooks pyramidJungleChest = ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST);
-		pyramidJungleChest.addItem(new WeightedRandomChestContent(new ItemStack(SSItems.defenseRustUnit), 1, 1, 1));
+		pyramidJungleChest.addItem(new WeightedRandomChestContent(new ItemStack(SSItems.defenseRustUnit), 1, 1, 2));
 
 	}
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 

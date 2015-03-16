@@ -1,9 +1,11 @@
 package shift.sextiarysector.event;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import shift.sextiarysector.SSItems;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.EquipmentStats;
@@ -49,6 +51,8 @@ public class PlayerUnitEventHandler {
 
 	}
 
+	//Unit関係のEvent
+
 	@SubscribeEvent
 	public void playerAttackEvent(LivingHurtEvent event) {
 
@@ -88,4 +92,40 @@ public class PlayerUnitEventHandler {
 		}
 
 	}
+
+	@SubscribeEvent
+	public void playeHarvestCheckEvent(PlayerEvent.HarvestCheck event) {
+
+		if (!(event.entity instanceof EntityPlayer)) return;
+
+		EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
+
+		Block block = event.block;
+
+		for (int i = 0; i < EquipmentType.Unit.getSlot().length; i++) {
+
+			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlot()[i]);
+
+			if (item == null) continue;
+
+			if (item.getItem() == null) continue;
+
+			if (item.getItem() == SSItems.pickaxeUnit) {
+
+				for (int meta = 0; meta < 16; meta++) {
+					String tool = block.getHarvestTool(meta);
+
+					if (tool == null) continue;
+
+					if (tool.equals("pickaxe") && block.getHarvestLevel(meta) <= 1) {
+						event.success = true;
+					}
+				}
+
+			}
+
+		}
+
+	}
+
 }

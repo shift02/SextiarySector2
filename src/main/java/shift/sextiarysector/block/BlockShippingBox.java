@@ -1,22 +1,22 @@
 package shift.sextiarysector.block;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import shift.mceconomy2.api.MCEconomyAPI;
-import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSItems;
-import shift.sextiarysector.module.ModuleStatistics;
+import shift.sextiarysector.tileentity.TileEntityShippingBox;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockShippingBox extends Block{
+public class BlockShippingBox extends BlockContainer {
 
 	private IIcon top;
 
@@ -28,13 +28,52 @@ public class BlockShippingBox extends Block{
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
 	{
-		if(par5EntityPlayer.getCurrentEquippedItem()==null){
-			return false;
+
+		TileEntityShippingBox s = (TileEntityShippingBox) world.getTileEntity(x, y, z);
+		ItemStack pItem = par5EntityPlayer.getCurrentEquippedItem();
+
+		if (!par5EntityPlayer.isSneaking() && pItem == null) {
+
+			String name = par5EntityPlayer.getDisplayName();
+
+			if (s.player == null) {
+
+				s.setPlayer(par5EntityPlayer);
+
+				if (!world.isRemote) par5EntityPlayer.addChatMessage(new ChatComponentText("Set Owner : " + name));
+
+			} else if (s.player.equals(par5EntityPlayer.getGameProfile().getId())) {
+
+				s.player = null;
+
+				if (!world.isRemote) par5EntityPlayer.addChatMessage(new ChatComponentText("Delete Owner : " + name));
+
+			}
+
+			return true;
 		}
 
-		if(!world.isRemote && par5EntityPlayer.getCurrentEquippedItem().getItem()==SSItems.hammer){
+		if (par5EntityPlayer.isSneaking() && pItem == null && (s.player == null || s.player.equals(par5EntityPlayer.getGameProfile().getId()))) {
 
-			EntityItem item = new EntityItem(world, x+0.5d, y+0.5d, z+0.5d, new ItemStack(this,1));
+			int mp = (int) s.mp;
+
+			if (mp == 0) return true;
+
+			MCEconomyAPI.addPlayerMP(par5EntityPlayer, mp, false);
+			s.mp -= mp;
+			par5EntityPlayer.worldObj.playSoundAtEntity(par5EntityPlayer, "mceconomy2:coin", 0.6f, 0.8f);
+
+			return true;
+
+		}
+
+		if (pItem == null) return false;
+
+		if (!world.isRemote && pItem.getItem() == SSItems.hammer) {
+
+			if (s.player != null && !s.player.equals(par5EntityPlayer.getGameProfile().getId())) return false;
+
+			EntityItem item = new EntityItem(world, x + 0.5d, y + 0.5d, z + 0.5d, new ItemStack(this, 1));
 
 			world.spawnEntityInWorld(item);
 
@@ -42,42 +81,50 @@ public class BlockShippingBox extends Block{
 			return true;
 		}
 
-		ItemStack item = par5EntityPlayer.getCurrentEquippedItem();
-
-		int i = MCEconomyAPI.getPurchase(item);
-		if(i==-2){
+		int i = MCEconomyAPI.getPurchase(pItem);
+		if (i == -2) {
 			return false;
 		}
 
-		if(i==-1){
+		if (i == -1) {
 			return false;
 		}
 
-		MCEconomyAPI.addPlayerMP(par5EntityPlayer, i,false);
+		/*
+		MCEconomyAPI.addPlayerMP(par5EntityPlayer, i, false);
 		par5EntityPlayer.addStat(ModuleStatistics.objectSellStats[Item.getIdFromItem(item.getItem())], 1);
 		par5EntityPlayer.addStat(SSAchievement.shipping, 1);
-		item.stackSize--;
-		world.playSoundAtEntity(par5EntityPlayer, "damage.fallsmall", 1.0F, 1.0F);
+		*/
+
+		s.setInventorySlotContents(0, pItem.copy());
+		pItem.stackSize = 0;
+		//item.stackSize--;
+		world.playSoundAtEntity(par5EntityPlayer, "game.neutral.hurt.fall.small", 1.0F, 1.0F);
 		return true;
 
 	}
 
 	@Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister par1IconRegister)
-    {
-        this.blockIcon = par1IconRegister.registerIcon(this.getTextureName());
-        this.top = par1IconRegister.registerIcon(this.getTextureName()+"_top");
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister par1IconRegister)
+	{
+		this.blockIcon = par1IconRegister.registerIcon(this.getTextureName());
+		this.top = par1IconRegister.registerIcon(this.getTextureName() + "_top");
 
-    }
+	}
 
 	@Override
 	public IIcon getIcon(int par1, int par2)
-    {
-		if(par1==0||par1==1){
+	{
+		if (par1 == 0 || par1 == 1) {
 			return this.top;
 		}
-        return this.blockIcon;
-    }
+		return this.blockIcon;
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+		return new TileEntityShippingBox();
+	}
 
 }

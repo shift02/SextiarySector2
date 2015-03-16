@@ -46,11 +46,11 @@ public interface IEnergyStorage {
 	/**
 	 * @return 最大の力の値
 	 */
-	int getMaxPowerStored();
+	int getMaxPower();
 
 	/**
 	 * @return 最大の速度の値
 	 */
-	int getMaxSpeedStored();
+	int getMaxSpeed();
 
 }

@@ -4,10 +4,10 @@ import ic2.api.energy.prefab.BasicSink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.IEnergyHandler;
+import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
 import shift.sextiarysector.api.machine.energy.IGearForceGrid;
 
-public class TileEntityElectricMotor extends TileEntityDirection  implements IEnergyHandler, IGearForceGrid{
+public class TileEntityElectricMotor extends TileEntityDirection  implements IGFEnergyHandler, IGearForceGrid{
 
 	private BasicSink ic2EnergySink = new BasicSink(this, 2000, 1){
 
@@ -89,9 +89,9 @@ public class TileEntityElectricMotor extends TileEntityDirection  implements IEn
 		if(this.ic2EnergySink.canUseEnergy(20)){
 
 			TileEntity t =this.worldObj.getTileEntity(xCoord-this.direction.offsetX, yCoord-this.direction.offsetY, zCoord-this.direction.offsetZ);
-			if(t!=null && t instanceof IEnergyHandler){
+			if(t!=null && t instanceof IGFEnergyHandler){
 
-				int i = ((IEnergyHandler)t).addEnergy(this.direction, 3, 40, false);
+				int i = ((IGFEnergyHandler)t).addEnergy(this.direction, 3, 40, false);
 				this.ic2EnergySink.useEnergy(i);
 
 
@@ -129,7 +129,7 @@ public class TileEntityElectricMotor extends TileEntityDirection  implements IEn
 	}
 
 	@Override
-	public long getSpeedStored(ForgeDirection from) {
+	public int getSpeedStored(ForgeDirection from) {
 		return 0;
 	}
 
@@ -139,7 +139,7 @@ public class TileEntityElectricMotor extends TileEntityDirection  implements IEn
 	}
 
 	@Override
-	public long getMaxSpeedStored(ForgeDirection from) {
+	public int getMaxSpeedStored(ForgeDirection from) {
 		return 0;
 	}
 

@@ -121,8 +121,8 @@ public abstract class GuiSimpleMachine  extends GUIGearMachine{
 		int p2 = machineInventory.storage.getPowerStored();
 		long s2 = machineInventory.storage.getSpeedStored();
 
-		int p2_1 = machineInventory.storage.getMaxPowerStored();
-		long s2_1 = machineInventory.storage.getMaxSpeedStored();
+		int p2_1 = machineInventory.storage.getMaxPower();
+		long s2_1 = machineInventory.storage.getMaxSpeed();
 
 		arraylist2.add(0,"" + EnumChatFormatting.RESET+ "Machine Storage" + EnumChatFormatting.RESET );
 		arraylist2.add(1,"" + EnumChatFormatting.RED + "Power" + EnumChatFormatting.RESET );
