@@ -100,7 +100,7 @@ public class ItemGearForce extends Item implements IGearForceItem {
 
 	@Override
 	public boolean canSetSlot(int power) {
-		return slot >= power;
+		return slot == power;
 	}
 
 }

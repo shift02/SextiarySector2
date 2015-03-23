@@ -9,10 +9,10 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import shift.mceconomy2.gui.HUDMP;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.MoistureStats;
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class HUDEventHandler {
@@ -30,10 +30,10 @@ public class HUDEventHandler {
 
 	public static Minecraft mc = FMLClientHandler.instance().getClient();
 
-	public static boolean isPM = false;
+	//public static boolean isPM = false;
 
 	//描写のEvent
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onRenderGameOverlayEventPre(RenderGameOverlayEvent.Pre event) {
 
 		int width = event.resolution.getScaledWidth();
@@ -90,12 +90,12 @@ public class HUDEventHandler {
 			}
 		}
 
-		HUDMP.isRenderer = false;
-		isPM = true;
+		//HUDMP.isRenderer = false;
+		//isPM = true;
 
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onRenderGameOverlayEventPost(RenderGameOverlayEvent.Post event) {
 
 		int width = event.resolution.getScaledWidth();
@@ -112,12 +112,13 @@ public class HUDEventHandler {
 				visibleStamina = false;
 			}
 
-			if (isPM) {
+			/*
+			if (!visibleMoisture && isPM) {
 				HUDMP.renderMoney(width, height);
 				HUDMP.renderAddMoney(width, height);
 				isPM = false;
 				HUDMP.isRenderer = false;
-			}
+			}*/
 
 		}
 

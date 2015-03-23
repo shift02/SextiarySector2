@@ -102,7 +102,9 @@ public class SSItems {
 
 	public static Item ninjaIngot;
 
-	public static Item blueStoneSlimeBall;
+	public static Item redGel;
+	public static Item blueGel;
+	public static Item yellowGel;
 
 	public static Item energyReactor;
 	public static Item objectReactor;
@@ -367,8 +369,14 @@ public class SSItems {
 		ninjaIngot = new Item().setUnlocalizedName("ss.ninja_ingot").setTextureName("sextiarysector:ingot/ninja_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(ninjaIngot, "NinjaIngot");
 
-		blueStoneSlimeBall = new Item().setUnlocalizedName("ss.blue_stone_slime_ball").setTextureName("sextiarysector:slimeball/bluestone_slimeball").setCreativeTab(SextiarySectorAPI.TabSSCore);
-		GameRegistry.registerItem(blueStoneSlimeBall, "BlueStoneSlimeBall");
+		redGel = new Item().setUnlocalizedName("ss.red_gel").setTextureName("sextiarysector:gel/red_gel").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(redGel, "RedGel");
+
+		blueGel = new Item().setUnlocalizedName("ss.blue_gel").setTextureName("sextiarysector:gel/blue_gel").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(blueGel, "BlueGel");
+
+		yellowGel = new Item().setUnlocalizedName("ss.yellow_gel").setTextureName("sextiarysector:gel/yellow_gel").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(yellowGel, "YellowGel");
 
 		energyReactor = new Item().setUnlocalizedName("ss.energy_reactor").setTextureName("sextiarysector:energy_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(energyReactor, "EnergyReactor");

@@ -93,7 +93,7 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 			if (this.canWork())
 			{
 				if (this.storage.getSpeedStored() >= 1) {
-					//++this.machineWorkProgressTime;
+
 					this.machineWorkProgressTime += this.storage.drawEnergy(this.storage.getMaxPower(), 100, false);
 
 					if (this.machineWorkProgressTime >= machineMaxProgressTime)
@@ -105,7 +105,6 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 							this.storage.setPowerStored(0);
 						}
 
-						//PacketDispatcher.sendPacketToAllPlayers(getDescriptionPacket());
 						this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 						this.markDirty();
 

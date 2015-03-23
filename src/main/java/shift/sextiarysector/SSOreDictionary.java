@@ -97,6 +97,10 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("oreIron", SSItems.ironTurnip);
 		OreDictionary.registerOre("oreGold", SSItems.goldenCorn);
 
+		OreDictionary.registerOre("gelRedstone", SSItems.redGel);
+		OreDictionary.registerOre("gelBluestone", SSItems.blueGel);
+		OreDictionary.registerOre("gelYellowstone", SSItems.yellowGel);
+
 		OreDictionary.registerOre("ringIron", SSItems.ironRing);
 
 		OreDictionary.registerOre("craftingSmallCloth", SSItems.cloth);
@@ -121,6 +125,9 @@ public class SSOreDictionary {
 
 		OreDictionary.registerOre("fluidSap", new ItemStack(SSItems.sapBottle));
 		OreDictionary.registerOre("fluidSap", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.sap.getID()));
+
+		OreDictionary.registerOre("slimeball", new ItemStack(SSItems.sapBottle));
+		OreDictionary.registerOre("slimeball", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.sap.getID()));
 
 		//食べ物
 
