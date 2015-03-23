@@ -25,12 +25,12 @@ public class PluginFMP implements IPlugin {
 	@Override
 	public void initPlugin(FMLInitializationEvent event) {
 
+		PartRegistry.init();
+
 	}
 
 	@Override
 	public void postPlugin(FMLPostInitializationEvent event) {
-
-		PartRegistry.init();
 
 	}
 

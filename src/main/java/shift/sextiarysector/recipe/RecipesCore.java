@@ -27,6 +27,12 @@ public class RecipesCore {
 						'x', "paneGlassColorless",
 				}));
 
+		p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSItems.blueGel, 1),
+				new Object[] {
+						"dustBluestone",
+						"slimeball"
+				}));
+
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.smallCloth, 1),
 				new Object[] {
 						"xx", "xx",

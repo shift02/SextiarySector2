@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import shift.sextiarysector.container.ContainerCraftFurnace;
+import shift.sextiarysector.container.ContainerFluidGFMachineBase;
 import shift.sextiarysector.container.ContainerFluidMachineBase;
 import shift.sextiarysector.container.ContainerFreezer;
 import shift.sextiarysector.container.ContainerFunnel;
@@ -28,17 +29,20 @@ import shift.sextiarysector.gui.GuiLargeFurnace;
 import shift.sextiarysector.gui.GuiLoom;
 import shift.sextiarysector.gui.GuiMPRepair;
 import shift.sextiarysector.gui.GuiMagicFurnace;
+import shift.sextiarysector.gui.GuiManaSqueezer;
 import shift.sextiarysector.gui.GuiMillstone;
 import shift.sextiarysector.gui.GuiPulverizer;
 import shift.sextiarysector.gui.GuiRollingMachine;
 import shift.sextiarysector.gui.GuiRucksack;
 import shift.sextiarysector.gui.GuiSawmill;
+import shift.sextiarysector.gui.GuiSpinningMachine;
 import shift.sextiarysector.gui.GuiSteamMotor;
 import shift.sextiarysector.gui.GuiTabCrafting;
 import shift.sextiarysector.gui.GuiTimeMachine;
 import shift.sextiarysector.gui.IServerGuiElement;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.tileentity.TileEntityCraftFurnace;
+import shift.sextiarysector.tileentity.TileEntityFluidFGFMachineBase;
 import shift.sextiarysector.tileentity.TileEntityFluidMachineBase;
 import shift.sextiarysector.tileentity.TileEntityFreezer;
 import shift.sextiarysector.tileentity.TileEntityFunnel;
@@ -85,10 +89,14 @@ public class SSGuiHandler implements IGuiHandler {
 		case 20:
 		case 21:
 		case 25:
+		case 26:
 		case 30:
 		case 35:
 		case 40:
 			return new ContainerSimpleMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+
+		case 36:
+			return new ContainerFluidGFMachineBase(player.inventory, (TileEntityFluidFGFMachineBase) world.getTileEntity(x, y, z));
 
 		case 50:
 		case 51:
@@ -174,12 +182,17 @@ public class SSGuiHandler implements IGuiHandler {
 
 		case 25:
 			return new GuiSawmill(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+		case 26:
+			return new GuiSpinningMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
 		case 30:
 			return new GuiPulverizer(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
 		case 35:
 			return new GuiRollingMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+
+		case 36:
+			return new GuiManaSqueezer(player.inventory, (TileEntityFluidFGFMachineBase) world.getTileEntity(x, y, z));
 
 		case 40:
 			return new GuiTimeMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
