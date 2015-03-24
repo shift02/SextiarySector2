@@ -12,6 +12,11 @@ public class Config {
 	//Biome
 	public static int magicDesert;
 
+	//World
+	public static boolean generationCopperOre;
+	public static boolean generationZincOre;
+	public static boolean generationSilverOre;
+
 	//Player
 	public static boolean peacefulMoisture;
 	public static boolean peacefulStamina;
@@ -34,6 +39,7 @@ public class Config {
 
 			cfg.load();
 			configForBiome(cfg);
+			configForWorld(cfg);
 			configForPotion(cfg);
 
 			configForPlayer(cfg);
@@ -54,7 +60,13 @@ public class Config {
 	}
 
 	public static void configForBiome(Configuration cfg) {
-		magicDesert = cfg.getInt("MagicDesertID", "biome", 120, 0, 255, "");
+		//magicDesert = cfg.getInt("MagicDesertID", "biome", 120, 0, 255, "");
+	}
+
+	public static void configForWorld(Configuration cfg) {
+		generationCopperOre = cfg.getBoolean("GenerationCopperOre", "world", true, "");
+		generationZincOre = cfg.getBoolean("GenerationZincOre", "world", true, "");
+		generationSilverOre = cfg.getBoolean("GenerationSilverOre", "world", true, "");
 	}
 
 	public static void configForPlayer(Configuration cfg) {
