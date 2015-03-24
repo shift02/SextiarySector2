@@ -26,13 +26,14 @@ public class RecipesFurnaceCraft {
 		//	}));
 
 		//スライム
-		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.slime_ball, 2),
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.slime_ball, 1),
 				new Object[] {
 						SSItems.dustWaterLily,
 						"condimentSugar",
 						"fluidWater",
 				}));
 
+		/*
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.slime_ball, 2),
 				new Object[] {
 						"condimentSugar",
@@ -48,6 +49,7 @@ public class RecipesFurnaceCraft {
 						"condimentSalt",
 						"fluidWater",
 				}));
+		*/
 
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.drinkingWaterBottle, 2),
 				new Object[] {
@@ -64,10 +66,10 @@ public class RecipesFurnaceCraft {
 						"condimentCocoa",
 				}));
 
-		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.blueStoneSlimeBall, 1),
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.blueGel, 2),
 				new Object[] {
 						"dustBluestone",
-						Items.slime_ball
+						"slimeball"
 				}));
 
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.steelIngot, 1),
@@ -91,7 +93,7 @@ public class RecipesFurnaceCraft {
 
 		p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.unit, 1),
 				new Object[] { "xxx", "xyx", "xxx",
-						Character.valueOf('y'), SSItems.blueStoneSlimeBall,
+						Character.valueOf('y'), SSItems.blueGel,
 						Character.valueOf('x'), "cobblestone",
 				}));
 

@@ -18,6 +18,7 @@ public class SSFluids {
 	public static Fluid hotSprings;
 
 	public static Fluid steam;
+	public static Fluid mana;
 	public static Fluid season;
 
 	public static Fluid sap;
@@ -33,6 +34,7 @@ public class SSFluids {
 		hotSprings = new SSFluid("HotSprings", 0, 0xFFFFFF, 4, 1.0f).setUnlocalizedName("hot_springs");
 
 		steam = new SSFluid("Steam", 1, 0xFFFFFF, 1, 1.0f).setUnlocalizedName("steam").setGaseous(true);
+		mana = new SSFluid("Mana", 1, 0x7CF4E4, 1, 1.0f).setUnlocalizedName("mana").setGaseous(true);
 		//season = new SSFluid("season", 1, 0xFFFFFF, 1, 1.0f).setUnlocalizedName("season").setDensity(-10).setGaseous(true);
 
 		sap = new SSFluid("Sap", 2, 0xFF7F50, 1, 1.0f).setUnlocalizedName("sap");

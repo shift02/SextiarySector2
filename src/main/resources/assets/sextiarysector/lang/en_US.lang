@@ -93,8 +93,10 @@ tile.ss.ninja_orichalcum_gear_shaft.name=Ninja Orichalcum Gear Shaft
 tile.ss.millstone.name=Millstone
 tile.ss.loom.name=Loom
 tile.ss.sawmill.name=Sawmill
+tile.ss.spinning_machine.name=Spinning Machine
 tile.ss.pulverizer.name=Pulverizer
 tile.ss.rolling_machine.name=Rolling Machine
+tile.ss.mana_squeezer.name=Mana Squeezer
 tile.ss.time_machine.name=Time Machine
 
 
@@ -206,7 +208,9 @@ item.ss.orichalcum_gem.name=Orichalcum
 
 item.ss.ninja_ingot.name=Ninja Ingot
 
-item.ss.blue_stone_slime_ball.name=Blue Stone Slime Ball
+item.ss.red_gel.name=Red Stone Gel
+item.ss.blue_gel.name=Blue Stone Gel
+item.ss.yellow_gel.name=Yellow Stone Gel
 
 item.ss.energy_reactor.name=Energy Reactor
 item.ss.object_reactor.name=Object Reactor
@@ -342,6 +346,7 @@ fluid.ss.drinking_water=Drinking Water
 fluid.ss.spring_water=Spring Water
 fluid.ss.hot_springs=Hot Springs
 fluid.ss.steam=Steam
+fluid.ss.mana=Mana
 fluid.ss.sap=Sap
 
 fluid.ss.iron=Iron Fluid
@@ -370,8 +375,10 @@ gui.ss.steam_motor=Steam Motor
 gui.ss.millstone=Millstone
 gui.ss.loom=Loom
 gui.ss.sawmill=Sawmill
+gui.ss.spinning_machine=Spinning Machine
 gui.ss.pulverizer=Pulverizer
 gui.ss.rolling_machine=Rolling Machine
+gui.ss.mana_squeezer=Mana Squeezer
 gui.ss.time_machine=Time Machine
 
 gui.ss.gf_tank_1=Wood GF Tank
@@ -555,9 +562,9 @@ achievement.ss.mithril_ore.desc2=Ring ?
 
 achievement.ss.industry=SS2 -Industry-
 
-achievement.ss.bluestone_slime_ball=Mysterious slime
-achievement.ss.bluestone_slime_ball.desc=Craft a bluestone slime ball
-achievement.ss.bluestone_slime_ball.desc2=How nice
+achievement.ss.blue_gel=Mysterious gel
+achievement.ss.blue_gel.desc=Craft a blue gel
+achievement.ss.blue_gel.desc2=How nice
 
 
 achievement.ss.wood_gear=New power
@@ -593,6 +600,10 @@ achievement.ss.sawmill=Blade ?
 achievement.ss.sawmill.desc=Craft a sawmill
 achievement.ss.sawmill.desc2=Let dismantling together !
 
+achievement.ss.spinning_machine=Small industrial
+achievement.ss.spinning_machine.desc=Craft a spinning machine
+achievement.ss.spinning_machine.desc2=Let the String Figure
+
 
 achievement.ss.steel_gear=The power of steel
 achievement.ss.steel_gear.desc=Craft a steel gear
@@ -621,6 +632,10 @@ achievement.ss.ninja_gear.desc2=Japan !
 achievement.ss.rolling_machine=Cutting board
 achievement.ss.rolling_machine.desc=Craft a rolling machine
 achievement.ss.rolling_machine.desc2=Pretty it's cutting board !
+
+achievement.ss.mana_squeezer=Blessing of the earth
+achievement.ss.mana_squeezer.desc=Craft a mana squeezer
+achievement.ss.mana_squeezer.desc2=Automation of agriculture ?
 
 achievement.ss.orichalcum_gear=The power of mystery !
 achievement.ss.orichalcum_gear.desc=Craft a orichalcum gear
@@ -661,8 +676,10 @@ nei.ss.ice=fuel=Ice Fuel
 nei.ss.millstone=Millstone Recipe
 nei.ss.loom=Loom Recipe
 nei.ss.sawmill=Sawmill Recipe
+nei.ss.spinning_machine=Spinning Machine Recipe
 nei.ss.pulverizer=Pulverizer Recipe
 nei.ss.rolling_machine=Rolling Machine Recipe
+nei.ss.mana_squeezer=Mana Squeezer Recipe
 nei.ss.time_machine=Time Machine Recipe
 
 nei.ss.fertilizer_farmland=Farmland Mutation Recipe

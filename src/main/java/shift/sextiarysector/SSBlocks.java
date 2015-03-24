@@ -13,6 +13,7 @@ import shift.sextiarysector.block.BlockDetectorBuoy;
 import shift.sextiarysector.block.BlockFan;
 import shift.sextiarysector.block.BlockFigure;
 import shift.sextiarysector.block.BlockFluidCrafter;
+import shift.sextiarysector.block.BlockFluidFGFMachine;
 import shift.sextiarysector.block.BlockFluidFurnace;
 import shift.sextiarysector.block.BlockFoodSmokers;
 import shift.sextiarysector.block.BlockFreezer;
@@ -65,6 +66,7 @@ import shift.sextiarysector.tileentity.TileEntityFan;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
 import shift.sextiarysector.tileentity.TileEntityFigure;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
+import shift.sextiarysector.tileentity.TileEntityFluidFGFMachineBase;
 import shift.sextiarysector.tileentity.TileEntityFluidFurnace;
 import shift.sextiarysector.tileentity.TileEntityFoodSmokers;
 import shift.sextiarysector.tileentity.TileEntityFreezer;
@@ -164,6 +166,7 @@ public class SSBlocks {
 	public static Block loom;
 
 	public static Block sawmill;
+	public static Block spinningMachine;
 
 	public static Block pump;
 
@@ -173,6 +176,7 @@ public class SSBlocks {
 	public static Block saw;
 
 	public static Block rollingMachine;
+	public static Block manaSqueezer;
 
 	public static Block timeMachine;
 
@@ -467,6 +471,8 @@ public class SSBlocks {
 		GameRegistry.registerBlock(steamMotor, ItemBlockDirection.class, "SteamMotor");
 
 		GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "SimpleMachine");
+		GameRegistry.registerTileEntity(TileEntityFluidFGFMachineBase.class, "FluidFGFMachine");
+
 		millstone = new BlockSimpleMachine("millstone", 20, SSRecipes.millstone, 1).setBlockName("ss.millstone").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(millstone, "Millstone");
 
@@ -475,6 +481,9 @@ public class SSBlocks {
 
 		sawmill = new BlockSimpleMachine("sawmill", 25, SSRecipes.sawmill, 2).setBlockName("ss.sawmill").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(sawmill, "Sawmill");
+
+		spinningMachine = new BlockSimpleMachine("spinning_machine", 26, SSRecipes.spinning_machine, 2).setBlockName("ss.spinning_machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerBlock(spinningMachine, "SpinningMachine");
 
 		pump = new BlockPump().setBlockTextureName("sextiarysector:machine/pump").setBlockName("ss.pump");
 		GameRegistry.registerTileEntity(TileEntityPump.class, "SSPump");
@@ -493,6 +502,9 @@ public class SSBlocks {
 
 		rollingMachine = new BlockSimpleMachine("rolling_machine", 35, SSRecipes.rollingMachine, 4).setBlockName("ss.rolling_machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(rollingMachine, "RollingMachine");
+
+		manaSqueezer = new BlockFluidFGFMachine("mana_squeezer", 36, SSRecipes.manaSqueezer, 4).setBlockName("ss.mana_squeezer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerBlock(manaSqueezer, "ManaSqueezer");
 
 		timeMachine = new BlockSimpleMachine("time_machine", 40, SSRecipes.timeMachine, 5).setBlockName("ss.time_machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(timeMachine, "TimeMachine");

@@ -161,10 +161,12 @@ public class SSPlugins {
 
 		for (IPlugin p : plugins)
 		{
+
+			SextiarySector.Log.info(p.getModName() + " Plugin is pre init");
 			try {
 
-				SextiarySector.Log.info(p.getModName() + " Plugin is pre init");
 				p.prePlugin(event);
+				SextiarySector.Log.info(p.getModName() + " Plugin was successful pre initialization");
 
 			} catch (Exception e) {
 
@@ -180,10 +182,11 @@ public class SSPlugins {
 
 		for (IPlugin p : plugins)
 		{
+			SextiarySector.Log.info(p.getModName() + " Plugin is init");
 			try {
 
-				SextiarySector.Log.info(p.getModName() + " Plugin is init");
 				p.initPlugin(event);
+				SextiarySector.Log.info(p.getModName() + " Plugin was successful initialization");
 
 			} catch (Exception e) {
 
@@ -199,10 +202,11 @@ public class SSPlugins {
 
 		for (IPlugin p : plugins)
 		{
+			SextiarySector.Log.info(p.getModName() + " Plugin is post init");
 			try {
 
-				SextiarySector.Log.info(p.getModName() + " Plugin is post init");
 				p.postPlugin(event);
+				SextiarySector.Log.info(p.getModName() + " Plugin was successful post initialization");
 
 			} catch (Exception e) {
 
