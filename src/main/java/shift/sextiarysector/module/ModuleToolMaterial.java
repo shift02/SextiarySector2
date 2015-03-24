@@ -30,7 +30,7 @@ public class ModuleToolMaterial implements IModule {
 
 		copperTool = EnumHelper.addToolMaterial("copper", 2, 200, 4.0F, 1.0F, 10);
 
-		copperArmor = EnumHelper.addArmorMaterial("copper", 2, new int[] { 2, 4, 4, 1 }, 7);
+		copperArmor = EnumHelper.addArmorMaterial("copper", 13, new int[] { 2, 6, 4, 2 }, 7);
 
 	}
 

@@ -76,25 +76,32 @@ public class SSAchievement {
 	//Industry
 	public static Achievement blueStoneSlimeBall;
 
+	//1
 	public static Achievement woodGear;
 	public static Achievement smallWindmill;
 	public static Achievement millstone;
 	public static Achievement loom;
 
+	//2
 	public static Achievement stoneGear;
 	public static Achievement windmill;
 	public static Achievement smallWaterwheel;
 	public static Achievement sawmill;
+	public static Achievement spinningMachine;
 
+	//3
 	public static Achievement steelGear;
 	public static Achievement steamMotor;
 	public static Achievement pulverizer;
 	public static Achievement fan;
 	public static Achievement saw;
 
+	//4
 	public static Achievement ninjaGear;
 	public static Achievement rollingMachine;
+	public static Achievement manaSqueezer;
 
+	//5
 	public static Achievement orichalcumGear;
 	public static Achievement timeMachine;
 
@@ -169,7 +176,7 @@ public class SSAchievement {
 
 		//工業
 
-		blueStoneSlimeBall = new AchievementFurnace("bluestone_slime_ball", -4, -1, new ItemStack(SSItems.blueStoneSlimeBall), blueStoneDust, industry).registerStat();
+		blueStoneSlimeBall = new AchievementFurnace("blue_gel", -4, -1, new ItemStack(SSItems.blueGel), blueStoneDust, industry).registerStat();
 
 		woodGear = new AchievementCraft("wood_gear", -2, 0, new ItemStack(SSItems.woodGear), blueStoneSlimeBall, industry).registerStat();
 		smallWindmill = new AchievementCraft("small_windmill", -1, -2, new ItemStack(SSBlocks.smallWindmill), woodGear, industry).registerStat();
@@ -180,6 +187,7 @@ public class SSAchievement {
 		windmill = new AchievementCraft("windmill", 2, -2, new ItemStack(SSBlocks.windmill), stoneGear, industry).registerStat();
 		smallWaterwheel = new AchievementCraft("small_waterwheel", 2, -3, new ItemStack(SSBlocks.smallWaterwheel), stoneGear, industry).registerStat();
 		sawmill = new AchievementCraft("sawmill", 2, 2, new ItemStack(SSBlocks.sawmill), stoneGear, industry).registerStat();
+		spinningMachine = new AchievementCraft("spinning_machine", 2, 3, new ItemStack(SSBlocks.spinningMachine), stoneGear, industry).registerStat();
 
 		steelGear = new AchievementCraft("steel_gear", 4, 0, new ItemStack(SSItems.steelGear), stoneGear, industry).registerStat();
 		steamMotor = new AchievementCraft("steam_motor", 5, -2, new ItemStack(SSBlocks.steamMotor), steelGear, industry).registerStat();
@@ -189,6 +197,7 @@ public class SSAchievement {
 
 		ninjaGear = new AchievementCraft("ninja_gear", 7, 0, new ItemStack(SSItems.ninjaGear), steelGear, industry).registerStat();
 		rollingMachine = new AchievementCraft("rolling_machine", 8, 2, new ItemStack(SSBlocks.rollingMachine), ninjaGear, industry).registerStat();
+		manaSqueezer = new AchievementCraft("mana_squeezer", 8, 3, new ItemStack(SSBlocks.manaSqueezer), ninjaGear, industry).registerStat();
 
 		orichalcumGear = new AchievementCraft("orichalcum_gear", 10, 0, new ItemStack(SSItems.orichalcumGear), ninjaGear, industry).registerStat();
 		timeMachine = new AchievementCraft("time_machine", 11, 2, new ItemStack(SSBlocks.timeMachine), orichalcumGear, industry).registerStat();

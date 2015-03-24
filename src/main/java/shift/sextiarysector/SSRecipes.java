@@ -21,11 +21,13 @@ import shift.sextiarysector.recipe.RecipesLoom;
 import shift.sextiarysector.recipe.RecipesMachine;
 import shift.sextiarysector.recipe.RecipesMagicFuel;
 import shift.sextiarysector.recipe.RecipesMagicFurnace;
+import shift.sextiarysector.recipe.RecipesManaSqueezer;
 import shift.sextiarysector.recipe.RecipesMillstone;
 import shift.sextiarysector.recipe.RecipesNormalBlock;
 import shift.sextiarysector.recipe.RecipesPulverizer;
 import shift.sextiarysector.recipe.RecipesRollingMachine;
 import shift.sextiarysector.recipe.RecipesSawmill;
+import shift.sextiarysector.recipe.RecipesSpinningMachine;
 import shift.sextiarysector.recipe.RecipesTimeMachine;
 import shift.sextiarysector.recipe.RecipesTool;
 import shift.sextiarysector.recipe.RecipesVanilla;
@@ -43,8 +45,10 @@ public class SSRecipes {
 	public static RecipeSimpleMachine millstone;
 	public static RecipeSimpleMachine loom;
 	public static RecipeSimpleMachine sawmill;
+	public static RecipeSimpleMachine spinning_machine;
 	public static RecipeSimpleMachine pulverizer;
 	public static RecipeSimpleMachine rollingMachine;
+	public static RecipeSimpleFluid manaSqueezer;
 	public static RecipeSimpleMachine timeMachine;
 
 	public static void initRecipeLists() {
@@ -60,8 +64,10 @@ public class SSRecipes {
 		millstone = new RecipeSimpleMachine();
 		loom = new RecipeSimpleMachine();
 		sawmill = new RecipeSimpleMachine();
+		spinning_machine = new RecipeSimpleMachine();
 		pulverizer = new RecipeSimpleMachine();
 		rollingMachine = new RecipeSimpleMachine();
+		manaSqueezer = new RecipeSimpleFluid();
 		timeMachine = new RecipeSimpleMachine();
 	}
 
@@ -98,9 +104,13 @@ public class SSRecipes {
 
 		RecipesSawmill.addRecipes(sawmill);
 
+		RecipesSpinningMachine.addRecipes(spinning_machine);
+
 		RecipesPulverizer.addRecipes(pulverizer);
 
 		RecipesRollingMachine.addRecipes(rollingMachine);
+
+		RecipesManaSqueezer.addRecipes(manaSqueezer);
 
 		RecipesTimeMachine.addRecipes(timeMachine);
 

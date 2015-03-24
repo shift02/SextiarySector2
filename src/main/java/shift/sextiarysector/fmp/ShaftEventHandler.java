@@ -1,5 +1,7 @@
 package shift.sextiarysector.fmp;
 
+import java.util.NoSuchElementException;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +15,7 @@ import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.SextiarySector;
 import codechicken.lib.packet.PacketCustom;
 import codechicken.lib.raytracer.RayTracer;
 import codechicken.lib.vec.BlockCoord;
@@ -79,26 +82,38 @@ public class ShaftEventHandler {
 		}
 
 		TileMultipart tile = TileMultipart.getOrConvertTile(world, pos);
-		if (tile == null || !tile.canAddPart(part))
-			return false;
+		if (tile == null || !tile.canAddPart(part)) return false;
 
 		if (!world.isRemote)
 		{
 
-			TileMultipart.addPart(world, pos, part);
-			world.playSoundEffect(pos.x + 0.5, pos.y + 0.5, pos.z + 0.5,
-					part.getBlock().stepSound.func_150496_b(),
-					(part.getBlock().stepSound.getVolume() + 1.0F) / 2.0F,
-					part.getBlock().stepSound.getPitch() * 0.8F);
-			if (!player.capabilities.isCreativeMode)
-			{
-				held.stackSize--;
-				if (held.stackSize == 0)
+			try {
+
+				TileMultipart.addPart(world, pos, part);
+
+				world.playSoundEffect(pos.x + 0.5, pos.y + 0.5, pos.z + 0.5,
+						part.getBlock().stepSound.func_150496_b(),
+						(part.getBlock().stepSound.getVolume() + 1.0F) / 2.0F,
+						part.getBlock().stepSound.getPitch() * 0.8F);
+				if (!player.capabilities.isCreativeMode)
 				{
-					player.inventory.mainInventory[player.inventory.currentItem] = null;
-					MinecraftForge.EVENT_BUS.post(new PlayerDestroyItemEvent(player, held));
+					held.stackSize--;
+					if (held.stackSize == 0)
+					{
+						player.inventory.mainInventory[player.inventory.currentItem] = null;
+						MinecraftForge.EVENT_BUS.post(new PlayerDestroyItemEvent(player, held));
+					}
 				}
+
+			} catch (NoSuchElementException e) {
+
+				SextiarySector.Log.catching(e);
+
+			} catch (Exception e) {
+				SextiarySector.Log.info("(╹◡╹)「クラッシュをすちゃり」");
+				SextiarySector.Log.catching(e);
 			}
+
 		}
 		else
 		{

@@ -6,10 +6,12 @@ import shift.sextiarysector.gui.GuiFreezer;
 import shift.sextiarysector.gui.GuiLargeFurnace;
 import shift.sextiarysector.gui.GuiLoom;
 import shift.sextiarysector.gui.GuiMagicFurnace;
+import shift.sextiarysector.gui.GuiManaSqueezer;
 import shift.sextiarysector.gui.GuiMillstone;
 import shift.sextiarysector.gui.GuiPulverizer;
 import shift.sextiarysector.gui.GuiRollingMachine;
 import shift.sextiarysector.gui.GuiSawmill;
+import shift.sextiarysector.gui.GuiSpinningMachine;
 import shift.sextiarysector.gui.GuiTimeMachine;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
@@ -18,7 +20,6 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 
 	@Override
 	public void loadConfig() {
-
 
 		API.registerRecipeHandler(new MillstoneRecipeHandler());
 		API.registerUsageHandler(new MillstoneRecipeHandler());
@@ -29,11 +30,17 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 		API.registerRecipeHandler(new SawmillRecipeHandler());
 		API.registerUsageHandler(new SawmillRecipeHandler());
 
+		API.registerRecipeHandler(new SpinningMachineRecipeHandler());
+		API.registerUsageHandler(new SpinningMachineRecipeHandler());
+
 		API.registerRecipeHandler(new PulverizerRecipeHandler());
 		API.registerUsageHandler(new PulverizerRecipeHandler());
 
 		API.registerRecipeHandler(new RollingMachineRecipeHandler());
 		API.registerUsageHandler(new RollingMachineRecipeHandler());
+
+		API.registerRecipeHandler(new ManaSqueezerRecipeHandler());
+		API.registerUsageHandler(new ManaSqueezerRecipeHandler());
 
 		API.registerRecipeHandler(new TimeMachineRecipeHandler());
 		API.registerUsageHandler(new TimeMachineRecipeHandler());
@@ -94,8 +101,10 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 		API.registerGuiOverlay(GuiMillstone.class, "SS_Millstone");
 		API.registerGuiOverlay(GuiLoom.class, "SS_Loom");
 		API.registerGuiOverlay(GuiSawmill.class, "SS_Sawmill");
+		API.registerGuiOverlay(GuiSpinningMachine.class, "SS_SpinningMachine");
 		API.registerGuiOverlay(GuiPulverizer.class, "SS_Pulverizer");
 		API.registerGuiOverlay(GuiRollingMachine.class, "SS_RollingMachine");
+		API.registerGuiOverlay(GuiManaSqueezer.class, "SS_ManaSqueezer");
 		API.registerGuiOverlay(GuiTimeMachine.class, "SS_TimeMachine");
 		//API.registerGuiOverlay(GuiBrewingStand.class, "SextiarySectorBrewing");
 
@@ -108,7 +117,7 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 
 	@Override
 	public String getVersion() {
-		return "0.0.3";
+		return "0.0.4";
 	}
 
 }
