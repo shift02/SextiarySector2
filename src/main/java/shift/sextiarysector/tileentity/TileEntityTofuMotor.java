@@ -2,7 +2,7 @@ package shift.sextiarysector.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
 import tsuteto.tofu.api.tileentity.ITfConsumer;
 
 
@@ -48,9 +48,9 @@ public class TileEntityTofuMotor  extends TileEntityDirection implements ITfCons
 
 			TileEntity t =this.worldObj.getTileEntity(xCoord-this.direction.offsetX, yCoord-this.direction.offsetY, zCoord-this.direction.offsetZ);
 
-			if(t!=null && t instanceof IGFEnergyHandler){
+			if(t!=null && t instanceof IGearForceHandler){
 
-				int i = ((IGFEnergyHandler)t).addEnergy(this.direction, 2, 40, false);
+				int i = ((IGearForceHandler)t).addEnergy(this.direction, 2, 40, false);
 				this.tofu-=(i/100.0);
 
 			}

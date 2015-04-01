@@ -64,6 +64,7 @@ tile.ss.gold_large_ore.name=Gold Large Ore
 
 tile.ss.small_windmill.name=Small Windmill
 tile.ss.windmill.name=Windmill
+tile.ss.large_windmill.name=Large Windmill
 tile.ss.small_waterwheel.name=Small Waterwheel
 tile.ss.steam_motor.name=Steam Motor
 
@@ -95,6 +96,7 @@ tile.ss.loom.name=Loom
 tile.ss.sawmill.name=Sawmill
 tile.ss.spinning_machine.name=Spinning Machine
 tile.ss.pulverizer.name=Pulverizer
+tile.ss.extractor.name=Extractor
 tile.ss.rolling_machine.name=Rolling Machine
 tile.ss.mana_squeezer.name=Mana Squeezer
 tile.ss.time_machine.name=Time Machine
@@ -142,6 +144,7 @@ monitor.robot=Blue Robot Shop
 
 tile.ss.electric_motor.name=Electric Motor
 tile.ss.tofu_motor.name=Tofu Motor
+tile.ss.gf_dynamo.name=GF Dynamo
 
 #Item
 item.ss.unit.name=Unit
@@ -226,19 +229,6 @@ item.ss.steam_bucket.name=Steam Bucket
 item.ss.iron_fluid_bucket.name=Iron Fluid Bucket
 item.ss.gold_fluid_bucket.name=Gold Fluid Bucket
 
-
-item.ss.craft_unit.name=Craft Unit
-item.ss.attack_unit.name=Attack Unit
-item.ss.defense_unit.name=Defense Unit
-item.ss.attack_rust_unit.name=Attack Rust Unit
-item.ss.defense_rust_unit.name=Defense Rust Unit
-item.ss.pickaxe_unit.name=Pickaxe Unit
-
-
-item.ss.iron_ring.name=Iron Ring
-item.ss.creeper_ring.name=Creeper Shop Ring
-
-
 item.ss.magic_dust.name=Magic Dust
 
 
@@ -248,6 +238,12 @@ item.ss.small_cloth.name=Small Cloth
 item.ss.canvas.name=Canvas
 item.ss.drying_flesh.name=Drying Flesh
 item.ss.flesh_bobbin.name=Flesh Bobbin
+item.ss.string_mass.name=String Mass
+item.ss.strong_string.name=Strong String
+item.ss.strong_string_bobbin.name=Strong String Bobbin
+item.ss.strong_cloth.name=Strong Cloth
+item.ss.strong_canvas.name=Strong Canvas
+
 
 item.ss.figure_box.name=Figure Box
 
@@ -336,9 +332,28 @@ item.ss.chocolate.name=Chocolate
 item.ss.drinking_water_bottle.name=Drinking Water Bottle
 item.ss.takumi_tea_bottle.name=TAKUMI Tea Bottle
 
+
+
 item.ss.shift_hat.name=Shift's Hat
 item.ss.rucksack.name=Rucksack
+item.ss.oxygen_tank.name=Oxygen Tank
 item.ss.gf_contact_lenses.name=GF Contact Lenses
+item.ss.water_contact_lenses.name=Water Contact Lenses
+
+item.ss.craft_unit.name=Craft Unit
+item.ss.attack_unit.name=Attack Unit
+item.ss.defense_unit.name=Defense Unit
+item.ss.attack_rust_unit.name=Attack Rust Unit
+item.ss.defense_rust_unit.name=Defense Rust Unit
+item.ss.pickaxe_unit.name=Pickaxe Unit
+
+
+item.ss.iron_ring.name=Iron Ring
+item.ss.creeper_ring.name=Creeper Shop Ring
+item.ss.mp_ring.name=MP Ring
+item.ss.xp_ring.name=XP Ring
+
+
 
 #Fluid
 fluid.ss.takumi_tea=TAKUMI Tea
@@ -347,6 +362,7 @@ fluid.ss.spring_water=Spring Water
 fluid.ss.hot_springs=Hot Springs
 fluid.ss.steam=Steam
 fluid.ss.mana=Mana
+fluid.ss.oxygen=Oxygen
 fluid.ss.sap=Sap
 
 fluid.ss.iron=Iron Fluid
@@ -376,6 +392,7 @@ gui.ss.millstone=Millstone
 gui.ss.loom=Loom
 gui.ss.sawmill=Sawmill
 gui.ss.spinning_machine=Spinning Machine
+gui.ss.extractor=Extractor
 gui.ss.pulverizer=Pulverizer
 gui.ss.rolling_machine=Rolling Machine
 gui.ss.mana_squeezer=Mana Squeezer
@@ -613,9 +630,17 @@ achievement.ss.steam_motor=The power of steam
 achievement.ss.steam_motor.desc=Craft a small steam motor
 achievement.ss.steam_motor.desc2=Industrial revolution
 
+achievement.ss.large_windmill=Large windmill  Small …
+achievement.ss.large_windmill.desc=Craft a small large windmill
+achievement.ss.large_windmill.desc2=Large force
+
 achievement.ss.pulverizer=Industrial era
 achievement.ss.pulverizer.desc=Craft a pulverizer
 achievement.ss.pulverizer.desc2=Double it !
+
+achievement.ss.extractor=Near future
+achievement.ss.extractor.desc=Craft a extractor
+achievement.ss.extractor.desc2=Purification equipment ?
 
 achievement.ss.fan=Oh ~ ~ ~
 achievement.ss.fan.desc=Craft a fan
@@ -677,6 +702,7 @@ nei.ss.millstone=Millstone Recipe
 nei.ss.loom=Loom Recipe
 nei.ss.sawmill=Sawmill Recipe
 nei.ss.spinning_machine=Spinning Machine Recipe
+nei.ss.extractor=Extractor Recipe
 nei.ss.pulverizer=Pulverizer Recipe
 nei.ss.rolling_machine=Rolling Machine Recipe
 nei.ss.mana_squeezer=Mana Squeezer Recipe

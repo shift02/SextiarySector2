@@ -6,13 +6,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
-import shift.sextiarysector.api.machine.item.GearForceItem;
+import shift.sextiarysector.api.gearforce.item.GearForceItemAPI;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 import shift.sextiarysector.container.ItemBox;
 
-public class TileEntityGFTank extends TileEntityDirection implements ISidedInventory, IGFEnergyHandler ,IGearForceGrid{
+public class TileEntityGFTank extends TileEntityDirection implements ISidedInventory, IGearForceHandler ,IGearForceGrid{
 
 	protected static final int[] slots_top = new int[] { 0 };
 	protected static final int[] slots_bottom = new int[] { 1 };
@@ -93,11 +93,11 @@ public class TileEntityGFTank extends TileEntityDirection implements ISidedInven
 
 		if(this.items.getStackInSlot(1)==null)return;
 
-		if(GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 1, true)>0){
-			int s = GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 20, true);
+		if(GearForceItemAPI.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 1, true)>0){
+			int s = GearForceItemAPI.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 20, true);
 
 			int i = this.storage.addEnergy(this.storage.getMaxPower(), s, false);
-			GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), i, false);
+			GearForceItemAPI.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), i, false);
 			if(i>0)this.inPower = this.storage.getMaxPower();
 			//this.inSpeed += (int) i;
 
@@ -114,7 +114,7 @@ public class TileEntityGFTank extends TileEntityDirection implements ISidedInven
 
 			int i = this.storage.drawEnergy(this.storage.getMaxPower(), 20, true);
 
-			int s = GearForceItem.manager.addEnergy(this.items.getStackInSlot(0), this.storage.getMaxPower(), i, false);
+			int s = GearForceItemAPI.manager.addEnergy(this.items.getStackInSlot(0), this.storage.getMaxPower(), i, false);
 
 			int j = this.storage.drawEnergy(this.storage.getMaxPower(), s, false);
 
@@ -135,13 +135,13 @@ public class TileEntityGFTank extends TileEntityDirection implements ISidedInven
 
 		TileEntity t = this.worldObj.getTileEntity(xCoord + this.getDirection().offsetX, yCoord + this.getDirection().offsetY, zCoord + this.getDirection().offsetZ);
 
-		if(t instanceof IGFEnergyHandler && ((IGFEnergyHandler)t).canInterface(getDirection().getOpposite())){
+		if(t instanceof IGearForceHandler && ((IGearForceHandler)t).canInterface(getDirection().getOpposite())){
 
-			int i = ((IGFEnergyHandler)t).addEnergy(getDirection().getOpposite(), this.storage.getMaxPower(), Math.min(160, this.storage.getSpeedStored()), true);
+			int i = ((IGearForceHandler)t).addEnergy(getDirection().getOpposite(), this.storage.getMaxPower(), Math.min(160, this.storage.getSpeedStored()), true);
 
 			int j = this.storage.drawEnergy(this.storage.getMaxPower(), i, false);
 
-			((IGFEnergyHandler)t).addEnergy(getDirection().getOpposite(), this.storage.getMaxPower(), j, false);
+			((IGearForceHandler)t).addEnergy(getDirection().getOpposite(), this.storage.getMaxPower(), j, false);
 
 			this.outSpeed+=j;
 			if(j>0)this.outPower=this.storage.getMaxPower();

@@ -4,10 +4,10 @@ import ic2.api.energy.prefab.BasicSink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 
-public class TileEntityElectricMotor extends TileEntityDirection  implements IGFEnergyHandler, IGearForceGrid{
+public class TileEntityElectricMotor extends TileEntityDirection  implements IGearForceHandler, IGearForceGrid{
 
 	private BasicSink ic2EnergySink = new BasicSink(this, 2000, 1){
 
@@ -89,9 +89,9 @@ public class TileEntityElectricMotor extends TileEntityDirection  implements IGF
 		if(this.ic2EnergySink.canUseEnergy(20)){
 
 			TileEntity t =this.worldObj.getTileEntity(xCoord-this.direction.offsetX, yCoord-this.direction.offsetY, zCoord-this.direction.offsetZ);
-			if(t!=null && t instanceof IGFEnergyHandler){
+			if(t!=null && t instanceof IGearForceHandler){
 
-				int i = ((IGFEnergyHandler)t).addEnergy(this.direction, 3, 40, false);
+				int i = ((IGearForceHandler)t).addEnergy(this.direction, 3, 40, false);
 				this.ic2EnergySink.useEnergy(i);
 
 

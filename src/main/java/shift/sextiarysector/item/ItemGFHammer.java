@@ -2,8 +2,8 @@ package shift.sextiarysector.item;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import shift.sextiarysector.api.machine.item.IHammer;
-import shift.sextiarysector.api.machine.item.ItemGearForce;
+import shift.sextiarysector.api.gearforce.item.IHammer;
+import shift.sextiarysector.api.gearforce.item.ItemGearForce;
 
 public class ItemGFHammer extends ItemGearForce implements IHammer {
 

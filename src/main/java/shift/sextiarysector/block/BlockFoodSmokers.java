@@ -10,7 +10,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import shift.sextiarysector.SextiarySector;
-import shift.sextiarysector.api.machine.item.IHammer;
+import shift.sextiarysector.api.gearforce.item.IHammer;
 import shift.sextiarysector.tileentity.TileEntityFluidMachineBase;
 import shift.sextiarysector.tileentity.TileEntityFoodSmokers;
 import cpw.mods.fml.relauncher.Side;

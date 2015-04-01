@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiScreen;
@@ -22,6 +23,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -29,17 +31,19 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import org.lwjgl.opengl.GL11;
 
+import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
 import shift.sextiarysector.api.agriculture.IFertilizer;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
-import shift.sextiarysector.api.machine.item.IGearForceGridItem;
+import shift.sextiarysector.api.equipment.EquipmentType;
+import shift.sextiarysector.api.gearforce.item.IGearForceGridItem;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 import shift.sextiarysector.gui.GuiAchievementsNext;
 import shift.sextiarysector.gui.GuiStatsNext;
 import shift.sextiarysector.item.TextureSeason;
 import shift.sextiarysector.module.FertilizerManager;
 import shift.sextiarysector.module.SeasonManager;
 import shift.sextiarysector.player.EntityPlayerManager;
-import shift.sextiarysector.player.EquipmentType;
+import shift.sextiarysector.player.EquipmentStats;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -205,6 +209,31 @@ public class ClientEventHandler {
 
 	}
 
+	//水の中
+	@SubscribeEvent
+	public void onFogDensity(FogDensity event) {
+
+		if (event.block.getMaterial() == Material.water) {
+
+			if (event.entity instanceof EntityPlayer) {
+
+				EntityPlayer player = (EntityPlayer) event.entity;
+
+				EquipmentStats e = EntityPlayerManager.getEquipmentStats(player);
+
+				if (e.inventory.getStackInSlot(EquipmentType.Face.getSlot(0)) != null) {
+
+					if (e.inventory.getStackInSlot(EquipmentType.Face.getSlot(0)).getItem() == SSItems.waterContactLenses) {
+						event.density = 0.0F;
+						event.setCanceled(true);
+					}
+
+				}
+			}
+
+		}
+	}
+
 	//車軸の線の描写
 	@SubscribeEvent
 	public void onDrawBlockHighlight(DrawBlockHighlightEvent event) {
@@ -223,11 +252,11 @@ public class ClientEventHandler {
 		//	return;
 		// }
 
-		if (EntityPlayerManager.getCustomPlayerData(player).getEquipmentStats().inventory.getStackInSlot(EquipmentType.Face.getSlot()[0]) == null) {
+		if (EntityPlayerManager.getCustomPlayerData(player).getEquipmentStats().inventory.getStackInSlot(EquipmentType.Face.getSlots()[0]) == null) {
 			return;
 		}
 
-		if (!(EntityPlayerManager.getCustomPlayerData(player).getEquipmentStats().inventory.getStackInSlot(EquipmentType.Face.getSlot()[0]).getItem() instanceof IGearForceGridItem))
+		if (!(EntityPlayerManager.getCustomPlayerData(player).getEquipmentStats().inventory.getStackInSlot(EquipmentType.Face.getSlots()[0]).getItem() instanceof IGearForceGridItem))
 		{
 			return;
 		}

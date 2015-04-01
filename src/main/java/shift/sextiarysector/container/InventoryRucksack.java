@@ -6,7 +6,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import shift.sextiarysector.player.EquipmentType;
+import shift.sextiarysector.api.equipment.EquipmentType;
 
 public class InventoryRucksack implements IInventory
 {
@@ -26,7 +26,7 @@ public class InventoryRucksack implements IInventory
 	public InventoryRucksack(InventoryPlayerNext inventory)
 	{
 		inventoryPlayer = inventory;
-		currentItem = inventoryPlayer.getStackInSlot(EquipmentType.Bag.getSlot()[0]);
+		currentItem = inventoryPlayer.getStackInSlot(EquipmentType.Bag.getSlots()[0]);
 
 		//InventorySize
 		items = new ItemStack[27];
@@ -176,7 +176,7 @@ public class InventoryRucksack implements IInventory
 		if (inventoryPlayer instanceof InventoryPlayer) {
 			((InventoryPlayer) inventoryPlayer).mainInventory[((InventoryPlayer) inventoryPlayer).currentItem] = result;
 		} else if (inventoryPlayer instanceof InventoryPlayerNext) {
-			inventoryPlayer.setInventorySlotContents(EquipmentType.Bag.getSlot()[0], result);
+			inventoryPlayer.setInventorySlotContents(EquipmentType.Bag.getSlots()[0], result);
 		}
 
 	}

@@ -2,12 +2,12 @@ package shift.sextiarysector.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
 
-public class TileEntityMonitor extends TileEntityDirection implements IGFEnergyHandler ,IGearForceGrid{
+public class TileEntityMonitor extends TileEntityDirection implements IGearForceHandler ,IGearForceGrid{
 
 	public EnergyStorage storage = new EnergyStorage("Base", 1, 10000);
 	public MonitorType type = MonitorType.unknown;

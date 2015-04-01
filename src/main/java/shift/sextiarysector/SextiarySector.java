@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import shift.mceconomy2.gui.HUDMP;
 import shift.sextiarysector.api.SextiarySectorAPI;
-import shift.sextiarysector.api.machine.item.GearForceItem;
+import shift.sextiarysector.api.gearforce.item.GearForceItemAPI;
 import shift.sextiarysector.item.GearForceItemManager;
 import shift.sextiarysector.module.IModule;
 import shift.sextiarysector.module.ModuleAgriculture;
@@ -36,7 +36,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	public static final String MODID = "SextiarySector";
-	public static final String VERSION = "2.1.9";
+	public static final String VERSION = "2.2.0";
 
 	@Mod.Instance("SextiarySector")
 	public static SextiarySector instance;
@@ -64,7 +64,7 @@ public class SextiarySector {
 
 		SSEvents.preInit(event);
 
-		GearForceItem.manager = new GearForceItemManager();
+		GearForceItemAPI.manager = new GearForceItemManager();
 
 		//Module
 		modules.add(ModuleStatistics.getInstance());

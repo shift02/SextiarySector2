@@ -14,15 +14,16 @@ import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fluids.IFluidHandler;
-import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
-import shift.sextiarysector.api.machine.item.GearForceItem;
+import shift.sextiarysector.api.gearforce.item.GearForceItemAPI;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
 import shift.sextiarysector.block.BlockFluidFGFMachine;
 import shift.sextiarysector.container.ItemBox;
 
-public class TileEntityFluidFGFMachineBase extends TileEntityDirection implements ISidedInventory, IFluidHandler, IGFEnergyHandler, IGearForceGrid {
+public class TileEntityFluidFGFMachineBase extends TileEntityDirection implements ISidedInventory, IFluidHandler, IGearForceHandler, IGearForceGrid {
 
 	protected static final int[] slots_top = new int[] { 0, 4 };
 	protected static final int[] slots_bottom = new int[] { 2, 1, 3, 5 };
@@ -131,6 +132,7 @@ public class TileEntityFluidFGFMachineBase extends TileEntityDirection implement
 		}
 
 		this.chargeFluid();
+		this.chargeFluidContainerItem();
 		if (this.on && this.tank.getFluidAmount() > 0) this.chargeUPFluid();
 
 	}
@@ -187,6 +189,31 @@ public class TileEntityFluidFGFMachineBase extends TileEntityDirection implement
 
 	}
 
+	private void chargeFluidContainerItem() {
+
+		if (this.tank.getFluidAmount() == 0) return;
+		ItemStack container = items.getStackInSlot(4);
+		if (container == null || !(container.getItem() instanceof IFluidContainerItem) || items.getStackInSlot(5) != null) return;
+
+		IFluidContainerItem f = (IFluidContainerItem) container.getItem();
+
+		int add = f.fill(container, this.tank.getFluid(), true);
+		this.tank.drain(add, true);
+
+		if (add != 0) {
+
+			this.items.setInventorySlotContents(5, container);
+
+			this.items.reduceStackSize(4, 1);
+
+			this.markDirty();
+
+			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+		}
+
+	}
+
 	public boolean canChargeFluid()
 	{
 		if (items.getStackInSlot(4) == null) return false;
@@ -205,8 +232,8 @@ public class TileEntityFluidFGFMachineBase extends TileEntityDirection implement
 		if (this.items.getStackInSlot(1) == null) return false;
 
 		f1 = this.storage.getMaxSpeed() > this.storage.getSpeedStored();
-		f2 = (this.items.getStackInSlot(1) != null && GearForceItem.manager.isGearForceItem(this.items.getStackInSlot(1)));
-		f3 = GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 1, true) > 0;
+		f2 = (this.items.getStackInSlot(1) != null && GearForceItemAPI.manager.isGearForceItem(this.items.getStackInSlot(1)));
+		f3 = GearForceItemAPI.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 1, true) > 0;
 
 		//System.out.println(f1+" "+f2+" "+f3);
 
@@ -217,11 +244,11 @@ public class TileEntityFluidFGFMachineBase extends TileEntityDirection implement
 	{
 		if (this.items.getStackInSlot(1) == null) return;
 
-		if (GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 1, true) > 0) {
-			int s = GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 20, true);
+		if (GearForceItemAPI.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 1, true) > 0) {
+			int s = GearForceItemAPI.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 20, true);
 
 			int i = this.storage.addEnergy(this.storage.getMaxPower(), s, false);
-			GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), i, false);
+			GearForceItemAPI.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), i, false);
 			if (i > 0) this.inPower = this.storage.getMaxPower();
 			//this.inSpeed += (int) i;
 
@@ -424,7 +451,7 @@ public class TileEntityFluidFGFMachineBase extends TileEntityDirection implement
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 
 		if (i == 1) {
-			return GearForceItem.manager.isGearForceItem(itemstack);
+			return GearForceItemAPI.manager.isGearForceItem(itemstack);
 		}
 
 		return i == 0 || i == 1 || i == 4;

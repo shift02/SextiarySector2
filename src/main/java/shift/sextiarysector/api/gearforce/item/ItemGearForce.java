@@ -1,4 +1,4 @@
-package shift.sextiarysector.api.machine.item;
+package shift.sextiarysector.api.gearforce.item;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -47,8 +47,8 @@ public class ItemGearForce extends Item implements IGearForceItem {
 
 		NumberFormat nf = NumberFormat.getNumberInstance();
 
-		int power = GearForceItem.manager.getPower(itemStack);
-		int speed = GearForceItem.manager.getSpeed(itemStack);
+		int power = GearForceItemAPI.manager.getPower(itemStack);
+		int speed = GearForceItemAPI.manager.getSpeed(itemStack);
 
 		list.add("" + EnumChatFormatting.RED + "Power " + EnumChatFormatting.GRAY + power + " / " + this.getMaxPower(itemStack) + "");
 		list.add("" + EnumChatFormatting.BLUE + "Speed " + EnumChatFormatting.GRAY + nf.format(speed) + " / " + nf.format(this.getMaxSpeed(itemStack)) + "");
@@ -59,7 +59,7 @@ public class ItemGearForce extends Item implements IGearForceItem {
 	public boolean showDurabilityBar(ItemStack stack)
 	{
 
-		if (GearForceItem.manager.getSpeed(stack) == 0) return false;
+		if (GearForceItemAPI.manager.getSpeed(stack) == 0) return false;
 
 		return true;//stack.isItemDamaged();
 	}
@@ -67,7 +67,7 @@ public class ItemGearForce extends Item implements IGearForceItem {
 	@Override
 	public double getDurabilityForDisplay(ItemStack stack)
 	{
-		return 1.0D - ((double) GearForceItem.manager.getSpeed(stack) / (double) this.getMaxSpeed(stack));
+		return 1.0D - ((double) GearForceItemAPI.manager.getSpeed(stack) / (double) this.getMaxSpeed(stack));
 	}
 
 	@Override
@@ -76,8 +76,8 @@ public class ItemGearForce extends Item implements IGearForceItem {
 		ItemStack empty = new ItemStack(this);
 		ItemStack full = new ItemStack(this);
 
-		GearForceItem.manager.setEnergy(empty, this.getMaxPower(empty), 0);
-		GearForceItem.manager.setEnergy(full, this.getMaxPower(empty), this.getMaxSpeed(full));
+		GearForceItemAPI.manager.setEnergy(empty, this.getMaxPower(empty), 0);
+		GearForceItemAPI.manager.setEnergy(full, this.getMaxPower(empty), this.getMaxSpeed(full));
 
 		par3List.add(empty);
 		par3List.add(full);
@@ -91,11 +91,6 @@ public class ItemGearForce extends Item implements IGearForceItem {
 	@Override
 	public int getMaxSpeed(ItemStack container) {
 		return this.speed;
-	}
-
-	@Override
-	public boolean isCustomDamage(ItemStack container) {
-		return true;
 	}
 
 	@Override

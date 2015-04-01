@@ -3,11 +3,11 @@ package shift.sextiarysector.tileentity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 
-public class TileEntityGearBox extends TileEntityDirection implements IGFEnergyHandler ,IGearForceGrid{
+public class TileEntityGearBox extends TileEntityDirection implements IGearForceHandler ,IGearForceGrid{
 
 	public EnergyStorage storage = new EnergyStorage("Base", 1, 960, 160);
 
@@ -51,9 +51,9 @@ public class TileEntityGearBox extends TileEntityDirection implements IGFEnergyH
 
 			TileEntity t = this.worldObj.getTileEntity(x, y, z);
 
-			if(t instanceof IGFEnergyHandler){
+			if(t instanceof IGearForceHandler){
 
-				int j = ((IGFEnergyHandler) t).addEnergy(d.getOpposite(), this.storage.getMaxPower(), i, false);
+				int j = ((IGearForceHandler) t).addEnergy(d.getOpposite(), this.storage.getMaxPower(), i, false);
 
 				this.storage.drawEnergy(this.storage.getMaxPower(), j, false);
 
@@ -77,7 +77,7 @@ public class TileEntityGearBox extends TileEntityDirection implements IGFEnergyH
 
 			TileEntity t = this.worldObj.getTileEntity(x, y, z);
 
-			if(t instanceof IGFEnergyHandler && ((IGFEnergyHandler) t).addEnergy(d.getOpposite(), this.storage.getMaxPower(), 1, true)>0){
+			if(t instanceof IGearForceHandler && ((IGearForceHandler) t).addEnergy(d.getOpposite(), this.storage.getMaxPower(), 1, true)>0){
 				i++;
 			}
 

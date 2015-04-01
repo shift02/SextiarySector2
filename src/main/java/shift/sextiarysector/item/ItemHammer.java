@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeHooks;
-import shift.sextiarysector.api.machine.item.IHammer;
+import shift.sextiarysector.api.gearforce.item.IHammer;
 
 public class ItemHammer extends Item implements IHammer {
 

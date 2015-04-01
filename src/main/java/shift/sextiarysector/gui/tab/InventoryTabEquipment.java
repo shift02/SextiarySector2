@@ -2,9 +2,9 @@ package shift.sextiarysector.gui.tab;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import shift.sextiarysector.api.equipment.EquipmentType;
 import shift.sextiarysector.item.ISSEquipment;
 import shift.sextiarysector.player.EntityPlayerManager;
-import shift.sextiarysector.player.EquipmentType;
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class InventoryTabEquipment extends AbstractTab {
@@ -21,7 +21,7 @@ public class InventoryTabEquipment extends AbstractTab {
 
 	private ItemStack getSlotItem(){
 
-		for(int i:type.getSlot()){
+		for(int i:type.getSlots()){
 
 			ItemStack slot = EntityPlayerManager.getEquipmentStats(mc.thePlayer).inventory.getStackInSlot(i);
 

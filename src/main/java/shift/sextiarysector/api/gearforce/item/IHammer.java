@@ -1,4 +1,4 @@
-package shift.sextiarysector.api.machine.item;
+package shift.sextiarysector.api.gearforce.item;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -8,7 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.item.GearForceItem;
+import shift.sextiarysector.api.gearforce.item.GearForceItemAPI;
 import shift.sextiarysector.tileentity.TileEntitySimpleMachine;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -164,7 +164,7 @@ public class ContainerSimpleMachine extends Container {
 						return null;
 					}
 				}
-				else if (GearForceItem.manager.isGearForceItem(itemstack1))
+				else if (GearForceItemAPI.manager.isGearForceItem(itemstack1))
 				{
 					if (!this.mergeItemStack(itemstack1, 1, 2, false))
 					{

@@ -1,5 +1,6 @@
 package shift.sextiarysector.item;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -7,12 +8,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import shift.mceconomy2.api.MCEconomyAPI;
 import shift.sextiarysector.SSShops.SSProductList;
-import shift.sextiarysector.api.IEquipment;
 import shift.sextiarysector.api.SextiarySectorAPI;
+import shift.sextiarysector.api.equipment.EquipmentType;
+import shift.sextiarysector.api.equipment.IEquipment;
 import shift.sextiarysector.api.season.SeasonAPI;
 import shift.sextiarysector.gui.tab.AbstractTab;
 import shift.sextiarysector.gui.tab.TabManager;
-import shift.sextiarysector.player.EquipmentType;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -110,6 +111,16 @@ public class ItemShopRing extends Item implements IEquipment, ISSEquipment {
 	@Override
 	public boolean isItemValid(EquipmentType equipment, ItemStack stack) {
 		return equipment.equals(EquipmentType.Ring);
+	}
+
+	@Override
+	public void onUpdate(EquipmentType equipment, ItemStack stack, World world, Entity player, int slot) {
+
+	}
+
+	@Override
+	public boolean canDrop(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
+		return true;
 	}
 
 }

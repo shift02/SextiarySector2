@@ -3,10 +3,12 @@ package shift.sextiarysector.plugin;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.common.MinecraftForge;
 import shift.sextiarysector.gui.tab.TabManager;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -14,10 +16,13 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class PluginTcon  implements IPlugin{
+public class PluginTcon implements IPlugin {
 
 	@SideOnly(Side.CLIENT)
 	private static TconTab openTab;
+
+	@SideOnly(Side.CLIENT)
+	private static Minecraft mc;
 
 	@Override
 	public String getModName() {
@@ -35,6 +40,8 @@ public class PluginTcon  implements IPlugin{
 
 		MinecraftForge.EVENT_BUS.register(this);
 
+		mc = FMLClientHandler.instance().getClient();
+
 	}
 
 	@Override
@@ -44,39 +51,44 @@ public class PluginTcon  implements IPlugin{
 	}
 
 	@SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void guiPostInit (GuiScreenEvent.InitGuiEvent.Post event)
-    {
+	@SubscribeEvent
+	public void guiPostInit(GuiScreenEvent.InitGuiEvent.Post event)
+	{
 
-        if (openTab!=null)
-        {
+		if (openTab != null)
+		{
 
-            int xSize = 176;
-            int ySize = 166;
-            int guiLeft = (event.gui.width - xSize) / 2;
-            int guiTop = (event.gui.height - ySize) / 2;
+			int xSize = 176;
+			int ySize = 166;
+			int guiLeft = (event.gui.width - xSize) / 2;
+			int guiTop = (event.gui.height - ySize) / 2;
 
-            TabManager.updateTabValues(guiLeft, guiTop,event.buttonList, openTab, false);
+			if (!this.mc.thePlayer.getActivePotionEffects().isEmpty())
+			{
+				guiLeft = 160 + (event.gui.width - xSize - 200) / 2;
+			}
 
-            openTab = null;
+			TabManager.updateTabValues(guiLeft, guiTop, event.buttonList, openTab, false);
 
-        }
+			openTab = null;
 
-    }
+		}
+
+	}
 
 	@Override
 	public void postPlugin(FMLPostInitializationEvent event) {
 
-		if(event.getSide().isClient())clientPost();
+		if (event.getSide().isClient()) clientPost();
 
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void clientPost(){
+	public void clientPost() {
 
 		ArrayList<tconstruct.client.tabs.AbstractTab> tabs = tconstruct.client.tabs.TabRegistry.getTabList();
 
-		for(int i=1;i<tabs.size();i++){
+		for (int i = 1; i < tabs.size(); i++) {
 			TabManager.registerTab(new TconTab(tabs.get(i)));
 		}
 
@@ -84,12 +96,12 @@ public class PluginTcon  implements IPlugin{
 
 	}
 
-	public class TconTab extends shift.sextiarysector.gui.tab.AbstractTab{
+	public class TconTab extends shift.sextiarysector.gui.tab.AbstractTab {
 
 		tconstruct.client.tabs.AbstractTab tab;
 		ItemStack item;
 
-		public TconTab(tconstruct.client.tabs.AbstractTab tab){
+		public TconTab(tconstruct.client.tabs.AbstractTab tab) {
 
 			this.tab = tab;
 
@@ -99,7 +111,6 @@ public class PluginTcon  implements IPlugin{
 				Field f = c.getDeclaredField("renderStack");
 				f.setAccessible(true);
 				this.item = (ItemStack) f.get(this.tab);
-
 
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();

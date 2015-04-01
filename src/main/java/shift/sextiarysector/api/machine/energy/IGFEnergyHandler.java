@@ -1,15 +1,25 @@
 package shift.sextiarysector.api.machine.energy;
 
 import net.minecraftforge.common.util.ForgeDirection;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
 
 /**
+ *
+ * パッケージが変更になりました {@link IGearForceHandler}<br>
+ * 注 AMT2とエンチャント交換MOD用に残してあります<br>
+ * <br>
+ * <s>
  * IGFEnergyHandler TileEntity用のエネルギーインターフェース <br>
  * TileEntityに実装して使ってください。
+ * </s>
  * @see IEnergyStorage
  * @see EnergyStorage
  * @version 1.1.0
  * @author Shift02
+ * @Deprecated パッケージが変更になりました {@link IGearForceHandler}
  */
+@Deprecated
 public interface IGFEnergyHandler {
 
 	/**

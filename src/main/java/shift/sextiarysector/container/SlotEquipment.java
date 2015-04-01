@@ -5,8 +5,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import shift.sextiarysector.api.IEquipment;
-import shift.sextiarysector.player.EquipmentType;
+import shift.sextiarysector.api.equipment.EquipmentType;
+import shift.sextiarysector.api.equipment.IEquipment;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
