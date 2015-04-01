@@ -3,12 +3,12 @@ package shift.sextiarysector.tileentity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 import shift.sextiarysector.fmp.IShaft;
 
-public class TileEntityShaft extends TileEntityDirection implements IGFEnergyHandler, IGearForceGrid, IShaft {
+public class TileEntityShaft extends TileEntityDirection implements IGearForceHandler, IGearForceGrid, IShaft {
 
 	public float rotateStep = 360;
 	private final EnergyStorage storage = new EnergyStorage("Base", 1, 320, 160);
@@ -219,10 +219,10 @@ public class TileEntityShaft extends TileEntityDirection implements IGFEnergyHan
 		if (this.getInDirection().ordinal() != from.ordinal())
 			return 0;
 
-		if (!(this.getOutTileEntity() instanceof IGFEnergyHandler) || power != this.getStorage().getMaxPower())
+		if (!(this.getOutTileEntity() instanceof IGearForceHandler) || power != this.getStorage().getMaxPower())
 			return 0;
 
-		int i = ((IGFEnergyHandler) this.getOutTileEntity()).addEnergy(from, power, speed, simulate);
+		int i = ((IGearForceHandler) this.getOutTileEntity()).addEnergy(from, power, speed, simulate);
 
 		// storage.addEnergy(power, speed, simulate);
 		if (!simulate)

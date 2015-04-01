@@ -41,10 +41,12 @@ public class BlockFigure extends BlockContainer {
 		// this.setBlockUnbreakable();
 	}
 
+	@Override
 	public boolean isOpaqueCube() {
 		return false;
 	}
 
+	@Override
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
@@ -69,11 +71,13 @@ public class BlockFigure extends BlockContainer {
 				+ "_side");
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public String getItemIconName() {
 		return this.getTextureName();
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
 		ItemStack itemstack = new ItemStack(p_149666_1_, 1, 0);
@@ -163,6 +167,7 @@ public class BlockFigure extends BlockContainer {
 
 	}
 
+	@Override
 	public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_,
 			int p_149749_4_, Block p_149749_5_, int p_149749_6_) {
 		// ItemInWorldManager a = new ItemInWorldManager();
@@ -175,7 +180,8 @@ public class BlockFigure extends BlockContainer {
 				p_149749_5_, p_149749_6_);
 	}
 
-	public void onBlockHarvested(World p_149681_1_, int p_149681_2_,int p_149681_3_, int p_149681_4_, int p_149681_5_,EntityPlayer p_149681_6_) {
+	@Override
+	public void onBlockHarvested(World p_149681_1_, int p_149681_2_, int p_149681_3_, int p_149681_4_, int p_149681_5_, EntityPlayer p_149681_6_) {
 		if (!p_149681_6_.capabilities.isCreativeMode) {
 			this.dropBlockAsItem(p_149681_1_, p_149681_2_, p_149681_3_, p_149681_4_, p_149681_5_, 0);
 		}
@@ -183,6 +189,7 @@ public class BlockFigure extends BlockContainer {
 		super.onBlockHarvested(p_149681_1_, p_149681_2_, p_149681_3_, p_149681_4_, p_149681_5_, p_149681_6_);
 	}
 
+	@Override
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
 
 		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
@@ -217,6 +224,8 @@ public class BlockFigure extends BlockContainer {
 	}
 
 	public static ItemStack setFigureItem(ItemStack item, ItemStack setItem, String edition) {
+
+		if (setItem == null) return item;
 
 		NBTTagCompound nbt = item.stackTagCompound;
 

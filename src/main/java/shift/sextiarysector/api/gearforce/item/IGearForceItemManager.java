@@ -1,13 +1,13 @@
-package shift.sextiarysector.api.machine.item;
+package shift.sextiarysector.api.gearforce.item;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
 public interface IGearForceItemManager {
 
-	public int reduceEnergy(ItemStack itemStack, int power, int speed, boolean simulate);
-
 	public int addEnergy(ItemStack itemStack, int power, int speed, boolean simulate);
+
+	public int reduceEnergy(ItemStack itemStack, int power, int speed, boolean simulate);
 
 	public int getSpeed(ItemStack theItem);
 

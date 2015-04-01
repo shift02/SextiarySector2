@@ -2,7 +2,7 @@ package shift.sextiarysector.item;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import shift.sextiarysector.player.EquipmentType;
+import shift.sextiarysector.api.equipment.EquipmentType;
 
 public interface ISSEquipment {
 

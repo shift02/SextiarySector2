@@ -3,8 +3,8 @@ package shift.sextiarysector.item;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import shift.sextiarysector.api.machine.item.GearForceItem;
-import shift.sextiarysector.api.machine.item.ItemGearForce;
+import shift.sextiarysector.api.gearforce.item.GearForceItemAPI;
+import shift.sextiarysector.api.gearforce.item.ItemGearForce;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,7 +20,7 @@ public class ItemGearStorage extends ItemGearForce{
     public IIcon getIconIndex(ItemStack p_77650_1_)
     {
 
-		if(GearForceItem.manager.getSpeed(p_77650_1_)>0){
+		if(GearForceItemAPI.manager.getSpeed(p_77650_1_)>0){
 			return this.full;
 		}
 
@@ -29,7 +29,7 @@ public class ItemGearStorage extends ItemGearForce{
 
 	public IIcon getIcon(ItemStack stack, int pass)
     {
-		if(GearForceItem.manager.getSpeed(stack)>0){
+		if(GearForceItemAPI.manager.getSpeed(stack)>0){
 			return this.full;
 		}
 

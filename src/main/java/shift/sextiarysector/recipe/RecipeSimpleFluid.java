@@ -9,22 +9,26 @@ import java.util.Map.Entry;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
+import shift.sextiarysector.api.recipe.IFluidRecipe;
 
-public class RecipeSimpleFluid {
+public class RecipeSimpleFluid implements IFluidRecipe {
 
 	protected final HashMap<ItemStack, Object[]> metaSimpleMachineList = new HashMap<ItemStack, Object[]>();
 	protected final HashMap<String, Object[]> oreSimpleMachineList = new HashMap<String, Object[]>();
 
+	@Override
 	public void add(ItemStack par1ItemStack, ItemStack par2ItemStack, FluidStack par3FluidStack)
 	{
 		metaSimpleMachineList.put(par1ItemStack, new Object[] { par2ItemStack, par3FluidStack });
 	}
 
+	@Override
 	public void add(String par1String, ItemStack par2ItemStack, FluidStack par3FluidStack)
 	{
 		oreSimpleMachineList.put(par1String, new Object[] { par2ItemStack, par3FluidStack });
 	}
 
+	@Override
 	public ItemStack getResult(ItemStack item)
 	{
 		if (item == null)
@@ -61,6 +65,7 @@ public class RecipeSimpleFluid {
 		//return metaSimpleMachineList.get( (Arrays.asList( item.itemID, item.getItemDamage() ) ));
 	}
 
+	@Override
 	public FluidStack getFluidResult(ItemStack item)
 	{
 		if (item == null)
@@ -102,11 +107,13 @@ public class RecipeSimpleFluid {
 		return p_151397_2_.getItem() == p_151397_1_.getItem() && (p_151397_2_.getItemDamage() == OreDictionary.WILDCARD_VALUE || p_151397_2_.getItemDamage() == p_151397_1_.getItemDamage());
 	}
 
+	@Override
 	public Map<ItemStack, Object[]> getMetaList()
 	{
 		return metaSimpleMachineList;
 	}
 
+	@Override
 	public Map<String, Object[]> getOreList()
 	{
 		return oreSimpleMachineList;

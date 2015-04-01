@@ -1,5 +1,6 @@
 package shift.sextiarysector.nei;
 
+import shift.sextiarysector.gui.GuiExtractor;
 import shift.sextiarysector.gui.GuiFluidFurnace;
 import shift.sextiarysector.gui.GuiFoodSmokers;
 import shift.sextiarysector.gui.GuiFreezer;
@@ -32,6 +33,9 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 
 		API.registerRecipeHandler(new SpinningMachineRecipeHandler());
 		API.registerUsageHandler(new SpinningMachineRecipeHandler());
+
+		API.registerRecipeHandler(new ExtractorRecipeHandler());
+		API.registerUsageHandler(new ExtractorRecipeHandler());
 
 		API.registerRecipeHandler(new PulverizerRecipeHandler());
 		API.registerUsageHandler(new PulverizerRecipeHandler());
@@ -102,6 +106,7 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 		API.registerGuiOverlay(GuiLoom.class, "SS_Loom");
 		API.registerGuiOverlay(GuiSawmill.class, "SS_Sawmill");
 		API.registerGuiOverlay(GuiSpinningMachine.class, "SS_SpinningMachine");
+		API.registerGuiOverlay(GuiExtractor.class, "SS_Extractor");
 		API.registerGuiOverlay(GuiPulverizer.class, "SS_Pulverizer");
 		API.registerGuiOverlay(GuiRollingMachine.class, "SS_RollingMachine");
 		API.registerGuiOverlay(GuiManaSqueezer.class, "SS_ManaSqueezer");

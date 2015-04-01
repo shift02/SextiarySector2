@@ -11,6 +11,7 @@ import net.minecraft.item.ItemSword;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.item.ItemBottle;
 import shift.sextiarysector.item.ItemCalendar;
+import shift.sextiarysector.item.ItemContactLenses;
 import shift.sextiarysector.item.ItemCrop;
 import shift.sextiarysector.item.ItemDrink;
 import shift.sextiarysector.item.ItemFigureBox;
@@ -25,6 +26,8 @@ import shift.sextiarysector.item.ItemKnife;
 import shift.sextiarysector.item.ItemLavaBottle;
 import shift.sextiarysector.item.ItemMineboat;
 import shift.sextiarysector.item.ItemMineboatTank;
+import shift.sextiarysector.item.ItemOxygenTank;
+import shift.sextiarysector.item.ItemProtectionRing;
 import shift.sextiarysector.item.ItemRucksack;
 import shift.sextiarysector.item.ItemSSArmor;
 import shift.sextiarysector.item.ItemSSAxe;
@@ -119,20 +122,6 @@ public class SSItems {
 	public static Item ironFluidBucket;
 	public static Item goldFluidBucket;
 
-	//unit
-	public static Item craftUnit;
-
-	public static Item attackUnit;
-	public static Item defenseUnit;
-	public static Item attackRustUnit;
-	public static Item defenseRustUnit;
-
-	public static Item pickaxeUnit;
-
-	//ring
-	public static Item ironRing;
-	public static Item creeperRing;
-
 	//魔法
 	public static Item magicDust;
 
@@ -143,6 +132,11 @@ public class SSItems {
 	public static Item canvas;
 	public static Item dryingFlesh;
 	public static Item fleshBobbin;
+	public static Item stringMass;
+	public static Item strongString;
+	public static Item strongStringBobbin;
+	public static Item strongCloth;
+	public static Item strongCanvas;
 
 	//public static Item bottle;
 
@@ -244,7 +238,25 @@ public class SSItems {
 	public static Item shiftHat;
 
 	public static Item rucksack;
+	public static Item oxygenTank;
 	public static Item gfContactLenses;
+	public static Item waterContactLenses;
+
+	//unit
+	public static Item craftUnit;
+
+	public static Item attackUnit;
+	public static Item defenseUnit;
+	public static Item attackRustUnit;
+	public static Item defenseRustUnit;
+
+	public static Item pickaxeUnit;
+
+	//リング
+	public static Item ironRing;
+	public static Item creeperRing;
+	public static Item mpRing;
+	public static Item xpRing;
 
 	public static void initItems() {
 
@@ -408,32 +420,6 @@ public class SSItems {
 		goldFluidBucket = new ItemSimpleBucket().setUnlocalizedName("ss.gold_fluid_bucket").setTextureName("sextiarysector:fluid/gold_fluid_bucket");
 		GameRegistry.registerItem(goldFluidBucket, "GoldFluidBucket");
 
-		//Unit
-		craftUnit = new ItemGuiUnit(201).setUnlocalizedName("ss.craft_unit").setTextureName("sextiarysector:unit/craft_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
-		GameRegistry.registerItem(craftUnit, "CraftUnit");
-
-		attackUnit = new ItemUnit().setUnlocalizedName("ss.attack_unit").setTextureName("sextiarysector:unit/attack_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
-		GameRegistry.registerItem(attackUnit, "AttackUnit");
-
-		defenseUnit = new ItemUnit().setUnlocalizedName("ss.defense_unit").setTextureName("sextiarysector:unit/defense_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
-		GameRegistry.registerItem(defenseUnit, "DefenseUnit");
-
-		attackRustUnit = new ItemUnit().setUnlocalizedName("ss.attack_rust_unit").setTextureName("sextiarysector:unit/attack_rust_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
-		GameRegistry.registerItem(attackRustUnit, "AttackRustUnit");
-
-		defenseRustUnit = new ItemUnit().setUnlocalizedName("ss.defense_rust_unit").setTextureName("sextiarysector:unit/defense_rust_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
-		GameRegistry.registerItem(defenseRustUnit, "DefenseRustUnit");
-
-		pickaxeUnit = new ItemUnit().setUnlocalizedName("ss.pickaxe_unit").setTextureName("sextiarysector:unit/pickaxe_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
-		GameRegistry.registerItem(pickaxeUnit, "PickaxeUnit");
-
-		//Ring
-		ironRing = new Item().setUnlocalizedName("ss.iron_ring").setTextureName("sextiarysector:ring/iron_ring").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
-		GameRegistry.registerItem(ironRing, "IronRing");
-
-		creeperRing = new ItemShopRing().setUnlocalizedName("ss.creeper_ring").setTextureName("sextiarysector:ring/creeper_ring");
-		GameRegistry.registerItem(creeperRing, "CreeperRing");
-
 		//魔法
 		magicDust = new Item().setUnlocalizedName("ss.magic_dust").setTextureName("sextiarysector:dust/magic_dust").setCreativeTab(SextiarySectorAPI.TabSSMagic);
 		GameRegistry.registerItem(magicDust, "MagicDust");
@@ -456,6 +442,21 @@ public class SSItems {
 
 		fleshBobbin = new Item().setUnlocalizedName("ss.flesh_bobbin").setTextureName("sextiarysector:loom/flesh_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(fleshBobbin, "FleshBobbin");
+
+		stringMass = new Item().setUnlocalizedName("ss.string_mass").setTextureName("sextiarysector:loom/string_mass").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(stringMass, "StringMass");
+
+		strongString = new Item().setUnlocalizedName("ss.strong_string").setTextureName("sextiarysector:loom/strong_string").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(strongString, "StrongString");
+
+		strongStringBobbin = new Item().setUnlocalizedName("ss.strong_string_bobbin").setTextureName("sextiarysector:loom/strong_string_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(strongStringBobbin, "StrongStringBobbin");
+
+		strongCloth = new Item().setUnlocalizedName("ss.strong_cloth").setTextureName("sextiarysector:loom/strong_cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(strongCloth, "StrongCloth");
+
+		strongCanvas = new Item().setUnlocalizedName("ss.strong_canvas").setTextureName("sextiarysector:loom/strong_canvas").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(strongCanvas, "StrongCanvas");
 
 		//bottle  = new ItemBlockBottle().setUnlocalizedName("ss.bottle").setTextureName("sextiarysector:drink/empty_bottle");
 		//GameRegistry.registerItem(bottle, "Bottle");
@@ -632,8 +633,46 @@ public class SSItems {
 		rucksack = new ItemRucksack().setUnlocalizedName("ss.rucksack").setTextureName("sextiarysector:rucksack");
 		GameRegistry.registerItem(rucksack, "Rucksack");
 
+		oxygenTank = new ItemOxygenTank().setUnlocalizedName("ss.oxygen_tank").setTextureName("sextiarysector:oxygen_tank").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(oxygenTank, "OxygenTank");
+
 		gfContactLenses = new ItemGFContactLenses().setUnlocalizedName("ss.gf_contact_lenses").setTextureName("sextiarysector:face/gf_contact_lenses");
 		GameRegistry.registerItem(gfContactLenses, "GFContactLenses");
+
+		waterContactLenses = new ItemContactLenses().setUnlocalizedName("ss.water_contact_lenses").setTextureName("sextiarysector:face/water_contact_lenses");
+		GameRegistry.registerItem(waterContactLenses, "WaterContactLenses");
+
+		//Unit
+		craftUnit = new ItemGuiUnit(201).setUnlocalizedName("ss.craft_unit").setTextureName("sextiarysector:unit/craft_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(craftUnit, "CraftUnit");
+
+		attackUnit = new ItemUnit().setUnlocalizedName("ss.attack_unit").setTextureName("sextiarysector:unit/attack_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(attackUnit, "AttackUnit");
+
+		defenseUnit = new ItemUnit().setUnlocalizedName("ss.defense_unit").setTextureName("sextiarysector:unit/defense_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(defenseUnit, "DefenseUnit");
+
+		attackRustUnit = new ItemUnit().setUnlocalizedName("ss.attack_rust_unit").setTextureName("sextiarysector:unit/attack_rust_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(attackRustUnit, "AttackRustUnit");
+
+		defenseRustUnit = new ItemUnit().setUnlocalizedName("ss.defense_rust_unit").setTextureName("sextiarysector:unit/defense_rust_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(defenseRustUnit, "DefenseRustUnit");
+
+		pickaxeUnit = new ItemUnit().setUnlocalizedName("ss.pickaxe_unit").setTextureName("sextiarysector:unit/pickaxe_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(pickaxeUnit, "PickaxeUnit");
+
+		//Ring
+		ironRing = new Item().setUnlocalizedName("ss.iron_ring").setTextureName("sextiarysector:ring/iron_ring").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(ironRing, "IronRing");
+
+		creeperRing = new ItemShopRing().setUnlocalizedName("ss.creeper_ring").setTextureName("sextiarysector:ring/creeper_ring");
+		GameRegistry.registerItem(creeperRing, "CreeperRing");
+
+		mpRing = new ItemProtectionRing().setUnlocalizedName("ss.mp_ring").setTextureName("sextiarysector:ring/mp_ring").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(mpRing, "MPRing");
+
+		xpRing = new ItemProtectionRing().setUnlocalizedName("ss.xp_ring").setTextureName("sextiarysector:ring/xp_ring").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(xpRing, "XPRing");
 
 	}
 

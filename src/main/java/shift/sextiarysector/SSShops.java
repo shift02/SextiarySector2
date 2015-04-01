@@ -66,6 +66,7 @@ public class SSShops {
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.corn, 1), 740));
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.magicDust, 4), 500));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.waterContactLenses, 1), 700));
 			}
 
 			if (i == 2) {
