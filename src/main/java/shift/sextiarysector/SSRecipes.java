@@ -5,12 +5,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
+import shift.sextiarysector.api.recipe.RecipeAPI;
 import shift.sextiarysector.recipe.FurnaceCraftingManager;
 import shift.sextiarysector.recipe.RecipeSimpleFluid;
 import shift.sextiarysector.recipe.RecipeSimpleFuel;
 import shift.sextiarysector.recipe.RecipeSimpleMachine;
 import shift.sextiarysector.recipe.RecipesArmor;
 import shift.sextiarysector.recipe.RecipesCore;
+import shift.sextiarysector.recipe.RecipesExtractor;
 import shift.sextiarysector.recipe.RecipesFluidFurnace;
 import shift.sextiarysector.recipe.RecipesFoodSmokers;
 import shift.sextiarysector.recipe.RecipesFreezer;
@@ -46,6 +48,7 @@ public class SSRecipes {
 	public static RecipeSimpleMachine loom;
 	public static RecipeSimpleMachine sawmill;
 	public static RecipeSimpleMachine spinning_machine;
+	public static RecipeSimpleFluid extractor;
 	public static RecipeSimpleMachine pulverizer;
 	public static RecipeSimpleMachine rollingMachine;
 	public static RecipeSimpleFluid manaSqueezer;
@@ -61,14 +64,16 @@ public class SSRecipes {
 		magicFuel = new RecipeSimpleFuel();
 		iceFuel = new RecipeSimpleFuel();
 
-		millstone = new RecipeSimpleMachine();
-		loom = new RecipeSimpleMachine();
-		sawmill = new RecipeSimpleMachine();
-		spinning_machine = new RecipeSimpleMachine();
-		pulverizer = new RecipeSimpleMachine();
-		rollingMachine = new RecipeSimpleMachine();
-		manaSqueezer = new RecipeSimpleFluid();
-		timeMachine = new RecipeSimpleMachine();
+		RecipeAPI.millstone = millstone = new RecipeSimpleMachine();
+		RecipeAPI.loom = loom = new RecipeSimpleMachine();
+		RecipeAPI.sawmill = sawmill = new RecipeSimpleMachine();
+		RecipeAPI.spinning_machine = spinning_machine = new RecipeSimpleMachine();
+		RecipeAPI.extractor = extractor = new RecipeSimpleFluid();
+		RecipeAPI.pulverizer = pulverizer = new RecipeSimpleMachine();
+		RecipeAPI.rollingMachine = rollingMachine = new RecipeSimpleMachine();
+		RecipeAPI.manaSqueezer = manaSqueezer = new RecipeSimpleFluid();
+		RecipeAPI.timeMachine = timeMachine = new RecipeSimpleMachine();
+
 	}
 
 	public static void initRecipes() {
@@ -105,6 +110,8 @@ public class SSRecipes {
 		RecipesSawmill.addRecipes(sawmill);
 
 		RecipesSpinningMachine.addRecipes(spinning_machine);
+
+		RecipesExtractor.addRecipes(extractor);
 
 		RecipesPulverizer.addRecipes(pulverizer);
 

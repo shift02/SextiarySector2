@@ -3,11 +3,11 @@ package shift.sextiarysector.tileentity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 
-public class TileEntityGearShaft extends TileEntityDirection implements IGFEnergyHandler, IGearForceGrid {
+public class TileEntityGearShaft extends TileEntityDirection implements IGearForceHandler, IGearForceGrid {
 
 	public float rotateUpStep = 0;
 	public float rotateDownStep = 0;
@@ -41,11 +41,11 @@ public class TileEntityGearShaft extends TileEntityDirection implements IGFEnerg
 
 	private void updateServerEntity() {
 
-		if (!(this.getOutTileEntity() instanceof IGFEnergyHandler)) {
+		if (!(this.getOutTileEntity() instanceof IGearForceHandler)) {
 			return;
 		}
 
-		IGFEnergyHandler out = (IGFEnergyHandler) this.getOutTileEntity();
+		IGearForceHandler out = (IGearForceHandler) this.getOutTileEntity();
 
 		int i = storage.drawEnergy(storage.getMaxPower(), storage.getMaxSpeed(), true);
 

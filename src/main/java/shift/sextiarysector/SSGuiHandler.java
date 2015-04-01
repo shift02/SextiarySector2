@@ -19,6 +19,7 @@ import shift.sextiarysector.container.ContainerSimpleMachine;
 import shift.sextiarysector.container.ContainerSteamMotor;
 import shift.sextiarysector.container.ContainerTabWorkbench;
 import shift.sextiarysector.gui.GuiCraftFurnace;
+import shift.sextiarysector.gui.GuiExtractor;
 import shift.sextiarysector.gui.GuiFluidFurnace;
 import shift.sextiarysector.gui.GuiFoodSmokers;
 import shift.sextiarysector.gui.GuiFreezer;
@@ -95,6 +96,7 @@ public class SSGuiHandler implements IGuiHandler {
 		case 40:
 			return new ContainerSimpleMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
 
+		case 31:
 		case 36:
 			return new ContainerFluidGFMachineBase(player.inventory, (TileEntityFluidFGFMachineBase) world.getTileEntity(x, y, z));
 
@@ -187,6 +189,8 @@ public class SSGuiHandler implements IGuiHandler {
 
 		case 30:
 			return new GuiPulverizer(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));
+		case 31:
+			return new GuiExtractor(player.inventory, (TileEntityFluidFGFMachineBase) world.getTileEntity(x, y, z));
 
 		case 35:
 			return new GuiRollingMachine(player.inventory, (TileEntitySimpleMachine) world.getTileEntity(x, y, z));

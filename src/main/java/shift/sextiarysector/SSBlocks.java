@@ -25,6 +25,7 @@ import shift.sextiarysector.block.BlockHole;
 import shift.sextiarysector.block.BlockHotSprings;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockLargeOre;
+import shift.sextiarysector.block.BlockLargeWindmill;
 import shift.sextiarysector.block.BlockMagiFurnace;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockPaddy;
@@ -75,6 +76,7 @@ import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
+import shift.sextiarysector.tileentity.TileEntityLargeWindmill;
 import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
 import shift.sextiarysector.tileentity.TileEntityPaddy;
@@ -157,16 +159,20 @@ public class SSBlocks {
 	public static Block steelNinjaGearShaft;
 	public static Block ninjaOrichalcumGearShaft;
 
+	//発電
 	public static Block smallWindmill;
 	public static Block windmill;
+	public static Block largeWindmill;
 	public static Block smallWaterwheel;
 	public static Block steamMotor;
 
+	//機械
 	public static Block millstone;
 	public static Block loom;
 
 	public static Block sawmill;
 	public static Block spinningMachine;
+	public static Block extractor;
 
 	public static Block pump;
 
@@ -454,6 +460,7 @@ public class SSBlocks {
 		ninjaOrichalcumGearShaft = new BlockGearShaft(4).setBlockName("ss.ninja_orichalcum_gear_shaft").setBlockTextureName("planks_oak").setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(ninjaOrichalcumGearShaft, ItemBlockGearShaft.class, "NinjaOrichalcumGearShaft");
 
+		//発電
 		smallWindmill = new BlockSmallWindmill().setBlockName("ss.small_windmill").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerTileEntity(TileEntitySmallWindmill.class, "SmallWindmill");
 		GameRegistry.registerBlock(smallWindmill, "SmallWindmill");
@@ -461,6 +468,10 @@ public class SSBlocks {
 		windmill = new BlockWindmill().setBlockName("ss.windmill").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerTileEntity(TileEntityWindmill.class, "Windmill");
 		GameRegistry.registerBlock(windmill, "Windmill");
+
+		largeWindmill = new BlockLargeWindmill().setBlockName("ss.large_windmill").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerTileEntity(TileEntityLargeWindmill.class, "LargeWindmill");
+		GameRegistry.registerBlock(largeWindmill, "LargeWindmill");
 
 		smallWaterwheel = new BlockSmallWaterwheel().setBlockName("ss.small_waterwheel").setBlockTextureName("planks_oak").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerTileEntity(TileEntitySmallWaterwheel.class, "SmallWaterwheel");
@@ -470,6 +481,7 @@ public class SSBlocks {
 		GameRegistry.registerTileEntity(TileEntitySteamMotor.class, "SteamMotor");
 		GameRegistry.registerBlock(steamMotor, ItemBlockDirection.class, "SteamMotor");
 
+		//機械
 		GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "SimpleMachine");
 		GameRegistry.registerTileEntity(TileEntityFluidFGFMachineBase.class, "FluidFGFMachine");
 
@@ -491,6 +503,9 @@ public class SSBlocks {
 
 		pulverizer = new BlockSimpleMachine("pulverizer", 30, SSRecipes.pulverizer, 3).setBlockName("ss.pulverizer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(pulverizer, "Pulverizer");
+
+		extractor = new BlockFluidFGFMachine("extractor", 31, SSRecipes.extractor, 3).setBlockName("ss.extractor").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerBlock(extractor, "Extractor");
 
 		fan = new BlockFan().setBlockName("ss.fan").setBlockTextureName("stone");
 		GameRegistry.registerTileEntity(TileEntityFan.class, "Fan");

@@ -1,4 +1,4 @@
-package shift.sextiarysector.api.machine.energy;
+package shift.sextiarysector.api.gearforce.tileentity;
 
 import net.minecraftforge.common.util.ForgeDirection;
 

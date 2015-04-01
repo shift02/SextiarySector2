@@ -27,6 +27,12 @@ public class RecipesCore {
 						'x', "paneGlassColorless",
 				}));
 
+		p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSItems.redGel, 1),
+				new Object[] {
+						"dustRedstone",
+						"slimeball"
+				}));
+
 		p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSItems.blueGel, 1),
 				new Object[] {
 						"dustBluestone",
@@ -50,6 +56,19 @@ public class RecipesCore {
 				new Object[] {
 						"xxx", "xyx", "xxx",
 						'x', SSItems.dryingFlesh,
+						'y', "stickWood",
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.stringMass, 1),
+				new Object[] {
+						"xxx", "xxx", "xxx",
+						'x', Items.string,
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.strongStringBobbin, 1),
+				new Object[] {
+						"xxx", "xyx", "xxx",
+						'x', SSItems.strongString,
 						'y', "stickWood",
 				}));
 
@@ -91,6 +110,13 @@ public class RecipesCore {
 				new Object[] {
 						"xxx", "x x", "xxx",
 						'x', SSItems.cloth,
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.oxygenTank, 1),
+				new Object[] {
+						"x x", "xyx", "x x",
+						'x', SSItems.strongString,
+						'y', SSBlocks.tank,
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.mineboatChest, 1),

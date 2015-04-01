@@ -13,11 +13,11 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fluids.IFluidHandler;
-import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 
-public class TileEntityPump extends TileEntityDirection implements IFluidHandler, IGFEnergyHandler, IGearForceGrid {
+public class TileEntityPump extends TileEntityDirection implements IFluidHandler, IGearForceHandler, IGearForceGrid {
 
 	protected FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
 

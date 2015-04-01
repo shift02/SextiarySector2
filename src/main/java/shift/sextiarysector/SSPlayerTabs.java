@@ -1,12 +1,12 @@
 package shift.sextiarysector;
 
 import net.minecraft.item.ItemStack;
+import shift.sextiarysector.api.equipment.EquipmentType;
 import shift.sextiarysector.gui.tab.AbstractTab;
 import shift.sextiarysector.gui.tab.InventoryTabEquipment;
 import shift.sextiarysector.gui.tab.InventoryTabSS;
 import shift.sextiarysector.gui.tab.TabManager;
 import shift.sextiarysector.item.ItemShopRing;
-import shift.sextiarysector.player.EquipmentType;
 
 public class SSPlayerTabs {
 

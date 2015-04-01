@@ -12,7 +12,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.api.SextiarySectorAPI;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
 import shift.sextiarysector.tileentity.TileEntityDirection;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import cpw.mods.fml.relauncher.Side;
@@ -47,7 +47,7 @@ public class BlockGearBox  extends BlockDirection{
 
 		TileEntity t = par1IBlockAccess.getTileEntity(par2 + d.offsetX, par3 + d.offsetY, par4 + d.offsetZ);
 
-		if(t instanceof IGFEnergyHandler && ((IGFEnergyHandler) t).canInterface(d.getOpposite()))return out;
+		if(t instanceof IGearForceHandler && ((IGearForceHandler) t).canInterface(d.getOpposite()))return out;
 
 		return this.blockIcon;
     }

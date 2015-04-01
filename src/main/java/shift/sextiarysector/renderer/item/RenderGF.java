@@ -10,8 +10,8 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
-import shift.sextiarysector.api.machine.item.GearForceItem;
-import shift.sextiarysector.api.machine.item.IGearForceItem;
+import shift.sextiarysector.api.gearforce.item.GearForceItemAPI;
+import shift.sextiarysector.api.gearforce.item.IGearForceItem;
 import shift.sextiarysector.event.ClientEventHandler;
 import cpw.mods.fml.client.FMLClientHandler;
 
@@ -38,7 +38,7 @@ public class RenderGF implements IItemRenderer {
 		if(item.getItem() instanceof IGearForceItem && type == ItemRenderType.INVENTORY)
 		{
 
-			int k = (int)Math.round(GearForceItem.manager.getSpeed(item) * 13.0D / ((IGearForceItem)item.getItem()).getMaxSpeed(item));
+			int k = (int)Math.round(GearForceItemAPI.manager.getSpeed(item) * 13.0D / ((IGearForceItem)item.getItem()).getMaxSpeed(item));
 
 			GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_ALPHA_TEST);

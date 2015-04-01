@@ -1,10 +1,12 @@
 package shift.sextiarysector.api.machine.energy;
 
 import net.minecraftforge.common.util.ForgeDirection;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
 
 /**
- *
- * IGFEnergyHandlerを使ってください
+ * 注 竹MOD用に残してあります
+ * @Deprecated パッケージが変更になりました {@link IGearForceHandler}
  *
  * @see IEnergyStorage
  * @see EnergyStorage

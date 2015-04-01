@@ -28,6 +28,9 @@ public class SSOreDictionary {
 
 		OreDictionary.registerOre("containerWoodBowl", Items.bowl);
 		OreDictionary.registerOre("containerBucket", Items.bucket);
+		OreDictionary.registerOre("containerBottle", Items.glass_bottle);
+
+		OreDictionary.registerOre("dustRedstone", Items.redstone);
 
 		OreDictionary.registerOre("craftingString", new ItemStack(Items.string, 1, 0));
 
@@ -128,6 +131,8 @@ public class SSOreDictionary {
 
 		OreDictionary.registerOre("slimeball", new ItemStack(SSItems.sapBottle));
 		OreDictionary.registerOre("slimeball", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.sap.getID()));
+
+		OreDictionary.registerOre("containerBottle", new ItemStack(SSItems.emptyBottle));
 
 		//食べ物
 

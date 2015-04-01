@@ -4,10 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 
-public class TileEntitySmallWaterwheel extends TileEntityDirection implements IGFEnergyHandler,IGearForceGrid{
+public class TileEntitySmallWaterwheel extends TileEntityDirection implements IGearForceHandler,IGearForceGrid{
 
 	public float rotateStep = 0;
 
@@ -43,9 +43,9 @@ public class TileEntitySmallWaterwheel extends TileEntityDirection implements IG
 	public void updateServerEntity()
 	{
 		TileEntity t =this.worldObj.getTileEntity(xCoord-this.direction.offsetX, yCoord-this.direction.offsetY, zCoord-this.direction.offsetZ);
-		if(t!=null && t instanceof IGFEnergyHandler && this.isWork()){
+		if(t!=null && t instanceof IGearForceHandler && this.isWork()){
 
-			((IGFEnergyHandler)t).addEnergy(this.direction, 2, 40, false);
+			((IGearForceHandler)t).addEnergy(this.direction, 2, 40, false);
 		}
 
 	}

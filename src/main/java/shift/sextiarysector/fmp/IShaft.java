@@ -1,10 +1,10 @@
 package shift.sextiarysector.fmp;
 
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
 
-public interface IShaft extends IGFEnergyHandler {
+public interface IShaft extends IGearForceHandler {
 
 	public void setDirection(ForgeDirection d);
 

@@ -9,11 +9,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 
-public class TileEntitySaw  extends TileEntityDirection  implements IGFEnergyHandler ,IGearForceGrid{
+public class TileEntitySaw  extends TileEntityDirection  implements IGearForceHandler ,IGearForceGrid{
 
 	public float rotateStep = 360;
 	private int speed = 0;

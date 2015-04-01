@@ -6,10 +6,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import shift.mceconomy2.api.MCEconomyAPI;
 import shift.sextiarysector.SSItems;
+import shift.sextiarysector.api.equipment.EquipmentType;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.EquipmentStats;
-import shift.sextiarysector.player.EquipmentType;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class PlayerUnitEventHandler {
@@ -60,8 +62,8 @@ public class PlayerUnitEventHandler {
 
 		EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.source.getEntity());
 
-		for (int i = 0; i < EquipmentType.Unit.getSlot().length; i++) {
-			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlot()[i]);
+		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
 
 			if (item != null && item.getItem() != null && item.getItem() == SSItems.attackUnit) {
 				event.ammount++;
@@ -78,8 +80,8 @@ public class PlayerUnitEventHandler {
 
 		EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
 
-		for (int i = 0; i < EquipmentType.Unit.getSlot().length; i++) {
-			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlot()[i]);
+		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
 
 			if (item != null && item.getItem() != null && item.getItem() == SSItems.defenseUnit) {
 				event.ammount--;
@@ -102,9 +104,9 @@ public class PlayerUnitEventHandler {
 
 		Block block = event.block;
 
-		for (int i = 0; i < EquipmentType.Unit.getSlot().length; i++) {
+		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
 
-			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlot()[i]);
+			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
 
 			if (item == null) continue;
 
@@ -121,6 +123,42 @@ public class PlayerUnitEventHandler {
 						event.success = true;
 					}
 				}
+
+			}
+
+		}
+
+	}
+
+	//リング
+	@SubscribeEvent(priority = EventPriority.HIGH)
+	public void onPlayerCloneEvent(net.minecraftforge.event.entity.player.PlayerEvent.Clone event)
+	{
+
+		if (!event.wasDeath) return;
+
+		if (!(event.original instanceof EntityPlayer)) return;
+
+		EquipmentStats e = EntityPlayerManager.getEquipmentStats(event.original);
+
+		int mp = (int) (MCEconomyAPI.getPlayerMP(event.original) / 4.0f);
+		int xp = (int) (event.original.experienceLevel / 4.0f);
+
+		for (int i = 0; i < EquipmentType.Ring.getSlots().length; i++) {
+
+			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Ring.getSlots()[i]);
+
+			if (item != null && item.getItem() == SSItems.mpRing) {
+
+				int reduce = MCEconomyAPI.reducePlayerMP(event.original, mp, false);
+				MCEconomyAPI.addPlayerMP(event.entityPlayer, reduce, false);
+				e.inventory.setInventorySlotContents(EquipmentType.Ring.getSlots()[i], null);
+
+			} else if (item != null && item.getItem() == SSItems.xpRing) {
+
+				event.entityPlayer.experienceLevel += xp;
+				event.original.experienceLevel -= xp;
+				e.inventory.setInventorySlotContents(EquipmentType.Ring.getSlots()[i], null);
 
 			}
 
