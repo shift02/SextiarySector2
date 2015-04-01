@@ -6,8 +6,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import shift.sextiarysector.api.machine.item.IGearForceItem;
-import shift.sextiarysector.api.machine.item.IGearForceItemManager;
+import shift.sextiarysector.api.gearforce.item.IGearForceItem;
+import shift.sextiarysector.api.gearforce.item.IGearForceItemManager;
 
 public class GearForceItemManager implements IGearForceItemManager {
 

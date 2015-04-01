@@ -31,10 +31,7 @@ public class SextiarySectorAPI {
 	 * IPlayerManager Player関係のインターフェース <br>
 	 * このインスタンスから操作をしてください。
 	 */
-	public static IPlayerManager playerManager ;
-
-
-
+	public static IPlayerManager playerManager;
 
 	/*
 	 * -----------------------
@@ -42,7 +39,7 @@ public class SextiarySectorAPI {
 	 *------------------------
 	 */
 
-	//メモ  MAX水分 20 , MAXスタミナ 1000
+	//メモ  MAX水分 20 , MAXスタミナ 100
 
 	/**
 	 * addMoistureStats プレイヤーの水分ゲージを回復します
@@ -59,7 +56,7 @@ public class SextiarySectorAPI {
 	 * @param entityPlayer プレイヤー
 	 * @param amount 減らす量(4.0fで1)
 	 */
-	public static void addMoistureExhaustion(EntityPlayer entityPlayer, float amount){
+	public static void addMoistureExhaustion(EntityPlayer entityPlayer, float amount) {
 		playerManager.addMoistureExhaustion(entityPlayer, amount);
 	}
 
@@ -69,7 +66,7 @@ public class SextiarySectorAPI {
 	 * @param par1 スタミナ
 	 * @param par2 隠しスタミナ
 	 */
-	public static void addStaminaStats(EntityPlayer entityPlayer, int par1, float par2){
+	public static void addStaminaStats(EntityPlayer entityPlayer, int par1, float par2) {
 		playerManager.addStaminaStats(entityPlayer, par1, par2);
 	}
 
@@ -78,9 +75,8 @@ public class SextiarySectorAPI {
 	 * @param entityPlayer プレイヤー
 	 * @param amount 減らす量(4.0fで1)
 	 */
-	public static void addStaminaExhaustion(EntityPlayer entityPlayer, float amount){
+	public static void addStaminaExhaustion(EntityPlayer entityPlayer, float amount) {
 		playerManager.addStaminaExhaustion(entityPlayer, amount);
 	}
-
 
 }

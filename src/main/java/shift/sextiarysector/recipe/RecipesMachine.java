@@ -80,6 +80,18 @@ public class RecipesMachine {
 						Character.valueOf('p'), "ingotSteel"
 				}));
 
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.strongCanvas, 1),
+				new Object[] { "xxy", "xxy", "  y",
+						Character.valueOf('y'), "plankWood",
+						Character.valueOf('x'), SSItems.strongCloth
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.largeWindmill, 1),
+				new Object[] { " x ", "xyx", " x ",
+						Character.valueOf('y'), SSBlocks.steelShaft,
+						Character.valueOf('x'), SSItems.strongCanvas
+				}));
+
 		for (int i = 0; i < 5; i++) {
 
 			p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(shaft[i], 4),
@@ -172,6 +184,14 @@ public class RecipesMachine {
 						Character.valueOf('x'), SSItems.steelGFStorage,
 						Character.valueOf('z'), SSItems.steelUnitGear,
 						Character.valueOf('a'), "gemDiamond"
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.extractor, 1),
+				new Object[] { "yyy", "aza", "yxy",
+						Character.valueOf('y'), "plankWood",
+						Character.valueOf('x'), SSItems.steelGFStorage,
+						Character.valueOf('z'), SSItems.steelUnitGear,
+						Character.valueOf('a'), "containerBottle"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.fan, 1),

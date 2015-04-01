@@ -6,7 +6,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import shift.sextiarysector.api.machine.item.GearForceItem;
+import shift.sextiarysector.api.gearforce.item.GearForceItemAPI;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -189,7 +189,7 @@ public class ContainerGFTank extends Container{
                         return null;
                     }
                 }
-                else */if (GearForceItem.manager.isGearForceItem(itemstack1))
+                else */if (GearForceItemAPI.manager.isGearForceItem(itemstack1))
                 {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {

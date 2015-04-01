@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.item.IHammer;
+import shift.sextiarysector.api.gearforce.item.IHammer;
 import shift.sextiarysector.tileentity.TileEntityDirection;
 
 public abstract class BlockDirection extends BlockContainer {

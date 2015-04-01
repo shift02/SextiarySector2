@@ -12,11 +12,11 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
 import shift.sextiarysector.container.ItemBox;
 
-public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEnergyHandler, IGearForceGrid, ISidedInventory, IFluidHandler{
+public class TileEntitySteamMotor extends TileEntityDirection implements IGearForceHandler, IGearForceGrid, ISidedInventory, IFluidHandler {
 
 	protected static final int[] slots_top = new int[] { 0 };
 	protected static final int[] slots_bottom = new int[] { 1 };
@@ -25,12 +25,11 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEne
 	protected ItemBox items = new ItemBox("Base", 2);
 
 	//液体
-	private FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 15);
+	private final FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 15);
 
-	private int  lastSteam = 0;
+	private int lastSteam = 0;
 	private boolean lastWork = false;
 	public float rotateStep = 0;
-
 
 	@Override
 	public void updateEntity()
@@ -48,74 +47,75 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEne
 
 	public void updateClientEntity()
 	{
-		if(lastWork && this.canWork()){
-			rotateStep -=10;
+		if (lastWork && this.canWork()) {
+			rotateStep -= 10;
 		}
 	}
 
 	public void updateServerEntity()
 	{
 
-		if(lastSteam != this.tank.getFluidAmount()){
+		if (lastSteam != this.tank.getFluidAmount()) {
 			lastSteam = this.tank.getFluidAmount();
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 
-		if(this.canWork()){
+		if (this.canWork()) {
 			this.work();
 		}
 
-		if(this.canCharge()){
+		if (this.canCharge()) {
 			this.chargeSteam();
 		}
 
 	}
 
-	public boolean canWork(){
+	public boolean canWork() {
 		return this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord) && this.tank.getFluidAmount() > 0;
 	}
 
-	public void work(){
+	public void work() {
 
-		int use = this.tank.drain(20, false) == null ? 0 :  this.tank.drain(20, true).amount;
+		int use = this.tank.drain(20, false) == null ? 0 : this.tank.drain(20, true).amount;
 
-		if(use == 0){
-			if(lastWork){
+		if (use == 0) {
+			if (lastWork) {
 				lastWork = false;
 				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			}
 			return;
 		}
 
-		if(!lastWork){
-			lastWork =true;
+		if (!lastWork) {
+			lastWork = true;
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 
-		TileEntity t =this.worldObj.getTileEntity(xCoord-this.direction.offsetX, yCoord-this.direction.offsetY, zCoord-this.direction.offsetZ);
-		if(t!=null && t instanceof IGFEnergyHandler && this.canWork()){
+		TileEntity t = this.worldObj.getTileEntity(xCoord - this.direction.offsetX, yCoord - this.direction.offsetY, zCoord - this.direction.offsetZ);
+		if (t != null && t instanceof IGearForceHandler && this.canWork()) {
 
-			((IGFEnergyHandler)t).addEnergy(this.direction, 3, use, false);
+			((IGearForceHandler) t).addEnergy(this.direction, 3, (int) (use * 2.2f), false);
+
 		}
 
 	}
 
-	public void chargeSteam(){
+	public void chargeSteam() {
 
 		FluidStack f = FluidContainerRegistry.getFluidForFilledItem(items.getStackInSlot(0));
 		this.fill(ForgeDirection.UP, f, true);
 		ItemStack item = items.getStackInSlot(0).getItem().getContainerItem(items.getStackInSlot(0));
 
-		if(item!=null){
+		if (item != null) {
 
 			if (this.items.getStackInSlot(1) == null)
-	        {
-	            this.setInventorySlotContents(1, item.copy());
-	        }
-	        else if (this.items.getStackInSlot(1).isItemEqual(item))
-	        {
-	        	this.items.getStackInSlot(1).stackSize += item.stackSize;
-	        }
+			{
+				this.setInventorySlotContents(1, item.copy());
+			}
+			else if (this.items.getStackInSlot(1).isItemEqual(item))
+			{
+				this.items.getStackInSlot(1).stackSize += item.stackSize;
+			}
 
 		}
 
@@ -123,28 +123,26 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEne
 
 		this.markDirty();
 
-        this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-
+		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
 	}
 
-	public boolean canCharge(){
+	public boolean canCharge() {
 
 		FluidStack f = FluidContainerRegistry.getFluidForFilledItem(items.getStackInSlot(0));
 
-		if(f == null)return false;
+		if (f == null) return false;
 
 		int i = this.fill(ForgeDirection.UP, f, false);
 
-		if(i != f.amount)return false;
+		if (i != f.amount) return false;
 
-
-		if(items.getStackInSlot(0) == null)return false;
-		if(this.items.getStackInSlot(1) == null)return true;
+		if (items.getStackInSlot(0) == null) return false;
+		if (this.items.getStackInSlot(1) == null) return true;
 		ItemStack item = items.getStackInSlot(0).getItem().getContainerItem(items.getStackInSlot(0).copy());
-		if(item == null)return true;
+		if (item == null) return true;
 		int result = this.items.getStackInSlot(1).stackSize + item.stackSize;
-        return (result <= getInventoryStackLimit() && result <= item.getMaxStackSize());
+		return (result <= getInventoryStackLimit() && result <= item.getMaxStackSize());
 
 	}
 
@@ -157,10 +155,9 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEne
 		return tank;
 	}
 
-	public boolean isFluid(){
+	public boolean isFluid() {
 		return this.getTank().getFluidAmount() > 0;
 	}
-
 
 	//IInventory関係
 	@Override
@@ -199,7 +196,7 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEne
 	}
 
 	@Override
-	public void markDirty(){
+	public void markDirty() {
 		super.markDirty();
 		items.onInventoryChanged();
 	}
@@ -221,7 +218,7 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEne
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 
-		return i == 0 ;
+		return i == 0;
 
 	}
 
@@ -230,11 +227,11 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEne
 	@Override
 	public int[] getAccessibleSlotsFromSide(int var1) {
 
-		if(var1 == 0){
+		if (var1 == 0) {
 			return slots_bottom;
 		}
 
-		if(var1 == 1){
+		if (var1 == 1) {
 			return slots_top;
 		}
 
@@ -249,15 +246,14 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEne
 
 	@Override
 	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_)
-    {
+	{
 
-		if(p_102008_1_ == 1){
+		if (p_102008_1_ == 1) {
 			return true;
 		}
 
-
-        return false;
-    }
+		return false;
+	}
 
 	@Override
 	public String getInventoryName() {
@@ -266,12 +262,12 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEne
 
 	//GF
 	@Override
-	public int addEnergy(ForgeDirection from, int power, int speed,boolean simulate) {
+	public int addEnergy(ForgeDirection from, int power, int speed, boolean simulate) {
 		return 0;
 	}
 
 	@Override
-	public int drawEnergy(ForgeDirection from, int power, int speed,boolean simulate) {
+	public int drawEnergy(ForgeDirection from, int power, int speed, boolean simulate) {
 		return 0;
 	}
 
@@ -310,61 +306,60 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEne
 		return this.direction.getOpposite().ordinal() == from.ordinal();
 	}
 
-
 	//IFluidHandler関係
 	@Override
-    public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
-    {
-		if(resource == null || resource.getFluid() == null)return 0;
-		if(!canFill(from, resource.getFluid()))return 0;
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
+	{
+		if (resource == null || resource.getFluid() == null) return 0;
+		if (!canFill(from, resource.getFluid())) return 0;
 
-        return tank.fill(resource, doFill);
-    }
+		return tank.fill(resource, doFill);
+	}
 
-    @Override
-    public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
-    {
-        if (resource == null || !resource.isFluidEqual(getTank().getFluid()))
-        {
-            return null;
-        }
-        return getTank().drain(resource.amount, doDrain);
+	@Override
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
+	{
+		if (resource == null || !resource.isFluidEqual(getTank().getFluid()))
+		{
+			return null;
+		}
+		return getTank().drain(resource.amount, doDrain);
 
-    }
+	}
 
-    @Override
-    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
-    {
-        return getTank().drain(maxDrain, doDrain);
-    }
+	@Override
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
+	{
+		return getTank().drain(maxDrain, doDrain);
+	}
 
-    @Override
-    public boolean canFill(ForgeDirection from, Fluid fluid)
-    {
-    	if(!fluid.getName().equals("steam"))return false;
+	@Override
+	public boolean canFill(ForgeDirection from, Fluid fluid)
+	{
+		if (!fluid.getName().equals("steam")) return false;
 
-        return true;
-    }
+		return true;
+	}
 
-    @Override
-    public boolean canDrain(ForgeDirection from, Fluid fluid)
-    {
-        return true;
-    }
+	@Override
+	public boolean canDrain(ForgeDirection from, Fluid fluid)
+	{
+		return true;
+	}
 
-    @Override
-    public FluidTankInfo[] getTankInfo(ForgeDirection from)
-    {
-        return new FluidTankInfo[] { getTank().getInfo() };
-    }
+	@Override
+	public FluidTankInfo[] getTankInfo(ForgeDirection from)
+	{
+		return new FluidTankInfo[] { getTank().getInfo() };
+	}
 
-    //NBT
-    @Override
+	//NBT
+	@Override
 	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
 		super.readFromNBT(par1nbtTagCompound);
 		this.items.readFromNBT(par1nbtTagCompound);
 		this.tank.readFromNBT(par1nbtTagCompound);
-		if(par1nbtTagCompound.hasKey("Empty") && this.tank.getFluidAmount() > 0)this.tank.setFluid(null);
+		if (par1nbtTagCompound.hasKey("Empty") && this.tank.getFluidAmount() > 0) this.tank.setFluid(null);
 		this.lastWork = par1nbtTagCompound.getBoolean("lastwork");
 	}
 
@@ -375,7 +370,5 @@ public class TileEntitySteamMotor extends TileEntityDirection  implements IGFEne
 		this.tank.writeToNBT(par1nbtTagCompound);
 		par1nbtTagCompound.setBoolean("lastwork", this.lastWork);
 	}
-
-
 
 }

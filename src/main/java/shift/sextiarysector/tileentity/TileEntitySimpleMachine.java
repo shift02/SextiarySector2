@@ -5,14 +5,14 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.machine.energy.EnergyStorage;
-import shift.sextiarysector.api.machine.energy.IGFEnergyHandler;
-import shift.sextiarysector.api.machine.energy.IGearForceGrid;
-import shift.sextiarysector.api.machine.item.GearForceItem;
+import shift.sextiarysector.api.gearforce.item.GearForceItemAPI;
+import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 import shift.sextiarysector.block.BlockSimpleMachine;
 import shift.sextiarysector.container.ItemBox;
 
-public class TileEntitySimpleMachine extends TileEntityDirection implements ISidedInventory, IGFEnergyHandler, IGearForceGrid {
+public class TileEntitySimpleMachine extends TileEntityDirection implements ISidedInventory, IGearForceHandler, IGearForceGrid {
 
 	protected static final int[] slots_top = new int[] { 0 };
 	protected static final int[] slots_bottom = new int[] { 2, 1 };
@@ -126,11 +126,11 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 	{
 		if (this.items.getStackInSlot(1) == null) return;
 
-		if (GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 1, true) > 0) {
-			int s = GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 20, true);
+		if (GearForceItemAPI.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 1, true) > 0) {
+			int s = GearForceItemAPI.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 20, true);
 
 			int i = this.storage.addEnergy(this.storage.getMaxPower(), s, false);
-			GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), i, false);
+			GearForceItemAPI.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), i, false);
 			if (i > 0) this.inPower = this.storage.getMaxPower();
 			//this.inSpeed += (int) i;
 
@@ -193,8 +193,8 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 		if (this.items.getStackInSlot(1) == null) return false;
 
 		f1 = this.storage.getMaxSpeed() > this.storage.getSpeedStored();
-		f2 = (this.items.getStackInSlot(1) != null && GearForceItem.manager.isGearForceItem(this.items.getStackInSlot(1)));
-		f3 = GearForceItem.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 1, true) > 0;
+		f2 = (this.items.getStackInSlot(1) != null && GearForceItemAPI.manager.isGearForceItem(this.items.getStackInSlot(1)));
+		f3 = GearForceItemAPI.manager.reduceEnergy(this.items.getStackInSlot(1), this.storage.getMaxPower(), 1, true) > 0;
 
 		//System.out.println(f1+" "+f2+" "+f3);
 
@@ -266,7 +266,7 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 
 		if (i == 1) {
-			return GearForceItem.manager.isGearForceItem(itemstack);
+			return GearForceItemAPI.manager.isGearForceItem(itemstack);
 		}
 
 		return i != 2;
@@ -349,7 +349,7 @@ public class TileEntitySimpleMachine extends TileEntityDirection implements ISid
 	@Override
 	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
 		return j != 0 || i != 1
-				|| (GearForceItem.manager.isGearForceItem(itemstack) && !GearForceItem.manager.canUse(itemstack, 1));
+				|| (GearForceItemAPI.manager.isGearForceItem(itemstack) && !GearForceItemAPI.manager.canUse(itemstack, 1));
 	}
 
 	public int getWorkProgressScaled(int par1)

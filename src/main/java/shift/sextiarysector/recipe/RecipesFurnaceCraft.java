@@ -33,6 +33,12 @@ public class RecipesFurnaceCraft {
 						"fluidWater",
 				}));
 
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.slime_ball, 1),
+				new Object[] {
+						"dyeGreen",
+						"fluidSap",
+				}));
+
 		/*
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.slime_ball, 2),
 				new Object[] {
@@ -64,6 +70,12 @@ public class RecipesFurnaceCraft {
 						"condimentSugar",
 						"condimentSugar",
 						"condimentCocoa",
+				}));
+
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.redGel, 2),
+				new Object[] {
+						"dustRedstone",
+						"slimeball"
 				}));
 
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.blueGel, 2),
@@ -132,6 +144,22 @@ public class RecipesFurnaceCraft {
 						"ringIron",
 						SSItems.objectReactor,
 						BlockMonitor.getMonitor(MonitorType.creeper)
+				}));
+
+		//MPRing
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.mpRing, 1),
+				new Object[] {
+						"ringIron",
+						SSItems.magicDust,
+						"dustGold"
+				}));
+
+		//XPRing
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.xpRing, 1),
+				new Object[] {
+						"ringIron",
+						SSItems.magicDust,
+						new ItemStack(Items.dye, 1, 4)
 				}));
 
 		//液体カマド

@@ -1,4 +1,4 @@
-package shift.sextiarysector.api.machine.energy;
+package shift.sextiarysector.api.gearforce.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -7,10 +7,14 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEnergyHandler extends TileEntity implements IGFEnergyHandler {
+/**
+ * IGFEnergyHandlerの実装例
+ * @version 1.0.0
+ * @author Shift02
+ */
+public class TileEnergyHandler extends TileEntity implements IGearForceHandler {
 
-	EnergyStorage storage = new EnergyStorage("Base",1,1000);
-
+	EnergyStorage storage = new EnergyStorage("Base", 1, 1000);
 
 	//EnergyStorageの利用
 	@Override
@@ -62,7 +66,6 @@ public class TileEnergyHandler extends TileEntity implements IGFEnergyHandler {
 
 	}
 
-
 	//NBT関係
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
@@ -81,12 +84,12 @@ public class TileEnergyHandler extends TileEntity implements IGFEnergyHandler {
 	@Override
 	public Packet getDescriptionPacket() {
 		NBTTagCompound nbt = new NBTTagCompound();
-        this.writeToNBT(nbt);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
+		this.writeToNBT(nbt);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt){
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		this.readFromNBT(pkt.func_148857_g());
 	}
 

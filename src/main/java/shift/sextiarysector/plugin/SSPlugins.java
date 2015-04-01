@@ -23,6 +23,7 @@ public class SSPlugins {
 	public static boolean modTcon;
 	public static boolean modCleaver;
 	public static boolean modFMP;
+	public static boolean modRF;
 
 	public static void initModHelper() {
 
@@ -34,6 +35,7 @@ public class SSPlugins {
 		modTcon = Loader.isModLoaded("TConstruct") && Config.modTcon;
 		modCleaver = Loader.isModLoaded("schr0.cleaver") && Config.modCleaver;
 		modFMP = Loader.isModLoaded("ForgeMultipart") && Config.modFMP;
+		modRF = isRF() && Config.modRF;
 
 		if (modDCsAppleMilk) {
 
@@ -155,6 +157,21 @@ public class SSPlugins {
 			}
 		}
 
+		if (modRF) {
+
+			try {
+
+				SextiarySector.Log.info("RF Plugin is loaded");
+				plugins.add(new PluginRF());
+
+			} catch (Exception e) {
+
+				SextiarySector.Log.log(Level.WARN, "RF integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+				SextiarySector.Log.catching(e);
+
+			}
+		}
+
 	}
 
 	public static void prePlugins(FMLPreInitializationEvent event) {
@@ -215,6 +232,21 @@ public class SSPlugins {
 
 			}
 		}
+
+	}
+
+	private static boolean isRF() {
+
+		Class<?> clazz;
+		try {
+			clazz = Class.forName("cofh.api.energy.IEnergyHandler");
+		} catch (ClassNotFoundException e) {
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
+
+		return true;
 
 	}
 

@@ -49,6 +49,12 @@ public class BlockGearShaft extends BlockDirection {
 		return SextiarySector.proxy.GearShaftRenderType;
 	}
 
+	@Override
+	public int damageDropped(int p_149692_1_)
+	{
+		return p_149692_1_;
+	}
+
 	/*
 	public int damageDropped(int p_149692_1_)
 	{

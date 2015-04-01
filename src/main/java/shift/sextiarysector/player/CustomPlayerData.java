@@ -33,6 +33,7 @@ public class CustomPlayerData implements IExtendedEntityProperties {
 
 		this.moisture.onUpdate(entityPlayer);
 		this.stamina.onUpdate(entityPlayer);
+		this.equipment.onUpdate(entityPlayer);
 
 	}
 

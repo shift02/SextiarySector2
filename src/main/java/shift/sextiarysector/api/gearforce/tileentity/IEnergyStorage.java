@@ -1,4 +1,4 @@
-package shift.sextiarysector.api.machine.energy;
+package shift.sextiarysector.api.gearforce.tileentity;
 
 /**
  * IEnergyStorage エネルギー用のインターフェース <br>

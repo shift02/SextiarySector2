@@ -1,4 +1,4 @@
-package shift.sextiarysector.api.machine.item;
+package shift.sextiarysector.api.gearforce.item;
 
 import net.minecraft.item.ItemStack;
 
@@ -19,10 +19,14 @@ public interface IGearForceItem {
 	 */
 	int getMaxPower(ItemStack container);
 
+	/**
+	 * アイテムにチャージ出来る最大スピード
+	 *
+	 * @param container アイテム
+	 * @return
+	 */
 	int getMaxSpeed(ItemStack container);
 
 	boolean canSetSlot(int power);
-
-	boolean isCustomDamage(ItemStack container);
 
 }
