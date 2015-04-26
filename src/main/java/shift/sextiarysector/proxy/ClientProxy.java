@@ -8,6 +8,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import org.apache.logging.log4j.Level;
 
 import shift.mceconomy2.packet.PacketHandler;
+import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.entity.EntityMineboat;
 import shift.sextiarysector.entity.EntityMineboatChest;
@@ -152,6 +153,11 @@ public class ClientProxy extends CommonProxy {
 
 		this.setCustomClientRenderers();
 
+	}
+
+	@Override
+	public void setItemCustomRenderers() {
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(SSBlocks.figure), new RendererFigure());
 	}
 
 	@SideOnly(Side.CLIENT)

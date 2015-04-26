@@ -9,6 +9,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
+import org.lwjgl.opengl.GL11;
+
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.MoistureStats;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -18,6 +21,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class HUDEventHandler {
 
 	public static final ResourceLocation icons = new ResourceLocation("sextiarysector:textures/guis/icons.png");
+	public static final ResourceLocation progress = new ResourceLocation("sextiarysector:textures/guis/progress.png");
 
 	public static int left_height = 39;
 	public static int right_height = 39;
@@ -120,6 +124,10 @@ public class HUDEventHandler {
 				HUDMP.isRenderer = false;
 			}*/
 
+		}
+
+		if (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS) {
+			//renderProgress(width, height);
 		}
 
 	}
@@ -273,6 +281,27 @@ public class HUDEventHandler {
 				drawTexturedModalRect(x, y, icon + 18, iconY, 9, 9);
 			}
 		}
+
+		mc.mcProfiler.endSection();
+		bind(Gui.icons);
+
+	}
+
+	protected void renderProgress(int width, int height) {
+
+		mc.mcProfiler.startSection("SSProgress");
+
+		bind(progress);
+
+		GL11.glPushMatrix();
+		GL11.glEnable(GL11.GL_BLEND);
+		//OpenGlHelper.glBlendFunc(GL11.GL_ONE_MINUS_DST_COLOR, GL11.GL_ONE_MINUS_SRC_COLOR, 1, 0);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glTranslatef(-50.0f, -50.0f, 0);
+		drawTexturedModalRect(width / 2, height / 2, 0, 0, 100, 100);
+		//OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glPopMatrix();
 
 		mc.mcProfiler.endSection();
 		bind(Gui.icons);

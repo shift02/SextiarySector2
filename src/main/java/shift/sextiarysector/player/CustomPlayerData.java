@@ -62,11 +62,11 @@ public class CustomPlayerData implements IExtendedEntityProperties {
 	@Override
 	public void init(Entity entity, World world) {
 
-		this.moisture = new MoistureStats();
+		if (this.moisture == null) this.moisture = new MoistureStats();
 
-		this.stamina = new StaminaStats();
+		if (this.stamina == null) this.stamina = new StaminaStats();
 
-		this.equipment = new EquipmentStats((EntityPlayer) entity);
+		if (this.equipment == null) this.equipment = new EquipmentStats();
 
 		//this.tab = new TabStats();
 

@@ -52,8 +52,7 @@ public class ItemGuiUnit extends Item implements IEquipment, ISSEquipment {
 
 	@Override
 	public boolean canDrop(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
+		return true;
 	}
 
 }
