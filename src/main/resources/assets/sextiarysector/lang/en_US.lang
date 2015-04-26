@@ -105,6 +105,7 @@ tile.ss.time_machine.name=Time Machine
 tile.ss.fan.name=Fan
 tile.ss.saw.name=Saw
 tile.ss.pump.name=Pump
+tile.ss.suction_machine.name=Suction Machine
 
 
 tile.ss.creeper_chest.name=Creeper Monger Chest
@@ -168,6 +169,7 @@ item.ss.ninja_gf_storage.name=Ninja GF Storage
 item.ss.orichalcum_gf_storage.name=Orichalcum GF Storage
 
 item.ss.hammer.name=Hammer
+item.ss.color_spray.name=Color Spray
 
 item.ss.calendar.name=Calendar
 item.ss.season_stone.name=Season Stone
@@ -367,6 +369,23 @@ fluid.ss.sap=Sap
 
 fluid.ss.iron=Iron Fluid
 fluid.ss.gold=Gold Fluid
+
+fluid.ss.black=Black
+fluid.ss.red=Red
+fluid.ss.green=Green
+fluid.ss.brown=Brown
+fluid.ss.blue=Blue
+fluid.ss.purple=Purple
+fluid.ss.cyan=Cyan
+fluid.ss.lightgray=LightGray
+fluid.ss.gray=Gray
+fluid.ss.pink=Pink
+fluid.ss.lime=Lime
+fluid.ss.yellow=Yellow
+fluid.ss.lightblue=LightBlue
+fluid.ss.magenta=Magenta
+fluid.ss.orange=Orange
+fluid.ss.white=White
 
 #Potion
 ss.potion.burn=Burn

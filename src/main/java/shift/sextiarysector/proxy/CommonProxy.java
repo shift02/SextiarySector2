@@ -47,6 +47,9 @@ public class CommonProxy {
 	public void setCustomRenderers() {
 	}
 
+	public void setItemCustomRenderers() {
+	}
+
 	public void registerItemRenderer(Item item) {
 
 	}

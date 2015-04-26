@@ -2,6 +2,8 @@ package shift.sextiarysector.block;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
@@ -9,6 +11,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
 import shift.sextiarysector.SextiarySector;
+import shift.sextiarysector.api.EnumColor;
+import shift.sextiarysector.api.IColorItem;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.tileentity.TileEntityPipe;
 import cpw.mods.fml.relauncher.Side;
@@ -23,6 +27,37 @@ public class BlockPipe extends BlockContainer {
 		this.setHardness(0.8F);
 		//this.setBlockBounds(0.0625f, 0.0f, 0.0625f, 0.9375f, 0.875f, 0.9375f);
 		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+	}
+
+	@Override
+	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+
+		ItemStack item = par5EntityPlayer.getCurrentEquippedItem();
+
+		if (item == null || !(item.getItem() instanceof IColorItem)) return false;
+
+		if (!((IColorItem) item.getItem()).canUse(item)) return false;
+
+		if (par1World.isRemote) return true;
+
+		return this.changeColor(par1World, x, y, z, par5EntityPlayer, item);
+
+		//return true;
+	}
+
+	public boolean changeColor(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, ItemStack itemStack) {
+
+		TileEntityPipe t = (TileEntityPipe) par1World.getTileEntity(x, y, z);
+
+		IColorItem item = ((IColorItem) itemStack.getItem());
+
+		if (t.color.ordinal() == item.getColor(itemStack).ordinal()) return false;
+
+		t.color = item.getColor(itemStack);
+		item.useItem(itemStack);
+
+		par1World.markBlockForUpdate(x, y, z);
+		return true;
 	}
 
 	@Override
@@ -119,11 +154,22 @@ public class BlockPipe extends BlockContainer {
 		return AxisAlignedBB.getBoundingBox(par2 + defaultSize[4], par3 + defaultSize[0], par4 + defaultSize[2], par2 + defaultSize[5], par3 + defaultSize[1], par4 + defaultSize[3]);
 	}
 
-	public boolean canConnect(IBlockAccess world, int x, int y, int z, ForgeDirection d) {
+	public static boolean canConnect(IBlockAccess world, int x, int y, int z, ForgeDirection d) {
 
 		TileEntity t = world.getTileEntity(x + d.offsetX, y + d.offsetY, z + d.offsetZ);
 
-		if (t != null && t instanceof IFluidHandler) return true;
+		if (t != null && t instanceof IFluidHandler) {
+
+			if (!(t instanceof TileEntityPipe)) return true;
+
+			TileEntityPipe tP1 = (TileEntityPipe) world.getTileEntity(x, y, z);
+			if (tP1 == null) return false;
+			TileEntityPipe tP2 = (TileEntityPipe) t;
+
+			if (tP1.color.ordinal() == EnumColor.Unknown.ordinal() || tP2.color.ordinal() == EnumColor.Unknown.ordinal()) return true;
+			if (tP1.color.ordinal() == tP2.color.ordinal()) return true;
+
+		}
 
 		return false;
 	}
