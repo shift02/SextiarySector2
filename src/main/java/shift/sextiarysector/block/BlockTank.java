@@ -19,7 +19,7 @@ public class BlockTank extends BlockContainer {
 		super(Material.glass);
 		float b = 1.0f / 16.0f;
 		this.setBlockBounds(b, 0, b, 1.0f - b, 1, 1.0f - b);
-		this.setHardness(0.3f);
+		this.setHardness(0.4f);
 		this.setStepSound(soundTypeGlass);
 	}
 

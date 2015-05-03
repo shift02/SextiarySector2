@@ -20,6 +20,7 @@ public class BlockFunnel extends BlockContainer {
 
 	public BlockFunnel() {
 		super(Material.iron);
+		this.setHardness(0.7f);
 	}
 
 	@Override
