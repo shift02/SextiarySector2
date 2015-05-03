@@ -10,10 +10,11 @@ import shift.sextiarysector.api.equipment.IEquipment;
 public class InventoryPlayerNext implements IInventory {
 
 	ItemBox items = new ItemBox("Base", 20, 1);
-	private final EntityPlayer player;
 
-	public InventoryPlayerNext(EntityPlayer player) {
-		this.player = player;
+	//private final EntityPlayer player;
+
+	public InventoryPlayerNext() {
+		//this.player = player;
 	}
 
 	@Override
@@ -82,7 +83,7 @@ public class InventoryPlayerNext implements IInventory {
 		return true;
 	}
 
-	public void dropAllItems()
+	public void dropAllItems(EntityPlayer player)
 	{
 		int i;
 
@@ -93,7 +94,7 @@ public class InventoryPlayerNext implements IInventory {
 
 			if (item != null && ((IEquipment) item.getItem()).canDrop(EquipmentType.getEquipmentTypeFromSlot(i), item, player))
 			{
-				this.player.func_146097_a(item, true, false);
+				player.func_146097_a(item, true, false);
 				this.items.setInventorySlotContents(i, null);
 			}
 		}

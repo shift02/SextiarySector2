@@ -13,6 +13,7 @@ public class ItemContactLenses extends Item implements IEquipment {
 
 	public ItemContactLenses() {
 		this.setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		this.setMaxStackSize(1);
 	}
 
 	@Override

@@ -1,12 +1,18 @@
 package shift.sextiarysector;
 
+import java.util.Locale;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidContainerItem;
+import shift.sextiarysector.api.EnumColor;
 import shift.sextiarysector.event.ClientEventHandler;
+import shift.sextiarysector.fluid.FluidColor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -27,6 +33,8 @@ public class SSFluids {
 	public static Fluid iron;
 	public static Fluid gold;
 
+	public static Fluid[] color;
+
 	public static void initFluids() {
 
 		takumiTea = new SSFluid("TakumiTea", 0, 0x006400, 5, 2.0f).setUnlocalizedName("takumi_tea");
@@ -43,6 +51,11 @@ public class SSFluids {
 
 		iron = new SSFluid("Iron", 2, 0xFF1493, 1, 1.0f).setUnlocalizedName("iron");
 		gold = new SSFluid("Gold", 2, 0xFFD700, 1, 1.0f).setUnlocalizedName("gold");
+
+		color = new Fluid[16];
+		for (int i = 0; i < color.length; i++) {
+			color[i] = new FluidColor(EnumColor.getColor(i).name(), EnumColor.getColor(i)).setUnlocalizedName(EnumColor.getColor(i).name().toLowerCase(Locale.ENGLISH));
+		}
 
 	}
 
@@ -62,6 +75,13 @@ public class SSFluids {
 		FluidContainerRegistry.registerFluidContainer(steam, new ItemStack(SSItems.steamBucket, 1), new ItemStack(Items.bucket, 1));
 		FluidContainerRegistry.registerFluidContainer(iron, new ItemStack(SSItems.ironFluidBucket, 1), new ItemStack(Items.bucket, 1));
 		FluidContainerRegistry.registerFluidContainer(gold, new ItemStack(SSItems.goldFluidBucket, 1), new ItemStack(Items.bucket, 1));
+
+		for (int i = 0; i < color.length; i++) {
+
+			ItemStack item = new ItemStack(SSItems.colorSpray, 1, i);
+			((IFluidContainerItem) item.getItem()).fill(item, new FluidStack(color[i], 1000), true);
+			FluidContainerRegistry.registerFluidContainer(color[i], item, new ItemStack(SSItems.emptyBottle));
+		}
 
 	}
 

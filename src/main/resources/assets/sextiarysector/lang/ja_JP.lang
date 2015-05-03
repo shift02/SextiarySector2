@@ -30,7 +30,9 @@ tile.ss.bottle.name=液体ボトル
 tile.ss.fluid_crafter.name=流体クラフター
 tile.ss.square.name=枡
 
-tile.ss.iron_pipe.name=鉄のパイプ
+tile.ss.tank.name=タンク
+tile.ss.funnel.name=漏斗
+tile.ss.copper_pipe.name=銅のパイプ
 
 
 tile.ss.wood_hopper.name=木のホッパー
@@ -39,6 +41,7 @@ tile.ss.chunk_loader.name=タイムローダー
 
 tile.ss.figure.name=フィギュア
 
+tile.ss.trap.name=トラップ
 
 tile.ss.drinking_water.name=飲料水
 tile.ss.hot_springs.name=温泉水
@@ -61,6 +64,7 @@ tile.ss.gold_large_ore.name=大きな金鉱石
 
 tile.ss.small_windmill.name=小さい風車
 tile.ss.windmill.name=風車
+tile.ss.large_windmill.name=大きい風車
 tile.ss.small_waterwheel.name=小さい水車
 tile.ss.steam_motor.name=蒸気モーター
 
@@ -90,8 +94,11 @@ tile.ss.ninja_orichalcum_gear_shaft.name=ニンジャとオリハルコンのギ
 tile.ss.millstone.name=石臼
 tile.ss.loom.name=織機
 tile.ss.sawmill.name=製材機
+tile.ss.spinning_machine.name=紡績機
 tile.ss.pulverizer.name=粉砕機
+tile.ss.extractor.name=抽出機
 tile.ss.rolling_machine.name=圧延機
+tile.ss.mana_squeezer.name=マナ抽出機
 tile.ss.time_machine.name=タイムマシン
 
 
@@ -116,11 +123,13 @@ tile.ss.eggplant.name=ナスの種
 tile.ss.sweet_potato.name=サツマイモの種
 tile.ss.green_pepper.name=ピーマンの種
 
-tile.ss.radish.name=ダイコンの種
+tile.ss.radish.name=大根の種
 
 tile.ss.rice.name=種籾
 
 tile.ss.mushroom_red.name=赤キノコの胞子
+tile.ss.shiitake.name=シイタケの胞子
+
 
 tile.ss.sandpit.name=砂場
 
@@ -135,6 +144,7 @@ monitor.robot=ロボさんショップ
 
 tile.ss.electric_motor.name=電気モーター
 tile.ss.tofu_motor.name=豆腐モーター
+tile.ss.gf_dynamo.name=GFダイナモ
 
 #アイテム
 item.ss.unit.name=ユニット
@@ -161,10 +171,10 @@ item.ss.hammer.name=ハンマー
 
 item.ss.calendar.name=カレンダー
 item.ss.season_stone.name=シーズンストーン
-item.ss.season_stone_spring.name=シーズンストーン -春-
-item.ss.season_stone_summer.name=シーズンストーン -夏-
-item.ss.season_stone_autumn.name=シーズンストーン -秋-
-item.ss.season_stone_winter.name=シーズンストーン -冬-
+item.ss.season_stone_spring.name=シーズンストーン-春-
+item.ss.season_stone_summer.name=シーズンストーン-夏-
+item.ss.season_stone_autumn.name=シーズンストーン-秋-
+item.ss.season_stone_winter.name=シーズンストーン-冬-
 
 
 
@@ -201,7 +211,9 @@ item.ss.orichalcum_gem.name=オリハルコン
 
 item.ss.ninja_ingot.name=ニンジャインゴット
 
-item.ss.blue_stone_slime_ball.name=ブルーストーンボール
+item.ss.red_gel.name=レッドストーンジェル
+item.ss.blue_gel.name=ブルーストーンジェル
+item.ss.yellow_gel.name=イエローストーンジェル
 
 item.ss.energy_reactor.name=エネルギーリアクター
 item.ss.object_reactor.name=オブジェクトリアクター
@@ -217,16 +229,6 @@ item.ss.steam_bucket.name=蒸気入りバケツ
 item.ss.iron_fluid_bucket.name=融けた鉄入りバケツ
 item.ss.gold_fluid_bucket.name=融けた金入りバケツ
 
-
-item.ss.craft_unit.name=クラフトユニット
-item.ss.attack_unit.name=アタックユニット
-item.ss.defense_unit.name=ディフェンスユニット
-
-
-item.ss.iron_ring.name=鉄の指輪
-item.ss.creeper_ring.name=クリーパーショップの指輪
-
-
 item.ss.magic_dust.name=魔法の粉
 
 
@@ -236,6 +238,12 @@ item.ss.small_cloth.name=小さな布
 item.ss.canvas.name=粗布
 item.ss.drying_flesh.name=乾燥肉
 item.ss.flesh_bobbin.name=肉のボビン
+item.ss.string_mass.name=糸の塊
+item.ss.strong_string.name=丈夫な糸
+item.ss.strong_string_bobbin.name=丈夫な糸のボビン
+item.ss.strong_cloth.name=丈夫な布
+item.ss.strong_canvas.name=丈夫な粗布
+
 
 item.ss.figure_box.name=フィギュアボックス
 
@@ -252,9 +260,21 @@ item.ss.iron_knife.name=鉄のナイフ
 item.ss.gold_knife.name=金のナイフ
 item.ss.diamond_knife.name=ダイヤのナイフ
 
+item.ss.copper_shovel.name=銅のショベル
+item.ss.copper_pickaxe.name=銅のツルハシ
+item.ss.copper_axe.name=銅の斧
+item.ss.copper_sword.name=銅の剣
+item.ss.copper_hoe.name=銅のクワ
+
+item.ss.copper_helmet.name=銅のヘルメット
+item.ss.copper_chestplate.name=胴のチェストプレート
+item.ss.copper_leggings.name=銅のレギンス
+item.ss.copper_boots.name=銅のブーツ
+
 item.ss.wood_watering_can.name=木のジョウロ
 
 item.ss.mineboat_chest.name=チェスト付きボート
+item.ss.mineboat_tank.name=タンク付きボート
 
 item.ss.laver.name=海苔
 
@@ -278,9 +298,11 @@ item.ss.green_pepper.name=ピーマン
 
 item.ss.blue_potato.name=青サツマイモ
 
-item.ss.radish.name=ダイコン
+item.ss.radish.name=大根
 
 item.ss.rice.name=米
+
+item.ss.shiitake.name=椎茸
 
 
 item.ss.white_rice.name=白米
@@ -310,15 +332,37 @@ item.ss.chocolate.name=チョコレート
 item.ss.drinking_water_bottle.name=飲料水入りボトル
 item.ss.takumi_tea_bottle.name=匠茶入りボトル
 
+
+
 item.ss.shift_hat.name=Shiftの帽子
 item.ss.rucksack.name=リュックサック
+item.ss.oxygen_tank.name=酸素タンク
 item.ss.gf_contact_lenses.name=GFコンタクトレンズ
+item.ss.water_contact_lenses.name=ウォーターコンタクトレンズ
+
+item.ss.craft_unit.name=クラフトユニット
+item.ss.attack_unit.name=アタックユニット
+item.ss.defense_unit.name=ディフェンスユニット
+item.ss.attack_rust_unit.name=錆びたアタックユニット
+item.ss.defense_rust_unit.name=錆びたディフェンスユニット
+item.ss.pickaxe_unit.name=ツルハシユニット
+
+
+item.ss.iron_ring.name=鉄の指輪
+item.ss.creeper_ring.name=クリーパーショップリング
+item.ss.mp_ring.name=MPリング
+item.ss.xp_ring.name=XPリング
+
+
 
 #液体
 fluid.ss.takumi_tea=匠茶
 fluid.ss.drinking_water=飲料水
+fluid.ss.spring_water=湧水
 fluid.ss.hot_springs=温泉水
 fluid.ss.steam=蒸気
+fluid.ss.mana=マナ
+fluid.ss.oxygen=酸素
 fluid.ss.sap=樹液
 
 fluid.ss.iron=融けた鉄
@@ -338,6 +382,7 @@ gui.ss.fluid_furnace=流体かまど
 gui.ss.food_smokers=燻製器
 gui.ss.magic_furnace=魔法かまど
 gui.ss.freezer=冷凍機
+gui.ss.funnel=漏斗
 
 gui.ss.rucksack=リュックサック
 
@@ -346,8 +391,11 @@ gui.ss.steam_motor=蒸気モーター
 gui.ss.millstone=石臼
 gui.ss.loom=織機
 gui.ss.sawmill=製材機
+gui.ss.spinning_machine=紡績機
+gui.ss.extractor=抽出機
 gui.ss.pulverizer=粉砕機
 gui.ss.rolling_machine=圧延機
+gui.ss.mana_squeezer=マナ抽出機
 gui.ss.time_machine=タイムマシン
 
 gui.ss.gf_tank_1=木のGFタンク
@@ -356,6 +404,7 @@ gui.ss.gf_tank_3=鋼鉄のGFタンク
 gui.ss.gf_tank_4=ニンジャのGFタンク
 gui.ss.gf_tank_5=オリハルコンのGFタンク
 
+#Shop
 shop.ss.creeper=クリーパーショップ
 shop.ss.robot=ロボショップ
 
@@ -376,7 +425,9 @@ tooltip.edition=エディション
 
 #エディション
 edition.creative=CreativeTab
+edition.achievement=Achievement
 edition.figure_beginner=Figure Beginner
+edition.ore_festival=Ore Festival
 
 edition.schr0_cleaver=Schr0 Cleaver
 
@@ -423,6 +474,18 @@ achievement.ss.craft_furnace=かまどを作る
 achievement.ss.craft_furnace.desc=大型かまどを作る
 achievement.ss.craft_furnace.desc2=複雑なクラフト
 
+achievement.ss.hammer=ハンマー !
+achievement.ss.hammer.desc=大型ハンマーを作る
+achievement.ss.hammer.desc2=無敵 ?
+
+achievement.ss.fluid_furnace=メルト
+achievement.ss.fluid_furnace.desc=流体かまどを作る
+achievement.ss.fluid_furnace.desc2=触ると溶ける
+
+achievement.ss.freezer=最新の冷蔵庫
+achievement.ss.freezer.desc=フリーザーを作る
+achievement.ss.freezer.desc2=それはね...
+
 
 achievement.ss.agriculture=SS2 -農業-
 
@@ -438,7 +501,7 @@ achievement.ss.scoop.desc2=優しく触ろう
 
 achievement.ss.farmland=農地
 achievement.ss.farmland.desc=バニラの農地にスコップを使う
-achievement.ss.farmland.desc2=強い!
+achievement.ss.farmland.desc2=強い !
 
 achievement.ss.watering_can=ジョウロ
 achievement.ss.watering_can.desc=ジョウロを作る
@@ -446,11 +509,11 @@ achievement.ss.watering_can.desc2=楽しい水やり
 
 achievement.ss.hole=穴
 achievement.ss.hole.desc=土にスコップを使う
-achievement.ss.hole.desc2=誰がここに穴を?
+achievement.ss.hole.desc2=誰がここに穴を ?
 
 achievement.ss.paddy=水田
 achievement.ss.paddy.desc=穴に水バケツを使う
-achievement.ss.paddy.desc2=米を育てよう!
+achievement.ss.paddy.desc2=米を育てよう !
 
 ##
 achievement.ss.turnip=カブ
@@ -493,22 +556,37 @@ achievement.ss.radish.desc=大根を収穫する
 achievement.ss.rice=米
 achievement.ss.rice.desc=米を収穫する
 
+achievement.ss.shiitake=椎茸
+achievement.ss.shiitake.desc=椎茸を収穫する
+
 achievement.ss.mining=SS2 -鉱業-
 
-achievement.ss.bluestone_dust=色が違う!
+achievement.ss.bluestone_dust=色が違う !
 achievement.ss.bluestone_dust.desc=ブルーストーンを採掘する
-achievement.ss.bluestone_dust.desc2=美しい!
+achievement.ss.bluestone_dust.desc2=美しい !
+
+achievement.ss.copper_ore=新しい鉱石
+achievement.ss.copper_ore.desc=銅鉱石を採掘する
+achievement.ss.copper_ore.desc2=3位
+
+achievement.ss.silver_ore=暗殺防止
+achievement.ss.silver_ore.desc=銀鉱石を採掘する
+achievement.ss.silver_ore.desc2=写真 ?
+
+achievement.ss.mithril_ore=魔法の始まり
+achievement.ss.mithril_ore.desc=ミスリル鉱石を採掘する
+achievement.ss.mithril_ore.desc2=指輪 ?
 
 achievement.ss.industry=SS2 -工業-
 
 achievement.ss.bluestone_slime_ball=謎のスライム
 achievement.ss.bluestone_slime_ball.desc=ブルーストーンのボールを作る
-achievement.ss.bluestone_slime_ball.desc2=いいね！
+achievement.ss.bluestone_slime_ball.desc2=いいね !
 
 
 achievement.ss.wood_gear=新しい力
 achievement.ss.wood_gear.desc=木の歯車を作る
-achievement.ss.wood_gear.desc2=その名はGF!
+achievement.ss.wood_gear.desc2=その名はGF !
 
 achievement.ss.small_windmill=風の力
 achievement.ss.small_windmill.desc=小さい風車を作る
@@ -516,84 +594,100 @@ achievement.ss.small_windmill.desc2=これはいい風だ
 
 achievement.ss.millstone=機械
 achievement.ss.millstone.desc=石臼を作る
-achievement.ss.millstone.desc2=私は小麦粉？
+achievement.ss.millstone.desc2=私は小麦粉 ?
 
 achievement.ss.loom=布!
 achievement.ss.loom.desc=織機を作ろう
-achievement.ss.loom.desc2=裸から解放される!
+achievement.ss.loom.desc2=裸から解放される !
 
 
 achievement.ss.stone_gear=パワーアップ
 achievement.ss.stone_gear.desc=石の歯車を作る
-achievement.ss.stone_gear.desc2=でも石で?
+achievement.ss.stone_gear.desc2=でも石で ?
 
 achievement.ss.windmill=上昇気流
 achievement.ss.windmill.desc=風車を作る
 achievement.ss.windmill.desc2=でもこの風、少し泣いています
 
 achievement.ss.small_waterwheel=水のチカラ
-achievement.ss.small_waterwheel.desc=小さな水車を作成する
-achievement.ss.small_waterwheel.desc2=溶岩に着せないで!
+achievement.ss.small_waterwheel.desc=小さな水車を作る
+achievement.ss.small_waterwheel.desc2=溶岩に着せないで !
 
 achievement.ss.sawmill=刃物?
 achievement.ss.sawmill.desc=製材機を作る
-achievement.ss.sawmill.desc2=一緒に解体しよう!
+achievement.ss.sawmill.desc2=一緒に解体しよう !
+
+achievement.ss.spinning_machine=小さな工業
+achievement.ss.spinning_machine.desc=紡績機を作る
+achievement.ss.spinning_machine.desc2=あやとりをしましょう
 
 
 achievement.ss.steel_gear=鋼のチカラ
-achievement.ss.steel_gear.desc=鋼鉄の歯車を作成する
-achievement.ss.steel_gear.desc2=石炭不足?
+achievement.ss.steel_gear.desc=鋼鉄の歯車を作る
+achievement.ss.steel_gear.desc2=石炭不足 ?
 
 achievement.ss.steam_motor=蒸気のチカラ
-achievement.ss.steam_motor.desc=蒸気モーターを作成する
+achievement.ss.steam_motor.desc=蒸気モーターを作る
 achievement.ss.steam_motor.desc2=産業革命
+
+achievement.ss.large_windmill=風車大小…
+achievement.ss.large_windmill.desc=大きい風車を作る
+achievement.ss.large_windmill.desc2=大きな力
 
 achievement.ss.pulverizer=工業の時代
 achievement.ss.pulverizer.desc=粉砕機を作る
-achievement.ss.pulverizer.desc2=これで2倍!
+achievement.ss.pulverizer.desc2=これで2倍 !
+
+achievement.ss.extractor=近未来
+achievement.ss.extractor.desc=抽出器を作る
+achievement.ss.extractor.desc2=浄化装置 ?
 
 achievement.ss.fan=ああ＾〜
 achievement.ss.fan.desc=ファンを作る
-achievement.ss.fan.desc2=青い炎?
+achievement.ss.fan.desc2=青い炎 ?
 
 achievement.ss.saw=ブロックブレイカー
 achievement.ss.saw.desc=ノコを作成する
 achievement.ss.saw.desc2=ただ壊すのみ
 
-achievement.ss.ninja_gear=不思議な力?
+achievement.ss.ninja_gear=不思議な力 ?
 achievement.ss.ninja_gear.desc=ニンジャの歯車を作る
-achievement.ss.ninja_gear.desc2=ニッポン！
+achievement.ss.ninja_gear.desc2=ニッポン !
 
 achievement.ss.rolling_machine=まな板
 achievement.ss.rolling_machine.desc=圧延機を作る
-achievement.ss.rolling_machine.desc2=かなりまな板だよこれ!
+achievement.ss.rolling_machine.desc2=かなりまな板だよこれ !
 
-achievement.ss.orichalcum_gear=謎の力!
+achievement.ss.mana_squeezer=地球の恵み
+achievement.ss.mana_squeezer.desc=マナ抽出器を作る
+achievement.ss.mana_squeezer.desc2=農業の自動化 ?
+
+achievement.ss.orichalcum_gear=謎の力 !
 achievement.ss.orichalcum_gear.desc=オリハルコンの歯車を作る
 achievement.ss.orichalcum_gear.desc2=エンドコンテンツ
 
 achievement.ss.time_machine=タイムマシン
 achievement.ss.time_machine.desc=タイムマシンを作る
-achievement.ss.time_machine.desc2=世界線が変わった!
+achievement.ss.time_machine.desc2=世界線が変わった !
 
 achievement.ss.economy=SS2 -経済-
 
 achievement.ss.creeper_firework=クリーパー商人
 achievement.ss.creeper_firework.desc=花火で通信してみよう
-achievement.ss.creeper_firework.desc2=爆発!
+achievement.ss.creeper_firework.desc2=爆発 !
 
 achievement.ss.creeper_chest=クリーパーチェスト
 achievement.ss.creeper_chest.desc=さぁ、ベッドへ行こう。
-achievement.ss.creeper_chest.desc2=クリーパーのサンタ?
+achievement.ss.creeper_chest.desc2=クリーパーのサンタ ?
 
 achievement.ss.shipping=出荷箱
 achievement.ss.shipping.desc=出荷してみよう
-achievement.ss.shipping.desc=私は億万長者!
+achievement.ss.shipping.desc=私は億万長者 !
 
 #NEI
 nei.recipe=レシピ
-nei.ss.furnace.shaped=Furnace Shaped
-nei.ss.furnace.shapeless=大型かまど
+nei.ss.furnace.shaped=定形 精錬
+nei.ss.furnace.shapeless=不定形 精錬
 
 nei.ss.fluid_furnace=流体かまど
 nei.ss.food_smokers=燻製器
@@ -607,8 +701,11 @@ nei.ss.ice=fuel=製氷剤
 nei.ss.millstone=石臼
 nei.ss.loom=織機
 nei.ss.sawmill=製材機
+nei.ss.spinning_machine=紡績機
+nei.ss.extractor=抽出機
 nei.ss.pulverizer=粉砕機
 nei.ss.rolling_machine=圧延機
+nei.ss.mana_squeezer=マナ抽出機
 nei.ss.time_machine=タイムマシン
 
 nei.ss.fertilizer_farmland=農地 突然変異

@@ -5,6 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import shift.sextiarysector.SSBlocks;
@@ -34,6 +35,11 @@ public class RecipesMachine {
 				new Object[] { "xxx", "xyx", "xxx",
 						Character.valueOf('y'), "ingotNinja",
 						Character.valueOf('x'), "ingotYellowstone"
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.emptyBottle, 1),
+				new Object[] { "x",
+						Character.valueOf('x'), new ItemStack(SSItems.colorSpray, 1, OreDictionary.WILDCARD_VALUE)
 				}));
 
 		Object[] material = new Object[] { "plankWood", "stone", "ingotSteel", "ingotNinja", "gemOrichalcum" };
@@ -176,6 +182,13 @@ public class RecipesMachine {
 						Character.valueOf('y'), "plateWood",
 						Character.valueOf('z'), SSItems.stoneGear,
 						Character.valueOf('a'), SSBlocks.woodGrate,
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.suctionMachine, 1),
+				new Object[] { "yyy", "zxz", "yyy",
+						Character.valueOf('x'), SSItems.stoneUnitGear,
+						Character.valueOf('y'), "plateWood",
+						Character.valueOf('z'), SSItems.stoneGear,
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.pulverizer, 1),

@@ -38,6 +38,7 @@ import shift.sextiarysector.item.ItemShiftHat;
 import shift.sextiarysector.item.ItemShopRing;
 import shift.sextiarysector.item.ItemSimpleBucket;
 import shift.sextiarysector.item.ItemSoup;
+import shift.sextiarysector.item.ItemSpray;
 import shift.sextiarysector.item.ItemUnit;
 import shift.sextiarysector.item.ItemWaterBottle;
 import shift.sextiarysector.item.ItemWateringCan;
@@ -67,7 +68,9 @@ public class SSItems {
 	public static Item ninjaGFStorage;
 	public static Item orichalcumGFStorage;
 
+	//hammer
 	public static Item hammer;
+	public static Item colorSpray;
 
 	public static Item calendar;
 	public static Item seasonStone;
@@ -308,8 +311,12 @@ public class SSItems {
 		orichalcumGFStorage = new ItemGearStorage(5, 10000, 5).setUnlocalizedName("ss.orichalcum_gf_storage").setTextureName("sextiarysector:gearforce/orichalcum_gear_storage").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(orichalcumGFStorage, "OrichalcumGFStorage");
 
+		//ハンマー
 		hammer = new ItemHammer().setUnlocalizedName("ss.hammer").setTextureName("sextiarysector:machine/hammer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(hammer, "Hammer");
+
+		colorSpray = new ItemSpray().setUnlocalizedName("ss.color_spray").setTextureName("sextiarysector:fluid/color_spray").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(colorSpray, "ColorSpray");
 
 		calendar = new ItemCalendar().setUnlocalizedName("ss.calendar").setTextureName("sextiarysector:calendar").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(calendar, "Calendar");
