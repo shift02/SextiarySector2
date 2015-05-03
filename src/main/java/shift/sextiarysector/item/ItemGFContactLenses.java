@@ -12,6 +12,7 @@ public class ItemGFContactLenses extends ItemContactLenses implements IGearForce
 
 	public ItemGFContactLenses() {
 		this.setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		this.setMaxStackSize(1);
 	}
 
 	@Override
