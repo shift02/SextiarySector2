@@ -36,7 +36,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	public static final String MODID = "SextiarySector";
-	public static final String VERSION = "2.2.0";
+	public static final String VERSION = "2.3.0";
 
 	@Mod.Instance("SextiarySector")
 	public static SextiarySector instance;
@@ -112,6 +112,8 @@ public class SextiarySector {
 		SSPlugins.prePlugins(event);
 
 		SSAchievement.initAchievements();
+
+		SextiarySector.proxy.setItemCustomRenderers();
 
 	}
 

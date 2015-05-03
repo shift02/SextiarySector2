@@ -9,6 +9,7 @@ public class ItemFullBottle extends Item {
 	public ItemFullBottle() {
 		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
 		this.setContainerItem(SSItems.emptyBottle);
+		this.setMaxStackSize(4);
 	}
 
 }

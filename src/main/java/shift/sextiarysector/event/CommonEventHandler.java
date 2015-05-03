@@ -69,7 +69,7 @@ public class CommonEventHandler {
 
 	}
 
-	/* 無理でした(╹◡╹)
+	/*無理でした(╹◡╹)
 	@SubscribeEvent
 	public void useBottleEvent(PlayerInteractEvent event) {
 
@@ -77,58 +77,63 @@ public class CommonEventHandler {
 		EntityPlayer p = event.entityPlayer;
 		World w = event.world;
 
-		if(item == null)return;
+		if (item == null) return;
 
-		if(item.getItem() != Items.glass_bottle)return;
+		if (item.getItem() != Items.glass_bottle) return;
 
 		//if(w.isRemote)return;
 
 		MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(w, p, true);
 
-	    if (movingobjectposition == null)
-	    {
-	        return;
-	    }
-	    else
-	    {
-	        if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-	        {
-	            int i = movingobjectposition.blockX;
-	            int j = movingobjectposition.blockY;
-	            int k = movingobjectposition.blockZ;
+		if (movingobjectposition == null)
+		{
+			return;
+		}
+		else
+		{
+			if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+			{
+				int i = movingobjectposition.blockX;
+				int j = movingobjectposition.blockY;
+				int k = movingobjectposition.blockZ;
 
-	            if (!w.canMineBlock(p, i, j, k))
-	            {
-	                return;
-	            }
+				if (!w.canMineBlock(p, i, j, k))
+				{
+					return;
+				}
 
-	            if (!p.canPlayerEdit(i, j, k, movingobjectposition.sideHit, item))
-	            {
-	                return;
-	            }
+				if (!p.canPlayerEdit(i, j, k, movingobjectposition.sideHit, item))
+				{
+					return;
+				}
 
-	            if (w.getBlock(i, j, k) == SSBlocks.drinkingWater)
-	            {
-	                --item.stackSize;
-	                event.useItem = Result.DENY;
-	                //event.setCanceled(true);
+				if (w.getBlock(i, j, k) == SSBlocks.drinkingWater)
+				{
+					--item.stackSize;
+					event.useItem = Result.DENY;
+					if (event.action.equals(Action.RIGHT_CLICK_AIR)) {
+						event.setCanceled(true);
+						event.useItem = Result.DEFAULT;
+					}
 
-	                if (item.stackSize <= 0)
-	                {
-	                	p.inventory.setInventorySlotContents(p.inventory.currentItem, new ItemStack(SSItems.drinkingWaterSmallBottle));
-	                	return;
-	                    //return new ItemStack(SSItems.drinkingWaterSmallBottle);
-	                }
+					//event.setResult(Result.DENY);
 
-	                if (!p.inventory.addItemStackToInventory(new ItemStack(SSItems.drinkingWaterSmallBottle)))
-	                {
-	                    p.dropPlayerItemWithRandomChoice(new ItemStack(SSItems.drinkingWaterSmallBottle, 1, 0), false);
-	                }
-	            }
-	        }
+					if (item.stackSize <= 0)
+					{
+						p.inventory.setInventorySlotContents(p.inventory.currentItem, new ItemStack(SSItems.drinkingWaterBottle));
+						return;
+						//return new ItemStack(SSItems.drinkingWaterSmallBottle);
+					}
 
-	        return;
-	    }
+					if (!p.inventory.addItemStackToInventory(new ItemStack(SSItems.drinkingWaterBottle)))
+					{
+						p.dropPlayerItemWithRandomChoice(new ItemStack(SSItems.drinkingWaterBottle, 1, 0), false);
+					}
+				}
+			}
+
+			return;
+		}
 
 	}*/
 

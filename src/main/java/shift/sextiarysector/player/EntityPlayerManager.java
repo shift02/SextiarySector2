@@ -2,6 +2,7 @@ package shift.sextiarysector.player;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -161,7 +162,7 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 	public void onPlayerDropsEvent(PlayerDropsEvent event)
 	{
 		if (!event.entityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")) {
-			this.getCustomPlayerData(event.entityPlayer).getEquipmentStats().inventory.dropAllItems();
+			this.getCustomPlayerData(event.entityPlayer).getEquipmentStats().inventory.dropAllItems(event.entityPlayer);
 		}
 
 	}
@@ -170,7 +171,21 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 	public void onPlayerCloneEvent(net.minecraftforge.event.entity.player.PlayerEvent.Clone event)
 	{
 
-		if (!event.wasDeath) return;
+		if (!event.wasDeath) {
+
+			EntityPlayer old = event.original;
+
+			EquipmentStats e = this.getEquipmentStats(old);
+			NBTTagCompound nbt = new NBTTagCompound();
+			e.writeNBT(nbt);
+
+			EquipmentStats eNew = this.getEquipmentStats(event.entityPlayer);
+			eNew.readNBT(nbt);
+
+			//this.getCustomPlayerData(event.entityPlayer).setEquipmentStats(e);
+
+			return;
+		}
 
 		if (event.entityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")) {
 

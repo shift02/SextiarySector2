@@ -12,9 +12,9 @@ public class EquipmentStats {
 
 	public InventoryPlayerNext inventory;
 
-	public EquipmentStats(EntityPlayer player) {
+	public EquipmentStats() {
 
-		inventory = new InventoryPlayerNext(player);
+		inventory = new InventoryPlayerNext();
 
 	}
 

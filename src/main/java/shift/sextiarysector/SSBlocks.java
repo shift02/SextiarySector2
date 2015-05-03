@@ -50,6 +50,7 @@ import shift.sextiarysector.block.BlockSmallWaterwheel;
 import shift.sextiarysector.block.BlockSmallWindmill;
 import shift.sextiarysector.block.BlockSquare;
 import shift.sextiarysector.block.BlockSteamMotor;
+import shift.sextiarysector.block.BlockSuctionMachine;
 import shift.sextiarysector.block.BlockTank;
 import shift.sextiarysector.block.BlockTrap;
 import shift.sextiarysector.block.BlockWindmill;
@@ -92,6 +93,7 @@ import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector.tileentity.TileEntitySquare;
 import shift.sextiarysector.tileentity.TileEntitySteamMotor;
+import shift.sextiarysector.tileentity.TileEntitySuctionMachine;
 import shift.sextiarysector.tileentity.TileEntityTank;
 import shift.sextiarysector.tileentity.TileEntityTrap;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
@@ -175,6 +177,7 @@ public class SSBlocks {
 	public static Block extractor;
 
 	public static Block pump;
+	public static Block suctionMachine;
 
 	public static Block pulverizer;
 
@@ -500,6 +503,10 @@ public class SSBlocks {
 		pump = new BlockPump().setBlockTextureName("sextiarysector:machine/pump").setBlockName("ss.pump");
 		GameRegistry.registerTileEntity(TileEntityPump.class, "SSPump");
 		GameRegistry.registerBlock(pump, "pump");
+
+		suctionMachine = new BlockSuctionMachine().setBlockTextureName("sextiarysector:machine/pump").setBlockName("ss.suction_machine");
+		GameRegistry.registerTileEntity(TileEntitySuctionMachine.class, "SSSuctionMachine");
+		GameRegistry.registerBlock(suctionMachine, "SuctionMachine");
 
 		pulverizer = new BlockSimpleMachine("pulverizer", 30, SSRecipes.pulverizer, 3).setBlockName("ss.pulverizer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(pulverizer, "Pulverizer");

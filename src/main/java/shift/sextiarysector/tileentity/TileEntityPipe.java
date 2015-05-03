@@ -12,11 +12,14 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+import shift.sextiarysector.api.EnumColor;
+import shift.sextiarysector.block.BlockPipe;
 
 public class TileEntityPipe extends TileEntity implements IFluidHandler {
 
 	protected FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
 	private final boolean isIN[] = { false, false, false, false, false, false };
+	public EnumColor color = EnumColor.Unknown;
 
 	@Override
 	public void updateEntity() {
@@ -49,6 +52,8 @@ public class TileEntityPipe extends TileEntity implements IFluidHandler {
 
 		for (ForgeDirection d : ForgeDirection.VALID_DIRECTIONS) {
 
+			if (!BlockPipe.canConnect(getWorldObj(), xCoord, yCoord, zCoord, d)) continue;
+
 			TileEntity t = this.worldObj.getTileEntity(xCoord + d.offsetX, yCoord + d.offsetY, zCoord + d.offsetZ);
 
 			if (!isIN[d.ordinal()] && t instanceof IFluidHandler) {
@@ -80,6 +85,9 @@ public class TileEntityPipe extends TileEntity implements IFluidHandler {
 		int i = 0;
 
 		for (ForgeDirection d : ForgeDirection.VALID_DIRECTIONS) {
+
+			if (!BlockPipe.canConnect(getWorldObj(), xCoord, yCoord, zCoord, d)) continue;
+
 			TileEntity t = this.worldObj.getTileEntity(xCoord + d.offsetX, yCoord + d.offsetY, zCoord + d.offsetZ);
 
 			if (!isIN[d.ordinal()] && t instanceof IFluidHandler && ((IFluidHandler) t).fill(d.getOpposite(), tank.getFluid(), false) > 0) {
@@ -101,6 +109,72 @@ public class TileEntityPipe extends TileEntity implements IFluidHandler {
 		}
 
 		return i;
+
+	}
+
+	public void getFluidFromSuctionMachine(ForgeDirection direction) {
+
+		int i = 0;
+
+		for (ForgeDirection d : ForgeDirection.VALID_DIRECTIONS) {
+
+			if (!BlockPipe.canConnect(getWorldObj(), xCoord, yCoord, zCoord, d)) continue;
+
+			TileEntity t = this.worldObj.getTileEntity(xCoord + d.offsetX, yCoord + d.offsetY, zCoord + d.offsetZ);
+
+			if (t instanceof IFluidHandler) {
+				i++;
+			}
+
+		}
+
+		if (i > 2) return;
+
+		for (ForgeDirection d : ForgeDirection.VALID_DIRECTIONS) {
+
+			if (direction.equals(d)) continue;
+
+			int x = this.xCoord + d.offsetX;
+			int y = this.yCoord + d.offsetY;
+			int z = this.zCoord + d.offsetZ;
+
+			TileEntity t = this.worldObj.getTileEntity(x, y, z);
+
+			if (t instanceof TileEntityPipe) {
+				((TileEntityPipe) t).getFluidFromSuctionMachine(d.getOpposite());
+				break;
+			} else if (t instanceof IFluidHandler) {
+				this.updateServerInWorkEntity(d);
+			}
+
+		}
+
+	}
+
+	public void updateServerInWorkEntity(ForgeDirection direction)
+	{
+
+		int x = this.xCoord + direction.offsetX;
+		int y = this.yCoord + direction.offsetY;
+		int z = this.zCoord + direction.offsetZ;
+
+		if (this.worldObj.getTileEntity(x, y, z) instanceof IFluidHandler) {
+
+			IFluidHandler t = (IFluidHandler) this.worldObj.getTileEntity(x, y, z);
+
+			if (this.tank.getFluid() == null) {
+
+				if (t.getTankInfo(direction.getOpposite()) != null && t.getTankInfo(direction.getOpposite())[0].fluid != null && t.canDrain(direction.getOpposite(), t.getTankInfo(direction.getOpposite())[0].fluid.getFluid())) {
+					FluidStack fs = t.drain(direction.getOpposite(), FluidContainerRegistry.BUCKET_VOLUME, true);
+					this.fill(direction, fs, true);
+				}
+
+			} else if (t.canDrain(direction.getOpposite(), this.tank.getFluid().getFluid())) {
+				FluidStack fs = t.drain(direction.getOpposite(), FluidContainerRegistry.BUCKET_VOLUME - this.tank.getFluidAmount(), true);
+				this.fill(direction, fs, true);
+			}
+
+		}
 
 	}
 
@@ -154,15 +228,21 @@ public class TileEntityPipe extends TileEntity implements IFluidHandler {
 	/* NBT */
 	@Override
 	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
+
 		super.readFromNBT(par1nbtTagCompound);
 		tank.readFromNBT(par1nbtTagCompound);
 		if (par1nbtTagCompound.hasKey("Empty") && tank.getFluidAmount() > 0) this.tank.setFluid(null);
+		color = EnumColor.getColor(par1nbtTagCompound.getInteger("color"));
+
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
+
 		super.writeToNBT(par1nbtTagCompound);
 		tank.writeToNBT(par1nbtTagCompound);
+		par1nbtTagCompound.setInteger("color", color.ordinal());
+
 	}
 
 	@Override
