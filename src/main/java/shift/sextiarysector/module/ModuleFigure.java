@@ -63,7 +63,7 @@ public class ModuleFigure implements IModule {
 		addFigure("ore_festival", new ItemStack(Blocks.diamond_ore), 2);
 
 		//MOD
-		addFigure("ore_festival", new ItemStack(SSBlocks.zincOre), 10);
+		//addFigure("ore_festival", new ItemStack(SSBlocks.zincOre), 10);
 		addFigure("ore_festival", new ItemStack(SSBlocks.copperOre), 20);
 		addFigure("ore_festival", new ItemStack(SSBlocks.silverOre), 14);
 		addFigure("ore_festival", new ItemStack(SSBlocks.blueStoneOre), 8);

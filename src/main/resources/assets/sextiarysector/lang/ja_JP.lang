@@ -7,7 +7,7 @@ tile.ss.fluid_furnace.name=流体かまど
 tile.ss.food_smokers.name=燻製器
 
 tile.ss.magic_furnace.name=魔法かまど
-tile.ss.freezer.name=冷凍機
+tile.ss.freezer.name=フリーザー
 
 tile.ss.wood_grate.name=木の格子
 
@@ -18,8 +18,8 @@ tile.ss.jungle_wood_plate.name=ジャングルの木版
 tile.ss.acacia_wood_plate.name=アカシアの木板
 tile.ss.big_oak_wood_plate.name=ダークオークの木版
 
-tile.ss.iron_plate.name=鉄板
-tile.ss.gold_plate.name=金板
+tile.ss.iron_plate.name=鉄プレート
+tile.ss.gold_plate.name=金プレート
 
 tile.ss.hole.name=穴
 tile.ss.farmland.name=農地
@@ -31,8 +31,8 @@ tile.ss.fluid_crafter.name=流体クラフター
 tile.ss.square.name=枡
 
 tile.ss.tank.name=タンク
-tile.ss.funnel.name=漏斗
-tile.ss.copper_pipe.name=銅のパイプ
+tile.ss.funnel.name=ファンネル
+tile.ss.copper_pipe.name=銅パイプ
 
 
 tile.ss.wood_hopper.name=木のホッパー
@@ -340,15 +340,15 @@ item.ss.oxygen_tank.name=酸素タンク
 item.ss.gf_contact_lenses.name=GFコンタクトレンズ
 item.ss.water_contact_lenses.name=ウォーターコンタクトレンズ
 
-item.ss.craft_unit.name=クラフトユニット
-item.ss.attack_unit.name=アタックユニット
-item.ss.defense_unit.name=ディフェンスユニット
-item.ss.attack_rust_unit.name=錆びたアタックユニット
-item.ss.defense_rust_unit.name=錆びたディフェンスユニット
-item.ss.pickaxe_unit.name=ツルハシユニット
+item.ss.craft_unit.name=ユニット「イツデモクラフト」
+item.ss.attack_unit.name=ユニット「ダメージプラス」
+item.ss.defense_unit.name=ユニット「ボウギョプラス」
+item.ss.attack_rust_unit.name=錆びたユニット「ダ・・ジプ・ス」
+item.ss.defense_rust_unit.name=錆びたユニット「ボウ・・・ラ・」
+item.ss.pickaxe_unit.name=ユニット「ツルハシパワー」
 
 
-item.ss.iron_ring.name=鉄の指輪
+item.ss.iron_ring.name=鉄リング
 item.ss.creeper_ring.name=クリーパーショップリング
 item.ss.mp_ring.name=MPリング
 item.ss.xp_ring.name=XPリング

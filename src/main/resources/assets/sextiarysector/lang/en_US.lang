@@ -61,6 +61,15 @@ tile.ss.coal_large_ore.name=Coal Large Ore
 tile.ss.iron_large_ore.name=Iron Large Ore
 tile.ss.gold_large_ore.name=Gold Large Ore
 
+tile.ss.copper_block.name=Copper Block
+tile.ss.zinc_block.name=Zinc Block
+tile.ss.silver_block.name=Silver Block
+tile.ss.steel_block.name=Steel Block
+tile.ss.brass_block.name=Brass Block
+tile.ss.ninja_block.name=Ninja Block
+tile.ss.mithril_block.name=Mithril Block
+tile.ss.orichalcum_block.name=Orichalcum Block
+
 
 tile.ss.small_windmill.name=Small Windmill
 tile.ss.windmill.name=Windmill
@@ -91,6 +100,7 @@ tile.ss.stone_steel_gear_shaft.name=Stone Steel Gear Shaft
 tile.ss.steel_ninja_gear_shaft.name=Steel Ninja Gear Shaft
 tile.ss.ninja_orichalcum_gear_shaft.name=Ninja Orichalcum Gear Shaft
 
+tile.ss.machine_frame.name=Machine Frame
 tile.ss.millstone.name=Millstone
 tile.ss.loom.name=Loom
 tile.ss.sawmill.name=Sawmill
@@ -198,6 +208,10 @@ item.ss.zinc_dust.name=Zinc Dust
 item.ss.mithril_dust.name=Mithril Dust
 
 
+item.ss.iron_nugget.name=Iron Nugget
+item.ss.copper_nugget.name=Copper Nugget
+
+
 item.ss.steel_ingot.name=Steel Ingot
 item.ss.brass_ingot.name=Brass Ingot
 
@@ -268,12 +282,32 @@ item.ss.copper_axe.name=Copper Axe
 item.ss.copper_sword.name=Copper Sword
 item.ss.copper_hoe.name=Copper Hoe
 
+item.ss.brass_shovel.name=Brass Shovel
+item.ss.brass_pickaxe.name=Brass Pickaxe
+item.ss.brass_axe.name=Brass Axe
+item.ss.brass_sword.name=Brass Sword
+item.ss.brass_hoe.name=Brass Hoe
+
+item.ss.ninja_shovel.name=Ninja Shovel
+item.ss.ninja_pickaxe.name=Ninja Pickaxe
+item.ss.ninja_axe.name=Ninja Axe
+item.ss.ninja_sword.name=Ninja Sword
+item.ss.ninja_hoe.name=Ninja Hoe
+
+
 item.ss.copper_helmet.name=Copper Helmet
 item.ss.copper_chestplate.name=Copper Chestplate
 item.ss.copper_leggings.name=Copper Leggings
 item.ss.copper_boots.name=Copper Boots
 
+item.ss.ninja_helmet.name=Ninja Helmet
+item.ss.ninja_chestplate.name=Ninja Chestplate
+item.ss.ninja_leggings.name=Ninja Leggings
+item.ss.ninja_boots.name=Ninja Boots
+
 item.ss.wood_watering_can.name=Wood Watering Can
+
+item.ss.brass_shears.name=Brass Shears
 
 item.ss.mineboat_chest.name=Mineboat Chest
 item.ss.mineboat_tank.name=Mineboat Tank
