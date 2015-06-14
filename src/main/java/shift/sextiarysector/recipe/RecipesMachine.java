@@ -25,10 +25,11 @@ public class RecipesMachine {
 						'a', Blocks.furnace
 				});
 
-		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.energyReactor, 2),
-				new Object[] { "xxx", "xyx", "xxx",
-						Character.valueOf('y'), "ingotBluestone",
-						Character.valueOf('x'), "ingotYellowstone"
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.energyReactor, 1),
+				new Object[] { "xyx", "yzy", "xyx",
+						Character.valueOf('y'), "ingotSilver",
+						Character.valueOf('x'), "nuggetCopper",
+						Character.valueOf('z'), "gelBluestone"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.objectReactor, 2),
@@ -145,66 +146,69 @@ public class RecipesMachine {
 		}
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.millstone, 1),
-				new Object[] { "yyy", "aza", "yxy",
-						Character.valueOf('y'), "plankWood",
+				new Object[] { "yay", "aza", "yxy",
+						Character.valueOf('y'), "gearWood",
 						Character.valueOf('x'), SSItems.woodGFStorage,
-						Character.valueOf('z'), SSItems.woodUnitGear,
+						Character.valueOf('z'), SSBlocks.machineFrame,
 						Character.valueOf('a'), "stone"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.loom, 1),
-				new Object[] { "yyy", "aza", "yxy",
-						Character.valueOf('y'), "plankWood",
+				new Object[] { "y y", "aza", "yxy",
+						Character.valueOf('y'), "gearWood",
 						Character.valueOf('x'), SSItems.woodGFStorage,
-						Character.valueOf('z'), SSItems.woodUnitGear,
+						Character.valueOf('z'), SSBlocks.machineFrame,
 						Character.valueOf('a'), "stickWood"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.sawmill, 1),
-				new Object[] { "yyy", "aza", "yxy",
-						Character.valueOf('y'), "plankWood",
+				new Object[] { "y y", "aza", "yxy",
+						Character.valueOf('y'), "gearStone",
 						Character.valueOf('x'), SSItems.stoneGFStorage,
-						Character.valueOf('z'), SSItems.stoneUnitGear,
-						Character.valueOf('a'), "ingotIron"
+						Character.valueOf('z'), SSBlocks.machineFrame,
+						Character.valueOf('a'), "ingotCopper"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.spinningMachine, 1),
-				new Object[] { "yyy", "aza", "yxy",
-						Character.valueOf('y'), "plankWood",
+				new Object[] { "yby", "aza", "yxy",
+						Character.valueOf('y'), "gearStone",
 						Character.valueOf('x'), SSItems.stoneGFStorage,
-						Character.valueOf('z'), SSItems.stoneUnitGear,
-						Character.valueOf('a'), "ingotGold"
+						Character.valueOf('z'), SSBlocks.machineFrame,
+						Character.valueOf('a'), "ingotSilver",
+						Character.valueOf('b'), "stickWood"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.pump, 1),
-				new Object[] { "yyy", "axy", "yzy",
-						Character.valueOf('x'), SSItems.stoneUnitGear,
-						Character.valueOf('y'), "plateWood",
-						Character.valueOf('z'), SSItems.stoneGear,
+				new Object[] { "yxy", "azx", "yxy",
+						Character.valueOf('x'), "plateWood",
+						Character.valueOf('y'), "gearStone",
+						Character.valueOf('z'), SSBlocks.tank,
 						Character.valueOf('a'), SSBlocks.woodGrate,
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.suctionMachine, 1),
-				new Object[] { "yyy", "zxz", "yyy",
-						Character.valueOf('x'), SSItems.stoneUnitGear,
-						Character.valueOf('y'), "plateWood",
-						Character.valueOf('z'), SSItems.stoneGear,
+				new Object[] { "yay", "xzx", "yay",
+						Character.valueOf('x'), "plateWood",
+						Character.valueOf('y'), "gearStone",
+						Character.valueOf('z'), SSBlocks.tank,
+						Character.valueOf('a'), Blocks.iron_bars
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.pulverizer, 1),
 				new Object[] { "yay", "aza", "yxy",
-						Character.valueOf('y'), "plankWood",
+						Character.valueOf('y'), "gearSteel",
 						Character.valueOf('x'), SSItems.steelGFStorage,
-						Character.valueOf('z'), SSItems.steelUnitGear,
+						Character.valueOf('z'), SSBlocks.machineFrame,
 						Character.valueOf('a'), "gemDiamond"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.extractor, 1),
-				new Object[] { "yyy", "aza", "yxy",
-						Character.valueOf('y'), "plankWood",
+				new Object[] { "yby", "aza", "yxy",
+						Character.valueOf('y'), "gearSteel",
 						Character.valueOf('x'), SSItems.steelGFStorage,
-						Character.valueOf('z'), SSItems.steelUnitGear,
-						Character.valueOf('a'), "containerBottle"
+						Character.valueOf('z'), SSBlocks.machineFrame,
+						Character.valueOf('a'), "containerBottle",
+						Character.valueOf('b'), SSBlocks.tank
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.fan, 1),
@@ -227,18 +231,19 @@ public class RecipesMachine {
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.rollingMachine, 1),
 				new Object[] { "yay", "aza", "yxy",
-						Character.valueOf('y'), "plankWood",
+						Character.valueOf('y'), "gearNinja",
 						Character.valueOf('x'), SSItems.ninjaGFStorage,
-						Character.valueOf('z'), SSItems.ninjaUnitGear,
+						Character.valueOf('z'), SSBlocks.machineFrame,
 						Character.valueOf('a'), "ingotIron"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.timeMachine, 1),
-				new Object[] { "yay", "aza", "yxy",
-						Character.valueOf('y'), "plankWood",
+				new Object[] { "yby", "aza", "yxy",
+						Character.valueOf('y'), "gearOrichalcum",
 						Character.valueOf('x'), SSItems.orichalcumGFStorage,
-						Character.valueOf('z'), SSItems.orichalcumUnitGear,
-						Character.valueOf('a'), SSBlocks.chunkLoader
+						Character.valueOf('z'), SSBlocks.machineFrame,
+						Character.valueOf('a'), SSBlocks.chunkLoader,
+						Character.valueOf('b'), "ingotMithril"
 				}));
 
 		//GF Item

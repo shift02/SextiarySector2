@@ -79,6 +79,9 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("dustBluestone", SSItems.blueStoneDust);
 		OreDictionary.registerOre("dustYellowstone", SSItems.yellowStoneDust);
 
+		OreDictionary.registerOre("nuggetIron", SSItems.ironNugget);
+		OreDictionary.registerOre("nuggetCopper", SSItems.copperNugget);
+
 		OreDictionary.registerOre("ingotSteel", SSItems.steelIngot);
 		OreDictionary.registerOre("ingotBrass", SSItems.brassIngot);
 		OreDictionary.registerOre("ingotBluestone", SSItems.blueStoneIngot);
@@ -90,6 +93,15 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("ingotMithril", SSItems.mithrilIngot);
 
 		OreDictionary.registerOre("gemOrichalcum", SSItems.orichalcumGem);
+
+		OreDictionary.registerOre("blockCopper", SSBlocks.copperBlock);
+		OreDictionary.registerOre("blockZinc", SSBlocks.zincBlock);
+		OreDictionary.registerOre("blockSilver", SSBlocks.silverBlock);
+		OreDictionary.registerOre("blockSteel", SSBlocks.steelBlock);
+		OreDictionary.registerOre("blockBrass", SSBlocks.brassBlock);
+		OreDictionary.registerOre("blockNinja", SSBlocks.ninjaBlock);
+		OreDictionary.registerOre("blockMithril", SSBlocks.mithrilBlock);
+		OreDictionary.registerOre("blockOrichalcum", SSBlocks.orichalcumBlock);
 
 		OreDictionary.registerOre("oreCopper", SSBlocks.copperOre);
 		OreDictionary.registerOre("oreZinc", SSBlocks.zincOre);

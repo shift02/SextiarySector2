@@ -90,7 +90,7 @@ public class RecipesFurnaceCraft {
 						"dustIron"
 				}));
 
-		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.brassIngot, 1),
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.brassIngot, 2),
 				new Object[] {
 						"dustCopper",
 						"dustCopper",
@@ -103,9 +103,17 @@ public class RecipesFurnaceCraft {
 						"dustDiamond"
 				}));
 
+		/*
 		p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.unit, 1),
 				new Object[] { "xxx", "xyx", "xxx",
 						Character.valueOf('y'), SSItems.blueGel,
+						Character.valueOf('x'), "cobblestone",
+				}));
+				*/
+
+		p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.machineFrame, 1),
+				new Object[] { "xxx", "xyx", "xxx",
+						Character.valueOf('y'), "gelBluestone",
 						Character.valueOf('x'), "cobblestone",
 				}));
 

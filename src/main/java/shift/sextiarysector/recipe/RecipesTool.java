@@ -1,7 +1,5 @@
 package shift.sextiarysector.recipe;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -44,13 +42,40 @@ public class RecipesTool {
 					}));
 		}
 
-		//バニラツール
-		addShovel(p_77608_1_, "ingotCopper", new ItemStack(SSItems.copperShovel));
-		addPickaxe(p_77608_1_, "ingotCopper", "ingotCopper", new ItemStack(SSItems.copperPickaxe));
-		addAxe(p_77608_1_, "ingotCopper", "ingotCopper", new ItemStack(SSItems.copperAxe));
-		addSword(p_77608_1_, "ingotCopper", new ItemStack(SSItems.copperSword));
-		addHoe(p_77608_1_, "ingotCopper", "ingotCopper", new ItemStack(SSItems.copperHoe));
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.brassShears),
+				new Object[] { "x ", " x",
+						Character.valueOf('x'), "ingotBrass"
+				}));
 
+		//バニラツール
+		//銅
+		addShovel(p_77608_1_, "ingotCopper", new ItemStack(SSItems.copperShovel));
+		addPickaxe(p_77608_1_, "ingotCopper", new ItemStack(SSItems.copperPickaxe));
+		addAxe(p_77608_1_, "ingotCopper", new ItemStack(SSItems.copperAxe));
+		addSword(p_77608_1_, "ingotCopper", new ItemStack(SSItems.copperSword));
+		addHoe(p_77608_1_, "ingotCopper", new ItemStack(SSItems.copperHoe));
+
+		//銀
+
+		//黄銅
+		addShovel(p_77608_1_, "ingotBrass", new ItemStack(SSItems.brassShears));
+		addPickaxe(p_77608_1_, "ingotBrass", new ItemStack(SSItems.brassPickaxe));
+		addAxe(p_77608_1_, "ingotBrass", new ItemStack(SSItems.brassAxe));
+		addSword(p_77608_1_, "ingotBrass", new ItemStack(SSItems.brassSword));
+		addHoe(p_77608_1_, "ingotBrass", new ItemStack(SSItems.brassHoe));
+
+		//ミスリル
+
+		//ニンジャ
+		addShovel(p_77608_1_, "ingotNinja", new ItemStack(SSItems.ninjaShovel));
+		addPickaxe(p_77608_1_, "ingotNinja", new ItemStack(SSItems.ninjaPickaxe));
+		addAxe(p_77608_1_, "ingotNinja", new ItemStack(SSItems.ninjaAxe));
+		addSword(p_77608_1_, "ingotNinja", new ItemStack(SSItems.ninjaSword));
+		addHoe(p_77608_1_, "ingotNinja", new ItemStack(SSItems.ninjaHoe));
+
+		//オリハルコン
+
+		/*
 		//プレート
 		Item[] ironTool = new Item[] { Items.iron_axe, Items.iron_hoe, Items.iron_pickaxe, Items.iron_shovel, Items.iron_sword };
 
@@ -147,37 +172,35 @@ public class RecipesTool {
 			addSword(p_77608_1_, materialGold[i], sword);
 
 		}
+		*/
 
 	}
 
-	private static void addAxe(CraftingManager p_77608_1_, String material, String material2, ItemStack item) {
+	private static void addAxe(CraftingManager p_77608_1_, String material, ItemStack item) {
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(item,
-				new Object[] { "yz", "yx", " x",
+				new Object[] { "yy", "yx", " x",
 						Character.valueOf('y'), material,
-						Character.valueOf('z'), material2,
 						Character.valueOf('x'), "stickWood",
 				}));
 
 	}
 
-	private static void addHoe(CraftingManager p_77608_1_, String material, String material2, ItemStack item) {
+	private static void addHoe(CraftingManager p_77608_1_, String material, ItemStack item) {
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(item,
-				new Object[] { "yz", " x", " x",
+				new Object[] { "yy", " x", " x",
 						Character.valueOf('y'), material,
-						Character.valueOf('z'), material2,
 						Character.valueOf('x'), "stickWood",
 				}));
 
 	}
 
-	private static void addPickaxe(CraftingManager p_77608_1_, String material, String material2, ItemStack item) {
+	private static void addPickaxe(CraftingManager p_77608_1_, String material, ItemStack item) {
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(item,
-				new Object[] { "yzy", " x ", " x ",
+				new Object[] { "yyy", " x ", " x ",
 						Character.valueOf('y'), material,
-						Character.valueOf('z'), material2,
 						Character.valueOf('x'), "stickWood",
 				}));
 
