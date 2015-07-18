@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.item.crafting.ShapelessRecipes;
 import shift.sextiarysector.api.recipe.RecipeAPI;
 import shift.sextiarysector.recipe.FurnaceCraftingManager;
 import shift.sextiarysector.recipe.RecipeSimpleFluid;
@@ -131,7 +132,7 @@ public class SSRecipes {
 		for (int i = 0; i < m.getRecipeList().size(); i++) {
 
 			IRecipe re = (IRecipe) m.getRecipeList().get(i);
-			if (re != null && re.getRecipeOutput() != null && re.getRecipeOutput().isItemEqual(wool) && re instanceof ShapedRecipes) {
+			if (re != null && re.getRecipeOutput() != null && re.getRecipeOutput().isItemEqual(wool) && re instanceof ShapedRecipes && !(re instanceof ShapelessRecipes)) {
 				m.getRecipeList().remove(i);
 				return;
 			}
@@ -139,5 +140,4 @@ public class SSRecipes {
 		}
 
 	}
-
 }

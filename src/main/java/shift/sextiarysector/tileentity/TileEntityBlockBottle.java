@@ -14,7 +14,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileEntityBlockBottle extends TileEntity  implements IFluidHandler{
+public class TileEntityBlockBottle extends TileEntity implements IFluidHandler {
 
 	protected FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
 
@@ -38,79 +38,79 @@ public class TileEntityBlockBottle extends TileEntity  implements IFluidHandler{
 
 	private void updateServerEntity() {
 
-		if((lastFluid)!=(tank.getFluidAmount()/100)){
-			this.lastFluid = (tank.getFluidAmount()/100);
+		if ((lastFluid) != (tank.getFluidAmount() / 100)) {
+			this.lastFluid = (tank.getFluidAmount() / 100);
 			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 
 	}
 
 	/* IFluidHandler */
-    @Override
-    public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
-    {
-        return tank.fill(resource, doFill);
-    }
+	@Override
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
+	{
+		return tank.fill(resource, doFill);
+	}
 
-    @Override
-    public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
-    {
-        if (resource == null || !resource.isFluidEqual(tank.getFluid()))
-        {
-            return null;
-        }
-        return tank.drain(resource.amount, doDrain);
-    }
+	@Override
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
+	{
+		if (resource == null || !resource.isFluidEqual(tank.getFluid()))
+		{
+			return null;
+		}
+		return tank.drain(resource.amount, doDrain);
+	}
 
-    @Override
-    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
-    {
-        return tank.drain(maxDrain, doDrain);
-    }
+	@Override
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
+	{
+		return tank.drain(maxDrain, doDrain);
+	}
 
-    @Override
-    public boolean canFill(ForgeDirection from, Fluid fluid)
-    {
-        return true;
-    }
+	@Override
+	public boolean canFill(ForgeDirection from, Fluid fluid)
+	{
+		return true;
+	}
 
-    @Override
-    public boolean canDrain(ForgeDirection from, Fluid fluid)
-    {
-        return true;
-    }
+	@Override
+	public boolean canDrain(ForgeDirection from, Fluid fluid)
+	{
+		return true;
+	}
 
-    @Override
-    public FluidTankInfo[] getTankInfo(ForgeDirection from)
-    {
-        return new FluidTankInfo[] { tank.getInfo() };
-    }
+	@Override
+	public FluidTankInfo[] getTankInfo(ForgeDirection from)
+	{
+		return new FluidTankInfo[] { tank.getInfo() };
+	}
 
-    public boolean hasFluid(){
-    	return this.tank.getFluidAmount() > 0 ;
-    }
+	public boolean hasFluid() {
+		return this.tank.getFluidAmount() > 0;
+	}
 
-    public IIcon getFluidIcon(){
-    	return this.tank.getFluid().getFluid().getIcon(this.tank.getFluid());
-    }
+	public IIcon getFluidIcon() {
+		return this.tank.getFluid().getFluid().getIcon(this.tank.getFluid());
+	}
 
-    public int getFluidColor(){
-    	return this.tank.getFluid().getFluid().getColor(this.tank.getFluid());
-    }
+	public int getFluidColor() {
+		return this.tank.getFluid().getFluid().getColor(this.tank.getFluid());
+	}
 
-    public float getFluidHeight(){
-		return ((float)this.tank.getFluidAmount()/(float)this.tank.getCapacity())*(10.0f/16.0f);
-    }
+	public float getFluidHeight() {
+		return ((float) this.tank.getFluidAmount() / (float) this.tank.getCapacity()) * (10.0f / 16.0f);
+	}
 
-    public int getFluidID(){
-    	return tank.getFluid().fluidID;
-    }
+	public int getFluidID() {
+		return tank.getFluid().getFluid().getID();
+	}
 
-    public FluidStack getFluidStack(){
-    	return this.tank.getFluid();
-    }
+	public FluidStack getFluidStack() {
+		return this.tank.getFluid();
+	}
 
-    /* NBT */
+	/* NBT */
 	@Override
 	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
 		super.readFromNBT(par1nbtTagCompound);

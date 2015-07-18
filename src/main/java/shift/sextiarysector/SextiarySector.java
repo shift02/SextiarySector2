@@ -14,12 +14,14 @@ import shift.sextiarysector.module.ModuleAgriculture;
 import shift.sextiarysector.module.ModuleChest;
 import shift.sextiarysector.module.ModuleChunkLoader;
 import shift.sextiarysector.module.ModuleFigure;
+import shift.sextiarysector.module.ModuleFishing;
 import shift.sextiarysector.module.ModuleHotSprings;
 import shift.sextiarysector.module.ModuleSandpit;
 import shift.sextiarysector.module.ModuleSeason;
 import shift.sextiarysector.module.ModuleStatistics;
 import shift.sextiarysector.module.ModuleToolMaterial;
 import shift.sextiarysector.module.ModuleTrap;
+import shift.sextiarysector.module.ModuleVanillaRecipe;
 import shift.sextiarysector.packet.SSPacketHandler;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.plugin.SSPlugins;
@@ -36,7 +38,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	public static final String MODID = "SextiarySector";
-	public static final String VERSION = "2.3.0";
+	public static final String VERSION = "2.4.0";
 
 	@Mod.Instance("SextiarySector")
 	public static SextiarySector instance;
@@ -77,6 +79,8 @@ public class SextiarySector {
 		modules.add(ModuleHotSprings.getInstance());
 		modules.add(ModuleFigure.getInstance());
 		modules.add(ModuleToolMaterial.getInstance());
+		modules.add(ModuleVanillaRecipe.getInstance());
+		modules.add(ModuleFishing.getInstance());
 
 		for (IModule m : modules) {
 			m.preInit(event);

@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.C0DPacketCloseWindow;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -73,7 +74,7 @@ public class TabManager {
 			int guiLeft = (event.gui.width - xSize) / 2;
 			int guiTop = (event.gui.height - ySize) / 2;
 
-			if (!this.mc.thePlayer.getActivePotionEffects().isEmpty())
+			if (this.hasPotion())
 			{
 				guiLeft = 160 + (event.gui.width - xSize - 200) / 2;
 			}
@@ -81,6 +82,33 @@ public class TabManager {
 			updateTabValues(guiLeft, guiTop, event.buttonList, vanilla, false);
 
 		}
+	}
+
+	public static boolean hasPotion()
+	{
+		if (mc.thePlayer.getActivePotionEffects().isEmpty()) return false;
+		if (!Loader.isModLoaded("NotEnoughItems")) return true;
+
+		try
+		{
+			Class<?> c = Class.forName("codechicken.nei.NEIClientConfig");
+			Object hidden = c.getMethod("isHidden").invoke(null);
+			Object enabled = c.getMethod("isEnabled").invoke(null);
+
+			if (hidden != null && hidden instanceof Boolean && enabled != null && enabled instanceof Boolean)
+			{
+				if ((Boolean) hidden || !((Boolean) enabled))
+				{
+					return true;
+				}
+			}
+
+		} catch (Exception e)
+		{
+		}
+
+		return false;
+
 	}
 
 	public static void updateTabValues(int cornerX, int cornerY, List buttonList, AbstractTab selectedButton, boolean reset)

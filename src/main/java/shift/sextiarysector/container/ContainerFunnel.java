@@ -118,7 +118,8 @@ public class ContainerFunnel extends Container
 
 				if (p_75137_1_ == 0) {
 
-					this.tileFurnace.tank.getFluid().fluidID = p_75137_2_;
+					//this.tileFurnace.tank.getFluid(). = p_75137_2_;
+					this.tileFurnace.tank.setFluid(new FluidStack(p_75137_2_, 1));
 
 				} else if (p_75137_1_ == 1) {
 

@@ -15,6 +15,7 @@ import shift.sextiarysector.container.ContainerMPRepair;
 import shift.sextiarysector.container.ContainerMagicFurnace;
 import shift.sextiarysector.container.ContainerPlayerNext;
 import shift.sextiarysector.container.ContainerRucksack;
+import shift.sextiarysector.container.ContainerShippingBox;
 import shift.sextiarysector.container.ContainerSimpleMachine;
 import shift.sextiarysector.container.ContainerSteamMotor;
 import shift.sextiarysector.container.ContainerTabWorkbench;
@@ -36,6 +37,7 @@ import shift.sextiarysector.gui.GuiPulverizer;
 import shift.sextiarysector.gui.GuiRollingMachine;
 import shift.sextiarysector.gui.GuiRucksack;
 import shift.sextiarysector.gui.GuiSawmill;
+import shift.sextiarysector.gui.GuiShippingBox;
 import shift.sextiarysector.gui.GuiSpinningMachine;
 import shift.sextiarysector.gui.GuiSteamMotor;
 import shift.sextiarysector.gui.GuiTabCrafting;
@@ -121,6 +123,11 @@ public class SSGuiHandler implements IGuiHandler {
 		case 205:
 			return new ContainerRucksack(player.inventory);
 		case 206:
+			return new ContainerRucksack(player.inventory, EntityPlayerManager.getEquipmentStats(player).inventory);
+
+		case 210:
+			return new ContainerShippingBox(player.inventory, player);
+		case 211:
 			return new ContainerRucksack(player.inventory, EntityPlayerManager.getEquipmentStats(player).inventory);
 
 		}
@@ -227,6 +234,9 @@ public class SSGuiHandler implements IGuiHandler {
 			return new GuiRucksack(player.inventory);
 		case 206:
 			return new GuiRucksack(player.inventory, EntityPlayerManager.getEquipmentStats(player).inventory);
+
+		case 210:
+			return new GuiShippingBox(player);
 
 		}
 

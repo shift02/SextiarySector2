@@ -29,7 +29,7 @@ public class SSShops {
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.blueStoneDust, 2), 320));
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.yellowStoneDust, 2), 320));
 
-			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.brassIngot, 2), 230));
+			//creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.brassIngot, 2), 230));
 
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.takumiTeaBottle, 2), 216));
 
@@ -51,35 +51,35 @@ public class SSShops {
 			creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.wood, 1), 180));
 
 			if (i == 0) {
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.turnip, 1), 180));
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.cucumber, 1), 360));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.turnip, 8), 180));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.cucumber, 8), 360));
 
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.rice, 1), 280));
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.shiitake, 1), 210));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.rice, 8), 280));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.shiitake, 8), 210));
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.mithrilIngot, 1), 1400));
 			}
 
 			if (i == 1) {
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.onion, 1), 180));
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.tomato, 1), 190));
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.corn, 1), 740));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.onion, 8), 180));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.tomato, 8), 190));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.corn, 8), 740));
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.magicDust, 4), 500));
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.waterContactLenses, 1), 700));
 			}
 
 			if (i == 2) {
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.eggplant, 1), 290));
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.sweetPotato, 1), 110));
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.greenPepper, 1), 320));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.eggplant, 8), 290));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.sweetPotato, 8), 110));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.greenPepper, 8), 320));
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.fluidCrafter, 4, 0), 580));
 
 			}
 
 			if (i == 3) {
-				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.radish, 1), 170));
+				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.radish, 8), 170));
 
 				creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.stoneDust, 4), 500));
 			}
@@ -152,43 +152,43 @@ public class SSShops {
 
 		MCEconomyAPI.addPurchaseItem(new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE), 25);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.turnip), 280);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.cucumber), 350);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.turnip), 30);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.cucumber), 35);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.ironTurnip), 300);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.turnip, 1, 1), 2800);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.cucumber, 1, 1), 3500);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.turnip, 1, 1), 300);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.cucumber, 1, 1), 350);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.ironTurnip, 1, 1), 3000);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.onion), 320);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.tomato), 150);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.corn), 720);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.onion), 38);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.tomato), 16);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.corn), 84);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.goldenCorn), 800);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.onion, 1, 1), 3200);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.tomato, 1, 1), 1500);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.corn, 1, 1), 7200);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.onion, 1, 1), 380);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.tomato, 1, 1), 160);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.corn, 1, 1), 840);
 		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.goldenCorn, 1, 1), 8000);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.eggplant), 210);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.sweetPotato), 120);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.greenPepper), 200);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.eggplant), 32);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.sweetPotato), 20);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.greenPepper), 22);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.eggplant, 1, 1), 2100);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.sweetPotato, 1, 1), 1200);
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.greenPepper, 1, 1), 2000);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.eggplant, 1, 1), 320);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.sweetPotato, 1, 1), 200);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.greenPepper, 1, 1), 220);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.radish), 220);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.radish), 24);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.radish, 1, 1), 2200);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.radish, 1, 1), 240);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.rice), 400);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.rice), 84);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.rice, 1, 1), 4000);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.rice, 1, 1), 840);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.shiitake), 310);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.shiitake), 31);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.shiitake, 1, 1), 3100);
+		MCEconomyAPI.addPurchaseItem(new ItemStack(SSItems.shiitake, 1, 1), 310);
 
 	}
 

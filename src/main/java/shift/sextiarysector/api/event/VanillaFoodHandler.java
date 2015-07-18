@@ -126,7 +126,7 @@ public class VanillaFoodHandler {
 		FluidStack fluid = event.fluid;
 		EntityPlayer player = (EntityPlayer) event.entity;
 
-		if (fluid.fluidID == FluidRegistry.WATER.getID()) {
+		if (fluid.getFluid().getID() == FluidRegistry.WATER.getID()) {
 
 			SextiarySectorAPI.playerManager.addMoistureStats(player, 3, 0);
 			player.addExhaustion(4.5f);
@@ -134,7 +134,7 @@ public class VanillaFoodHandler {
 
 		}
 
-		if (fluid.fluidID == FluidRegistry.LAVA.getID()) {
+		if (fluid.getFluid().getID() == FluidRegistry.LAVA.getID()) {
 
 			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 12.0f);
 

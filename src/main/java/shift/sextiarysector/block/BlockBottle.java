@@ -15,42 +15,42 @@ import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.item.ItemBlockBottle;
 import shift.sextiarysector.tileentity.TileEntityBlockBottle;
 
-public class BlockBottle extends BlockContainer{
+public class BlockBottle extends BlockContainer {
 
 	public BlockBottle() {
 		super(Material.glass);
 		this.setHardness(0.4F);
 		this.setStepSound(soundTypeGlass);
-		this.setBlockBounds(2.0f/16.0f, 0, 2.0f/16.0f, 14.0f/16.0f, 1, 14.0f/16.0f);
+		this.setBlockBounds(2.0f / 16.0f, 0, 2.0f / 16.0f, 14.0f / 16.0f, 1, 14.0f / 16.0f);
 		this.setCreativeTab(SextiarySectorAPI.TabSSFluid);
 	}
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
 	{
-		TileEntityBlockBottle tileEntity = (TileEntityBlockBottle)world.getTileEntity(x, y, z);
+		TileEntityBlockBottle tileEntity = (TileEntityBlockBottle) world.getTileEntity(x, y, z);
 
-		if(par5EntityPlayer.isSneaking()){
+		if (par5EntityPlayer.isSneaking()) {
 
-			if(!world.isRemote){
+			if (!world.isRemote) {
 
 				ItemStack stack;
 
-				if(tileEntity.hasFluid()){
-					stack = new ItemStack(this,1,tileEntity.getFluidID());
-					((ItemBlockBottle)stack.getItem()).fill(stack, tileEntity.getFluidStack(), true);
-				}else{
-					stack = new ItemStack(this,1);
+				if (tileEntity.hasFluid()) {
+					stack = new ItemStack(this, 1, tileEntity.getFluidID());
+					((ItemBlockBottle) stack.getItem()).fill(stack, tileEntity.getFluidStack(), true);
+				} else {
+					stack = new ItemStack(this, 1);
 				}
 
-				EntityItem item = new EntityItem(world, x+0.5d, y+0.5d, z+0.5d, stack);
+				EntityItem item = new EntityItem(world, x + 0.5d, y + 0.5d, z + 0.5d, stack);
 
 				world.spawnEntityInWorld(item);
 
 				world.setBlockToAir(x, y, z);
 				world.removeTileEntity(x, y, z);
 
-			}else{
+			} else {
 				return true;
 			}
 
@@ -60,14 +60,13 @@ public class BlockBottle extends BlockContainer{
 
 	}
 
+	public ItemStack getFluidItem(FluidStack resource) {
 
-    public ItemStack getFluidItem(FluidStack resource){
-
-    	ItemStack stack = new ItemStack(this,1,resource.fluidID);
-    	((ItemBlockBottle)stack.getItem()).fill(stack, resource, true);
+		ItemStack stack = new ItemStack(this, 1, resource.getFluid().getID());
+		((ItemBlockBottle) stack.getItem()).fill(stack, resource, true);
 
 		return stack;
-    }
+	}
 
 	@Override
 	public boolean renderAsNormalBlock() {
@@ -79,16 +78,17 @@ public class BlockBottle extends BlockContainer{
 		return false;
 	}
 
+	@Override
 	public int quantityDropped(Random p_149745_1_)
-    {
-        return 0;
-    }
+	{
+		return 0;
+	}
 
 	@Override
 	public int getRenderType()
-    {
-    	return SextiarySector.proxy.bottleType;
-    }
+	{
+		return SextiarySector.proxy.bottleType;
+	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_) {

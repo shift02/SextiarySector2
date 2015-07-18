@@ -58,7 +58,7 @@ public class WorldEventHandler {
 		this.yellowstoneGen = new WorldGenMinable(SSBlocks.yellowStoneOre, 7);
 
 		copperOreGen = new WorldGenMinable(SSBlocks.copperOre, 10);
-		zincOreGen = new WorldGenMinable(SSBlocks.zincOre, 8);
+		//zincOreGen = new WorldGenMinable(SSBlocks.zincOre, 8);
 		silverOreGen = new WorldGenMinable(SSBlocks.silverOre, 8);
 
 		mithrilOreGen = new WorldGenMinable(SSBlocks.mithrilOre, 8);
@@ -74,7 +74,7 @@ public class WorldEventHandler {
 		this.genStandardOre1(8, this.yellowstoneGen, 0, 16);
 
 		if (Config.generationCopperOre) this.genStandardOre1(20, this.copperOreGen, 0, 64);
-		if (Config.generationZincOre) this.genStandardOre1(12, this.zincOreGen, 0, 64);
+		//if (Config.generationZincOre) this.genStandardOre1(12, this.zincOreGen, 0, 64);
 		if (Config.generationSilverOre) this.genStandardOre1(2, this.silverOreGen, 0, 32);
 
 		if (BiomeDictionary.isBiomeOfType(biome, Type.COLD)) {

@@ -7,24 +7,36 @@ import java.util.List;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.IProgressMeter;
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderBiped;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
 import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent.SetArmorModel;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -44,6 +56,7 @@ import shift.sextiarysector.module.FertilizerManager;
 import shift.sextiarysector.module.SeasonManager;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.EquipmentStats;
+import shift.sextiarysector.renderer.entity.ModelDecoration;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -232,6 +245,368 @@ public class ClientEventHandler {
 			}
 
 		}
+	}
+
+	public static ModelDecoration decoration;
+
+	private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+
+	@SubscribeEvent
+	public void setArmorModel(SetArmorModel event) {
+
+		ModelBase renderPassModel = this.setArmorModel2(event);
+		int i = 3 - event.slot;
+
+		int j = event.result;
+
+		if (j > 0)
+		{
+
+			EntityPlayer p_77032_1_ = event.entityPlayer;
+			float p_76986_9_ = event.partialRenderTick;
+
+			float f2 = this.interpolateRotation(p_77032_1_.prevRenderYawOffset, p_77032_1_.renderYawOffset, p_76986_9_);
+			float f3 = this.interpolateRotation(p_77032_1_.prevRotationYawHead, p_77032_1_.rotationYawHead, p_76986_9_);
+			float f4;
+
+			if (p_77032_1_.isRiding() && p_77032_1_.ridingEntity instanceof EntityLivingBase)
+			{
+				EntityLivingBase entitylivingbase1 = (EntityLivingBase) p_77032_1_.ridingEntity;
+				f2 = this.interpolateRotation(entitylivingbase1.prevRenderYawOffset, entitylivingbase1.renderYawOffset, p_76986_9_);
+				f4 = MathHelper.wrapAngleTo180_float(f3 - f2);
+
+				if (f4 < -85.0F)
+				{
+					f4 = -85.0F;
+				}
+
+				if (f4 >= 85.0F)
+				{
+					f4 = 85.0F;
+				}
+
+				f2 = f3 - f4;
+
+				if (f4 * f4 > 2500.0F)
+				{
+					f2 += f4 * 0.2F;
+				}
+			}
+
+			float f13 = p_77032_1_.prevRotationPitch + (p_77032_1_.rotationPitch - p_77032_1_.prevRotationPitch) * p_76986_9_;
+			f4 = this.handleRotationFloat(p_77032_1_, p_76986_9_);
+			float f5 = 0.0625F;
+			float f6 = p_77032_1_.prevLimbSwingAmount + (p_77032_1_.limbSwingAmount - p_77032_1_.prevLimbSwingAmount) * p_76986_9_;
+			float f7 = p_77032_1_.limbSwing - p_77032_1_.limbSwingAmount * (1.0F - p_76986_9_);
+
+			if (p_77032_1_.isChild())
+			{
+				f7 *= 3.0F;
+			}
+
+			if (f6 > 1.0F)
+			{
+				f6 = 1.0F;
+			}
+
+			renderPassModel.setLivingAnimations(p_77032_1_, f7, f6, p_76986_9_);
+			renderPassModel.render(p_77032_1_, f7, f6, f4, f3 - f2, f13, f5);
+
+			//int j;
+			float f8;
+			float f9;
+			float f10;
+
+			if ((j & 240) == 16)
+			{
+				this.func_82408_c(p_77032_1_, i, p_76986_9_);
+				renderPassModel.render(p_77032_1_, f7, f6, f4, f3 - f2, f13, f5);
+			}
+
+			if ((j & 15) == 15)
+			{
+				f8 = p_77032_1_.ticksExisted + p_76986_9_;
+				RenderManager.instance.renderEngine.bindTexture(this.RES_ITEM_GLINT);
+				GL11.glEnable(GL11.GL_BLEND);
+				f9 = 0.5F;
+				GL11.glColor4f(f9, f9, f9, 1.0F);
+				GL11.glDepthFunc(GL11.GL_EQUAL);
+				GL11.glDepthMask(false);
+
+				for (int k = 0; k < 2; ++k)
+				{
+					GL11.glDisable(GL11.GL_LIGHTING);
+					f10 = 0.76F;
+					GL11.glColor4f(0.5F * f10, 0.25F * f10, 0.8F * f10, 1.0F);
+					GL11.glBlendFunc(GL11.GL_SRC_COLOR, GL11.GL_ONE);
+					GL11.glMatrixMode(GL11.GL_TEXTURE);
+					GL11.glLoadIdentity();
+					float f11 = f8 * (0.001F + k * 0.003F) * 20.0F;
+					float f12 = 0.33333334F;
+					GL11.glScalef(f12, f12, f12);
+					GL11.glRotatef(30.0F - k * 60.0F, 0.0F, 0.0F, 1.0F);
+					GL11.glTranslatef(0.0F, f11, 0.0F);
+					GL11.glMatrixMode(GL11.GL_MODELVIEW);
+					renderPassModel.render(p_77032_1_, f7, f6, f4, f3 - f2, f13, f5);
+				}
+
+				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+				GL11.glMatrixMode(GL11.GL_TEXTURE);
+				GL11.glDepthMask(true);
+				GL11.glLoadIdentity();
+				GL11.glMatrixMode(GL11.GL_MODELVIEW);
+				GL11.glEnable(GL11.GL_LIGHTING);
+				GL11.glDisable(GL11.GL_BLEND);
+				GL11.glDepthFunc(GL11.GL_LEQUAL);
+			}
+
+			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glEnable(GL11.GL_ALPHA_TEST);
+		}
+
+		if (event.result != -1) event.result = -2;
+
+	}
+
+	//shiftの帽子
+	public ModelBase setArmorModel2(SetArmorModel event) {
+
+		if (decoration == null) decoration = new ModelDecoration();
+
+		EquipmentStats e = EntityPlayerManager.getEquipmentStats(event.entityPlayer);
+		int p_77032_2_ = 3 - event.slot;
+		float p_76986_9_ = event.partialRenderTick;
+
+		//Item item = SSItems.shiftHat;
+		EntityPlayer p_77032_1_ = event.entityPlayer;
+		ItemStack itemstack = e.inventory.getStackInSlot(p_77032_2_);
+		if (itemstack == null) return null;
+		Item item = itemstack.getItem();
+
+		if (item instanceof ItemArmor)
+		{
+			ItemArmor itemarmor = (ItemArmor) item;
+			//event.renderer.bindTexture(RenderBiped.getArmorResource(p_77032_1_, itemstack, p_77032_2_, null));
+			ResourceLocation resource = RenderBiped.getArmorResource(p_77032_1_, itemstack, p_77032_2_, null);
+
+			RenderManager.instance.renderEngine.bindTexture(resource);
+			ModelBiped modelbiped = p_77032_2_ == 2 ? event.renderer.modelArmor : event.renderer.modelArmorChestplate;
+			modelbiped.bipedHead.showModel = p_77032_2_ == 0;
+			modelbiped.bipedHeadwear.showModel = p_77032_2_ == 0;
+			modelbiped.bipedBody.showModel = p_77032_2_ == 1 || p_77032_2_ == 2;
+			modelbiped.bipedRightArm.showModel = p_77032_2_ == 1;
+			modelbiped.bipedLeftArm.showModel = p_77032_2_ == 1;
+			modelbiped.bipedRightLeg.showModel = p_77032_2_ == 2 || p_77032_2_ == 3;
+			modelbiped.bipedLeftLeg.showModel = p_77032_2_ == 2 || p_77032_2_ == 3;
+			modelbiped = net.minecraftforge.client.ForgeHooksClient.getArmorModel(p_77032_1_, itemstack, p_77032_2_, modelbiped);
+			event.renderer.setRenderPassModel(modelbiped);
+			modelbiped.onGround = event.renderer.modelBipedMain.onGround;
+			modelbiped.isRiding = event.renderer.modelBipedMain.isRiding;
+			modelbiped.isChild = event.renderer.modelBipedMain.isChild;
+
+			//Move outside if to allow for more then just CLOTH
+			int j = itemarmor.getColor(itemstack);
+			if (j != -1)
+			{
+
+				float f1 = (j >> 16 & 255) / 255.0F;
+				float f2 = (j >> 8 & 255) / 255.0F;
+				float f3 = (j & 255) / 255.0F;
+				GL11.glColor3f(f1, f2, f3);
+
+				if (itemstack.isItemEnchanted())
+				{
+					event.result = 31;
+					return modelbiped;
+				}
+
+				event.result = 16;
+				return modelbiped;
+
+				/*
+				GL11.glColor3f(1.0F, 1.0F, 1.0F);
+
+				float f2 = this.interpolateRotation(p_77032_1_.prevRenderYawOffset, p_77032_1_.renderYawOffset, p_76986_9_);
+				float f3 = this.interpolateRotation(p_77032_1_.prevRotationYawHead, p_77032_1_.rotationYawHead, p_76986_9_);
+				float f4;
+
+				if (p_77032_1_.isRiding() && p_77032_1_.ridingEntity instanceof EntityLivingBase)
+				{
+					EntityLivingBase entitylivingbase1 = (EntityLivingBase) p_77032_1_.ridingEntity;
+					f2 = this.interpolateRotation(entitylivingbase1.prevRenderYawOffset, entitylivingbase1.renderYawOffset, p_76986_9_);
+					f4 = MathHelper.wrapAngleTo180_float(f3 - f2);
+
+					if (f4 < -85.0F)
+					{
+						f4 = -85.0F;
+					}
+
+					if (f4 >= 85.0F)
+					{
+						f4 = 85.0F;
+					}
+
+					f2 = f3 - f4;
+
+					if (f4 * f4 > 2500.0F)
+					{
+						f2 += f4 * 0.2F;
+					}
+				}
+
+				float f13 = p_77032_1_.prevRotationPitch + (p_77032_1_.rotationPitch - p_77032_1_.prevRotationPitch) * p_76986_9_;
+				f4 = this.handleRotationFloat(p_77032_1_, p_76986_9_);
+				//this.rotateCorpse((AbstractClientPlayer) p_77032_1_, f4, f2, p_76986_9_);
+				float f5 = 0.0625F;
+				//GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+				//GL11.glScalef(-1.0F, -1.0F, 1.0F);
+				//this.preRenderCallback(p_77032_1_, p_76986_9_);
+				//GL11.glTranslatef(0.0F, -24.0F * f5 - 0.0078125F, 0.0F);
+				float f6 = p_77032_1_.prevLimbSwingAmount + (p_77032_1_.limbSwingAmount - p_77032_1_.prevLimbSwingAmount) * p_76986_9_;
+				float f7 = p_77032_1_.limbSwing - p_77032_1_.limbSwingAmount * (1.0F - p_76986_9_);
+
+				if (p_77032_1_.isChild())
+				{
+					f7 *= 3.0F;
+				}
+
+				if (f6 > 1.0F)
+				{
+					f6 = 1.0F;
+				}
+
+				this.func_82408_c(p_77032_1_, p_77032_2_, itemstack);
+
+				modelbiped.render(p_77032_1_, f7, f6, f4, f3 - f2, f13, f5);
+
+				RenderManager.instance.renderEngine.bindTexture(resource);
+				//this.func_82408_c(p_77032_1_, p_77032_2_, itemstack);
+				//event.renderer.setRenderPassModel(modelbiped);
+
+				float c1 = (j >> 16 & 255) / 255.0F;
+				float c2 = (j >> 8 & 255) / 255.0F;
+				float c3 = (j & 255) / 255.0F;
+				GL11.glColor3f(c1, c2, c3);
+
+				//GL11.glColor3f(1.0F, 1.0F, 1.0F);
+
+				if (itemstack.isItemEnchanted())
+				{
+					event.result = 15;
+					return modelbiped;
+				}
+
+				//return 1;
+				event.result = 1;
+				return modelbiped;
+				*/
+
+			}
+
+			GL11.glColor3f(1.0F, 1.0F, 1.0F);
+
+			if (itemstack.isItemEnchanted())
+			{
+				event.result = 15;
+				return modelbiped;
+			}
+
+			//return 1;
+			event.result = 1;
+
+			return modelbiped;
+		}
+
+		return null;
+
+	}
+
+	protected void func_82408_c(EntityLivingBase p_82408_1_, int p_82408_2_, float p_82408_3_)
+	{
+		//ItemStack itemstack = p_82408_1_.inventory.armorItemInSlot(3 - p_82408_2_);
+		EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) p_82408_1_);
+		//ItemStack itemstack = e.inventory.getStackInSlot(3 - p_82408_2_);
+		ItemStack itemstack = e.inventory.getStackInSlot(p_82408_2_);
+
+		if (itemstack != null)
+		{
+			Item item = itemstack.getItem();
+
+			if (item instanceof ItemArmor)
+			{
+				RenderManager.instance.renderEngine.bindTexture(RenderBiped.getArmorResource(p_82408_1_, itemstack, p_82408_2_, "overlay"));
+				GL11.glColor3f(1.0F, 1.0F, 1.0F);
+			}
+		}
+	}
+
+	private float interpolateRotation(float p_77034_1_, float p_77034_2_, float p_77034_3_)
+	{
+		float f3;
+
+		for (f3 = p_77034_2_ - p_77034_1_; f3 < -180.0F; f3 += 360.0F)
+		{
+			;
+		}
+
+		while (f3 >= 180.0F)
+		{
+			f3 -= 360.0F;
+		}
+
+		return p_77034_1_ + p_77034_3_ * f3;
+	}
+
+	protected float handleRotationFloat(EntityLivingBase p_77044_1_, float p_77044_2_)
+	{
+		return p_77044_1_.ticksExisted + p_77044_2_;
+	}
+
+	protected void rotateCorpse(AbstractClientPlayer p_77043_1_, float p_77043_2_, float p_77043_3_, float p_77043_4_)
+	{
+		if (p_77043_1_.isEntityAlive() && p_77043_1_.isPlayerSleeping())
+		{
+			GL11.glRotatef(p_77043_1_.getBedOrientationInDegrees(), 0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(this.getDeathMaxRotation(p_77043_1_), 0.0F, 0.0F, 1.0F);
+			GL11.glRotatef(270.0F, 0.0F, 1.0F, 0.0F);
+		}
+		else
+		{
+			this.rotateCorpse2(p_77043_1_, p_77043_2_, p_77043_3_, p_77043_4_);
+		}
+	}
+
+	protected void rotateCorpse2(EntityLivingBase p_77043_1_, float p_77043_2_, float p_77043_3_, float p_77043_4_)
+	{
+		GL11.glRotatef(180.0F - p_77043_3_, 0.0F, 1.0F, 0.0F);
+
+		if (p_77043_1_.deathTime > 0)
+		{
+			float f3 = (p_77043_1_.deathTime + p_77043_4_ - 1.0F) / 20.0F * 1.6F;
+			f3 = MathHelper.sqrt_float(f3);
+
+			if (f3 > 1.0F)
+			{
+				f3 = 1.0F;
+			}
+
+			GL11.glRotatef(f3 * this.getDeathMaxRotation(p_77043_1_), 0.0F, 0.0F, 1.0F);
+		}
+		else
+		{
+			String s = EnumChatFormatting.getTextWithoutFormattingCodes(p_77043_1_.getCommandSenderName());
+
+			if ((s.equals("Dinnerbone") || s.equals("Grumm")) && (!(p_77043_1_ instanceof EntityPlayer) || !((EntityPlayer) p_77043_1_).getHideCape()))
+			{
+				GL11.glTranslatef(0.0F, p_77043_1_.height + 0.1F, 0.0F);
+				GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
+			}
+		}
+	}
+
+	protected float getDeathMaxRotation(EntityLivingBase p_77037_1_)
+	{
+		return 90.0F;
 	}
 
 	//車軸の線の描写
