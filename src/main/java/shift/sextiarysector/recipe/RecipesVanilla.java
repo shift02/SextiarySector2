@@ -13,13 +13,13 @@ public class RecipesVanilla {
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(Items.painting, 1),
 				new Object[] { "xxx", "xyx", "xxx",
 						Character.valueOf('x'), "stickWood",
-						Character.valueOf('y'), "craftingSmallCloth"
+						Character.valueOf('y'), "massString"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(Items.bed, 1),
 				new Object[] { "yyy", "xxx",
 						Character.valueOf('x'), "plankWood",
-						Character.valueOf('y'), "craftingSmallCloth"
+						Character.valueOf('y'), "massString"
 				}));
 
 	}

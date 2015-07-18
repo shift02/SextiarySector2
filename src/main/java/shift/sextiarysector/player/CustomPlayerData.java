@@ -20,6 +20,9 @@ public class CustomPlayerData implements IExtendedEntityProperties {
 	/**装備**/
 	private EquipmentStats equipment;
 
+	/**出荷箱 */
+	private ShippingBoxStats shippingBox;
+
 	//@SideOnly(Side.CLIENT)
 	//private TabStats tab;
 
@@ -34,6 +37,7 @@ public class CustomPlayerData implements IExtendedEntityProperties {
 		this.moisture.onUpdate(entityPlayer);
 		this.stamina.onUpdate(entityPlayer);
 		this.equipment.onUpdate(entityPlayer);
+		this.shippingBox.onUpdate(entityPlayer);
 
 	}
 
@@ -46,6 +50,8 @@ public class CustomPlayerData implements IExtendedEntityProperties {
 
 		this.equipment.writeNBT(compound);
 
+		this.shippingBox.writeNBT(compound);
+
 	}
 
 	@Override
@@ -57,6 +63,8 @@ public class CustomPlayerData implements IExtendedEntityProperties {
 
 		this.equipment.readNBT(compound);
 
+		this.shippingBox.readNBT(compound);
+
 	}
 
 	@Override
@@ -67,6 +75,8 @@ public class CustomPlayerData implements IExtendedEntityProperties {
 		if (this.stamina == null) this.stamina = new StaminaStats();
 
 		if (this.equipment == null) this.equipment = new EquipmentStats();
+
+		if (this.shippingBox == null) this.shippingBox = new ShippingBoxStats();
 
 		//this.tab = new TabStats();
 
@@ -94,6 +104,14 @@ public class CustomPlayerData implements IExtendedEntityProperties {
 
 	public void setEquipmentStats(EquipmentStats e) {
 		this.equipment = e;
+	}
+
+	public ShippingBoxStats getShippingBoxStats() {
+		return shippingBox;
+	}
+
+	public void setShippingBoxStats(ShippingBoxStats s) {
+		this.shippingBox = s;
 	}
 
 	//@SideOnly(Side.CLIENT)

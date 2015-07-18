@@ -3,6 +3,7 @@ package shift.sextiarysector.event;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -31,17 +32,21 @@ public class PlayerUnitEventHandler {
 
 		if (player.capabilities.isCreativeMode) return;
 
+		if (!player.onGround) return;
+
 		if (EntityPlayerManager.getStaminaStats(player).getStaminaLevel() < 5) {
 
-			player.motionX *= 0.8;
+			player.motionX *= 0.7;
 			//player.motionY *= 0.5;
-			player.motionZ *= 0.8;
+			player.motionZ *= 0.7;
+			//player.capabilities.setPlayerWalkSpeed(0.08f);
 
-		} else if (EntityPlayerManager.getStaminaStats(player).getStaminaLevel() >= 30 && player.isSprinting() && player.motionY == 0 && Math.abs(player.motionX) <= getMaxMove() && Math.abs(player.motionY) <= getMaxMove()) {
+		} else if (EntityPlayerManager.getStaminaStats(player).getStaminaLevel() >= 30 && player.isSprinting() && Math.abs(player.motionX) <= getMaxMove() && Math.abs(player.motionZ) <= getMaxMove()) {
 
-			player.motionX *= 1.6;
+			player.motionX *= 1.1;
 			//player.motionY *= 1.4;
-			player.motionZ *= 1.6;
+			player.motionZ *= 1.1;
+			//player.capabilities.setPlayerWalkSpeed(0.16f);
 
 		}
 
@@ -127,6 +132,43 @@ public class PlayerUnitEventHandler {
 			}
 
 		}
+
+	}
+
+	//ダッシュユニット
+	@SubscribeEvent
+	public void onLivingJump(LivingJumpEvent event) {
+
+		if (!(event.entityLiving instanceof EntityPlayer)) {
+			return;
+		}
+
+		//if (event.entityLiving.worldObj.isRemote) {
+		//	return;
+		//}
+
+		EntityPlayer player = (EntityPlayer) event.entityLiving;
+
+		EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
+
+		double size = 0;
+
+		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+
+			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
+
+			if (item == null) continue;
+
+			if (item.getItem() == null) continue;
+
+			if (item.getItem() == SSItems.jumpUnit) {
+				size += 0.1;
+			}
+
+		}
+
+		//System.out.println(size);
+		player.motionY += size;
 
 	}
 

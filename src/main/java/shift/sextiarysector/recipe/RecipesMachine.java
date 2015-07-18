@@ -25,6 +25,13 @@ public class RecipesMachine {
 						'a', Blocks.furnace
 				});
 
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.craftReactor, 1),
+				new Object[] { "xyx", "yzy", "xyx",
+						Character.valueOf('y'), "ingotSilver",
+						Character.valueOf('x'), "nuggetGold",
+						Character.valueOf('z'), "gelRedstone"
+				}));
+
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.energyReactor, 1),
 				new Object[] { "xyx", "yzy", "xyx",
 						Character.valueOf('y'), "ingotSilver",
@@ -32,10 +39,11 @@ public class RecipesMachine {
 						Character.valueOf('z'), "gelBluestone"
 				}));
 
-		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.objectReactor, 2),
-				new Object[] { "xxx", "xyx", "xxx",
-						Character.valueOf('y'), "ingotNinja",
-						Character.valueOf('x'), "ingotYellowstone"
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.objectReactor, 1),
+				new Object[] { "xyx", "yzy", "xyx",
+						Character.valueOf('y'), "ingotSilver",
+						Character.valueOf('x'), "nuggetNinja",
+						Character.valueOf('z'), "gelYellowstone"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.emptyBottle, 1),
@@ -57,13 +65,13 @@ public class RecipesMachine {
 				new Object[] { "xzx", "zyz", "xzx",
 						Character.valueOf('y'), SSBlocks.woodShaft,
 						Character.valueOf('x'), "plankWood",
-						Character.valueOf('z'), Blocks.wool
+						Character.valueOf('z'), "blockWool"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.canvas, 1),
 				new Object[] { "xxy", "xxy", "  y",
 						Character.valueOf('y'), Blocks.fence,
-						Character.valueOf('x'), SSItems.cloth
+						Character.valueOf('x'), "itemCloth"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.windmill, 1),
@@ -112,7 +120,7 @@ public class RecipesMachine {
 					new Object[] { "yay", "xzx", "yxy",
 							Character.valueOf('y'), material[i],
 							Character.valueOf('x'), storage[i],
-							Character.valueOf('z'), unit[i],
+							Character.valueOf('z'), "gelBluestone",//unit[i],
 							Character.valueOf('a'), gearOre[i]
 					}));
 
@@ -120,7 +128,7 @@ public class RecipesMachine {
 					new Object[] { "yxy", "xzx", "yxy",
 							Character.valueOf('y'), material[i],
 							Character.valueOf('x'), gearOre[i],
-							Character.valueOf('z'), unit[i]
+							Character.valueOf('z'), "gelBluestone",//unit[i]
 					}));
 
 		}
@@ -166,7 +174,7 @@ public class RecipesMachine {
 						Character.valueOf('y'), "gearStone",
 						Character.valueOf('x'), SSItems.stoneGFStorage,
 						Character.valueOf('z'), SSBlocks.machineFrame,
-						Character.valueOf('a'), "ingotCopper"
+						Character.valueOf('a'), "ingotBrass"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.spinningMachine, 1),
