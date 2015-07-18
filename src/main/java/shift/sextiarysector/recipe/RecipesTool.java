@@ -38,7 +38,7 @@ public class RecipesTool {
 			p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(wateringCan[i], 1, (wateringCan[i].getMaxDamage() - 1)),
 					new Object[] { "yxy", " yy",
 							Character.valueOf('y'), material[i],
-							Character.valueOf('x'), "craftingFilterCloth",
+							Character.valueOf('x'), "massString",
 					}));
 		}
 
@@ -58,7 +58,7 @@ public class RecipesTool {
 		//銀
 
 		//黄銅
-		addShovel(p_77608_1_, "ingotBrass", new ItemStack(SSItems.brassShears));
+		addShovel(p_77608_1_, "ingotBrass", new ItemStack(SSItems.brassShovel));
 		addPickaxe(p_77608_1_, "ingotBrass", new ItemStack(SSItems.brassPickaxe));
 		addAxe(p_77608_1_, "ingotBrass", new ItemStack(SSItems.brassAxe));
 		addSword(p_77608_1_, "ingotBrass", new ItemStack(SSItems.brassSword));

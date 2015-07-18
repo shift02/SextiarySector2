@@ -37,24 +37,24 @@ public class SSFluids {
 
 	public static void initFluids() {
 
-		takumiTea = new SSFluid("TakumiTea", 0, 0x006400, 5, 2.0f).setUnlocalizedName("takumi_tea");
-		drinkingWater = new SSFluid("DrinkingWater", 0, 0x87CEFA, 4, 1.0f).setUnlocalizedName("drinking_water");
-		springWater = new SSFluid("SpringWater", 0, 0x87CEFA, 4, 1.0f).setUnlocalizedName("spring_water");
-		hotSprings = new SSFluid("HotSprings", 0, 0xFFFFFF, 4, 1.0f).setUnlocalizedName("hot_springs");
+		takumiTea = registerFluid("TakumiTea", 0, 0x006400, 5, 2.0f).setUnlocalizedName("takumi_tea");
+		drinkingWater = registerFluid("DrinkingWater", 0, 0x87CEFA, 4, 1.0f).setUnlocalizedName("drinking_water");
+		springWater = registerFluid("SpringWater", 0, 0x87CEFA, 4, 1.0f).setUnlocalizedName("spring_water");
+		hotSprings = registerFluid("HotSprings", 0, 0xFFFFFF, 4, 1.0f).setUnlocalizedName("hot_springs");
 
-		steam = new SSFluid("Steam", 1, 0xFFFFFF, 1, 1.0f).setUnlocalizedName("steam").setGaseous(true);
-		mana = new SSFluid("Mana", 1, 0x7CF4E4, 1, 1.0f).setUnlocalizedName("mana").setGaseous(true);
-		oxygen = new SSFluid("Oxygen", 0, 0xFFFFFF, 1, 1.0f).setUnlocalizedName("oxygen").setGaseous(true);
+		steam = registerFluid("Steam", 1, 0xFFFFFF, 1, 1.0f).setUnlocalizedName("steam").setGaseous(true);
+		mana = registerFluid("Mana", 1, 0x7CF4E4, 1, 1.0f).setUnlocalizedName("mana").setGaseous(true);
+		oxygen = registerFluid("Oxygen", 0, 0xFFFFFF, 1, 1.0f).setUnlocalizedName("oxygen").setGaseous(true);
 		//season = new SSFluid("season", 1, 0xFFFFFF, 1, 1.0f).setUnlocalizedName("season").setDensity(-10).setGaseous(true);
 
-		sap = new SSFluid("Sap", 2, 0xFF7F50, 1, 1.0f).setUnlocalizedName("sap");
+		sap = registerFluid("Sap", 2, 0xFF7F50, 1, 1.0f).setUnlocalizedName("sap");
 
-		iron = new SSFluid("Iron", 2, 0xFF1493, 1, 1.0f).setUnlocalizedName("iron");
-		gold = new SSFluid("Gold", 2, 0xFFD700, 1, 1.0f).setUnlocalizedName("gold");
+		iron = registerFluid("Iron", 2, 0xFF1493, 1, 1.0f).setUnlocalizedName("iron");
+		gold = registerFluid("Gold", 2, 0xFFD700, 1, 1.0f).setUnlocalizedName("gold");
 
 		color = new Fluid[16];
 		for (int i = 0; i < color.length; i++) {
-			color[i] = new FluidColor(EnumColor.getColor(i).name(), EnumColor.getColor(i)).setUnlocalizedName(EnumColor.getColor(i).name().toLowerCase(Locale.ENGLISH));
+			color[i] = new FluidColor("ss_" + EnumColor.getColor(i).name(), EnumColor.getColor(i)).setUnlocalizedName(EnumColor.getColor(i).name().toLowerCase(Locale.ENGLISH));
 		}
 
 	}
@@ -85,6 +85,19 @@ public class SSFluids {
 
 	}
 
+	public static Fluid registerFluid(String fluidName, int type, int color, int moisture, float moistureSaturation) {
+
+		Fluid f = new SSFluid(fluidName, type, color, moisture, moistureSaturation);
+		boolean t = FluidRegistry.registerFluid(f);
+
+		if (!t) {
+			f = FluidRegistry.getFluid(fluidName);
+		}
+
+		return f;
+
+	}
+
 	public static class SSFluid extends Fluid {
 
 		private final int type;
@@ -99,7 +112,6 @@ public class SSFluids {
 			this.color = color;
 			this.moisture = moisture;
 			this.moistureSaturation = moistureSaturation;
-			FluidRegistry.registerFluid(this);
 		}
 
 		@Override

@@ -35,7 +35,7 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("craftingString", new ItemStack(Items.string, 1, 0));
 
 		for (int i = 0; i < 16; i++) {
-			OreDictionary.registerOre("craftingSmallCloth", new ItemStack(Blocks.wool, 1, i));
+			OreDictionary.registerOre("blockWool", new ItemStack(Blocks.wool, 1, i));
 		}
 
 		OreDictionary.registerOre("fluidWater", Items.water_bucket);
@@ -81,6 +81,11 @@ public class SSOreDictionary {
 
 		OreDictionary.registerOre("nuggetIron", SSItems.ironNugget);
 		OreDictionary.registerOre("nuggetCopper", SSItems.copperNugget);
+		OreDictionary.registerOre("nuggetZinc", SSItems.zincNugget);
+		OreDictionary.registerOre("nuggetSilver", SSItems.silverNugget);
+
+		OreDictionary.registerOre("nuggetSteel", SSItems.steelNugget);
+		OreDictionary.registerOre("nuggetNinja", SSItems.ninjaNugget);
 
 		OreDictionary.registerOre("ingotSteel", SSItems.steelIngot);
 		OreDictionary.registerOre("ingotBrass", SSItems.brassIngot);
@@ -118,12 +123,17 @@ public class SSOreDictionary {
 
 		OreDictionary.registerOre("ringIron", SSItems.ironRing);
 
-		OreDictionary.registerOre("craftingSmallCloth", SSItems.cloth);
-		OreDictionary.registerOre("craftingCloth", SSItems.cloth);
-		OreDictionary.registerOre("craftingFilterCloth", SSItems.cloth);
+		//布
+		OreDictionary.registerOre("massString", SSItems.stringMass);
+		OreDictionary.registerOre("blockWool", SSItems.stringMass);
 
-		OreDictionary.registerOre("craftingSmallCloth", SSItems.smallCloth);
-		OreDictionary.registerOre("craftingFilterCloth", SSItems.smallCloth);
+		OreDictionary.registerOre("clothSilk", SSItems.silkCloth);
+		OreDictionary.registerOre("itemCloth", SSItems.silkCloth);
+		OreDictionary.registerOre("blockWool", SSItems.silkCloth);
+		//OreDictionary.registerOre("craftingFilterCloth", SSItems.silkCloth);
+
+		//OreDictionary.registerOre("craftingSmallCloth", SSItems.smallCloth);
+		//OreDictionary.registerOre("craftingFilterCloth", SSItems.smallCloth);
 
 		//液体
 		OreDictionary.registerOre("fluidIron", new ItemStack(SSBlocks.fluidCrafter, 1, SSFluids.iron.getID()));

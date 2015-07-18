@@ -61,8 +61,8 @@ public class RecipesCore {
 		}
 
 		//鉱石  ナゲット--インゴット
-		Object[] oNugget = new Object[] { "nuggetIron", "nuggetCopper" };
-		ingot = new Item[] { Items.iron_ingot, SSItems.copperIngot, };
+		Object[] oNugget = new Object[] { "nuggetIron", "nuggetCopper", "nuggetZinc", "nuggetSilver", "nuggetSteel", "nuggetNinja" };
+		ingot = new Item[] { Items.iron_ingot, SSItems.copperIngot, SSItems.zincIngot, SSItems.silverIngot, SSItems.steelIngot, SSItems.ninjaIngot };
 		for (int i = 0; i < oNugget.length; i++) {
 			p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(ingot[i], 1),
 					new Object[] { "xxx", "xxx", "xxx",
@@ -70,8 +70,8 @@ public class RecipesCore {
 					}));
 		}
 
-		oIngot = new Object[] { "ingotIron", "ingotCopper" };
-		Item[] nugget = new Item[] { SSItems.ironNugget, SSItems.copperNugget };
+		oIngot = new Object[] { "ingotIron", "ingotCopper", "ingotZinc", "ingotSilver", "ingotSteel", "ingotNinja" };
+		Item[] nugget = new Item[] { SSItems.ironNugget, SSItems.copperNugget, SSItems.zincNugget, SSItems.silverNugget, SSItems.steelNugget, SSItems.ninjaNugget };
 		for (int i = 0; i < oIngot.length; i++) {
 			p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(nugget[i], 9),
 					new Object[] {
@@ -79,13 +79,14 @@ public class RecipesCore {
 					}));
 		}
 
+		/*
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.smallCloth, 1),
 				new Object[] {
 						"xx", "xx",
 						'x', "craftingString",
-				}));
+				}));*/
 
-		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.stringBobbin, 1),
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.silkBobbin, 1),
 				new Object[] {
 						"xxx", "xyx", "xxx",
 						'x', Items.string,
@@ -149,7 +150,7 @@ public class RecipesCore {
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.rucksack, 1),
 				new Object[] {
 						"xxx", "x x", "xxx",
-						'x', SSItems.cloth,
+						'x', SSItems.silkCloth,
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.oxygenTank, 1),

@@ -96,6 +96,11 @@ public class SSItems {
 
 	public static Item ironNugget;
 	public static Item copperNugget;
+	public static Item zincNugget;
+	public static Item silverNugget;
+
+	public static Item steelNugget;
+	public static Item ninjaNugget;
 
 	public static Item steelIngot;
 	public static Item brassIngot;
@@ -116,6 +121,7 @@ public class SSItems {
 	public static Item blueGel;
 	public static Item yellowGel;
 
+	public static Item craftReactor;
 	public static Item energyReactor;
 	public static Item objectReactor;
 
@@ -133,9 +139,9 @@ public class SSItems {
 	public static Item magicDust;
 
 	//布
-	public static Item stringBobbin;
+	public static Item silkBobbin;
 	public static Item smallCloth;
-	public static Item cloth;
+	public static Item silkCloth;
 	public static Item canvas;
 	public static Item dryingFlesh;
 	public static Item fleshBobbin;
@@ -283,7 +289,11 @@ public class SSItems {
 	public static Item attackRustUnit;
 	public static Item defenseRustUnit;
 
+	public static Item jumpUnit;
+
 	public static Item pickaxeUnit;
+
+	public static Item debugUnit;
 
 	//リング
 	public static Item ironRing;
@@ -395,6 +405,18 @@ public class SSItems {
 		copperNugget = new Item().setUnlocalizedName("ss.copper_nugget").setTextureName("sextiarysector:nugget/copper_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(copperNugget, "CopperNugget");
 
+		zincNugget = new Item().setUnlocalizedName("ss.zinc_nugget").setTextureName("sextiarysector:nugget/zinc_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(zincNugget, "ZincNugget");
+
+		silverNugget = new Item().setUnlocalizedName("ss.silver_nugget").setTextureName("sextiarysector:nugget/silver_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(silverNugget, "SilverNugget");
+
+		steelNugget = new Item().setUnlocalizedName("ss.steel_nugget").setTextureName("sextiarysector:nugget/steel_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(steelNugget, "SteelNugget");
+
+		ninjaNugget = new Item().setUnlocalizedName("ss.ninja_nugget").setTextureName("sextiarysector:nugget/ninja_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(ninjaNugget, "NinjaNugget");
+
 		//インゴット
 		steelIngot = new Item().setUnlocalizedName("ss.steel_ingot").setTextureName("sextiarysector:ingot/steel_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(steelIngot, "SteelIngot");
@@ -435,10 +457,13 @@ public class SSItems {
 		yellowGel = new Item().setUnlocalizedName("ss.yellow_gel").setTextureName("sextiarysector:gel/yellow_gel").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(yellowGel, "YellowGel");
 
-		energyReactor = new Item().setUnlocalizedName("ss.energy_reactor").setTextureName("sextiarysector:energy_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		craftReactor = new Item().setUnlocalizedName("ss.craft_reactor").setTextureName("sextiarysector:reactor/craft_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(craftReactor, "CraftReactor");
+
+		energyReactor = new Item().setUnlocalizedName("ss.energy_reactor").setTextureName("sextiarysector:reactor/energy_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(energyReactor, "EnergyReactor");
 
-		objectReactor = new Item().setUnlocalizedName("ss.object_reactor").setTextureName("sextiarysector:object_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		objectReactor = new Item().setUnlocalizedName("ss.object_reactor").setTextureName("sextiarysector:reactor/object_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(objectReactor, "ObjectReactor");
 
 		//液体
@@ -470,14 +495,14 @@ public class SSItems {
 		GameRegistry.registerItem(magicDust, "MagicDust");
 
 		//布
-		stringBobbin = new Item().setUnlocalizedName("ss.string_bobbin").setTextureName("sextiarysector:loom/string_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);
-		GameRegistry.registerItem(stringBobbin, "StringBobbin");
+		silkBobbin = new Item().setUnlocalizedName("ss.silk_bobbin").setTextureName("sextiarysector:loom/silk_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(silkBobbin, "SilkBobbin");
 
 		smallCloth = new Item().setUnlocalizedName("ss.small_cloth").setTextureName("sextiarysector:loom/small_cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(smallCloth, "SmallCloth");
 
-		cloth = new Item().setUnlocalizedName("ss.cloth").setTextureName("sextiarysector:loom/cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
-		GameRegistry.registerItem(cloth, "Cloth");
+		silkCloth = new Item().setUnlocalizedName("ss.silk_cloth").setTextureName("sextiarysector:loom/silk_cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(silkCloth, "silkCloth");
 
 		canvas = new Item().setUnlocalizedName("ss.canvas").setTextureName("sextiarysector:loom/canvas").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(canvas, "Canvas");
@@ -740,8 +765,14 @@ public class SSItems {
 		defenseRustUnit = new ItemUnit().setUnlocalizedName("ss.defense_rust_unit").setTextureName("sextiarysector:unit/defense_rust_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(defenseRustUnit, "DefenseRustUnit");
 
+		jumpUnit = new ItemUnit().setUnlocalizedName("ss.jump_unit").setTextureName("sextiarysector:unit/jump_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(jumpUnit, "JumpUnit");
+
 		pickaxeUnit = new ItemUnit().setUnlocalizedName("ss.pickaxe_unit").setTextureName("sextiarysector:unit/pickaxe_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(pickaxeUnit, "PickaxeUnit");
+
+		debugUnit = new ItemUnit().setUnlocalizedName("ss.debug_unit").setTextureName("sextiarysector:unit/debug_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(debugUnit, "DebugUnit");
 
 		//Ring
 		ironRing = new Item().setUnlocalizedName("ss.iron_ring").setTextureName("sextiarysector:ring/iron_ring").setCreativeTab(SextiarySectorAPI.TabSSPlayer);

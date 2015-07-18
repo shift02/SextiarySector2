@@ -340,12 +340,13 @@ item.ss.oxygen_tank.name=酸素タンク
 item.ss.gf_contact_lenses.name=GFコンタクトレンズ
 item.ss.water_contact_lenses.name=ウォーターコンタクトレンズ
 
-item.ss.craft_unit.name=ユニット「イツデモクラフト」
-item.ss.attack_unit.name=ユニット「ダメージプラス」
-item.ss.defense_unit.name=ユニット「ボウギョプラス」
-item.ss.attack_rust_unit.name=錆びたユニット「ダ・・ジプ・ス」
-item.ss.defense_rust_unit.name=錆びたユニット「ボウ・・・ラ・」
-item.ss.pickaxe_unit.name=ユニット「ツルハシパワー」
+item.ss.craft_unit.name=ユニット ｢イツデモクラフト｣
+item.ss.attack_unit.name=ユニット ｢ダメージプラス｣
+item.ss.defense_unit.name=ユニット ｢ボウギョプラス｣
+item.ss.attack_rust_unit.name=錆びたユニット ｢ダ・・ジプ・ス｣
+item.ss.defense_rust_unit.name=錆びたユニット ｢ボウ・・・ラ・｣
+item.ss.jump_unit.name=ユニット ｢スーパージャンプ｣
+item.ss.pickaxe_unit.name=ユニット ｢ツルハシパワー｣
 
 
 item.ss.iron_ring.name=鉄リング

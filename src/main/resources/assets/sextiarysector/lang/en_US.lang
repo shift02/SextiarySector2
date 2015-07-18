@@ -210,6 +210,11 @@ item.ss.mithril_dust.name=Mithril Dust
 
 item.ss.iron_nugget.name=Iron Nugget
 item.ss.copper_nugget.name=Copper Nugget
+item.ss.zinc_nugget.name=Zinc Nugget
+item.ss.silver_nugget.name=Silver Nugget
+
+item.ss.steel_nugget.name=Steel Nugget
+item.ss.ninja_nugget.name=Ninja Nugget
 
 
 item.ss.steel_ingot.name=Steel Ingot
@@ -231,6 +236,8 @@ item.ss.red_gel.name=Red Stone Gel
 item.ss.blue_gel.name=Blue Stone Gel
 item.ss.yellow_gel.name=Yellow Stone Gel
 
+
+item.ss.craft_reactor.name=Craft Reactor
 item.ss.energy_reactor.name=Energy Reactor
 item.ss.object_reactor.name=Object Reactor
 
@@ -248,8 +255,8 @@ item.ss.gold_fluid_bucket.name=Gold Fluid Bucket
 item.ss.magic_dust.name=Magic Dust
 
 
-item.ss.string_bobbin.name=String Bobbin
-item.ss.cloth.name=Cloth
+item.ss.silk_bobbin.name=Silk Bobbin
+item.ss.silk_cloth.name=Silk Cloth
 item.ss.small_cloth.name=Small Cloth
 item.ss.canvas.name=Canvas
 item.ss.drying_flesh.name=Drying Flesh
@@ -381,7 +388,10 @@ item.ss.attack_unit.name=Attack Unit
 item.ss.defense_unit.name=Defense Unit
 item.ss.attack_rust_unit.name=Attack Rust Unit
 item.ss.defense_rust_unit.name=Defense Rust Unit
+item.ss.jump_unit.name=Jump Unit
 item.ss.pickaxe_unit.name=Pickaxe Unit
+
+item.ss.debug_unit.name=Debug Unit
 
 
 item.ss.iron_ring.name=Iron Ring
@@ -436,6 +446,9 @@ gui.ss.food_smokers=Food Smokers
 gui.ss.magic_furnace=Magic Furnace
 gui.ss.freezer=Freezer
 gui.ss.funnel=Fluid Funnel
+
+gui.ss.shipping_box=Shipping Box
+
 
 gui.ss.rucksack=Rucksack
 

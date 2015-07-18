@@ -4,17 +4,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import shift.sextiarysector.api.equipment.EquipmentType;
-import shift.sextiarysector.api.equipment.IEquipment;
 
-public class InventoryPlayerNext implements IInventory {
+public class InventoryShippingBox implements IInventory {
 
-	ItemBox items = new ItemBox("Base", 20, 1);
+	ItemBox items = new ItemBox("Base", 27);
 
-	//private final EntityPlayer player;
-
-	public InventoryPlayerNext() {
-		//this.player = player;
+	public InventoryShippingBox() {
 	}
 
 	@Override
@@ -83,37 +78,10 @@ public class InventoryPlayerNext implements IInventory {
 		return true;
 	}
 
-	public void dropAllItems(EntityPlayer player)
-	{
-		int i;
-
-		for (i = 0; i < this.items.getSizeInventory(); ++i)
-		{
-
-			ItemStack item = this.items.getStackInSlot(i);
-
-			if (item == null) continue;
-
-			if (item.getItem() instanceof IEquipment) {
-
-				if (!((IEquipment) item.getItem()).canDrop(EquipmentType.getEquipmentTypeFromSlot(i), item, player)) continue;
-				player.func_146097_a(item, true, false);
-				this.items.setInventorySlotContents(i, null);
-
-			} else {
-				player.func_146097_a(item, true, false);
-				this.items.setInventorySlotContents(i, null);
-			}
-
-		}
-
-	}
-
 	//NBT
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
 	{
 		this.items.writeToNBT(nbt);
-		;
 		return nbt;
 	}
 
@@ -121,5 +89,4 @@ public class InventoryPlayerNext implements IInventory {
 	{
 		this.items.readFromNBT(nbt);
 	}
-
 }
