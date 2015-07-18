@@ -148,7 +148,7 @@ public class TileEntitySquare extends TileEntityDirection implements IFluidHandl
 	}
 
 	public int getFluidID() {
-		return tank.getFluid().fluidID;
+		return tank.getFluid().getFluid().getID();
 	}
 
 	public FluidStack getFluidStack() {

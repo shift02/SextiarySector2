@@ -32,6 +32,7 @@ import shift.sextiarysector.item.ItemRucksack;
 import shift.sextiarysector.item.ItemSSArmor;
 import shift.sextiarysector.item.ItemSSAxe;
 import shift.sextiarysector.item.ItemSSPickaxe;
+import shift.sextiarysector.item.ItemSSShears;
 import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
 import shift.sextiarysector.item.ItemShiftHat;
@@ -93,6 +94,14 @@ public class SSItems {
 
 	public static Item mithrilDust;
 
+	public static Item ironNugget;
+	public static Item copperNugget;
+	public static Item zincNugget;
+	public static Item silverNugget;
+
+	public static Item steelNugget;
+	public static Item ninjaNugget;
+
 	public static Item steelIngot;
 	public static Item brassIngot;
 
@@ -112,6 +121,7 @@ public class SSItems {
 	public static Item blueGel;
 	public static Item yellowGel;
 
+	public static Item craftReactor;
 	public static Item energyReactor;
 	public static Item objectReactor;
 
@@ -129,9 +139,9 @@ public class SSItems {
 	public static Item magicDust;
 
 	//布
-	public static Item stringBobbin;
+	public static Item silkBobbin;
 	public static Item smallCloth;
-	public static Item cloth;
+	public static Item silkCloth;
 	public static Item canvas;
 	public static Item dryingFlesh;
 	public static Item fleshBobbin;
@@ -159,19 +169,45 @@ public class SSItems {
 	public static Item diamondKnife;
 
 	//道具 バニラ
+
+	//	銅
 	public static Item copperShovel;
 	public static Item copperPickaxe;
 	public static Item copperAxe;
 	public static Item copperSword;
 	public static Item copperHoe;
 
+	//	黄銅
+	public static Item brassShovel;
+	public static Item brassPickaxe;
+	public static Item brassAxe;
+	public static Item brassSword;
+	public static Item brassHoe;
+
+	//	ニンジャ
+	public static Item ninjaShovel;
+	public static Item ninjaPickaxe;
+	public static Item ninjaAxe;
+	public static Item ninjaSword;
+	public static Item ninjaHoe;
+
 	//防具
+	//	銅
 	public static Item copperHelmet;
 	public static Item copperChestplate;
 	public static Item copperLeggings;
 	public static Item copperBoots;
 
+	//	ニンジャ
+	public static Item ninjaHelmet;
+	public static Item ninjaChestplate;
+	public static Item ninjaLeggings;
+	public static Item ninjaBoots;
+
+	//その他
 	public static Item woodWateringCan;
+
+	public static Item brassShears;
 
 	//水産
 	public static Item mineboatChest;
@@ -253,7 +289,11 @@ public class SSItems {
 	public static Item attackRustUnit;
 	public static Item defenseRustUnit;
 
+	public static Item jumpUnit;
+
 	public static Item pickaxeUnit;
+
+	public static Item debugUnit;
 
 	//リング
 	public static Item ironRing;
@@ -358,6 +398,26 @@ public class SSItems {
 		mithrilDust = new Item().setUnlocalizedName("ss.mithril_dust").setTextureName("sextiarysector:dust/mithril_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(mithrilDust, "MithrilDust");
 
+		//ナゲット
+		ironNugget = new Item().setUnlocalizedName("ss.iron_nugget").setTextureName("sextiarysector:nugget/iron_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(ironNugget, "IronNugget");
+
+		copperNugget = new Item().setUnlocalizedName("ss.copper_nugget").setTextureName("sextiarysector:nugget/copper_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(copperNugget, "CopperNugget");
+
+		zincNugget = new Item().setUnlocalizedName("ss.zinc_nugget").setTextureName("sextiarysector:nugget/zinc_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(zincNugget, "ZincNugget");
+
+		silverNugget = new Item().setUnlocalizedName("ss.silver_nugget").setTextureName("sextiarysector:nugget/silver_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(silverNugget, "SilverNugget");
+
+		steelNugget = new Item().setUnlocalizedName("ss.steel_nugget").setTextureName("sextiarysector:nugget/steel_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(steelNugget, "SteelNugget");
+
+		ninjaNugget = new Item().setUnlocalizedName("ss.ninja_nugget").setTextureName("sextiarysector:nugget/ninja_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(ninjaNugget, "NinjaNugget");
+
+		//インゴット
 		steelIngot = new Item().setUnlocalizedName("ss.steel_ingot").setTextureName("sextiarysector:ingot/steel_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(steelIngot, "SteelIngot");
 
@@ -397,10 +457,13 @@ public class SSItems {
 		yellowGel = new Item().setUnlocalizedName("ss.yellow_gel").setTextureName("sextiarysector:gel/yellow_gel").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(yellowGel, "YellowGel");
 
-		energyReactor = new Item().setUnlocalizedName("ss.energy_reactor").setTextureName("sextiarysector:energy_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		craftReactor = new Item().setUnlocalizedName("ss.craft_reactor").setTextureName("sextiarysector:reactor/craft_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(craftReactor, "CraftReactor");
+
+		energyReactor = new Item().setUnlocalizedName("ss.energy_reactor").setTextureName("sextiarysector:reactor/energy_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(energyReactor, "EnergyReactor");
 
-		objectReactor = new Item().setUnlocalizedName("ss.object_reactor").setTextureName("sextiarysector:object_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		objectReactor = new Item().setUnlocalizedName("ss.object_reactor").setTextureName("sextiarysector:reactor/object_reactor").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(objectReactor, "ObjectReactor");
 
 		//液体
@@ -432,14 +495,14 @@ public class SSItems {
 		GameRegistry.registerItem(magicDust, "MagicDust");
 
 		//布
-		stringBobbin = new Item().setUnlocalizedName("ss.string_bobbin").setTextureName("sextiarysector:loom/string_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);
-		GameRegistry.registerItem(stringBobbin, "StringBobbin");
+		silkBobbin = new Item().setUnlocalizedName("ss.silk_bobbin").setTextureName("sextiarysector:loom/silk_bobbin").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(silkBobbin, "SilkBobbin");
 
 		smallCloth = new Item().setUnlocalizedName("ss.small_cloth").setTextureName("sextiarysector:loom/small_cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(smallCloth, "SmallCloth");
 
-		cloth = new Item().setUnlocalizedName("ss.cloth").setTextureName("sextiarysector:loom/cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
-		GameRegistry.registerItem(cloth, "Cloth");
+		silkCloth = new Item().setUnlocalizedName("ss.silk_cloth").setTextureName("sextiarysector:loom/silk_cloth").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(silkCloth, "silkCloth");
 
 		canvas = new Item().setUnlocalizedName("ss.canvas").setTextureName("sextiarysector:loom/canvas").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(canvas, "Canvas");
@@ -495,6 +558,7 @@ public class SSItems {
 		GameRegistry.registerItem(diamondKnife, "DiamondKnife");
 
 		//バニラ
+		//	銅
 		copperShovel = new ItemSpade(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_shovel").setTextureName("sextiarysector:tool/copper_shovel").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(copperShovel, "CopperShovel");
 		copperPickaxe = new ItemSSPickaxe(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_pickaxe").setTextureName("sextiarysector:tool/copper_pickaxe").setCreativeTab(SextiarySectorAPI.TabSSCore);
@@ -505,24 +569,60 @@ public class SSItems {
 		GameRegistry.registerItem(copperSword, "CopperSword");
 		copperHoe = new ItemHoe(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_hoe").setTextureName("sextiarysector:tool/copper_hoe").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(copperHoe, "CopperHoe");
+
+		//黄銅
+		brassShovel = new ItemSpade(ModuleToolMaterial.brassTool).setUnlocalizedName("ss.brass_shovel").setTextureName("sextiarysector:tool/brass_shovel").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(brassShovel, "BrassShovel");
+		brassPickaxe = new ItemSSPickaxe(ModuleToolMaterial.brassTool).setUnlocalizedName("ss.brass_pickaxe").setTextureName("sextiarysector:tool/brass_pickaxe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(brassPickaxe, "BrassPickaxe");
+		brassAxe = new ItemSSAxe(ModuleToolMaterial.brassTool).setUnlocalizedName("ss.brass_axe").setTextureName("sextiarysector:tool/brass_axe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(brassAxe, "BrassAxe");
+		brassSword = new ItemSword(ModuleToolMaterial.brassTool).setUnlocalizedName("ss.brass_sword").setTextureName("sextiarysector:tool/brass_sword").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(brassSword, "BrassSword");
+		brassHoe = new ItemHoe(ModuleToolMaterial.brassTool).setUnlocalizedName("ss.brass_hoe").setTextureName("sextiarysector:tool/brass_hoe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(brassHoe, "BrassHoe");
+
+		//	ニンジャ
+		ninjaShovel = new ItemSpade(ModuleToolMaterial.ninjaTool).setUnlocalizedName("ss.ninja_shovel").setTextureName("sextiarysector:tool/ninja_shovel").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(ninjaShovel, "NinjaShovel");
+		ninjaPickaxe = new ItemSSPickaxe(ModuleToolMaterial.ninjaTool).setUnlocalizedName("ss.ninja_pickaxe").setTextureName("sextiarysector:tool/ninja_pickaxe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(ninjaPickaxe, "NinjaPickaxe");
+		ninjaAxe = new ItemSSAxe(ModuleToolMaterial.ninjaTool).setUnlocalizedName("ss.ninja_axe").setTextureName("sextiarysector:tool/ninja_axe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(ninjaAxe, "NinjaAxe");
+		ninjaSword = new ItemSword(ModuleToolMaterial.ninjaTool).setUnlocalizedName("ss.ninja_sword").setTextureName("sextiarysector:tool/ninja_sword").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(ninjaSword, "NinjaSword");
+		ninjaHoe = new ItemHoe(ModuleToolMaterial.ninjaTool).setUnlocalizedName("ss.ninja_hoe").setTextureName("sextiarysector:tool/ninja_hoe").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(ninjaHoe, "NinjaHoe");
+
 		//Item i = Items.iron_axe;
 
 		//防具
+		//	銅
 		copperHelmet = new ItemSSArmor(ModuleToolMaterial.copperArmor, 0, 0).setUnlocalizedName("ss.copper_helmet").setTextureName("sextiarysector:armor/copper_helmet");
 		GameRegistry.registerItem(copperHelmet, "CopperHelmet");
-
 		copperChestplate = new ItemSSArmor(ModuleToolMaterial.copperArmor, 0, 1).setUnlocalizedName("ss.copper_chestplate").setTextureName("sextiarysector:armor/copper_chestplate");
 		GameRegistry.registerItem(copperChestplate, "CopperChestplate");
-
 		copperLeggings = new ItemSSArmor(ModuleToolMaterial.copperArmor, 0, 2).setUnlocalizedName("ss.copper_leggings").setTextureName("sextiarysector:armor/copper_leggings");
 		GameRegistry.registerItem(copperLeggings, "CopperLeggings");
-
 		copperBoots = new ItemSSArmor(ModuleToolMaterial.copperArmor, 0, 3).setUnlocalizedName("ss.copper_boots").setTextureName("sextiarysector:armor/copper_boots");
 		GameRegistry.registerItem(copperBoots, "CopperBoots");
+
+		//	ニンジャ
+		ninjaHelmet = new ItemSSArmor(ModuleToolMaterial.ninjaArmor, 0, 0).setUnlocalizedName("ss.ninja_helmet").setTextureName("sextiarysector:armor/ninja_helmet");
+		GameRegistry.registerItem(ninjaHelmet, "NinjaHelmet");
+		ninjaChestplate = new ItemSSArmor(ModuleToolMaterial.ninjaArmor, 0, 1).setUnlocalizedName("ss.ninja_chestplate").setTextureName("sextiarysector:armor/ninja_chestplate");
+		GameRegistry.registerItem(ninjaChestplate, "NinjaChestplate");
+		ninjaLeggings = new ItemSSArmor(ModuleToolMaterial.ninjaArmor, 0, 2).setUnlocalizedName("ss.ninja_leggings").setTextureName("sextiarysector:armor/ninja_leggings");
+		GameRegistry.registerItem(ninjaLeggings, "NinjaLeggings");
+		ninjaBoots = new ItemSSArmor(ModuleToolMaterial.ninjaArmor, 0, 3).setUnlocalizedName("ss.ninja_boots").setTextureName("sextiarysector:armor/ninja_boots");
+		GameRegistry.registerItem(ninjaBoots, "NinjaBoots");
 
 		//水やり
 		woodWateringCan = new ItemWateringCan(ToolMaterial.WOOD).setUnlocalizedName("ss.wood_watering_can").setTextureName("wood_watering_can");
 		GameRegistry.registerItem(woodWateringCan, "WoodWateringCan");
+
+		brassShears = new ItemSSShears(ModuleToolMaterial.brassTool).setUnlocalizedName("ss.brass_shears").setTextureName("sextiarysector:tool/brass_shears");
+		GameRegistry.registerItem(brassShears, "BrassShears");
 
 		//水産
 		mineboatChest = new ItemMineboat().setUnlocalizedName("ss.mineboat_chest").setTextureName("sextiarysector:mineboat_chest");
@@ -665,8 +765,14 @@ public class SSItems {
 		defenseRustUnit = new ItemUnit().setUnlocalizedName("ss.defense_rust_unit").setTextureName("sextiarysector:unit/defense_rust_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(defenseRustUnit, "DefenseRustUnit");
 
+		jumpUnit = new ItemUnit().setUnlocalizedName("ss.jump_unit").setTextureName("sextiarysector:unit/jump_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(jumpUnit, "JumpUnit");
+
 		pickaxeUnit = new ItemUnit().setUnlocalizedName("ss.pickaxe_unit").setTextureName("sextiarysector:unit/pickaxe_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(pickaxeUnit, "PickaxeUnit");
+
+		debugUnit = new ItemUnit().setUnlocalizedName("ss.debug_unit").setTextureName("sextiarysector:unit/debug_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		GameRegistry.registerItem(debugUnit, "DebugUnit");
 
 		//Ring
 		ironRing = new Item().setUnlocalizedName("ss.iron_ring").setTextureName("sextiarysector:ring/iron_ring").setCreativeTab(SextiarySectorAPI.TabSSPlayer);

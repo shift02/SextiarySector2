@@ -184,6 +184,13 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 
 			//this.getCustomPlayerData(event.entityPlayer).setEquipmentStats(e);
 
+			ShippingBoxStats s = this.getShippingBoxStats(old);
+			NBTTagCompound nbtS = new NBTTagCompound();
+			s.writeNBT(nbtS);
+
+			ShippingBoxStats sNew = this.getShippingBoxStats(event.entityPlayer);
+			sNew.readNBT(nbtS);
+
 			return;
 		}
 
@@ -192,6 +199,8 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 			this.getCustomPlayerData(event.entityPlayer).setEquipmentStats(this.getEquipmentStats(event.original));
 
 		}
+
+		this.getCustomPlayerData(event.entityPlayer).setShippingBoxStats(this.getShippingBoxStats(event.original));
 
 	}
 
@@ -252,6 +261,10 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 
 	public static EquipmentStats getEquipmentStats(EntityPlayer entityPlayer) {
 		return getCustomPlayerData(entityPlayer).getEquipmentStats();
+	}
+
+	public static ShippingBoxStats getShippingBoxStats(EntityPlayer entityPlayer) {
+		return getCustomPlayerData(entityPlayer).getShippingBoxStats();
 	}
 
 	//パケット用

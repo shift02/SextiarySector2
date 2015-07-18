@@ -63,7 +63,7 @@ public class PluginTcon implements IPlugin {
 			int guiLeft = (event.gui.width - xSize) / 2;
 			int guiTop = (event.gui.height - ySize) / 2;
 
-			if (!this.mc.thePlayer.getActivePotionEffects().isEmpty())
+			if (TabManager.hasPotion())
 			{
 				guiLeft = 160 + (event.gui.width - xSize - 200) / 2;
 			}

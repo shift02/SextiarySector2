@@ -1,7 +1,9 @@
 package shift.sextiarysector.recipe;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -39,13 +41,52 @@ public class RecipesCore {
 						"slimeball"
 				}));
 
+		//鉱石 インゴット--ブロック
+		Object[] oIngot = new Object[] { "ingotCopper", "ingotZinc", "ingotSilver", "ingotSteel", "ingotBrass", "ingotNinja", "ingotMithril", "gemOrichalcum" };
+		Block[] block = new Block[] { SSBlocks.copperBlock, SSBlocks.zincBlock, SSBlocks.silverBlock, SSBlocks.steelBlock, SSBlocks.brassBlock, SSBlocks.ninjaBlock, SSBlocks.mithrilBlock, SSBlocks.orichalcumBlock };
+		for (int i = 0; i < oIngot.length; i++) {
+			p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(block[i], 1),
+					new Object[] { "xxx", "xxx", "xxx",
+							Character.valueOf('x'), oIngot[i],
+					}));
+		}
+
+		Object[] oBlock = new Object[] { "blockCopper", "blockZinc", "blockSilver", "blockSteel", "blockBrass", "blockNinja", "blockMithril", "blockOrichalcum" };
+		Item[] ingot = new Item[] { SSItems.copperIngot, SSItems.zincIngot, SSItems.silverIngot, SSItems.steelIngot, SSItems.brassIngot, SSItems.ninjaIngot, SSItems.mithrilIngot, SSItems.orichalcumGem };
+		for (int i = 0; i < oBlock.length; i++) {
+			p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ingot[i], 9),
+					new Object[] {
+							oBlock[i]
+					}));
+		}
+
+		//鉱石  ナゲット--インゴット
+		Object[] oNugget = new Object[] { "nuggetIron", "nuggetCopper", "nuggetZinc", "nuggetSilver", "nuggetSteel", "nuggetNinja" };
+		ingot = new Item[] { Items.iron_ingot, SSItems.copperIngot, SSItems.zincIngot, SSItems.silverIngot, SSItems.steelIngot, SSItems.ninjaIngot };
+		for (int i = 0; i < oNugget.length; i++) {
+			p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(ingot[i], 1),
+					new Object[] { "xxx", "xxx", "xxx",
+							Character.valueOf('x'), oNugget[i],
+					}));
+		}
+
+		oIngot = new Object[] { "ingotIron", "ingotCopper", "ingotZinc", "ingotSilver", "ingotSteel", "ingotNinja" };
+		Item[] nugget = new Item[] { SSItems.ironNugget, SSItems.copperNugget, SSItems.zincNugget, SSItems.silverNugget, SSItems.steelNugget, SSItems.ninjaNugget };
+		for (int i = 0; i < oIngot.length; i++) {
+			p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(nugget[i], 9),
+					new Object[] {
+							oIngot[i]
+					}));
+		}
+
+		/*
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.smallCloth, 1),
 				new Object[] {
 						"xx", "xx",
 						'x', "craftingString",
-				}));
+				}));*/
 
-		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.stringBobbin, 1),
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.silkBobbin, 1),
 				new Object[] {
 						"xxx", "xyx", "xxx",
 						'x', Items.string,
@@ -109,7 +150,7 @@ public class RecipesCore {
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.rucksack, 1),
 				new Object[] {
 						"xxx", "x x", "xxx",
-						'x', SSItems.cloth,
+						'x', SSItems.silkCloth,
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.oxygenTank, 1),

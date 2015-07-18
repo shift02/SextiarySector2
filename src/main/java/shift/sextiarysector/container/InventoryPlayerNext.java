@@ -92,11 +92,19 @@ public class InventoryPlayerNext implements IInventory {
 
 			ItemStack item = this.items.getStackInSlot(i);
 
-			if (item != null && ((IEquipment) item.getItem()).canDrop(EquipmentType.getEquipmentTypeFromSlot(i), item, player))
-			{
+			if (item == null) continue;
+
+			if (item.getItem() instanceof IEquipment) {
+
+				if (!((IEquipment) item.getItem()).canDrop(EquipmentType.getEquipmentTypeFromSlot(i), item, player)) continue;
+				player.func_146097_a(item, true, false);
+				this.items.setInventorySlotContents(i, null);
+
+			} else {
 				player.func_146097_a(item, true, false);
 				this.items.setInventorySlotContents(i, null);
 			}
+
 		}
 
 	}

@@ -23,6 +23,7 @@ public class ItemKnife extends ItemTool
 	private static final Set field_150916_c = Sets.newHashSet(new Block[] { Blocks.crafting_table });
 
 	private boolean repair = false;
+	private boolean furnace = false;
 
 	public ItemKnife(ToolMaterial p_i45343_1_)
 	{
@@ -51,7 +52,7 @@ public class ItemKnife extends ItemTool
 	@Override
 	public boolean hasContainerItem()
 	{
-		return !repair;
+		return !repair && !furnace;
 	}
 
 	//修理かどうかを判定する
@@ -60,17 +61,36 @@ public class ItemKnife extends ItemTool
 	{
 		//IDが無くなったので、アイテムインスタンスで比較。
 		repair = this == event.crafting.getItem();
+		furnace = false;
 	}
 
 	//クラフト後のアイテムを、ダメージを与えて返す
 	@Override
 	public ItemStack getContainerItem(ItemStack itemStack)
 	{
+
+		if (!hasContainerItem(itemStack))
+		{
+			return null;
+		}
+
 		if (itemStack != null && itemStack.getItem() == this)
 		{
 			itemStack.setItemDamage(itemStack.getItemDamage() + 1);
 		}
 		return itemStack;
+	}
+
+	//カマド用
+	@Override
+	public String getToolMaterialName()
+	{
+
+		if (this.toolMaterial.toString().equals("WOOD")) {
+			furnace = true;
+		}
+
+		return this.toolMaterial.toString();
 	}
 
 	@Override

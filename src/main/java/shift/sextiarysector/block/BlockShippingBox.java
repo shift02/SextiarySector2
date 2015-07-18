@@ -1,22 +1,16 @@
 package shift.sextiarysector.block;
 
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import shift.mceconomy2.api.MCEconomyAPI;
-import shift.sextiarysector.SSItems;
-import shift.sextiarysector.tileentity.TileEntityShippingBox;
+import shift.sextiarysector.SextiarySector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockShippingBox extends BlockContainer {
+public class BlockShippingBox extends Block {//extends BlockContainer {
 
 	private IIcon top;
 
@@ -29,6 +23,18 @@ public class BlockShippingBox extends BlockContainer {
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
 	{
 
+		if (world.isRemote)
+		{
+			return true;
+		}
+		else
+		{
+			par5EntityPlayer.openGui(SextiarySector.instance, 210, world, x, y, z);
+
+			return true;
+		}
+
+		/*
 		TileEntityShippingBox s = (TileEntityShippingBox) world.getTileEntity(x, y, z);
 		ItemStack pItem = par5EntityPlayer.getCurrentEquippedItem();
 
@@ -89,6 +95,7 @@ public class BlockShippingBox extends BlockContainer {
 		if (i == -1) {
 			return false;
 		}
+		*/
 
 		/*
 		MCEconomyAPI.addPlayerMP(par5EntityPlayer, i, false);
@@ -96,11 +103,13 @@ public class BlockShippingBox extends BlockContainer {
 		par5EntityPlayer.addStat(SSAchievement.shipping, 1);
 		*/
 
+		/*
 		s.setInventorySlotContents(0, pItem.copy());
 		pItem.stackSize = 0;
 		//item.stackSize--;
 		world.playSoundAtEntity(par5EntityPlayer, "game.neutral.hurt.fall.small", 1.0F, 1.0F);
 		return true;
+		*/
 
 	}
 
@@ -122,9 +131,10 @@ public class BlockShippingBox extends BlockContainer {
 		return this.blockIcon;
 	}
 
+	/*
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new TileEntityShippingBox();
-	}
+	}*/
 
 }

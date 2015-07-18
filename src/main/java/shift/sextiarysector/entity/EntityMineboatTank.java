@@ -89,7 +89,7 @@ public class EntityMineboatTank extends EntityMineboat implements IFluidHandler 
 			if (this.tank.getFluidAmount() == 0) {
 				this.dataWatcher.updateObject(23, 0);
 			} else {
-				this.dataWatcher.updateObject(23, this.tank.getFluid().fluidID);
+				this.dataWatcher.updateObject(23, this.tank.getFluid().getFluid().getID());
 			}
 
 			this.lastAmount = this.tank.getFluidAmount();
