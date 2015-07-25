@@ -12,8 +12,8 @@ public class RecipesTool {
 	{
 
 		//Scoop
-		Object[] material = new Object[] { "plankWood", "cobblestone", "ingotIron", "ingotGold", "gemDiamond" };
-		Item[] scoop = new Item[] { SSItems.woodScoop, SSItems.stoneScoop, SSItems.ironScoop, SSItems.goldScoop, SSItems.diamondScoop };
+		Object[] material = new Object[] { "plankWood", "cobblestone", "ingotIron", "ingotGold", "gemDiamond", "ingotBrass" };
+		Item[] scoop = new Item[] { SSItems.woodScoop, SSItems.stoneScoop, SSItems.ironScoop, SSItems.goldScoop, SSItems.diamondScoop, SSItems.brassScoop };
 		for (int i = 0; i < material.length; i++) {
 			p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(scoop[i], 1),
 					new Object[] { "y", "x",
@@ -23,7 +23,7 @@ public class RecipesTool {
 		}
 
 		//Knife
-		Item[] knife = new Item[] { SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife };
+		Item[] knife = new Item[] { SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife, SSItems.brassKnife };
 		for (int i = 0; i < material.length; i++) {
 			p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(knife[i], 1),
 					new Object[] { " y", "x ",
