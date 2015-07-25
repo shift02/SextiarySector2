@@ -1,11 +1,11 @@
 package shift.sextiarysector.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import shift.sextiarysector.SSMaterials;
 import shift.sextiarysector.SextiarySector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,8 +15,10 @@ public class BlockShippingBox extends Block {//extends BlockContainer {
 	private IIcon top;
 
 	public BlockShippingBox() {
-		super(Material.wood);
-		this.setBlockUnbreakable();
+		super(SSMaterials.machine);
+		this.setHardness(0.9f);
+		this.setHarvestLevel("hammer", 1);
+		//this.setBlockUnbreakable();
 	}
 
 	@Override
