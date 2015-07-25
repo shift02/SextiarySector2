@@ -91,7 +91,11 @@ public class SSFluids {
 		boolean t = FluidRegistry.registerFluid(f);
 
 		if (!t) {
-			f = FluidRegistry.getFluid(fluidName);
+
+			if (FluidRegistry.getFluid(fluidName) != null) {
+				f = FluidRegistry.getFluid(fluidName);
+			}
+
 		}
 
 		return f;
