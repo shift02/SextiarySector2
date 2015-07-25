@@ -277,11 +277,18 @@ item.ss.iron_scoop.name=Iron Scoop
 item.ss.gold_scoop.name=Gold Scoop
 item.ss.diamond_scoop.name=Diamond Scoop
 
+item.ss.brass_scoop.name=Brass Scoop
+
+
+
 item.ss.wood_knife.name=Wood Knife
 item.ss.stone_knife.name=Stone Knife
 item.ss.iron_knife.name=Iron Knife
 item.ss.gold_knife.name=Gold Knife
 item.ss.diamond_knife.name=Diamond Knife
+
+item.ss.brass_knife.name=Brass Knife
+
 
 item.ss.copper_shovel.name=Copper Shovel
 item.ss.copper_pickaxe.name=Copper Pickaxe
