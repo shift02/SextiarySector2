@@ -181,7 +181,7 @@ public class BlockPoweredBuoy extends BlockBuoyBase {
 
 		}
 
-		this.blockIcon = par1IconRegister.registerIcon(this.getTextureName());
+		this.blockIcon = blockIcons[0];//par1IconRegister.registerIcon(this.getTextureName());
 
 	}
 

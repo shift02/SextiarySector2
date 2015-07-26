@@ -22,7 +22,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class PluginIC2 implements IPlugin {
 
-
 	//1EU -> 3Power 2Speed
 
 	@Override
@@ -39,7 +38,7 @@ public class PluginIC2 implements IPlugin {
 	@Override
 	public void prePlugin(FMLPreInitializationEvent event) {
 
-		electricMotor = new BlockElectricMotor().setBlockName("ss.electric_motor").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		electricMotor = new BlockElectricMotor().setBlockName("ss.electric_motor").setBlockTextureName("glass").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(electricMotor, ItemBlockDirection.class, "ElectricMotor");
 		GameRegistry.registerTileEntity(TileEntityElectricMotor.class, "ElectricMotor");
 
@@ -61,18 +60,17 @@ public class PluginIC2 implements IPlugin {
 		ic2Dust = GameRegistry.findItem("IC2", "itemDust");
 		cable = GameRegistry.findItem("IC2", "itemCable");
 
-		SSRecipes.pulverizer.add("oreCopper", new ItemStack(ic2Dust,2,3));
-		SSRecipes.pulverizer.add("oreTin", new ItemStack(ic2Dust,2,7));
+		SSRecipes.pulverizer.add("oreCopper", new ItemStack(ic2Dust, 2, 3));
+		SSRecipes.pulverizer.add("oreTin", new ItemStack(ic2Dust, 2, 7));
 
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(this.electricMotor, 1),
-					new Object[] { "xzx", "xyx","pbp",
-				Character.valueOf('x'), "paneGlassColorless",
-				Character.valueOf('y'), SSItems.energyReactor,
-				Character.valueOf('z'), SSBlocks.steelShaft,
-				Character.valueOf('b'), new ItemStack(cable,1,0),
-				Character.valueOf('p'), "plateDenseTin"
+				new Object[] { "xzx", "xyx", "pbp",
+						Character.valueOf('x'), "paneGlassColorless",
+						Character.valueOf('y'), SSItems.energyReactor,
+						Character.valueOf('z'), SSBlocks.steelShaft,
+						Character.valueOf('b'), new ItemStack(cable, 1, 0),
+						Character.valueOf('p'), "plateDenseTin"
 				}));
-
 
 	}
 
