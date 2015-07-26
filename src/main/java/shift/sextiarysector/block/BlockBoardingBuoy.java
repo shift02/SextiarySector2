@@ -275,7 +275,7 @@ public class BlockBoardingBuoy extends BlockPoweredBuoy {
 
 		}
 
-		this.blockIcon = par1IconRegister.registerIcon(this.getTextureName());
+		this.blockIcon = blockIcons[0];//par1IconRegister.registerIcon(this.getTextureName());
 
 	}
 

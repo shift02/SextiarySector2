@@ -15,7 +15,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class PluginTofu  implements IPlugin{
+public class PluginTofu implements IPlugin {
 
 	@Override
 	public String getModName() {
@@ -29,7 +29,7 @@ public class PluginTofu  implements IPlugin{
 
 	@Override
 	public void prePlugin(FMLPreInitializationEvent event) {
-		tofuMotor = new BlockTofuMotor().setBlockName("ss.tofu_motor").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		tofuMotor = new BlockTofuMotor().setBlockName("ss.tofu_motor").setBlockTextureName("glass").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerBlock(tofuMotor, ItemBlockDirection.class, "TofuMotor");
 		GameRegistry.registerTileEntity(TileEntityTofuMotor.class, "TofuMotor");
 
