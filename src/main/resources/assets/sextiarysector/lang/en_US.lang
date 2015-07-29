@@ -21,6 +21,10 @@ tile.ss.big_oak_wood_plate.name=Big Oak Wood Plate
 tile.ss.iron_plate.name=Iron Plate
 tile.ss.gold_plate.name=Gold Plate
 
+tile.ss.copper_plate.name=Copper Plate
+tile.ss.zinc_plate.name=Zinc Plate
+tile.ss.silver_plate.name=Silver Plate
+
 tile.ss.hole.name=Hole
 tile.ss.farmland.name=Farm Land
 tile.ss.paddy.name=Paddy
@@ -60,6 +64,8 @@ tile.ss.orichalcum_ore.name=Orichalcum Ore
 tile.ss.coal_large_ore.name=Coal Large Ore
 tile.ss.iron_large_ore.name=Iron Large Ore
 tile.ss.gold_large_ore.name=Gold Large Ore
+
+tile.ss.silver_large_ore.name=Silver Large Ore
 
 tile.ss.copper_block.name=Copper Block
 tile.ss.zinc_block.name=Zinc Block
@@ -204,6 +210,7 @@ item.ss.diamond_dust.name=Diamond Dust
 
 item.ss.copper_dust.name=Copper Dust
 item.ss.zinc_dust.name=Zinc Dust
+item.ss.silver_dust.name=Silver Dust
 
 item.ss.mithril_dust.name=Mithril Dust
 

@@ -91,6 +91,7 @@ public class SSItems {
 
 	public static Item copperDust;
 	public static Item zincDust;
+	public static Item silverDust;
 
 	public static Item mithrilDust;
 
@@ -399,6 +400,9 @@ public class SSItems {
 
 		zincDust = new Item().setUnlocalizedName("ss.zinc_dust").setTextureName("sextiarysector:dust/zinc_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(zincDust, "ZincDust");
+
+		silverDust = new Item().setUnlocalizedName("ss.silver_dust").setTextureName("sextiarysector:dust/silver_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(silverDust, "SilverDust");
 
 		mithrilDust = new Item().setUnlocalizedName("ss.mithril_dust").setTextureName("sextiarysector:dust/mithril_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(mithrilDust, "MithrilDust");

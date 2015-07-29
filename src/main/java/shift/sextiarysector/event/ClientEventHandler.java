@@ -137,6 +137,8 @@ public class ClientEventHandler {
 	public static IIcon lavaFlow;
 	public static IIcon lavaStill;
 
+	public static IIcon breakIcon;
+
 	@SubscribeEvent
 	public void PreTextureStitchEvent(TextureStitchEvent.Pre event) {
 
@@ -160,6 +162,9 @@ public class ClientEventHandler {
 			portal = event.map.registerIcon("sextiarysector:fluid/portal");
 			lavaFlow = event.map.registerIcon("sextiarysector:fluid/lava_flow");
 			lavaStill = event.map.registerIcon("sextiarysector:fluid/lava_still");
+
+			breakIcon = event.map.registerIcon("sextiarysector:break");
+
 		}
 
 	}

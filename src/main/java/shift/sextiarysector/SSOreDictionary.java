@@ -54,6 +54,10 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("plateIron", SSBlocks.ironPlate);
 		OreDictionary.registerOre("plateGold", SSBlocks.goldPlate);
 
+		OreDictionary.registerOre("plateCopper", SSBlocks.copperPlate);
+		OreDictionary.registerOre("plateZinc", SSBlocks.zincPlate);
+		OreDictionary.registerOre("plateSilver", SSBlocks.silverPlate);
+
 		/*
 		OreDictionary.registerOre("plankWood", SSBlocks.woodOakPlate);
 		OreDictionary.registerOre("plankWood", SSBlocks.woodBirchPlate);
@@ -75,6 +79,7 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("dustDiamond", SSItems.diamondDust);
 		OreDictionary.registerOre("dustCopper", SSItems.copperDust);
 		OreDictionary.registerOre("dustZinc", SSItems.zincDust);
+		OreDictionary.registerOre("dustSilver", SSItems.silverDust);
 		OreDictionary.registerOre("dustMithril", SSItems.mithrilDust);
 		OreDictionary.registerOre("dustBluestone", SSItems.blueStoneDust);
 		OreDictionary.registerOre("dustYellowstone", SSItems.yellowStoneDust);
