@@ -16,6 +16,7 @@ public class RecipesPulverizer {
 		recipe.add("oreGold", new ItemStack(SSItems.goldDust, 2));
 		recipe.add("oreCopper", new ItemStack(SSItems.copperDust, 2));
 		recipe.add("oreZinc", new ItemStack(SSItems.zincDust, 2));
+		recipe.add("oreSilver", new ItemStack(SSItems.silverDust, 2));
 		recipe.add("gemDiamond", new ItemStack(SSItems.diamondDust, 1));
 
 		recipe.add("oreMithril", new ItemStack(SSItems.mithrilDust, 2));
@@ -25,6 +26,7 @@ public class RecipesPulverizer {
 		recipe.add("ingotGold", new ItemStack(SSItems.goldDust, 1));
 		recipe.add("ingotCopper", new ItemStack(SSItems.copperDust, 1));
 		recipe.add("ingotZinc", new ItemStack(SSItems.zincDust, 1));
+		recipe.add("ingotSilver", new ItemStack(SSItems.silverDust, 1));
 
 		recipe.add("ingotMithril", new ItemStack(SSItems.mithrilDust, 1));
 
