@@ -26,6 +26,7 @@ import shift.sextiarysector.block.BlockHotSprings;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockLargeOre;
 import shift.sextiarysector.block.BlockLargeWindmill;
+import shift.sextiarysector.block.BlockLeafBed;
 import shift.sextiarysector.block.BlockMachineFrame;
 import shift.sextiarysector.block.BlockMagiFurnace;
 import shift.sextiarysector.block.BlockMonitor;
@@ -132,6 +133,9 @@ public class SSBlocks {
 	public static Block figure;
 
 	public static Block trap;
+
+	//Bed
+	public static Block leafBed;
 
 	//液体
 	public static Block drinkingWater;
@@ -392,6 +396,9 @@ public class SSBlocks {
 		GameRegistry.registerBlock(trap, ItemBlockMeta.class, "Trap");
 		GameRegistry.registerTileEntity(TileEntityTrap.class, "SSTrap");
 
+		leafBed = new BlockLeafBed().setBlockName("ss.leaf_bed").setBlockTextureName("sextiarysector:leaf_bed").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(leafBed, "LeafBed");
+
 		//液体
 		drinkingWater = new BlockSSFluid(SSFluids.springWater).setBlockName("ss.drinking_water").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(drinkingWater, "DrinkingWater");
@@ -403,10 +410,10 @@ public class SSBlocks {
 		//GameRegistry.registerBlock(season, "Season");
 
 		//鉱石
-		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:ore/bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerBlock(blueStoneOre, "BlueStoneOre");
 
-		yellowStoneOre = new BlockPowerStone().setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		yellowStoneOre = new BlockPowerStone().setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:ore/yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerBlock(yellowStoneOre, "YellowStoneOre");
 
 		copperOre = new BlockSSOre(null, 1).setBlockName("ss.copper_ore").setBlockTextureName("sextiarysector:ore/copper_ore");

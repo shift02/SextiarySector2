@@ -182,32 +182,34 @@ public class ContainerPlayerNext extends Container {
 
 		});
 
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Necklace, this.equipment, 4, 80 + 1 * 18, 8 + 0 * 18));
+		//this.addSlotToContainer(new SlotEquipment(EquipmentType.Necklace, this.equipment, 4, 80 + 1 * 18, 8 + 0 * 18));
 		//this.addSlotToContainer(new Slot(this.equipment,0, 80 + 0 * 18, 8 + 0 * 18));
 
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 5, 80 + 1 * 18, 8 + 1 * 18));
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 6, 80 + 1 * 18, 8 + 2 * 18));
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 7, 80 + 1 * 18, 8 + 3 * 18));
+		//this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 5, 80 + 1 * 18, 8 + 1 * 18));
+		//this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 6, 80 + 1 * 18, 8 + 2 * 18));
+		//this.addSlotToContainer(new SlotEquipment(EquipmentType.Ring, this.equipment, 7, 80 + 1 * 18, 8 + 3 * 18));
 
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Face, this.equipment, 8, 80 + 2 * 18, 8 + 0 * 18));
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Bag, this.equipment, 9, 80 + 2 * 18, 8 + 1 * 18));
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Hand, this.equipment, 10, 80 + 2 * 18, 8 + 2 * 18));
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Belt, this.equipment, 11, 80 + 2 * 18, 8 + 3 * 18));
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Face, this.equipment, 4, 80 + 1 * 18, 8 + 0 * 18));
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Bag, this.equipment, 5, 80 + 1 * 18, 8 + 1 * 18));
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Hand, this.equipment, 6, 80 + 1 * 18, 8 + 2 * 18));
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Belt, this.equipment, 7, 80 + 1 * 18, 8 + 3 * 18));
+
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 8, 80 + 2 * 18, 8 + 0 * 18));
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 9, 80 + 2 * 18, 8 + 1 * 18));
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 10, 80 + 2 * 18, 8 + 2 * 18));
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 11, 80 + 2 * 18, 8 + 3 * 18));
 
 		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 12, 80 + 3 * 18, 8 + 0 * 18));
 		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 13, 80 + 3 * 18, 8 + 1 * 18));
 		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 14, 80 + 3 * 18, 8 + 2 * 18));
 		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 15, 80 + 3 * 18, 8 + 3 * 18));
 
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 16, 80 + 4 * 18, 8 + 0 * 18));
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 17, 80 + 4 * 18, 8 + 1 * 18));
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 18, 80 + 4 * 18, 8 + 2 * 18));
-		this.addSlotToContainer(new SlotEquipment(EquipmentType.Unit, this.equipment, 19, 80 + 4 * 18, 8 + 3 * 18));
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 16, 80 + 4 * 18, 8 + 0 * 18));
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 17, 80 + 4 * 18, 8 + 1 * 18));
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 18, 80 + 4 * 18, 8 + 2 * 18));
+		this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 19, 80 + 4 * 18, 8 + 3 * 18));
 
-		//this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 16, 80 + 4 * 18, 8 + 0 * 18));
-		//this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 17, 80 + 4 * 18, 8 + 1 * 18));
-		//this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 18, 80 + 4 * 18, 8 + 2 * 18));
-		//this.addSlotToContainer(new SlotEquipment(EquipmentType.Other, this.equipment, 19, 80 + 4 * 18, 8 + 3 * 18));
+		//60
 
 	}
 
@@ -233,118 +235,91 @@ public class ContainerPlayerNext extends Container {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if (itemstack.getItem() instanceof ItemArmor && !((Slot) this.inventorySlots.get(5 + ((ItemArmor) itemstack.getItem()).armorType)).getHasStack())
-			{
-				int j = 0 + ((ItemArmor) itemstack.getItem()).armorType;
+			if (!((0 <= p_82846_2_ && p_82846_2_ <= 3) || (40 <= p_82846_2_ && p_82846_2_ <= 60))) {
 
-				if (!this.mergeItemStack(itemstack1, j, j + 1, false))
+				if (itemstack.getItem() instanceof ItemArmor && !((Slot) this.inventorySlots.get(0 + ((ItemArmor) itemstack.getItem()).armorType)).getHasStack())
 				{
-					return null;
-				}
-			}
-			else if (itemstack.getItem() instanceof ItemArmor && !((Slot) this.inventorySlots.get(45 + ((ItemArmor) itemstack.getItem()).armorType)).getHasStack())
-			{
-				int j = 40 + ((ItemArmor) itemstack.getItem()).armorType;
+					int j = 0 + ((ItemArmor) itemstack.getItem()).armorType;
 
-				if (!this.mergeItemStack(itemstack1, j, j + 1, false))
+					if (!this.mergeItemStack(itemstack1, j, j + 1, false))
+					{
+						return null;
+					}
+				}
+				else if (itemstack.getItem() instanceof ItemArmor && !((Slot) this.inventorySlots.get(40 + ((ItemArmor) itemstack.getItem()).armorType)).getHasStack())
 				{
-					return null;
-				}
-			}
-			else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Necklace, itemstack))
-			{
+					int j = 40 + ((ItemArmor) itemstack.getItem()).armorType;
 
-				if (!this.mergeItemStack(itemstack1, 44, 45, false))
+					if (!this.mergeItemStack(itemstack1, j, j + 1, false))
+					{
+						return null;
+					}
+				}
+				else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Face, itemstack))
 				{
-					return null;
-				}
 
-			}
-			else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Ring, itemstack))
-			{
+					if (!this.mergeItemStack(itemstack1, 44, 45, false))
+					{
+						return null;
+					}
 
-				if (!this.mergeItemStack(itemstack1, 45, 48, false))
+				} else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Bag, itemstack))
 				{
-					return null;
+
+					if (!this.mergeItemStack(itemstack1, 45, 46, false))
+					{
+						return null;
+					}
+
 				}
-
-			}
-			else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Face, itemstack))
-			{
-
-				if (!this.mergeItemStack(itemstack1, 48, 49, false))
+				else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Hand, itemstack))
 				{
-					return null;
+
+					if (!this.mergeItemStack(itemstack1, 46, 47, false))
+					{
+						return null;
+					}
+
 				}
-
-			}
-			else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Bag, itemstack))
-			{
-
-				if (!this.mergeItemStack(itemstack1, 49, 50, false))
+				else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Belt, itemstack))
 				{
-					return null;
+
+					if (!this.mergeItemStack(itemstack1, 47, 48, false))
+					{
+						return null;
+					}
+
 				}
-
-			}
-			else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Hand, itemstack))
-			{
-
-				if (!this.mergeItemStack(itemstack1, 50, 51, false))
+				else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Unit, itemstack))
 				{
-					return null;
+
+					if (!this.mergeItemStack(itemstack1, 48, 56, false))
+					{
+						return null;
+					}
+
 				}
-
-			}
-			else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Belt, itemstack))
-			{
-
-				if (!this.mergeItemStack(itemstack1, 51, 52, false))
+				else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Other, itemstack))
 				{
-					return null;
-				}
 
-			}
-			else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Unit, itemstack))
-			{
+					if (!this.mergeItemStack(itemstack1, 56, 60, false))
+					{
+						return null;
+					}
 
-				if (!this.mergeItemStack(itemstack1, 52, 60, false))
+				} else if (p_82846_2_ >= 4 && p_82846_2_ < 13)
 				{
-					return null;
+					if (!this.mergeItemStack(itemstack1, 13, 40, false))
+					{
+						return null;
+					}
 				}
-
-			}
-			/*else if (itemstack.getItem() instanceof IEquipment && ((IEquipment) itemstack.getItem()).isItemValid(EquipmentType.Other, itemstack))
-			{
-
-				if (!this.mergeItemStack(itemstack1, 56, 60, false))
+				else if (p_82846_2_ >= 13 && p_82846_2_ < 40 && !this.mergeItemStack(itemstack1, 4, 13, false))
 				{
 					return null;
 				}
 
-			}*/
-			else if (p_82846_2_ >= 4 && p_82846_2_ < 13)
-			{
-				if (!this.mergeItemStack(itemstack1, 13, 40, false))
-				{
-					return null;
-				}
-			}
-			else if (p_82846_2_ >= 13 && p_82846_2_ < 40)
-			{
-				if (!this.mergeItemStack(itemstack1, 4, 13, false))
-				{
-					return null;
-				}
-			}
-			else if (p_82846_2_ >= 40 && p_82846_2_ < 60)
-			{
-				if (!this.mergeItemStack(itemstack1, 4, 13, false))
-				{
-					return null;
-				}
-			}
-			else if (!this.mergeItemStack(itemstack1, 13, 40, false))
+			} else if (!this.mergeItemStack(itemstack1, 4, 40, false))
 			{
 				return null;
 			}

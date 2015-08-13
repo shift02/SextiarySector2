@@ -346,6 +346,7 @@ item.ss.defense_unit.name=ユニット ｢ボウギョプラス｣
 item.ss.attack_rust_unit.name=錆びたユニット ｢ダ・・ジプ・ス｣
 item.ss.defense_rust_unit.name=錆びたユニット ｢ボウ・・・ラ・｣
 item.ss.jump_unit.name=ユニット ｢スーパージャンプ｣
+item.ss.bed_monster_unit.name=ユニット ｢しずかなココロ｣
 item.ss.pickaxe_unit.name=ユニット ｢ツルハシパワー｣
 
 
@@ -684,6 +685,15 @@ achievement.ss.creeper_chest.desc2=クリーパーのサンタ ?
 achievement.ss.shipping=出荷箱
 achievement.ss.shipping.desc=出荷してみよう
 achievement.ss.shipping.desc=私は億万長者 !
+
+
+
+#Dep
+dep.ss.error1=は必要なライブラリ
+dep.ss.error2=をダウンロードすることができませんでした。
+dep.ss.error2=インターネットの接続を確認して再起動するか、手動で
+dep.ss.error3=からダウンロードしてmodsのフォルダに入れてください。
+
 
 #NEI
 nei.recipe=レシピ

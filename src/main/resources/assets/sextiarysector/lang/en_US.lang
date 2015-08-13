@@ -185,6 +185,7 @@ item.ss.ninja_gf_storage.name=Ninja GF Storage
 item.ss.orichalcum_gf_storage.name=Orichalcum GF Storage
 
 item.ss.hammer.name=Hammer
+item.ss.iron_spanner.name=Iron Spanner
 item.ss.color_spray.name=Color Spray
 
 item.ss.calendar.name=Calendar
@@ -403,6 +404,7 @@ item.ss.defense_unit.name=Defense Unit
 item.ss.attack_rust_unit.name=Attack Rust Unit
 item.ss.defense_rust_unit.name=Defense Rust Unit
 item.ss.jump_unit.name=Jump Unit
+item.ss.bed_monster_unit.name=Bed Monster Unit
 item.ss.pickaxe_unit.name=Pickaxe Unit
 
 item.ss.debug_unit.name=Debug Unit
@@ -763,6 +765,12 @@ achievement.ss.creeper_chest.desc2=Santa Creeper ?
 achievement.ss.shipping=Shipping Block
 achievement.ss.shipping.desc=Trying to shipment
 achievement.ss.shipping.desc2=I'm millionaire !
+
+#Dep
+dep.ss.error1= was unable to download required library
+dep.ss.error2= .
+dep.ss.error3=Check your internet connection and try restarting or download it manually from
+dep.ss.error4= and put it in your mods folder
 
 #NEI
 nei.recipe=Recipes

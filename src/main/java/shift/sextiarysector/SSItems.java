@@ -70,7 +70,7 @@ public class SSItems {
 	public static Item orichalcumGFStorage;
 
 	//hammer
-	public static Item hammer;
+	public static Item ironSpanner;
 	public static Item colorSpray;
 
 	public static Item calendar;
@@ -297,6 +297,8 @@ public class SSItems {
 
 	public static Item jumpUnit;
 
+	public static Item bedMonsterUnit;
+
 	public static Item pickaxeUnit;
 
 	public static Item debugUnit;
@@ -358,8 +360,8 @@ public class SSItems {
 		GameRegistry.registerItem(orichalcumGFStorage, "OrichalcumGFStorage");
 
 		//ハンマー
-		hammer = new ItemHammer().setUnlocalizedName("ss.hammer").setTextureName("sextiarysector:machine/hammer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-		GameRegistry.registerItem(hammer, "Hammer");
+		ironSpanner = new ItemHammer().setUnlocalizedName("ss.iron_spanner").setTextureName("sextiarysector:gearforce/iron_spanner").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerItem(ironSpanner, "IronSpanner");
 
 		colorSpray = new ItemSpray().setUnlocalizedName("ss.color_spray").setTextureName("sextiarysector:fluid/color_spray").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(colorSpray, "ColorSpray");
@@ -782,6 +784,9 @@ public class SSItems {
 
 		jumpUnit = new ItemUnit().setUnlocalizedName("ss.jump_unit").setTextureName("sextiarysector:unit/jump_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(jumpUnit, "JumpUnit");
+
+		//bedMonsterUnit = new ItemUnit().setUnlocalizedName("ss.bed_monster_unit").setTextureName("sextiarysector:unit/bed_monster_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		//GameRegistry.registerItem(bedMonsterUnit, "BedMonsterUnit");
 
 		pickaxeUnit = new ItemUnit().setUnlocalizedName("ss.pickaxe_unit").setTextureName("sextiarysector:unit/pickaxe_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(pickaxeUnit, "PickaxeUnit");
