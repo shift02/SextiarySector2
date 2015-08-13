@@ -26,6 +26,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
@@ -34,8 +35,10 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
 import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent.SetArmorModel;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -250,6 +253,76 @@ public class ClientEventHandler {
 			}
 
 		}
+	}
+
+	//水の中2
+	@SubscribeEvent
+	public void onRenderBlockOverlay(RenderBlockOverlayEvent event) {
+
+		if (event.overlayType == RenderBlockOverlayEvent.OverlayType.WATER) {
+
+			if (event.player instanceof EntityPlayer) {
+
+				EntityPlayer player = event.player;
+
+				EquipmentStats e = EntityPlayerManager.getEquipmentStats(player);
+
+				if (e.inventory.getStackInSlot(EquipmentType.Face.getSlot(0)) != null) {
+
+					if (e.inventory.getStackInSlot(EquipmentType.Face.getSlot(0)).getItem() == SSItems.waterContactLenses) {
+						event.setCanceled(true);
+					}
+
+				}
+			}
+
+		}
+
+	}
+
+	//水の中3
+	@SubscribeEvent
+	public void onFogColors(FogColors event) {
+
+		if (!(event.entity instanceof EntityPlayer)) return;
+
+		if (event.block.getMaterial() != Material.water) return;
+
+		EntityPlayer player = (EntityPlayer) event.entity;
+
+		EquipmentStats e = EntityPlayerManager.getEquipmentStats(player);
+
+		if (e.inventory.getStackInSlot(EquipmentType.Face.getSlot(0)) != null) {
+
+			if (e.inventory.getStackInSlot(EquipmentType.Face.getSlot(0)).getItem() == SSItems.waterContactLenses) {
+
+				if (!player.isPotionActive(Potion.nightVision))
+				{
+					float f11;
+					float f6;
+
+					f11 = 200;//event.renderer.getNightVisionBrightness(this.mc.thePlayer, (float) event.renderPartialTicks);
+					f6 = 1.0F / event.red;
+
+					if (f6 > 1.0F / event.green)
+					{
+						f6 = 1.0F / event.green;
+					}
+
+					if (f6 > 1.0F / event.blue)
+					{
+						f6 = 1.0F / event.blue;
+					}
+
+					event.red = event.red * (1.0F - f11) + event.red * f6 * f11;
+					event.green = event.green * (1.0F - f11) + event.green * f6 * f11;
+					event.blue = event.blue * (1.0F - f11) + event.blue * f6 * f11;
+				}
+
+			}
+
+		}
+
 	}
 
 	public static ModelDecoration decoration;

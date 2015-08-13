@@ -1,8 +1,10 @@
 package shift.sextiarysector.event;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -135,7 +137,7 @@ public class PlayerUnitEventHandler {
 
 	}
 
-	//ダッシュユニット
+	//jumpユニット
 	@SubscribeEvent
 	public void onLivingJump(LivingJumpEvent event) {
 
@@ -172,6 +174,180 @@ public class PlayerUnitEventHandler {
 
 	}
 
+	//どこでも睡眠
+	/*
+	@SubscribeEvent
+	public void onSleep(PlayerInteractEvent event) {
+
+		if (event.action != Action.RIGHT_CLICK_BLOCK) return;
+
+		System.out.println("aaa");
+		if (!event.entityPlayer.isSneaking()) return;
+
+		System.out.println("baaa");
+
+		if (event.entityPlayer.getCurrentEquippedItem() != null) return;
+
+		System.out.println("caaa");
+
+		if (event.world.isRemote) return;
+
+		EquipmentStats e = EntityPlayerManager.getEquipmentStats(event.entityPlayer);
+
+		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+
+			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
+
+			if (item == null) continue;
+
+			if (item.getItem() == null) continue;
+
+			if (item.getItem() == SSItems.bedMonsterUnit) {
+				System.out.println("daaa");
+				event.entityPlayer.sleepInBedAt(event.x, event.y + 1, event.z);
+				return;
+
+			}
+
+		}
+
+		//double y = event.world.getBlock(event.x, event.y, event.z).getBlockBoundsMaxY();
+
+	}*/
+
+	public boolean checkBed(World w, int x, int y, int z) {
+
+		return false;
+	}
+
+	//睡眠ユニット
+	/*
+	@SubscribeEvent
+	public void onSleep(PlayerSleepInBedEvent event) {
+
+		EntityPlayer player = (EntityPlayer) event.entityLiving;
+
+		NBTTagCompound nbt = player.getEntityData();
+		NBTTagCompound ssnbt;
+		if (!nbt.hasKey("ss2")) {
+
+			ssnbt = new NBTTagCompound();
+			nbt.setTag("ss2", ssnbt);
+
+		} else {
+			ssnbt = nbt.getCompoundTag("ss2");
+		}
+
+		if (ssnbt.hasKey("bed")) {
+			ssnbt.removeTag("bed");
+			player.worldObj.isRemote = false;
+			return;
+		}
+
+		EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
+
+		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+
+			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
+
+			if (item == null) continue;
+
+			if (item.getItem() == null) continue;
+
+			if (item.getItem() == SSItems.bedMonsterUnit) {
+
+				if (!player.worldObj.isRemote)
+				{
+					if (player.isPlayerSleeping() || !player.isEntityAlive())
+					{
+						return;
+					}
+
+					if (!player.worldObj.provider.isSurfaceWorld())
+					{
+						return;
+					}
+
+					if (player.worldObj.isDaytime())
+					{
+						return;
+					}
+
+					if (Math.abs(player.posX - event.x) > 3.0D || Math.abs(player.posY - event.y) > 2.0D || Math.abs(player.posZ - event.z) > 3.0D)
+					{
+						return;
+					}
+
+					event.result = EntityPlayer.EnumStatus.OK;
+
+					if (player.isRiding())
+					{
+						player.mountEntity((Entity) null);
+					}
+
+					player.sleepInBedAt(event.x, event.y, event.z);
+
+					player.worldObj.updateAllPlayersSleepingFlag();
+
+					return;
+
+				} else {
+					return;
+				}
+
+			}
+
+		}
+
+	}*/
+
+	protected void setSize(EntityPlayer p, float p_70105_1_, float p_70105_2_)
+	{
+		float f2;
+
+		if (p_70105_1_ != p.width || p_70105_2_ != p.height)
+		{
+			f2 = p.width;
+			p.width = p_70105_1_;
+			p.height = p_70105_2_;
+			p.boundingBox.maxX = p.boundingBox.minX + p.width;
+			p.boundingBox.maxZ = p.boundingBox.minZ + p.width;
+			p.boundingBox.maxY = p.boundingBox.minY + p.height;
+
+			if (p.width > f2 && !p.worldObj.isRemote)
+			{
+				p.moveEntity(f2 - p.width, 0.0D, f2 - p.width);
+			}
+		}
+
+		f2 = p_70105_1_ % 2.0F;
+
+		if (f2 < 0.375D)
+		{
+			p.myEntitySize = Entity.EnumEntitySize.SIZE_1;
+		}
+		else if (f2 < 0.75D)
+		{
+			p.myEntitySize = Entity.EnumEntitySize.SIZE_2;
+		}
+		else if (f2 < 1.0D)
+		{
+			p.myEntitySize = Entity.EnumEntitySize.SIZE_3;
+		}
+		else if (f2 < 1.375D)
+		{
+			p.myEntitySize = Entity.EnumEntitySize.SIZE_4;
+		}
+		else if (f2 < 1.75D)
+		{
+			p.myEntitySize = Entity.EnumEntitySize.SIZE_5;
+		}
+		else
+		{
+			p.myEntitySize = Entity.EnumEntitySize.SIZE_6;
+		}
+	}
+
 	//リング
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onPlayerCloneEvent(net.minecraftforge.event.entity.player.PlayerEvent.Clone event)
@@ -186,21 +362,21 @@ public class PlayerUnitEventHandler {
 		int mp = (int) (MCEconomyAPI.getPlayerMP(event.original) / 4.0f);
 		int xp = (int) (event.original.experienceLevel / 4.0f);
 
-		for (int i = 0; i < EquipmentType.Ring.getSlots().length; i++) {
+		for (int i = 0; i < EquipmentType.Other.getSlots().length; i++) {
 
-			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Ring.getSlots()[i]);
+			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Other.getSlots()[i]);
 
 			if (item != null && item.getItem() == SSItems.mpRing) {
 
 				int reduce = MCEconomyAPI.reducePlayerMP(event.original, mp, false);
 				MCEconomyAPI.addPlayerMP(event.entityPlayer, reduce, false);
-				e.inventory.setInventorySlotContents(EquipmentType.Ring.getSlots()[i], null);
+				e.inventory.setInventorySlotContents(EquipmentType.Other.getSlots()[i], null);
 
 			} else if (item != null && item.getItem() == SSItems.xpRing) {
 
 				event.entityPlayer.experienceLevel += xp;
 				event.original.experienceLevel -= xp;
-				e.inventory.setInventorySlotContents(EquipmentType.Ring.getSlots()[i], null);
+				e.inventory.setInventorySlotContents(EquipmentType.Other.getSlots()[i], null);
 
 			}
 

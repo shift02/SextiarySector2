@@ -37,6 +37,12 @@ public class RecipesCore {
 
 		p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSItems.blueGel, 1),
 				new Object[] {
+						"dustYellowstone",
+						"slimeball"
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSItems.yellowGel, 1),
+				new Object[] {
 						"dustBluestone",
 						"slimeball"
 				}));

@@ -118,7 +118,7 @@ public class SSAchievement {
 		bottle = new AchievementCraft("bottle", 1, 1, new ItemStack(SSItems.emptyBottle), AchievementList.buildWorkBench, core).registerStat();
 		drinkingWater = new AchievementFurnace("drinking_water", 3, 1, new ItemStack(SSItems.drinkingWaterBottle), bottle, core).registerStat();
 		craftFurnace = new AchievementCraft("craft_furnace", -2, -1, new ItemStack(SSBlocks.LargeFurnace), AchievementList.buildWorkBench, core).registerStat();
-		hammer = new AchievementFurnace("hammer", -4, -1, new ItemStack(SSItems.hammer), craftFurnace, core).registerStat();
+		hammer = new AchievementFurnace("hammer", -4, -1, new ItemStack(SSItems.ironSpanner), craftFurnace, core).registerStat();
 		fluidFurnace = new AchievementFurnace("fluid_furnace", -2, 1, new ItemStack(SSBlocks.fluidFurnace), craftFurnace, core).registerStat();
 		freezer = new AchievementFurnace("freezer", 0, -3, new ItemStack(SSBlocks.freezer), craftFurnace, core).registerStat();
 
