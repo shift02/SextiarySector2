@@ -277,11 +277,18 @@ item.ss.iron_scoop.name=铁铲
 item.ss.gold_scoop.name=金铲
 item.ss.diamond_scoop.name=钻石铲
 
+item.ss.brass_scoop.name=黄铜铲
+
+
+
 item.ss.wood_knife.name=木质小刀
 item.ss.stone_knife.name=石质小刀
 item.ss.iron_knife.name=铁质小刀
 item.ss.gold_knife.name=金质小刀
 item.ss.diamond_knife.name=钻石小刀
+
+item.ss.brass_knife.name=黄铜小
+
 
 item.ss.copper_shovel.name=铜锹
 item.ss.copper_pickaxe.name=铜镐
