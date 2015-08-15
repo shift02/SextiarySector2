@@ -128,6 +128,8 @@ public class SSOreDictionary {
 
 		OreDictionary.registerOre("ringIron", SSItems.ironRing);
 
+		OreDictionary.registerOre("treeLeaves", SSBlocks.leafBlock);
+
 		//布
 		OreDictionary.registerOre("massString", SSItems.stringMass);
 		OreDictionary.registerOre("blockWool", SSItems.stringMass);

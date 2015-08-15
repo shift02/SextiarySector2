@@ -26,6 +26,7 @@ import shift.sextiarysector.block.BlockHotSprings;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockLargeOre;
 import shift.sextiarysector.block.BlockLargeWindmill;
+import shift.sextiarysector.block.BlockLeaf;
 import shift.sextiarysector.block.BlockLeafBed;
 import shift.sextiarysector.block.BlockMachineFrame;
 import shift.sextiarysector.block.BlockMagiFurnace;
@@ -131,6 +132,8 @@ public class SSBlocks {
 	public static Block blueFire;
 
 	public static Block figure;
+
+	public static Block leafBlock;
 
 	public static Block trap;
 
@@ -392,11 +395,14 @@ public class SSBlocks {
 		GameRegistry.registerBlock(figure, ItemBlockFigure.class, "Figure");
 		GameRegistry.registerTileEntity(TileEntityFigure.class, "SSFigure");
 
+		leafBlock = new BlockLeaf().setBlockName("ss.leaf_block").setBlockTextureName("sextiarysector:leaf_bed_2").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(leafBlock, "LeafBlock");
+
 		trap = new BlockTrap().setBlockName("ss.trap").setBlockTextureName("sextiarysector:wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(trap, ItemBlockMeta.class, "Trap");
 		GameRegistry.registerTileEntity(TileEntityTrap.class, "SSTrap");
 
-		leafBed = new BlockLeafBed().setBlockName("ss.leaf_bed").setBlockTextureName("sextiarysector:leaf_bed").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		leafBed = new BlockLeafBed().setBlockName("ss.leaf_bed").setBlockTextureName("sextiarysector:leaf_bed");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(leafBed, "LeafBed");
 
 		//液体

@@ -45,7 +45,13 @@ tile.ss.chunk_loader.name=Time Loader
 
 tile.ss.figure.name=Figure
 
+
+
+tile.ss.leaf_block.name=Leaf Block
+
 tile.ss.trap.name=Trap
+
+tile.ss.leaf_bed.name=Leaf Bed
 
 tile.ss.drinking_water.name=Drinking Water
 tile.ss.hot_springs.name=Hot Springs
@@ -195,7 +201,10 @@ item.ss.season_stone_summer.name=Season Stone -Summer-
 item.ss.season_stone_autumn.name=Season Stone -Autumn-
 item.ss.season_stone_winter.name=Season Stone -Winter-
 
+item.ss.leaf_bed.name=Leaf Bed
 
+
+item.ss.leaf.name=Leaf
 
 item.ss.dust_waterlily.name=WaterLily Dust
 

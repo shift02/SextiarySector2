@@ -92,6 +92,19 @@ public class RecipesCore {
 						'x', "craftingString",
 				}));*/
 
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.leafBlock, 1),
+				new Object[] {
+						"xxx", "xxx", "xxx",
+						'x', SSItems.leaf
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.leafBed, 1),
+				new Object[] {
+						"xxx", "yyy",
+						'x', SSBlocks.leafBlock,
+						'y', "plankWood",
+				}));
+
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.silkBobbin, 1),
 				new Object[] {
 						"xxx", "xyx", "xxx",
