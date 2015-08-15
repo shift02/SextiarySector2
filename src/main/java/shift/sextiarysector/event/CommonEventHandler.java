@@ -1,5 +1,6 @@
 package shift.sextiarysector.event;
 
+import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -9,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -23,11 +25,13 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSFluids.SSFluid;
+import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.event.BlockBottleEvent;
 import shift.sextiarysector.block.BlockMonitor;
@@ -364,6 +368,22 @@ public class CommonEventHandler {
 			}
 
 		}
+
+	}
+
+	//葉っぱ
+	@SubscribeEvent
+	public void DecayEvent(BlockEvent.HarvestDropsEvent event)
+	{
+
+		if (event.isSilkTouching) return;
+
+		if (!(event.block instanceof BlockLeavesBase)) return;
+
+		if (event.harvester != null && event.harvester.getCurrentEquippedItem() != null && event.harvester.getCurrentEquippedItem().getItem() instanceof ItemShears) return;
+
+		if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(Items.stick, event.world.rand.nextInt(1) + 1));
+		if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(SSItems.leaf, event.world.rand.nextInt(2) + 1));
 
 	}
 

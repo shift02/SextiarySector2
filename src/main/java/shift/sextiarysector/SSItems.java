@@ -24,6 +24,7 @@ import shift.sextiarysector.item.ItemGuiUnit;
 import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemKnife;
 import shift.sextiarysector.item.ItemLavaBottle;
+import shift.sextiarysector.item.ItemLeafBed;
 import shift.sextiarysector.item.ItemMineboat;
 import shift.sextiarysector.item.ItemMineboatTank;
 import shift.sextiarysector.item.ItemOxygenTank;
@@ -76,7 +77,12 @@ public class SSItems {
 	public static Item calendar;
 	public static Item seasonStone;
 
+	//ベッド
+	public static Item leafBed;
+
 	//素材
+	public static Item leaf;
+
 	public static Item dustWaterLily;
 
 	public static Item stoneDust;
@@ -372,7 +378,13 @@ public class SSItems {
 		seasonStone = new ItemSeasonStone().setUnlocalizedName("ss.season_stone").setTextureName("sextiarysector:season_stone").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(seasonStone, "SeasonStone");
 
+		leafBed = new ItemLeafBed().setUnlocalizedName("ss.leaf_bed").setTextureName("sextiarysector:leaf_bed").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(leafBed, "ItemLeafBed");
+
 		//素材
+		leaf = new Item().setUnlocalizedName("ss.leaf").setTextureName("sextiarysector:leaf").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(leaf, "Leaf");
+
 		dustWaterLily = new Item().setUnlocalizedName("ss.dust_waterlily").setTextureName("sextiarysector:dust/waterlily_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(dustWaterLily, "DustWaterLily");
 
