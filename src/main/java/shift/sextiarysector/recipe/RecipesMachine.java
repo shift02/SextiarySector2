@@ -174,7 +174,7 @@ public class RecipesMachine {
 						Character.valueOf('y'), "gearStone",
 						Character.valueOf('x'), SSItems.stoneGFStorage,
 						Character.valueOf('z'), SSBlocks.machineFrame,
-						Character.valueOf('a'), "ingotBrass"
+						Character.valueOf('a'), "ingotZinc"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.spinningMachine, 1),

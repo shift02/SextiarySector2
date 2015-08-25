@@ -259,6 +259,9 @@ public class SSItems {
 
 	public static Item shiitake;
 
+	//魚
+	public static Item squidSashimi;
+
 	//料理
 	public static Item whiteRice;
 
@@ -718,6 +721,10 @@ public class SSItems {
 
 		shiitake = new ItemFoodCrop(woodCrops, 2, 1, 0, 0, 2, 0, false).setUnlocalizedName("ss.shiitake").setTextureName("sextiarysector:food/mushroom/shiitake");
 		GameRegistry.registerItem(shiitake, "Shiitake");
+
+		//さかな
+		squidSashimi = new ItemFoodDrink(2, 1.2f, 0, 0.4f, 0, 0, false).setUnlocalizedName("ss.squid_sashimi").setTextureName("sextiarysector:food/fish/squid_sashimi").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+		GameRegistry.registerItem(squidSashimi, "SquidSashimi");
 
 		//料理
 		whiteRice = new Item().setUnlocalizedName("ss.white_rice").setTextureName("sextiarysector:food/grain/white_rice").setCreativeTab(SextiarySectorAPI.TabSSCooking);

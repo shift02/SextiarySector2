@@ -2,7 +2,6 @@ package shift.sextiarysector.player;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import shift.sextiarysector.Config;
 import cpw.mods.fml.relauncher.Side;
@@ -65,7 +64,7 @@ public class MoistureStats {
 		{
 			++this.moistureTimer;
 
-			if (this.moistureTimer >= 80)
+			if (this.moistureTimer >= 160)
 			{
 				par1EntityPlayer.heal(1.0F);
 				this.addExhaustion(3.0F);
@@ -80,7 +79,7 @@ public class MoistureStats {
 			{
 				if (par1EntityPlayer.getHealth() > 10.0F || i.getDifficultyId() >= 3 || par1EntityPlayer.getHealth() > 1.0F && i.getDifficultyId() >= 2)
 				{
-					par1EntityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
+					//par1EntityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
 				}
 
 				this.moistureTimer = 0;
