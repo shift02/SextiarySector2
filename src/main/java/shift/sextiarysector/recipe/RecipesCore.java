@@ -37,13 +37,13 @@ public class RecipesCore {
 
 		p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSItems.blueGel, 1),
 				new Object[] {
-						"dustYellowstone",
+						"dustBluestone",
 						"slimeball"
 				}));
 
 		p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSItems.yellowGel, 1),
 				new Object[] {
-						"dustBluestone",
+						"dustYellowstone",
 						"slimeball"
 				}));
 
@@ -82,6 +82,16 @@ public class RecipesCore {
 			p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(nugget[i], 9),
 					new Object[] {
 							oIngot[i]
+					}));
+		}
+
+		//その他
+		oNugget = new Object[] { "nuggetObsidian" };
+		Block[] other = new Block[] { Blocks.obsidian };
+		for (int i = 0; i < oNugget.length; i++) {
+			p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(other[i], 1),
+					new Object[] { "xxx", "xxx", "xxx",
+							Character.valueOf('x'), oNugget[i],
 					}));
 		}
 

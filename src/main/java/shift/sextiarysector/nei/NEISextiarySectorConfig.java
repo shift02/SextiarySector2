@@ -113,6 +113,8 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 		API.registerGuiOverlay(GuiTimeMachine.class, "SS_TimeMachine");
 		//API.registerGuiOverlay(GuiBrewingStand.class, "SextiarySectorBrewing");
 
+		API.registerNEIGuiHandler(new NEIGuiTabsHandler());
+
 	}
 
 	@Override

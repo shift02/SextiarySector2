@@ -4,29 +4,23 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import shift.sextiarysector.SextiarySector;
-import shift.sextiarysector.api.SextiarySectorAPI;
 
-public class BlockLargeOre extends Block {
+public class BlockLargeOre extends BlockSSOreBase {
 
 	private final Item oreItem;
 	private final Block oreBlock;
 
 	public BlockLargeOre(Item item, Block block, int level) {
-		super(Material.rock);
+		super(level);
 		this.oreItem = item;
 		this.oreBlock = block;
-		this.setHarvestLevel("pickaxe", level);
 		this.setResistance(5.0F);
-		this.setStepSound(Block.soundTypeStone);
 		this.setHardness(3.0F);
-		this.setCreativeTab(SextiarySectorAPI.TabSSMining);
 	}
 
 	@Override
@@ -83,12 +77,6 @@ public class BlockLargeOre extends Block {
 	protected boolean canSilkHarvest()
 	{
 		return false;
-	}
-
-	@Override
-	public int getRenderType()
-	{
-		return SextiarySector.proxy.oreStoneType;
 	}
 
 }

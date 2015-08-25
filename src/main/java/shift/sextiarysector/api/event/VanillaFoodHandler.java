@@ -43,7 +43,7 @@ public class VanillaFoodHandler {
 
 		if (food.getItem() == Items.cooked_chicken) {
 
-			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 9.2f);
+			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 7.2f);
 			SextiarySectorAPI.playerManager.addStaminaStats(player, 4, 2);
 		}
 
@@ -55,7 +55,7 @@ public class VanillaFoodHandler {
 
 		if (food.getItem() == Items.cooked_porkchop) {
 
-			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 12.2f);
+			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 8.2f);
 			SextiarySectorAPI.playerManager.addStaminaStats(player, 5, 1);
 		}
 
@@ -67,7 +67,7 @@ public class VanillaFoodHandler {
 
 		if (food.getItem() == Items.cooked_beef) {
 
-			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 16.2f);
+			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 10.2f);
 			SextiarySectorAPI.playerManager.addStaminaStats(player, 7, 4);
 		}
 
@@ -81,28 +81,28 @@ public class VanillaFoodHandler {
 
 		if (food.getItem() == Items.cooked_fished) {
 
-			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 6.2f);
+			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 5.2f);
 			SextiarySectorAPI.playerManager.addStaminaStats(player, 6, 2);
 		}
 
 		//リンゴ
 		if (food.getItem() == Items.apple) {
 
-			SextiarySectorAPI.playerManager.addMoistureStats(player, 1, 1.0f);
+			SextiarySectorAPI.playerManager.addMoistureStats(player, 1, 0.3f);
 
 		}
 
 		//スイカ
 		if (food.getItem() == Items.melon) {
 
-			SextiarySectorAPI.playerManager.addMoistureStats(player, 3, 1.0f);
+			SextiarySectorAPI.playerManager.addMoistureStats(player, 1, 1.0f);
 
 		}
 
 		//パン
 		if (food.getItem() == Items.bread) {
 
-			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 6.8f);
+			SextiarySectorAPI.playerManager.addMoistureExhaustion(player, 5.2f);
 			SextiarySectorAPI.playerManager.addStaminaStats(player, 4, 4);
 		}
 

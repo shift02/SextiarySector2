@@ -57,12 +57,12 @@ public class RecipesFurnaceCraft {
 				}));
 		*/
 
-		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.drinkingWaterBottle, 2),
-				new Object[] {
-						SSItems.emptyBottle,
-						SSItems.emptyBottle,
-						SSItems.waterBottle,
-				}));
+		//p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.drinkingWaterBottle, 2),
+		//		new Object[] {
+		//				SSItems.emptyBottle,
+		//				SSItems.emptyBottle,
+		//				SSItems.waterBottle,
+		//		}));
 
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.chocolate, 1),
 				new Object[] {

@@ -1,7 +1,7 @@
 package shift.sextiarysector.item;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -13,9 +13,9 @@ public class ItemLavaBottle extends ItemFoodDrink {
 
 	public ItemLavaBottle() {
 		super(0, 0, 0, 0, 1, 0, false);
-		this.setContainerItem(SSItems.emptyBottle);
+		this.setContainerItem(Items.glass_bottle);
 		this.setDrink();
-		this.setMaxStackSize(4);
+		this.setMaxStackSize(1);
 		this.setAlwaysEdible();
 
 		this.setCreativeTab(SextiarySectorAPI.TabSSFluid);
@@ -28,9 +28,9 @@ public class ItemLavaBottle extends ItemFoodDrink {
 		player.addExhaustion(7.8f);
 		player.addPotionEffect(new PotionEffect(SSPotions.burn.getId(), 360, 2));
 
-		if (!player.inventory.addItemStackToInventory(new ItemStack(Blocks.obsidian)))
+		if (!player.inventory.addItemStackToInventory(new ItemStack(SSItems.obsidianNugget)))
 		{
-			player.dropPlayerItemWithRandomChoice(new ItemStack(Blocks.obsidian, 1, 0), false);
+			player.dropPlayerItemWithRandomChoice(new ItemStack(SSItems.obsidianNugget, 1, 0), false);
 		}
 
 	}

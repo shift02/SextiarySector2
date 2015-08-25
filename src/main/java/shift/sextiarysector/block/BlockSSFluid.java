@@ -8,6 +8,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
+import shift.sextiarysector.api.SextiarySectorAPI;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,6 +18,7 @@ public class BlockSSFluid extends BlockFluidClassic {
 
 	public BlockSSFluid(Fluid fluid) {
 		super(fluid, Material.water);
+		this.setCreativeTab(SextiarySectorAPI.TabSSFluid);
 	}
 
 	@Override
