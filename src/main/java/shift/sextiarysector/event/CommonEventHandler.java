@@ -1,11 +1,14 @@
 package shift.sextiarysector.event;
 
+import java.util.Random;
+
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -384,6 +387,27 @@ public class CommonEventHandler {
 
 		if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(Items.stick, event.world.rand.nextInt(1) + 1));
 		if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(SSItems.leaf, event.world.rand.nextInt(2) + 1));
+
+	}
+
+	//動物のドロップを増やす
+	@SubscribeEvent
+	public void onLivingAnimalDrops(LivingDropsEvent event)
+	{
+
+		if (event.source.getSourceOfDamage() == null || event.source.getEntity() == null) {
+			return;
+		}
+
+		double x = event.entityLiving.posX;
+		double y = event.entityLiving.posY;
+		double z = event.entityLiving.posZ;
+
+		Random r = event.entityLiving.worldObj.rand;
+
+		if (event.entityLiving instanceof EntitySquid) {
+			event.drops.add(new EntityItem(event.entityLiving.worldObj, x, y, z, new ItemStack(SSItems.squidSashimi, r.nextInt(5) + 1)));
+		}
 
 	}
 

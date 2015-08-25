@@ -32,6 +32,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = SextiarySector.MODID, version = SextiarySector.VERSION, dependencies = SextiarySector.DEPENDENCY)
 public class SextiarySector {
@@ -97,6 +98,7 @@ public class SextiarySector {
 		SSItems.initItems();
 		SSBlocks.initBlicks();
 		SSEntitys.initEntity();
+		GameRegistry.registerFuelHandler(new SSFuels());
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new SSGuiHandler());
 

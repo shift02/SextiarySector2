@@ -78,7 +78,7 @@ public class TransformerBottle implements IClassTransformer, Opcodes
 
 			String mName = FMLDeobfuscatingRemapper.INSTANCE.mapMethodName(className, curMnode.name, curMnode.desc);
 			String mdName = FMLDeobfuscatingRemapper.INSTANCE.mapMethodDesc(curMnode.desc);
-			System.out.println("[ " + mName + " : " + curMnode.name + " ]  [ " + mdName + " : " + curMnode.desc);
+			//System.out.println("[ " + mName + " : " + curMnode.name + " ]  [ " + mdName + " : " + curMnode.desc);
 			if ((targetMethodName.equals(curMnode.name) && targetMethoddesc.equals(curMnode.desc)) || (targetMethodNameSRG.equals(mName) && targetMethoddescSRG.equals(mdName)))
 			{
 				mnode = curMnode;

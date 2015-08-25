@@ -26,6 +26,7 @@ public class PlayerUnitEventHandler {
 		//	return;
 		//}
 
+		/*
 		if (!(event.entityLiving instanceof EntityPlayer)) {
 			return;
 		}
@@ -50,7 +51,7 @@ public class PlayerUnitEventHandler {
 			player.motionZ *= 1.1;
 			//player.capabilities.setPlayerWalkSpeed(0.16f);
 
-		}
+		}*/
 
 	}
 
