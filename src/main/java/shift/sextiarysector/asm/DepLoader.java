@@ -57,7 +57,6 @@ import cpw.mods.fml.common.versioning.ComparableVersion;
 import cpw.mods.fml.relauncher.FMLInjectionData;
 import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.IFMLCallHook;
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -65,7 +64,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * The majority of this source code was created by FML staff and chickenbone.
  * My work is not nearly.
  */
-public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
+public class DepLoader implements IFMLCallHook {
 	private static ByteBuffer downloadBuffer = ByteBuffer.allocateDirect(1 << 23);
 	private static final String owner = "SS2's DepLoader";//"CB's DepLoader";
 	private static DepLoadInst inst;
@@ -542,7 +541,7 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 		private List<File> modFiles() {
 			List<File> list = new LinkedList<File>();
 			list.addAll(Arrays.asList(modsDir.listFiles()));
-			list.add(new File(eclipse_modDir, "ss.zip"));//SS2用の処理
+			//list.add(new File(eclipse_modDir, "ss.zip"));//SS2用の処理
 			list.addAll(Arrays.asList(v_modsDir.listFiles()));
 			return list;
 		}
@@ -644,33 +643,14 @@ public class DepLoader implements IFMLLoadingPlugin, IFMLCallHook {
 	}
 
 	@Override
-	public String[] getASMTransformerClass() {
+	public Void call() throws Exception {
+		load();
 		return null;
-	}
-
-	@Override
-	public String getModContainerClass() {
-		return null;
-	}
-
-	@Override
-	public String getSetupClass() {
-		return getClass().getName();
 	}
 
 	@Override
 	public void injectData(Map<String, Object> data) {
+
 	}
 
-	@Override
-	public Void call() {
-		load();
-
-		return null;
-	}
-
-	@Override
-	public String getAccessTransformerClass() {
-		return null;
-	}
 }

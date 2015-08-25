@@ -226,6 +226,8 @@ public class PlayerStatusEventHandler {
 			return;
 		}
 
+		if (event.updateWorld) return;
+
 		if (!event.entityLiving.worldObj.isRemote) {
 
 			EntityPlayer player = event.entityPlayer;
@@ -235,8 +237,8 @@ public class PlayerStatusEventHandler {
 			} else {
 				EntityPlayerManager.getStaminaStats(player).addStats(40, 0.0f);
 			}
-			player.getFoodStats().addExhaustion(21.0f);
-			SextiarySectorAPI.addMoistureExhaustion(player, 21.0f);
+			player.getFoodStats().addExhaustion(16.3f);
+			SextiarySectorAPI.addMoistureExhaustion(player, 17.3f);
 
 		}
 
@@ -254,7 +256,9 @@ public class PlayerStatusEventHandler {
 
 		if (player.worldObj.getTotalWorldTime() % 120 != 0) return;
 
-		if (!player.isSneaking()) return;
+		if (player.worldObj.rand.nextBoolean()) return;
+
+		if (player.isSneaking()) return;
 
 		StaminaStats stats = EntityPlayerManager.getStaminaStats(player);
 		if (stats == null) return;
@@ -264,20 +268,22 @@ public class PlayerStatusEventHandler {
 		MoistureStats moistStats = EntityPlayerManager.getMoistureStats(player);
 		if (moistStats == null) return;
 
-		if (moistStats.getMoistureLevel() < 10)
-			return;
+		if (moistStats.getMoistureLevel() < 1) return;
 
-		if (player.lastTickPosX == player.posX
-				&& player.lastTickPosY == player.posY
-				&& player.lastTickPosZ == player.posZ
+		if ((int) player.lastTickPosX == (int) player.posX
+				&& (int) player.lastTickPosY == (int) player.posY
+				&& (int) player.lastTickPosZ == (int) player.posZ
 				&& player.motionX == 0
 				&& player.motionY == 0
 				&& player.motionZ == 0) {
 
-			stats.addStats(1, 0.1f);
-			moistStats.addExhaustion(0.8f);
-			player.addExhaustion(0.8f);
+			if (!player.worldObj.isRemote) {
+				stats.addStats(1, 0.1f);
+				moistStats.addExhaustion(0.05f);
+				player.addExhaustion(0.1f);
+			}
 			generateRandomParticles(player, "happyVillager");
+
 		}
 	}
 

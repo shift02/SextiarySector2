@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import shift.mceconomy2.gui.HUDMP;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.gearforce.item.GearForceItemAPI;
 import shift.sextiarysector.item.GearForceItemManager;
@@ -38,7 +37,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 public class SextiarySector {
 
 	public static final String MODID = "SextiarySector";
-	public static final String VERSION = "2.4.2";
+	public static final String VERSION = "2.4.3";
 
 	@Mod.Instance("SextiarySector")
 	public static SextiarySector instance;
@@ -127,9 +126,9 @@ public class SextiarySector {
 
 		SSWorld.init(event);
 
-		if (event.getSide().isClient()) {
-			HUDMP.left_height += 10;
-		}
+		//if (event.getSide().isClient()) {
+		//	HUDMP.left_height += 10;
+		//}
 
 		SSRecipes.initRecipes();
 

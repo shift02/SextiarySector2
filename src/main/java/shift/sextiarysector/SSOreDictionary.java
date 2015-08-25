@@ -92,6 +92,8 @@ public class SSOreDictionary {
 		OreDictionary.registerOre("nuggetSteel", SSItems.steelNugget);
 		OreDictionary.registerOre("nuggetNinja", SSItems.ninjaNugget);
 
+		OreDictionary.registerOre("nuggetObsidian", SSItems.obsidianNugget);
+
 		OreDictionary.registerOre("ingotSteel", SSItems.steelIngot);
 		OreDictionary.registerOre("ingotBrass", SSItems.brassIngot);
 		OreDictionary.registerOre("ingotBluestone", SSItems.blueStoneIngot);

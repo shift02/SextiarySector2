@@ -24,6 +24,7 @@ public class SSPlugins {
 	public static boolean modCleaver;
 	public static boolean modFMP;
 	public static boolean modRF;
+	public static boolean modTC;
 
 	public static void initModHelper() {
 
@@ -36,6 +37,7 @@ public class SSPlugins {
 		modCleaver = Loader.isModLoaded("schr0.cleaver") && Config.modCleaver;
 		modFMP = Loader.isModLoaded("ForgeMultipart") && Config.modFMP;
 		modRF = isRF() && Config.modRF;
+		modTC = Loader.isModLoaded("Thaumcraft") && Config.modTC;
 
 		if (modDCsAppleMilk) {
 
@@ -167,6 +169,21 @@ public class SSPlugins {
 			} catch (Exception e) {
 
 				SextiarySector.Log.log(Level.WARN, "RF integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+				SextiarySector.Log.catching(e);
+
+			}
+		}
+
+		if (modTC) {
+
+			try {
+
+				SextiarySector.Log.info("Thaumcraft Plugin is loaded");
+				plugins.add(new PluginTC());
+
+			} catch (Exception e) {
+
+				SextiarySector.Log.log(Level.WARN, "Thaumcraft integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
 				SextiarySector.Log.catching(e);
 
 			}

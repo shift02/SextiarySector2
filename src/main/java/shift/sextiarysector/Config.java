@@ -31,6 +31,7 @@ public class Config {
 	public static boolean modCleaver;
 	public static boolean modFMP;
 	public static boolean modRF;
+	public static boolean modTC;
 
 	public static void ConfigRead(FMLPreInitializationEvent event) {
 
@@ -86,6 +87,7 @@ public class Config {
 		modCleaver = cfg.getBoolean("Cleaver", "general", true, "");
 		modFMP = cfg.getBoolean("ForgeMultipart", "general", true, "");
 		modRF = cfg.getBoolean("RF", "general", true, "");
+		modTC = cfg.getBoolean("Thaumcraft", "general", true, "");
 
 	}
 

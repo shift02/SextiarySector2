@@ -2,8 +2,6 @@ package shift.sextiarysector.block;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -11,17 +9,15 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSItems;
-import shift.sextiarysector.SextiarySector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockPowerStone extends Block {
+public class BlockPowerStone extends BlockSSOreBase {
 
-	public BlockPowerStone() {
-		super(Material.rock);
+	public BlockPowerStone(int level) {
+		super(level);
 		this.setTickRandomly(true);
 		this.setResistance(5.0F);
-		this.setStepSound(Block.soundTypeStone);
 		this.setHardness(3.0F);
 	}
 
@@ -180,9 +176,10 @@ public class BlockPowerStone extends Block {
 	}
 
 	@Override
-	public int getRenderType()
+	public boolean isToolEffective(String type, int metadata)
 	{
-		return SextiarySector.proxy.oreStoneType;
+		if ("pickaxe".equals(type)) return false;
+		return super.isToolEffective(type, metadata);
 	}
 
 }

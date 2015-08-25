@@ -71,6 +71,8 @@ public class SSItems {
 	public static Item orichalcumGFStorage;
 
 	//hammer
+	public static Item hammer;
+
 	public static Item ironSpanner;
 	public static Item colorSpray;
 
@@ -108,6 +110,8 @@ public class SSItems {
 
 	public static Item steelNugget;
 	public static Item ninjaNugget;
+
+	public static Item obsidianNugget;
 
 	public static Item steelIngot;
 	public static Item brassIngot;
@@ -366,8 +370,12 @@ public class SSItems {
 		GameRegistry.registerItem(orichalcumGFStorage, "OrichalcumGFStorage");
 
 		//ハンマー
+		//hammer = new ItemHammer().setUnlocalizedName("ss.iron_spanner").setTextureName("sextiarysector:gearforce/iron_spanner").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+
 		ironSpanner = new ItemHammer().setUnlocalizedName("ss.iron_spanner").setTextureName("sextiarysector:gearforce/iron_spanner").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
 		GameRegistry.registerItem(ironSpanner, "IronSpanner");
+
+		hammer = ironSpanner;
 
 		colorSpray = new ItemSpray().setUnlocalizedName("ss.color_spray").setTextureName("sextiarysector:fluid/color_spray").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(colorSpray, "ColorSpray");
@@ -439,6 +447,11 @@ public class SSItems {
 
 		ninjaNugget = new Item().setUnlocalizedName("ss.ninja_nugget").setTextureName("sextiarysector:nugget/ninja_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(ninjaNugget, "NinjaNugget");
+
+		obsidianNugget = new Item().setUnlocalizedName("ss.obsidian_nugget").setTextureName("sextiarysector:nugget/obsidian_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(obsidianNugget, "ObsidianNugget");
+
+		//ナゲット 特殊
 
 		//インゴット
 		steelIngot = new Item().setUnlocalizedName("ss.steel_ingot").setTextureName("sextiarysector:ingot/steel_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
