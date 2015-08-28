@@ -776,7 +776,7 @@ public class SSItems {
 		GameRegistry.registerItem(chocolate, "Chocolate");
 
 		//飲み物
-		drinkingWaterBottle = new ItemDrink(0, 2.5f, 3, 6.5f, 0, 0, false).setUnlocalizedName("ss.drinking_water_bottle").setTextureName("sextiarysector:fluid/drinking_water_bottle");
+		drinkingWaterBottle = new ItemDrink(0, 2.5f, 5, 7.8f, 0, 0, false).setUnlocalizedName("ss.drinking_water_bottle").setTextureName("sextiarysector:fluid/drinking_water_bottle");
 		GameRegistry.registerItem(drinkingWaterBottle, "DrinkingWaterBottle");
 
 		takumiTeaBottle = new ItemDrink(0, 0.0f, 6, 9.5f, 0, 0, false).setUnlocalizedName("ss.takumi_tea_bottle").setTextureName("sextiarysector:fluid/takumi_tea_bottle");

@@ -146,6 +146,8 @@ public class SextiarySector {
 
 		SSPlugins.initPlugins(event);
 
+		//Blocks.leaves.setTickRandomly(true);
+
 	}
 
 	@Mod.EventHandler

@@ -2,6 +2,7 @@ package shift.sextiarysector.event;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -388,7 +389,60 @@ public class CommonEventHandler {
 		if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(Items.stick, event.world.rand.nextInt(1) + 1));
 		if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(SSItems.leaf, event.world.rand.nextInt(2) + 1));
 
+		byte b0 = 2;
+		int i1 = b0 + 1;
+
+		if (event.world.checkChunksExist(event.x - i1, event.y - i1, event.z - i1, event.x + i1, event.y + i1, event.z + i1))
+		{
+			for (int j1 = -b0; j1 <= b0; ++j1)
+			{
+				for (int k1 = -b0; k1 <= b0; ++k1)
+				{
+					for (int l1 = -b0; l1 <= b0; ++l1)
+					{
+						Block block = event.world.getBlock(event.x + j1, event.y + k1, event.z + l1);
+						if (block.isLeaves(event.world, event.x + j1, event.y + k1, event.z + l1))
+						{
+							//block.updateTick(event.world, event.x + j1, event.y + k1, event.z + l1, event.world.rand);
+							event.world.scheduleBlockUpdate(event.x + j1, event.y + k1, event.z + l1, block, 20 + event.world.rand.nextInt(8));
+						}
+					}
+				}
+			}
+		}
+
+		//for (int i = 0; i < 2; i++) {
+		//	this.updateLeavesTick(event);
+		//}
+
 	}
+
+	/*
+	@SubscribeEvent
+	public void DecayEvent(BlockEvent.BreakEvent event)
+	{
+
+		byte b0 = 2;
+		int i1 = b0 + 1;
+
+		if (event.world.checkChunksExist(event.x - i1, event.y - i1, event.z - i1, event.x + i1, event.y + i1, event.z + i1))
+		{
+			for (int j1 = -b0; j1 <= b0; ++j1)
+			{
+				for (int k1 = -b0; k1 <= b0; ++k1)
+				{
+					for (int l1 = -b0; l1 <= b0; ++l1)
+					{
+						Block block = event.world.getBlock(event.x + j1, event.y + k1, event.z + l1);
+						if (block.isLeaves(event.world, event.x + j1, event.y + k1, event.z + l1))
+						{
+							block.updateTick(event.world, event.x + j1, event.y + k1, event.z + l1, event.world.rand);
+						}
+					}
+				}
+			}
+		}
+	}*/
 
 	//動物のドロップを増やす
 	@SubscribeEvent
