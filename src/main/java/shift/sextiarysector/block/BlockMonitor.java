@@ -29,7 +29,7 @@ import shift.sextiarysector.tileentity.TileEntityMonitor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockMonitor extends BlockContainer{
+public class BlockMonitor extends BlockContainer {
 
 	public BlockMonitor() {
 		super(Material.iron);
@@ -41,18 +41,18 @@ public class BlockMonitor extends BlockContainer{
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
 	{
-		TileEntityMonitor tileEntity = (TileEntityMonitor)world.getTileEntity(x, y, z);
+		TileEntityMonitor tileEntity = (TileEntityMonitor) world.getTileEntity(x, y, z);
 
-		if(par5EntityPlayer.getCurrentEquippedItem()==null){
+		if (par5EntityPlayer.getCurrentEquippedItem() == null) {
 
-			if(par5EntityPlayer.isSneaking()){
+			if (par5EntityPlayer.isSneaking()) {
 
 				tileEntity.changeON();
 				world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
 
 				return true;
 
-			}else if(tileEntity.on){
+			} else if (tileEntity.on) {
 
 				MCEconomyAPI.openShopGui(tileEntity.type.getList(world).id, par5EntityPlayer, world, x, y, z);
 
@@ -61,10 +61,9 @@ public class BlockMonitor extends BlockContainer{
 			return true;
 		}
 
+		if (!world.isRemote && par5EntityPlayer.getCurrentEquippedItem() != null && par5EntityPlayer.getCurrentEquippedItem().getItem() == SSItems.ironSpanner) {
 
-		if(!world.isRemote && par5EntityPlayer.getCurrentEquippedItem()!=null && par5EntityPlayer.getCurrentEquippedItem().getItem()==SSItems.hammer){
-
-			EntityItem item = new EntityItem(world, x+0.5d, y+0.5d, z+0.5d, new ItemStack(this,1,tileEntity.type.ordinal()));
+			EntityItem item = new EntityItem(world, x + 0.5d, y + 0.5d, z + 0.5d, new ItemStack(this, 1, tileEntity.type.ordinal()));
 
 			world.spawnEntityInWorld(item);
 
@@ -76,26 +75,27 @@ public class BlockMonitor extends BlockContainer{
 
 	}
 
+	@Override
 	public int getLightValue(IBlockAccess world, int x, int y, int z)
-    {
-		if(world.getBlockMetadata(x, y, z)==1)return 15;
+	{
+		if (world.getBlockMetadata(x, y, z) == 1) return 15;
 		return 0;
-    }
+	}
 
-	public enum MonitorType{
+	public enum MonitorType {
 
-		creeper("creeper","creeper"),
-		robot("robot","robot"),
-		unknown("","");
+		creeper("creeper", "creeper"),
+		robot("robot", "robot"),
+		unknown("", "");
 
 		public String name;
 		private ResourceLocation resource;
 		private SSProductList list;
 		private SSProductList[] sList;
 
-		MonitorType(String name,String resource){
+		MonitorType(String name, String resource) {
 			this.name = name;
-			this.setResource(new ResourceLocation("sextiarysector:textures/models/monitor_"+resource + ".png"));
+			this.setResource(new ResourceLocation("sextiarysector:textures/models/monitor_" + resource + ".png"));
 		}
 
 		public ResourceLocation getResource() {
@@ -108,7 +108,7 @@ public class BlockMonitor extends BlockContainer{
 
 		public SSProductList getList(World world) {
 
-			if(world==null||sList==null)return this.getList();
+			if (world == null || sList == null) return this.getList();
 
 			return sList[SeasonAPI.getSeason(world).ordinal()];
 		}
@@ -128,17 +128,18 @@ public class BlockMonitor extends BlockContainer{
 
 	}
 
-	public static ItemStack getMonitor(MonitorType t){
-		return new ItemStack(SSBlocks.monitor,1,t.ordinal());
+	public static ItemStack getMonitor(MonitorType t) {
+		return new ItemStack(SSBlocks.monitor, 1, t.ordinal());
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
-    {
-		for(int i=0;i<MonitorType.values().length-1;i++){
-			p_149666_3_.add(new ItemStack(p_149666_1_,1,i));
+	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
+	{
+		for (int i = 0; i < MonitorType.values().length - 1; i++) {
+			p_149666_3_.add(new ItemStack(p_149666_1_, 1, i));
 		}
-    }
+	}
 
 	@Override
 	public void onBlockAdded(World par1World, int par2, int par3, int par4)
@@ -152,34 +153,33 @@ public class BlockMonitor extends BlockContainer{
 		if (!par1World.isRemote)
 		{
 			Block block = par1World.getBlock(par2, par3, par4 - 1);
-            Block block1 = par1World.getBlock(par2, par3, par4 + 1);
-            Block block2 = par1World.getBlock(par2 - 1, par3, par4);
-            Block block3 = par1World.getBlock(par2 + 1, par3, par4);
+			Block block1 = par1World.getBlock(par2, par3, par4 + 1);
+			Block block2 = par1World.getBlock(par2 - 1, par3, par4);
+			Block block3 = par1World.getBlock(par2 + 1, par3, par4);
 
-            TileEntityDirection tileEntity = (TileEntityDirection)par1World.getTileEntity(par2, par3, par4);
+			TileEntityDirection tileEntity = (TileEntityDirection) par1World.getTileEntity(par2, par3, par4);
 
+			byte b0 = 3;
 
-            byte b0 = 3;
+			if (block.func_149730_j() && !block1.func_149730_j())
+			{
+				b0 = 3;
+			}
 
-            if (block.func_149730_j() && !block1.func_149730_j())
-            {
-                b0 = 3;
-            }
+			if (block1.func_149730_j() && !block.func_149730_j())
+			{
+				b0 = 2;
+			}
 
-            if (block1.func_149730_j() && !block.func_149730_j())
-            {
-                b0 = 2;
-            }
+			if (block2.func_149730_j() && !block3.func_149730_j())
+			{
+				b0 = 5;
+			}
 
-            if (block2.func_149730_j() && !block3.func_149730_j())
-            {
-                b0 = 5;
-            }
-
-            if (block3.func_149730_j() && !block2.func_149730_j())
-            {
-                b0 = 4;
-            }
+			if (block3.func_149730_j() && !block2.func_149730_j())
+			{
+				b0 = 4;
+			}
 
 			((TileEntityDirection) par1World.getTileEntity(par2, par3, par4)).direction = ForgeDirection.getOrientation(b0);
 
@@ -233,9 +233,9 @@ public class BlockMonitor extends BlockContainer{
 
 	@Override
 	public int getRenderType()
-    {
-    	return SextiarySector.proxy.monitorType;
-    }
+	{
+		return SextiarySector.proxy.monitorType;
+	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_) {

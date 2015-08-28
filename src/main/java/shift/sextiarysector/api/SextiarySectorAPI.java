@@ -14,7 +14,12 @@ public class SextiarySectorAPI {
 	/** ModID */
 	public static final String MODID = "SextiarySector";
 
-	//CreativeTabs
+	/*
+	 * -------------------------------------------
+	 * CreativeTabs クリエイティブタブ
+	 * -------------------------------------------
+	 */
+
 	public static CreativeTabs TabSSCore;
 	public static CreativeTabs TabSSFluid;
 	public static CreativeTabs TabSSPlayer;
@@ -27,17 +32,13 @@ public class SextiarySectorAPI {
 	public static CreativeTabs TabSSEconomy;
 	public static CreativeTabs TabSSMagic;
 
-	/**
-	 * IPlayerManager Player関係のインターフェース <br>
-	 * このインスタンスから操作をしてください。
-	 */
-	public static IPlayerManager playerManager;
-
 	/*
-	 * -----------------------
+	 * -------------------------------------------
 	 * Player プレイヤー
-	 *------------------------
+	 * -------------------------------------------
 	 */
+
+	public static IPlayerManager playerManager;
 
 	//メモ  MAX水分 20 , MAXスタミナ 100
 
@@ -49,6 +50,10 @@ public class SextiarySectorAPI {
 	 */
 	public static void addMoistureStats(EntityPlayer entityPlayer, int par1, float par2) {
 		playerManager.addMoistureStats(entityPlayer, par1, par2);
+	}
+
+	public static int getMoistureLevel(EntityPlayer entityPlayer) {
+		return playerManager.getMoistureLevel(entityPlayer);
 	}
 
 	/**
@@ -68,6 +73,10 @@ public class SextiarySectorAPI {
 	 */
 	public static void addStaminaStats(EntityPlayer entityPlayer, int par1, float par2) {
 		playerManager.addStaminaStats(entityPlayer, par1, par2);
+	}
+
+	public static int getStaminaLevel(EntityPlayer entityPlayer) {
+		return playerManager.getStaminaLevel(entityPlayer);
 	}
 
 	/**

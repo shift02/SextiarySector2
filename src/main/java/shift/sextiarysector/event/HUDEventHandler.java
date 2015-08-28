@@ -236,11 +236,13 @@ public class HUDEventHandler {
 		//right_height += 10;
 		boolean unused = false;// Unused flag in vanilla, seems to be part of a 'fade out' mechanic
 
-		int level = EntityPlayerManager.getPrevStaminaLevel(mc.thePlayer);
+		int level = EntityPlayerManager.instance.getStaminaLevel(mc.thePlayer);//getPrevStaminaLevel(mc.thePlayer);
 
 		for (int i = 0; i < 10; ++i)
 		{
-			int idx = i * 2 + 1;
+			//int idx = i * 2 + 1;
+			int idx = (i + 1) * 10;
+			int idx2 = level % 10;
 			int x = left + i * 8 - 9;
 			int y = top;
 			int icon = 0;
@@ -275,10 +277,10 @@ public class HUDEventHandler {
 			        drawTexturedModalRect(x, y, icon + 9, iconY, 9, 9);
 			}*/
 
-			if (idx < level) {
+			if (idx <= level) {
 				drawTexturedModalRect(x, y, icon + 9, iconY, 9, 9);
-			} else if (idx == level) {
-				drawTexturedModalRect(x, y, icon + 18, iconY, 9, 9);
+			} else if (idx - level < 10 && idx2 != 0) {
+				drawTexturedModalRect(x, y, icon + 9 * (idx2 + 1), iconY, 9, 9);
 			}
 		}
 

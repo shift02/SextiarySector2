@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import shift.mceconomy2.gui.HUDMP;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.gearforce.item.GearForceItemAPI;
 import shift.sextiarysector.item.GearForceItemManager;
@@ -33,12 +32,13 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = SextiarySector.MODID, version = SextiarySector.VERSION, dependencies = SextiarySector.DEPENDENCY)
 public class SextiarySector {
 
 	public static final String MODID = "SextiarySector";
-	public static final String VERSION = "2.4.1";
+	public static final String VERSION = "2.4.3";
 
 	@Mod.Instance("SextiarySector")
 	public static SextiarySector instance;
@@ -98,6 +98,7 @@ public class SextiarySector {
 		SSItems.initItems();
 		SSBlocks.initBlicks();
 		SSEntitys.initEntity();
+		GameRegistry.registerFuelHandler(new SSFuels());
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new SSGuiHandler());
 
@@ -127,9 +128,9 @@ public class SextiarySector {
 
 		SSWorld.init(event);
 
-		if (event.getSide().isClient()) {
-			HUDMP.left_height += 10;
-		}
+		//if (event.getSide().isClient()) {
+		//	HUDMP.left_height += 10;
+		//}
 
 		SSRecipes.initRecipes();
 
@@ -144,6 +145,8 @@ public class SextiarySector {
 		//SSPlugins.initModHelper();
 
 		SSPlugins.initPlugins(event);
+
+		//Blocks.leaves.setTickRandomly(true);
 
 	}
 

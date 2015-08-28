@@ -12,7 +12,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
 
-public class BlockSmallWindmill extends BlockContainer{
+public class BlockSmallWindmill extends BlockContainer {
 
 	public BlockSmallWindmill() {
 		super(Material.wood);
@@ -31,37 +31,38 @@ public class BlockSmallWindmill extends BlockContainer{
 		if (!par1World.isRemote)
 		{
 			Block block = par1World.getBlock(par2, par3, par4 - 1);
-            Block block1 = par1World.getBlock(par2, par3, par4 + 1);
-            Block block2 = par1World.getBlock(par2 - 1, par3, par4);
-            Block block3 = par1World.getBlock(par2 + 1, par3, par4);
+			Block block1 = par1World.getBlock(par2, par3, par4 + 1);
+			Block block2 = par1World.getBlock(par2 - 1, par3, par4);
+			Block block3 = par1World.getBlock(par2 + 1, par3, par4);
 
-            TileEntitySmallWindmill tileEntity = (TileEntitySmallWindmill)par1World.getTileEntity(par2, par3, par4);
+			TileEntitySmallWindmill tileEntity = (TileEntitySmallWindmill) par1World.getTileEntity(par2, par3, par4);
 
+			byte b0 = 3;
 
-            byte b0 = 3;
+			if (block.func_149730_j() && !block1.func_149730_j())
+			{
+				b0 = 3;
+			}
 
-            if (block.func_149730_j() && !block1.func_149730_j())
-            {
-                b0 = 3;
-            }
+			if (block1.func_149730_j() && !block.func_149730_j())
+			{
+				b0 = 2;
+			}
 
-            if (block1.func_149730_j() && !block.func_149730_j())
-            {
-                b0 = 2;
-            }
+			if (block2.func_149730_j() && !block3.func_149730_j())
+			{
+				b0 = 5;
+			}
 
-            if (block2.func_149730_j() && !block3.func_149730_j())
-            {
-                b0 = 5;
-            }
-
-            if (block3.func_149730_j() && !block2.func_149730_j())
-            {
-                b0 = 4;
-            }
+			if (block3.func_149730_j() && !block2.func_149730_j())
+			{
+				b0 = 4;
+			}
 
 			((TileEntitySmallWindmill) par1World.getTileEntity(par2, par3, par4)).direction = ForgeDirection
 					.getOrientation(b0);
+
+			par1World.markBlockForUpdate(par2, par3, par4);
 
 			//par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 2);
 		}
@@ -120,14 +121,13 @@ public class BlockSmallWindmill extends BlockContainer{
 
 	@Override
 	public int getRenderType()
-    {
-    	return SextiarySector.proxy.smallWindMillType;
-    }
+	{
+		return SextiarySector.proxy.smallWindMillType;
+	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_) {
 		return new TileEntitySmallWindmill();
 	}
-
 
 }

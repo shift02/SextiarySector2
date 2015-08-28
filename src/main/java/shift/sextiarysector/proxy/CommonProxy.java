@@ -6,6 +6,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class CommonProxy {
 
+	public int leafBedType;
+
 	public int holeType;
 
 	public int bottleType;
@@ -18,6 +20,7 @@ public class CommonProxy {
 	public int pipeType;
 	public int tankType;
 	public int funnelType;
+	public int woodenGutterType;
 
 	public int ShaftRenderType;
 
@@ -31,6 +34,8 @@ public class CommonProxy {
 
 	public int fanType;
 	public int sawType;
+
+	public int oreStoneType;
 
 	public int monitorType;
 

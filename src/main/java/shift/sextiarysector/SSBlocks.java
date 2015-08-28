@@ -26,6 +26,8 @@ import shift.sextiarysector.block.BlockHotSprings;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockLargeOre;
 import shift.sextiarysector.block.BlockLargeWindmill;
+import shift.sextiarysector.block.BlockLeaf;
+import shift.sextiarysector.block.BlockLeafBed;
 import shift.sextiarysector.block.BlockMachineFrame;
 import shift.sextiarysector.block.BlockMagiFurnace;
 import shift.sextiarysector.block.BlockMonitor;
@@ -66,6 +68,7 @@ import shift.sextiarysector.item.ItemBlockFluidCrafter;
 import shift.sextiarysector.item.ItemBlockGearShaft;
 import shift.sextiarysector.item.ItemBlockMeta;
 import shift.sextiarysector.item.ItemBlockMonitor;
+import shift.sextiarysector.item.ItemBlockSSFluid;
 import shift.sextiarysector.tileentity.TileEntityFan;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
 import shift.sextiarysector.tileentity.TileEntityFigure;
@@ -131,7 +134,12 @@ public class SSBlocks {
 
 	public static Block figure;
 
+	public static Block leafBlock;
+
 	public static Block trap;
+
+	//Bed
+	public static Block leafBed;
 
 	//液体
 	public static Block drinkingWater;
@@ -204,8 +212,13 @@ public class SSBlocks {
 	public static Block woodAcaciaPlate;
 	public static Block woodBigOakPlate;
 
+	//プレート
 	public static Block ironPlate;
 	public static Block goldPlate;
+
+	public static Block copperPlate;
+	public static Block zincPlate;
+	public static Block silverPlate;
 
 	public static Block chunkLoader;
 
@@ -223,6 +236,8 @@ public class SSBlocks {
 	public static Block coalLargeOre;
 	public static Block ironLargeOre;
 	public static Block goldLargeOre;
+
+	public static Block silverLargeOre;
 
 	//鉱石ブロック
 	public static Block copperBlock;
@@ -355,11 +370,21 @@ public class SSBlocks {
 		woodBigOakPlate = (new BlockSSPane("planks_big_oak", "planks_big_oak", Material.wood, false, 1)).setHardness(0.5F).setBlockName("ss.big_oak_wood_plate").setBlockTextureName(ID + ":plate/wood_big_oak_plate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(woodBigOakPlate, "WoodBigOakPlate");
 
+		//プレート
 		ironPlate = (new BlockSSPane("iron_block", ID + ":iron_block_top", Material.iron, true, 1)).setHardness(0.5F).setBlockName("ss.iron_plate").setBlockTextureName(ID + ":plate/iron_plate").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerBlock(ironPlate, "IronPlate");
 
 		goldPlate = (new BlockSSPane("gold_block", ID + ":gold_block_top", Material.iron, true, 1)).setHardness(0.5F).setBlockName("ss.gold_plate").setBlockTextureName(ID + ":plate/gold_plate").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerBlock(goldPlate, "GoldPlate");
+
+		copperPlate = (new BlockSSPane(ID + ":ore/copper_block", ID + ":ore/copper_block_top", Material.iron, true, 1)).setHardness(0.5F).setBlockName("ss.copper_plate").setBlockTextureName(ID + ":plate/copper_plate")
+				.setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerBlock(copperPlate, "CopperPlate");
+		zincPlate = (new BlockSSPane(ID + ":ore/zinc_block", ID + ":ore/zinc_block_top", Material.iron, true, 1)).setHardness(0.5F).setBlockName("ss.zinc_plate").setBlockTextureName(ID + ":plate/zinc_plate").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerBlock(zincPlate, "ZincPlate");
+		silverPlate = (new BlockSSPane(ID + ":ore/silver_block", ID + ":ore/silver_block_top", Material.iron, true, 1)).setHardness(0.5F).setBlockName("ss.silver_plate").setBlockTextureName(ID + ":plate/silver_plate")
+				.setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerBlock(silverPlate, "SilverPlate");
 
 		chunkLoader = new BlockChunkLoader().setHardness(1.5F).setBlockName("ss.chunk_loader").setBlockTextureName("sextiarysector:time_loader");
 		GameRegistry.registerBlock(chunkLoader, "ChunkLoader");
@@ -371,25 +396,31 @@ public class SSBlocks {
 		GameRegistry.registerBlock(figure, ItemBlockFigure.class, "Figure");
 		GameRegistry.registerTileEntity(TileEntityFigure.class, "SSFigure");
 
+		leafBlock = new BlockLeaf().setBlockName("ss.leaf_block").setBlockTextureName("sextiarysector:leaf_bed_2").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(leafBlock, "LeafBlock");
+
 		trap = new BlockTrap().setBlockName("ss.trap").setBlockTextureName("sextiarysector:wood_grate").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerBlock(trap, ItemBlockMeta.class, "Trap");
 		GameRegistry.registerTileEntity(TileEntityTrap.class, "SSTrap");
 
-		//液体
-		drinkingWater = new BlockSSFluid(SSFluids.springWater).setBlockName("ss.drinking_water").setCreativeTab(SextiarySectorAPI.TabSSCore);
-		GameRegistry.registerBlock(drinkingWater, "DrinkingWater");
+		leafBed = new BlockLeafBed().setBlockName("ss.leaf_bed").setBlockTextureName("sextiarysector:leaf_bed");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(leafBed, "LeafBed");
 
-		hotSprings = new BlockHotSprings(SSFluids.hotSprings).setBlockName("ss.hot_springs").setCreativeTab(SextiarySectorAPI.TabSSCore);
-		GameRegistry.registerBlock(hotSprings, "HotSprings");
+		//液体
+		drinkingWater = new BlockSSFluid(SSFluids.springWater).setBlockName("ss.drinking_water");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(drinkingWater, ItemBlockSSFluid.class, "DrinkingWater");
+
+		hotSprings = new BlockHotSprings(SSFluids.hotSprings).setBlockName("ss.hot_springs");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerBlock(hotSprings, ItemBlockSSFluid.class, "HotSprings");
 
 		//season = new BlockSeasonFluid(SSFluids.season).setBlockName("ss.season").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		//GameRegistry.registerBlock(season, "Season");
 
 		//鉱石
-		blueStoneOre = new BlockPowerStone().setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		blueStoneOre = new BlockPowerStone(2).setBlockName("ss.blue_stone").setBlockTextureName("sextiarysector:ore/bluestone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerBlock(blueStoneOre, "BlueStoneOre");
 
-		yellowStoneOre = new BlockPowerStone().setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		yellowStoneOre = new BlockPowerStone(2).setBlockName("ss.yellow_stone").setBlockTextureName("sextiarysector:ore/yellowstone_ore").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerBlock(yellowStoneOre, "YellowStoneOre");
 
 		copperOre = new BlockSSOre(null, 1).setBlockName("ss.copper_ore").setBlockTextureName("sextiarysector:ore/copper_ore");
@@ -440,6 +471,10 @@ public class SSBlocks {
 
 		orichalcumBlock = new BlockOreBlock().setBlockName("ss.orichalcum_block").setBlockTextureName("sextiarysector:ore/orichalcum_block");
 		GameRegistry.registerBlock(orichalcumBlock, "OrichalcumBlock");
+
+		//large
+		silverLargeOre = new BlockLargeOre(SSItems.silverDust, SSBlocks.silverOre, 2).setBlockName("ss.silver_large_ore").setBlockTextureName("sextiarysector:ore/silver_large_ore");
+		GameRegistry.registerBlock(silverLargeOre, "SilverLargeOre");
 
 		//GF
 		GameRegistry.registerTileEntity(TileEntityShaft.class, "Shaft");

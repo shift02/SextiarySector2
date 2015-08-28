@@ -21,6 +21,10 @@ tile.ss.big_oak_wood_plate.name=Big Oak Wood Plate
 tile.ss.iron_plate.name=Iron Plate
 tile.ss.gold_plate.name=Gold Plate
 
+tile.ss.copper_plate.name=Copper Plate
+tile.ss.zinc_plate.name=Zinc Plate
+tile.ss.silver_plate.name=Silver Plate
+
 tile.ss.hole.name=Hole
 tile.ss.farmland.name=Farm Land
 tile.ss.paddy.name=Paddy
@@ -41,7 +45,13 @@ tile.ss.chunk_loader.name=Time Loader
 
 tile.ss.figure.name=Figure
 
+
+
+tile.ss.leaf_block.name=Leaf Block
+
 tile.ss.trap.name=Trap
+
+tile.ss.leaf_bed.name=Leaf Bed
 
 tile.ss.drinking_water.name=Drinking Water
 tile.ss.hot_springs.name=Hot Springs
@@ -60,6 +70,8 @@ tile.ss.orichalcum_ore.name=Orichalcum Ore
 tile.ss.coal_large_ore.name=Coal Large Ore
 tile.ss.iron_large_ore.name=Iron Large Ore
 tile.ss.gold_large_ore.name=Gold Large Ore
+
+tile.ss.silver_large_ore.name=Silver Large Ore
 
 tile.ss.copper_block.name=Copper Block
 tile.ss.zinc_block.name=Zinc Block
@@ -179,6 +191,7 @@ item.ss.ninja_gf_storage.name=Ninja GF Storage
 item.ss.orichalcum_gf_storage.name=Orichalcum GF Storage
 
 item.ss.hammer.name=Hammer
+item.ss.iron_spanner.name=Iron Spanner
 item.ss.color_spray.name=Color Spray
 
 item.ss.calendar.name=Calendar
@@ -188,7 +201,10 @@ item.ss.season_stone_summer.name=Season Stone -Summer-
 item.ss.season_stone_autumn.name=Season Stone -Autumn-
 item.ss.season_stone_winter.name=Season Stone -Winter-
 
+item.ss.leaf_bed.name=Leaf Bed
 
+
+item.ss.leaf.name=Leaf
 
 item.ss.dust_waterlily.name=WaterLily Dust
 
@@ -204,6 +220,7 @@ item.ss.diamond_dust.name=Diamond Dust
 
 item.ss.copper_dust.name=Copper Dust
 item.ss.zinc_dust.name=Zinc Dust
+item.ss.silver_dust.name=Silver Dust
 
 item.ss.mithril_dust.name=Mithril Dust
 
@@ -215,6 +232,8 @@ item.ss.silver_nugget.name=Silver Nugget
 
 item.ss.steel_nugget.name=Steel Nugget
 item.ss.ninja_nugget.name=Ninja Nugget
+
+item.ss.obsidian_nugget.name=Obsidian Nugget
 
 
 item.ss.steel_ingot.name=Steel Ingot
@@ -355,6 +374,8 @@ item.ss.rice.name=Rice
 item.ss.shiitake.name=Shiitake
 
 
+item.ss.squid_sashimi.name=Squid Sashimi
+
 item.ss.white_rice.name=White Rice
 
 item.ss.salt.name=Salt
@@ -396,6 +417,7 @@ item.ss.defense_unit.name=Defense Unit
 item.ss.attack_rust_unit.name=Attack Rust Unit
 item.ss.defense_rust_unit.name=Defense Rust Unit
 item.ss.jump_unit.name=Jump Unit
+item.ss.bed_monster_unit.name=Bed Monster Unit
 item.ss.pickaxe_unit.name=Pickaxe Unit
 
 item.ss.debug_unit.name=Debug Unit
@@ -407,6 +429,8 @@ item.ss.mp_ring.name=MP Ring
 item.ss.xp_ring.name=XP Ring
 
 
+
+item.ss.magic_contact_lenses.name=Magic Contact Lenses
 
 #Fluid
 fluid.ss.takumi_tea=TAKUMI Tea
@@ -756,6 +780,12 @@ achievement.ss.creeper_chest.desc2=Santa Creeper ?
 achievement.ss.shipping=Shipping Block
 achievement.ss.shipping.desc=Trying to shipment
 achievement.ss.shipping.desc2=I'm millionaire !
+
+#Dep
+dep.ss.error1= was unable to download required library
+dep.ss.error2= .
+dep.ss.error3=Check your internet connection and try restarting or download it manually from
+dep.ss.error4= and put it in your mods folder
 
 #NEI
 nei.recipe=Recipes

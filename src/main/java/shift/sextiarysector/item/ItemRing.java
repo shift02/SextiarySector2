@@ -16,12 +16,12 @@ public class ItemRing extends Item implements IEquipment {
 
 	@Override
 	public boolean canTakeStack(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
-		return equipment.ordinal() == EquipmentType.Ring.ordinal();
+		return equipment.ordinal() == EquipmentType.Other.ordinal();
 	}
 
 	@Override
 	public boolean isItemValid(EquipmentType equipment, ItemStack stack) {
-		return equipment.ordinal() == EquipmentType.Ring.ordinal();
+		return equipment.ordinal() == EquipmentType.Other.ordinal();
 	}
 
 	@Override

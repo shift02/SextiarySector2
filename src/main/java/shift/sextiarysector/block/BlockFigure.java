@@ -88,9 +88,18 @@ public class BlockFigure extends BlockContainer {
 
 		ItemStack itemstack2 = new ItemStack(p_149666_1_, 1, 0);
 
-		setFigureItem(itemstack2, new ItemStack(SSItems.hammer, 1, 0), "creative");
+		setFigureItem(itemstack2, new ItemStack(SSItems.ironSpanner, 1, 0), "creative");
 
 		p_149666_3_.add(itemstack2);
+
+		ItemStack itemstack3 = new ItemStack(p_149666_1_, 1, 0);
+		ItemStack itemstack4 = new ItemStack(p_149666_1_, 1, 0);
+
+		setFigureItem(itemstack3, new ItemStack(SSItems.ironSpanner, 1, 0), "creative");
+		setFigureItem(itemstack4, itemstack3, "creative");
+
+		p_149666_3_.add(itemstack4);
+
 	}
 
 	@Override

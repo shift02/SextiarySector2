@@ -1,8 +1,8 @@
 package shift.sextiarysector;
 
 import net.minecraft.potion.Potion;
-import shift.sextiarysector.potion.PotionBurn;
-import shift.sextiarysector.potion.PotionHotSprings;
+import shift.sextiarysector.api.potion.PotionBurn;
+import shift.sextiarysector.api.potion.PotionHotSprings;
 
 public class SSPotions {
 
@@ -10,8 +10,8 @@ public class SSPotions {
 	public static Potion hotSprings;
 
 	public static void initPotions() {
-		burn = new PotionBurn(Config.burn, true, 0, 0).setPotionName("ss.potion.burn");
-		hotSprings = new PotionHotSprings(Config.hotSprings, false, 0, 3).setPotionName("ss.potion.hot_springs");
+		burn = new PotionBurn(Config.burn, true, 0xd60330, 0).setPotionName("ss.potion.burn");
+		hotSprings = new PotionHotSprings(Config.hotSprings, false, 0x0349d6, 3).setPotionName("ss.potion.hot_springs");
 	}
 
 }

@@ -1,14 +1,20 @@
 package shift.sextiarysector.event;
 
+import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -23,11 +29,13 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSFluids.SSFluid;
+import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.event.BlockBottleEvent;
 import shift.sextiarysector.block.BlockMonitor;
@@ -363,6 +371,96 @@ public class CommonEventHandler {
 
 			}
 
+		}
+
+	}
+
+	//葉っぱ
+	@SubscribeEvent
+	public void DecayEvent(BlockEvent.HarvestDropsEvent event)
+	{
+
+		if (event.isSilkTouching) return;
+
+		if (!(event.block instanceof BlockLeavesBase)) return;
+
+		if (event.harvester != null && event.harvester.getCurrentEquippedItem() != null && event.harvester.getCurrentEquippedItem().getItem() instanceof ItemShears) return;
+
+		if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(Items.stick, event.world.rand.nextInt(1) + 1));
+		if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(SSItems.leaf, event.world.rand.nextInt(2) + 1));
+
+		byte b0 = 2;
+		int i1 = b0 + 1;
+
+		if (event.world.checkChunksExist(event.x - i1, event.y - i1, event.z - i1, event.x + i1, event.y + i1, event.z + i1))
+		{
+			for (int j1 = -b0; j1 <= b0; ++j1)
+			{
+				for (int k1 = -b0; k1 <= b0; ++k1)
+				{
+					for (int l1 = -b0; l1 <= b0; ++l1)
+					{
+						Block block = event.world.getBlock(event.x + j1, event.y + k1, event.z + l1);
+						if (block.isLeaves(event.world, event.x + j1, event.y + k1, event.z + l1))
+						{
+							//block.updateTick(event.world, event.x + j1, event.y + k1, event.z + l1, event.world.rand);
+							event.world.scheduleBlockUpdate(event.x + j1, event.y + k1, event.z + l1, block, 20 + event.world.rand.nextInt(8));
+						}
+					}
+				}
+			}
+		}
+
+		//for (int i = 0; i < 2; i++) {
+		//	this.updateLeavesTick(event);
+		//}
+
+	}
+
+	/*
+	@SubscribeEvent
+	public void DecayEvent(BlockEvent.BreakEvent event)
+	{
+
+		byte b0 = 2;
+		int i1 = b0 + 1;
+
+		if (event.world.checkChunksExist(event.x - i1, event.y - i1, event.z - i1, event.x + i1, event.y + i1, event.z + i1))
+		{
+			for (int j1 = -b0; j1 <= b0; ++j1)
+			{
+				for (int k1 = -b0; k1 <= b0; ++k1)
+				{
+					for (int l1 = -b0; l1 <= b0; ++l1)
+					{
+						Block block = event.world.getBlock(event.x + j1, event.y + k1, event.z + l1);
+						if (block.isLeaves(event.world, event.x + j1, event.y + k1, event.z + l1))
+						{
+							block.updateTick(event.world, event.x + j1, event.y + k1, event.z + l1, event.world.rand);
+						}
+					}
+				}
+			}
+		}
+	}*/
+
+	//動物のドロップを増やす
+	@SubscribeEvent
+	public void onLivingAnimalDrops(LivingDropsEvent event)
+	{
+
+		if (event.source.getSourceOfDamage() == null || event.source.getEntity() == null) {
+			return;
+		}
+
+		double x = event.entityLiving.posX;
+		double y = event.entityLiving.posY;
+		double z = event.entityLiving.posZ;
+
+		Random r = event.entityLiving.worldObj.rand;
+
+		if (event.entityLiving instanceof EntitySquid) {
+			event.drops.add(new EntityItem(event.entityLiving.worldObj, x, y, z, new ItemStack(SSItems.squidSashimi, r.nextInt(5) + 1)));
 		}
 
 	}

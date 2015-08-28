@@ -43,8 +43,13 @@ public class RecipesTool {
 		}
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.brassShears),
-				new Object[] { "x ", " x",
+				new Object[] { " x", "x ",
 						Character.valueOf('x'), "ingotBrass"
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.ironSpanner),
+				new Object[] { " x ", " xx", "x  ",
+						Character.valueOf('x'), "nuggetIron"
 				}));
 
 		//バニラツール

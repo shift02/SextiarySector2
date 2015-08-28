@@ -41,7 +41,7 @@ public class BlockBoardingBuoy extends BlockPoweredBuoy {
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
 	{
 
-		if (par5EntityPlayer.getCurrentEquippedItem() != null && par5EntityPlayer.getCurrentEquippedItem().getItem() == SSItems.hammer) {
+		if (par5EntityPlayer.getCurrentEquippedItem() != null && par5EntityPlayer.getCurrentEquippedItem().getItem() == SSItems.ironSpanner) {
 			int i = par1World.getBlockMetadata(par2, par3, par4);
 
 			if (this.ispowered(par1World, par2, par3, par4)) {
@@ -275,7 +275,7 @@ public class BlockBoardingBuoy extends BlockPoweredBuoy {
 
 		}
 
-		this.blockIcon = par1IconRegister.registerIcon(this.getTextureName());
+		this.blockIcon = blockIcons[0];//par1IconRegister.registerIcon(this.getTextureName());
 
 	}
 

@@ -3,7 +3,7 @@ sourceSets.main {
     resources.srcDirs project.projectDir.name
 }
  
-version = "2.4.1.a-${project.minecraft.version}"
+version = "2.4.3.c-${project.minecraft.version}"
 
 minecraft {
     // replacing stuff in the source
@@ -54,13 +54,18 @@ jar {
   into('src/shift/sextiarysector/api') {
     from 'src/main/java/shift/sextiarysector/api'
   }
+
+  manifest {
+        attributes 'FMLCorePlugin' : 'shift.sextiarysector.asm.SSCore','FMLCorePluginContainsFMLMod':'true'
+    }
+
 }
 
-jar {
-    manifest {
-        attributes 'FMLCorePlugin' : 'shift.sextiarysector.asm.DepLoader','FMLCorePluginContainsFMLMod':'true'
-    }
-}
+//jar {
+//    manifest {
+//        attributes 'FMLCorePlugin' : 'shift.sextiarysector.asm.DepLoader','FMLCorePluginContainsFMLMod':'true'
+//    }
+//}
 
 task devJar(type: Jar) {
     from sourceSets.main.output

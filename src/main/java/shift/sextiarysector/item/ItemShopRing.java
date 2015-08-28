@@ -105,12 +105,12 @@ public class ItemShopRing extends Item implements IEquipment, ISSEquipment {
 
 	@Override
 	public boolean canTakeStack(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
-		return equipment.equals(EquipmentType.Ring);
+		return equipment.equals(EquipmentType.Other);
 	}
 
 	@Override
 	public boolean isItemValid(EquipmentType equipment, ItemStack stack) {
-		return equipment.equals(EquipmentType.Ring);
+		return equipment.equals(EquipmentType.Other);
 	}
 
 	@Override

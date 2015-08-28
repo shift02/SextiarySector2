@@ -32,6 +32,8 @@ public class WorldEventHandler {
 	private WorldGenMinable ironLarge;
 	private WorldGenMinable goldLarge;
 
+	private WorldGenMinable silverLarge;
+
 	private WorldGenLakes springWater;
 	private WorldGenLakes hotSprings;
 
@@ -58,7 +60,7 @@ public class WorldEventHandler {
 		this.yellowstoneGen = new WorldGenMinable(SSBlocks.yellowStoneOre, 7);
 
 		copperOreGen = new WorldGenMinable(SSBlocks.copperOre, 10);
-		//zincOreGen = new WorldGenMinable(SSBlocks.zincOre, 8);
+		zincOreGen = new WorldGenMinable(SSBlocks.zincOre, 8);
 		silverOreGen = new WorldGenMinable(SSBlocks.silverOre, 8);
 
 		mithrilOreGen = new WorldGenMinable(SSBlocks.mithrilOre, 8);
@@ -68,13 +70,15 @@ public class WorldEventHandler {
 		ironLarge = new WorldGenMinable(SSBlocks.ironLargeOre, 8);
 		goldLarge = new WorldGenMinable(SSBlocks.goldLargeOre, 8);
 
+		silverLarge = new WorldGenMinable(SSBlocks.silverLargeOre, 8);
+
 		this.lapisGen = new WorldGenMinable(Blocks.lapis_ore, 6);
 
 		this.genStandardOre1(8, this.bluestoneGen, 0, 16);
 		this.genStandardOre1(8, this.yellowstoneGen, 0, 16);
 
 		if (Config.generationCopperOre) this.genStandardOre1(20, this.copperOreGen, 0, 64);
-		//if (Config.generationZincOre) this.genStandardOre1(12, this.zincOreGen, 0, 64);
+		if (Config.generationZincOre) this.genStandardOre1(12, this.zincOreGen, 0, 64);
 		if (Config.generationSilverOre) this.genStandardOre1(2, this.silverOreGen, 0, 32);
 
 		if (BiomeDictionary.isBiomeOfType(biome, Type.COLD)) {
@@ -90,6 +94,8 @@ public class WorldEventHandler {
 		this.genStandardOre1(10, this.coaLargeGen, 0, 128);
 		this.genStandardOre1(10, this.ironLarge, 0, 64);
 		this.genStandardOre1(1, this.goldLarge, 0, 32);
+
+		this.genStandardOre1(1, this.silverLarge, 0, 32);
 		//System.out.println("onOreGenEvent");
 
 		this.genStandardOre1(1, this.lapisGen, 16, 24);
