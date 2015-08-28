@@ -57,12 +57,12 @@ public class RecipesFurnaceCraft {
 				}));
 		*/
 
-		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.drinkingWaterBottle, 2),
-				new Object[] {
-						SSItems.emptyBottle,
-						SSItems.emptyBottle,
-						SSItems.waterBottle,
-				}));
+		//p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.drinkingWaterBottle, 2),
+		//		new Object[] {
+		//				SSItems.emptyBottle,
+		//				SSItems.emptyBottle,
+		//				SSItems.waterBottle,
+		//		}));
 
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.chocolate, 1),
 				new Object[] {
@@ -81,6 +81,12 @@ public class RecipesFurnaceCraft {
 		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.blueGel, 2),
 				new Object[] {
 						"dustBluestone",
+						"slimeball"
+				}));
+
+		p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.yellowGel, 2),
+				new Object[] {
+						"dustYellowstone",
 						"slimeball"
 				}));
 
@@ -134,11 +140,11 @@ public class RecipesFurnaceCraft {
 				}));
 
 		//Hammer
-		p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.hammer, 1),
-				new Object[] { "xxx", " y ", " y ",
-						Character.valueOf('x'), "ingotIron",
-						Character.valueOf('y'), "stickWood",
-				}));
+		//p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.ironSpanner, 1),
+		//		new Object[] { "xxx", " y ", " y ",
+		//				Character.valueOf('x'), "ingotIron",
+		//				Character.valueOf('y'), "stickWood",
+		//		}));
 
 		//鉄のリング
 		p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.ironRing, 1),

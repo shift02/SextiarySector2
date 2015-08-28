@@ -24,6 +24,7 @@ import shift.sextiarysector.item.ItemGuiUnit;
 import shift.sextiarysector.item.ItemHammer;
 import shift.sextiarysector.item.ItemKnife;
 import shift.sextiarysector.item.ItemLavaBottle;
+import shift.sextiarysector.item.ItemLeafBed;
 import shift.sextiarysector.item.ItemMineboat;
 import shift.sextiarysector.item.ItemMineboatTank;
 import shift.sextiarysector.item.ItemOxygenTank;
@@ -71,12 +72,19 @@ public class SSItems {
 
 	//hammer
 	public static Item hammer;
+
+	public static Item ironSpanner;
 	public static Item colorSpray;
 
 	public static Item calendar;
 	public static Item seasonStone;
 
+	//ベッド
+	public static Item leafBed;
+
 	//素材
+	public static Item leaf;
+
 	public static Item dustWaterLily;
 
 	public static Item stoneDust;
@@ -91,6 +99,7 @@ public class SSItems {
 
 	public static Item copperDust;
 	public static Item zincDust;
+	public static Item silverDust;
 
 	public static Item mithrilDust;
 
@@ -101,6 +110,8 @@ public class SSItems {
 
 	public static Item steelNugget;
 	public static Item ninjaNugget;
+
+	public static Item obsidianNugget;
 
 	public static Item steelIngot;
 	public static Item brassIngot;
@@ -248,6 +259,9 @@ public class SSItems {
 
 	public static Item shiitake;
 
+	//魚
+	public static Item squidSashimi;
+
 	//料理
 	public static Item whiteRice;
 
@@ -295,6 +309,8 @@ public class SSItems {
 	public static Item defenseRustUnit;
 
 	public static Item jumpUnit;
+
+	public static Item bedMonsterUnit;
 
 	public static Item pickaxeUnit;
 
@@ -357,8 +373,12 @@ public class SSItems {
 		GameRegistry.registerItem(orichalcumGFStorage, "OrichalcumGFStorage");
 
 		//ハンマー
-		hammer = new ItemHammer().setUnlocalizedName("ss.hammer").setTextureName("sextiarysector:machine/hammer").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-		GameRegistry.registerItem(hammer, "Hammer");
+		//hammer = new ItemHammer().setUnlocalizedName("ss.iron_spanner").setTextureName("sextiarysector:gearforce/iron_spanner").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+
+		ironSpanner = new ItemHammer().setUnlocalizedName("ss.iron_spanner").setTextureName("sextiarysector:gearforce/iron_spanner").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+		GameRegistry.registerItem(ironSpanner, "IronSpanner");
+
+		hammer = ironSpanner;
 
 		colorSpray = new ItemSpray().setUnlocalizedName("ss.color_spray").setTextureName("sextiarysector:fluid/color_spray").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(colorSpray, "ColorSpray");
@@ -369,7 +389,13 @@ public class SSItems {
 		seasonStone = new ItemSeasonStone().setUnlocalizedName("ss.season_stone").setTextureName("sextiarysector:season_stone").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(seasonStone, "SeasonStone");
 
+		leafBed = new ItemLeafBed().setUnlocalizedName("ss.leaf_bed").setTextureName("sextiarysector:leaf_bed").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(leafBed, "ItemLeafBed");
+
 		//素材
+		leaf = new Item().setUnlocalizedName("ss.leaf").setTextureName("sextiarysector:leaf").setCreativeTab(SextiarySectorAPI.TabSSCore);
+		GameRegistry.registerItem(leaf, "Leaf");
+
 		dustWaterLily = new Item().setUnlocalizedName("ss.dust_waterlily").setTextureName("sextiarysector:dust/waterlily_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
 		GameRegistry.registerItem(dustWaterLily, "DustWaterLily");
 
@@ -400,6 +426,9 @@ public class SSItems {
 		zincDust = new Item().setUnlocalizedName("ss.zinc_dust").setTextureName("sextiarysector:dust/zinc_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(zincDust, "ZincDust");
 
+		silverDust = new Item().setUnlocalizedName("ss.silver_dust").setTextureName("sextiarysector:dust/silver_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(silverDust, "SilverDust");
+
 		mithrilDust = new Item().setUnlocalizedName("ss.mithril_dust").setTextureName("sextiarysector:dust/mithril_dust").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(mithrilDust, "MithrilDust");
 
@@ -421,6 +450,11 @@ public class SSItems {
 
 		ninjaNugget = new Item().setUnlocalizedName("ss.ninja_nugget").setTextureName("sextiarysector:nugget/ninja_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
 		GameRegistry.registerItem(ninjaNugget, "NinjaNugget");
+
+		obsidianNugget = new Item().setUnlocalizedName("ss.obsidian_nugget").setTextureName("sextiarysector:nugget/obsidian_nugget").setCreativeTab(SextiarySectorAPI.TabSSMining);
+		GameRegistry.registerItem(obsidianNugget, "ObsidianNugget");
+
+		//ナゲット 特殊
 
 		//インゴット
 		steelIngot = new Item().setUnlocalizedName("ss.steel_ingot").setTextureName("sextiarysector:ingot/steel_ingot").setCreativeTab(SextiarySectorAPI.TabSSMining);
@@ -688,6 +722,10 @@ public class SSItems {
 		shiitake = new ItemFoodCrop(woodCrops, 2, 1, 0, 0, 2, 0, false).setUnlocalizedName("ss.shiitake").setTextureName("sextiarysector:food/mushroom/shiitake");
 		GameRegistry.registerItem(shiitake, "Shiitake");
 
+		//さかな
+		squidSashimi = new ItemFoodDrink(2, 1.2f, 0, 0.4f, 0, 0, false).setUnlocalizedName("ss.squid_sashimi").setTextureName("sextiarysector:food/fish/squid_sashimi").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+		GameRegistry.registerItem(squidSashimi, "SquidSashimi");
+
 		//料理
 		whiteRice = new Item().setUnlocalizedName("ss.white_rice").setTextureName("sextiarysector:food/grain/white_rice").setCreativeTab(SextiarySectorAPI.TabSSCooking);
 		GameRegistry.registerItem(whiteRice, "WhiteRice");
@@ -738,7 +776,7 @@ public class SSItems {
 		GameRegistry.registerItem(chocolate, "Chocolate");
 
 		//飲み物
-		drinkingWaterBottle = new ItemDrink(0, 2.5f, 3, 6.5f, 0, 0, false).setUnlocalizedName("ss.drinking_water_bottle").setTextureName("sextiarysector:fluid/drinking_water_bottle");
+		drinkingWaterBottle = new ItemDrink(0, 2.5f, 5, 7.8f, 0, 0, false).setUnlocalizedName("ss.drinking_water_bottle").setTextureName("sextiarysector:fluid/drinking_water_bottle");
 		GameRegistry.registerItem(drinkingWaterBottle, "DrinkingWaterBottle");
 
 		takumiTeaBottle = new ItemDrink(0, 0.0f, 6, 9.5f, 0, 0, false).setUnlocalizedName("ss.takumi_tea_bottle").setTextureName("sextiarysector:fluid/takumi_tea_bottle");
@@ -778,6 +816,9 @@ public class SSItems {
 
 		jumpUnit = new ItemUnit().setUnlocalizedName("ss.jump_unit").setTextureName("sextiarysector:unit/jump_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(jumpUnit, "JumpUnit");
+
+		//bedMonsterUnit = new ItemUnit().setUnlocalizedName("ss.bed_monster_unit").setTextureName("sextiarysector:unit/bed_monster_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+		//GameRegistry.registerItem(bedMonsterUnit, "BedMonsterUnit");
 
 		pickaxeUnit = new ItemUnit().setUnlocalizedName("ss.pickaxe_unit").setTextureName("sextiarysector:unit/pickaxe_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 		GameRegistry.registerItem(pickaxeUnit, "PickaxeUnit");

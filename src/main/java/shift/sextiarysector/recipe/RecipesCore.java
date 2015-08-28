@@ -41,6 +41,12 @@ public class RecipesCore {
 						"slimeball"
 				}));
 
+		p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSItems.yellowGel, 1),
+				new Object[] {
+						"dustYellowstone",
+						"slimeball"
+				}));
+
 		//鉱石 インゴット--ブロック
 		Object[] oIngot = new Object[] { "ingotCopper", "ingotZinc", "ingotSilver", "ingotSteel", "ingotBrass", "ingotNinja", "ingotMithril", "gemOrichalcum" };
 		Block[] block = new Block[] { SSBlocks.copperBlock, SSBlocks.zincBlock, SSBlocks.silverBlock, SSBlocks.steelBlock, SSBlocks.brassBlock, SSBlocks.ninjaBlock, SSBlocks.mithrilBlock, SSBlocks.orichalcumBlock };
@@ -79,12 +85,35 @@ public class RecipesCore {
 					}));
 		}
 
+		//その他
+		oNugget = new Object[] { "nuggetObsidian" };
+		Block[] other = new Block[] { Blocks.obsidian };
+		for (int i = 0; i < oNugget.length; i++) {
+			p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(other[i], 1),
+					new Object[] { "xxx", "xxx", "xxx",
+							Character.valueOf('x'), oNugget[i],
+					}));
+		}
+
 		/*
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.smallCloth, 1),
 				new Object[] {
 						"xx", "xx",
 						'x', "craftingString",
 				}));*/
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.leafBlock, 1),
+				new Object[] {
+						"xxx", "xxx", "xxx",
+						'x', SSItems.leaf
+				}));
+
+		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.leafBed, 1),
+				new Object[] {
+						"xxx", "yyy",
+						'x', SSBlocks.leafBlock,
+						'y', "plankWood",
+				}));
 
 		p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.silkBobbin, 1),
 				new Object[] {

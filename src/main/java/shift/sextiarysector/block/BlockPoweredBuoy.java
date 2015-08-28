@@ -25,7 +25,7 @@ public class BlockPoweredBuoy extends BlockBuoyBase {
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
 	{
 
-		if (par5EntityPlayer.getCurrentEquippedItem() != null && par5EntityPlayer.getCurrentEquippedItem().getItem() == SSItems.hammer) {
+		if (par5EntityPlayer.getCurrentEquippedItem() != null && par5EntityPlayer.getCurrentEquippedItem().getItem() == SSItems.ironSpanner) {
 			int i = par1World.getBlockMetadata(par2, par3, par4);
 			if (i < 7) {
 				i += 1;
@@ -181,7 +181,7 @@ public class BlockPoweredBuoy extends BlockBuoyBase {
 
 		}
 
-		this.blockIcon = par1IconRegister.registerIcon(this.getTextureName());
+		this.blockIcon = blockIcons[0];//par1IconRegister.registerIcon(this.getTextureName());
 
 	}
 

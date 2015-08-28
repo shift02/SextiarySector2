@@ -65,12 +65,16 @@ public class SSFluids {
 			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluid(i), new ItemStack(SSBlocks.fluidCrafter, 1, i), new ItemStack(SSBlocks.fluidCrafter, 1, 0));
 		}
 
-		FluidContainerRegistry.registerFluidContainer(FluidRegistry.WATER, new ItemStack(SSItems.waterBottle, 1), new ItemStack(SSItems.emptyBottle, 1));
-		FluidContainerRegistry.registerFluidContainer(FluidRegistry.LAVA, new ItemStack(SSItems.lavaBottle, 1), new ItemStack(SSItems.emptyBottle, 1));
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.WATER, new ItemStack(SSItems.waterBottle, 1), FluidContainerRegistry.EMPTY_BOTTLE);
+		FluidContainerRegistry.registerFluidContainer(FluidRegistry.LAVA, new ItemStack(SSItems.lavaBottle, 1), FluidContainerRegistry.EMPTY_BOTTLE);
 
-		FluidContainerRegistry.registerFluidContainer(takumiTea, new ItemStack(SSItems.takumiTeaBottle, 1), new ItemStack(SSItems.emptyBottle, 1));
-		FluidContainerRegistry.registerFluidContainer(drinkingWater, new ItemStack(SSItems.drinkingWaterBottle, 1), new ItemStack(SSItems.emptyBottle, 1));
-		FluidContainerRegistry.registerFluidContainer(sap, new ItemStack(SSItems.sapBottle, 1), new ItemStack(SSItems.emptyBottle, 1));
+		//FluidContainerRegistry.registerFluidContainer(takumiTea, new ItemStack(SSItems.takumiTeaBottle, 1), new ItemStack(SSItems.emptyBottle, 1));
+		//FluidContainerRegistry.registerFluidContainer(drinkingWater, new ItemStack(SSItems.drinkingWaterBottle, 1), new ItemStack(SSItems.emptyBottle, 1));
+		//FluidContainerRegistry.registerFluidContainer(sap, new ItemStack(SSItems.sapBottle, 1), new ItemStack(SSItems.emptyBottle, 1));
+
+		FluidContainerRegistry.registerFluidContainer(takumiTea, new ItemStack(SSItems.takumiTeaBottle, 1), FluidContainerRegistry.EMPTY_BOTTLE);
+		FluidContainerRegistry.registerFluidContainer(drinkingWater, new ItemStack(SSItems.drinkingWaterBottle, 1), FluidContainerRegistry.EMPTY_BOTTLE);
+		FluidContainerRegistry.registerFluidContainer(sap, new ItemStack(SSItems.sapBottle, 1), FluidContainerRegistry.EMPTY_BOTTLE);
 
 		FluidContainerRegistry.registerFluidContainer(steam, new ItemStack(SSItems.steamBucket, 1), new ItemStack(Items.bucket, 1));
 		FluidContainerRegistry.registerFluidContainer(iron, new ItemStack(SSItems.ironFluidBucket, 1), new ItemStack(Items.bucket, 1));

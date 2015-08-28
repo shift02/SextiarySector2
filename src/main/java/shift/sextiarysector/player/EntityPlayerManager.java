@@ -81,6 +81,16 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 		}
 	}
 
+	@Override
+	public int getMoistureLevel(EntityPlayer entityPlayer) {
+		return getMoistureStats(entityPlayer).getMoistureLevel();
+	}
+
+	@Override
+	public int getStaminaLevel(EntityPlayer entityPlayer) {
+		return getStaminaStats(entityPlayer).getStaminaLevel();
+	}
+
 	//触らない
 
 	//tick

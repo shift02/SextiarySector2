@@ -1,5 +1,6 @@
 package shift.sextiarysector.gui.tab;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,8 @@ public class TabManager {
 	private static boolean init;
 	private static AbstractTab vanilla;
 
+	public static WeakReference<List> buttons;
+
 	public static void initTabManager() {
 
 		if (!init) {
@@ -63,6 +66,15 @@ public class TabManager {
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
+	public void guiPreInit(GuiScreenEvent.InitGuiEvent.Pre event)
+	{
+
+		buttons = null;//event.buttonList;
+
+	}
+
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
 	public void guiPostInit(GuiScreenEvent.InitGuiEvent.Post event)
 	{
 
@@ -87,6 +99,34 @@ public class TabManager {
 	public static boolean hasPotion()
 	{
 		if (mc.thePlayer.getActivePotionEffects().isEmpty()) return false;
+
+		return isNotNEI();
+
+		//if (!Loader.isModLoaded("NotEnoughItems")) return true;
+
+		//try
+		//{
+		//	Class<?> c = Class.forName("codechicken.nei.NEIClientConfig");
+		//	Object hidden = c.getMethod("isHidden").invoke(null);
+		//	Object enabled = c.getMethod("isEnabled").invoke(null);
+		//
+		//	if (hidden != null && hidden instanceof Boolean && enabled != null && enabled instanceof Boolean)
+		//	{
+		//		if ((Boolean) hidden || !((Boolean) enabled))
+		//		{
+		//			return true;
+		//		}
+		//	}
+
+		////} catch (Exception e)
+		//}
+
+		//return false;
+
+	}
+
+	private static boolean isNotNEI() {
+
 		if (!Loader.isModLoaded("NotEnoughItems")) return true;
 
 		try
@@ -125,6 +165,10 @@ public class TabManager {
 					buttonList.add(r[i]);
 				}
 			}
+		}
+
+		if (!reset) {
+			buttons = new WeakReference<List>(buttonList);
 		}
 
 		int count = 3;

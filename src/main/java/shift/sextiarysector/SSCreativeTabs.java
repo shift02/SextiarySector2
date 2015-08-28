@@ -9,7 +9,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SSCreativeTabs {
 
-	public static void initCreativeTabs(){
+	public static void initCreativeTabs() {
 
 		SextiarySectorAPI.TabSSCore = new CreativeTabSSCore();
 		SextiarySectorAPI.TabSSFluid = new CreativeTabSSFluid();
@@ -25,7 +25,7 @@ public class SSCreativeTabs {
 
 	}
 
-	private static class CreativeTabSSCore extends CreativeTabs{
+	private static class CreativeTabSSCore extends CreativeTabs {
 
 		public CreativeTabSSCore() {
 			super("ss.core");
@@ -36,15 +36,16 @@ public class SSCreativeTabs {
 			return null;//SSBlocks.LargeFurnace.g;
 		}
 
+		@Override
 		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSBlocks.LargeFurnace,1);
-	    }
+		public ItemStack getIconItemStack()
+		{
+			return new ItemStack(SSBlocks.LargeFurnace, 1);
+		}
 
 	}
 
-	private static class CreativeTabSSFluid extends CreativeTabs{
+	private static class CreativeTabSSFluid extends CreativeTabs {
 
 		public CreativeTabSSFluid() {
 			super("ss.fluid");
@@ -55,15 +56,16 @@ public class SSCreativeTabs {
 			return null;//SSBlocks.LargeFurnace.g;
 		}
 
+		@Override
 		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSItems.emptyBottle,1);
-	    }
+		public ItemStack getIconItemStack()
+		{
+			return new ItemStack(SSItems.lavaBottle, 1);
+		}
 
 	}
 
-	private static class CreativeTabSSPlayer extends CreativeTabs{
+	private static class CreativeTabSSPlayer extends CreativeTabs {
 
 		public CreativeTabSSPlayer() {
 			super("ss.player");
@@ -74,15 +76,16 @@ public class SSCreativeTabs {
 			return null;//SSBlocks.LargeFurnace.g;
 		}
 
+		@Override
 		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSItems.ironRing,1);
-	    }
+		public ItemStack getIconItemStack()
+		{
+			return new ItemStack(SSItems.ironRing, 1);
+		}
 
 	}
 
-	private static class CreativeTabSSAgriculture extends CreativeTabs{
+	private static class CreativeTabSSAgriculture extends CreativeTabs {
 
 		public CreativeTabSSAgriculture() {
 			super("ss.agriculture");
@@ -93,15 +96,16 @@ public class SSCreativeTabs {
 			return null;//SSBlocks.LargeFurnace.g;
 		}
 
+		@Override
 		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSBlocks.turnip,1);
-	    }
+		public ItemStack getIconItemStack()
+		{
+			return new ItemStack(SSBlocks.turnip, 1);
+		}
 
 	}
 
-	private static class CreativeTabSSFishery extends CreativeTabs{
+	private static class CreativeTabSSFishery extends CreativeTabs {
 
 		public CreativeTabSSFishery() {
 			super("ss.fishery");
@@ -112,15 +116,16 @@ public class SSCreativeTabs {
 			return null;//SSBlocks.LargeFurnace.g;
 		}
 
+		@Override
 		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSItems.laver,1);
-	    }
+		public ItemStack getIconItemStack()
+		{
+			return new ItemStack(SSItems.laver, 1);
+		}
 
 	}
 
-	private static class CreativeTabSSMining extends CreativeTabs{
+	private static class CreativeTabSSMining extends CreativeTabs {
 
 		public CreativeTabSSMining() {
 			super("ss.mining");
@@ -131,15 +136,16 @@ public class SSCreativeTabs {
 			return null;//SSBlocks.LargeFurnace.g;
 		}
 
+		@Override
 		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSBlocks.ironLargeOre,1);
-	    }
+		public ItemStack getIconItemStack()
+		{
+			return new ItemStack(SSBlocks.ironLargeOre, 1);
+		}
 
 	}
 
-	private static class CreativeTabSSIndustry extends CreativeTabs{
+	private static class CreativeTabSSIndustry extends CreativeTabs {
 
 		public CreativeTabSSIndustry() {
 			super("ss.industry");
@@ -150,16 +156,16 @@ public class SSCreativeTabs {
 			return null;//SSBlocks.LargeFurnace.g;
 		}
 
+		@Override
 		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSBlocks.woodShaft,1);
-	    }
+		public ItemStack getIconItemStack()
+		{
+			return new ItemStack(SSBlocks.woodShaft, 1);
+		}
 
 	}
 
-
-	private static class CreativeTabSSCooking extends CreativeTabs{
+	private static class CreativeTabSSCooking extends CreativeTabs {
 
 		public CreativeTabSSCooking() {
 			super("ss.cooking");
@@ -170,15 +176,16 @@ public class SSCreativeTabs {
 			return null;//SSBlocks.LargeFurnace.g;
 		}
 
+		@Override
 		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSItems.ironKnife,1);
-	    }
+		public ItemStack getIconItemStack()
+		{
+			return new ItemStack(SSItems.ironKnife, 1);
+		}
 
 	}
 
-	private static class CreativeTabSSTransport extends CreativeTabs{
+	private static class CreativeTabSSTransport extends CreativeTabs {
 
 		public CreativeTabSSTransport() {
 			super("ss.transport");
@@ -189,16 +196,16 @@ public class SSCreativeTabs {
 			return null;//SSBlocks.LargeFurnace.g;
 		}
 
+		@Override
 		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSItems.mineboatChest,1);
-	    }
+		public ItemStack getIconItemStack()
+		{
+			return new ItemStack(SSItems.mineboatChest, 1);
+		}
 
 	}
 
-
-	private static class CreativeTabSSEconomy extends CreativeTabs{
+	private static class CreativeTabSSEconomy extends CreativeTabs {
 
 		public CreativeTabSSEconomy() {
 			super("ss.economy");
@@ -209,15 +216,16 @@ public class SSCreativeTabs {
 			return null;//SSBlocks.LargeFurnace.g;
 		}
 
+		@Override
 		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSBlocks.creeperChest,1);
-	    }
+		public ItemStack getIconItemStack()
+		{
+			return new ItemStack(SSBlocks.creeperChest, 1);
+		}
 
 	}
 
-	private static class CreativeTabSSMagic extends CreativeTabs{
+	private static class CreativeTabSSMagic extends CreativeTabs {
 
 		public CreativeTabSSMagic() {
 			super("ss.magic");
@@ -228,11 +236,12 @@ public class SSCreativeTabs {
 			return null;//SSBlocks.LargeFurnace.g;
 		}
 
+		@Override
 		@SideOnly(Side.CLIENT)
-	    public ItemStack getIconItemStack()
-	    {
-			return new ItemStack(SSItems.magicDust,1);
-	    }
+		public ItemStack getIconItemStack()
+		{
+			return new ItemStack(SSItems.magicDust, 1);
+		}
 
 	}
 

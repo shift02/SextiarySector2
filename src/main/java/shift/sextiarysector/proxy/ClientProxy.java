@@ -27,7 +27,9 @@ import shift.sextiarysector.renderer.block.RendererFunnel;
 import shift.sextiarysector.renderer.block.RendererGearShaft;
 import shift.sextiarysector.renderer.block.RendererHole;
 import shift.sextiarysector.renderer.block.RendererLargeWindmill;
+import shift.sextiarysector.renderer.block.RendererLeafBed;
 import shift.sextiarysector.renderer.block.RendererMonitor;
+import shift.sextiarysector.renderer.block.RendererOreStone;
 import shift.sextiarysector.renderer.block.RendererPaddy;
 import shift.sextiarysector.renderer.block.RendererPipe;
 import shift.sextiarysector.renderer.block.RendererSaw;
@@ -40,6 +42,7 @@ import shift.sextiarysector.renderer.block.RendererTank;
 import shift.sextiarysector.renderer.block.RendererWindmill;
 import shift.sextiarysector.renderer.block.RendererWood;
 import shift.sextiarysector.renderer.block.RendererWoodHopper;
+import shift.sextiarysector.renderer.block.RendererWoodenGutter;
 import shift.sextiarysector.renderer.entity.RenderMineboat;
 import shift.sextiarysector.renderer.entity.RenderMineboatTank;
 import shift.sextiarysector.renderer.item.RenderGF;
@@ -89,9 +92,12 @@ public class ClientProxy extends CommonProxy {
 
 		this.woodHopperType = RenderingRegistry.getNextAvailableRenderId();
 
+		this.leafBedType = RenderingRegistry.getNextAvailableRenderId();
+
 		this.tankType = RenderingRegistry.getNextAvailableRenderId();
 		this.funnelType = RenderingRegistry.getNextAvailableRenderId();
 		this.pipeType = RenderingRegistry.getNextAvailableRenderId();
+		this.woodenGutterType = RenderingRegistry.getNextAvailableRenderId();
 
 		this.ShaftRenderType = RenderingRegistry.getNextAvailableRenderId();
 
@@ -107,6 +113,8 @@ public class ClientProxy extends CommonProxy {
 		this.sawType = RenderingRegistry.getNextAvailableRenderId();
 
 		this.chestType = RenderingRegistry.getNextAvailableRenderId();
+
+		this.oreStoneType = RenderingRegistry.getNextAvailableRenderId();
 
 		this.monitorType = RenderingRegistry.getNextAvailableRenderId();
 
@@ -126,9 +134,12 @@ public class ClientProxy extends CommonProxy {
 
 		RenderingRegistry.registerBlockHandler(new RendererWoodHopper());
 
+		RenderingRegistry.registerBlockHandler(new RendererLeafBed());
+
 		RenderingRegistry.registerBlockHandler(new RendererTank());
 		RenderingRegistry.registerBlockHandler(new RendererFunnel());
 		RenderingRegistry.registerBlockHandler(new RendererPipe());
+		RenderingRegistry.registerBlockHandler(new RendererWoodenGutter());
 
 		RenderingRegistry.registerBlockHandler(new RendererShaft());
 
@@ -144,6 +155,8 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerBlockHandler(new RendererSaw());
 
 		RenderingRegistry.registerBlockHandler(new RendererChest());
+
+		RenderingRegistry.registerBlockHandler(new RendererOreStone());
 
 		RenderingRegistry.registerBlockHandler(new RendererMonitor());
 
