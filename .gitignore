@@ -9,3 +9,11 @@
 /*.classpath
 /*.project
 *.xcf
+/eclipse
+.settings/org.eclipse.jdt.core.prefs
+CREDITS-fml.txt
+LICENSE-fml.txt
+MinecraftForge-Credits.txt
+MinecraftForge-License.txt
+README.txt
+forge-1.7.10-10.13.4.1448-1.7.10-changelog.txt
