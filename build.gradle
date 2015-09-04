@@ -1,71 +1,75 @@
-sourceSets.main {
-    java.srcDirs project.projectDir.name
-    resources.srcDirs project.projectDir.name
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
 }
- 
-version = "2.4.3.c-${project.minecraft.version}"
+
+apply plugin: 'forge'
+
+version = "2.4.3.d-1.7.10"//${project.minecraft.version}"
+group= "shift.SextiarySector2" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "SextiarySector2"
 
 minecraft {
-    // replacing stuff in the source
+    version = "1.7.10-10.13.4.1448-1.7.10"
+    runDir = "eclipse"
+    assetDir = "eclipse/assets"
+
     replace '@VERSION@', project.version
     replace '@MC_VERSION@', version
 }
 
-dependencies { 
-compile project(':MCEconomy2')
-compile fileTree(dir: 'api', include: '*.jar')
+[compileJava, compileTestJava,recompMinecraft].each{
+    it.options.encoding = 'UTF-8'
+    it.options.compilerArgs += ['-source', '1.7', '-target', '1.7']
 }
 
-//コンパイル時の文字コード指定とJavaのバージョン指定。この書式じゃないとgradle2.0では動かない。
-  [compileJava, compileTestJava,recompMinecraft].each{
-        it.options.encoding = 'UTF-8'
-        it.options.compilerArgs += ['-source', '1.7', '-target', '1.7']
-    }
+dependencies { 
+    compile fileTree(dir: 'api', include: '*.jar')
+}
 
 processResources
 {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
- 
+
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-               
+                
         // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-       
+        
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
-        exclude 'dependencies.info'
     }
-
-    //from(sourceSets.main.java.srcDirs+'/shift/sextiarysector/api/') {
-	//include '**/shift/sextiarysector/api/'
-
-//	into sourceSets.main.java.srcDirs
-    //}
-
 }
 
 jar {
+
   into('src/shift/sextiarysector/api') {
     from 'src/main/java/shift/sextiarysector/api'
   }
 
   manifest {
-        attributes 'FMLCorePlugin' : 'shift.sextiarysector.asm.SSCore','FMLCorePluginContainsFMLMod':'true'
-    }
+    attributes 'FMLCorePlugin' : 'shift.sextiarysector.asm.SSCore','FMLCorePluginContainsFMLMod':'true'
+  }
 
 }
-
-//jar {
-//    manifest {
-//        attributes 'FMLCorePlugin' : 'shift.sextiarysector.asm.DepLoader','FMLCorePluginContainsFMLMod':'true'
-//    }
-//}
 
 task devJar(type: Jar) {
     from sourceSets.main.output
