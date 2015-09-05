@@ -1,5 +1,7 @@
 package shift.sextiarysector;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.MinecraftForge;
 import shift.sextiarysector.api.event.VanillaFoodHandler;
 import shift.sextiarysector.event.AchievementEventHandler;
@@ -12,8 +14,6 @@ import shift.sextiarysector.event.PlayerUnitEventHandler;
 import shift.sextiarysector.event.WorldEventHandler;
 import shift.sextiarysector.gui.tab.TabManager;
 import shift.sextiarysector.player.EntityPlayerManager;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class SSEvents {
 
@@ -36,7 +36,9 @@ public class SSEvents {
 		MinecraftForge.EVENT_BUS.register(new OreDictionaryEventHandler());
 
 		if (event.getSide().isClient()) {
-			MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+			ClientEventHandler e = new ClientEventHandler();
+			MinecraftForge.EVENT_BUS.register(e);
+			FMLCommonHandler.instance().bus().register(e);
 		}
 
 		if (event.getSide().isClient()) {
