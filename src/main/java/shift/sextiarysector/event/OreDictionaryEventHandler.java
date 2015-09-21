@@ -9,25 +9,25 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class OreDictionaryEventHandler {
 
-	@SubscribeEvent
-	public void onOreRegisterEvent(OreRegisterEvent event) {
+    @SubscribeEvent
+    public void onOreRegisterEvent(OreRegisterEvent event) {
 
-		String ore = event.Name;
-		ore = ore.toLowerCase(Locale.ENGLISH);
-		ItemStack item = event.Ore;
+        String ore = event.Name;
+        ore = ore.toLowerCase(Locale.ENGLISH);
+        ItemStack item = event.Ore;
 
-		if (ore.matches(".*salt.*") && !ore.matches(".*condiment.*")) {
+        if (ore.matches(".*salt.*") && !ore.matches(".*condiment.*")) {
 
-			OreDictionary.registerOre("condimentSalt", item);
+            OreDictionary.registerOre("condimentSalt", item);
 
-		}
+        }
 
-		if (ore.matches(".water.*") && !ore.matches(".*fluid.*")) {
+        if (ore.matches(".water.*") && !ore.matches(".*fluid.*")) {
 
-			OreDictionary.registerOre("fluidWater", item);
+            OreDictionary.registerOre("fluidWater", item);
 
-		}
+        }
 
-	}
+    }
 
 }

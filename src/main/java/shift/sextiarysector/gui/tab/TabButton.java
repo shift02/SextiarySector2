@@ -16,31 +16,26 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TabButton  extends GuiButton{
+public class TabButton extends GuiButton {
 
-	ResourceLocation texture = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
-	private AbstractTab tab;
+    ResourceLocation texture = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
+    private AbstractTab tab;
     RenderItem itemRenderer = new RenderItem();
 
-    public TabButton(AbstractTab tab)
-    {
-        super(0,0,0, 28, 32, "");
+    public TabButton(AbstractTab tab) {
+        super(0, 0, 0, 28, 32, "");
         this.tab = tab;
     }
 
-
-	@Override
-    public void drawButton (Minecraft mc, int mouseX, int mouseY)
-    {
-        if (this.visible)
-        {
+    @Override
+    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+        if (this.visible) {
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             int yTexPos = this.enabled ? 3 : 32;
             int ySize = this.enabled ? 25 : 32;
-            int xOffset = this.id == 2 ? 0 : (this.id == 7 ? 5 : 1 );
+            int xOffset = this.id == 2 ? 0 : (this.id == 7 ? 5 : 1);
             int yPos = this.yPosition + (this.enabled ? 3 : 0);
-
 
             GL11.glEnable(GL11.GL_DEPTH_TEST);
 
@@ -68,12 +63,12 @@ public class TabButton  extends GuiButton{
             this.field_146123_n = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
             //int k = this.getHoverState(this.field_146123_n);
 
-            if(this.field_146123_n){
-            	//this.drawCenteredString(mc.fontRenderer, I18n.format(this.tab.getTabName()), mouseX, mouseY, 0xffffff);
-            	List name = new ArrayList<String>();
-            	name.add(I18n.format(this.tab.getTabName()));
-            	this.drawHoveringText(name, mouseX, mouseY, mc.fontRenderer, mc.currentScreen);
-            	//((GuiContainer)mc.currentScreen).drawHoveringText(name, mouseX + 20, mouseY + 5, mc.fontRenderer);
+            if (this.field_146123_n) {
+                //this.drawCenteredString(mc.fontRenderer, I18n.format(this.tab.getTabName()), mouseX, mouseY, 0xffffff);
+                List name = new ArrayList<String>();
+                name.add(I18n.format(this.tab.getTabName()));
+                this.drawHoveringText(name, mouseX, mouseY, mc.fontRenderer, mc.currentScreen);
+                //((GuiContainer)mc.currentScreen).drawHoveringText(name, mouseX + 20, mouseY + 5, mc.fontRenderer);
             }
 
             GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -81,10 +76,8 @@ public class TabButton  extends GuiButton{
         }
     }
 
-	protected void drawHoveringText(List p_146283_1_, int p_146283_2_, int p_146283_3_, FontRenderer font , GuiScreen gui)
-    {
-        if (!p_146283_1_.isEmpty())
-        {
+    protected void drawHoveringText(List p_146283_1_, int p_146283_2_, int p_146283_3_, FontRenderer font, GuiScreen gui) {
+        if (!p_146283_1_.isEmpty()) {
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
             //RenderHelper.disableStandardItemLighting();
             //GL11.glDisable(GL11.GL_LIGHTING);
@@ -92,13 +85,11 @@ public class TabButton  extends GuiButton{
             int k = 0;
             Iterator iterator = p_146283_1_.iterator();
 
-            while (iterator.hasNext())
-            {
-                String s = (String)iterator.next();
+            while (iterator.hasNext()) {
+                String s = (String) iterator.next();
                 int l = font.getStringWidth(s);
 
-                if (l > k)
-                {
+                if (l > k) {
                     k = l;
                 }
             }
@@ -107,18 +98,15 @@ public class TabButton  extends GuiButton{
             int k2 = p_146283_3_ - 12;
             int i1 = 8;
 
-            if (p_146283_1_.size() > 1)
-            {
+            if (p_146283_1_.size() > 1) {
                 i1 += 2 + (p_146283_1_.size() - 1) * 10;
             }
 
-            if (j2 + k > gui.width)
-            {
+            if (j2 + k > gui.width) {
                 j2 -= 28 + k;
             }
 
-            if (k2 + i1 + 6 > this.height + 25)
-            {
+            if (k2 + i1 + 6 > this.height + 25) {
                 k2 = this.height + 25 - i1 - 6;
             }
 
@@ -138,13 +126,11 @@ public class TabButton  extends GuiButton{
             this.drawGradientRect(j2 - 3, k2 + i1 + 2, j2 + k + 3, k2 + i1 + 3, l1, l1);
 
             GL11.glDisable(GL11.GL_DEPTH_TEST);
-            for (int i2 = 0; i2 < p_146283_1_.size(); ++i2)
-            {
-                String s1 = (String)p_146283_1_.get(i2);
+            for (int i2 = 0; i2 < p_146283_1_.size(); ++i2) {
+                String s1 = (String) p_146283_1_.get(i2);
                 font.drawStringWithShadow(s1, j2, k2, -1);
 
-                if (i2 == 0)
-                {
+                if (i2 == 0) {
                     k2 += 2;
                 }
 
@@ -162,21 +148,19 @@ public class TabButton  extends GuiButton{
     }
 
     @Override
-    public boolean mousePressed (Minecraft mc, int mouseX, int mouseY)
-    {
+    public boolean mousePressed(Minecraft mc, int mouseX, int mouseY) {
         boolean inWindow = this.enabled && this.visible && mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
 
-        if (inWindow)
-        {
-        	//mc.thePlayer.openContainer = null;
+        if (inWindow) {
+            //mc.thePlayer.openContainer = null;
             this.tab.onTabClicked();
         }
 
         return inWindow;
     }
 
-    public boolean shouldAddToList () {
-		return true;
-	}
+    public boolean shouldAddToList() {
+        return true;
+    }
 
 }

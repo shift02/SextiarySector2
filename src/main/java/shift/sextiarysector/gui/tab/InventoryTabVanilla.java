@@ -5,24 +5,24 @@ import net.minecraft.item.ItemStack;
 
 public class InventoryTabVanilla extends AbstractTab {
 
-	@Override
-	public ItemStack getItemStack() {
-		return new ItemStack(Blocks.crafting_table);
-	}
+    @Override
+    public ItemStack getItemStack() {
+        return new ItemStack(Blocks.crafting_table);
+    }
 
-	@Override
-	public boolean shouldAddToList() {
-		return true;
-	}
+    @Override
+    public boolean shouldAddToList() {
+        return true;
+    }
 
-	@Override
-	public void onTabClicked() {
-		TabManager.openInventoryGui();
-	}
+    @Override
+    public void onTabClicked() {
+        TabManager.openInventoryGui();
+    }
 
-	@Override
-	public String getTabName() {
-		return "player.tab.vanilla";
-	}
+    @Override
+    public String getTabName() {
+        return "player.tab.vanilla";
+    }
 
 }

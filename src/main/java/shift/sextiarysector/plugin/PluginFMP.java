@@ -7,31 +7,31 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class PluginFMP implements IPlugin {
 
-	@Override
-	public String getModName() {
-		return "ForgeMultipart";
-	}
+    @Override
+    public String getModName() {
+        return "ForgeMultipart";
+    }
 
-	@Override
-	public void prePlugin(FMLPreInitializationEvent event) {
+    @Override
+    public void prePlugin(FMLPreInitializationEvent event) {
 
-	}
+    }
 
-	@Override
-	public void preClientPlugin(FMLPreInitializationEvent event) {
+    @Override
+    public void preClientPlugin(FMLPreInitializationEvent event) {
 
-	}
+    }
 
-	@Override
-	public void initPlugin(FMLInitializationEvent event) {
+    @Override
+    public void initPlugin(FMLInitializationEvent event) {
 
-		PartRegistry.init();
+        PartRegistry.init();
 
-	}
+    }
 
-	@Override
-	public void postPlugin(FMLPostInitializationEvent event) {
+    @Override
+    public void postPlugin(FMLPostInitializationEvent event) {
 
-	}
+    }
 
 }

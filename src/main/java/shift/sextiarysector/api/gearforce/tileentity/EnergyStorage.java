@@ -10,201 +10,198 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class EnergyStorage implements IEnergyStorage {
 
-	protected String name;
-	protected int powerEnergy;
-	protected int speedEnergy;
-	protected int powerCapacity;
-	protected int speedCapacity;
-	protected boolean isTransmission = false;
-	protected int maxAdd;
-	protected int maxDarw;
+    protected String name;
+    protected int powerEnergy;
+    protected int speedEnergy;
+    protected int powerCapacity;
+    protected int speedCapacity;
+    protected boolean isTransmission = false;
+    protected int maxAdd;
+    protected int maxDarw;
 
-	public EnergyStorage(String name,int powerCapacity,int speedCapacity) {
+    public EnergyStorage(String name, int powerCapacity, int speedCapacity) {
 
-		this(name,powerCapacity,speedCapacity, speedCapacity);
-	}
+        this(name, powerCapacity, speedCapacity, speedCapacity);
+    }
 
-	public EnergyStorage(String name,int powerCapacity,int speedCapacity, int maxTransfer) {
+    public EnergyStorage(String name, int powerCapacity, int speedCapacity, int maxTransfer) {
 
-		this(name,powerCapacity,speedCapacity, maxTransfer, maxTransfer);
-	}
+        this(name, powerCapacity, speedCapacity, maxTransfer, maxTransfer);
+    }
 
-	public EnergyStorage(String name,int powerCapacity,int speedCapacity, int maxAdd, int maxDarw) {
+    public EnergyStorage(String name, int powerCapacity, int speedCapacity, int maxAdd, int maxDarw) {
 
-		this.name = name;
-		this.powerCapacity = powerCapacity;
-		this.speedCapacity = speedCapacity;
-		this.maxAdd = maxAdd;
-		this.maxDarw = maxDarw;
-	}
+        this.name = name;
+        this.powerCapacity = powerCapacity;
+        this.speedCapacity = speedCapacity;
+        this.maxAdd = maxAdd;
+        this.maxDarw = maxDarw;
+    }
 
-	public EnergyStorage readFromNBT(NBTTagCompound nbt) {
+    public EnergyStorage readFromNBT(NBTTagCompound nbt) {
 
-		this.powerCapacity = nbt.getInteger(name+"PowerCapacity");
+        this.powerCapacity = nbt.getInteger(name + "PowerCapacity");
 
-		this.powerEnergy = nbt.getInteger(name+"GearForcePower");
-		this.speedEnergy = nbt.getInteger(name+"GearForceSpeed");
+        this.powerEnergy = nbt.getInteger(name + "GearForcePower");
+        this.speedEnergy = nbt.getInteger(name + "GearForceSpeed");
 
-		if (powerEnergy > powerCapacity) {
-			powerEnergy = powerCapacity;
-		}
-		if (speedEnergy > speedCapacity) {
-			speedEnergy = speedCapacity;
-		}
+        if (powerEnergy > powerCapacity) {
+            powerEnergy = powerCapacity;
+        }
+        if (speedEnergy > speedCapacity) {
+            speedEnergy = speedCapacity;
+        }
 
-		this.isTransmission = nbt.getBoolean(name+"GearForceTransmission");
+        this.isTransmission = nbt.getBoolean(name + "GearForceTransmission");
 
-		return this;
-	}
+        return this;
+    }
 
-	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 
-		if (powerEnergy < 0) {
-			powerEnergy = 0;
-		}
-		if (speedEnergy < 0) {
-			speedEnergy = 0;
-		}
+        if (powerEnergy < 0) {
+            powerEnergy = 0;
+        }
+        if (speedEnergy < 0) {
+            speedEnergy = 0;
+        }
 
-		nbt.setInteger(name+"PowerCapacity", this.powerCapacity);
+        nbt.setInteger(name + "PowerCapacity", this.powerCapacity);
 
-		nbt.setInteger(name+"GearForcePower", powerEnergy);
-		nbt.setInteger(name+"GearForceSpeed", speedEnergy);
-		nbt.setBoolean(name+"GearForceTransmission", isTransmission);
-		return nbt;
-	}
+        nbt.setInteger(name + "GearForcePower", powerEnergy);
+        nbt.setInteger(name + "GearForceSpeed", speedEnergy);
+        nbt.setBoolean(name + "GearForceTransmission", isTransmission);
+        return nbt;
+    }
 
-	public void setCapacity(int capacity) {
+    public void setCapacity(int capacity) {
 
-		this.speedCapacity = capacity;
+        this.speedCapacity = capacity;
 
-		if (speedEnergy > capacity) {
-			speedEnergy = capacity;
-		}
-	}
+        if (speedEnergy > capacity) {
+            speedEnergy = capacity;
+        }
+    }
 
-	public void setMaxTransfer(int maxTransfer) {
+    public void setMaxTransfer(int maxTransfer) {
 
-		setMaxAdd(maxTransfer);
-		setMaxDarw(maxTransfer);
-	}
+        setMaxAdd(maxTransfer);
+        setMaxDarw(maxTransfer);
+    }
 
-	public void setMaxAdd(int maxAdd) {
+    public void setMaxAdd(int maxAdd) {
 
-		this.maxAdd = maxAdd;
-	}
+        this.maxAdd = maxAdd;
+    }
 
-	public void setMaxDarw(int maxDarw) {
+    public void setMaxDarw(int maxDarw) {
 
-		this.maxDarw = maxDarw;
-	}
+        this.maxDarw = maxDarw;
+    }
 
-	public int getMaxAdd() {
+    public int getMaxAdd() {
 
-		return maxAdd;
-	}
+        return maxAdd;
+    }
 
-	public int getMaxDarw() {
+    public int getMaxDarw() {
 
-		return maxDarw;
-	}
+        return maxDarw;
+    }
 
-	public void setEnergyStored(int energy) {
+    public void setEnergyStored(int energy) {
 
-		this.speedEnergy = energy;
+        this.speedEnergy = energy;
 
-		if (this.speedEnergy > speedCapacity)
-		{
-			this.speedEnergy = speedCapacity;
-		}
-		else if (this.speedEnergy < 0)
-		{
-			this.speedEnergy = 0;
-		}
+        if (this.speedEnergy > speedCapacity) {
+            this.speedEnergy = speedCapacity;
+        } else if (this.speedEnergy < 0) {
+            this.speedEnergy = 0;
+        }
 
-	}
+    }
 
-	public void modifyEnergyStored(int energy) {
+    public void modifyEnergyStored(int energy) {
 
-		this.speedEnergy += energy;
+        this.speedEnergy += energy;
 
-		if (this.speedEnergy > speedCapacity) {
-			this.speedEnergy = speedCapacity;
-		} else if (this.speedEnergy < 0) {
-			this.speedEnergy = 0;
-		}
-	}
+        if (this.speedEnergy > speedCapacity) {
+            this.speedEnergy = speedCapacity;
+        } else if (this.speedEnergy < 0) {
+            this.speedEnergy = 0;
+        }
+    }
 
-	@Override
-	public int addEnergy(int maxPower, int maxSpeed, boolean simulate) {
+    @Override
+    public int addEnergy(int maxPower, int maxSpeed, boolean simulate) {
 
-		if(!this.isTransmissionGear()&&maxPower!=this.getMaxPower()){
-			return 0;
-		}
+        if (!this.isTransmissionGear() && maxPower != this.getMaxPower()) {
+            return 0;
+        }
 
-		int addEnergy = Math.min(speedCapacity - this.speedEnergy, Math.min(this.maxAdd, maxSpeed));
+        int addEnergy = Math.min(speedCapacity - this.speedEnergy, Math.min(this.maxAdd, maxSpeed));
 
-		if (!simulate) {
-			this.speedEnergy += addEnergy;
-			this.powerEnergy = maxPower;
-		}
-		return addEnergy;
+        if (!simulate) {
+            this.speedEnergy += addEnergy;
+            this.powerEnergy = maxPower;
+        }
+        return addEnergy;
 
-	}
+    }
 
-	@Override
-	public int drawEnergy(int maxPower, int maxSpeed, boolean simulate) {
+    @Override
+    public int drawEnergy(int maxPower, int maxSpeed, boolean simulate) {
 
-		if(!this.isTransmissionGear()&&maxPower!=this.getMaxPower()){
-			return 0;
-		}
+        if (!this.isTransmissionGear() && maxPower != this.getMaxPower()) {
+            return 0;
+        }
 
-		int drawEnergy = Math.min(this.speedEnergy, Math.min(this.maxDarw, maxSpeed));
+        int drawEnergy = Math.min(this.speedEnergy, Math.min(this.maxDarw, maxSpeed));
 
-		if (!simulate) {
-			this.speedEnergy -= drawEnergy;
-		}
-		return drawEnergy;
+        if (!simulate) {
+            this.speedEnergy -= drawEnergy;
+        }
+        return drawEnergy;
 
-	}
+    }
 
-	public void setTransmissionGear(boolean transmission){
-		this.isTransmission = transmission;
-	}
+    public void setTransmissionGear(boolean transmission) {
+        this.isTransmission = transmission;
+    }
 
-	public void setPowerStored(int power){
-		this.powerEnergy = power;
-	}
+    public void setPowerStored(int power) {
+        this.powerEnergy = power;
+    }
 
-	@Override
-	public boolean isTransmissionGear() {
+    @Override
+    public boolean isTransmissionGear() {
 
-		return this.isTransmission;
+        return this.isTransmission;
 
-	}
+    }
 
-	@Override
-	public int getPowerStored() {
-		return powerEnergy;
-	}
+    @Override
+    public int getPowerStored() {
+        return powerEnergy;
+    }
 
-	@Override
-	public int getSpeedStored() {
-		return speedEnergy;
-	}
+    @Override
+    public int getSpeedStored() {
+        return speedEnergy;
+    }
 
-	@Override
-	public int getMaxPower() {
-		return powerCapacity;
-	}
+    @Override
+    public int getMaxPower() {
+        return powerCapacity;
+    }
 
-	@Override
-	public int getMaxSpeed() {
-		return speedCapacity;
-	}
+    @Override
+    public int getMaxSpeed() {
+        return speedCapacity;
+    }
 
-	public void setPowerCapacity(int powerCapacity) {
-		this.powerCapacity = powerCapacity;
-	}
+    public void setPowerCapacity(int powerCapacity) {
+        this.powerCapacity = powerCapacity;
+    }
 
 }

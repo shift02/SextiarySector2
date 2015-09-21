@@ -6,13 +6,12 @@ import net.minecraft.item.ItemStack;
 
 public class RecipesFreezer {
 
-	public static void addRecipes(RecipeSimpleMachine recipe)
-    {
+    public static void addRecipes(RecipeSimpleMachine recipe) {
 
-		recipe.add("fluidWater",new ItemStack(Blocks.ice));
+        recipe.add("fluidWater", new ItemStack(Blocks.ice));
 
-		recipe.add("fluidIron",new ItemStack(Items.iron_ingot));
-		recipe.add("fluidGold",new ItemStack(Items.gold_ingot));
+        recipe.add("fluidIron", new ItemStack(Items.iron_ingot));
+        recipe.add("fluidGold", new ItemStack(Items.gold_ingot));
 
     }
 

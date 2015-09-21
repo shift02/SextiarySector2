@@ -5,11 +5,10 @@ import shift.sextiarysector.SSFluids;
 
 public class RecipesManaSqueezer {
 
-	public static void addRecipes(RecipeSimpleFluid recipe)
-	{
+    public static void addRecipes(RecipeSimpleFluid recipe) {
 
-		recipe.add("logWood", null, new FluidStack(SSFluids.mana, 200));
+        recipe.add("logWood", null, new FluidStack(SSFluids.mana, 200));
 
-	}
+    }
 
 }

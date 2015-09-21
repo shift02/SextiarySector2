@@ -4,15 +4,15 @@ import net.minecraft.block.Block;
 
 public class AgricultureAPI {
 
-	public static IFertilizerManager fertilizerManager;
-	public static IFarmlandRegistry farmlandRegistry;
+    public static IFertilizerManager fertilizerManager;
+    public static IFarmlandRegistry farmlandRegistry;
 
-	public static void registerFarmland(String name, Block block) {
-		farmlandRegistry.registerFarmland(name, block);
-	}
+    public static void registerFarmland(String name, Block block) {
+        farmlandRegistry.registerFarmland(name, block);
+    }
 
-	public Block getFarmland(String name) {
-		return farmlandRegistry.getFarmland(name);
-	}
+    public Block getFarmland(String name) {
+        return farmlandRegistry.getFarmland(name);
+    }
 
 }

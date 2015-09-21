@@ -9,67 +9,65 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public class InventoryTabEquipment extends AbstractTab {
 
-	private static Minecraft mc = FMLClientHandler.instance().getClient();
+    private static Minecraft mc = FMLClientHandler.instance().getClient();
 
-	private EquipmentType type;
-	private ItemStack item;
+    private EquipmentType type;
+    private ItemStack item;
 
-	public InventoryTabEquipment(EquipmentType type,ItemStack item){
-		this.type = type;
-		this.item = item;
-	}
+    public InventoryTabEquipment(EquipmentType type, ItemStack item) {
+        this.type = type;
+        this.item = item;
+    }
 
-	private ItemStack getSlotItem(){
+    private ItemStack getSlotItem() {
 
-		for(int i:type.getSlots()){
+        for (int i : type.getSlots()) {
 
-			ItemStack slot = EntityPlayerManager.getEquipmentStats(mc.thePlayer).inventory.getStackInSlot(i);
+            ItemStack slot = EntityPlayerManager.getEquipmentStats(mc.thePlayer).inventory.getStackInSlot(i);
 
-			if(slot!=null && slot.isItemEqual(item)){
-				return slot;
-			}
+            if (slot != null && slot.isItemEqual(item)) {
+                return slot;
+            }
 
-		}
+        }
 
+        return null;
+    }
 
-		return null;
-	}
+    @Override
+    public void onTabClicked() {
 
-	@Override
-	public void onTabClicked() {
+        if (getSlotItem() == null) {
+            return;
+        }
 
-		if(getSlotItem()==null){
-			return ;
-		}
+        ((ISSEquipment) this.getItemStack().getItem()).onTabClicked(type, getSlotItem(), mc.thePlayer);
 
-		((ISSEquipment)this.getItemStack().getItem()).onTabClicked(type, getSlotItem(), mc.thePlayer);
+    }
 
-	}
+    @Override
+    public ItemStack getItemStack() {
+        return item;
+    }
 
-	@Override
-	public ItemStack getItemStack() {
-		return item;
-	}
+    @Override
+    public boolean shouldAddToList() {
 
-	@Override
-	public boolean shouldAddToList() {
+        if (getSlotItem() == null) {
+            return false;
+        }
 
-		if(getSlotItem()==null){
-			return false;
-		}
+        return ((ISSEquipment) this.getItemStack().getItem()).shouldAddToList(type, getSlotItem(), mc.thePlayer);
+    }
 
-		return ((ISSEquipment)this.getItemStack().getItem()).shouldAddToList(type, getSlotItem(), mc.thePlayer);
-	}
+    @Override
+    public String getTabName() {
 
-	@Override
-	public String getTabName() {
+        if (getSlotItem() == null) {
+            return "player.tab." + "";
+        }
 
-		if(getSlotItem()==null){
-			return "player.tab."+"";
-		}
-
-		return "player.tab."+((ISSEquipment)this.getItemStack().getItem()).getTabName(type, getSlotItem(), mc.thePlayer);
-	}
-
+        return "player.tab." + ((ISSEquipment) this.getItemStack().getItem()).getTabName(type, getSlotItem(), mc.thePlayer);
+    }
 
 }

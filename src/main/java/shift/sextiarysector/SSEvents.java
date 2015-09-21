@@ -17,41 +17,41 @@ import shift.sextiarysector.player.EntityPlayerManager;
 
 public class SSEvents {
 
-	public static void preInit(FMLPreInitializationEvent event) {
+    public static void preInit(FMLPreInitializationEvent event) {
 
-		MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
+        MinecraftForge.EVENT_BUS.register(new CommonEventHandler());
 
-		MinecraftForge.EVENT_BUS.register(EntityPlayerManager.instance);
-		FMLCommonHandler.instance().bus().register(EntityPlayerManager.instance);
+        MinecraftForge.EVENT_BUS.register(EntityPlayerManager.instance);
+        FMLCommonHandler.instance().bus().register(EntityPlayerManager.instance);
 
-		if (event.getSide().isClient()) {
-			MinecraftForge.EVENT_BUS.register(new HUDEventHandler());
-		}
+        if (event.getSide().isClient()) {
+            MinecraftForge.EVENT_BUS.register(new HUDEventHandler());
+        }
 
-		MinecraftForge.EVENT_BUS.register(new PlayerStatusEventHandler());
-		FMLCommonHandler.instance().bus().register(new PlayerStatusEventHandler());
-		MinecraftForge.EVENT_BUS.register(new PlayerUnitEventHandler());
-		MinecraftForge.EVENT_BUS.register(new VanillaFoodHandler());
+        MinecraftForge.EVENT_BUS.register(new PlayerStatusEventHandler());
+        FMLCommonHandler.instance().bus().register(new PlayerStatusEventHandler());
+        MinecraftForge.EVENT_BUS.register(new PlayerUnitEventHandler());
+        MinecraftForge.EVENT_BUS.register(new VanillaFoodHandler());
 
-		MinecraftForge.EVENT_BUS.register(new OreDictionaryEventHandler());
+        MinecraftForge.EVENT_BUS.register(new OreDictionaryEventHandler());
 
-		if (event.getSide().isClient()) {
-			ClientEventHandler e = new ClientEventHandler();
-			MinecraftForge.EVENT_BUS.register(e);
-			FMLCommonHandler.instance().bus().register(e);
-		}
+        if (event.getSide().isClient()) {
+            ClientEventHandler e = new ClientEventHandler();
+            MinecraftForge.EVENT_BUS.register(e);
+            FMLCommonHandler.instance().bus().register(e);
+        }
 
-		if (event.getSide().isClient()) {
-			MinecraftForge.EVENT_BUS.register(new TabManager());
-		}
+        if (event.getSide().isClient()) {
+            MinecraftForge.EVENT_BUS.register(new TabManager());
+        }
 
-		MinecraftForge.EVENT_BUS.register(new WorldEventHandler());
-		MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
+        MinecraftForge.EVENT_BUS.register(new WorldEventHandler());
+        MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
 
-		MinecraftForge.EVENT_BUS.register(new AchievementEventHandler());
+        MinecraftForge.EVENT_BUS.register(new AchievementEventHandler());
 
-		//MinecraftForge.EVENT_BUS.register(new SantaEventHandler());
+        //MinecraftForge.EVENT_BUS.register(new SantaEventHandler());
 
-	}
+    }
 
 }

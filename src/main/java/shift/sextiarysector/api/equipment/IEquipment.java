@@ -7,12 +7,12 @@ import net.minecraft.world.World;
 
 public interface IEquipment {
 
-	boolean canTakeStack(EquipmentType equipment, ItemStack stack, EntityPlayer player);
+    boolean canTakeStack(EquipmentType equipment, ItemStack stack, EntityPlayer player);
 
-	boolean isItemValid(EquipmentType equipment, ItemStack stack);
+    boolean isItemValid(EquipmentType equipment, ItemStack stack);
 
-	void onUpdate(EquipmentType equipment, ItemStack stack, World world, Entity player, int slot);
+    void onUpdate(EquipmentType equipment, ItemStack stack, World world, Entity player, int slot);
 
-	boolean canDrop(EquipmentType equipment, ItemStack stack, EntityPlayer player);
+    boolean canDrop(EquipmentType equipment, ItemStack stack, EntityPlayer player);
 
 }

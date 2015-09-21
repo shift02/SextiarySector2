@@ -26,9 +26,9 @@ import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
+public class BlockSSCrop extends BlockBush implements ITileEntityProvider {
 
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     private IIcon[] field_149867_a;
     private CropType type;
     private Item drop;
@@ -38,8 +38,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
     private static Random r = new Random();
 
-    public BlockSSCrop(CropType type, CropStatus status,Block farmland, Item drop, Boolean re_harvest)
-    {
+    public BlockSSCrop(CropType type, CropStatus status, Block farmland, Item drop, Boolean re_harvest) {
         this.setTickRandomly(true);
         this.type = type;
         this.drop = drop;
@@ -47,11 +46,11 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
         this.farmland = farmland;
         this.re_harvest = re_harvest;
 
-        if(type.equals(CropType.Normal)){
-        	float f = 0.5F;
-        	this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
-        }else{
-        	float f = 0.2F;
+        if (type.equals(CropType.Normal)) {
+            float f = 0.5F;
+            this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
+        } else {
+            float f = 0.2F;
             this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 3.0F, 0.5F + f);
         }
 
@@ -64,45 +63,44 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
     }
 
     @Override
-	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6,float par7, float par8, float par9) {
+    public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
 
-    	if(par5EntityPlayer.getCurrentEquippedItem()!= null && par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof ItemShears){
+        if (par5EntityPlayer.getCurrentEquippedItem() != null && par5EntityPlayer.getCurrentEquippedItem().getItem() instanceof ItemShears) {
 
-    		return this.doHarvestFromShears(par1World, x, y, z, par5EntityPlayer);
+            return this.doHarvestFromShears(par1World, x, y, z, par5EntityPlayer);
 
-    	}
+        }
 
+        if (this.hasFarmland(par1World, x, y, z)) {
+            return par1World.getBlock(x, y - 1, z).onBlockActivated(par1World, x, y - 1, z, par5EntityPlayer, par6, par7, par8, par9);
+        }
 
-    	if(this.hasFarmland(par1World, x, y, z)){
-    		return par1World.getBlock(x, y-1, z).onBlockActivated(par1World, x, y-1, z, par5EntityPlayer, par6, par7, par8, par9);
-    	}
-
-    	return false;
+        return false;
 
     }
 
-    private boolean doHarvestFromShears(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer){
+    private boolean doHarvestFromShears(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer) {
 
-    	if(this.re_harvest && this.getStatus().isReHarvest() && par1World.getBlockMetadata(x, y, z)==3){
+        if (this.re_harvest && this.getStatus().isReHarvest() && par1World.getBlockMetadata(x, y, z) == 3) {
 
-    		ItemStack item = this.getAfter(par1World, x, y, z);
+            ItemStack item = this.getAfter(par1World, x, y, z);
 
-    		if(!par1World.isRemote){
-    			par5EntityPlayer.getCurrentEquippedItem().damageItem(4, par5EntityPlayer);
+            if (!par1World.isRemote) {
+                par5EntityPlayer.getCurrentEquippedItem().damageItem(4, par5EntityPlayer);
 
-    			float var10 = this.r.nextFloat() * 0.8F + 0.1F;
+                float var10 = this.r.nextFloat() * 0.8F + 0.1F;
                 float var11 = this.r.nextFloat() * 0.8F + 0.1F;
                 float var12 = this.r.nextFloat() * 0.8F + 0.1F;
 
                 item = this.getAfter(par1World, x, y, z);
 
-                if(item==null){
-                	item = new ItemStack(this.func_149865_P(), 1);
+                if (item == null) {
+                    item = new ItemStack(this.func_149865_P(), 1);
                 }
 
                 EntityItem var14 = new EntityItem(par1World, (x + var10), (y + var11), (z + var12), item);
 
-                par1World.setBlock(x, y, z, this,4, 1);
+                par1World.setBlock(x, y, z, this, 4, 1);
                 TileEntitySSCrop crop = (TileEntitySSCrop) par1World.getTileEntity(x, y, z);
                 crop.onHarvest();
 
@@ -110,117 +108,100 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
 
                 return par1World.spawnEntityInWorld(var14);
 
-    		}else{
+            } else {
 
-    			return true;
+                return true;
 
-    		}
+            }
 
-    	}
+        }
 
-		return false;
+        return false;
     }
 
-    public boolean canBlockStay(World p_149718_1_, int p_149718_2_, int p_149718_3_, int p_149718_4_)
-    {
-        return  p_149718_1_.getBlock(p_149718_2_, p_149718_3_ - 1, p_149718_4_) == this.farmland;
+    public boolean canBlockStay(World p_149718_1_, int p_149718_2_, int p_149718_3_, int p_149718_4_) {
+        return p_149718_1_.getBlock(p_149718_2_, p_149718_3_ - 1, p_149718_4_) == this.farmland;
     }
 
-    protected boolean canPlaceBlockOn(Block p_149854_1_)
-    {
+    protected boolean canPlaceBlockOn(Block p_149854_1_) {
         return p_149854_1_ == this.farmland;
     }
 
     @Override
-    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
-    {
-		return EnumPlantType.Crop;
+    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
+        return EnumPlantType.Crop;
     }
 
-    public Block setBlockTextureName(String p_149658_1_)
-    {
+    public Block setBlockTextureName(String p_149658_1_) {
         this.textureName = p_149658_1_;
         return this;
     }
 
     @SideOnly(Side.CLIENT)
-    public String getItemIconName()
-    {
-    	return "sextiarysector:seed/"+this.getTextureName()+"_seed";
+    public String getItemIconName() {
+        return "sextiarysector:seed/" + this.getTextureName() + "_seed";
     }
 
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int p_149691_1_, int p_149691_2_)
-    {
-    	if(this.field_149867_a.length == 3 && p_149691_2_ == 4){
-    		return this.field_149867_a[3];
-    	}
+    public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
+        if (this.field_149867_a.length == 3 && p_149691_2_ == 4) {
+            return this.field_149867_a[3];
+        }
 
-    	return this.field_149867_a[p_149691_2_];
+        return this.field_149867_a[p_149691_2_];
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister p_149651_1_)
-    {
-    	int s =4;
-    	if(this.canReHarvest())s = 5;
+    public void registerBlockIcons(IIconRegister p_149651_1_) {
+        int s = 4;
+        if (this.canReHarvest()) s = 5;
         this.field_149867_a = new IIcon[s];
 
-        for (int i = 0; i < this.field_149867_a.length; ++i)
-        {
-            this.field_149867_a[i] = p_149651_1_.registerIcon("sextiarysector:crop/"+this.getTextureName() + "_stage_" + i);
+        for (int i = 0; i < this.field_149867_a.length; ++i) {
+            this.field_149867_a[i] = p_149651_1_.registerIcon("sextiarysector:crop/" + this.getTextureName() + "_stage_" + i);
         }
     }
 
-    public int getRenderType()
-    {
-    	if(type.equals(CropType.Normal)){
-    		return 6;
-    	}else{
-    		return 1;
-    	}
+    public int getRenderType() {
+        if (type.equals(CropType.Normal)) {
+            return 6;
+        } else {
+            return 1;
+        }
 
     }
 
-    protected Item func_149866_i()
-    {
+    protected Item func_149866_i() {
         return Item.getItemFromBlock(this);
     }
 
-    protected Item func_149865_P()
-    {
+    protected Item func_149865_P() {
         return drop;
     }
 
-    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_)
-    {
+    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_) {
         super.dropBlockAsItemWithChance(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, p_149690_5_, p_149690_6_, 0);
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
-    {
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
         return p_149650_1_ == 3 ? this.func_149865_P() : null;//this.func_149866_i();
     }
 
     @Override
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
-    {
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
 
-        if (metadata >= 3)
-        {
-            for (int i = 0; i < 3 + fortune; ++i)
-            {
-                if (world.rand.nextInt(15) <= metadata)
-                {
+        if (metadata >= 3) {
+            for (int i = 0; i < 3 + fortune; ++i) {
+                if (world.rand.nextInt(15) <= metadata) {
                     //ret.add(new ItemStack(this.func_149866_i(), 1, 0));
                     ret.add(new ItemStack(this.func_149865_P(), 1, 0));
                 }
             }
 
             ItemStack after = this.getAfter(world, x, y, z);
-            if(after!=null){
-            	ret.add(after);
+            if (after != null) {
+                ret.add(after);
             }
 
         }
@@ -228,109 +209,103 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider{
         return ret;
     }
 
-    private ItemStack getAfter(World world, int x, int y, int z){
+    private ItemStack getAfter(World world, int x, int y, int z) {
 
-    	if(this.hasFarmland(world, x, y, z)){
+        if (this.hasFarmland(world, x, y, z)) {
 
-        	TileEntityFarmland f =(TileEntityFarmland) world.getTileEntity(x, y-1, z);
+            TileEntityFarmland f = (TileEntityFarmland) world.getTileEntity(x, y - 1, z);
 
-        	if(f.getFertilizer()!=null && FertilizerManager.canMutation(f.getFertilizer(), new ItemStack(func_149865_P() ) ) ){
+            if (f.getFertilizer() != null && FertilizerManager.canMutation(f.getFertilizer(), new ItemStack(func_149865_P()))) {
 
-        		ItemStack item = FertilizerManager.getAfter(f.getFertilizer(), new ItemStack(func_149865_P()));
-        		f.clearFertilizer();
-        		world.markBlockForUpdate(x, y-1, z);
+                ItemStack item = FertilizerManager.getAfter(f.getFertilizer(), new ItemStack(func_149865_P()));
+                f.clearFertilizer();
+                world.markBlockForUpdate(x, y - 1, z);
 
-        		return item;
+                return item;
 
-        	}else{
-        		return null;
-        	}
+            } else {
+                return null;
+            }
 
-        }else{
-        	return null;
+        } else {
+            return null;
         }
 
     }
 
-
-    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
-    {
+    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_) {
         super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
         p_149749_1_.removeTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
     }
 
-    public boolean onBlockEventReceived(World p_149696_1_, int p_149696_2_, int p_149696_3_, int p_149696_4_, int p_149696_5_, int p_149696_6_)
-    {
+    public boolean onBlockEventReceived(World p_149696_1_, int p_149696_2_, int p_149696_3_, int p_149696_4_, int p_149696_5_, int p_149696_6_) {
         super.onBlockEventReceived(p_149696_1_, p_149696_2_, p_149696_3_, p_149696_4_, p_149696_5_, p_149696_6_);
         TileEntity tileentity = p_149696_1_.getTileEntity(p_149696_2_, p_149696_3_, p_149696_4_);
         return tileentity != null ? tileentity.receiveClientEvent(p_149696_5_, p_149696_6_) : false;
     }
 
-	@Override
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileEntitySSCrop();
-	}
+    @Override
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+        return new TileEntitySSCrop();
+    }
 
-	public boolean canReHarvest(){
-		return re_harvest;
-	}
+    public boolean canReHarvest() {
+        return re_harvest;
+    }
 
-	public CropStatus getStatus() {
-		return status;
-	}
+    public CropStatus getStatus() {
+        return status;
+    }
 
-	public static boolean hasFarmland(World world, int x, int y, int z){
-		return world.getBlock(x, y-1, z)==SSBlocks.farmland;
-	}
-
+    public static boolean hasFarmland(World world, int x, int y, int z) {
+        return world.getBlock(x, y - 1, z) == SSBlocks.farmland;
+    }
 
     //---------------------------------------------------
 
-	public enum CropType{
+    public enum CropType {
 
-    	Normal(6),
-    	Close(1)
+        Normal(6), Close(1)
 
-    	;
+        ;
 
-    	public int id;
+        public int id;
 
-    	CropType(int renderID){
-    		this.id = renderID;
-    	}
-
-    }
-
-    public static class CropStatus{
-
-    	private int days[] ;//= new int[3];
-
-    	public Season[] season;
-
-		public CropStatus(int[] i1,Season... s){
-
-    		this.days= i1;
-    		this.season= s;
-
-    	}
-
-    	public synchronized int[] getDays() {
-			return days;
-		}
-
-		private synchronized void setDay(int[] day) {
-			this.days = day;
-		}
-
-		public Season[] getSeason() {
-			return season;
-		}
-
-    	public boolean isReHarvest(){
-    		return this.days.length == 4;
-    	}
+        CropType(int renderID) {
+            this.id = renderID;
+        }
 
     }
 
+    public static class CropStatus {
+
+        private int days[];//= new int[3];
+
+        public Season[] season;
+
+        public CropStatus(int[] i1, Season... s) {
+
+            this.days = i1;
+            this.season = s;
+
+        }
+
+        public synchronized int[] getDays() {
+            return days;
+        }
+
+        private synchronized void setDay(int[] day) {
+            this.days = day;
+        }
+
+        public Season[] getSeason() {
+            return season;
+        }
+
+        public boolean isReHarvest() {
+            return this.days.length == 4;
+        }
+
+    }
 
 }

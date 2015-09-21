@@ -3,7 +3,17 @@ package shift.sextiarysector.fmp;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
+import codechicken.lib.data.MCDataInput;
+import codechicken.lib.data.MCDataOutput;
+import codechicken.lib.vec.BlockCoord;
+import codechicken.lib.vec.Cuboid6;
+import codechicken.lib.vec.Vector3;
+import codechicken.multipart.JIconHitEffects;
+import codechicken.multipart.JNormalOcclusion;
+import codechicken.multipart.TMultiPart;
+import codechicken.multipart.minecraft.McBlockPart;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,473 +28,463 @@ import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.api.gearforce.item.IHammer;
 import shift.sextiarysector.api.gearforce.tileentity.EnergyStorage;
+import shift.sextiarysector.block.BlockShaft;
 import shift.sextiarysector.renderer.block.RendererShaft;
 import shift.sextiarysector.renderer.model.ModelShaft;
 import shift.sextiarysector.tileentity.TileEntityShaft;
-import codechicken.lib.data.MCDataInput;
-import codechicken.lib.data.MCDataOutput;
-import codechicken.lib.vec.BlockCoord;
-import codechicken.lib.vec.Cuboid6;
-import codechicken.lib.vec.Vector3;
-import codechicken.multipart.JIconHitEffects;
-import codechicken.multipart.JNormalOcclusion;
-import codechicken.multipart.TMultiPart;
-import codechicken.multipart.minecraft.McBlockPart;
 
 public class ShaftPart extends McBlockPart implements JNormalOcclusion, JIconHitEffects, IShaft {
 
-	//public TileEntityShaft shaft = new TileEntityShaft();
-
-	//public ForgeDirection direction = ForgeDirection.UNKNOWN;
-	public TileEntityShaft tShaft = null;
-	public int sType = 0;
-
-	double minX = 0.25D;
-	double minY = 0.25D;
-	double minZ = 0.25D;
-	double maxX = 0.75D;
-	double maxY = 0.75D;
-	double maxZ = 0.75D;
-	private final Cuboid6 minmam = new Cuboid6(0.1875D, 0.1875D, 0.1875D, 0.8125D, 0.8125D, 0.8125D);
-
-	public ShaftPart(int type, ForgeDirection d, World w, int x, int y, int z) {
-		//this.direction = d;
-		TileEntityShaft shaft = new TileEntityShaft(type);
-		shaft.setDirection(d);
-		shaft.setWorldObj(w);
-		shaft.xCoord = x;
-		shaft.yCoord = y;
-		shaft.zCoord = z;
-
-		this.tShaft = shaft;
-		this.sType = type;
-		this.directionChange();
-
-	}
-
-	public ShaftPart(TileEntityShaft t) {
-		this.tShaft = t;
-		this.sType = t.getStorage().getMaxPower();
-		this.directionChange();
-	}
+    //public TileEntityShaft shaft = new TileEntityShaft();
+
+    //public ForgeDirection direction = ForgeDirection.UNKNOWN;
+    public TileEntityShaft tShaft = null;
+    public int sType = 0;
+
+    double minX = 0.25D;
+    double minY = 0.25D;
+    double minZ = 0.25D;
+    double maxX = 0.75D;
+    double maxY = 0.75D;
+    double maxZ = 0.75D;
+    private final Cuboid6 minmam = new Cuboid6(0.1875D, 0.1875D, 0.1875D, 0.8125D, 0.8125D, 0.8125D);
+
+    public ShaftPart(int type, ForgeDirection d, World w, int x, int y, int z) {
+        //this.direction = d;
+        TileEntityShaft shaft = new TileEntityShaft(type);
+        shaft.setDirection(d);
+        shaft.setWorldObj(w);
+        shaft.xCoord = x;
+        shaft.yCoord = y;
+        shaft.zCoord = z;
 
-	public ShaftPart(int type) {
-		sType = type;
-	}
+        this.tShaft = shaft;
+        this.sType = type;
+        this.directionChange();
 
-	@Override
-	public Block getBlock()
-	{
-		switch (this.sType) {
-		case 1:
-			return SSBlocks.woodShaft;
-		case 2:
-			return SSBlocks.stoneShaft;
-		case 3:
-			return SSBlocks.steelShaft;
-		case 4:
-			return SSBlocks.ninjaShaft;
-		case 5:
-			return SSBlocks.orichalcumShaft;
-		}
-		return SSBlocks.woodShaft;
-	}
+    }
 
-	public int rotateStep = 360;
+    public ShaftPart(TileEntityShaft t) {
+        this.tShaft = t;
+        this.sType = t.getStorage().getMaxPower();
+        this.directionChange();
+    }
 
-	@Override
-	public void update()
-	{
+    public ShaftPart(int type) {
+        sType = type;
+    }
 
-		//if (rotateStep <= 0) {
-		//	rotateStep += 360;
-		//}
+    @Override
+    public Block getBlock() {
+        switch (this.sType) {
+            case 1:
+                return SSBlocks.woodShaft;
+            case 2:
+                return SSBlocks.stoneShaft;
+            case 3:
+                return SSBlocks.steelShaft;
+            case 4:
+                return SSBlocks.ninjaShaft;
+            case 5:
+                return SSBlocks.orichalcumShaft;
+        }
+        return SSBlocks.woodShaft;
+    }
 
-		//rotateStep -= 2.2;
-		this.tShaft.setWorldObj(this.world());
-		this.tShaft.xCoord = this.x();
-		this.tShaft.yCoord = this.y();
-		this.tShaft.zCoord = this.z();
-		if (this.sType != 0 && this.tShaft.getStorage().getMaxPower() != this.sType) this.tShaft.getStorage().setPowerCapacity(this.sType);
+    public int rotateStep = 360;
 
-		if (!this.tShaft.getWorldObj().isRemote & this.tShaft.getStorage().getSpeedStored() != this.tShaft.lastSpeed) {
-			this.tShaft.lastSpeed = (this.tShaft.getStorage().getSpeedStored());
+    @Override
+    public void update() {
 
-			sendDescUpdate();
-			tile().notifyPartChange(this);
-			tile().markDirty();
+        //if (rotateStep <= 0) {
+        //	rotateStep += 360;
+        //}
 
-		}
+        //rotateStep -= 2.2;
+        this.tShaft.setWorldObj(this.world());
+        this.tShaft.xCoord = this.x();
+        this.tShaft.yCoord = this.y();
+        this.tShaft.zCoord = this.z();
+        if (this.sType != 0 && this.tShaft.getStorage().getMaxPower() != this.sType) this.tShaft.getStorage().setPowerCapacity(this.sType);
 
-		this.tShaft.updateEntity();
+        if (!this.tShaft.getWorldObj().isRemote & this.tShaft.getStorage().getSpeedStored() != this.tShaft.lastSpeed) {
+            this.tShaft.lastSpeed = (this.tShaft.getStorage().getSpeedStored());
 
-	}
+            sendDescUpdate();
+            tile().notifyPartChange(this);
+            tile().markDirty();
 
-	@Override
-	public boolean activate(EntityPlayer player, MovingObjectPosition part, ItemStack item)
-	{
+        }
 
-		if (item == null || !(item.getItem() instanceof IHammer)) return false;
+        this.tShaft.updateEntity();
 
-		World world = world();
-		if (world.isRemote) return true;
+    }
 
-		//IShaft t = (IShaft) this.world().getTileEntity(this.x(), this.y(), this.z());
+    @Override
+    public boolean activate(EntityPlayer player, MovingObjectPosition part, ItemStack item) {
 
-		if (!player.isSneaking()) {
-			this.changeToHammer(player, part, item);
-		} else {
-			//System.out.println("AA");
-			//this.breakToHammer(player, part, item);
-		}
+        if (item == null || !(item.getItem() instanceof IHammer)) return false;
 
-		//this.world().markBlockForUpdate(this.x(), this.y(), this.z());
+        World world = world();
+        if (world.isRemote) return true;
 
-		sendDescUpdate();
-		tile().notifyPartChange(this);
-		tile().markDirty();
+        //IShaft t = (IShaft) this.world().getTileEntity(this.x(), this.y(), this.z());
 
-		return true;
+        if (!player.isSneaking()) {
+            this.changeToHammer(player, part, item);
+        } else {
+            //System.out.println("AA");
+            //this.breakToHammer(player, part, item);
+        }
 
-	}
+        //this.world().markBlockForUpdate(this.x(), this.y(), this.z());
 
-	private void changeToHammer(EntityPlayer player, MovingObjectPosition part, ItemStack item) {
+        sendDescUpdate();
+        tile().notifyPartChange(this);
+        tile().markDirty();
 
-		if (!((IHammer) item.getItem()).canUse(item, player, 2)) return;
+        return true;
 
-		IShaft t = (IShaft) this.world().getTileEntity(this.x(), this.y(), this.z());
+    }
 
-		ForgeDirection d = t.getDirection();
+    private void changeToHammer(EntityPlayer player, MovingObjectPosition part, ItemStack item) {
 
-		if (d.ordinal() > 4) {
-			t.setDirection(d.getOrientation(0));
-		} else {
-			t.setDirection(d.getOrientation(d.ordinal() + 1));
-		}
+        if (!((IHammer) item.getItem()).canUse(item, player, 2)) return;
 
-		((IHammer) item.getItem()).use(item, player, 2);
+        IShaft t = (IShaft) this.world().getTileEntity(this.x(), this.y(), this.z());
 
-		directionChange();
-		this.world().playSoundEffect(this.x(), this.y(), this.z(), this.getBlock().stepSound.getStepResourcePath(), 1.0F, this.world().rand.nextFloat() * 0.1F + 0.6F);
+        ForgeDirection d = t.getDirection();
 
-	}
+        if (d.ordinal() > 4) {
+            t.setDirection(d.getOrientation(0));
+        } else {
+            t.setDirection(d.getOrientation(d.ordinal() + 1));
+        }
 
-	private void breakToHammer(EntityPlayer player, MovingObjectPosition part, ItemStack item) {
+        ((IHammer) item.getItem()).use(item, player, 2);
 
-		if (!((IHammer) item.getItem()).canUse(item, player, 10)) return;
+        directionChange();
+        this.world().playSoundEffect(this.x(), this.y(), this.z(), this.getBlock().stepSound.getStepResourcePath(), 1.0F, this.world().rand.nextFloat() * 0.1F + 0.6F);
 
-		List<TMultiPart> l = this.tile().jPartList();
+    }
 
-		Iterator<TMultiPart> i = l.iterator();
+    private void breakToHammer(EntityPlayer player, MovingObjectPosition part, ItemStack item) {
 
-		while (i.hasNext()) {
+        if (!((IHammer) item.getItem()).canUse(item, player, 10)) return;
 
-			if (i == this) {
+        List<TMultiPart> l = this.tile().jPartList();
 
-				EntityItem eItem = new EntityItem(player.worldObj, this.x() + 0.5d, this.y() + 0.5d, this.z() + 0.5d, new ItemStack(this.getBlock(), 1));
+        Iterator<TMultiPart> i = l.iterator();
 
-				player.worldObj.spawnEntityInWorld(eItem);
+        while (i.hasNext()) {
 
-				((IHammer) item.getItem()).use(item, player, 10);
+            if (i == this) {
 
-				//i.remove();
-				this.tile().remPart(this);
+                EntityItem eItem = new EntityItem(player.worldObj, this.x() + 0.5d, this.y() + 0.5d, this.z() + 0.5d, new ItemStack(this.getBlock(), 1));
 
-			}
+                player.worldObj.spawnEntityInWorld(eItem);
 
-		}
+                ((IHammer) item.getItem()).use(item, player, 10);
 
-	}
+                //i.remove();
+                this.tile().remPart(this);
 
-	public static McBlockPart placement(int type, World world, BlockCoord pos, EntityPlayer player, int side)
-	{
-		//pos = pos.copy().offset(side ^ 1);
-		//if (!world.isSideSolid(pos.x, pos.y, pos.z, ForgeDirection.getOrientation(side)))
-		//	return null;
+            }
 
-		//int meta = sideMetaMap[side ^ 1];
-		//if (side < 2 && (MathHelper.floor_double(player.rotationYaw / 90 + 0.5) & 1) == 0)
-		//	meta = metaSwapMap[side ^ 1];
+        }
 
-		return new ShaftPart(type, ForgeDirection.getOrientation(side), world, pos.x, pos.y, pos.z);
+    }
 
-	}
+    public static McBlockPart placement(int type, World world, BlockCoord pos, EntityPlayer player, int side) {
+        //pos = pos.copy().offset(side ^ 1);
+        //if (!world.isSideSolid(pos.x, pos.y, pos.z, ForgeDirection.getOrientation(side)))
+        //	return null;
 
-	private static final ResourceLocation shaftTextures = new ResourceLocation("sextiarysector:textures/models/shaft.png");
-	static public ModelShaft modelShaft = new ModelShaft();
+        //int meta = sideMetaMap[side ^ 1];
+        //if (side < 2 && (MathHelper.floor_double(player.rotationYaw / 90 + 0.5) & 1) == 0)
+        //	meta = metaSwapMap[side ^ 1];
 
-	@Override
-	public void renderDynamic(Vector3 pos, float frame, int pass)
-	{
+        return new ShaftPart(type, ForgeDirection.getOrientation(side), world, pos.x, pos.y, pos.z);
 
-		/*this.tShaft.setWorldObj(this.world());
-		this.tShaft.xCoord = this.x();
-		this.tShaft.yCoord = this.y();
-		this.tShaft.zCoord = this.z();*/
+    }
 
-		getShaft();
+    private static final ResourceLocation shaftTextures = new ResourceLocation("sextiarysector:textures/models/shaft.png");
+    static public ModelShaft modelShaft = new ModelShaft();
 
-		this.directionChange();
+    @Override
+    public void renderDynamic(Vector3 pos, float frame, int pass) {
 
-		RendererShaft.renderTileEntityAt2(this.world().getTileEntity(this.x(), this.y(), this.z()), pos.x, pos.y, pos.z, frame);
+        /*this.tShaft.setWorldObj(this.world());
+        this.tShaft.xCoord = this.x();
+        this.tShaft.yCoord = this.y();
+        this.tShaft.zCoord = this.z();*/
 
-	}
+        getShaft();
 
-	@Override
-	public Cuboid6 getBounds() {
+        this.directionChange();
 
-		/*this.tShaft.setWorldObj(this.world());
-		this.tShaft.xCoord = this.x();
-		this.tShaft.yCoord = this.y();
-		this.tShaft.zCoord = this.z();*/
+        RendererShaft.renderTileEntityAt2(this.world().getTileEntity(this.x(), this.y(), this.z()), pos.x, pos.y, pos.z, frame);
 
-		getShaft();
+    }
 
-		directionChange();
-		return new Cuboid6(this.minX, this.minY, this.minZ, this.maxX, this.maxY, this.maxZ);
-	}
+    @Override
+    public Cuboid6 getBounds() {
 
-	@Override
-	public Iterable<Cuboid6> getOcclusionBoxes() {
+        /*this.tShaft.setWorldObj(this.world());
+        this.tShaft.xCoord = this.x();
+        this.tShaft.yCoord = this.y();
+        this.tShaft.zCoord = this.z();*/
 
-		return Arrays.asList(new Cuboid6[] { this.getBounds() });
+        getShaft();
 
-	}
+        directionChange();
+        return new Cuboid6(this.minX, this.minY, this.minZ, this.maxX, this.maxY, this.maxZ);
+    }
 
-	@Override
-	public Iterable<Cuboid6> getCollisionBoxes()
-	{
-		return Arrays.asList(new Cuboid6[] { this.getBounds() });
-	}
+    @Override
+    public Iterable<Cuboid6> getOcclusionBoxes() {
 
-	@Override
-	public String getType() {
+        return Arrays.asList(new Cuboid6[] { this.getBounds() });
 
-		switch (this.sType) {
-		case 1:
-			return "sextiarysector:wood_shaft";
-		case 2:
-			return "sextiarysector:stone_shaft";
-		case 3:
-			return "sextiarysector:steel_shaft";
-		case 4:
-			return "sextiarysector:ninja_shaft";
-		case 5:
-			return "sextiarysector:orichalcum_shaft";
-		}
-		return "sextiarysector:wood_shaft";
-	}
+    }
 
-	private void directionChange()
-	{
-		if (tShaft.getDirection().ordinal() == 0 || tShaft.getDirection().ordinal() == 1) {
-			minY = 0;
-			maxY = 1;
-			minZ = 0.25D;
-			maxZ = 0.75D;
-			minX = 0.25D;
-			maxX = 0.75D;
-		} else if (tShaft.getDirection().ordinal() == 2 || tShaft.getDirection().ordinal() == 3) {
-			minZ = 0;
-			maxZ = 1;
-			minX = 0.25D;
-			maxX = 0.75D;
-			minY = 0.25D;
-			maxY = 0.75D;
-		} else if (tShaft.getDirection().ordinal() == 4 || tShaft.getDirection().ordinal() == 5) {
-			minX = 0;
-			maxX = 1;
-			minZ = 0.25D;
-			maxZ = 0.75D;
-			minY = 0.25D;
-			maxY = 0.75D;
-		}
-	}
+    @Override
+    public Iterable<Cuboid6> getCollisionBoxes() {
+        return Arrays.asList(new Cuboid6[] { this.getBounds() });
+    }
 
-	@Override
-	public Iterable<ItemStack> getDrops()
-	{
-		return Arrays.asList(new ItemStack[] { new ItemStack(this.getBlock(), 1, 0) });
-	}
+    @Override
+    public String getType() {
 
-	@Override
-	public ItemStack pickItem(MovingObjectPosition hit)
-	{
-		return new ItemStack(this.getBlock(), 1, 0);
-	}
+        switch (this.sType) {
+            case 1:
+                return "sextiarysector:wood_shaft";
+            case 2:
+                return "sextiarysector:stone_shaft";
+            case 3:
+                return "sextiarysector:steel_shaft";
+            case 4:
+                return "sextiarysector:ninja_shaft";
+            case 5:
+                return "sextiarysector:orichalcum_shaft";
+        }
+        return "sextiarysector:wood_shaft";
+    }
 
-	@Override
-	public IIcon getBreakingIcon(Object arg0, int arg1) {
-		return Blocks.stone.getIcon(0, 0);
-	}
+    private void directionChange() {
+        if (tShaft.getDirection().ordinal() == 0 || tShaft.getDirection().ordinal() == 1) {
+            minY = 0;
+            maxY = 1;
+            minZ = 0.25D;
+            maxZ = 0.75D;
+            minX = 0.25D;
+            maxX = 0.75D;
+        } else if (tShaft.getDirection().ordinal() == 2 || tShaft.getDirection().ordinal() == 3) {
+            minZ = 0;
+            maxZ = 1;
+            minX = 0.25D;
+            maxX = 0.75D;
+            minY = 0.25D;
+            maxY = 0.75D;
+        } else if (tShaft.getDirection().ordinal() == 4 || tShaft.getDirection().ordinal() == 5) {
+            minX = 0;
+            maxX = 1;
+            minZ = 0.25D;
+            maxZ = 0.75D;
+            minY = 0.25D;
+            maxY = 0.75D;
+        }
+    }
 
-	@Override
-	public IIcon getBrokenIcon(int arg0) {
-		return Blocks.stone.getIcon(0, 0);
-	}
+    @Override
+    public Iterable<ItemStack> getDrops() {
+        return Arrays.asList(new ItemStack[] { new ItemStack(this.getBlock(), 1, 0) });
+    }
 
-	private TileEntityShaft getShaft() {
+    @Override
+    public ItemStack pickItem(MovingObjectPosition hit) {
+        return new ItemStack(this.getBlock(), 1, 0);
+    }
 
-		if (tShaft == null) tShaft = new TileEntityShaft();
+    @Override
+    public IIcon getBreakingIcon(Object arg0, int arg1) {
+        return Blocks.stone.getIcon(0, 0);
+    }
 
-		try {
+    @Override
+    public IIcon getBrokenIcon(int arg0) {
+        return Blocks.stone.getIcon(0, 0);
+    }
 
-			tShaft.setWorldObj(this.world());
-			this.tShaft.xCoord = this.x();
-			this.tShaft.yCoord = this.y();
-			this.tShaft.zCoord = this.z();
+    public void randomDisplayTick(Random random) {
 
-		} catch (NullPointerException e) {
-		}
+        this.getShaft();
 
-		directionChange();
+        if (this.tShaft == null) return;
+        if (this.tShaft.lastSpeed == 0) return;
 
-		return tShaft;
-	}
+        BlockShaft.sparkle(this.world(), this.x(), this.y(), this.z());
 
-	@Override
-	public void save(NBTTagCompound tag)
-	{
-		tag.setByte("stype", (byte) this.sType);
-		NBTTagCompound s = new NBTTagCompound();
+    }
 
-		tShaft.setWorldObj(this.world());
-		this.tShaft.xCoord = this.x();
-		this.tShaft.yCoord = this.y();
-		this.tShaft.zCoord = this.z();
+    private TileEntityShaft getShaft() {
 
-		if (tShaft != null) tShaft.writeToNBT(s);
-		tag.setTag("shaft", s);
+        if (tShaft == null) tShaft = new TileEntityShaft();
 
-	}
+        try {
 
-	@Override
-	public void load(NBTTagCompound tag)
-	{
-		this.sType = tag.getByte("stype");
+            tShaft.setWorldObj(this.world());
+            this.tShaft.xCoord = this.x();
+            this.tShaft.yCoord = this.y();
+            this.tShaft.zCoord = this.z();
 
-		NBTTagCompound s = tag.getCompoundTag("shaft");
-		if (tShaft == null) tShaft = new TileEntityShaft();
-		tShaft.readFromNBT(s);
-		try {
-			this.world().markBlockForUpdate(this.x(), this.y(), this.z());
-		} catch (NullPointerException e) {
-		}
+        } catch (NullPointerException e) {
+        }
 
-		//tShaft.setWorldObj(this.world());
-		//this.tShaft.xCoord = this.x();
-		//this.tShaft.yCoord = this.y();
-		//this.tShaft.zCoord = this.z();
+        directionChange();
 
-	}
+        return tShaft;
+    }
 
-	@Override
-	public void writeDesc(MCDataOutput packet)
-	{
-		packet.writeByte((byte) this.sType);
+    @Override
+    public void save(NBTTagCompound tag) {
+        tag.setByte("stype", (byte) this.sType);
+        NBTTagCompound s = new NBTTagCompound();
 
-		NBTTagCompound s = new NBTTagCompound();
+        tShaft.setWorldObj(this.world());
+        this.tShaft.xCoord = this.x();
+        this.tShaft.yCoord = this.y();
+        this.tShaft.zCoord = this.z();
 
-		/*this.tShaft.setWorldObj(this.world());
-		this.tShaft.xCoord = this.x();
-		this.tShaft.yCoord = this.y();
-		this.tShaft.zCoord = this.z();*/
+        if (tShaft != null) tShaft.writeToNBT(s);
+        tag.setTag("shaft", s);
 
-		//getShaft();
+    }
 
-		if (tShaft != null) tShaft.writeToNBT(s);
-		packet.writeNBTTagCompound(s);
+    @Override
+    public void load(NBTTagCompound tag) {
+        this.sType = tag.getByte("stype");
 
-	}
+        NBTTagCompound s = tag.getCompoundTag("shaft");
+        if (tShaft == null) tShaft = new TileEntityShaft();
+        tShaft.readFromNBT(s);
+        try {
+            this.world().markBlockForUpdate(this.x(), this.y(), this.z());
+        } catch (NullPointerException e) {
+        }
 
-	@Override
-	public void readDesc(MCDataInput packet)
-	{
-		this.sType = packet.readByte();
+        //tShaft.setWorldObj(this.world());
+        //this.tShaft.xCoord = this.x();
+        //this.tShaft.yCoord = this.y();
+        //this.tShaft.zCoord = this.z();
 
-		NBTTagCompound s = packet.readNBTTagCompound();
-		if (tShaft == null) tShaft = new TileEntityShaft();
-		tShaft.readFromNBT(s);
-		try {
-			this.world().markBlockForUpdate(this.x(), this.y(), this.z());
-		} catch (NullPointerException e) {
-		}
-		//tShaft.setWorldObj(this.world());
-		//this.tShaft.xCoord = this.x();
-		//this.tShaft.yCoord = this.y();
-		//this.tShaft.zCoord = this.z();
+    }
 
-	}
+    @Override
+    public void writeDesc(MCDataOutput packet) {
+        packet.writeByte((byte) this.sType);
 
-	@Override
-	public void setDirection(ForgeDirection d) {
-		this.tShaft.setDirection(d);
-	}
+        NBTTagCompound s = new NBTTagCompound();
 
-	@Override
-	public ForgeDirection getDirection() {
-		return this.getShaft().getDirection();
-	}
+        /*this.tShaft.setWorldObj(this.world());
+        this.tShaft.xCoord = this.x();
+        this.tShaft.yCoord = this.y();
+        this.tShaft.zCoord = this.z();*/
 
-	@Override
-	public void setRotateStep(float r) {
-		this.getShaft().setRotateStep(r);
-	}
+        //getShaft();
 
-	@Override
-	public float getRotateStep() {
-		return this.getShaft().getRotateStep();
-	}
+        if (tShaft != null) tShaft.writeToNBT(s);
+        packet.writeNBTTagCompound(s);
 
-	//GF
-	@Override
-	public int addEnergy(ForgeDirection from, int power, int speed, boolean simulate) {
-		return this.getShaft().addEnergy(from, power, speed, simulate);
-	}
+    }
 
-	@Override
-	public int drawEnergy(ForgeDirection from, int power, int speed, boolean simulate) {
-		return this.getShaft().drawEnergy(from, power, speed, simulate);
-	}
+    @Override
+    public void readDesc(MCDataInput packet) {
+        this.sType = packet.readByte();
 
-	@Override
-	public boolean canInterface(ForgeDirection from) {
-		return this.getShaft().canInterface(from);
-	}
+        NBTTagCompound s = packet.readNBTTagCompound();
+        if (tShaft == null) tShaft = new TileEntityShaft();
+        tShaft.readFromNBT(s);
+        try {
+            this.world().markBlockForUpdate(this.x(), this.y(), this.z());
+        } catch (NullPointerException e) {
+        }
+        //tShaft.setWorldObj(this.world());
+        //this.tShaft.xCoord = this.x();
+        //this.tShaft.yCoord = this.y();
+        //this.tShaft.zCoord = this.z();
 
-	@Override
-	public int getPowerStored(ForgeDirection from) {
-		return this.getShaft().getPowerStored(from);
-	}
+    }
 
-	@Override
-	public int getSpeedStored(ForgeDirection from) {
-		return this.getShaft().getSpeedStored(from);
-	}
+    @Override
+    public void setDirection(ForgeDirection d) {
+        this.tShaft.setDirection(d);
+    }
 
-	@Override
-	public int getMaxPowerStored(ForgeDirection from) {
-		return this.getShaft().getMaxPowerStored(from);
-	}
+    @Override
+    public ForgeDirection getDirection() {
+        return this.getShaft().getDirection();
+    }
 
-	@Override
-	public int getMaxSpeedStored(ForgeDirection from) {
-		return this.getShaft().getMaxSpeedStored(from);
-	}
+    @Override
+    public void setRotateStep(float r) {
+        this.getShaft().setRotateStep(r);
+    }
 
-	@Override
-	public EnergyStorage getStorage() {
-		return this.getShaft().getStorage();
-	}
+    @Override
+    public float getRotateStep() {
+        return this.getShaft().getRotateStep();
+    }
 
-	@Override
-	public IShaft getInTileEntityShaft() {
-		return this.getShaft().getInTileEntityShaft();
-	}
+    //GF
+    @Override
+    public int addEnergy(ForgeDirection from, int power, int speed, boolean simulate) {
+        return this.getShaft().addEnergy(from, power, speed, simulate);
+    }
 
-	@Override
-	public IShaft getOutTileEntityShaft() {
-		return this.getShaft().getOutTileEntityShaft();
-	}
+    @Override
+    public int drawEnergy(ForgeDirection from, int power, int speed, boolean simulate) {
+        return this.getShaft().drawEnergy(from, power, speed, simulate);
+    }
+
+    @Override
+    public boolean canInterface(ForgeDirection from) {
+        return this.getShaft().canInterface(from);
+    }
+
+    @Override
+    public int getPowerStored(ForgeDirection from) {
+        return this.getShaft().getPowerStored(from);
+    }
+
+    @Override
+    public int getSpeedStored(ForgeDirection from) {
+        return this.getShaft().getSpeedStored(from);
+    }
+
+    @Override
+    public int getMaxPowerStored(ForgeDirection from) {
+        return this.getShaft().getMaxPowerStored(from);
+    }
+
+    @Override
+    public int getMaxSpeedStored(ForgeDirection from) {
+        return this.getShaft().getMaxSpeedStored(from);
+    }
+
+    @Override
+    public EnergyStorage getStorage() {
+        return this.getShaft().getStorage();
+    }
+
+    @Override
+    public IShaft getInTileEntityShaft() {
+        return this.getShaft().getInTileEntityShaft();
+    }
+
+    @Override
+    public IShaft getOutTileEntityShaft() {
+        return this.getShaft().getOutTileEntityShaft();
+    }
 
 }

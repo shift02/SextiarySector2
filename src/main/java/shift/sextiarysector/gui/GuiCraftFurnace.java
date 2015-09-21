@@ -14,13 +14,12 @@ import shift.sextiarysector.container.ContainerCraftFurnace;
 import shift.sextiarysector.recipe.FurnaceCraftingManager;
 import shift.sextiarysector.tileentity.TileEntityCraftFurnace;
 
-public class GuiCraftFurnace  extends GuiContainer{
+public class GuiCraftFurnace extends GuiContainer {
 
-	private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("sextiarysector:textures/guis/craft_furnace.png");
+    private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("sextiarysector:textures/guis/craft_furnace.png");
     private final TileEntityCraftFurnace furnaceInventory;
 
-    public GuiCraftFurnace(InventoryPlayer par1InventoryPlayer, TileEntityCraftFurnace par2TileEntityFurnace)
-    {
+    public GuiCraftFurnace(InventoryPlayer par1InventoryPlayer, TileEntityCraftFurnace par2TileEntityFurnace) {
         super(new ContainerCraftFurnace(par1InventoryPlayer, par2TileEntityFurnace));
         this.furnaceInventory = par2TileEntityFurnace;
         //this.ySize =222;
@@ -30,8 +29,7 @@ public class GuiCraftFurnace  extends GuiContainer{
      * Draw the foreground layer for the GuiContainer (everything in front of the items)
      */
     @Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2)
-    {
+    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         String s = this.furnaceInventory.hasCustomInventoryName() ? this.furnaceInventory.getInventoryName() : I18n.format(this.furnaceInventory.getInventoryName());
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
         this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
@@ -41,8 +39,7 @@ public class GuiCraftFurnace  extends GuiContainer{
      * Draw the background layer for the GuiContainer (everything behind the items)
      */
     @Override
-	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
-    {
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(furnaceGuiTextures);
         int k = (this.width - this.xSize) / 2;
@@ -50,8 +47,7 @@ public class GuiCraftFurnace  extends GuiContainer{
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         int i1;
 
-        if (this.furnaceInventory.isFuel())
-        {
+        if (this.furnaceInventory.isFuel()) {
             i1 = this.furnaceInventory.getEnergyProgressScaled(12);
             this.drawTexturedModalRect(k + 15, l + 29 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
         }
@@ -61,8 +57,7 @@ public class GuiCraftFurnace  extends GuiContainer{
 
         ItemStack itemstack = FurnaceCraftingManager.getInstance().findMatchingRecipe(this.furnaceInventory.craftMatrix, this.furnaceInventory.getWorldObj());
 
-        if (itemstack != null )
-        {
+        if (itemstack != null) {
             int k1 = (this.width - this.xSize) / 2;
             int l1 = (this.height - this.ySize) / 2;
             GL11.glPushMatrix();
@@ -78,8 +73,7 @@ public class GuiCraftFurnace  extends GuiContainer{
             itemRender.zLevel = 0.0F;
             GL11.glDisable(GL11.GL_LIGHTING);
 
-            if(this.func_146978_c(105, 23, 16, 16, par2, par3))
-            {
+            if (this.func_146978_c(105, 23, 16, 16, par2, par3)) {
                 this.renderToolTip(itemstack, par2, par3);
             }
 

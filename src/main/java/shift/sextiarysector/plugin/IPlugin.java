@@ -8,15 +8,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public interface IPlugin {
 
-	public String getModName();
+    public String getModName();
 
-	public void prePlugin(FMLPreInitializationEvent event);
+    public void prePlugin(FMLPreInitializationEvent event);
 
-	@SideOnly(Side.CLIENT)
-	public void preClientPlugin(FMLPreInitializationEvent event);
+    @SideOnly(Side.CLIENT)
+    public void preClientPlugin(FMLPreInitializationEvent event);
 
-	public void initPlugin(FMLInitializationEvent event);
+    public void initPlugin(FMLInitializationEvent event);
 
-	public void postPlugin(FMLPostInitializationEvent event);
+    public void postPlugin(FMLPostInitializationEvent event);
 
 }

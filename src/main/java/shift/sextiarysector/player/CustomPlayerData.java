@@ -11,125 +11,124 @@ import shift.sextiarysector.packet.SSPacketHandler;
 
 public class CustomPlayerData implements IExtendedEntityProperties {
 
-	/** 水分 */
-	private MoistureStats moisture;
+    /** 水分 */
+    private MoistureStats moisture;
 
-	/** スタミナ */
-	private StaminaStats stamina;
+    /** スタミナ */
+    private StaminaStats stamina;
 
-	/**装備**/
-	private EquipmentStats equipment;
+    /**装備**/
+    private EquipmentStats equipment;
 
-	/**出荷箱 */
-	private ShippingBoxStats shippingBox;
+    /**出荷箱 */
+    private ShippingBoxStats shippingBox;
 
-	//@SideOnly(Side.CLIENT)
-	//private TabStats tab;
+    //@SideOnly(Side.CLIENT)
+    //private TabStats tab;
 
-	public void onUpdateEntity(EntityPlayer entityPlayer)
-	{
+    public void onUpdateEntity(EntityPlayer entityPlayer) {
 
-		if (moisture.isPacket() || stamina.isPacket()) {
-			SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
-			//.out.println("onUpdateEntity");
-		}
+        if (moisture.isPacket() || stamina.isPacket()) {
+            SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
+            //.out.println("onUpdateEntity");
+        }
 
-		this.moisture.onUpdate(entityPlayer);
-		this.stamina.onUpdate(entityPlayer);
-		this.equipment.onUpdate(entityPlayer);
-		this.shippingBox.onUpdate(entityPlayer);
+        this.moisture.onUpdate(entityPlayer);
+        this.stamina.onUpdate(entityPlayer);
+        this.equipment.onUpdate(entityPlayer);
+        this.shippingBox.onUpdate(entityPlayer);
 
-	}
+    }
 
-	@Override
-	public void saveNBTData(NBTTagCompound compound) {
+    @Override
+    public void saveNBTData(NBTTagCompound compound) {
 
-		this.moisture.writeNBT(compound);
+        this.moisture.writeNBT(compound);
 
-		this.stamina.writeNBT(compound);
+        this.stamina.writeNBT(compound);
 
-		this.equipment.writeNBT(compound);
+        this.equipment.writeNBT(compound);
 
-		this.shippingBox.writeNBT(compound);
+        this.shippingBox.writeNBT(compound);
 
-	}
+    }
 
-	@Override
-	public void loadNBTData(NBTTagCompound compound) {
+    @Override
+    public void loadNBTData(NBTTagCompound compound) {
 
-		this.moisture.readNBT(compound);
+        this.moisture.readNBT(compound);
 
-		this.stamina.readNBT(compound);
+        this.stamina.readNBT(compound);
 
-		this.equipment.readNBT(compound);
+        this.equipment.readNBT(compound);
 
-		this.shippingBox.readNBT(compound);
+        this.shippingBox.readNBT(compound);
 
-	}
+    }
 
-	@Override
-	public void init(Entity entity, World world) {
+    @Override
+    public void init(Entity entity, World world) {
 
-		if (this.moisture == null) this.moisture = new MoistureStats();
+        if (this.moisture == null) this.moisture = new MoistureStats();
 
-		if (this.stamina == null) this.stamina = new StaminaStats();
+        if (this.stamina == null) this.stamina = new StaminaStats();
 
-		if (this.equipment == null) this.equipment = new EquipmentStats();
+        if (this.equipment == null) this.equipment = new EquipmentStats();
 
-		if (this.shippingBox == null) this.shippingBox = new ShippingBoxStats();
+        if (this.shippingBox == null) this.shippingBox = new ShippingBoxStats();
 
-		//this.tab = new TabStats();
+        //this.tab = new TabStats();
 
-	}
+    }
 
-	public MoistureStats getMoisture() {
-		return moisture;
-	}
+    public MoistureStats getMoisture() {
+        return moisture;
+    }
 
-	private void setMoisture(MoistureStats moisture) {
-		this.moisture = moisture;
-	}
+    private void setMoisture(MoistureStats moisture) {
+        this.moisture = moisture;
+    }
 
-	public StaminaStats getStamina() {
-		return stamina;
-	}
+    public StaminaStats getStamina() {
+        return stamina;
+    }
 
-	private void setStamina(StaminaStats stamina) {
-		this.stamina = stamina;
-	}
+    private void setStamina(StaminaStats stamina) {
+        this.stamina = stamina;
+    }
 
-	public EquipmentStats getEquipmentStats() {
-		return equipment;
-	}
+    public EquipmentStats getEquipmentStats() {
+        return equipment;
+    }
 
-	public void setEquipmentStats(EquipmentStats e) {
-		this.equipment = e;
-	}
+    public void setEquipmentStats(EquipmentStats e) {
+        this.equipment = e;
+    }
 
-	public ShippingBoxStats getShippingBoxStats() {
-		return shippingBox;
-	}
+    public ShippingBoxStats getShippingBoxStats() {
+        return shippingBox;
+    }
 
-	public void setShippingBoxStats(ShippingBoxStats s) {
-		this.shippingBox = s;
-	}
+    public void setShippingBoxStats(ShippingBoxStats s) {
+        this.shippingBox = s;
+    }
 
-	//@SideOnly(Side.CLIENT)
-	//public void setTabList(ArrayList<AbstractTab> tabList){
-	//	tab.setTabList(tabList);
-	//}
+    //@SideOnly(Side.CLIENT)
+    //public void setTabList(ArrayList<AbstractTab> tabList){
+    //	tab.setTabList(tabList);
+    //}
 
-	//@SideOnly(Side.CLIENT)
-	//public ArrayList<AbstractTab> getTabList(){
-	//	return tab.getTabList();
-	//}
+    //@SideOnly(Side.CLIENT)
+    //public ArrayList<AbstractTab> getTabList(){
+    //	return tab.getTabList();
+    //}
 
-	//public void setSelectPage(int i){
-	//	tab.selectPage = i;
-	//}
+    //public void setSelectPage(int i){
+    //	tab.selectPage = i;
+    //}
 
-	///public int getSelectPage(){
-	//	return tab.selectPage;
-	//}
+    ///public int getSelectPage(){
+    //	return tab.selectPage;
+    //}
 
 }
