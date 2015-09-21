@@ -15,8 +15,7 @@ import codechicken.nei.recipe.GuiRecipe;
 
 public abstract class AbstractFuelRecipeHandler extends AbstractSimpleRecipeHandler {
 
-	public class CachedFuelRecipe extends CachedRecipe
-    {
+    public class CachedFuelRecipe extends CachedRecipe {
         public FuelPair fuel;
 
         public CachedFuelRecipe(FuelPair fuel) {
@@ -47,27 +46,24 @@ public abstract class AbstractFuelRecipeHandler extends AbstractSimpleRecipeHand
     }
 
     public String getRecipeName() {
-    	return I18n.format("nei."+getGuiRecipeName());
+        return I18n.format("nei." + getGuiRecipeName());
     }
 
     private void loadAllSmelting() {
 
-    	HashMap<String, ItemStack> recipes = (HashMap<String, ItemStack>) getRecipe().getOreList();
+        HashMap<String, ItemStack> recipes = (HashMap<String, ItemStack>) getRecipe().getOreList();
         HashMap<ItemStack, ItemStack> metarecipes = (HashMap<ItemStack, ItemStack>) getRecipe().getMetaList();
 
-
-        for(Entry<String, ItemStack> recipe : recipes.entrySet())
-        {
+        for (Entry<String, ItemStack> recipe : recipes.entrySet()) {
             ItemStack item = recipe.getValue();
-            if(OreDictionary.getOres(recipe.getKey()).size()>=1){
-            	mfurnace.add(new SimpleMachinePair(OreDictionary.getOres(recipe.getKey()), item));
+            if (OreDictionary.getOres(recipe.getKey()).size() >= 1) {
+                mfurnace.add(new SimpleMachinePair(OreDictionary.getOres(recipe.getKey()), item));
             }
 
         }
 
-        if(metarecipes == null)return;
-        for(Entry<ItemStack, ItemStack> recipe : metarecipes.entrySet())
-        {
+        if (metarecipes == null) return;
+        for (Entry<ItemStack, ItemStack> recipe : metarecipes.entrySet()) {
             ItemStack item = recipe.getValue();
             mfurnace.add(new SimpleMachinePair(recipe.getKey(), item));
         }
@@ -77,7 +73,7 @@ public abstract class AbstractFuelRecipeHandler extends AbstractSimpleRecipeHand
     public void loadCraftingRecipes(String outputId, Object... results) {
         if (outputId.equals(getFuelHandlerName()) && getClass() == getFuelHandlerClass())
             for (FuelPair fuel : afuels)
-                arecipes.add(new CachedFuelRecipe(fuel));
+            arecipes.add(new CachedFuelRecipe(fuel));
     }
 
     public void loadUsageRecipes(ItemStack ingredient) {
@@ -117,13 +113,13 @@ public abstract class AbstractFuelRecipeHandler extends AbstractSimpleRecipeHand
     abstract Class<? extends AbstractSimpleRecipeHandler> getFuelHandlerClass();
 
     @Override
-	Class<? extends AbstractSimpleRecipeHandler> getHandlerClass() {
-		return null;
-	}
+    Class<? extends AbstractSimpleRecipeHandler> getHandlerClass() {
+        return null;
+    }
 
-	@Override
-	String getHandlerName() {
-		return "";
-	}
+    @Override
+    String getHandlerName() {
+        return "";
+    }
 
 }

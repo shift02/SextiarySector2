@@ -4,8 +4,8 @@ import net.minecraft.block.Block;
 
 public interface IFarmlandRegistry {
 
-	public void registerFarmland(String name, Block block);
+    public void registerFarmland(String name, Block block);
 
-	public Block getFarmland(String name);
+    public Block getFarmland(String name);
 
 }

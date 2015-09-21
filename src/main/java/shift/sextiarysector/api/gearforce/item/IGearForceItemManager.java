@@ -5,20 +5,20 @@ import net.minecraft.item.ItemStack;
 
 public interface IGearForceItemManager {
 
-	public int addEnergy(ItemStack itemStack, int power, int speed, boolean simulate);
+    public int addEnergy(ItemStack itemStack, int power, int speed, boolean simulate);
 
-	public int reduceEnergy(ItemStack itemStack, int power, int speed, boolean simulate);
+    public int reduceEnergy(ItemStack itemStack, int power, int speed, boolean simulate);
 
-	public int getSpeed(ItemStack theItem);
+    public int getSpeed(ItemStack theItem);
 
-	public int getPower(ItemStack theItem);
+    public int getPower(ItemStack theItem);
 
-	public boolean setEnergy(ItemStack itemStack, int power, int speed);
+    public boolean setEnergy(ItemStack itemStack, int power, int speed);
 
-	boolean canUse(ItemStack itemStack, int speed);
+    boolean canUse(ItemStack itemStack, int speed);
 
-	boolean use(ItemStack itemStack, int speed, EntityLivingBase entity);
+    boolean use(ItemStack itemStack, int speed, EntityLivingBase entity);
 
-	boolean isGearForceItem(ItemStack item);
+    boolean isGearForceItem(ItemStack item);
 
 }

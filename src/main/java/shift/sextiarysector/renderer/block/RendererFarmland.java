@@ -11,79 +11,77 @@ import shift.sextiarysector.module.FertilizerManager;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
-public class RendererFarmland  implements ISimpleBlockRenderingHandler{
+public class RendererFarmland implements ISimpleBlockRenderingHandler {
 
-	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelId,RenderBlocks renderer) {
+    @Override
+    public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
 
-	}
+    }
 
-	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,Block block, int modelId, RenderBlocks renderer) {
+    @Override
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 
-		if(this.getRenderId()!=modelId)return false;
+        if (this.getRenderId() != modelId) return false;
 
-		renderer.renderStandardBlock(block, x, y, z);
+        renderer.renderStandardBlock(block, x, y, z);
 
-		renderer.renderAllFaces = true;
-		renderer.field_152631_f = true;
+        renderer.renderAllFaces = true;
+        renderer.field_152631_f = true;
 
-		float minx = 0.1875f, minz = 0.1875f;
-		float maxx = 1 - 0.1875f, maxz = 1 - 0.1875f;
+        float minx = 0.1875f, minz = 0.1875f;
+        float maxx = 1 - 0.1875f, maxz = 1 - 0.1875f;
 
-		if(this.isSame(world, x, y, z,block, ForgeDirection.getOrientation(4))){
-			minx = 0;
-		}
-		if(this.isSame(world, x, y, z,block, ForgeDirection.getOrientation(2))){
-			minz = 0;
-		}
-		if(this.isSame(world, x, y, z,block, ForgeDirection.getOrientation(5))){
-			maxx = 1;
-		}
-		if(this.isSame(world, x, y, z,block, ForgeDirection.getOrientation(3))){
-			maxz = 1;
-		}
-		renderer.setRenderBounds(minx, (1.0f/16.0f)*14, minz, maxx , 1 - 0.01f, maxz);
-		renderer.renderStandardBlock(block, x, y, z);
+        if (this.isSame(world, x, y, z, block, ForgeDirection.getOrientation(4))) {
+            minx = 0;
+        }
+        if (this.isSame(world, x, y, z, block, ForgeDirection.getOrientation(2))) {
+            minz = 0;
+        }
+        if (this.isSame(world, x, y, z, block, ForgeDirection.getOrientation(5))) {
+            maxx = 1;
+        }
+        if (this.isSame(world, x, y, z, block, ForgeDirection.getOrientation(3))) {
+            maxz = 1;
+        }
+        renderer.setRenderBounds(minx, (1.0f / 16.0f) * 14, minz, maxx, 1 - 0.01f, maxz);
+        renderer.renderStandardBlock(block, x, y, z);
 
-		TileEntityFarmland t = (TileEntityFarmland) world.getTileEntity(x, y, z);
+        TileEntityFarmland t = (TileEntityFarmland) world.getTileEntity(x, y, z);
 
-		if(t!=null&&t.getFertilizer()!=null){
+        if (t != null && t.getFertilizer() != null) {
 
-			if(FertilizerManager.getFertilizer(t.getFertilizer())!=null){
-				renderer.setOverrideBlockTexture(FertilizerManager.getFertilizerIcon(t.getFertilizer()).getFertilizerIcon());
-			}else{
-				t.setFertilizer(null);
-			}
+            if (FertilizerManager.getFertilizer(t.getFertilizer()) != null) {
+                renderer.setOverrideBlockTexture(FertilizerManager.getFertilizerIcon(t.getFertilizer()).getFertilizerIcon());
+            } else {
+                t.setFertilizer(null);
+            }
 
-			renderer.setRenderBounds(minx, 1 - 0.01f, minz, maxx , 1 - 0.009f, maxz);
-			renderer.renderStandardBlock(block, x, y, z);
-		}
+            renderer.setRenderBounds(minx, 1 - 0.01f, minz, maxx, 1 - 0.009f, maxz);
+            renderer.renderStandardBlock(block, x, y, z);
+        }
 
-		renderer.clearOverrideBlockTexture();
+        renderer.clearOverrideBlockTexture();
 
-		renderer.renderAllFaces = false;
-		renderer.renderAllFaces = false;
+        renderer.renderAllFaces = false;
+        renderer.renderAllFaces = false;
 
-		return true;
-	}
+        return true;
+    }
 
-	private boolean isSame(IBlockAccess p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_ ,Block b, ForgeDirection d){
+    private boolean isSame(IBlockAccess p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, Block b, ForgeDirection d) {
 
-		if(p_149743_1_.getBlock(p_149743_2_ + d.offsetX, p_149743_3_ + d.offsetY, p_149743_4_ + d.offsetZ) == b)return true;
+        if (p_149743_1_.getBlock(p_149743_2_ + d.offsetX, p_149743_3_ + d.offsetY, p_149743_4_ + d.offsetZ) == b) return true;
 
-		return false;
-	}
+        return false;
+    }
 
-	public void renderTopBlock(Block p_147784_1_, int p_147784_2_, int p_147784_3_, int p_147784_4_, RenderBlocks renderer)
-    {
+    public void renderTopBlock(Block p_147784_1_, int p_147784_2_, int p_147784_3_, int p_147784_4_, RenderBlocks renderer) {
         int l = p_147784_1_.colorMultiplier(renderer.blockAccess, p_147784_2_, p_147784_3_, p_147784_4_);
-        float f = (float)(l >> 16 & 255) / 255.0F;
-        float f1 = (float)(l >> 8 & 255) / 255.0F;
-        float f2 = (float)(l & 255) / 255.0F;
+        float f = (float) (l >> 16 & 255) / 255.0F;
+        float f1 = (float) (l >> 8 & 255) / 255.0F;
+        float f2 = (float) (l & 255) / 255.0F;
 
-        if (EntityRenderer.anaglyphEnable)
-        {
+        if (EntityRenderer.anaglyphEnable) {
             float f3 = (f * 30.0F + f1 * 59.0F + f2 * 11.0F) / 100.0F;
             float f4 = (f * 30.0F + f1 * 70.0F) / 100.0F;
             float f5 = (f * 30.0F + f2 * 70.0F) / 100.0F;
@@ -92,14 +90,14 @@ public class RendererFarmland  implements ISimpleBlockRenderingHandler{
             f2 = f5;
         }
 
-        renderFertilizer(p_147784_1_, p_147784_2_, p_147784_3_, p_147784_4_, f, f1, f2,renderer);
+        renderFertilizer(p_147784_1_, p_147784_2_, p_147784_3_, p_147784_4_, f, f1, f2, renderer);
 
     }
 
-	public void renderFertilizer(Block p_147808_1_, int p_147808_2_, int p_147808_3_, int p_147808_4_, float p_147808_5_, float p_147808_6_, float p_147808_7_, RenderBlocks renderer){
+    public void renderFertilizer(Block p_147808_1_, int p_147808_2_, int p_147808_3_, int p_147808_4_, float p_147808_5_, float p_147808_6_, float p_147808_7_, RenderBlocks renderer) {
 
-		renderer.enableAO = true;
-		boolean flag = false;
+        renderer.enableAO = true;
+        boolean flag = false;
         float f3 = 0.0F;
         float f4 = 0.0F;
         float f5 = 0.0F;
@@ -109,12 +107,9 @@ public class RendererFarmland  implements ISimpleBlockRenderingHandler{
         Tessellator tessellator = Tessellator.instance;
         tessellator.setBrightness(983055);
 
-        if (renderer.getBlockIcon(p_147808_1_).getIconName().equals("grass_top"))
-        {
+        if (renderer.getBlockIcon(p_147808_1_).getIconName().equals("grass_top")) {
             flag1 = false;
-        }
-        else if (renderer.hasOverrideBlockTexture())
-        {
+        } else if (renderer.hasOverrideBlockTexture()) {
             flag1 = false;
         }
 
@@ -125,10 +120,8 @@ public class RendererFarmland  implements ISimpleBlockRenderingHandler{
         int i1;
         float f7;
 
-        if (p_147808_1_.shouldSideBeRendered(renderer.blockAccess, p_147808_2_, p_147808_3_ + 1, p_147808_4_, 1))
-        {
-            if (renderer.renderMaxY >= 1.0D)
-            {
+        if (p_147808_1_.shouldSideBeRendered(renderer.blockAccess, p_147808_2_, p_147808_3_ + 1, p_147808_4_, 1)) {
+            if (renderer.renderMaxY >= 1.0D) {
                 ++p_147808_3_;
             }
 
@@ -145,59 +138,45 @@ public class RendererFarmland  implements ISimpleBlockRenderingHandler{
             flag4 = renderer.blockAccess.getBlock(p_147808_2_, p_147808_3_ + 1, p_147808_4_ + 1).getCanBlockGrass();
             flag5 = renderer.blockAccess.getBlock(p_147808_2_, p_147808_3_ + 1, p_147808_4_ - 1).getCanBlockGrass();
 
-            if (!flag5 && !flag3)
-            {
-            	renderer.aoLightValueScratchXYZNPN = renderer.aoLightValueScratchXYNP;
-            	renderer.aoBrightnessXYZNPN = renderer.aoBrightnessXYNP;
-            }
-            else
-            {
-            	renderer.aoLightValueScratchXYZNPN = renderer.blockAccess.getBlock(p_147808_2_ - 1, p_147808_3_, p_147808_4_ - 1).getAmbientOcclusionLightValue();
-            	renderer.aoBrightnessXYZNPN = p_147808_1_.getMixedBrightnessForBlock(renderer.blockAccess, p_147808_2_ - 1, p_147808_3_, p_147808_4_ - 1);
+            if (!flag5 && !flag3) {
+                renderer.aoLightValueScratchXYZNPN = renderer.aoLightValueScratchXYNP;
+                renderer.aoBrightnessXYZNPN = renderer.aoBrightnessXYNP;
+            } else {
+                renderer.aoLightValueScratchXYZNPN = renderer.blockAccess.getBlock(p_147808_2_ - 1, p_147808_3_, p_147808_4_ - 1).getAmbientOcclusionLightValue();
+                renderer.aoBrightnessXYZNPN = p_147808_1_.getMixedBrightnessForBlock(renderer.blockAccess, p_147808_2_ - 1, p_147808_3_, p_147808_4_ - 1);
             }
 
-            if (!flag5 && !flag2)
-            {
-            	renderer.aoLightValueScratchXYZPPN = renderer.aoLightValueScratchXYPP;
-            	renderer.aoBrightnessXYZPPN = renderer.aoBrightnessXYPP;
-            }
-            else
-            {
-            	renderer.aoLightValueScratchXYZPPN = renderer.blockAccess.getBlock(p_147808_2_ + 1, p_147808_3_, p_147808_4_ - 1).getAmbientOcclusionLightValue();
-            	renderer.aoBrightnessXYZPPN = p_147808_1_.getMixedBrightnessForBlock(renderer.blockAccess, p_147808_2_ + 1, p_147808_3_, p_147808_4_ - 1);
+            if (!flag5 && !flag2) {
+                renderer.aoLightValueScratchXYZPPN = renderer.aoLightValueScratchXYPP;
+                renderer.aoBrightnessXYZPPN = renderer.aoBrightnessXYPP;
+            } else {
+                renderer.aoLightValueScratchXYZPPN = renderer.blockAccess.getBlock(p_147808_2_ + 1, p_147808_3_, p_147808_4_ - 1).getAmbientOcclusionLightValue();
+                renderer.aoBrightnessXYZPPN = p_147808_1_.getMixedBrightnessForBlock(renderer.blockAccess, p_147808_2_ + 1, p_147808_3_, p_147808_4_ - 1);
             }
 
-            if (!flag4 && !flag3)
-            {
-            	renderer.aoLightValueScratchXYZNPP = renderer.aoLightValueScratchXYNP;
-            	renderer.aoBrightnessXYZNPP = renderer.aoBrightnessXYNP;
-            }
-            else
-            {
-            	renderer.aoLightValueScratchXYZNPP = renderer.blockAccess.getBlock(p_147808_2_ - 1, p_147808_3_, p_147808_4_ + 1).getAmbientOcclusionLightValue();
-            	renderer.aoBrightnessXYZNPP = p_147808_1_.getMixedBrightnessForBlock(renderer.blockAccess, p_147808_2_ - 1, p_147808_3_, p_147808_4_ + 1);
+            if (!flag4 && !flag3) {
+                renderer.aoLightValueScratchXYZNPP = renderer.aoLightValueScratchXYNP;
+                renderer.aoBrightnessXYZNPP = renderer.aoBrightnessXYNP;
+            } else {
+                renderer.aoLightValueScratchXYZNPP = renderer.blockAccess.getBlock(p_147808_2_ - 1, p_147808_3_, p_147808_4_ + 1).getAmbientOcclusionLightValue();
+                renderer.aoBrightnessXYZNPP = p_147808_1_.getMixedBrightnessForBlock(renderer.blockAccess, p_147808_2_ - 1, p_147808_3_, p_147808_4_ + 1);
             }
 
-            if (!flag4 && !flag2)
-            {
-            	renderer.aoLightValueScratchXYZPPP = renderer.aoLightValueScratchXYPP;
-            	renderer.aoBrightnessXYZPPP = renderer.aoBrightnessXYPP;
-            }
-            else
-            {
-            	renderer.aoLightValueScratchXYZPPP = renderer.blockAccess.getBlock(p_147808_2_ + 1, p_147808_3_, p_147808_4_ + 1).getAmbientOcclusionLightValue();
-            	renderer.aoBrightnessXYZPPP = p_147808_1_.getMixedBrightnessForBlock(renderer.blockAccess, p_147808_2_ + 1, p_147808_3_, p_147808_4_ + 1);
+            if (!flag4 && !flag2) {
+                renderer.aoLightValueScratchXYZPPP = renderer.aoLightValueScratchXYPP;
+                renderer.aoBrightnessXYZPPP = renderer.aoBrightnessXYPP;
+            } else {
+                renderer.aoLightValueScratchXYZPPP = renderer.blockAccess.getBlock(p_147808_2_ + 1, p_147808_3_, p_147808_4_ + 1).getAmbientOcclusionLightValue();
+                renderer.aoBrightnessXYZPPP = p_147808_1_.getMixedBrightnessForBlock(renderer.blockAccess, p_147808_2_ + 1, p_147808_3_, p_147808_4_ + 1);
             }
 
-            if (renderer.renderMaxY >= 1.0D)
-            {
+            if (renderer.renderMaxY >= 1.0D) {
                 --p_147808_3_;
             }
 
             i1 = l;
 
-            if (renderer.renderMaxY >= 1.0D || !renderer.blockAccess.getBlock(p_147808_2_, p_147808_3_ + 1, p_147808_4_).isOpaqueCube())
-            {
+            if (renderer.renderMaxY >= 1.0D || !renderer.blockAccess.getBlock(p_147808_2_, p_147808_3_ + 1, p_147808_4_).isOpaqueCube()) {
                 i1 = p_147808_1_.getMixedBrightnessForBlock(renderer.blockAccess, p_147808_2_, p_147808_3_ + 1, p_147808_4_);
             }
 
@@ -225,23 +204,22 @@ public class RendererFarmland  implements ISimpleBlockRenderingHandler{
             renderer.colorRedTopRight *= f6;
             renderer.colorGreenTopRight *= f6;
             renderer.colorBlueTopRight *= f6;
-            renderer.renderFaceYPos(p_147808_1_, (double)p_147808_2_, (double)p_147808_3_, (double)p_147808_4_, renderer.getBlockIcon(p_147808_1_, renderer.blockAccess, p_147808_2_, p_147808_3_, p_147808_4_, 1));
+            renderer.renderFaceYPos(p_147808_1_, (double) p_147808_2_, (double) p_147808_3_, (double) p_147808_4_, renderer.getBlockIcon(p_147808_1_, renderer.blockAccess, p_147808_2_, p_147808_3_, p_147808_4_, 1));
             flag = true;
         }
 
-		renderer.enableAO = false;
+        renderer.enableAO = false;
 
-	}
+    }
 
+    @Override
+    public boolean shouldRender3DInInventory(int modelId) {
+        return false;
+    }
 
-	@Override
-	public boolean shouldRender3DInInventory(int modelId) {
-		return false;
-	}
-
-	@Override
-	public int getRenderId() {
-		return SextiarySector.proxy.farmlandType;
-	}
+    @Override
+    public int getRenderId() {
+        return SextiarySector.proxy.farmlandType;
+    }
 
 }

@@ -6,15 +6,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class AbstractTab {
 
-	@SideOnly(Side.CLIENT)
-	public abstract void onTabClicked ();
+    @SideOnly(Side.CLIENT)
+    public abstract void onTabClicked();
 
-	public abstract ItemStack getItemStack();
+    public abstract ItemStack getItemStack();
 
-	@SideOnly(Side.CLIENT)
-	public abstract String getTabName();
+    @SideOnly(Side.CLIENT)
+    public abstract String getTabName();
 
-	@SideOnly(Side.CLIENT)
-	public abstract boolean shouldAddToList();
+    @SideOnly(Side.CLIENT)
+    public abstract boolean shouldAddToList();
 
 }

@@ -19,49 +19,49 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class PluginRF implements IPlugin {
 
-	@Override
-	public String getModName() {
-		return "RF";
-	}
+    @Override
+    public String getModName() {
+        return "RF";
+    }
 
-	public static int gfDynamoType;
-	public static Block gfDynamo;
+    public static int gfDynamoType;
+    public static Block gfDynamo;
 
-	@Override
-	public void prePlugin(FMLPreInitializationEvent event) {
+    @Override
+    public void prePlugin(FMLPreInitializationEvent event) {
 
-		gfDynamo = new BlockGFDynamo().setBlockName("ss.gf_dynamo").setBlockTextureName("stone").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-		GameRegistry.registerBlock(gfDynamo, ItemBlockDirection.class, "GFDynamo");
-		GameRegistry.registerTileEntity(TileEntityGFDynamo.class, "GFDynamo");
+        gfDynamo = new BlockGFDynamo().setBlockName("ss.gf_dynamo").setBlockTextureName("stone").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        GameRegistry.registerBlock(gfDynamo, ItemBlockDirection.class, "GFDynamo");
+        GameRegistry.registerTileEntity(TileEntityGFDynamo.class, "GFDynamo");
 
-	}
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void preClientPlugin(FMLPreInitializationEvent event) {
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void preClientPlugin(FMLPreInitializationEvent event) {
 
-		gfDynamoType = cpw.mods.fml.client.registry.RenderingRegistry.getNextAvailableRenderId();
-		cpw.mods.fml.client.registry.RenderingRegistry.registerBlockHandler(new RendererGFDynamo());
-		cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGFDynamo.class, new RendererGFDynamo());
+        gfDynamoType = cpw.mods.fml.client.registry.RenderingRegistry.getNextAvailableRenderId();
+        cpw.mods.fml.client.registry.RenderingRegistry.registerBlockHandler(new RendererGFDynamo());
+        cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGFDynamo.class, new RendererGFDynamo());
 
-	}
+    }
 
-	@Override
-	public void initPlugin(FMLInitializationEvent event) {
+    @Override
+    public void initPlugin(FMLInitializationEvent event) {
 
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(this.gfDynamo, 1),
-				new Object[] { " z ", "yxy", "xax",
-						Character.valueOf('x'), "ingotSteel",
-						Character.valueOf('y'), SSItems.energyReactor,
-						Character.valueOf('z'), SSItems.redGel,
-						Character.valueOf('a'), "gearSteel",
-				}));
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(this.gfDynamo, 1),
+                new Object[] { " z ", "yxy", "xax",
+                        Character.valueOf('x'), "ingotSteel",
+                        Character.valueOf('y'), SSItems.energyReactor,
+                        Character.valueOf('z'), SSItems.redGel,
+                        Character.valueOf('a'), "gearSteel",
+                }));
 
-	}
+    }
 
-	@Override
-	public void postPlugin(FMLPostInitializationEvent event) {
+    @Override
+    public void postPlugin(FMLPostInitializationEvent event) {
 
-	}
+    }
 
 }

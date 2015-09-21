@@ -8,37 +8,36 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class PotionSS extends Potion {
 
-	protected static final ResourceLocation field_147001_a = new ResourceLocation("sextiarysector:textures/guis/potion.png");
-	private final int iconID;
+    protected static final ResourceLocation field_147001_a = new ResourceLocation("sextiarysector:textures/guis/potion.png");
+    private final int iconID;
 
-	public PotionSS(int id, boolean isBadEffect, int liquidColor, int icon) {
-		super(id, isBadEffect, liquidColor);
-		this.iconID = icon;
-	}
+    public PotionSS(int id, boolean isBadEffect, int liquidColor, int icon) {
+        super(id, isBadEffect, liquidColor);
+        this.iconID = icon;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void renderInventoryEffect(int x, int y, PotionEffect effect, net.minecraft.client.Minecraft mc) {
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void renderInventoryEffect(int x, int y, PotionEffect effect, net.minecraft.client.Minecraft mc) {
 
-		mc.getTextureManager().bindTexture(field_147001_a);
-		mc.currentScreen.drawTexturedModalRect(x + 6, y + 7, (iconID % 14) * 18, (iconID / 14) * 18, 18, 18);
+        mc.getTextureManager().bindTexture(field_147001_a);
+        mc.currentScreen.drawTexturedModalRect(x + 6, y + 7, (iconID % 14) * 18, (iconID / 14) * 18, 18, 18);
 
-	}
+    }
 
-	/*
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getStatusIconIndex()
-	{
-		return this.iconID;
-	}*/
+    /*
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getStatusIconIndex()
+    {
+    	return this.iconID;
+    }*/
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean hasStatusIcon()
-	{
-		//net.minecraft.client.Minecraft.getMinecraft().getTextureManager().bindTexture(field_147001_a);
-		return false;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean hasStatusIcon() {
+        //net.minecraft.client.Minecraft.getMinecraft().getTextureManager().bindTexture(field_147001_a);
+        return false;
+    }
 
 }

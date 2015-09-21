@@ -14,48 +14,48 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class PluginAppleMilk implements IPlugin {
 
-	public static Item chalcedonyKnife;
-	public static Item clam;
-	public static Item princessClam;
+    public static Item chalcedonyKnife;
+    public static Item clam;
+    public static Item princessClam;
 
-	@Override
-	public void prePlugin(FMLPreInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
+    @Override
+    public void prePlugin(FMLPreInitializationEvent event) {
+        // TODO 自動生成されたメソッド・スタブ
 
-	}
+    }
 
-	@Override
-	public void initPlugin(FMLInitializationEvent event) {
+    @Override
+    public void initPlugin(FMLInitializationEvent event) {
 
-		this.chalcedonyKnife = GameRegistry.findItem("DCsAppleMilk", "defeatedcrow.chalcedonyKnife");
-		this.clam = GameRegistry.findItem("DCsAppleMilk", "defeatedcrow.clam");
-		this.princessClam = GameRegistry.findItem("DCsAppleMilk", "defeatedcrow.princessClam");
+        this.chalcedonyKnife = GameRegistry.findItem("DCsAppleMilk", "defeatedcrow.chalcedonyKnife");
+        this.clam = GameRegistry.findItem("DCsAppleMilk", "defeatedcrow.clam");
+        this.princessClam = GameRegistry.findItem("DCsAppleMilk", "defeatedcrow.princessClam");
 
-		OreDictionary.registerOre("craftingToolWireCutter", new ItemStack(chalcedonyKnife, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("craftingToolKnife", new ItemStack(chalcedonyKnife, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("craftingToolWireCutter", new ItemStack(chalcedonyKnife, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("craftingToolKnife", new ItemStack(chalcedonyKnife, 1, OreDictionary.WILDCARD_VALUE));
 
-		OreDictionary.registerOre("craftingMagic", new ItemStack(princessClam, 1, 0));
+        OreDictionary.registerOre("craftingMagic", new ItemStack(princessClam, 1, 0));
 
-		SSRecipes.magicFuel.add(new ItemStack(princessClam, 1, 0), 3200);
+        SSRecipes.magicFuel.add(new ItemStack(princessClam, 1, 0), 3200);
 
-	}
+    }
 
-	@Override
-	public void postPlugin(FMLPostInitializationEvent event) {
+    @Override
+    public void postPlugin(FMLPostInitializationEvent event) {
 
-		BlockSandpit.addShell(new ItemStack(clam, 1, 0), 14);
+        BlockSandpit.addShell(new ItemStack(clam, 1, 0), 14);
 
-	}
+    }
 
-	@Override
-	public String getModName() {
-		return "AppleMilk";
-	}
+    @Override
+    public String getModName() {
+        return "AppleMilk";
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void preClientPlugin(FMLPreInitializationEvent event) {
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void preClientPlugin(FMLPreInitializationEvent event) {
 
-	}
+    }
 
 }

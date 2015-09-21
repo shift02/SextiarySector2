@@ -9,17 +9,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlockSSFluid extends ItemBlock {
 
-	public ItemBlockSSFluid(Block p_i45328_1_) {
-		super(p_i45328_1_);
-	}
+    public ItemBlockSSFluid(Block p_i45328_1_) {
+        super(p_i45328_1_);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(ItemStack itemstack, int p_82790_2_)
-	{
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getColorFromItemStack(ItemStack itemstack, int p_82790_2_) {
 
-		return ((BlockSSFluid) this.field_150939_a).getFluid().getColor();
+        return ((BlockSSFluid) this.field_150939_a).getFluid().getColor();
 
-	}
+    }
 
 }

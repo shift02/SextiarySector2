@@ -7,17 +7,16 @@ import net.minecraft.item.Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemCalendar extends Item{
+public class ItemCalendar extends Item {
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister par1IconRegister) {
 
-		this.itemIcon = new TextureCalendar(this.getIconString());
+        this.itemIcon = new TextureCalendar(this.getIconString());
 
-		((TextureMap)par1IconRegister).setTextureEntry(this.getIconString(), (TextureAtlasSprite)this.itemIcon);
+        ((TextureMap) par1IconRegister).setTextureEntry(this.getIconString(), (TextureAtlasSprite) this.itemIcon);
 
-	}
+    }
 
 }

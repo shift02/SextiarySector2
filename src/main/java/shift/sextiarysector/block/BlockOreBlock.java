@@ -6,12 +6,12 @@ import shift.sextiarysector.api.SextiarySectorAPI;
 
 public class BlockOreBlock extends Block {
 
-	public BlockOreBlock() {
-		super(Material.iron);
-		this.setHardness(5.0F);
-		this.setResistance(10.0F);
-		this.setStepSound(soundTypeMetal);
-		this.setCreativeTab(SextiarySectorAPI.TabSSMining);
-	}
+    public BlockOreBlock() {
+        super(Material.iron);
+        this.setHardness(5.0F);
+        this.setResistance(10.0F);
+        this.setStepSound(soundTypeMetal);
+        this.setCreativeTab(SextiarySectorAPI.TabSSMining);
+    }
 
 }

@@ -11,40 +11,39 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class PluginTHKaguya implements IPlugin{
+public class PluginTHKaguya implements IPlugin {
 
-	public static Item thSpellCard;
+    public static Item thSpellCard;
 
+    @Override
+    public void prePlugin(FMLPreInitializationEvent event) {
 
-	@Override
-	public void prePlugin(FMLPreInitializationEvent event) {
+    }
 
-	}
+    @Override
+    public void initPlugin(FMLInitializationEvent event) {
 
-	@Override
-	public void initPlugin(FMLInitializationEvent event) {
+        thSpellCard = GameRegistry.findItem("THKaguyaMod", "Spell Card");
 
-		thSpellCard = GameRegistry.findItem("THKaguyaMod", "Spell Card");
+        MCEconomyAPI.addPurchaseItem(new ItemStack(thSpellCard, 1, OreDictionary.WILDCARD_VALUE), 500);
 
-		MCEconomyAPI.addPurchaseItem(new ItemStack(thSpellCard,1,OreDictionary.WILDCARD_VALUE), 500);
+    }
 
-	}
+    @Override
+    public void postPlugin(FMLPostInitializationEvent event) {
 
-	@Override
-	public void postPlugin(FMLPostInitializationEvent event) {
+    }
 
-	}
+    @Override
+    public String getModName() {
+        return "THKaguya";
+    }
 
-	@Override
-	public String getModName() {
-		return "THKaguya";
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void preClientPlugin(FMLPreInitializationEvent event) {
+        // TODO 自動生成されたメソッド・スタブ
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void preClientPlugin(FMLPreInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
+    }
 
 }

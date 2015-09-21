@@ -18,101 +18,100 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RendererLargeWindmill extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
 
-	private static final ResourceLocation windmillTextures = new ResourceLocation("sextiarysector:textures/models/large_windmill.png");
-	static public ModelBase modelWindmill = new ModelLargeWindmill();
-	public static final ResourceLocation MC_BLOCK_SHEET = new ResourceLocation("textures/atlas/blocks.png");
+    private static final ResourceLocation windmillTextures = new ResourceLocation("sextiarysector:textures/models/large_windmill.png");
+    static public ModelBase modelWindmill = new ModelLargeWindmill();
+    public static final ResourceLocation MC_BLOCK_SHEET = new ResourceLocation("textures/atlas/blocks.png");
 
-	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+    @Override
+    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 
-		if (modelID != this.getRenderId()) {
-			return;
-		}
+        if (modelID != this.getRenderId()) {
+            return;
+        }
 
-		GL11.glPushMatrix();
+        GL11.glPushMatrix();
 
-		float scale = 0.0625f / 6.0f;
-		GL11.glScalef(scale, scale, scale);
+        float scale = 0.0625f / 6.0f;
+        GL11.glScalef(scale, scale, scale);
 
-		//GL11.glRotatef(90, 1, 0, 0);
+        //GL11.glRotatef(90, 1, 0, 0);
 
-		GL11.glRotatef(90, 0, -1, 0);
-		this.bind(windmillTextures);
+        GL11.glRotatef(90, 0, -1, 0);
+        this.bind(windmillTextures);
 
-		((ModelLargeWindmill) modelWindmill).renderinOut(null, 0, 0, 0, 0, 0, 1.0f);
+        ((ModelLargeWindmill) modelWindmill).renderinOut(null, 0, 0, 0, 0, 0, 1.0f);
 
-		GL11.glRotatef(-(FMLClientHandler.instance().getClient().getMinecraft().getSystemTime() / 50) % 360, 0, 0, 1);
+        GL11.glRotatef(-(FMLClientHandler.instance().getClient().getMinecraft().getSystemTime() / 50) % 360, 0, 0, 1);
 
-		modelWindmill.render(null, 0, 0, 0, 0, 0, 1.0f);
+        modelWindmill.render(null, 0, 0, 0, 0, 0, 1.0f);
 
-		GL11.glPopMatrix();
+        GL11.glPopMatrix();
 
-		this.bind(MC_BLOCK_SHEET);
+        this.bind(MC_BLOCK_SHEET);
 
-	}
+    }
 
-	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-		return false;
-	}
+    @Override
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+        return false;
+    }
 
-	@Override
-	public boolean shouldRender3DInInventory(int modelId) {
-		return true;
-	}
+    @Override
+    public boolean shouldRender3DInInventory(int modelId) {
+        return true;
+    }
 
-	@Override
-	public int getRenderId() {
-		return SextiarySector.proxy.largeWindMillType;
-	}
+    @Override
+    public int getRenderId() {
+        return SextiarySector.proxy.largeWindMillType;
+    }
 
-	@Override
-	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {
+    @Override
+    public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {
 
-		TileEntityLargeWindmill tile = (TileEntityLargeWindmill) tileentity;
+        TileEntityLargeWindmill tile = (TileEntityLargeWindmill) tileentity;
 
-		//System.out.println("renderTileEntityAt");
+        //System.out.println("renderTileEntityAt");
 
-		GL11.glPushMatrix();
-		GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
-		float scale = 0.0625f;
-		//float scale =  0.125f;
-		GL11.glScalef(scale, scale, scale);
+        GL11.glPushMatrix();
+        GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
+        float scale = 0.0625f;
+        //float scale =  0.125f;
+        GL11.glScalef(scale, scale, scale);
 
-		switch (tile.direction) {
-		case UP:
-			GL11.glRotatef(90, 1, 0, 0);
-			break;
-		case DOWN:
-			GL11.glRotatef(90, -1, 0, 0);
-			break;
-		case WEST:
-			GL11.glRotatef(90, 0, 1, 0);
-			break;
-		case EAST:
-			GL11.glRotatef(90, 0, -1, 0);
-			break;
-		case SOUTH:
-			GL11.glRotatef(180, 0, 1, 0);
-			break;
-		default:
-			break;
-		}
+        switch (tile.direction) {
+            case UP:
+                GL11.glRotatef(90, 1, 0, 0);
+                break;
+            case DOWN:
+                GL11.glRotatef(90, -1, 0, 0);
+                break;
+            case WEST:
+                GL11.glRotatef(90, 0, 1, 0);
+                break;
+            case EAST:
+                GL11.glRotatef(90, 0, -1, 0);
+                break;
+            case SOUTH:
+                GL11.glRotatef(180, 0, 1, 0);
+                break;
+            default:
+                break;
+        }
 
-		this.bindTexture(windmillTextures);
+        this.bindTexture(windmillTextures);
 
-		((ModelLargeWindmill) modelWindmill).renderinOut(null, 0, 0, 0, 0, 0, 1.0f);
-		//傾きのスピード
-		GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
+        ((ModelLargeWindmill) modelWindmill).renderinOut(null, 0, 0, 0, 0, 0, 1.0f);
+        //傾きのスピード
+        GL11.glRotatef(tile.getRotateStep(), 0, 0, 1);
 
-		modelWindmill.render(null, 0, 0, 0, 0, 0, 1.0f);
+        modelWindmill.render(null, 0, 0, 0, 0, 0, 1.0f);
 
-		GL11.glPopMatrix();
+        GL11.glPopMatrix();
 
-	}
+    }
 
-	private static void bind(ResourceLocation res)
-	{
-		FMLClientHandler.instance().getClient().getTextureManager().bindTexture(res);
-	}
+    private static void bind(ResourceLocation res) {
+        FMLClientHandler.instance().getClient().getTextureManager().bindTexture(res);
+    }
 }

@@ -7,35 +7,33 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class ModuleSeason implements IModule {
 
-	private static ModuleSeason instance = new ModuleSeason();
+    private static ModuleSeason instance = new ModuleSeason();
 
-	private ModuleSeason() {
-	}
+    private ModuleSeason() {
+    }
 
-	public static ModuleSeason getInstance() {
-		return instance;
-	}
+    public static ModuleSeason getInstance() {
+        return instance;
+    }
 
-	@Override
-	public void preInit(FMLPreInitializationEvent event) {
+    @Override
+    public void preInit(FMLPreInitializationEvent event) {
 
-		SeasonAPI.SeasonManager = SeasonManager.getInstance();
-		//MinecraftForge.EVENT_BUS.register(new SeasonEventHandler());
+        SeasonAPI.SeasonManager = SeasonManager.getInstance();
+        //MinecraftForge.EVENT_BUS.register(new SeasonEventHandler());
 
-	}
+    }
 
-	@Override
-	public void load(FMLInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
+    @Override
+    public void load(FMLInitializationEvent event) {
+        // TODO 自動生成されたメソッド・スタブ
 
-	}
+    }
 
-	@Override
-	public void postInit(FMLPostInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
+    @Override
+    public void postInit(FMLPostInitializationEvent event) {
+        // TODO 自動生成されたメソッド・スタブ
 
-	}
-
-
+    }
 
 }

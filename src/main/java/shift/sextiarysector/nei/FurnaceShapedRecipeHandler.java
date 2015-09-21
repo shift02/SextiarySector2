@@ -30,23 +30,20 @@ import codechicken.nei.api.IStackPositioner;
 import codechicken.nei.recipe.RecipeInfo;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
-public class FurnaceShapedRecipeHandler extends TemplateRecipeHandler{
+public class FurnaceShapedRecipeHandler extends TemplateRecipeHandler {
 
-	public class CachedShapedRecipe extends CachedRecipe
-    {
+    public class CachedShapedRecipe extends CachedRecipe {
         public ArrayList<PositionedStack> ingredients;
         public PositionedStack result;
 
-        public CachedShapedRecipe(int width, int height, Object[] items, ItemStack out)
-        {
-        	//ここも怪しい
+        public CachedShapedRecipe(int width, int height, Object[] items, ItemStack out) {
+            //ここも怪しい
             result = new PositionedStack(out, 130, 24);
             ingredients = new ArrayList<PositionedStack>();
             setIngredients(width, height, items);
         }
 
-        public CachedShapedRecipe(ShapedRecipes recipe)
-        {
+        public CachedShapedRecipe(ShapedRecipes recipe) {
             this(recipe.recipeWidth, recipe.recipeHeight, recipe.recipeItems, recipe.getRecipeOutput());
         }
 
@@ -55,16 +52,13 @@ public class FurnaceShapedRecipeHandler extends TemplateRecipeHandler{
          * @param height
          * @param items an ItemStack[] or ItemStack[][]
          */
-        public void setIngredients(int width, int height, Object[] items)
-        {
-            for(int x = 0; x < width; x++)
-            {
-                for(int y = 0; y < height; y++)
-                {
-                    if(items[y*width+x] == null)
+        public void setIngredients(int width, int height, Object[] items) {
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    if (items[y * width + x] == null)
                         continue;
                     //ここが怪しい
-                    PositionedStack stack = new PositionedStack(items[y*width+x], 36+x*18, 6+y*18, false);
+                    PositionedStack stack = new PositionedStack(items[y * width + x], 36 + x * 18, 6 + y * 18, false);
                     stack.setMaxSize(1);
                     ingredients.add(stack);
                 }
@@ -72,37 +66,31 @@ public class FurnaceShapedRecipeHandler extends TemplateRecipeHandler{
         }
 
         @Override
-        public List<PositionedStack> getIngredients()
-        {
+        public List<PositionedStack> getIngredients() {
             return getCycledIngredients(cycleticks / 20, ingredients);
         }
 
         @Override
-		public PositionedStack getResult()
-        {
+        public PositionedStack getResult() {
             return result;
         }
 
         @Override
-		public PositionedStack getOtherStack()
-        {
-            return afuels.get((cycleticks/48) % afuels.size()).stack;
+        public PositionedStack getOtherStack() {
+            return afuels.get((cycleticks / 48) % afuels.size()).stack;
         }
 
-        public void computeVisuals()
-        {
-            for(PositionedStack p : ingredients)
+        public void computeVisuals() {
+            for (PositionedStack p : ingredients)
                 p.generatePermutations();
 
             result.generatePermutations();
         }
     }
 
-	public static class FuelPair
-    {
-        public FuelPair(ItemStack ingred, int burnTime)
-        {
-        	//ここが怪しい
+    public static class FuelPair {
+        public FuelPair(ItemStack ingred, int burnTime) {
+            //ここが怪しい
             this.stack = new PositionedStack(ingred, 10, 35, false);
             this.burnTime = burnTime;
         }
@@ -111,77 +99,65 @@ public class FurnaceShapedRecipeHandler extends TemplateRecipeHandler{
         public int burnTime;
     }
 
-	public static ArrayList<FuelPair> afuels;
+    public static ArrayList<FuelPair> afuels;
     public static TreeSet<Integer> efuels;
 
-	@Override
-    public void loadTransferRects()
-    {
-		transferRects.add(new RecipeTransferRect(new Rectangle(9, 16, 18, 18), "fuel"));
+    @Override
+    public void loadTransferRects() {
+        transferRects.add(new RecipeTransferRect(new Rectangle(9, 16, 18, 18), "fuel"));
         transferRects.add(new RecipeTransferRect(new Rectangle(96, 30, 24, 18), "furnaceCrafting"));
     }
 
-	@Override
-    public Class<? extends GuiContainer> getGuiClass()
-    {
+    @Override
+    public Class<? extends GuiContainer> getGuiClass() {
         return GuiLargeFurnace.class;
     }
 
-	@Override
-    public String getRecipeName()
-    {
+    @Override
+    public String getRecipeName() {
         return I18n.format("nei.ss.furnace.shaped");
     }
 
-	@Override
-    public TemplateRecipeHandler newInstance()
-    {
-        if(afuels == null)findFuels();
+    @Override
+    public TemplateRecipeHandler newInstance() {
+        if (afuels == null) findFuels();
         return super.newInstance();
     }
 
-	@Override
-    public void loadCraftingRecipes(String outputId, Object... results)
-    {
-        if(outputId.equals("furnaceCrafting") && getClass() == FurnaceShapedRecipeHandler.class)
-        {
+    @Override
+    public void loadCraftingRecipes(String outputId, Object... results) {
+        if (outputId.equals("furnaceCrafting") && getClass() == FurnaceShapedRecipeHandler.class) {
             List<IRecipe> allrecipes = FurnaceCraftingManager.getInstance().getRecipeList();
-            for(IRecipe irecipe : allrecipes)
-            {
+            for (IRecipe irecipe : allrecipes) {
                 CachedShapedRecipe recipe = null;
-                if(irecipe instanceof ShapedRecipes)
-                    recipe = new CachedShapedRecipe((ShapedRecipes)irecipe);
-                else if(irecipe instanceof ShapedOreRecipe)
+                if (irecipe instanceof ShapedRecipes)
+                    recipe = new CachedShapedRecipe((ShapedRecipes) irecipe);
+                else if (irecipe instanceof ShapedOreRecipe)
                     recipe = forgeShapedRecipe((ShapedOreRecipe) irecipe);
 
-                if(recipe == null)
+                if (recipe == null)
                     continue;
 
                 recipe.computeVisuals();
                 arecipes.add(recipe);
             }
-        }
-        else
-        {
+        } else {
             super.loadCraftingRecipes(outputId, results);
         }
     }
 
-	@Override
-    public void loadCraftingRecipes(ItemStack result)
-    {
+    @Override
+    public void loadCraftingRecipes(ItemStack result) {
         List<IRecipe> allrecipes = FurnaceCraftingManager.getInstance().getRecipeList();
-        for(IRecipe irecipe : allrecipes)
-        {
-            if(NEIServerUtils.areStacksSameTypeCrafting(irecipe.getRecipeOutput(), result))
-            {
+        for (IRecipe irecipe : allrecipes) {
+            if (NEIServerUtils.areStacksSameTypeCrafting(irecipe.getRecipeOutput(), result)) {
                 CachedShapedRecipe recipe = null;
-                if(irecipe instanceof ShapedRecipes)
-                    recipe = new CachedShapedRecipe((ShapedRecipes)irecipe);
-                else if(irecipe instanceof ShapedOreRecipe)
+                if (irecipe instanceof ShapedRecipes)
+                    recipe = new CachedShapedRecipe((ShapedRecipes) irecipe);
+                else if (irecipe instanceof ShapedOreRecipe)
                     recipe = forgeShapedRecipe((ShapedOreRecipe) irecipe);
 
-                if(recipe == null)
+                if (recipe == null)
                     continue;
 
                 recipe.computeVisuals();
@@ -190,119 +166,100 @@ public class FurnaceShapedRecipeHandler extends TemplateRecipeHandler{
         }
     }
 
-	@Override
-    public void loadUsageRecipes(ItemStack ingredient)
-    {
+    @Override
+    public void loadUsageRecipes(ItemStack ingredient) {
         List<IRecipe> allrecipes = FurnaceCraftingManager.getInstance().getRecipeList();
-        for(IRecipe irecipe : allrecipes)
-        {
+        for (IRecipe irecipe : allrecipes) {
             CachedShapedRecipe recipe = null;
-            if(irecipe instanceof ShapedRecipes)
-                recipe = new CachedShapedRecipe((ShapedRecipes)irecipe);
-            else if(irecipe instanceof ShapedOreRecipe)
+            if (irecipe instanceof ShapedRecipes)
+                recipe = new CachedShapedRecipe((ShapedRecipes) irecipe);
+            else if (irecipe instanceof ShapedOreRecipe)
                 recipe = forgeShapedRecipe((ShapedOreRecipe) irecipe);
 
-            if(recipe == null || !recipe.contains(recipe.ingredients, ingredient))
+            if (recipe == null || !recipe.contains(recipe.ingredients, ingredient))
                 continue;
 
             recipe.computeVisuals();
-            if(recipe.contains(recipe.ingredients, ingredient))
-            {
+            if (recipe.contains(recipe.ingredients, ingredient)) {
                 recipe.setIngredientPermutation(recipe.ingredients, ingredient);
                 arecipes.add(recipe);
             }
         }
     }
 
-	@Override
-    public void loadUsageRecipes(String inputId, Object... ingredients)
-    {
-        if(inputId.equals("fuel") && getClass() == FurnaceShapedRecipeHandler.class)//don't want subclasses getting a hold of this
+    @Override
+    public void loadUsageRecipes(String inputId, Object... ingredients) {
+        if (inputId.equals("fuel") && getClass() == FurnaceShapedRecipeHandler.class) //don't want subclasses getting a hold of this
         {
             loadCraftingRecipes("furnaceCrafting");
-        }
-        else
-        {
+        } else {
             super.loadUsageRecipes(inputId, ingredients);
         }
     }
 
-	public CachedShapedRecipe forgeShapedRecipe(ShapedOreRecipe recipe)
-    {
+    public CachedShapedRecipe forgeShapedRecipe(ShapedOreRecipe recipe) {
         int width;
         int height;
         Object[] items;
-        try
-        {
+        try {
             width = ReflectionManager.getField(ShapedOreRecipe.class, Integer.class, recipe, 4);
             height = ReflectionManager.getField(ShapedOreRecipe.class, Integer.class, recipe, 5);
             items = ReflectionManager.getField(ShapedOreRecipe.class, Object[].class, recipe, 3);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
 
-        for(int i = 0; i < items.length; i++)
-        {
-            if(items[i] instanceof List && ((List<?>)items[i]).isEmpty())//ore handler, no ores
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] instanceof List && ((List<?>) items[i]).isEmpty()) //ore handler, no ores
                 return null;
         }
 
         return new CachedShapedRecipe(width, height, items, recipe.getRecipeOutput());
     }
 
-	@Override
-    public String getGuiTexture()
-    {
+    @Override
+    public String getGuiTexture() {
         return "sextiarysector:textures/guis/crafting_furnace_nei.png";
     }
 
-	@Override
-	public boolean hasOverlay(GuiContainer gui, Container container, int recipe)
-    {
+    @Override
+    public boolean hasOverlay(GuiContainer gui, Container container, int recipe) {
         return super.hasOverlay(gui, container, recipe) ||
                 isRecipe2x2(recipe) && RecipeInfo.hasDefaultOverlay(gui, "crafting2x2");
     }
 
     @Override
-    public IRecipeOverlayRenderer getOverlayRenderer(GuiContainer gui, int recipe)
-    {
+    public IRecipeOverlayRenderer getOverlayRenderer(GuiContainer gui, int recipe) {
         IRecipeOverlayRenderer renderer = super.getOverlayRenderer(gui, recipe);
-        if(renderer != null)
+        if (renderer != null)
             return renderer;
 
         IStackPositioner positioner = RecipeInfo.getStackPositioner(gui, "crafting2x2");
-        if(positioner == null)
+        if (positioner == null)
             return null;
         return new DefaultOverlayRenderer(getIngredientStacks(recipe), positioner);
     }
 
     @Override
-    public IOverlayHandler getOverlayHandler(GuiContainer gui, int recipe)
-    {
+    public IOverlayHandler getOverlayHandler(GuiContainer gui, int recipe) {
         IOverlayHandler handler = super.getOverlayHandler(gui, recipe);
-        if(handler != null)
+        if (handler != null)
             return handler;
 
         return RecipeInfo.getOverlayHandler(gui, "crafting2x2");
     }
 
-    public boolean isRecipe2x2(int recipe)
-    {
-        for(PositionedStack stack : getIngredientStacks(recipe))
-            if(stack.relx > 43 || stack.rely > 24)
+    public boolean isRecipe2x2(int recipe) {
+        for (PositionedStack stack : getIngredientStacks(recipe))
+            if (stack.relx > 43 || stack.rely > 24)
                 return false;
 
         return true;
     }
 
-
-
     @Override
-    public void drawExtras(int recipe)
-    {
+    public void drawExtras(int recipe) {
         drawProgressBar(10, 18, 176, 0, 14, 14, 48, 7);
         drawProgressBar(95, 23, 176, 14, 24, 16, 48, 0);
     }
@@ -330,14 +287,12 @@ public class FurnaceShapedRecipeHandler extends TemplateRecipeHandler{
     }
 
     @Override
-    public String getOverlayIdentifier()
-    {
+    public String getOverlayIdentifier() {
         return "furnaceCrafting";
     }
 
-    static
-    {
-    	excludedFuels();
+    static {
+        excludedFuels();
     }
 
 }

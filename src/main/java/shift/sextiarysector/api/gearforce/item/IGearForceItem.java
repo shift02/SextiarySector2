@@ -11,22 +11,22 @@ import net.minecraft.item.ItemStack;
  */
 public interface IGearForceItem {
 
-	/**
-	 * アイテムにチャージ出来るパワー
-	 *
-	 * @param container アイテム
-	 * @return
-	 */
-	int getMaxPower(ItemStack container);
+    /**
+     * アイテムにチャージ出来るパワー
+     *
+     * @param container アイテム
+     * @return
+     */
+    int getMaxPower(ItemStack container);
 
-	/**
-	 * アイテムにチャージ出来る最大スピード
-	 *
-	 * @param container アイテム
-	 * @return
-	 */
-	int getMaxSpeed(ItemStack container);
+    /**
+     * アイテムにチャージ出来る最大スピード
+     *
+     * @param container アイテム
+     * @return
+     */
+    int getMaxSpeed(ItemStack container);
 
-	boolean canSetSlot(int power);
+    boolean canSetSlot(int power);
 
 }

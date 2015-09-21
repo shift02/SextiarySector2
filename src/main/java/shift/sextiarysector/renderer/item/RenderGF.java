@@ -17,93 +17,88 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public class RenderGF implements IItemRenderer {
 
-	private final RenderItem renderItem = new RenderItem();
+    private final RenderItem renderItem = new RenderItem();
 
-	public static final ResourceLocation icons = new ResourceLocation("sextiarysector:textures/items/damage/damage.png");
+    public static final ResourceLocation icons = new ResourceLocation("sextiarysector:textures/items/damage/damage.png");
 
-	@Override
-	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-		return type == ItemRenderType.INVENTORY;
-	}
+    @Override
+    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
+        return type == ItemRenderType.INVENTORY;
+    }
 
-	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
-	}
+    @Override
+    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
+        // TODO 自動生成されたメソッド・スタブ
+        return false;
+    }
 
-	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+    @Override
+    public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 
-		if(item.getItem() instanceof IGearForceItem && type == ItemRenderType.INVENTORY)
-		{
+        if (item.getItem() instanceof IGearForceItem && type == ItemRenderType.INVENTORY) {
 
-			int k = (int)Math.round(GearForceItemAPI.manager.getSpeed(item) * 13.0D / ((IGearForceItem)item.getItem()).getMaxSpeed(item));
+            int k = (int) Math.round(GearForceItemAPI.manager.getSpeed(item) * 13.0D / ((IGearForceItem) item.getItem()).getMaxSpeed(item));
 
-			GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_ALPHA_TEST);
 
-			this.renderItem.renderIcon(0, 0, item.getItem().getIconIndex(item), 16, 16);
+            this.renderItem.renderIcon(0, 0, item.getItem().getIconIndex(item), 16, 16);
 
-			GL11.glDisable(GL11.GL_ALPHA_TEST);
+            GL11.glDisable(GL11.GL_ALPHA_TEST);
             GL11.glEnable(GL11.GL_LIGHTING);
 
-			int y = 0;
+            int y = 0;
 
-			if (item.isItemDamaged())
-            {
-				y-=1;
+            if (item.isItemDamaged()) {
+                y -= 1;
             }
 
-			if(k==0)return;
+            if (k == 0) return;
 
-			//this.bind(icons);
+            //this.bind(icons);
 
-			//this.drawTexturedModalRect(2, 13, 0, 2, 14, 2);
+            //this.drawTexturedModalRect(2, 13, 0, 2, 14, 2);
 
-			GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_ALPHA_TEST);
 
-			this.renderItem.renderIcon(0, y, ClientEventHandler.itemGF[0], 16, 16);
+            this.renderItem.renderIcon(0, y, ClientEventHandler.itemGF[0], 16, 16);
 
-			GL11.glDisable(GL11.GL_ALPHA_TEST);
+            GL11.glDisable(GL11.GL_ALPHA_TEST);
             GL11.glEnable(GL11.GL_LIGHTING);
 
-			//this.renderItem.renderIcon(0, y, ((ItemGearForce) item.getItem()).getIcon2(item, 1), 16, 16);
+            //this.renderItem.renderIcon(0, y, ((ItemGearForce) item.getItem()).getIcon2(item, 1), 16, 16);
 
-			GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_DEPTH_TEST);
             //GL11.glDisable(GL11.GL_TEXTURE_2D);
 
-			int num = (int)Minecraft.getSystemTime() / 100 % 26;
-			//System.out.println("renderItem :"+num);
+            int num = (int) Minecraft.getSystemTime() / 100 % 26;
+            //System.out.println("renderItem :"+num);
 
-			y += 13;
+            y += 13;
 
-			this.bind(icons);
+            this.bind(icons);
 
-			this.drawTexturedModalRect(2, y, num, 0, k, 1);
+            this.drawTexturedModalRect(2, y, num, 0, k, 1);
 
-			//this.renderItem.renderIcon(0, y, ClientEventHandler.itemGF[1], 16, 16);
+            //this.renderItem.renderIcon(0, y, ClientEventHandler.itemGF[1], 16, 16);
 
-
-			//GL11.glEnable(GL11.GL_TEXTURE_2D);
+            //GL11.glEnable(GL11.GL_TEXTURE_2D);
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_DEPTH_TEST);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-			this.bind(TextureMap.locationItemsTexture);
+            this.bind(TextureMap.locationItemsTexture);
 
-		}
-	}
+        }
+    }
 
-	private void bind(ResourceLocation res)
-    {
+    private void bind(ResourceLocation res) {
         FMLClientHandler.instance().getClient().getTextureManager().bindTexture(res);
     }
 
-    public void drawTexturedModalRect(int par1, int par2, int par3, int par4, int par5, int par6)
-    {
+    public void drawTexturedModalRect(int par1, int par2, int par3, int par4, int par5, int par6) {
         float zLevel = -90.0F;
 
         float f = 0.00390625F;

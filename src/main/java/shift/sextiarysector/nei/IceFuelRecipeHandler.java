@@ -6,45 +6,45 @@ import shift.sextiarysector.SSRecipes;
 import shift.sextiarysector.gui.GuiFreezer;
 import shift.sextiarysector.recipe.RecipeSimpleMachine;
 
-public class IceFuelRecipeHandler  extends AbstractFuel2RecipeHandler{
+public class IceFuelRecipeHandler extends AbstractFuel2RecipeHandler {
 
-	@Override
-	Class<? extends AbstractSimple2RecipeHandler> getFuelHandlerClass() {
-		return IceFuelRecipeHandler.class;
-	}
+    @Override
+    Class<? extends AbstractSimple2RecipeHandler> getFuelHandlerClass() {
+        return IceFuelRecipeHandler.class;
+    }
 
-	@Override
-	RecipeSimpleMachine getRecipe() {
-		return SSRecipes.freezer;
-	}
+    @Override
+    RecipeSimpleMachine getRecipe() {
+        return SSRecipes.freezer;
+    }
 
-	@Override
-	String getGuiRecipeName() {
-		return "ss.ice_fuel";
-	}
+    @Override
+    String getGuiRecipeName() {
+        return "ss.ice_fuel";
+    }
 
-	@Override
-	public Class<? extends GuiContainer> getGuiClass() {
-		return GuiFreezer.class;
-	}
+    @Override
+    public Class<? extends GuiContainer> getGuiClass() {
+        return GuiFreezer.class;
+    }
 
-	@Override
-	String getFuelHandlerName() {
-		return "SS_IceFuel";
-	}
+    @Override
+    String getFuelHandlerName() {
+        return "SS_IceFuel";
+    }
 
-	@Override
-	String getHandlerName() {
-		return "SS_Freezer";
-	}
+    @Override
+    String getHandlerName() {
+        return "SS_Freezer";
+    }
 
-	@Override
-	int getFuelTime(ItemStack item) {
-		return SSRecipes.iceFuel.getResult(item);
-	}
+    @Override
+    int getFuelTime(ItemStack item) {
+        return SSRecipes.iceFuel.getResult(item);
+    }
 
-	@Override
-	public String getGuiTexture() {
-		return "sextiarysector:textures/guis/freezer.png";
-	}
+    @Override
+    public String getGuiTexture() {
+        return "sextiarysector:textures/guis/freezer.png";
+    }
 }

@@ -5,19 +5,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
-public class PacketGuiId  implements IMessage{
+public class PacketGuiId implements IMessage {
 
-	private NBTTagCompound data;
+    private NBTTagCompound data;
 
-	public PacketGuiId(){
+    public PacketGuiId() {
 
-	}
+    }
 
-	public PacketGuiId(int id) {
+    public PacketGuiId(int id) {
 
-		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setInteger("gui", id);
-		this.setData(nbt);
+        NBTTagCompound nbt = new NBTTagCompound();
+        nbt.setInteger("gui", id);
+        this.setData(nbt);
 
     }
 
@@ -31,12 +31,12 @@ public class PacketGuiId  implements IMessage{
         ByteBufUtils.writeTag(buf, getData());
     }
 
-	public NBTTagCompound getData() {
-		return data;
-	}
+    public NBTTagCompound getData() {
+        return data;
+    }
 
-	public void setData(NBTTagCompound data) {
-		this.data = data;
-	}
+    public void setData(NBTTagCompound data) {
+        this.data = data;
+    }
 
 }

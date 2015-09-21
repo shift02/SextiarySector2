@@ -10,30 +10,30 @@ import shift.sextiarysector.api.gearforce.item.IGearForceGridItem;
 
 public class ItemGFContactLenses extends ItemContactLenses implements IGearForceGridItem {
 
-	public ItemGFContactLenses() {
-		this.setCreativeTab(SextiarySectorAPI.TabSSPlayer);
-		this.setMaxStackSize(1);
-	}
+    public ItemGFContactLenses() {
+        this.setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+        this.setMaxStackSize(1);
+    }
 
-	@Override
-	public boolean canTakeStack(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
-		return equipment.ordinal() == EquipmentType.Face.ordinal();
-	}
+    @Override
+    public boolean canTakeStack(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
+        return equipment.ordinal() == EquipmentType.Face.ordinal();
+    }
 
-	@Override
-	public boolean isItemValid(EquipmentType equipment, ItemStack stack) {
-		return equipment.ordinal() == EquipmentType.Face.ordinal();
-	}
+    @Override
+    public boolean isItemValid(EquipmentType equipment, ItemStack stack) {
+        return equipment.ordinal() == EquipmentType.Face.ordinal();
+    }
 
-	@Override
-	public void onUpdate(EquipmentType equipment, ItemStack stack, World world, Entity player, int slot) {
-		// TODO 自動生成されたメソッド・スタブ
+    @Override
+    public void onUpdate(EquipmentType equipment, ItemStack stack, World world, Entity player, int slot) {
+        // TODO 自動生成されたメソッド・スタブ
 
-	}
+    }
 
-	@Override
-	public boolean canDrop(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
-		return true;
-	}
+    @Override
+    public boolean canDrop(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
+        return true;
+    }
 
 }

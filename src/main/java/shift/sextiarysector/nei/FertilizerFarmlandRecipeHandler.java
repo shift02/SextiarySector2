@@ -7,33 +7,36 @@ import net.minecraft.client.resources.I18n;
 import shift.sextiarysector.api.agriculture.IFertilizer;
 import shift.sextiarysector.module.FertilizerManager;
 
-public class FertilizerFarmlandRecipeHandler extends FertilizerRecipeHandler{
+public class FertilizerFarmlandRecipeHandler extends FertilizerRecipeHandler {
 
-	public Class<? extends FertilizerRecipeHandler> getHandlerClass(){
-		return FertilizerFarmlandRecipeHandler.class;
-	}
-	public String getHandlerName(){
-		return "SS_Fertilizer_Farmland";
-	}
-	public ArrayList<IFertilizer> getRecipe(){
-		return FertilizerManager.normal;
-	}
-	public String getGuiRecipeName(){
-		return "ss.fertilizer_farmland";
-	}
+    public Class<? extends FertilizerRecipeHandler> getHandlerClass() {
+        return FertilizerFarmlandRecipeHandler.class;
+    }
 
-	public Class<? extends GuiContainer> getGuiClass(){
-		return null;
-	}
+    public String getHandlerName() {
+        return "SS_Fertilizer_Farmland";
+    }
 
-	@Override
-	public String getRecipeName() {
-		return I18n.format("nei."+getGuiRecipeName());
-	}
+    public ArrayList<IFertilizer> getRecipe() {
+        return FertilizerManager.normal;
+    }
 
-	@Override
-	public String getGuiTexture() {
-		return "sextiarysector:textures/guis/fertilizer_farmland_nei.png";
-	}
+    public String getGuiRecipeName() {
+        return "ss.fertilizer_farmland";
+    }
+
+    public Class<? extends GuiContainer> getGuiClass() {
+        return null;
+    }
+
+    @Override
+    public String getRecipeName() {
+        return I18n.format("nei." + getGuiRecipeName());
+    }
+
+    @Override
+    public String getGuiTexture() {
+        return "sextiarysector:textures/guis/fertilizer_farmland_nei.png";
+    }
 
 }

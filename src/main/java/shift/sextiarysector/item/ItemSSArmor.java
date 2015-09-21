@@ -7,20 +7,19 @@ import shift.sextiarysector.api.SextiarySectorAPI;
 
 public class ItemSSArmor extends ItemArmor {
 
-	private static String modelRoot = "sextiarysector:textures/models/armor/";
+    private static String modelRoot = "sextiarysector:textures/models/armor/";
 
-	public ItemSSArmor(ArmorMaterial p_i45325_1_, int p_i45325_2_, int p_i45325_3_) {
-		super(p_i45325_1_, p_i45325_2_, p_i45325_3_);
-		this.setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+    public ItemSSArmor(ArmorMaterial p_i45325_1_, int p_i45325_2_, int p_i45325_3_) {
+        super(p_i45325_1_, p_i45325_2_, p_i45325_3_);
+        this.setCreativeTab(SextiarySectorAPI.TabSSPlayer);
 
-	}
+    }
 
-	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-	{
+    @Override
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
 
-		String s1 = String.format(modelRoot + "%s_layer_%d%s.png", this.getArmorMaterial().name(), (slot == 2 ? 2 : 1), type == null ? "" : String.format("_%s", type));
+        String s1 = String.format(modelRoot + "%s_layer_%d%s.png", this.getArmorMaterial().name(), (slot == 2 ? 2 : 1), type == null ? "" : String.format("_%s", type));
 
-		return s1;
-	}
+        return s1;
+    }
 }
