@@ -32,7 +32,7 @@ public class ItemFoodDrink extends ItemFood{
 		this.moistureSaturationModifier = drinkM;
 
 		this.healStaminaAmount = stamina;
-		this.saturationModifier = staminaM;
+		this.staminaSaturationModifier = staminaM;
 
 		this.setCreativeTab(SextiarySectorAPI.TabSSCooking);
 
