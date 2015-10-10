@@ -1,6 +1,6 @@
 #简体中文 zh_CN
 
-#方块
+#black
 tile.ss.large_furnace.name=大型熔炉
 tile.ss.fluid_furnace.name=流体熔炉
 
@@ -47,7 +47,7 @@ tile.ss.drinking_water.name=饮用水
 tile.ss.hot_springs.name=温泉水
 
 
-tile.ss.blue_stone.name=蓝石矿石
+tile.ss.blue_stone.name=蓝色石矿石
 tile.ss.yellow_stone.name=黄石矿石
 
 tile.ss.copper_ore.name=铜矿石
@@ -60,15 +60,6 @@ tile.ss.orichalcum_ore.name=山铜矿石
 tile.ss.coal_large_ore.name=大型煤矿石
 tile.ss.iron_large_ore.name=大型铁矿石
 tile.ss.gold_large_ore.name=大型金矿石
-
-tile.ss.copper_block.name=铜方块
-tile.ss.zinc_block.name=锌方块
-tile.ss.silver_block.name=银方块
-tile.ss.steel_block.name=钢方块
-tile.ss.brass_block.name=黄铜方块
-tile.ss.ninja_block.name=忍者方块
-tile.ss.mithril_block.name=秘银方块
-tile.ss.orichalcum_block.name=山铜方块
 
 
 tile.ss.small_windmill.name=小型风车
@@ -100,7 +91,6 @@ tile.ss.stone_steel_gear_shaft.name=石钢齿轮轴
 tile.ss.steel_ninja_gear_shaft.name=忍钢齿轮轴
 tile.ss.ninja_orichalcum_gear_shaft.name=忍铜齿轮轴
 
-tile.ss.machine_frame.name=机械框架
 tile.ss.millstone.name=磨石
 tile.ss.loom.name=织布机
 tile.ss.sawmill.name=锯木机
@@ -115,7 +105,6 @@ tile.ss.time_machine.name=时光机
 tile.ss.fan.name=风扇
 tile.ss.saw.name=锯子
 tile.ss.pump.name=水泵
-tile.ss.suction_machine.name=抽吸机
 
 
 tile.ss.creeper_chest.name=爬行者商人箱子
@@ -179,7 +168,6 @@ item.ss.ninja_gf_storage.name=忍者GF存储器
 item.ss.orichalcum_gf_storage.name=山铜GF存储器
 
 item.ss.hammer.name=锤子
-item.ss.color_spray.name=彩色喷雾
 
 item.ss.calendar.name=日历
 item.ss.season_stone.name=季节之石
@@ -208,15 +196,6 @@ item.ss.zinc_dust.name=锌粉
 item.ss.mithril_dust.name=秘银粉
 
 
-item.ss.iron_nugget.name=铁粒
-item.ss.copper_nugget.name=铜粒
-item.ss.zinc_nugget.name=锌粒
-item.ss.silver_nugget.name=银粒
-
-item.ss.steel_nugget.name=钢粒
-item.ss.ninja_nugget.name=忍者粒
-
-
 item.ss.steel_ingot.name=钢锭
 item.ss.brass_ingot.name=黄铜锭
 
@@ -228,7 +207,7 @@ item.ss.zinc_ingot.name=锌锭
 item.ss.silver_ingot.name=银锭
 
 item.ss.mithril_ingot.name=秘银锭
-item.ss.orichalcum_gem.name=山铜锭
+item.ss.orichalcum_gem.name=
 
 item.ss.ninja_ingot.name=忍者锭
 
@@ -236,8 +215,6 @@ item.ss.red_gel.name=红石凝胶
 item.ss.blue_gel.name=蓝石凝胶
 item.ss.yellow_gel.name=黄石凝胶
 
-
-item.ss.craft_reactor.name=合成反应器
 item.ss.energy_reactor.name=能源反应器
 item.ss.object_reactor.name=目标反应器
 
@@ -256,7 +233,7 @@ item.ss.magic_dust.name=魔力粉
 
 
 item.ss.silk_bobbin.name=丝绸卷
-item.ss.silk_cloth.name=丝绸布匹
+item.ss.cloth.name=布匹
 item.ss.small_cloth.name=小型布匹
 item.ss.canvas.name=帆布
 item.ss.drying_flesh.name=干燥腐肉
@@ -277,18 +254,11 @@ item.ss.iron_scoop.name=铁铲
 item.ss.gold_scoop.name=金铲
 item.ss.diamond_scoop.name=钻石铲
 
-item.ss.brass_scoop.name=黄铜铲
-
-
-
 item.ss.wood_knife.name=木质小刀
 item.ss.stone_knife.name=石质小刀
 item.ss.iron_knife.name=铁质小刀
 item.ss.gold_knife.name=金质小刀
 item.ss.diamond_knife.name=钻石小刀
-
-item.ss.brass_knife.name=黄铜小
-
 
 item.ss.copper_shovel.name=铜锹
 item.ss.copper_pickaxe.name=铜镐
@@ -296,32 +266,12 @@ item.ss.copper_axe.name=铜铲
 item.ss.copper_sword.name=铜剑
 item.ss.copper_hoe.name=铜锄
 
-item.ss.brass_shovel.name=黄铜锹
-item.ss.brass_pickaxe.name=黄铜镐
-item.ss.brass_axe.name=黄铜斧
-item.ss.brass_sword.name=黄铜剑
-item.ss.brass_hoe.name=黄铜锄
-
-item.ss.ninja_shovel.name=忍者锹
-item.ss.ninja_pickaxe.name=忍者镐
-item.ss.ninja_axe.name=忍者斧
-item.ss.ninja_sword.name=忍者剑
-item.ss.ninja_hoe.name=忍者锄
-
-
 item.ss.copper_helmet.name=铜头盔
 item.ss.copper_chestplate.name=铜胸甲
 item.ss.copper_leggings.name=铜护腿
 item.ss.copper_boots.name=铜靴子
 
-item.ss.ninja_helmet.name=忍者头盔
-item.ss.ninja_chestplate.name=忍者胸甲
-item.ss.ninja_leggings.name=忍者护腿
-item.ss.ninja_boots.name=忍者靴子
-
 item.ss.wood_watering_can.name=木质洒水壶
-
-item.ss.brass_shears.name=黄铜剪刀
 
 item.ss.mineboat_chest.name=箱子小船
 item.ss.mineboat_tank.name=储罐小船
@@ -344,8 +294,6 @@ item.ss.golden_corn.name=金玉米
 
 item.ss.eggplant.name=茄子
 item.ss.sweet_potato.name=甘薯
-item.ss.green_pepper.name=青椒
-
 item.ss.blue_potato.name=蓝土豆
 
 item.ss.radish.name=白萝卜
@@ -354,6 +302,8 @@ item.ss.rice.name=稻米
 
 item.ss.shiitake.name=香菇
 
+
+item.ss.squid_sashimi.name=鱿鱼刺身
 
 item.ss.white_rice.name=大米
 
@@ -396,9 +346,12 @@ item.ss.defense_unit.name=防御单元
 item.ss.attack_rust_unit.name=生锈攻击单元
 item.ss.defense_rust_unit.name=生锈防御单元
 item.ss.jump_unit.name=跳跃单元
+item.ss.dash_unit.name=冲刺单元
+item.ss.slowly_unit.name=慢步单元
+item.ss.pulling_unit.name=强弓单元
+item.ss.multi_schott_unit.name=多重射击单元
+item.ss.bed_monster_unit.name=睡眠单元
 item.ss.pickaxe_unit.name=采掘单元
-
-item.ss.debug_unit.name=调试单元
 
 
 item.ss.iron_ring.name=铁指环
@@ -408,7 +361,7 @@ item.ss.xp_ring.name=经验指环
 
 
 
-#Fluid
+#液体
 fluid.ss.takumi_tea=TAKUMI 茶
 fluid.ss.drinking_water=饮用水
 fluid.ss.spring_water=泉水
@@ -420,23 +373,6 @@ fluid.ss.sap=树汁
 
 fluid.ss.iron=液态铁
 fluid.ss.gold=液态金
-
-fluid.ss.black=黑色
-fluid.ss.red=红色
-fluid.ss.green=绿色
-fluid.ss.brown=棕色
-fluid.ss.blue=蓝色
-fluid.ss.purple=紫色
-fluid.ss.cyan=青色
-fluid.ss.lightgray=淡灰色
-fluid.ss.gray=灰色
-fluid.ss.pink=粉色
-fluid.ss.lime=黄绿色
-fluid.ss.yellow=黄色
-fluid.ss.lightblue=淡蓝色
-fluid.ss.magenta=品红色
-fluid.ss.orange=橙色
-fluid.ss.white=白色
 
 #Potion
 ss.potion.burn=燃烧
@@ -453,9 +389,6 @@ gui.ss.food_smokers=熏制机
 gui.ss.magic_furnace=魔力熔炉
 gui.ss.freezer=冷冻机
 gui.ss.funnel=流体漏斗
-
-gui.ss.shipping_box=船舶箱子
-
 
 gui.ss.rucksack=帆布包
 
@@ -479,7 +412,7 @@ gui.ss.gf_tank_5=山铜GF罐
 
 #Shop
 shop.ss.creeper=爬行者商店
-shop.ss.robot=红色机器人商店
+shop.ss.robot=机器人商店
 
 #ToolTip
 tooltip.season.pm=下午
@@ -652,9 +585,9 @@ achievement.ss.mithril_ore.desc2=指环呢?
 
 achievement.ss.industry=SS2 -工业-
 
-achievement.ss.blue_gel=不思议凝胶
-achievement.ss.blue_gel.desc=合成一个蓝色凝胶
-achievement.ss.blue_gel.desc2=多么棒啊
+achievement.ss.bluestone_slime_ball=不思议凝胶
+achievement.ss.bluestone_slime_ball.desc=合成一个蓝色凝胶
+achievement.ss.bluestone_slime_ball.desc2=多么棒啊
 
 
 achievement.ss.wood_gear=新兴能源
@@ -758,29 +691,37 @@ achievement.ss.shipping.desc=试试来装载货物
 achievement.ss.shipping.desc2=我可是百万富翁!
 
 
+
+#Dep
+dep.ss.error1=是需要的程序库
+dep.ss.error2=不能下载。
+dep.ss.error2=确认互联网连接，手动重启
+dep.ss.error3=下载请放入文件夹mods。
+
+
 #NEI
-nei.recipe=合成配方
-nei.ss.furnace.shaped=熔炉有序配方
-nei.ss.furnace.shapeless=熔炉无序配方
+nei.recipe=食谱
+nei.ss.furnace.shaped=定形精炼
+nei.ss.furnace.shapeless=不定形精炼
 
-nei.ss.fluid_furnace=流体熔炉配方
-nei.ss.food_smokers=熏制机配方
+nei.ss.fluid_furnace=流体灶
+nei.ss.food_smokers=熏制器
 
-nei.ss.magic_furnace=魔力熔炉配方
-nei.ss.magic_fuel=魔力燃料
+nei.ss.magic_furnace=魔法灶
+nei.ss.magic_fuel=魔法的燃料
 
-nei.ss.freezer=冷冻机配方
-nei.ss.ice=fuel=冷冻燃料
+nei.ss.freezer=冷冻机
+nei.ss.ice=fuel
 
-nei.ss.millstone=磨石配方
-nei.ss.loom=织布机配方
-nei.ss.sawmill=锯木机配方
-nei.ss.spinning_machine=纺纱机配方
-nei.ss.extractor=提取机配方
-nei.ss.pulverizer=磨粉机配方
-nei.ss.rolling_machine=辊压机配方
-nei.ss.mana_squeezer=魔力压榨机配方
-nei.ss.time_machine=时光机配方
+nei.ss.millstone=石臼
+nei.ss.loom=织机
+nei.ss.sawmill=木材加工机
+nei.ss.spinning_machine=纺织机
+nei.ss.extractor=抽出机
+nei.ss.pulverizer=粉碎机
+nei.ss.rolling_machine=轧机
+nei.ss.mana_squeezer=法力抽出机
+nei.ss.time_machine=时光机器
 
-nei.ss.fertilizer_farmland=农田作物突变
-nei.ss.fertilizer_paddy=稻田作物突变
+nei.ss.fertilizer_farmland=农地突然变异
+nei.ss.fertilizer_paddy=水田突然变异
