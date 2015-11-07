@@ -14,7 +14,7 @@ import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.SSFluids;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.module.FertilizerManager;
-import shift.sextiarysector.tileentity.TileEntityFarmland;
+import shift.sextiarysector.tileentity.TileEntityFarmland2;
 import shift.sextiarysector.tileentity.TileEntityWood;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -107,7 +107,7 @@ public class BlockWood extends BlockContainer {
 
     public boolean addWater(World par1World, int x, int y, int z) {
 
-        TileEntityFarmland t = (TileEntityFarmland) par1World.getTileEntity(x, y, z);
+        TileEntityFarmland2 t = (TileEntityFarmland2) par1World.getTileEntity(x, y, z);
 
         return t.fill(ForgeDirection.UP, new FluidStack(SSFluids.drinkingWater, 1000), true) > 0;
 

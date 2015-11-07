@@ -15,7 +15,7 @@ import net.minecraftforge.fluids.FluidStack;
 import shift.sextiarysector.SSFluids;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.module.FertilizerManager;
-import shift.sextiarysector.tileentity.TileEntityFarmland;
+import shift.sextiarysector.tileentity.TileEntityFarmland2;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -46,7 +46,7 @@ public class BlockSSFarmland extends BlockFarmland implements ITileEntityProvide
 
             if (f != null) {
 
-                TileEntityFarmland t = (TileEntityFarmland) par1World.getTileEntity(x, y, z);
+                TileEntityFarmland2 t = (TileEntityFarmland2) par1World.getTileEntity(x, y, z);
 
                 if (t.fill(ForgeDirection.getOrientation(par6), f, true) > 0) {
 
@@ -84,7 +84,7 @@ public class BlockSSFarmland extends BlockFarmland implements ITileEntityProvide
 
     private boolean setFertilizer(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer) {
 
-        TileEntityFarmland t = (TileEntityFarmland) par1World.getTileEntity(x, y, z);
+        TileEntityFarmland2 t = (TileEntityFarmland2) par1World.getTileEntity(x, y, z);
 
         if (t.getFertilizer() != null) {
             return false;
@@ -104,7 +104,7 @@ public class BlockSSFarmland extends BlockFarmland implements ITileEntityProvide
 
     public boolean addWater(World par1World, int x, int y, int z) {
 
-        TileEntityFarmland t = (TileEntityFarmland) par1World.getTileEntity(x, y, z);
+        TileEntityFarmland2 t = (TileEntityFarmland2) par1World.getTileEntity(x, y, z);
 
         return t.fill(ForgeDirection.UP, new FluidStack(SSFluids.drinkingWater, 1000), true) > 0;
 
@@ -125,7 +125,7 @@ public class BlockSSFarmland extends BlockFarmland implements ITileEntityProvide
 
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-        return new TileEntityFarmland();
+        return new TileEntityFarmland2();
     }
 
     @Override

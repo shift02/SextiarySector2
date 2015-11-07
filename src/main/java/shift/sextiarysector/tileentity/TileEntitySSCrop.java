@@ -10,7 +10,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
-import shift.sextiarysector.api.agriculture.IFarmland;
+import shift.sextiarysector.api.agriculture.IFarmland2;
 import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.api.season.SeasonAPI;
 import shift.sextiarysector.block.BlockSSCrop;
@@ -75,7 +75,7 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler {
     }
 
     public boolean hasFarmland() {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord) instanceof IFarmland;
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord) instanceof IFarmland2;
     }
 
     private boolean canGrowth() {
@@ -84,7 +84,7 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler {
             return false;
         }
 
-        return ((IFarmland) this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord)).canGrowth();
+        return ((IFarmland2) this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord)).canGrowth();
 
     }
 
@@ -94,7 +94,7 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler {
 
         this.lastDay = SeasonAPI.getDay(getWorldObj());
 
-        ((IFarmland) this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord)).growth();
+        ((IFarmland2) this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord)).growth();
 
         BlockSSCrop crop = (BlockSSCrop) this.getBlockType();
 
@@ -130,8 +130,8 @@ public class TileEntitySSCrop extends TileEntity implements IFluidHandler {
         return ((BlockSSCrop) this.getBlockType()).getStatus();
     }
 
-    private IFarmland getFarmland() {
-        return ((IFarmland) this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord));
+    private IFarmland2 getFarmland() {
+        return ((IFarmland2) this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord));
     }
 
     private BlockSSCrop getCrop() {

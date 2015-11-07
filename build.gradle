@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "2.4.3.d-1.7.10"//${project.minecraft.version}"
+version = "2.4.4.b-1.7.10"//${project.minecraft.version}"
 group= "shift.SextiarySector2" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SextiarySector2"
 

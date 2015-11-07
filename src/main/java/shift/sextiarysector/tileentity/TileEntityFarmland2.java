@@ -13,12 +13,39 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+import shift.sextiarysector.SSFluids;
 import shift.sextiarysector.api.agriculture.IFarmland2;
 
-public class TileEntityPaddy extends TileEntity implements IFluidHandler, IFarmland2 {
+public class TileEntityFarmland2 extends TileEntity implements IFluidHandler, IFarmland2 {
 
+    //水
     protected FluidTank water = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
 
+    @Override
+    public void updateEntity() {
+
+        if (!this.worldObj.isRemote) {
+            this.updateServerEntity();
+        }
+
+    }
+
+    public void updateServerEntity() {
+
+        if (this.getBlockMetadata() == 0 && water.getFluidAmount() > 500) {
+            this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 4);
+            this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        }
+
+        if (this.getBlockMetadata() == 1 && water.getFluidAmount() <= 500) {
+            this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 4);
+            this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        }
+
+    }
+
+    //肥料
+    //public String fertilizer;
     private ItemStack fertilizerItem;
 
     public ItemStack getFertilizer() {
@@ -34,19 +61,26 @@ public class TileEntityPaddy extends TileEntity implements IFluidHandler, IFarml
 
     }
 
+    public void clearFertilizer() {
+        this.fertilizerItem = null;
+    }
+
     @Override
     public boolean canGrowth() {
-        return true;
+        return water.getFluidAmount() >= 500;
     }
 
     @Override
     public void growth() {
-
+        this.water.drain(500, true);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
         super.readFromNBT(par1nbtTagCompound);
+        //if(par1nbtTagCompound.hasKey("fertilizer")){
+        //	this.fertilizer = par1nbtTagCompound.getString("fertilizer");
+        //}
         if (par1nbtTagCompound.hasKey("fertilizeritem")) {
             this.fertilizerItem = ItemStack.loadItemStackFromNBT(par1nbtTagCompound.getCompoundTag("fertilizeritem"));
         }
@@ -57,13 +91,12 @@ public class TileEntityPaddy extends TileEntity implements IFluidHandler, IFarml
     @Override
     public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
         super.writeToNBT(par1nbtTagCompound);
-
+        //if(fertilizer!=null)par1nbtTagCompound.setString("fertilizer", fertilizer);
         if (fertilizerItem != null) {
             NBTTagCompound itemNBT = new NBTTagCompound();
             fertilizerItem.writeToNBT(itemNBT);
             par1nbtTagCompound.setTag("fertilizeritem", itemNBT);
         }
-
         this.water.writeToNBT(par1nbtTagCompound);
     }
 
@@ -80,9 +113,16 @@ public class TileEntityPaddy extends TileEntity implements IFluidHandler, IFarml
         this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 
+    //液体関係
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        return 0;
+
+        if (!this.canFill(from, resource.getFluid())) {
+            return 0;
+        }
+
+        return this.water.fill(resource, doFill);
+
     }
 
     @Override
@@ -97,7 +137,7 @@ public class TileEntityPaddy extends TileEntity implements IFluidHandler, IFarml
 
     @Override
     public boolean canFill(ForgeDirection from, Fluid fluid) {
-        return false;
+        return fluid.getID() == SSFluids.drinkingWater.getID();
     }
 
     @Override

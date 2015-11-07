@@ -38,6 +38,7 @@ import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidStack;
+import shift.sextiarysector.Config;
 import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSFluids.SSFluid;
@@ -45,8 +46,6 @@ import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.equipment.EquipmentType;
 import shift.sextiarysector.api.event.BlockBottleEvent;
-import shift.sextiarysector.block.BlockMonitor;
-import shift.sextiarysector.block.BlockMonitor.MonitorType;
 import shift.sextiarysector.container.InventoryQuiver;
 import shift.sextiarysector.item.ItemKnife;
 import shift.sextiarysector.player.EntityPlayerManager;
@@ -85,6 +84,15 @@ public class CommonEventHandler {
         }
 
     }
+
+    //    @SubscribeEvent
+    //    public void onMinecartUpdateEvent(MinecartUpdateEvent event) {
+    //
+    //        if (event.y > 6) return;
+    //
+    //        event.minecart.moveEntity(0, 1.4, 0);
+    //
+    //    }
 
     /*無理でした(╹◡╹)
     @SubscribeEvent
@@ -272,9 +280,11 @@ public class CommonEventHandler {
             if (tileEntityChest != null) {
 
                 tileEntityChest.setInventorySlotContents(0, new ItemStack(SSBlocks.shippingBox));
-                tileEntityChest.setInventorySlotContents(1, BlockMonitor.getMonitor(MonitorType.creeper));
-                tileEntityChest.setInventorySlotContents(2, new ItemStack(Items.gunpowder, 16));
-                tileEntityChest.setInventorySlotContents(3, new ItemStack(Items.diamond, 4));
+                tileEntityChest.setInventorySlotContents(1, new ItemStack(SSBlocks.shopMonitor, 2));
+                tileEntityChest.setInventorySlotContents(2, new ItemStack(SSItems.creeperMemory));
+                tileEntityChest.setInventorySlotContents(3, new ItemStack(SSItems.blueStoneDust, 32));
+                tileEntityChest.setInventorySlotContents(4, new ItemStack(Items.gunpowder, 16));
+                tileEntityChest.setInventorySlotContents(5, new ItemStack(Items.diamond, 4));
 
                 return true;
 
@@ -391,6 +401,8 @@ public class CommonEventHandler {
 
         if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(Items.stick, event.world.rand.nextInt(1) + 1));
         if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(SSItems.leaf, event.world.rand.nextInt(2) + 1));
+
+        if (!Config.leaf) return;
 
         byte b0 = 2;
         int i1 = b0 + 1;
