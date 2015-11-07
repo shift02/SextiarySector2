@@ -39,7 +39,7 @@ import shift.sextiarysector.recipe.RecipesFurnaceCraft;
 public class SextiarySector {
 
     public static final String MODID = "SextiarySector";
-    public static final String VERSION = "2.4.3";
+    public static final String VERSION = "2.4.4";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
@@ -104,6 +104,10 @@ public class SextiarySector {
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new SSGuiHandler());
 
         SSOreDictionary.init();
+
+        SSCrops.preInit();
+
+        SSCrops.initCrops();
 
         /*
         GameRegistry.registerTileEntity(TileEmptyCauldron.class, "SSCauldron");

@@ -1,5 +1,7 @@
 package shift.sextiarysector.event;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,8 +27,6 @@ import shift.sextiarysector.module.ModuleHotSprings;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.MoistureStats;
 import shift.sextiarysector.player.StaminaStats;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
 
 /***
  *
@@ -105,7 +105,7 @@ public class PlayerStatusEventHandler {
 
         EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-        SextiarySectorAPI.addMoistureExhaustion(player, event.ammount * 0.1f);
+        SextiarySectorAPI.addMoistureExhaustion(player, event.ammount * 0.2f);
 
     }
 
@@ -119,7 +119,7 @@ public class PlayerStatusEventHandler {
 
         EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-        SextiarySectorAPI.addMoistureExhaustion(player, 0.1f);
+        SextiarySectorAPI.addMoistureExhaustion(player, 0.23f);
 
     }
 
@@ -260,8 +260,8 @@ public class PlayerStatusEventHandler {
             } else {
                 EntityPlayerManager.getStaminaStats(player).addStats(40, 0.0f);
             }
-            player.getFoodStats().addExhaustion(16.3f);
-            SextiarySectorAPI.addMoistureExhaustion(player, 17.3f);
+            player.getFoodStats().addExhaustion(19.3f);
+            SextiarySectorAPI.addMoistureExhaustion(player, 20.3f);
 
         }
 

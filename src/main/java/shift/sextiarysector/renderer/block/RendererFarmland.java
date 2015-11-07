@@ -8,7 +8,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.module.FertilizerManager;
-import shift.sextiarysector.tileentity.TileEntityFarmland;
+import shift.sextiarysector.tileentity.TileEntityFarmland2;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RendererFarmland implements ISimpleBlockRenderingHandler {
@@ -46,7 +46,7 @@ public class RendererFarmland implements ISimpleBlockRenderingHandler {
         renderer.setRenderBounds(minx, (1.0f / 16.0f) * 14, minz, maxx, 1 - 0.01f, maxz);
         renderer.renderStandardBlock(block, x, y, z);
 
-        TileEntityFarmland t = (TileEntityFarmland) world.getTileEntity(x, y, z);
+        TileEntityFarmland2 t = (TileEntityFarmland2) world.getTileEntity(x, y, z);
 
         if (t != null && t.getFertilizer() != null) {
 

@@ -60,7 +60,7 @@ public class ItemScoop extends ItemTool {
                 }
             } else if (p_77648_7_ != 0 && p_77648_3_.getBlock(p_77648_4_, p_77648_5_ + 1, p_77648_6_).isAir(p_77648_3_, p_77648_4_, p_77648_5_ + 1, p_77648_6_) && (block == Blocks.farmland)) {
 
-                Block block1 = SSBlocks.farmland;
+                Block block1 = SSBlocks.farmland2;
                 p_77648_3_.playSoundEffect(p_77648_4_ + 0.5F, p_77648_5_ + 0.5F, p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F,
                         block1.stepSound.getPitch() * 0.8F);
 

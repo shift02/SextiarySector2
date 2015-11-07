@@ -1,9 +1,12 @@
 package shift.sextiarysector;
 
-import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.common.config.Configuration;
 
 public class Config {
+
+    //システム
+    public static boolean leaf;
 
     //Potion
     public static int burn;
@@ -20,6 +23,9 @@ public class Config {
     //Player
     public static boolean peacefulMoisture;
     public static boolean peacefulStamina;
+
+    //Renderer
+    public static boolean shaft;
 
     //Mod
     public static boolean modDCsAppleMilk;
@@ -40,11 +46,13 @@ public class Config {
         try {
 
             cfg.load();
+            configForSystem(cfg);
             configForBiome(cfg);
             configForWorld(cfg);
             configForPotion(cfg);
 
             configForPlayer(cfg);
+            configForRenderer(cfg);
 
             configForPlugin(cfg);
 
@@ -54,6 +62,10 @@ public class Config {
             cfg.save();
         }
 
+    }
+
+    public static void configForSystem(Configuration cfg) {
+        leaf = cfg.getBoolean("DisappearLeaf", "general", true, "");
     }
 
     public static void configForPotion(Configuration cfg) {
@@ -74,6 +86,10 @@ public class Config {
     public static void configForPlayer(Configuration cfg) {
         peacefulMoisture = cfg.getBoolean("PeacefulMoisture", "player", false, "");
         peacefulStamina = cfg.getBoolean("PeacefulStamina", "player", false, "");
+    }
+
+    public static void configForRenderer(Configuration cfg) {
+        shaft = cfg.getBoolean("ShaftParticle", "renderer", true, "");
     }
 
     public static void configForPlugin(Configuration cfg) {

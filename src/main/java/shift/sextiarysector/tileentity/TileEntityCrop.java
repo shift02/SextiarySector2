@@ -2,6 +2,6 @@ package shift.sextiarysector.tileentity;
 
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityFarmland extends TileEntity {
+public class TileEntityCrop extends TileEntity {
 
 }

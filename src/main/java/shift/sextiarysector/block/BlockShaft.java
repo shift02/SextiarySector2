@@ -12,6 +12,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import shift.sextiarysector.Config;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.fmp.IShaft;
@@ -150,6 +151,8 @@ public class BlockShaft extends BlockDirection {
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
+
+        if (!Config.shaft) return;
 
         TileEntityShaft tileEntity = (TileEntityShaft) par1World.getTileEntity(par2, par3, par4);
 

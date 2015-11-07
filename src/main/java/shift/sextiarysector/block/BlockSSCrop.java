@@ -21,7 +21,7 @@ import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.module.FertilizerManager;
-import shift.sextiarysector.tileentity.TileEntityFarmland;
+import shift.sextiarysector.tileentity.TileEntityFarmland2;
 import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -213,7 +213,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider {
 
         if (this.hasFarmland(world, x, y, z)) {
 
-            TileEntityFarmland f = (TileEntityFarmland) world.getTileEntity(x, y - 1, z);
+            TileEntityFarmland2 f = (TileEntityFarmland2) world.getTileEntity(x, y - 1, z);
 
             if (f.getFertilizer() != null && FertilizerManager.canMutation(f.getFertilizer(), new ItemStack(func_149865_P()))) {
 
@@ -258,7 +258,7 @@ public class BlockSSCrop extends BlockBush implements ITileEntityProvider {
     }
 
     public static boolean hasFarmland(World world, int x, int y, int z) {
-        return world.getBlock(x, y - 1, z) == SSBlocks.farmland;
+        return world.getBlock(x, y - 1, z) == SSBlocks.farmland2;
     }
 
     //---------------------------------------------------
