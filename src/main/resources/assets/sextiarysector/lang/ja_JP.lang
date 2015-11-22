@@ -1,4 +1,4 @@
-﻿#日本語 ja_JP
+#日本語 ja_JP
 
 #ブロック
 tile.ss.large_furnace.name=大型かまど
@@ -21,6 +21,10 @@ tile.ss.big_oak_wood_plate.name=ダークオークの木版
 tile.ss.iron_plate.name=鉄プレート
 tile.ss.gold_plate.name=金プレート
 
+tile.ss.copper_plate.name=銅プレート
+tile.ss.zinc_plate.name=亜鉛プレート
+tile.ss.silver_plate.name=銀プレート
+
 tile.ss.hole.name=穴
 tile.ss.farmland.name=農地
 tile.ss.paddy.name=水田
@@ -41,7 +45,13 @@ tile.ss.chunk_loader.name=タイムローダー
 
 tile.ss.figure.name=フィギュア
 
+
+
+tile.ss.leaf_block.name=葉っぱブロック
+
 tile.ss.trap.name=トラップ
+
+tile.ss.leaf_bed.name=葉っぱのベッド
 
 tile.ss.drinking_water.name=飲料水
 tile.ss.hot_springs.name=温泉水
@@ -60,6 +70,17 @@ tile.ss.orichalcum_ore.name=オリハルコン鉱石
 tile.ss.coal_large_ore.name=大きな石炭鉱石
 tile.ss.iron_large_ore.name=大きな鉄鉱石
 tile.ss.gold_large_ore.name=大きな金鉱石
+
+tile.ss.silver_large_ore.name=大きな銀鉱石
+
+tile.ss.copper_block.name=銅ブロック
+tile.ss.zinc_block.name=亜鉛ブロック
+tile.ss.silver_block.name=銀ブロック
+tile.ss.steel_block.name=鋼鉄ブロック
+tile.ss.brass_block.name=真鍮ブロック
+tile.ss.ninja_block.name=ニンジャブロック
+tile.ss.mithril_block.name=ミスリルブロック
+tile.ss.orichalcum_block.name=オリハルコンブロック
 
 
 tile.ss.small_windmill.name=小さい風車
@@ -91,6 +112,7 @@ tile.ss.stone_steel_gear_shaft.name=石と鋼鉄のギアシャフト
 tile.ss.steel_ninja_gear_shaft.name=鋼鉄とニンジャのギアシャフト
 tile.ss.ninja_orichalcum_gear_shaft.name=ニンジャとオリハルコンのギアシャフト
 
+tile.ss.machine_frame.name=機械筐体
 tile.ss.millstone.name=石臼
 tile.ss.loom.name=織機
 tile.ss.sawmill.name=製材機
@@ -105,6 +127,7 @@ tile.ss.time_machine.name=タイムマシン
 tile.ss.fan.name=ファン
 tile.ss.saw.name=ノコ
 tile.ss.pump.name=ポンプ
+tile.ss.suction_machine.name=吸引機
 
 
 tile.ss.creeper_chest.name=クリーパーチェスト
@@ -178,6 +201,11 @@ item.ss.season_stone_winter.name=シーズンストーン-冬-
 
 
 
+item.ss.leaf_bed.name=葉っぱのベッド
+
+
+item.ss.leaf.name=葉っぱ
+
 item.ss.dust_waterlily.name=水連の粉
 
 item.ss.stone_dust.name=石の粉
@@ -192,8 +220,20 @@ item.ss.diamond_dust.name=ダイヤの粉
 
 item.ss.copper_dust.name=銅の粉
 item.ss.zinc_dust.name=亜鉛の粉
+item.ss.silver_dust.name=銀の粉
 
 item.ss.mithril_dust.name=ミスリルの粉
+
+
+item.ss.iron_nugget.name=鉄塊
+item.ss.copper_nugget.name=銅塊
+item.ss.zinc_nugget.name=亜鉛塊
+item.ss.silver_nugget.name=銀塊
+
+item.ss.steel_nugget.name=鋼鉄塊
+item.ss.ninja_nugget.name=ニンジャ塊
+
+item.ss.obsidian_nugget.name=黒曜石塊
 
 
 item.ss.steel_ingot.name=鋼鉄インゴット
@@ -215,6 +255,8 @@ item.ss.red_gel.name=レッドストーンジェル
 item.ss.blue_gel.name=ブルーストーンジェル
 item.ss.yellow_gel.name=イエローストーンジェル
 
+
+item.ss.craft_reactor.name=クラフトリアクター
 item.ss.energy_reactor.name=エネルギーリアクター
 item.ss.object_reactor.name=オブジェクトリアクター
 
@@ -254,24 +296,51 @@ item.ss.iron_scoop.name=鉄のスコップ
 item.ss.gold_scoop.name=金のスコップ
 item.ss.diamond_scoop.name=ダイヤのスコップ
 
+item.ss.brass_scoop.name=真鍮のスコップ
+
+
+
 item.ss.wood_knife.name=木のナイフ
 item.ss.stone_knife.name=石のナイフ
 item.ss.iron_knife.name=鉄のナイフ
 item.ss.gold_knife.name=金のナイフ
 item.ss.diamond_knife.name=ダイヤのナイフ
 
-item.ss.copper_shovel.name=銅のショベル
+item.ss.brass_knife.name=真鍮のナイフ
+
+
+item.ss.copper_shovel.name=銅のシャベル
 item.ss.copper_pickaxe.name=銅のツルハシ
 item.ss.copper_axe.name=銅の斧
 item.ss.copper_sword.name=銅の剣
 item.ss.copper_hoe.name=銅のクワ
+
+item.ss.brass_shovel.name=真鍮のシャベル
+item.ss.brass_pickaxe.name=真鍮のツルハシ
+item.ss.brass_axe.name=真鍮の斧
+item.ss.brass_sword.name=真鍮の剣
+item.ss.brass_hoe.name=真鍮のクワ
+
+item.ss.ninja_shovel.name=ニンジャのシャベル
+item.ss.ninja_pickaxe.name=ニンジャのツルハシ
+item.ss.ninja_axe.name=ニンジャの斧
+item.ss.ninja_sword.name=ニンジャの剣
+item.ss.ninja_hoe.name=ニンジャのクワ
+
 
 item.ss.copper_helmet.name=銅のヘルメット
 item.ss.copper_chestplate.name=胴のチェストプレート
 item.ss.copper_leggings.name=銅のレギンス
 item.ss.copper_boots.name=銅のブーツ
 
+item.ss.ninja_helmet.name=ニンジャのヘルメット
+item.ss.ninja_chestplate.name=ニンジャのチェストプレート
+item.ss.ninja_leggings.name=ニンジャのレギンス
+item.ss.ninja_boots.name=ニンジャのブーツ
+
 item.ss.wood_watering_can.name=木のジョウロ
+
+item.ss.brass_shears.name=真鍮のハサミ
 
 item.ss.mineboat_chest.name=チェスト付きボート
 item.ss.mineboat_tank.name=タンク付きボート
@@ -305,6 +374,8 @@ item.ss.rice.name=米
 item.ss.shiitake.name=椎茸
 
 
+item.ss.squid_sashimi.name=イカの刺身
+
 item.ss.white_rice.name=白米
 
 item.ss.salt.name=塩
@@ -336,6 +407,7 @@ item.ss.takumi_tea_bottle.name=匠茶入りボトル
 
 item.ss.shift_hat.name=Shiftの帽子
 item.ss.rucksack.name=リュックサック
+item.ss.quiver.name=矢筒
 item.ss.oxygen_tank.name=酸素タンク
 item.ss.gf_contact_lenses.name=GFコンタクトレンズ
 item.ss.water_contact_lenses.name=ウォーターコンタクトレンズ
@@ -346,16 +418,26 @@ item.ss.defense_unit.name=ユニット ｢ボウギョプラス｣
 item.ss.attack_rust_unit.name=錆びたユニット ｢ダ・・ジプ・ス｣
 item.ss.defense_rust_unit.name=錆びたユニット ｢ボウ・・・ラ・｣
 item.ss.jump_unit.name=ユニット ｢スーパージャンプ｣
-item.ss.bed_monster_unit.name=ユニット ｢しずかなココロ｣
+item.ss.dash_unit.name=ユニット ｢ダッシュダッシュ｣
+item.ss.slowly_unit.name=ユニット ｢ユックリアルーク｣
+item.ss.pulling_unit.name=ユニット ｢カコノエイコウ｣
+item.ss.multi_schott_unit.name=ユニット ｢マルチショット｣
+item.ss.bed_monster_unit.name=ユニット ｢シズカナココロ｣
 item.ss.pickaxe_unit.name=ユニット ｢ツルハシパワー｣
 
+item.ss.debug_unit.name=ユニット「デバッグタイセツ」
 
-item.ss.iron_ring.name=鉄リング
+
+item.ss.iron_ring.name=鉄のリング
 item.ss.creeper_ring.name=クリーパーショップリング
 item.ss.mp_ring.name=MPリング
 item.ss.xp_ring.name=XPリング
 
 
+item.ss.creeper_memory.name=クリーパーメモリー
+item.ss.skeleton_memory.name=スケルトンメモリー
+
+item.ss.magic_contact_lenses.name=魔法のコンタクトレンズ
 
 #液体
 fluid.ss.takumi_tea=匠茶
@@ -369,6 +451,23 @@ fluid.ss.sap=樹液
 
 fluid.ss.iron=融けた鉄
 fluid.ss.gold=融けた金
+
+fluid.ss.black=黒色
+fluid.ss.red=赤色
+fluid.ss.green=緑色
+fluid.ss.brown=茶色
+fluid.ss.blue=青色
+fluid.ss.purple=紫色
+fluid.ss.cyan=水色
+fluid.ss.lightgray=薄灰色
+fluid.ss.gray=灰色
+fluid.ss.pink=桃色
+fluid.ss.lime=黄緑色
+fluid.ss.yellow=黄色
+fluid.ss.lightblue=空色
+fluid.ss.magenta=赤紫色
+fluid.ss.orange=橙色
+fluid.ss.white=白色
 
 #ポーション
 ss.potion.burn=火傷
@@ -386,7 +485,11 @@ gui.ss.magic_furnace=魔法かまど
 gui.ss.freezer=冷凍機
 gui.ss.funnel=漏斗
 
+gui.ss.shipping_box=出荷箱
+
+
 gui.ss.rucksack=リュックサック
+gui.ss.quiver=矢筒
 
 gui.ss.steam_motor=蒸気モーター
 
@@ -408,6 +511,7 @@ gui.ss.gf_tank_5=オリハルコンのGFタンク
 
 #Shop
 shop.ss.creeper=クリーパーショップ
+shop.ss.skeleton=スケルトンショップ
 shop.ss.robot=ロボショップ
 
 #ツールチップ
@@ -452,6 +556,7 @@ player.tab.equipment=装備
 player.tab.item.ss.craft_unit=クラフト
 
 player.tab.item.ss.rucksack=リュックサック
+player.tab.item.ss.quiver=矢筒
 
 player.tab.item.ss.creeper_ring=クリーパーショップ
 
@@ -644,7 +749,7 @@ achievement.ss.extractor=近未来
 achievement.ss.extractor.desc=抽出器を作る
 achievement.ss.extractor.desc2=浄化装置 ?
 
-achievement.ss.fan=ああ＾〜
+achievement.ss.fan=ああ＾?
 achievement.ss.fan.desc=ファンを作る
 achievement.ss.fan.desc2=青い炎 ?
 
@@ -686,14 +791,11 @@ achievement.ss.shipping=出荷箱
 achievement.ss.shipping.desc=出荷してみよう
 achievement.ss.shipping.desc=私は億万長者 !
 
-
-
 #Dep
 dep.ss.error1=は必要なライブラリ
 dep.ss.error2=をダウンロードすることができませんでした。
 dep.ss.error2=インターネットの接続を確認して再起動するか、手動で
 dep.ss.error3=からダウンロードしてmodsのフォルダに入れてください。
-
 
 #NEI
 nei.recipe=レシピ
