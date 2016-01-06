@@ -3,6 +3,7 @@ package shift.sextiarysector.agriculture;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector.api.agriculture.ICrop;
 import shift.sextiarysector.api.agriculture.ICropManager;
@@ -20,11 +21,23 @@ public class CropManager implements ICropManager {
 
     }
 
-    public ICrop getCrop(ItemStack item) {
+    public ICrop getCrop(ItemStack item, EntityPlayer player) {
 
         for (ICrop c : crops.values()) {
 
-            if (c.isSeed(item)) return c;
+            if (c.isSeed(item, player)) return c;
+
+        }
+
+        return null;
+
+    }
+
+    public ICrop getCrop(String name) {
+
+        for (ICrop c : crops.values()) {
+
+            if (c.getName().equals(name)) return c;
 
         }
 

@@ -13,6 +13,8 @@ public class CommonProxy {
     public int bottleType;
     public int squareType;
 
+    public int cropType;
+
     public int fluidCrafterType;
 
     public int woodHopperType;

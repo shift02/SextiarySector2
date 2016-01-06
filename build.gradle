@@ -14,6 +14,36 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
+repositories {
+    maven {
+        name "chickenbones"
+        url "http://chickenbones.net/maven/"
+    }
+    maven {
+        name "mvnmrtjp"
+        url "http://files.projectredwiki.com/maven"
+    }
+    maven {
+        name "dvs1"
+        url "http://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "ic2"
+        url = "http://maven.ic2.player.to/"
+    }
+    ivy {
+        name 'ComputerCraft'
+        artifactPattern "http://addons-origin.cursecdn.com/files/2244/605/[module][revision].[ext]"
+    }
+    ivy {
+        name 'Thaumcraft'
+        artifactPattern "http://addons-origin.cursecdn.com/files/2227/552/[module]-[revision].[ext]"
+    }
+    ivy {
+        name 'CoFHCore'
+        artifactPattern "http://addons-origin.cursecdn.com/files/2245/632/[module]-[revision].[ext]"
+    }
+}
 
 apply plugin: 'forge'
 
@@ -35,8 +65,37 @@ minecraft {
     it.options.compilerArgs += ['-source', '1.7', '-target', '1.7']
 }
 
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+    test {
+        compileClasspath += configurations.provided
+        runtimeClasspath += configurations.provided
+    }
+}
+
 dependencies { 
     compile fileTree(dir: 'api', include: '*.jar')
+
+    //provided
+    provided "codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev"
+    provided "codechicken:CodeChickenCore:1.7.10-1.0.7.47:dev"
+    provided "codechicken:NotEnoughItems:1.7.10-1.0.5.118:dev"
+    
+    provided "tconstruct:TConstruct:1.7.10-1.7.0.build734:deobf"
+    
+    provided group: 'cofh', name: 'CoFHCore', version: '[1.7.10]3.0.3B2-294-dev', ext: 'jar'
+    provided group: 'thaumcraft', name: 'Thaumcraft', version: '1.7.10-4.2.3.5', ext: 'jar'
+    provided group: 'ComputerCraft', name: 'ComputerCraft', version: '1.74', ext: 'jar'
+    
+    provided "net.industrial-craft:industrialcraft-2:2.2.780-experimental:api"
+
+    provided "codechicken:ForgeMultipart:1.7.10-1.2.0.345:dev"
 }
 
 processResources
