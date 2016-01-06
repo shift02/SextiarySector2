@@ -1,5 +1,6 @@
 package shift.sextiarysector.renderer.block;
 
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -7,9 +8,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SextiarySector;
-import shift.sextiarysector.module.FertilizerManager;
-import shift.sextiarysector.tileentity.TileEntityFarmland2;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RendererFarmland implements ISimpleBlockRenderingHandler {
 
@@ -22,11 +20,13 @@ public class RendererFarmland implements ISimpleBlockRenderingHandler {
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 
         if (this.getRenderId() != modelId) return false;
-
+        //renderer.field_152631_f = true;
+        //IIcon i = renderer.overrideBlockTexture;
+        //renderer.renderStandardBlock(Blocks.stone, x, y, z);
         renderer.renderStandardBlock(block, x, y, z);
+        //renderer.setOverrideBlockTexture(i);
 
         renderer.renderAllFaces = true;
-        renderer.field_152631_f = true;
 
         float minx = 0.1875f, minz = 0.1875f;
         float maxx = 1 - 0.1875f, maxz = 1 - 0.1875f;
@@ -46,24 +46,25 @@ public class RendererFarmland implements ISimpleBlockRenderingHandler {
         renderer.setRenderBounds(minx, (1.0f / 16.0f) * 14, minz, maxx, 1 - 0.01f, maxz);
         renderer.renderStandardBlock(block, x, y, z);
 
+        /*
         TileEntityFarmland2 t = (TileEntityFarmland2) world.getTileEntity(x, y, z);
-
+        
         if (t != null && t.getFertilizer() != null) {
-
+        
             if (FertilizerManager.getFertilizer(t.getFertilizer()) != null) {
                 renderer.setOverrideBlockTexture(FertilizerManager.getFertilizerIcon(t.getFertilizer()).getFertilizerIcon());
             } else {
                 t.setFertilizer(null);
             }
-
+        
             renderer.setRenderBounds(minx, 1 - 0.01f, minz, maxx, 1 - 0.009f, maxz);
             renderer.renderStandardBlock(block, x, y, z);
-        }
+        }*/
 
-        renderer.clearOverrideBlockTexture();
+        //renderer.clearOverrideBlockTexture();
 
         renderer.renderAllFaces = false;
-        renderer.renderAllFaces = false;
+        //renderer.field_152631_f = false;
 
         return true;
     }
@@ -77,9 +78,9 @@ public class RendererFarmland implements ISimpleBlockRenderingHandler {
 
     public void renderTopBlock(Block p_147784_1_, int p_147784_2_, int p_147784_3_, int p_147784_4_, RenderBlocks renderer) {
         int l = p_147784_1_.colorMultiplier(renderer.blockAccess, p_147784_2_, p_147784_3_, p_147784_4_);
-        float f = (float) (l >> 16 & 255) / 255.0F;
-        float f1 = (float) (l >> 8 & 255) / 255.0F;
-        float f2 = (float) (l & 255) / 255.0F;
+        float f = (l >> 16 & 255) / 255.0F;
+        float f1 = (l >> 8 & 255) / 255.0F;
+        float f2 = (l & 255) / 255.0F;
 
         if (EntityRenderer.anaglyphEnable) {
             float f3 = (f * 30.0F + f1 * 59.0F + f2 * 11.0F) / 100.0F;
@@ -204,7 +205,7 @@ public class RendererFarmland implements ISimpleBlockRenderingHandler {
             renderer.colorRedTopRight *= f6;
             renderer.colorGreenTopRight *= f6;
             renderer.colorBlueTopRight *= f6;
-            renderer.renderFaceYPos(p_147808_1_, (double) p_147808_2_, (double) p_147808_3_, (double) p_147808_4_, renderer.getBlockIcon(p_147808_1_, renderer.blockAccess, p_147808_2_, p_147808_3_, p_147808_4_, 1));
+            renderer.renderFaceYPos(p_147808_1_, p_147808_2_, p_147808_3_, p_147808_4_, renderer.getBlockIcon(p_147808_1_, renderer.blockAccess, p_147808_2_, p_147808_3_, p_147808_4_, 1));
             flag = true;
         }
 

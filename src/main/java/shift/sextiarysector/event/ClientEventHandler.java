@@ -158,7 +158,7 @@ public class ClientEventHandler {
                 type.registerIcon(event.map);
             }
 
-        } else {
+        } else if (event.map.getTextureType() == 0) {
             waterFlow = event.map.registerIcon("sextiarysector:fluid/water_flow");
             waterStill = event.map.registerIcon("sextiarysector:fluid/water_still");
             portal = event.map.registerIcon("sextiarysector:fluid/portal");

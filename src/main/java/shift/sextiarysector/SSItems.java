@@ -37,6 +37,7 @@ import shift.sextiarysector.item.ItemSSPickaxe;
 import shift.sextiarysector.item.ItemSSShears;
 import shift.sextiarysector.item.ItemScoop;
 import shift.sextiarysector.item.ItemSeasonStone;
+import shift.sextiarysector.item.ItemSeed;
 import shift.sextiarysector.item.ItemShiftHat;
 import shift.sextiarysector.item.ItemShopMemory;
 import shift.sextiarysector.item.ItemShopRing;
@@ -237,6 +238,8 @@ public class SSItems {
     public static ArrayList<Item> farmlandCrops = new ArrayList<Item>();
     public static ArrayList<Item> paddyCrops = new ArrayList<Item>();
     public static ArrayList<Item> woodCrops = new ArrayList<Item>();
+
+    public static ItemSeed seeds;
 
     public static Item turnip;
     public static Item cucumber;
@@ -814,6 +817,10 @@ public class SSItems {
                 .setCreativeTab(SextiarySectorAPI.TabSSFishery);
         GameRegistry.registerItem(laver, "Laver");
 
+        //農業
+        seeds = new ItemSeed();
+        GameRegistry.registerItem(seeds, "Seeds");
+
         //野菜
         turnip = new ItemFoodCrop(farmlandCrops, 3, 1, 1, 4, 0, 0, false).setUnlocalizedName("ss.turnip")
                 .setTextureName("sextiarysector:food/vegetable/turnip");
@@ -980,8 +987,7 @@ public class SSItems {
         GameRegistry.registerItem(waterContactLenses, "WaterContactLenses");
 
         //Unit
-        craftUnit = new ItemGuiUnit(201).setUnlocalizedName("ss.craft_unit")
-                .setTextureName("sextiarysector:unit/craft_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
+        craftUnit = new ItemGuiUnit(201).setUnlocalizedName("ss.craft_unit").setTextureName("sextiarysector:unit/craft_unit").setCreativeTab(SextiarySectorAPI.TabSSPlayer);
         GameRegistry.registerItem(craftUnit, "CraftUnit");
 
         attackUnit = new ItemUnit().setUnlocalizedName("ss.attack_unit")

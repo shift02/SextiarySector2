@@ -1,5 +1,6 @@
 package shift.sextiarysector.api.agriculture;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 /**
@@ -21,7 +22,8 @@ public interface TileCrop {
     public void doGrowth(int day);
 
     /**
-     * 作物の成長を戻す トマトみたいな作物で使用する
+     * 作物の成長を戻す トマトみたいな作物で使用する <br>
+     * マイナスにはならない 例 作物の成長が3の時にdoDecline(5)を呼ぶと0になる
      * @param day 成長を戻す日
      */
     public void doDecline(int day);
@@ -31,6 +33,10 @@ public interface TileCrop {
      */
     public void doWither();
 
+    /**
+     * 作物があるWorldを取得
+     * @return World
+     */
     public World getWorld();
 
     public int getX();
@@ -38,5 +44,12 @@ public interface TileCrop {
     public int getY();
 
     public int getZ();
+
+    /**
+     * NBTを使って植物に色々なステータスを追加できる。 <br>
+     * このメソッドで取得したNBTは自動で同期されます
+     * @return 追加NBT
+     */
+    public NBTTagCompound getExtendedCropProperties();
 
 }

@@ -2,7 +2,7 @@ package shift.sextiarysector.api.agriculture;
 
 public enum CropRendererType {
 
-    Normal(6), Close(1);
+    Normal(6), Cross(1);
 
     public int id;
 

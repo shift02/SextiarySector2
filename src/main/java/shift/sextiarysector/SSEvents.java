@@ -7,6 +7,7 @@ import shift.sextiarysector.api.event.VanillaFoodHandler;
 import shift.sextiarysector.event.AchievementEventHandler;
 import shift.sextiarysector.event.ClientEventHandler;
 import shift.sextiarysector.event.CommonEventHandler;
+import shift.sextiarysector.event.CropEventHandler;
 import shift.sextiarysector.event.HUDEventHandler;
 import shift.sextiarysector.event.OreDictionaryEventHandler;
 import shift.sextiarysector.event.PlayerStatusEventHandler;
@@ -43,6 +44,10 @@ public class SSEvents {
 
         if (event.getSide().isClient()) {
             MinecraftForge.EVENT_BUS.register(new TabManager());
+        }
+
+        if (event.getSide().isClient()) {
+            MinecraftForge.EVENT_BUS.register(new CropEventHandler());
         }
 
         MinecraftForge.EVENT_BUS.register(new WorldEventHandler());

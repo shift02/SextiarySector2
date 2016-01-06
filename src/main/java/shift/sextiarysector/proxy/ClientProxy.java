@@ -11,18 +11,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
-import shift.mceconomy2.packet.PacketHandler;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.entity.EntityMineboat;
 import shift.sextiarysector.entity.EntityMineboatChest;
 import shift.sextiarysector.entity.EntityMineboatTank;
 import shift.sextiarysector.gui.tab.TabManager;
-import shift.sextiarysector.packet.PacketGuiId;
 import shift.sextiarysector.plugin.IPlugin;
 import shift.sextiarysector.plugin.SSPlugins;
 import shift.sextiarysector.renderer.block.RendererBlockBottle;
 import shift.sextiarysector.renderer.block.RendererChest;
+import shift.sextiarysector.renderer.block.RendererCrop;
 import shift.sextiarysector.renderer.block.RendererFan;
 import shift.sextiarysector.renderer.block.RendererFarmland;
 import shift.sextiarysector.renderer.block.RendererFigure;
@@ -97,6 +96,8 @@ public class ClientProxy extends CommonProxy {
 
         this.leafBedType = RenderingRegistry.getNextAvailableRenderId();
 
+        this.cropType = RenderingRegistry.getNextAvailableRenderId();
+
         this.tankType = RenderingRegistry.getNextAvailableRenderId();
         this.funnelType = RenderingRegistry.getNextAvailableRenderId();
         this.pipeType = RenderingRegistry.getNextAvailableRenderId();
@@ -140,6 +141,8 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerBlockHandler(new RendererWoodHopper());
 
         RenderingRegistry.registerBlockHandler(new RendererLeafBed());
+
+        RenderingRegistry.registerBlockHandler(new RendererCrop());
 
         RenderingRegistry.registerBlockHandler(new RendererTank());
         RenderingRegistry.registerBlockHandler(new RendererFunnel());
@@ -228,7 +231,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void openGUI(int id) {
-        PacketHandler.INSTANCE.sendToServer(new PacketGuiId(id));
+        //PacketHandler.INSTANCE.sendToServer(new PacketGuiId(id));
     }
 
     @Override

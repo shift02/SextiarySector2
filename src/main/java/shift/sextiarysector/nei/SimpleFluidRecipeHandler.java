@@ -8,21 +8,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.lwjgl.opengl.GL11;
+
+import codechicken.nei.NEIServerUtils;
+import codechicken.nei.PositionedStack;
+import codechicken.nei.recipe.TemplateRecipeHandler;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-
-import org.lwjgl.opengl.GL11;
-
 import shift.sextiarysector.recipe.RecipeSimpleFluid;
-import codechicken.nei.NEIServerUtils;
-import codechicken.nei.PositionedStack;
-import codechicken.nei.recipe.TemplateRecipeHandler;
 
 public abstract class SimpleFluidRecipeHandler extends TemplateSSRecipeHandler {
 
@@ -148,7 +148,7 @@ public abstract class SimpleFluidRecipeHandler extends TemplateSSRecipeHandler {
 
         for (Entry<String, Object[]> recipe : recipes.entrySet()) {
             ItemStack item = (ItemStack) recipe.getValue()[0];
-            if (NEIServerUtils.areStacksSameType(item, result)) {
+            if (NEIServerUtils.areStacksSameType(item, result) || this.isResult(result, (FluidStack) recipe.getValue()[1])) {
                 if (OreDictionary.getOres(recipe.getKey()).size() >= 1) {
                     arecipes.add(new SimpleFluidPair(OreDictionary.getOres(recipe.getKey()), item, (FluidStack) recipe.getValue()[1]));
                 }
@@ -159,10 +159,22 @@ public abstract class SimpleFluidRecipeHandler extends TemplateSSRecipeHandler {
         if (metarecipes == null) return;
         for (Entry<ItemStack, Object[]> recipe : metarecipes.entrySet()) {
             ItemStack item = (ItemStack) recipe.getValue()[0];
-            if (NEIServerUtils.areStacksSameType(item, result)) {
+            if (NEIServerUtils.areStacksSameType(item, result) || this.isResult(result, (FluidStack) recipe.getValue()[1])) {
                 arecipes.add(new SimpleFluidPair(recipe.getKey(), item, (FluidStack) recipe.getValue()[1]));
             }
         }
+    }
+
+    private boolean isResult(ItemStack result, FluidStack f1) {
+
+        FluidStack f = FluidContainerRegistry.getFluidForFilledItem(result);
+
+        if (f == null || f1 == null) return false;
+
+        if (f.isFluidEqual(f1)) return true;
+
+        return false;
+
     }
 
     @Override
