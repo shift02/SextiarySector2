@@ -5,6 +5,8 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import shift.sextiarysector.SSCrops;
+import shift.sextiarysector.api.agriculture.IFertilizer;
 import shift.sextiarysector.api.agriculture.TileFarmland;
 
 public class TileEntityFarmland extends TileEntity implements TileFarmland {
@@ -13,6 +15,9 @@ public class TileEntityFarmland extends TileEntity implements TileFarmland {
     //protected FluidTank water = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
     protected int water;
     private final int MAX_WATER = 10;
+
+    //肥料
+    private IFertilizer fertilizer;
 
     @Override
     public void updateEntity() {
@@ -69,12 +74,27 @@ public class TileEntityFarmland extends TileEntity implements TileFarmland {
 
     }
 
+    public IFertilizer getFertilizer() {
+        return fertilizer;
+    }
+
+    public void setFertilizer(IFertilizer fertilizer) {
+        this.fertilizer = fertilizer;
+        this.getWorldObj().markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
+
     //NBT
     @Override
     public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
         super.readFromNBT(par1nbtTagCompound);
 
         this.water = par1nbtTagCompound.getInteger("water");
+
+        if (par1nbtTagCompound.hasKey("fertilizerName")) {
+
+            this.fertilizer = SSCrops.fertilizerManager.getFertilizer(par1nbtTagCompound.getString("fertilizerName"));
+
+        }
 
     }
 
@@ -83,6 +103,8 @@ public class TileEntityFarmland extends TileEntity implements TileFarmland {
 
         super.writeToNBT(par1nbtTagCompound);
         par1nbtTagCompound.setInteger("water", this.water);
+
+        if (fertilizer != null) par1nbtTagCompound.setString("fertilizerName", fertilizer.getName());
 
     }
 

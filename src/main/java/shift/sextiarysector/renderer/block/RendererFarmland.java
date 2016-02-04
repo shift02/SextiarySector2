@@ -5,9 +5,11 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SextiarySector;
+import shift.sextiarysector.tileentity.TileEntityFarmland;
 
 public class RendererFarmland implements ISimpleBlockRenderingHandler {
 
@@ -46,20 +48,18 @@ public class RendererFarmland implements ISimpleBlockRenderingHandler {
         renderer.setRenderBounds(minx, (1.0f / 16.0f) * 14, minz, maxx, 1 - 0.01f, maxz);
         renderer.renderStandardBlock(block, x, y, z);
 
-        /*
-        TileEntityFarmland2 t = (TileEntityFarmland2) world.getTileEntity(x, y, z);
-        
+        TileEntityFarmland t = (TileEntityFarmland) world.getTileEntity(x, y, z);
+
         if (t != null && t.getFertilizer() != null) {
-        
-            if (FertilizerManager.getFertilizer(t.getFertilizer()) != null) {
-                renderer.setOverrideBlockTexture(FertilizerManager.getFertilizerIcon(t.getFertilizer()).getFertilizerIcon());
-            } else {
-                t.setFertilizer(null);
-            }
-        
+
+            IIcon icon = renderer.overrideBlockTexture;
+            renderer.setOverrideBlockTexture(t.getFertilizer().getFertilizerIcon());
+
             renderer.setRenderBounds(minx, 1 - 0.01f, minz, maxx, 1 - 0.009f, maxz);
             renderer.renderStandardBlock(block, x, y, z);
-        }*/
+
+            renderer.setOverrideBlockTexture(icon);
+        }
 
         //renderer.clearOverrideBlockTexture();
 

@@ -241,6 +241,9 @@ public class SSItems {
 
     public static ItemSeed seeds;
 
+    //突然変異用のList(骨粉)
+    public static ArrayList<Item> mutationCrops = new ArrayList<Item>();
+
     public static Item turnip;
     public static Item cucumber;
 
@@ -822,59 +825,59 @@ public class SSItems {
         GameRegistry.registerItem(seeds, "Seeds");
 
         //野菜
-        turnip = new ItemFoodCrop(farmlandCrops, 3, 1, 1, 4, 0, 0, false).setUnlocalizedName("ss.turnip")
+        turnip = new ItemFoodCrop(3, 1, 1, 4, 0, 0, false).setUnlocalizedName("ss.turnip")
                 .setTextureName("sextiarysector:food/vegetable/turnip");
         GameRegistry.registerItem(turnip, "Turnip");
 
-        cucumber = new ItemFoodCrop(farmlandCrops, 1, 1, 3, 4, 0, 2, false).setUnlocalizedName("ss.cucumber")
+        cucumber = new ItemFoodCrop(1, 1, 3, 4, 0, 2, false).setUnlocalizedName("ss.cucumber")
                 .setTextureName("sextiarysector:food/vegetable/cucumber");
         GameRegistry.registerItem(cucumber, "Cucumber");
 
-        ironTurnip = new ItemFoodCrop(farmlandCrops, 0, 1, 0, 0, 0, 0, false).setUnlocalizedName("ss.iron_turnip")
+        ironTurnip = new ItemFoodCrop(0, 1, 0, 0, 0, 0, false).setUnlocalizedName("ss.iron_turnip")
                 .setTextureName("sextiarysector:food/vegetable/iron_turnip");
         GameRegistry.registerItem(ironTurnip, "IronTurnip");
 
-        onion = new ItemFoodCrop(farmlandCrops, 2, 1, 1, 0, 0, 0, false).setUnlocalizedName("ss.onion")
+        onion = new ItemFoodCrop(2, 1, 1, 0, 0, 0, false).setUnlocalizedName("ss.onion")
                 .setTextureName("sextiarysector:food/vegetable/onion");
         GameRegistry.registerItem(onion, "Onion");
 
-        tomato = new ItemFoodCrop(farmlandCrops, 1, 1, 4, 5, 0, 0, false).setUnlocalizedName("ss.tomato")
+        tomato = new ItemFoodCrop(1, 1, 4, 5, 0, 0, false).setUnlocalizedName("ss.tomato")
                 .setTextureName("sextiarysector:food/vegetable/tomato");
         GameRegistry.registerItem(tomato, "Tomato");
 
-        corn = new ItemFoodCrop(farmlandCrops, 0, 1, 1, 6, 4, 2, false).setUnlocalizedName("ss.corn")
+        corn = new ItemFoodCrop(0, 1, 1, 6, 4, 2, false).setUnlocalizedName("ss.corn")
                 .setTextureName("sextiarysector:food/vegetable/corn");
         GameRegistry.registerItem(corn, "corn");
 
-        goldenCorn = new ItemFoodCrop(farmlandCrops, 0, 2, 0, 0, 0, 0, false).setUnlocalizedName("ss.golden_corn")
+        goldenCorn = new ItemFoodCrop(0, 2, 0, 0, 0, 0, false).setUnlocalizedName("ss.golden_corn")
                 .setTextureName("sextiarysector:food/vegetable/golden_corn");
         GameRegistry.registerItem(goldenCorn, "GoldCorn");
 
-        eggplant = new ItemFoodCrop(farmlandCrops, 1, 1, 4, 2, 0, 0, false).setUnlocalizedName("ss.eggplant")
+        eggplant = new ItemFoodCrop(1, 1, 4, 2, 0, 0, false).setUnlocalizedName("ss.eggplant")
                 .setTextureName("sextiarysector:food/vegetable/eggplant");
         GameRegistry.registerItem(eggplant, "Eggplant");
 
-        sweetPotato = new ItemFoodCrop(farmlandCrops, 4, 1, 0, 0, 6, 0, false).setUnlocalizedName("ss.sweet_potato")
+        sweetPotato = new ItemFoodCrop(4, 1, 0, 0, 6, 0, false).setUnlocalizedName("ss.sweet_potato")
                 .setTextureName("sextiarysector:food/vegetable/sweet_potato");
         GameRegistry.registerItem(sweetPotato, "SweetPotato");
 
-        greenPepper = new ItemFoodCrop(farmlandCrops, 2, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.green_pepper")
+        greenPepper = new ItemFoodCrop(2, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.green_pepper")
                 .setTextureName("sextiarysector:food/vegetable/green_pepper");
         GameRegistry.registerItem(greenPepper, "GreenPepper");
 
-        bluePotato = new ItemFoodCrop(paddyCrops, 1, 0, 5, 8, 2, 0, false).setUnlocalizedName("ss.blue_potato")
+        bluePotato = new ItemFoodCrop(1, 0, 5, 8, 2, 0, false).setUnlocalizedName("ss.blue_potato")
                 .setTextureName("sextiarysector:food/vegetable/blue_potato");
         GameRegistry.registerItem(bluePotato, "BluePotato");
 
-        radish = new ItemFoodCrop(farmlandCrops, 3, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.radish")
+        radish = new ItemFoodCrop(3, 1, 2, 1, 0, 0, false).setUnlocalizedName("ss.radish")
                 .setTextureName("sextiarysector:food/vegetable/radish");
         GameRegistry.registerItem(radish, "Radish");
 
-        rice = new ItemCrop(paddyCrops).setUnlocalizedName("ss.rice").setTextureName("sextiarysector:food/grain/rice")
+        rice = new ItemCrop().setUnlocalizedName("ss.rice").setTextureName("sextiarysector:food/grain/rice")
                 .setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
         GameRegistry.registerItem(rice, "Rice");
 
-        shiitake = new ItemFoodCrop(woodCrops, 2, 1, 0, 0, 2, 0, false).setUnlocalizedName("ss.shiitake")
+        shiitake = new ItemFoodCrop(2, 1, 0, 0, 2, 0, false).setUnlocalizedName("ss.shiitake")
                 .setTextureName("sextiarysector:food/mushroom/shiitake");
         GameRegistry.registerItem(shiitake, "Shiitake");
 

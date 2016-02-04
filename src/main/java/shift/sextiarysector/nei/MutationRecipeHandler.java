@@ -3,18 +3,20 @@ package shift.sextiarysector.nei;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import shift.sextiarysector.api.agriculture.IFertilizer2;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
+import shift.sextiarysector.SSCrops;
+import shift.sextiarysector.api.agriculture.IMutation;
 
-public abstract class FertilizerRecipeHandler extends TemplateSSRecipeHandler {
+public class MutationRecipeHandler extends TemplateSSRecipeHandler {
 
-    public class FertilizerPair extends CachedRecipe {
-        public FertilizerPair(ItemStack fertilizer, ItemStack before, ItemStack after) {
+    public class MutationPair extends CachedRecipe {
+
+        public MutationPair(ItemStack fertilizer, ItemStack before, ItemStack after) {
             fertilizer.stackSize = 1;
             before.stackSize = 1;
             this.fertilizer = new PositionedStack(fertilizer, 51, 6 + 36);
@@ -51,6 +53,7 @@ public abstract class FertilizerRecipeHandler extends TemplateSSRecipeHandler {
             return after;
         }
 
+        @Override
         public PositionedStack getOtherStack() {
             return this.fertilizer;
         }
@@ -83,13 +86,13 @@ public abstract class FertilizerRecipeHandler extends TemplateSSRecipeHandler {
 
     @Override
     public void loadCraftingRecipes(String outputId, Object... results) {
-        if (outputId.equals(getHandlerName()) && getClass() == getHandlerClass()) //don't want subclasses getting a hold of this
+        if (outputId.equals(getHandlerName()) && getClass() == MutationRecipeHandler.class) //don't want subclasses getting a hold of this
         {
-            ArrayList<IFertilizer2> recipes = this.getRecipe();
+            ArrayList<IMutation> recipes = this.getRecipe();
 
-            for (IFertilizer2 recipe : recipes) {
+            for (IMutation recipe : recipes) {
 
-                arecipes.add(new FertilizerPair(recipe.getFertilizer(), recipe.getBefore(), recipe.getAfter()));
+                arecipes.add(new MutationPair(recipe.getFertilizer().getFertilizer(), recipe.getBefore(), recipe.getAfter()));
 
             }
 
@@ -101,13 +104,13 @@ public abstract class FertilizerRecipeHandler extends TemplateSSRecipeHandler {
     @Override
     public void loadCraftingRecipes(ItemStack result) {
 
-        ArrayList<IFertilizer2> recipes = this.getRecipe();
+        ArrayList<IMutation> recipes = this.getRecipe();
 
         if (recipes == null) return;
-        for (IFertilizer2 recipe : recipes) {
+        for (IMutation recipe : recipes) {
             ItemStack item = recipe.getAfter();
             if (NEIServerUtils.areStacksSameType(item, result)) {
-                arecipes.add(new FertilizerPair(recipe.getFertilizer(), recipe.getBefore(), recipe.getAfter()));
+                arecipes.add(new MutationPair(recipe.getFertilizer().getFertilizer(), recipe.getBefore(), recipe.getAfter()));
             }
         }
     }
@@ -115,13 +118,13 @@ public abstract class FertilizerRecipeHandler extends TemplateSSRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
 
-        ArrayList<IFertilizer2> recipes = this.getRecipe();
+        ArrayList<IMutation> recipes = this.getRecipe();
 
         if (recipes == null) return;
-        for (IFertilizer2 recipe : recipes) {
+        for (IMutation recipe : recipes) {
             ;
-            if (this.checkItem(ingredient, recipe.getFertilizer()) || this.checkItem(ingredient, recipe.getBefore())) {
-                arecipes.add(new FertilizerPair(recipe.getFertilizer(), recipe.getBefore(), recipe.getAfter()));
+            if (this.checkItem(ingredient, recipe.getFertilizer().getFertilizer()) || this.checkItem(ingredient, recipe.getBefore())) {
+                arecipes.add(new MutationPair(recipe.getFertilizer().getFertilizer(), recipe.getBefore(), recipe.getAfter()));
             }
         }
     }
@@ -136,15 +139,22 @@ public abstract class FertilizerRecipeHandler extends TemplateSSRecipeHandler {
         drawProgressBar(74, 23, 176, 14, 24, 16, 48, 0);
     }
 
-    public abstract Class<? extends FertilizerRecipeHandler> getHandlerClass();
+    public String getHandlerName() {
+        return "SS_Mutation";
+    }
 
-    public abstract String getHandlerName();
+    public ArrayList<IMutation> getRecipe() {
+        return SSCrops.mutationRegistry.mutations;
+    }
 
-    public abstract ArrayList<IFertilizer2> getRecipe();
+    public String getGuiRecipeName() {
+        return "ss.mutation";
+    }
 
-    public abstract String getGuiRecipeName();
-
-    public abstract Class<? extends GuiContainer> getGuiClass();
+    @Override
+    public Class<? extends GuiContainer> getGuiClass() {
+        return null;
+    }
 
     @Override
     public String getRecipeName() {
@@ -152,6 +162,8 @@ public abstract class FertilizerRecipeHandler extends TemplateSSRecipeHandler {
     }
 
     @Override
-    public abstract String getGuiTexture();
+    public String getGuiTexture() {
+        return "sextiarysector:textures/guis/fertilizer_farmland_nei.png";
+    }
 
 }

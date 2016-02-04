@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class SimpleFertilizer implements IFertilizer {
+public class SimpleFertilizer implements IFertilizer2 {
 
     private String name;
 

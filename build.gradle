@@ -43,6 +43,10 @@ repositories {
         name 'CoFHCore'
         artifactPattern "http://addons-origin.cursecdn.com/files/2245/632/[module]-[revision].[ext]"
     }
+    ivy {
+        name 'AppleMilkTea2'
+        artifactPattern "http://addons-origin.cursecdn.com/files/2274/437/[module]-[revision].[ext]"
+    }
 }
 
 apply plugin: 'forge'
@@ -81,6 +85,7 @@ sourceSets {
 
 dependencies { 
     compile fileTree(dir: 'api', include: '*.jar')
+    compile fileTree(dir: 'lib', include: '*.jar')
 
     //provided
     provided "codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev"
@@ -92,6 +97,7 @@ dependencies {
     provided group: 'cofh', name: 'CoFHCore', version: '[1.7.10]3.0.3B2-294-dev', ext: 'jar'
     provided group: 'thaumcraft', name: 'Thaumcraft', version: '1.7.10-4.2.3.5', ext: 'jar'
     provided group: 'ComputerCraft', name: 'ComputerCraft', version: '1.74', ext: 'jar'
+    provided group: 'AppleMilkTea2', name: 'AppleMilkTea2', version: '1.7.10_2.9c', ext: 'jar'
     
     provided "net.industrial-craft:industrialcraft-2:2.2.780-experimental:api"
 
@@ -138,4 +144,9 @@ task devJar(type: Jar) {
  
 artifacts {
     archives devJar
+}
+
+task downloadMods(type: Copy) {
+  from configurations.provided
+  into 'lib'
 }

@@ -5,24 +5,24 @@ import java.util.Random;
 
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector.api.agriculture.FarmlandType;
-import shift.sextiarysector.api.agriculture.IFertilizer;
-import shift.sextiarysector.api.agriculture.IFertilizerManager;
+import shift.sextiarysector.api.agriculture.IFertilizer2;
+import shift.sextiarysector.api.agriculture.IFertilizerManager2;
 
-public class FertilizerManager implements IFertilizerManager {
+public class FertilizerManager implements IFertilizerManager2 {
 
     //public static HashMap<ItemStack,IFertilizer> fertilizers = new HashMap<ItemStack,IFertilizer>();
-    public static ArrayList<IFertilizer> fertilizerIcons = new ArrayList<IFertilizer>();
+    public static ArrayList<IFertilizer2> fertilizerIcons = new ArrayList<IFertilizer2>();
 
-    public static ArrayList<IFertilizer> fertilizers = new ArrayList<IFertilizer>();
+    public static ArrayList<IFertilizer2> fertilizers = new ArrayList<IFertilizer2>();
 
-    public static ArrayList<IFertilizer> normal = new ArrayList<IFertilizer>();
-    public static ArrayList<IFertilizer> paddy = new ArrayList<IFertilizer>();
+    public static ArrayList<IFertilizer2> normal = new ArrayList<IFertilizer2>();
+    public static ArrayList<IFertilizer2> paddy = new ArrayList<IFertilizer2>();
     //public static HashMap<String,IFertilizer> fertilizersS = new HashMap<String,IFertilizer>();
 
     private static Random r = new Random();
 
     @Override
-    public void registerFertilizer(FarmlandType type, IFertilizer fertilizer) {
+    public void registerFertilizer(FarmlandType type, IFertilizer2 fertilizer) {
         //fertilizersS.put(fertilizer.getName(), fertilizer);
         fertilizers.add(fertilizer);
 
@@ -40,9 +40,9 @@ public class FertilizerManager implements IFertilizerManager {
         }
     }
 
-    private void addIcon(IFertilizer fertilizer) {
+    private void addIcon(IFertilizer2 fertilizer) {
 
-        for (IFertilizer f : fertilizerIcons) {
+        for (IFertilizer2 f : fertilizerIcons) {
 
             if (this.checkItem(fertilizer.getFertilizer(), f.getFertilizer())) return;
 
@@ -52,12 +52,12 @@ public class FertilizerManager implements IFertilizerManager {
 
     }
 
-    public static IFertilizer getFertilizer(ItemStack item) {
+    public static IFertilizer2 getFertilizer(ItemStack item) {
         if (item == null) {
             return null;
         }
 
-        for (IFertilizer f : fertilizers) {
+        for (IFertilizer2 f : fertilizers) {
 
             if (checkItem(item, f.getFertilizer())) {
                 return f;
@@ -69,12 +69,12 @@ public class FertilizerManager implements IFertilizerManager {
 
     }
 
-    public static IFertilizer getFertilizerIcon(ItemStack item) {
+    public static IFertilizer2 getFertilizerIcon(ItemStack item) {
         if (item == null) {
             return null;
         }
 
-        for (IFertilizer f : fertilizerIcons) {
+        for (IFertilizer2 f : fertilizerIcons) {
 
             if (checkItem(item, f.getFertilizer())) {
                 return f;
@@ -99,7 +99,7 @@ public class FertilizerManager implements IFertilizerManager {
             return null;
         }
 
-        for (IFertilizer f : fertilizers) {
+        for (IFertilizer2 f : fertilizers) {
 
             if (checkItem(fertilizer, f.getFertilizer()) && checkItem(before, f.getBefore())) {
                 return f.getAfter().copy();
@@ -116,7 +116,7 @@ public class FertilizerManager implements IFertilizerManager {
             return false;
         }
 
-        for (IFertilizer f : fertilizers) {
+        for (IFertilizer2 f : fertilizers) {
 
             if (checkItem(fertilizer, f.getFertilizer()) && checkItem(before, f.getBefore())) {
 

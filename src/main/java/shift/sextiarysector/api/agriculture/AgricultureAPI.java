@@ -2,6 +2,10 @@ package shift.sextiarysector.api.agriculture;
 
 import net.minecraft.block.Block;
 
+/**
+ * 農業関係の処理にアクセスするできるクラス
+ * @author Shift02
+ */
 public class AgricultureAPI {
 
     /** 普通の農地 */
@@ -9,8 +13,18 @@ public class AgricultureAPI {
 
     public static ICropManager cropManager;
 
-    public static IFertilizerManager fertilizerManager;
     public static IFarmlandRegistry farmlandRegistry;
+
+    public static IFertilizerManager fertilizerManager;
+
+    public static IMutationRegistry mutationRegistry;
+
+    public static IFertilizerManager2 fertilizerManager2;
+
+    //肥料
+
+    /** 普通の肥料(大きさ作物が収穫できる) */
+    public static IFertilizer normal;
 
     /**
      * 作物のデータを登録
@@ -21,11 +35,13 @@ public class AgricultureAPI {
     }
 
     /**
+     * @deprecated 上級者向け <br>
      * 農地の登録<br>
      * {@link TileFarmland}を実装したTileEntityをcreateNewTileEntity()で返すブロックを登録してください
      * @param name 農地の名前
      * @param block 農地
      */
+    @Deprecated
     public static void registerFarmland(String name, Block block) {
         farmlandRegistry.registerFarmland(name, block);
     }
@@ -35,8 +51,16 @@ public class AgricultureAPI {
      * @param name
      * @return
      */
-    public Block getFarmland(String name) {
+    public static Block getFarmland(String name) {
         return farmlandRegistry.getFarmland(name);
+    }
+
+    /**
+     * 肥料の登録
+     * @param fertilizer 登録する肥料
+     */
+    public static void registerFertilizer(IFertilizer fertilizer) {
+        fertilizerManager.registerFertilizer(fertilizer);
     }
 
 }

@@ -1,19 +1,25 @@
 package shift.sextiarysector.api.agriculture;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public interface IFertilizer {
+public interface IFertilizer2 {
 
     public String getName();
 
     public ItemStack getFertilizer();
 
+    public ItemStack getBefore();
+
+    public ItemStack getAfter();
+
+    public int getProbability();
+
     @SideOnly(Side.CLIENT)
-    public void registerFertilizerIcons(IIconRegister iconRegister);
+    public void registerFertilizerIcons(IIconRegister par1IconRegister);
 
     @SideOnly(Side.CLIENT)
     public IIcon getFertilizerIcon();
