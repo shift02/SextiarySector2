@@ -1,19 +1,34 @@
 package shift.sextiarysector;
 
+import java.util.ArrayList;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import shift.sextiarysector.agriculture.CropBase;
 import shift.sextiarysector.agriculture.CropManager;
 import shift.sextiarysector.agriculture.CropReHarvest;
 import shift.sextiarysector.agriculture.CropTest;
 import shift.sextiarysector.agriculture.FarmlandRegistry;
+import shift.sextiarysector.agriculture.FertilizerManager;
+import shift.sextiarysector.agriculture.MutationRegistry;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
 import shift.sextiarysector.api.agriculture.CropWither;
+import shift.sextiarysector.api.agriculture.FertilizerBase;
 import shift.sextiarysector.api.agriculture.ICrop;
+import shift.sextiarysector.api.agriculture.IFertilizer;
+import shift.sextiarysector.api.agriculture.MutationNormal;
 import shift.sextiarysector.api.season.Season;
 
 public class SSCrops {
 
     public static CropManager cropManager;
     public static FarmlandRegistry farmlandRegistry;
+    public static FertilizerManager fertilizerManager;
+    public static MutationRegistry mutationRegistry;
+
+    //肥料
+    public static IFertilizer normal;
 
     public static ICrop test;
     public static ICrop wither;
@@ -40,6 +55,11 @@ public class SSCrops {
     public static CropBase redMushroom;
     public static CropBase shiitake;
 
+    //突然変異
+
+    /** 骨粉で変異する作物のリスト */
+    public static ArrayList<Item> boneMealCrops = new ArrayList<Item>();
+
     public static void preInit() {
 
         cropManager = new CropManager();
@@ -48,12 +68,23 @@ public class SSCrops {
         farmlandRegistry = new FarmlandRegistry();
         AgricultureAPI.farmlandRegistry = farmlandRegistry;
 
+        fertilizerManager = new FertilizerManager();
+        AgricultureAPI.fertilizerManager = fertilizerManager;
+
+        mutationRegistry = new MutationRegistry();
+        AgricultureAPI.mutationRegistry = mutationRegistry;
+
     }
 
     public static void initCrops() {
 
         //農地登録
         AgricultureAPI.registerFarmland(AgricultureAPI.FARMLAND, SSBlocks.farmland);
+
+        //肥料の登録
+        normal = new FertilizerBase("normal", new ItemStack(Items.dye, 1, 15)).setIconName("sextiarysector:fertilizer/bone");
+        AgricultureAPI.normal = normal;
+        AgricultureAPI.registerFertilizer(normal);
 
         //作物の登録
         test = new CropTest();
@@ -82,6 +113,13 @@ public class SSCrops {
         SSItems.seeds.addSeed("iron_turnip", ironTurnip);
 
         //夏
+
+        //突然変異
+
+        //普通の肥料
+        for (Item item : boneMealCrops) {
+            mutationRegistry.registeMutation(new MutationNormal(new ItemStack(item, 1, 0), new ItemStack(item, 1, 1)));
+        }
 
     }
 

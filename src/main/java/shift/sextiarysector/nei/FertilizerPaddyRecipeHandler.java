@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
-import shift.sextiarysector.api.agriculture.IFertilizer;
+import shift.sextiarysector.api.agriculture.IFertilizer2;
 import shift.sextiarysector.module.FertilizerManager;
 
 public class FertilizerPaddyRecipeHandler extends FertilizerRecipeHandler {
@@ -17,7 +17,7 @@ public class FertilizerPaddyRecipeHandler extends FertilizerRecipeHandler {
         return "SS_Fertilizer_Paddy";
     }
 
-    public ArrayList<IFertilizer> getRecipe() {
+    public ArrayList<IFertilizer2> getRecipe() {
         return FertilizerManager.paddy;
     }
 

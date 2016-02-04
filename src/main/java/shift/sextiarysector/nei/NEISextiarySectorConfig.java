@@ -1,5 +1,7 @@
 package shift.sextiarysector.nei;
 
+import codechicken.nei.api.API;
+import codechicken.nei.api.IConfigureNEI;
 import shift.sextiarysector.gui.GuiExtractor;
 import shift.sextiarysector.gui.GuiFluidFurnace;
 import shift.sextiarysector.gui.GuiFoodSmokers;
@@ -14,8 +16,6 @@ import shift.sextiarysector.gui.GuiRollingMachine;
 import shift.sextiarysector.gui.GuiSawmill;
 import shift.sextiarysector.gui.GuiSpinningMachine;
 import shift.sextiarysector.gui.GuiTimeMachine;
-import codechicken.nei.api.API;
-import codechicken.nei.api.IConfigureNEI;
 
 public class NEISextiarySectorConfig implements IConfigureNEI {
 
@@ -82,6 +82,9 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
 
         API.registerRecipeHandler(new FertilizerPaddyRecipeHandler());
         API.registerUsageHandler(new FertilizerPaddyRecipeHandler());
+
+        API.registerRecipeHandler(new MutationRecipeHandler());
+        API.registerUsageHandler(new MutationRecipeHandler());
 
         /*
         API.registerRecipeHandler(new BrewingRecipeHandler());

@@ -57,7 +57,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import shift.sextiarysector.SSItems;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
-import shift.sextiarysector.api.agriculture.IFertilizer;
+import shift.sextiarysector.api.agriculture.IFertilizer2;
 import shift.sextiarysector.api.equipment.EquipmentType;
 import shift.sextiarysector.api.gearforce.item.IGearForceGridItem;
 import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
@@ -176,7 +176,7 @@ public class ClientEventHandler {
 
         if (event.map.getTextureType() == 0) {
 
-            for (IFertilizer f : ((FertilizerManager) AgricultureAPI.fertilizerManager).fertilizerIcons) {
+            for (IFertilizer2 f : ((FertilizerManager) AgricultureAPI.fertilizerManager2).fertilizerIcons) {
                 f.registerFertilizerIcons(event.map);
             }
 
