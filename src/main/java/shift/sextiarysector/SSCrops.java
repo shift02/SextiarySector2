@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector.agriculture.CropBase;
 import shift.sextiarysector.agriculture.CropManager;
+import shift.sextiarysector.agriculture.CropPaddy;
 import shift.sextiarysector.agriculture.CropReHarvest;
 import shift.sextiarysector.agriculture.CropTest;
 import shift.sextiarysector.agriculture.FarmlandRegistry;
@@ -58,8 +59,10 @@ public class SSCrops {
     //冬
     public static CropBase radish;
 
+    //穀物
     public static CropBase rice;
 
+    //キノコ
     public static CropBase redMushroom;
     public static CropBase shiitake;
 
@@ -156,6 +159,18 @@ public class SSCrops {
         greenPepper = new CropReHarvest("green_pepper", SSItems.greenPepper, new Season[] { Season.AUTUMN }, new int[] { 4, 8, 14, 3 });
         cropManager.registerCrop(greenPepper);
         SSItems.seeds.addSeed("green_pepper", greenPepper);
+
+        //冬
+        radish = new CropBase("radish", SSItems.radish, new Season[] { Season.WINTER }, new int[] { 2, 4, 5 });
+        cropManager.registerCrop(radish);
+        SSItems.seeds.addSeed("radish", radish);
+
+        //穀物
+        rice = new CropPaddy("rice", SSItems.rice, new Season[] { Season.SPRING, Season.SUMMER, Season.AUTUMN }, new int[] { 28, 46, 68 });
+        cropManager.registerCrop(rice);
+        SSItems.seeds.addSeed("rice", rice);
+
+        //キノコ
 
         //突然変異
 

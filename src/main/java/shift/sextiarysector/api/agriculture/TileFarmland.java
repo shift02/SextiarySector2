@@ -35,6 +35,12 @@ public interface TileFarmland {
     public int addWater(int amount);
 
     /**
+     * 農地が湿っているか
+     * @return
+     */
+    public boolean hasWater();
+
+    /**
      * 農地に撒かれている肥料を取得
      * @return
      */

@@ -12,6 +12,9 @@ public class AgricultureAPI {
     /** 普通の農地 */
     public static final String FARMLAND = "farmland";
 
+    /** 水田 */
+    public static final String PADDY = "paddy";
+
     public static ICropManager cropManager;
 
     public static IFarmlandRegistry farmlandRegistry;
