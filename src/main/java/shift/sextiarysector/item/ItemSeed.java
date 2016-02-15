@@ -15,6 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
+import shift.sextiarysector.SSItems;
 import shift.sextiarysector.agriculture.CropBase;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
@@ -90,6 +91,15 @@ public class ItemSeed extends Item {
     @Override
     public IIcon getIcon(ItemStack stack, int pass) {
         return this.getIconIndex(stack);
+    }
+
+    public static ItemStack getSeedItemStack(String name) {
+
+        ItemStack item = new ItemStack(SSItems.seeds);
+        setSeedName(item, name);
+
+        return item;
+
     }
 
     public static void setSeedName(ItemStack p_77667_1_, String name) {

@@ -39,19 +39,23 @@ public class SSCrops {
     public static ICrop carrot;
     public static ICrop potato;
 
+    //春
     public static CropBase turnip;
     public static CropBase cucumber;
     public static CropBase ironTurnip;
 
+    //夏
     public static CropBase onion;
     public static CropBase tomato;
     public static CropBase corn;
     public static CropBase goldenCorn;
 
+    //秋
     public static CropBase eggplant;
     public static CropBase sweetPotato;
     public static CropBase greenPepper;
 
+    //冬
     public static CropBase radish;
 
     public static CropBase rice;
@@ -139,6 +143,19 @@ public class SSCrops {
         goldenCorn = new CropBase("golden_corn", SSItems.goldenCorn, new Season[] { Season.SUMMER }, new int[] { 4, 8, 12 });
         cropManager.registerCrop(goldenCorn);
         SSItems.seeds.addSeed("golden_corn", goldenCorn);
+
+        //秋
+        eggplant = new CropReHarvest("eggplant", SSItems.eggplant, new Season[] { Season.AUTUMN }, new int[] { 3, 7, 12, 3 });
+        cropManager.registerCrop(eggplant);
+        SSItems.seeds.addSeed("eggplant", eggplant);
+
+        sweetPotato = new CropReHarvest("sweet_potato", SSItems.sweetPotato, new Season[] { Season.AUTUMN }, new int[] { 2, 4, 6, 2 });
+        cropManager.registerCrop(sweetPotato);
+        SSItems.seeds.addSeed("sweet_potato", sweetPotato);
+
+        greenPepper = new CropReHarvest("green_pepper", SSItems.greenPepper, new Season[] { Season.AUTUMN }, new int[] { 4, 8, 14, 3 });
+        cropManager.registerCrop(greenPepper);
+        SSItems.seeds.addSeed("green_pepper", greenPepper);
 
         //突然変異
 
