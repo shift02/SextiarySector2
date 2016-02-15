@@ -3,22 +3,22 @@ package shift.sextiarysector.item;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
-import shift.sextiarysector.block.BlockSSCrop;
-import shift.sextiarysector.block.BlockSSFarmland;
-import shift.sextiarysector.block.BlockWood;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import shift.sextiarysector.api.agriculture.TileFarmland;
+import shift.sextiarysector.block.BlockCrop;
 
 public class ItemWateringCan extends Item {
 
@@ -57,51 +57,30 @@ public class ItemWateringCan extends Item {
         int y = par5;
         int z = par6;
 
-        if (par3World.getBlock(x, y, z) != SSBlocks.farmland2 && par3World.getBlock(x, y, z) != SSBlocks.wood && !(par3World.getBlock(x, y, z) instanceof BlockSSCrop)) {
+        if (par3World.getBlock(x, y, z) != SSBlocks.farmland && par3World.getBlock(x, y, z) != SSBlocks.wood && !(par3World.getBlock(x, y, z) instanceof BlockCrop)) {
             return false;
         }
 
-        if (par3World.getBlock(x, y, z) instanceof BlockSSCrop) y--;
+        if (par3World.getBlock(x, y, z) instanceof BlockCrop) y--;
 
         Block b = par3World.getBlock(x, y, z);
 
-        if (b instanceof BlockSSFarmland) {
+        TileEntity t = par3World.getTileEntity(x, y, z);
 
-            boolean f = ((BlockSSFarmland) b).addWater(par3World, x, y, z);
+        if (!(t instanceof TileFarmland)) return false;
 
-            if (f) {
+        TileFarmland f = (TileFarmland) t;
 
-                if (par3World.isRemote) {
-                    this.spawnParticle(par3World, x, y + 1, z);
-                } else {
-                    par3World.playSoundAtEntity(par2EntityPlayer, "liquid.water", 1.0F, 1.0F);
-                    par1ItemStack.damageItem(1, par2EntityPlayer);
-                }
+        int add = f.addWater(10);
 
-                return true;
-
-            }
-
-        } else if (b instanceof BlockWood) {
-
-            boolean f = ((BlockWood) b).addWater(par3World, x, y, z);
-
-            if (f) {
-
-                if (par3World.isRemote) {
-                    this.spawnParticle(par3World, x, y + 1, z);
-                } else {
-                    par3World.playSoundAtEntity(par2EntityPlayer, "liquid.water", 1.0F, 1.0F);
-                    par1ItemStack.damageItem(1, par2EntityPlayer);
-                }
-
-                return true;
-
-            }
-
+        if (par3World.isRemote) {
+            this.spawnParticle(par3World, x, y + 1, z);
+        } else {
+            par3World.playSoundAtEntity(par2EntityPlayer, "liquid.water", 1.0F, 1.0F);
+            par1ItemStack.damageItem(1, par2EntityPlayer);
         }
 
-        return false;
+        return true;
 
     }
 
@@ -111,48 +90,48 @@ public class ItemWateringCan extends Item {
 
             if (this.itemRand.nextBoolean()) {
 
-                int i1 = 0;//Rand.nextInt(4);
-                float f = 0.0625F;
+                int i1 = Rand.nextInt(4);
+                float f = -0.0625F;
                 double d0 = (x + Rand.nextFloat());
                 double d1 = (y + Rand.nextFloat());
-                double d2 = (z + 0.2 + Rand.nextFloat());
+                double d2 = (z + Rand.nextFloat());
 
                 if (i1 == 0) {
-                    d0 = (double) ((float) x - f);
+                    d0 = x - f;
                 }
 
                 if (i1 == 1) {
-                    d0 = (double) ((float) (x + 1) + f);
+                    d0 = x + 1 + f;
                 }
 
                 if (i1 == 2) {
-                    d2 = (double) ((float) z - f);
+                    d2 = z - f;
                 }
 
                 if (i1 == 3) {
-                    d2 = (double) ((float) (z + 1) + f);
+                    d2 = z + 1 + f;
                 }
 
                 double d3 = 0.0D;
                 double d4 = 0.0D;
 
                 if (i1 == 0) {
-                    d3 = (double) (-f);
+                    d3 = (-f);
                 }
 
                 if (i1 == 1) {
-                    d3 = (double) f;
+                    d3 = f;
                 }
 
                 if (i1 == 2) {
-                    d4 = (double) (-f);
+                    d4 = (-f);
                 }
 
                 if (i1 == 3) {
-                    d4 = (double) f;
+                    d4 = f;
                 }
 
-                par3World.spawnParticle("splash", d0 + 0.5, d1, d2, d3, 0.1D, d4);
+                par3World.spawnParticle("splash", d0, d1, d2, d3, 0.1D, d4);
 
             }
 
@@ -208,6 +187,7 @@ public class ItemWateringCan extends Item {
         return true;
     }
 
+    @Override
     public Item setTextureName(String p_111206_1_) {
         this.iconString = "sextiarysector:tool/" + p_111206_1_;
         return this;
