@@ -34,4 +34,16 @@ public interface TileFarmland {
      */
     public int addWater(int amount);
 
+    /**
+     * 農地に撒かれている肥料を取得
+     * @return
+     */
+    public IFertilizer getFertilizer();
+
+    /**
+     * 肥料をセット
+     * @param fertilizer
+     */
+    public void setFertilizer(IFertilizer fertilizer);
+
 }

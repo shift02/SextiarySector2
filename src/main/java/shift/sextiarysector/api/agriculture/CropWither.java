@@ -29,7 +29,7 @@ public class CropWither implements ICrop {
     }
 
     @Override
-    public boolean click(TileCrop crop, EntityPlayer player) {
+    public boolean click(TileCrop crop, TileFarmland farmland, EntityPlayer player) {
         return false;
     }
 
