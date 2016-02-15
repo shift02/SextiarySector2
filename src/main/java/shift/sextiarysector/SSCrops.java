@@ -82,6 +82,7 @@ public class SSCrops {
         AgricultureAPI.registerFarmland(AgricultureAPI.FARMLAND, SSBlocks.farmland);
 
         //肥料の登録
+        //TODO
         normal = new FertilizerBase("normal", new ItemStack(Items.dye, 1, 15)).setIconName("sextiarysector:fertilizer/bone");
         AgricultureAPI.normal = normal;
         AgricultureAPI.registerFertilizer(normal);
@@ -113,12 +114,34 @@ public class SSCrops {
         SSItems.seeds.addSeed("iron_turnip", ironTurnip);
 
         //夏
+        onion = new CropBase("onion", SSItems.onion, new Season[] { Season.SUMMER }, new int[] { 2, 4, 8 });
+        cropManager.registerCrop(onion);
+        SSItems.seeds.addSeed("onion", onion);
+
+        tomato = new CropReHarvest("tomato", SSItems.onion, new Season[] { Season.SUMMER }, new int[] { 4, 10, 14, 2 });
+        cropManager.registerCrop(tomato);
+        SSItems.seeds.addSeed("tomato", tomato);
+
+        corn = new CropBase("corn", SSItems.corn, new Season[] { Season.SUMMER }, new int[] { 4, 8, 12 });
+        cropManager.registerCrop(corn);
+        SSItems.seeds.addSeed("corn", corn);
+
+        goldenCorn = new CropBase("golden_corn", SSItems.goldenCorn, new Season[] { Season.SUMMER }, new int[] { 4, 8, 12 });
+        cropManager.registerCrop(goldenCorn);
+        SSItems.seeds.addSeed("golden_corn", goldenCorn);
 
         //突然変異
 
         //普通の肥料
         for (Item item : boneMealCrops) {
-            mutationRegistry.registeMutation(new MutationNormal(new ItemStack(item, 1, 0), new ItemStack(item, 1, 1)));
+            mutationRegistry.registeMutation(new MutationNormal(new ItemStack(item, 1, 0), new ItemStack(item, 1, 1)) {
+
+                @Override
+                public int getProbability() {
+                    return 0;
+                }
+
+            });
         }
 
     }
