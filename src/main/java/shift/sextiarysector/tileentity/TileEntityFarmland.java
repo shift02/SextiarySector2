@@ -30,14 +30,61 @@ public class TileEntityFarmland extends TileEntity implements TileFarmland {
 
     public void updateServerEntity() {
 
-        if (this.getBlockMetadata() == 0 && water > 5) {
+        this.doSpreadingWater();
+
+        if (this.getBlockMetadata() == 0 && this.hasWater()) {
             this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 4);
             this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         }
 
-        if (this.getBlockMetadata() == 1 && water <= 5) {
+        if (this.getBlockMetadata() == 1 && !this.hasWater()) {
             this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 4);
             this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        }
+
+    }
+
+    public void doSpreadingWater() {
+
+        if (getWorldObj().getWorldTime() % 40 != 0) return;
+        if (this.water < 7) return;
+
+        if (getWorldObj().rand.nextBoolean()) {
+
+            for (int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
+
+                    if (i == 0 && j == 0) continue;
+                    if (this.water < 7) break;
+
+                    TileEntity t = getWorldObj().getTileEntity(xCoord + i, yCoord, zCoord + j);
+
+                    if (!(t instanceof TileFarmland)) continue;
+                    TileFarmland f = (TileFarmland) t;
+                    if (f.getWater() + 1 >= this.water) continue;
+                    if (f.addWater(1) > 0) this.water--;
+
+                }
+            }
+
+        } else {
+
+            for (int i = 1; i > -2; i--) {
+                for (int j = 1; j > -2; j--) {
+
+                    if (i == 0 && j == 0) continue;
+                    if (this.water < 7) break;
+
+                    TileEntity t = getWorldObj().getTileEntity(xCoord + i, yCoord, zCoord + j);
+
+                    if (!(t instanceof TileFarmland)) continue;
+                    TileFarmland f = (TileFarmland) t;
+                    if (f.getWater() + 1 >= this.water) continue;
+                    if (f.addWater(1) > 0) this.water--;
+
+                }
+            }
+
         }
 
     }
@@ -74,10 +121,17 @@ public class TileEntityFarmland extends TileEntity implements TileFarmland {
 
     }
 
+    @Override
+    public boolean hasWater() {
+        return water > 5;
+    }
+
+    @Override
     public IFertilizer getFertilizer() {
         return fertilizer;
     }
 
+    @Override
     public void setFertilizer(IFertilizer fertilizer) {
         this.fertilizer = fertilizer;
         this.getWorldObj().markBlockForUpdate(xCoord, yCoord, zCoord);
