@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -25,7 +26,7 @@ public class RendererFarmland implements ISimpleBlockRenderingHandler {
         //renderer.field_152631_f = true;
         //IIcon i = renderer.overrideBlockTexture;
         //renderer.renderStandardBlock(Blocks.stone, x, y, z);
-        renderer.renderStandardBlock(block, x, y, z);
+        renderer.renderStandardBlock(Blocks.farmland, x, y, z);
         //renderer.setOverrideBlockTexture(i);
 
         renderer.renderAllFaces = true;
