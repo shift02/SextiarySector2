@@ -133,6 +133,8 @@ tile.ss.suction_machine.name=Suction Machine
 tile.ss.creeper_chest.name=Creeper Monger Chest
 tile.ss.shipping_box.name=Shipping Box
 
+tile.ss.water_supply_machine.name=Water Supply Machine
+
 tile.ss.turnip.name=Turnip Seed
 tile.ss.cucumber.name=Cucumber Seed
 tile.ss.iron_turnip.name=Iron Turnip Seed

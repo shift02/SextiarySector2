@@ -62,6 +62,7 @@ import shift.sextiarysector.block.BlockSteamMotor;
 import shift.sextiarysector.block.BlockSuctionMachine;
 import shift.sextiarysector.block.BlockTank;
 import shift.sextiarysector.block.BlockTrap;
+import shift.sextiarysector.block.BlockWaterSupplyMachine;
 import shift.sextiarysector.block.BlockWindmill;
 import shift.sextiarysector.block.BlockWood;
 import shift.sextiarysector.block.BlockWoodHopper;
@@ -110,6 +111,7 @@ import shift.sextiarysector.tileentity.TileEntitySteamMotor;
 import shift.sextiarysector.tileentity.TileEntitySuctionMachine;
 import shift.sextiarysector.tileentity.TileEntityTank;
 import shift.sextiarysector.tileentity.TileEntityTrap;
+import shift.sextiarysector.tileentity.TileEntityWaterSupplyMachine;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
 import shift.sextiarysector.tileentity.TileEntityWood;
 
@@ -275,6 +277,9 @@ public class SSBlocks {
 
     public static Block farmland;
     public static Block crop;
+
+    //農業機械
+    public static Block waterSupplyMachine;
 
     public static Block turnip;
     public static Block cucumber;
@@ -674,6 +679,11 @@ public class SSBlocks {
         crop = new BlockCrop();
         GameRegistry.registerBlock(crop, "Crop");
         GameRegistry.registerTileEntity(TileEntityCrop.class, "SextiarySector:Crop");
+
+        //農業機械
+        waterSupplyMachine = new BlockWaterSupplyMachine().setBlockName("ss.water_supply_machine").setBlockTextureName("sextiarysector:machine/water_supply_machine").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
+        GameRegistry.registerBlock(waterSupplyMachine, "WaterSupplyMachine");
+        GameRegistry.registerTileEntity(TileEntityWaterSupplyMachine.class, "WaterSupplyMachine");
 
         //野菜
         GameRegistry.registerTileEntity(TileEntitySSCrop.class, "SSCrop");
