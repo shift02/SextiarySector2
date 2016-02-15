@@ -2,6 +2,7 @@ package shift.sextiarysector;
 
 import java.util.ArrayList;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,6 +14,7 @@ import shift.sextiarysector.agriculture.FarmlandRegistry;
 import shift.sextiarysector.agriculture.FertilizerManager;
 import shift.sextiarysector.agriculture.MutationRegistry;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
+import shift.sextiarysector.api.agriculture.CropVanilla;
 import shift.sextiarysector.api.agriculture.CropWither;
 import shift.sextiarysector.api.agriculture.FertilizerBase;
 import shift.sextiarysector.api.agriculture.ICrop;
@@ -34,6 +36,8 @@ public class SSCrops {
     public static ICrop wither;
 
     public static ICrop wheat;
+    public static ICrop carrot;
+    public static ICrop potato;
 
     public static CropBase turnip;
     public static CropBase cucumber;
@@ -95,8 +99,14 @@ public class SSCrops {
         cropManager.registerCrop(wither);
 
         //バニラ
-        //wheat = new CropVanilla("wheat", Items.wheat_seeds, Blocks.wheat, new Season[] { Season.AUTUMN, Season.WINTER, Season.SPRING }, new int[] { 1, 2, 3, 4, 5, 6, 7 });
-        //cropManager.registerCrop(wheat);
+        wheat = new CropVanilla("wheat", Items.wheat_seeds, Blocks.wheat, new Season[] { Season.AUTUMN, Season.WINTER, Season.SPRING }, new int[] { 8, 13, 25, 32, 40, 50, 62 });
+        cropManager.registerCrop(wheat);
+
+        carrot = new CropVanilla("carrot", Items.carrot, Blocks.carrots, new Season[] { Season.AUTUMN }, new int[] { 2, 4, 7 });
+        cropManager.registerCrop(carrot);
+
+        potato = new CropVanilla("potato", Items.potato, Blocks.potatoes, new Season[] { Season.SPRING }, new int[] { 2, 5, 7 });
+        cropManager.registerCrop(potato);
 
         //SS2
 
