@@ -32,7 +32,7 @@ public class BlockFarmland extends BlockAbstractFarmland {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
-        return Blocks.farmland.getIcon(p_149691_1_, p_149691_2_);
+        return Blocks.farmland.getIcon(1, p_149691_2_);
     }
 
     @Override

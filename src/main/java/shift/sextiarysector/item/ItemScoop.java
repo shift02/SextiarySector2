@@ -2,6 +2,10 @@ package shift.sextiarysector.item;
 
 import java.util.Set;
 
+import com.google.common.collect.Sets;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -12,11 +16,6 @@ import net.minecraft.world.World;
 import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
-
-import com.google.common.collect.Sets;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemScoop extends ItemTool {
 
@@ -39,44 +38,44 @@ public class ItemScoop extends ItemTool {
 
     @Override
     public boolean onItemUse(ItemStack p_77648_1_, EntityPlayer p_77648_2_, World p_77648_3_, int p_77648_4_, int p_77648_5_, int p_77648_6_, int p_77648_7_, float p_77648_8_, float p_77648_9_, float p_77648_10_) {
-        if (!p_77648_2_.canPlayerEdit(p_77648_4_, p_77648_5_, p_77648_6_, p_77648_7_, p_77648_1_)) {
-            return false;
-        } else {
 
-            Block block = p_77648_3_.getBlock(p_77648_4_, p_77648_5_, p_77648_6_);
+        if (!p_77648_2_.canPlayerEdit(p_77648_4_, p_77648_5_, p_77648_6_, p_77648_7_, p_77648_1_)) return false;
 
-            if (p_77648_7_ != 0 && p_77648_3_.getBlock(p_77648_4_, p_77648_5_ + 1, p_77648_6_).isAir(p_77648_3_, p_77648_4_, p_77648_5_ + 1, p_77648_6_) && (block == Blocks.grass || block == Blocks.dirt)) {
-                Block block1 = SSBlocks.hole;
-                p_77648_3_.playSoundEffect(p_77648_4_ + 0.5F, p_77648_5_ + 0.5F, p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F,
-                        block1.stepSound.getPitch() * 0.8F);
+        Block block = p_77648_3_.getBlock(p_77648_4_, p_77648_5_, p_77648_6_);
 
-                if (!p_77648_3_.isRemote) p_77648_2_.addStat(SSAchievement.hole, 1);
-                if (p_77648_3_.isRemote) {
-                    return true;
-                } else {
-                    p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_, block1);
-                    p_77648_1_.damageItem(1, p_77648_2_);
-                    return true;
-                }
-            } else if (p_77648_7_ != 0 && p_77648_3_.getBlock(p_77648_4_, p_77648_5_ + 1, p_77648_6_).isAir(p_77648_3_, p_77648_4_, p_77648_5_ + 1, p_77648_6_) && (block == Blocks.farmland)) {
+        if (p_77648_7_ != 0 && p_77648_3_.getBlock(p_77648_4_, p_77648_5_ + 1, p_77648_6_).isAir(p_77648_3_, p_77648_4_, p_77648_5_ + 1, p_77648_6_) && (block == Blocks.grass || block == Blocks.dirt)) {
+            Block block1 = SSBlocks.hole;
+            p_77648_3_.playSoundEffect(p_77648_4_ + 0.5F, p_77648_5_ + 0.5F, p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F,
+                    block1.stepSound.getPitch() * 0.8F);
 
-                Block block1 = SSBlocks.farmland2;
-                p_77648_3_.playSoundEffect(p_77648_4_ + 0.5F, p_77648_5_ + 0.5F, p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F,
-                        block1.stepSound.getPitch() * 0.8F);
-
-                if (!p_77648_3_.isRemote) p_77648_2_.addStat(SSAchievement.farmland, 1);
-                if (p_77648_3_.isRemote) {
-                    return true;
-                } else {
-                    p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_, block1);
-                    p_77648_1_.damageItem(1, p_77648_2_);
-                    return true;
-                }
-
+            if (!p_77648_3_.isRemote) p_77648_2_.addStat(SSAchievement.hole, 1);
+            if (p_77648_3_.isRemote) {
+                return true;
             } else {
-                return false;
+                p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_, block1);
+                p_77648_1_.damageItem(1, p_77648_2_);
+                return true;
             }
+
+        } else if (p_77648_7_ != 0 && p_77648_3_.getBlock(p_77648_4_, p_77648_5_ + 1, p_77648_6_).isAir(p_77648_3_, p_77648_4_, p_77648_5_ + 1, p_77648_6_) && (block == SSBlocks.farmland)) {
+
+            Block block1 = Blocks.farmland;
+            p_77648_3_.playSoundEffect(p_77648_4_ + 0.5F, p_77648_5_ + 0.5F, p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F,
+                    block1.stepSound.getPitch() * 0.8F);
+
+            //if (!p_77648_3_.isRemote) p_77648_2_.addStat(SSAchievement.farmland, 1);
+            if (p_77648_3_.isRemote) {
+                return true;
+            } else {
+                p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_, block1);
+                p_77648_1_.damageItem(1, p_77648_2_);
+                return true;
+            }
+
+        } else {
+            return false;
         }
+
     }
 
     @Override
