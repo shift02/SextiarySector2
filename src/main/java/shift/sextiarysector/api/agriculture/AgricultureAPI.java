@@ -1,6 +1,7 @@
 package shift.sextiarysector.api.agriculture;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 
 /**
  * 農業関係の処理にアクセスするできるクラス
@@ -61,6 +62,17 @@ public class AgricultureAPI {
      */
     public static void registerFertilizer(IFertilizer fertilizer) {
         fertilizerManager.registerFertilizer(fertilizer);
+    }
+
+    /**
+     * 突然変異後のアイテムの取得 <br>
+     * ICropのメソッド内で使用する
+     * @param fertilizer 肥料
+     * @param crop 変異前の作物
+     * @return 変異後の作物
+     */
+    public static ItemStack getMutationItem(IFertilizer fertilizer, ItemStack crop) {
+        return mutationRegistry.getMutationItem(fertilizer, crop);
     }
 
 }

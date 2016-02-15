@@ -21,6 +21,7 @@ import shift.sextiarysector.api.agriculture.CropRendererType;
 import shift.sextiarysector.api.agriculture.ICrop;
 import shift.sextiarysector.api.agriculture.TileFarmland;
 import shift.sextiarysector.tileentity.TileEntityCrop;
+import shift.sextiarysector.tileentity.TileEntityFarmland;
 
 public class BlockCrop extends BlockContainer {
 
@@ -36,9 +37,13 @@ public class BlockCrop extends BlockContainer {
 
         TileEntityCrop tileCrop = (TileEntityCrop) world.getTileEntity(x, y, z);
 
+        TileEntityFarmland tileFarmland = (TileEntityFarmland) world.getTileEntity(x, y - 1, z);
+
         if (tileCrop.getCrop() == null) return false;
 
-        return tileCrop.getCrop().click(tileCrop, par5EntityPlayer);
+        //作物のクリック処理を呼ぶ
+        return tileCrop.getCrop().click(tileCrop, tileFarmland, par5EntityPlayer);
+
     }
 
     @Override

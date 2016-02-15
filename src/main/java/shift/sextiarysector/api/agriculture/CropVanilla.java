@@ -48,7 +48,7 @@ public class CropVanilla implements ICrop {
     }
 
     @Override
-    public boolean click(TileCrop crop, EntityPlayer player) {
+    public boolean click(TileCrop crop, TileFarmland farmland, EntityPlayer player) {
 
         if (this.day[this.day.length - 1] >= crop.getDay()) return false;
 

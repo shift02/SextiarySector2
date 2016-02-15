@@ -14,11 +14,16 @@ import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
 import shift.sextiarysector.api.agriculture.CropRendererType;
 import shift.sextiarysector.api.agriculture.ICrop;
+import shift.sextiarysector.api.agriculture.IFertilizer;
 import shift.sextiarysector.api.agriculture.TileCrop;
 import shift.sextiarysector.api.agriculture.TileFarmland;
 import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.api.season.SeasonAPI;
 
+/**
+ * 作物クラス
+ * @author Shift02
+ */
 public class CropBase implements ICrop {
 
     public String name;
@@ -56,7 +61,7 @@ public class CropBase implements ICrop {
     }
 
     @Override
-    public boolean click(TileCrop crop, EntityPlayer player) {
+    public boolean click(TileCrop crop, TileFarmland farmland, EntityPlayer player) {
 
         if (this.day[this.day.length - 1] >= crop.getDay()) return false;
 
@@ -70,6 +75,17 @@ public class CropBase implements ICrop {
         w.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, SSBlocks.crop.stepSound.func_150496_b(), (SSBlocks.crop.stepSound.getVolume() + 1.0F) / 2.0F, SSBlocks.crop.stepSound.getPitch() * 0.8F);
 
         ItemStack cropItem = new ItemStack(this.crop);
+
+        //突然変異の処理
+        if (farmland.getFertilizer() != null) {
+
+            IFertilizer f = farmland.getFertilizer();
+
+            ItemStack after = AgricultureAPI.getMutationItem(f, cropItem);
+
+            if (after != null) cropItem = after;
+
+        }
 
         float var10 = w.rand.nextFloat() * 0.8F + 0.1F;
         float var11 = w.rand.nextFloat() * 0.8F + 0.1F;

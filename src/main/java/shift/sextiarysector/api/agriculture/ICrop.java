@@ -46,9 +46,10 @@ public interface ICrop {
      * プレイヤーに作物がクリックされた時に呼ばれる <br>
      * 収穫処理などを書く
      * @param crop
+     * @param farmland TODO
      * @param player
      */
-    boolean click(TileCrop crop, EntityPlayer player);
+    boolean click(TileCrop crop, TileFarmland farmland, EntityPlayer player);
 
     /**
      * 作物が引数の農地で育つことができるかを返す<br>
