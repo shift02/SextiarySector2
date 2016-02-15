@@ -48,6 +48,8 @@ public class RendererFarmland implements ISimpleBlockRenderingHandler {
         renderer.setRenderBounds(minx, (1.0f / 16.0f) * 14, minz, maxx, 1 - 0.01f, maxz);
         renderer.renderStandardBlock(block, x, y, z);
 
+        if (!(world.getTileEntity(x, y, z) instanceof TileEntityFarmland)) return false;
+
         TileEntityFarmland t = (TileEntityFarmland) world.getTileEntity(x, y, z);
 
         if (t != null && t.getFertilizer() != null) {
