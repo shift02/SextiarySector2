@@ -55,6 +55,8 @@ version = "2.4.4.b-1.7.10"//${project.minecraft.version}"
 group= "shift.SextiarySector2" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SextiarySector2"
 
+ext.libMCEconomy2 = "./lib/mceconomy2"
+
 minecraft {
     version = "1.7.10-10.13.4.1448-1.7.10"
     runDir = "eclipse"
@@ -76,6 +78,12 @@ configurations {
 sourceSets {
     main {
         compileClasspath += configurations.provided
+	java {
+		srcDir project.libMCEconomy2 + "/src/main/java"
+	}
+	resources {
+		srcDir project.libMCEconomy2 + "/src/main/resources"
+	}
     }
     test {
         compileClasspath += configurations.provided
