@@ -6,8 +6,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 
-public class FillBottleEvent  extends PlayerEvent
-{
+public class FillBottleEvent extends PlayerEvent {
 
     public final ItemStack current;
     public final World world;
@@ -15,8 +14,7 @@ public class FillBottleEvent  extends PlayerEvent
 
     public ItemStack result;
 
-    public FillBottleEvent(EntityPlayer player, ItemStack current, World world, MovingObjectPosition target)
-    {
+    public FillBottleEvent(EntityPlayer player, ItemStack current, World world, MovingObjectPosition target) {
         super(player);
         this.current = current;
         this.world = world;

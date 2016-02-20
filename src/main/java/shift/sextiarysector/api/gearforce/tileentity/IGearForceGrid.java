@@ -4,8 +4,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public interface IGearForceGrid {
 
-	boolean canIn(ForgeDirection from);
+    boolean canIn(ForgeDirection from);
 
-	boolean canOut(ForgeDirection from);
+    boolean canOut(ForgeDirection from);
 
 }

@@ -6,10 +6,10 @@ import shift.sextiarysector.api.SextiarySectorAPI;
 
 public class ItemFullBottle extends Item {
 
-	public ItemFullBottle() {
-		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
-		this.setContainerItem(Items.glass_bottle);
-		this.setMaxStackSize(1);
-	}
+    public ItemFullBottle() {
+        this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+        this.setContainerItem(Items.glass_bottle);
+        this.setMaxStackSize(1);
+    }
 
 }

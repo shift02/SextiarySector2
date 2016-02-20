@@ -133,6 +133,8 @@ tile.ss.suction_machine.name=Suction Machine
 tile.ss.creeper_chest.name=Creeper Monger Chest
 tile.ss.shipping_box.name=Shipping Box
 
+tile.ss.water_supply_machine.name=Water Supply Machine
+
 tile.ss.turnip.name=Turnip Seed
 tile.ss.cucumber.name=Cucumber Seed
 tile.ss.iron_turnip.name=Iron Turnip Seed
@@ -407,6 +409,7 @@ item.ss.takumi_tea_bottle.name=TAKUMI Tea Bottle
 
 item.ss.shift_hat.name=Shift's Hat
 item.ss.rucksack.name=Rucksack
+item.ss.quiver.name=Quiver
 item.ss.oxygen_tank.name=Oxygen Tank
 item.ss.gf_contact_lenses.name=GF Contact Lenses
 item.ss.water_contact_lenses.name=Water Contact Lenses
@@ -417,6 +420,10 @@ item.ss.defense_unit.name=Defense Unit
 item.ss.attack_rust_unit.name=Attack Rust Unit
 item.ss.defense_rust_unit.name=Defense Rust Unit
 item.ss.jump_unit.name=Jump Unit
+item.ss.dash_unit.name=Dash Unit
+item.ss.slowly_unit.name=Slowly Unit
+item.ss.pulling_unit.name=Pulling Unit
+item.ss.multi_schott_unit.name=Multi Schott Unit
 item.ss.bed_monster_unit.name=Bed Monster Unit
 item.ss.pickaxe_unit.name=Pickaxe Unit
 
@@ -429,6 +436,8 @@ item.ss.mp_ring.name=MP Ring
 item.ss.xp_ring.name=XP Ring
 
 
+item.ss.creeper_memory.name=Creeper Memory
+item.ss.skeleton_memory.name=Skeleton Memory
 
 item.ss.magic_contact_lenses.name=Magic Contact Lenses
 
@@ -482,6 +491,7 @@ gui.ss.shipping_box=Shipping Box
 
 
 gui.ss.rucksack=Rucksack
+gui.ss.quiver=Quiver
 
 gui.ss.steam_motor=Steam Motor
 
@@ -503,6 +513,7 @@ gui.ss.gf_tank_5=Orichalcum GF Tank
 
 #Shop
 shop.ss.creeper=Simple Creeper Shop
+shop.ss.skeleton=Weapon Skeleton Shop
 shop.ss.robot=Red Robot Shop
 
 #ToolTip
@@ -547,6 +558,7 @@ player.tab.equipment=Equipment
 player.tab.item.ss.craft_unit=Craft
 
 player.tab.item.ss.rucksack=Rucksack
+player.tab.item.ss.quiver=Quiver
 
 player.tab.item.ss.creeper_ring=Creeper Shop
 

@@ -5,11 +5,10 @@ import shift.sextiarysector.api.SextiarySectorAPI;
 
 public class ItemSSShears extends ItemShears {
 
-	public ItemSSShears(ToolMaterial m)
-	{
-		this.setMaxStackSize(1);
-		this.setMaxDamage(m.getMaxUses() - 12);
-		this.setCreativeTab(SextiarySectorAPI.TabSSCore);
-	}
+    public ItemSSShears(ToolMaterial m) {
+        this.setMaxStackSize(1);
+        this.setMaxDamage(m.getMaxUses() - 12);
+        this.setCreativeTab(SextiarySectorAPI.TabSSCore);
+    }
 
 }

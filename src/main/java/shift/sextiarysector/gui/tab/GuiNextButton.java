@@ -8,39 +8,34 @@ import net.minecraft.client.gui.GuiButton;
 
 import org.lwjgl.opengl.GL11;
 
-public class GuiNextButton extends GuiButton{
+public class GuiNextButton extends GuiButton {
 
-	private int cornerX;
-	private int cornerY;
-	private List buttonList;
+    private int cornerX;
+    private int cornerY;
+    private List buttonList;
 
-	public GuiNextButton(int p_i1021_1_, int p_i1021_2_, int p_i1021_3_,int p_i1021_4_, int p_i1021_5_, int x, int y, List buttonList) {
-		super(p_i1021_1_, p_i1021_2_, p_i1021_3_, p_i1021_4_, p_i1021_5_, ">");
-		this.cornerX = x;
-		this.cornerY = y;
-		this.buttonList = buttonList;
-	}
+    public GuiNextButton(int p_i1021_1_, int p_i1021_2_, int p_i1021_3_, int p_i1021_4_, int p_i1021_5_, int x, int y, List buttonList) {
+        super(p_i1021_1_, p_i1021_2_, p_i1021_3_, p_i1021_4_, p_i1021_5_, ">");
+        this.cornerX = x;
+        this.cornerY = y;
+        this.buttonList = buttonList;
+    }
 
-
-	@Override
-    public boolean mousePressed (Minecraft mc, int mouseX, int mouseY)
-    {
+    @Override
+    public boolean mousePressed(Minecraft mc, int mouseX, int mouseY) {
         boolean inWindow = this.enabled && this.visible && mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
 
-        if (inWindow && (TabManager.getSelectPage()<TabManager.getPageSize()))
-        {
-        	TabManager.setSelectPage(TabManager.getSelectPage()+1);
-        	TabManager.updateTabValues(cornerX, cornerY, buttonList, TabManager.getSelectedButton(),true);
+        if (inWindow && (TabManager.getSelectPage() < TabManager.getPageSize())) {
+            TabManager.setSelectPage(TabManager.getSelectPage() + 1);
+            TabManager.updateTabValues(cornerX, cornerY, buttonList, TabManager.getSelectedButton(), true);
         }
 
         return inWindow;
     }
 
-	@Override
-    public void drawButton (Minecraft mc, int mouseX, int mouseY)
-    {
-		if (this.visible)
-        {
+    @Override
+    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+        if (this.visible) {
             FontRenderer fontrenderer = mc.fontRenderer;
             mc.renderEngine.bindTexture(buttonTextures);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -56,16 +51,11 @@ public class GuiNextButton extends GuiButton{
             this.mouseDragged(mc, mouseX, mouseY);
             int l = 14737632;
 
-            if (packedFGColour != 0)
-            {
+            if (packedFGColour != 0) {
                 l = packedFGColour;
-            }
-            else if (!this.enabled)
-            {
+            } else if (!this.enabled) {
                 l = 10526880;
-            }
-            else if (this.field_146123_n)
-            {
+            } else if (this.field_146123_n) {
                 l = 16777120;
             }
 

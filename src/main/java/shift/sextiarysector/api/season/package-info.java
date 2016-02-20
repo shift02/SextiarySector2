@@ -2,4 +2,3 @@
 package shift.sextiarysector.api.season;
 
 import cpw.mods.fml.common.API;
-

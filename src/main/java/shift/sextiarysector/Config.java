@@ -1,94 +1,110 @@
 package shift.sextiarysector;
 
-import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.common.config.Configuration;
 
 public class Config {
 
-	//Potion
-	public static int burn;
-	public static int hotSprings;
+    //システム
+    public static boolean leaf;
 
-	//Biome
-	public static int magicDesert;
+    //Potion
+    public static int burn;
+    public static int hotSprings;
 
-	//World
-	public static boolean generationCopperOre;
-	public static boolean generationZincOre;
-	public static boolean generationSilverOre;
+    //Biome
+    public static int magicDesert;
 
-	//Player
-	public static boolean peacefulMoisture;
-	public static boolean peacefulStamina;
+    //World
+    public static boolean generationCopperOre;
+    public static boolean generationZincOre;
+    public static boolean generationSilverOre;
 
-	//Mod
-	public static boolean modDCsAppleMilk;
-	public static boolean modComputerCraft;
-	public static boolean modTHKaguya;
-	public static boolean modIC2;
-	public static boolean modTofu;
-	public static boolean modTcon;
-	public static boolean modCleaver;
-	public static boolean modFMP;
-	public static boolean modRF;
-	public static boolean modTC;
+    //Player
+    public static boolean peacefulMoisture;
+    public static boolean peacefulStamina;
 
-	public static void ConfigRead(FMLPreInitializationEvent event) {
+    //Renderer
+    public static boolean shaft;
 
-		Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
+    //Mod
+    public static boolean modDCsAppleMilk;
+    public static boolean modComputerCraft;
+    public static boolean modTHKaguya;
+    public static boolean modIC2;
+    public static boolean modTofu;
+    public static boolean modTcon;
+    public static boolean modCleaver;
+    public static boolean modFMP;
+    public static boolean modRF;
+    public static boolean modTC;
 
-		try {
+    public static void ConfigRead(FMLPreInitializationEvent event) {
 
-			cfg.load();
-			configForBiome(cfg);
-			configForWorld(cfg);
-			configForPotion(cfg);
+        Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
 
-			configForPlayer(cfg);
+        try {
 
-			configForPlugin(cfg);
+            cfg.load();
+            configForSystem(cfg);
+            configForBiome(cfg);
+            configForWorld(cfg);
+            configForPotion(cfg);
 
-		} catch (Exception e) {
-			//FMLLog.log(Level.SEVERE, "", e.getMessage());
-		} finally {
-			cfg.save();
-		}
+            configForPlayer(cfg);
+            configForRenderer(cfg);
 
-	}
+            configForPlugin(cfg);
 
-	public static void configForPotion(Configuration cfg) {
-		burn = cfg.getInt("BurnID", "potion", 25, 25, 255, "");
-		hotSprings = cfg.getInt("HotSpringsID", "potion", 26, 25, 255, "");
-	}
+        } catch (Exception e) {
+            //FMLLog.log(Level.SEVERE, "", e.getMessage());
+        } finally {
+            cfg.save();
+        }
 
-	public static void configForBiome(Configuration cfg) {
-		//magicDesert = cfg.getInt("MagicDesertID", "biome", 120, 0, 255, "");
-	}
+    }
 
-	public static void configForWorld(Configuration cfg) {
-		generationCopperOre = cfg.getBoolean("GenerationCopperOre", "world", true, "");
-		generationZincOre = cfg.getBoolean("GenerationZincOre", "world", true, "");
-		generationSilverOre = cfg.getBoolean("GenerationSilverOre", "world", true, "");
-	}
+    public static void configForSystem(Configuration cfg) {
+        leaf = cfg.getBoolean("DisappearLeaf", "general", true, "");
+    }
 
-	public static void configForPlayer(Configuration cfg) {
-		peacefulMoisture = cfg.getBoolean("PeacefulMoisture", "player", false, "");
-		peacefulStamina = cfg.getBoolean("PeacefulStamina", "player", false, "");
-	}
+    public static void configForPotion(Configuration cfg) {
+        burn = cfg.getInt("BurnID", "potion", 25, 25, 255, "");
+        hotSprings = cfg.getInt("HotSpringsID", "potion", 26, 25, 255, "");
+    }
 
-	public static void configForPlugin(Configuration cfg) {
+    public static void configForBiome(Configuration cfg) {
+        //magicDesert = cfg.getInt("MagicDesertID", "biome", 120, 0, 255, "");
+    }
 
-		modDCsAppleMilk = cfg.getBoolean("AppleMilk", "general", true, "");
-		modComputerCraft = cfg.getBoolean("ComputerCraft", "general", true, "");
-		modTHKaguya = cfg.getBoolean("THKaguya", "general", true, "");
-		modIC2 = cfg.getBoolean("IC2", "general", true, "");
-		modTofu = cfg.getBoolean("Tofu", "general", true, "");
-		modTcon = cfg.getBoolean("Tcon", "general", true, "");
-		modCleaver = cfg.getBoolean("Cleaver", "general", true, "");
-		modFMP = cfg.getBoolean("ForgeMultipart", "general", true, "");
-		modRF = cfg.getBoolean("RF", "general", true, "");
-		modTC = cfg.getBoolean("Thaumcraft", "general", true, "");
+    public static void configForWorld(Configuration cfg) {
+        generationCopperOre = cfg.getBoolean("GenerationCopperOre", "world", true, "");
+        generationZincOre = cfg.getBoolean("GenerationZincOre", "world", true, "");
+        generationSilverOre = cfg.getBoolean("GenerationSilverOre", "world", true, "");
+    }
 
-	}
+    public static void configForPlayer(Configuration cfg) {
+        peacefulMoisture = cfg.getBoolean("PeacefulMoisture", "player", false, "");
+        peacefulStamina = cfg.getBoolean("PeacefulStamina", "player", false, "");
+    }
+
+    public static void configForRenderer(Configuration cfg) {
+        shaft = cfg.getBoolean("ShaftParticle", "renderer", true, "");
+    }
+
+    public static void configForPlugin(Configuration cfg) {
+
+        modDCsAppleMilk = cfg.getBoolean("AppleMilk", "general", true, "");
+        modComputerCraft = cfg.getBoolean("ComputerCraft", "general", true, "");
+        modTHKaguya = cfg.getBoolean("THKaguya", "general", true, "");
+        modIC2 = cfg.getBoolean("IC2", "general", true, "");
+        modTofu = cfg.getBoolean("Tofu", "general", true, "");
+        modTcon = cfg.getBoolean("Tcon", "general", true, "");
+        modCleaver = cfg.getBoolean("Cleaver", "general", true, "");
+        modFMP = cfg.getBoolean("ForgeMultipart", "general", true, "");
+        modRF = cfg.getBoolean("RF", "general", true, "");
+        modTC = cfg.getBoolean("Thaumcraft", "general", true, "");
+
+    }
 
 }

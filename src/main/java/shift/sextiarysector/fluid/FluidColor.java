@@ -6,18 +6,17 @@ import shift.sextiarysector.api.EnumColor;
 
 public class FluidColor extends SSFluid {
 
-	public EnumColor color;
+    public EnumColor color;
 
-	public FluidColor(String fluidName, EnumColor color) {
-		super(fluidName, 0, 0, 0, 0);
-		this.color = color;
-		FluidRegistry.registerFluid(this);
-	}
+    public FluidColor(String fluidName, EnumColor color) {
+        super(fluidName, 0, 0, 0, 0);
+        this.color = color;
+        FluidRegistry.registerFluid(this);
+    }
 
-	@Override
-	public int getColor()
-	{
-		return color.color;
-	}
+    @Override
+    public int getColor() {
+        return color.color;
+    }
 
 }

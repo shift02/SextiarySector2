@@ -11,46 +11,46 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class ModuleSandpit implements IModule {
 
-	private static ModuleSandpit instance;
+    private static ModuleSandpit instance;
 
-	private ModuleSandpit() {
-	}
+    private ModuleSandpit() {
+    }
 
-	public static ModuleSandpit getInstance() {
-		if (instance == null) {
-			instance = new ModuleSandpit();
-		}
-		return instance;
-	}
+    public static ModuleSandpit getInstance() {
+        if (instance == null) {
+            instance = new ModuleSandpit();
+        }
+        return instance;
+    }
 
-	@Override
-	public void preInit(FMLPreInitializationEvent event) {
+    @Override
+    public void preInit(FMLPreInitializationEvent event) {
 
-	}
+    }
 
-	@Override
-	public void load(FMLInitializationEvent event) {
+    @Override
+    public void load(FMLInitializationEvent event) {
 
-	}
+    }
 
-	@Override
-	public void postInit(FMLPostInitializationEvent event) {
+    @Override
+    public void postInit(FMLPostInitializationEvent event) {
 
-		BlockSandpit.addShell(new ItemStack(Items.stick), 45);
+        BlockSandpit.addShell(new ItemStack(Items.stick), 45);
 
-		BlockSandpit.addShell(new ItemStack(Items.glass_bottle), 14);
+        BlockSandpit.addShell(new ItemStack(Items.glass_bottle), 14);
 
-		BlockSandpit.addShell(new ShellEntry(new ItemStack(Items.book), 10).setEnchant());
+        BlockSandpit.addShell(new ShellEntry(new ItemStack(Items.book), 10).setEnchant());
 
-		BlockSandpit.addShell(new ItemStack(SSItems.laver), 26);
+        BlockSandpit.addShell(new ItemStack(SSItems.laver), 26);
 
-		BlockSandpit.addShell(new ItemStack(Items.redstone), 8);
-		BlockSandpit.addShell(new ItemStack(SSItems.blueStoneDust), 8);
-		BlockSandpit.addShell(new ItemStack(SSItems.yellowStoneDust), 8);
+        BlockSandpit.addShell(new ItemStack(Items.redstone), 8);
+        BlockSandpit.addShell(new ItemStack(SSItems.blueStoneDust), 8);
+        BlockSandpit.addShell(new ItemStack(SSItems.yellowStoneDust), 8);
 
-		BlockSandpit.addShell(new ItemStack(SSItems.mithrilDust), 3);
-		BlockSandpit.addShell(new ItemStack(SSItems.orichalcumGem), 1);
+        BlockSandpit.addShell(new ItemStack(SSItems.mithrilDust), 3);
+        BlockSandpit.addShell(new ItemStack(SSItems.orichalcumGem), 1);
 
-	}
+    }
 
 }

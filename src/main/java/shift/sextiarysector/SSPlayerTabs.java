@@ -10,29 +10,34 @@ import shift.sextiarysector.item.ItemShopRing;
 
 public class SSPlayerTabs {
 
-	public static AbstractTab ss;
+    public static AbstractTab ss;
 
-	public static AbstractTab craft;
+    public static AbstractTab craft;
 
-	public static AbstractTab rucksack;
+    public static AbstractTab rucksack;
 
-	public static AbstractTab creeperShop;
+    public static AbstractTab quiver;
 
-	public static void initRecipes() {
+    public static AbstractTab creeperShop;
 
-		ss = new InventoryTabSS();
-		TabManager.registerTab(ss);
+    public static void initRecipes() {
 
-		craft = new InventoryTabEquipment(EquipmentType.Unit, new ItemStack(SSItems.craftUnit));
-		TabManager.registerTab(craft);
+        ss = new InventoryTabSS();
+        TabManager.registerTab(ss);
 
-		rucksack = new InventoryTabEquipment(EquipmentType.Bag, new ItemStack(SSItems.rucksack));
-		TabManager.registerTab(rucksack);
+        craft = new InventoryTabEquipment(EquipmentType.Unit, new ItemStack(SSItems.craftUnit));
+        TabManager.registerTab(craft);
 
-		creeperShop = new InventoryTabEquipment(EquipmentType.Other, new ItemStack(SSItems.creeperRing));
-		TabManager.registerTab(creeperShop);
-		((ItemShopRing) SSItems.creeperRing).setTab(creeperShop);
+        rucksack = new InventoryTabEquipment(EquipmentType.Bag, new ItemStack(SSItems.rucksack));
+        TabManager.registerTab(rucksack);
 
-	}
+        quiver = new InventoryTabEquipment(EquipmentType.Bag, new ItemStack(SSItems.quiver));
+        TabManager.registerTab(quiver);
+
+        creeperShop = new InventoryTabEquipment(EquipmentType.Other, new ItemStack(SSItems.creeperRing));
+        TabManager.registerTab(creeperShop);
+        ((ItemShopRing) SSItems.creeperRing).setTab(creeperShop);
+
+    }
 
 }

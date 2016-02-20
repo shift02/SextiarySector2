@@ -23,157 +23,153 @@ import dan200.computercraft.api.turtle.TurtleSide;
 import dan200.computercraft.api.turtle.TurtleUpgradeType;
 import dan200.computercraft.api.turtle.TurtleVerb;
 
-public class PluginComputerCraft  implements IPlugin{
+public class PluginComputerCraft implements IPlugin {
 
-	@Override
-	public void prePlugin(FMLPreInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
+    @Override
+    public void prePlugin(FMLPreInitializationEvent event) {
+        // TODO 自動生成されたメソッド・スタブ
 
-	}
+    }
 
-	@Override
-	public void initPlugin(FMLInitializationEvent event) {
+    @Override
+    public void initPlugin(FMLInitializationEvent event) {
 
-		ComputerCraftAPI.registerTurtleUpgrade(new TurtleGearTool(420,new ItemStack(SSItems.woodGear,1)));
+        ComputerCraftAPI.registerTurtleUpgrade(new TurtleGearTool(420, new ItemStack(SSItems.woodGear, 1)));
 
-	}
+    }
 
-	@Override
-	public void postPlugin(FMLPostInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
+    @Override
+    public void postPlugin(FMLPostInitializationEvent event) {
+        // TODO 自動生成されたメソッド・スタブ
 
-	}
+    }
 
-	public static class TurtleGearTool implements ITurtleUpgrade{
+    public static class TurtleGearTool implements ITurtleUpgrade {
 
-		public int id;
-		public ItemStack toolItem;
+        public int id;
+        public ItemStack toolItem;
 
-		public TurtleGearTool(){
+        public TurtleGearTool() {
 
-		}
+        }
 
-		public TurtleGearTool(int id,ItemStack item){
+        public TurtleGearTool(int id, ItemStack item) {
 
-			this.id = id;
-			this.toolItem = item;
+            this.id = id;
+            this.toolItem = item;
 
-		}
+        }
 
-		@Override
-		public int getUpgradeID() {
-			return this.id;
-		}
+        @Override
+        public int getUpgradeID() {
+            return this.id;
+        }
 
-		@Override
-		public String getUnlocalisedAdjective() {
-			return toolItem.getUnlocalizedName()+".name";
-		}
+        @Override
+        public String getUnlocalisedAdjective() {
+            return toolItem.getUnlocalizedName() + ".name";
+        }
 
-		@Override
-		public TurtleUpgradeType getType() {
-			return TurtleUpgradeType.Tool;
-		}
+        @Override
+        public TurtleUpgradeType getType() {
+            return TurtleUpgradeType.Tool;
+        }
 
-		@Override
-		public ItemStack getCraftingItem() {
-			return this.toolItem;
-		}
+        @Override
+        public ItemStack getCraftingItem() {
+            return this.toolItem;
+        }
 
-		@Override
-		public IPeripheral createPeripheral(ITurtleAccess turtle,TurtleSide side) {
-			return null;
-		}
+        @Override
+        public IPeripheral createPeripheral(ITurtleAccess turtle, TurtleSide side) {
+            return null;
+        }
 
-		@Override
-		public TurtleCommandResult useTool(ITurtleAccess turtle,TurtleSide side, TurtleVerb verb, int direction) {
+        @Override
+        public TurtleCommandResult useTool(ITurtleAccess turtle, TurtleSide side, TurtleVerb verb, int direction) {
 
-			World world = turtle.getWorld();
-			ChunkCoordinates position = turtle.getPosition();
+            World world = turtle.getWorld();
+            ChunkCoordinates position = turtle.getPosition();
 
-			if (position == null)
-			{
-				return TurtleCommandResult.failure();
-			}
+            if (position == null) {
+                return TurtleCommandResult.failure();
+            }
 
-			int newX = (int)position.posX + Facing.offsetsXForSide[direction];
-			int newY = (int)position.posY + Facing.offsetsYForSide[direction];
-			int newZ = (int)position.posZ + Facing.offsetsZForSide[direction];
+            int newX = (int) position.posX + Facing.offsetsXForSide[direction];
+            int newY = (int) position.posY + Facing.offsetsYForSide[direction];
+            int newZ = (int) position.posZ + Facing.offsetsZForSide[direction];
 
-			if ( (newY < 0) || (newY >= world.getHeight()) )
-			{
-				return TurtleCommandResult.failure();
-			}
+            if ((newY < 0) || (newY >= world.getHeight())) {
+                return TurtleCommandResult.failure();
+            }
 
-			TileEntity t = world.getTileEntity(newX, newY, newZ);
-			if(t instanceof IGearForceHandler){
+            TileEntity t = world.getTileEntity(newX, newY, newZ);
+            if (t instanceof IGearForceHandler) {
 
-				if(verb==TurtleVerb.Attack){
-					return this.addEnergy(turtle, (IGearForceHandler) t,ForgeDirection.getOrientation(direction) );
-				}else{
-					return this.getEnergy(turtle, (IGearForceHandler) t, ForgeDirection.getOrientation(direction) );
-				}
+                if (verb == TurtleVerb.Attack) {
+                    return this.addEnergy(turtle, (IGearForceHandler) t, ForgeDirection.getOrientation(direction));
+                } else {
+                    return this.getEnergy(turtle, (IGearForceHandler) t, ForgeDirection.getOrientation(direction));
+                }
 
-			}
+            }
 
-			return TurtleCommandResult.failure();
-		}
+            return TurtleCommandResult.failure();
+        }
 
-		private TurtleCommandResult addEnergy(ITurtleAccess turtle,IGearForceHandler h,ForgeDirection direction){
+        private TurtleCommandResult addEnergy(ITurtleAccess turtle, IGearForceHandler h, ForgeDirection direction) {
 
-			if(turtle.getFuelLevel()>0){
+            if (turtle.getFuelLevel() > 0) {
 
-				if(h.addEnergy(direction.getOpposite(), 1, 100, true)>0){
-					if(turtle.consumeFuel(10)){
-						h.addEnergy(direction.getOpposite(), 1, 100, false);
-						return TurtleCommandResult.success();
-					}
-				}
+                if (h.addEnergy(direction.getOpposite(), 1, 100, true) > 0) {
+                    if (turtle.consumeFuel(10)) {
+                        h.addEnergy(direction.getOpposite(), 1, 100, false);
+                        return TurtleCommandResult.success();
+                    }
+                }
 
-			}
-			return TurtleCommandResult.failure();
+            }
+            return TurtleCommandResult.failure();
 
-		}
+        }
 
+        private TurtleCommandResult getEnergy(ITurtleAccess turtle, IGearForceHandler h, ForgeDirection direction) {
 
-		private TurtleCommandResult getEnergy(ITurtleAccess turtle,IGearForceHandler h,ForgeDirection direction){
+            int i = h.drawEnergy(direction.getOpposite(), 1, 100, true) / 10;
+            if (i > 0) {
 
-			int i = h.drawEnergy(direction.getOpposite(), 1, 100, true)/10;
-			if(i>0){
+                turtle.addFuel(i);
+                h.drawEnergy(direction.getOpposite(), 1, i * 10, false);
+                return TurtleCommandResult.success();
 
-				turtle.addFuel(i);
-				h.drawEnergy(direction.getOpposite(), 1, i*10, false);
-				return TurtleCommandResult.success();
+            }
 
-			}
+            return TurtleCommandResult.failure();
 
-			return TurtleCommandResult.failure();
+        }
 
-		}
+        @Override
+        public IIcon getIcon(ITurtleAccess turtle, TurtleSide side) {
+            return toolItem.getIconIndex();
+        }
 
-		@Override
-		public IIcon getIcon(ITurtleAccess turtle, TurtleSide side) {
-			return toolItem.getIconIndex();
-		}
+        @Override
+        public void update(ITurtleAccess turtle, TurtleSide side) {
 
-		@Override
-		public void update(ITurtleAccess turtle, TurtleSide side) {
+        }
 
-		}
+    }
 
-	}
+    @Override
+    public String getModName() {
+        return "ComputerCraft";
+    }
 
-	@Override
-	public String getModName() {
-		return "ComputerCraft";
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void preClientPlugin(FMLPreInitializationEvent event) {
+        // TODO 自動生成されたメソッド・スタブ
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void preClientPlugin(FMLPreInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
+    }
 
 }

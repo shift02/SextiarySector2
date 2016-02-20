@@ -20,123 +20,123 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
  * @see LoadingCallback
  * @author Shift02
  */
-public class ModuleChunkLoader  implements IModule ,LoadingCallback{
+public class ModuleChunkLoader implements IModule, LoadingCallback {
 
-	private static ModuleChunkLoader instance = new ModuleChunkLoader();
+    private static ModuleChunkLoader instance = new ModuleChunkLoader();
 
-	protected static final HashMap<List<Integer>, Ticket> ticketList = new HashMap<List<Integer>, Ticket>();
+    protected static final HashMap<List<Integer>, Ticket> ticketList = new HashMap<List<Integer>, Ticket>();
 
-	private ModuleChunkLoader() {
-	}
+    private ModuleChunkLoader() {
+    }
 
-	public static ModuleChunkLoader getInstance() {
-		if(instance==null){
-			instance = new ModuleChunkLoader();
-		}
-		return instance;
-	}
+    public static ModuleChunkLoader getInstance() {
+        if (instance == null) {
+            instance = new ModuleChunkLoader();
+        }
+        return instance;
+    }
 
-	@Override
-	public void preInit(FMLPreInitializationEvent event) {
+    @Override
+    public void preInit(FMLPreInitializationEvent event) {
 
-		ForgeChunkManager.setForcedChunkLoadingCallback(SextiarySector.instance, instance);
+        ForgeChunkManager.setForcedChunkLoadingCallback(SextiarySector.instance, instance);
 
-	}
+    }
 
-	@Override
-	public void load(FMLInitializationEvent event) {
-	}
+    @Override
+    public void load(FMLInitializationEvent event) {
+    }
 
-	@Override
-	public void postInit(FMLPostInitializationEvent event) {
-	}
+    @Override
+    public void postInit(FMLPostInitializationEvent event) {
+    }
 
-	/** 指定した座礁のブロックをChunkLoaderとして起動する */
-	public static boolean setBlockTicket(World world, int x, int y, int z){
+    /** 指定した座礁のブロックをChunkLoaderとして起動する */
+    public static boolean setBlockTicket(World world, int x, int y, int z) {
 
-		Ticket t = ForgeChunkManager.requestTicket(SextiarySector.instance, world, Type.NORMAL);
+        Ticket t = ForgeChunkManager.requestTicket(SextiarySector.instance, world, Type.NORMAL);
 
-		if(t==null)return false;
+        if (t == null) return false;
 
-		setBlockType(t);
-		setBlock(t, x, y, z);
-		ticketList.put(Arrays.asList(x, y, z), t);
-		ForgeChunkManager.forceChunk(t, world.getChunkFromBlockCoords(x, z).getChunkCoordIntPair());
-		return true;
-	}
+        setBlockType(t);
+        setBlock(t, x, y, z);
+        ticketList.put(Arrays.asList(x, y, z), t);
+        ForgeChunkManager.forceChunk(t, world.getChunkFromBlockCoords(x, z).getChunkCoordIntPair());
+        return true;
+    }
 
-	/**指定した座礁のChunkLoaderを停止する*/
-	public static void deleteBlockTicket(World world, int x, int y, int z){
+    /**指定した座礁のChunkLoaderを停止する*/
+    public static void deleteBlockTicket(World world, int x, int y, int z) {
 
-		if(ticketList.containsKey(Arrays.asList(x, y, z))){
+        if (ticketList.containsKey(Arrays.asList(x, y, z))) {
 
-			if(!ForgeChunkManager.getPersistentChunksFor(ticketList.get(Arrays.asList(x, y, z)).world).isEmpty()){
-			ForgeChunkManager.unforceChunk(ticketList.get(Arrays.asList(x, y, z)), world.getChunkFromBlockCoords(x, z).getChunkCoordIntPair());
-			}
+            if (!ForgeChunkManager.getPersistentChunksFor(ticketList.get(Arrays.asList(x, y, z)).world).isEmpty()) {
+                ForgeChunkManager.unforceChunk(ticketList.get(Arrays.asList(x, y, z)), world.getChunkFromBlockCoords(x, z).getChunkCoordIntPair());
+            }
 
-			ticketList.remove(Arrays.asList(x, y, z));
+            ticketList.remove(Arrays.asList(x, y, z));
 
-		}
+        }
 
-	}
+    }
 
-	@Override
-	public void ticketsLoaded(List<Ticket> tickets, World world) {
+    @Override
+    public void ticketsLoaded(List<Ticket> tickets, World world) {
 
-		for(Ticket t : tickets){
+        for (Ticket t : tickets) {
 
-			if(this.isBlockTicket(t)){
+            if (this.isBlockTicket(t)) {
 
-				int x = t.getModData().getInteger("x");
-				int y = t.getModData().getInteger("y");
-				int z = t.getModData().getInteger("z");
+                int x = t.getModData().getInteger("x");
+                int y = t.getModData().getInteger("y");
+                int z = t.getModData().getInteger("z");
 
-				if(this.getBlock(t, world) instanceof IChunkLoaderBlock){
+                if (this.getBlock(t, world) instanceof IChunkLoaderBlock) {
 
-					if(((IChunkLoaderBlock) this.getBlock(t, world)).canLoad(world, x, y, z)){
-						setBlockTicket(world, x, y, z);
-					}else{
-						deleteBlockTicket(world, x, y, z);
-					}
+                    if (((IChunkLoaderBlock) this.getBlock(t, world)).canLoad(world, x, y, z)) {
+                        setBlockTicket(world, x, y, z);
+                    } else {
+                        deleteBlockTicket(world, x, y, z);
+                    }
 
-				}else{
-					deleteBlockTicket(world, x, y, z);
-				}
+                } else {
+                    deleteBlockTicket(world, x, y, z);
+                }
 
-			}
+            }
 
-		}
+        }
 
-	}
+    }
 
-	public static void setBlockType(Ticket ticket){
-		ticket.getModData().setString("type", "block");
-	}
+    public static void setBlockType(Ticket ticket) {
+        ticket.getModData().setString("type", "block");
+    }
 
-	public boolean isBlockTicket(Ticket ticket){
-		return ticket.getModData().getString("type").equals("block");
-	}
+    public boolean isBlockTicket(Ticket ticket) {
+        return ticket.getModData().getString("type").equals("block");
+    }
 
-	public static void setBlock(Ticket ticket, int x, int y, int z){
+    public static void setBlock(Ticket ticket, int x, int y, int z) {
 
-		ticket.getModData().setInteger("x", x);
-		ticket.getModData().setInteger("y", y);
-		ticket.getModData().setInteger("z", z);
+        ticket.getModData().setInteger("x", x);
+        ticket.getModData().setInteger("y", y);
+        ticket.getModData().setInteger("z", z);
 
-	}
+    }
 
-	public Block getBlock(Ticket ticket,World world){
-		return world.getBlock(ticket.getModData().getInteger("x"), ticket.getModData().getInteger("y"), ticket.getModData().getInteger("z"));
-	}
+    public Block getBlock(Ticket ticket, World world) {
+        return world.getBlock(ticket.getModData().getInteger("x"), ticket.getModData().getInteger("y"), ticket.getModData().getInteger("z"));
+    }
 
-	/**
-	 * ChunkLoaderに実装するinterface<br>
-	 * worldがロードされた時に呼ばれる。trueを返すとChunkLoaderが始まる。
-	 * */
-	public interface IChunkLoaderBlock{
+    /**
+     * ChunkLoaderに実装するinterface<br>
+     * worldがロードされた時に呼ばれる。trueを返すとChunkLoaderが始まる。
+     * */
+    public interface IChunkLoaderBlock {
 
-		public boolean canLoad(World world,int x, int y, int z);
+        public boolean canLoad(World world, int x, int y, int z);
 
-	}
+    }
 
 }

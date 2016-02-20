@@ -6,23 +6,23 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class ModuleColor implements IModule {
 
-	@Override
-	public void preInit(FMLPreInitializationEvent event) {
+    @Override
+    public void preInit(FMLPreInitializationEvent event) {
 
-	}
+    }
 
-	@Override
-	public void load(FMLInitializationEvent event) {
+    @Override
+    public void load(FMLInitializationEvent event) {
 
-	}
+    }
 
-	@Override
-	public void postInit(FMLPostInitializationEvent event) {
+    @Override
+    public void postInit(FMLPostInitializationEvent event) {
 
-	}
+    }
 
-	//public static float[] getGLColor3f(EnumColor color) {
-	//	return EntitySheep.fleeceColorTable[15 - color.ordinal()];
-	//}
+    //public static float[] getGLColor3f(EnumColor color) {
+    //	return EntitySheep.fleeceColorTable[15 - color.ordinal()];
+    //}
 
 }

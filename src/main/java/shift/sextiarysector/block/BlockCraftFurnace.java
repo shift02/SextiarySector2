@@ -23,9 +23,9 @@ import shift.sextiarysector.tileentity.TileEntityCraftFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockCraftFurnace extends BlockDirection{
+public class BlockCraftFurnace extends BlockDirection {
 
-	private final Random furnaceRand = new Random();
+    private final Random furnaceRand = new Random();
 
     private static boolean keepFurnaceInventory;
 
@@ -36,57 +36,51 @@ public class BlockCraftFurnace extends BlockDirection{
 
     private int GUIID;
 
-	public BlockCraftFurnace() {
-		super(Material.rock);
-		this.setHardness(1.0F);
-	}
-
-	public int getLightValue(IBlockAccess world, int x, int y, int z)
-    {
-		TileEntityCraftFurnace tileentityfurnace = (TileEntityCraftFurnace)world.getTileEntity(x, y, z);
-		if(tileentityfurnace.isFuel() || tileentityfurnace.isLarge())return 15;
-		return 0;
+    public BlockCraftFurnace() {
+        super(Material.rock);
+        this.setHardness(1.0F);
     }
 
-	/*
-	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
-	{
+    public int getLightValue(IBlockAccess world, int x, int y, int z) {
+        TileEntityCraftFurnace tileentityfurnace = (TileEntityCraftFurnace) world.getTileEntity(x, y, z);
+        if (tileentityfurnace.isFuel() || tileentityfurnace.isLarge()) return 15;
+        return 0;
+    }
 
-		this.setBlockBounds(-1, -1, -1, 2, 2, 2);
-	}
-
-	//当たり判定。サボテンやソウルサンドを参考にすると良い。ココの設定をすると、onEntityCollidedWithBlockが呼ばれるようになる
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
-	{
-		return AxisAlignedBB.getBoundingBox(par2-1, par3-1, par4-1, par2+2, par3+2, par4+2);
-	}
-
-	//ブロックに視点を合わせた時に出てくる黒い線のアレ
-	@Override
-	@SideOnly(Side.CLIENT)
-	public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
-	{
-		this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
-		return AxisAlignedBB.getBoundingBox(par2-1, par3-1, par4-1, par2+2, par3+2, par4+2);
-	}*/
-
-	@Override
-	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+    /*
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
-        if (par1World.isRemote)
-        {
+    
+    	this.setBlockBounds(-1, -1, -1, 2, 2, 2);
+    }
+    
+    //当たり判定。サボテンやソウルサンドを参考にすると良い。ココの設定をすると、onEntityCollidedWithBlockが呼ばれるようになる
+    @Override
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+    {
+    	return AxisAlignedBB.getBoundingBox(par2-1, par3-1, par4-1, par2+2, par3+2, par4+2);
+    }
+    
+    //ブロックに視点を合わせた時に出てくる黒い線のアレ
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+    {
+    	this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
+    	return AxisAlignedBB.getBoundingBox(par2-1, par3-1, par4-1, par2+2, par3+2, par4+2);
+    }*/
+
+    @Override
+    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+        if (par1World.isRemote) {
             return true;
-        }
-        else
-        {
-        	TileEntityCraftFurnace tileentityfurnace = (TileEntityCraftFurnace)par1World.getTileEntity(par2, par3, par4);
+        } else {
+            TileEntityCraftFurnace tileentityfurnace = (TileEntityCraftFurnace) par1World.getTileEntity(par2, par3, par4);
 
-            if (tileentityfurnace != null)
-            {
+            if (tileentityfurnace != null) {
 
-            	if(!tileentityfurnace.isLarge())return true;
+                if (!tileentityfurnace.isLarge()) return true;
 
                 par5EntityPlayer.openGui(SextiarySector.instance, 5, par1World, par2, par3, par4);
             }
@@ -99,8 +93,7 @@ public class BlockCraftFurnace extends BlockDirection{
      * Called whenever the block is added into the world. Args: world, x, y, z
      */
     @Override
-	public void onBlockAdded(World par1World, int par2, int par3, int par4)
-    {
+    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         super.onBlockAdded(par1World, par2, par3, par4);
         this.setDefaultDirection(par1World, par2, par3, par4);
     }
@@ -108,37 +101,30 @@ public class BlockCraftFurnace extends BlockDirection{
     /**
      * set a blocks direction
      */
-    private void setDefaultDirection(World par1World, int par2, int par3, int par4)
-    {
-        if (!par1World.isRemote)
-        {
+    private void setDefaultDirection(World par1World, int par2, int par3, int par4) {
+        if (!par1World.isRemote) {
             Block block = par1World.getBlock(par2, par3, par4 - 1);
             Block block1 = par1World.getBlock(par2, par3, par4 + 1);
             Block block2 = par1World.getBlock(par2 - 1, par3, par4);
             Block block3 = par1World.getBlock(par2 + 1, par3, par4);
 
-            TileEntityCraftFurnace tileEntity = (TileEntityCraftFurnace)par1World.getTileEntity(par2, par3, par4);
-
+            TileEntityCraftFurnace tileEntity = (TileEntityCraftFurnace) par1World.getTileEntity(par2, par3, par4);
 
             byte b0 = 3;
 
-            if (block.func_149730_j() && !block1.func_149730_j())
-            {
+            if (block.func_149730_j() && !block1.func_149730_j()) {
                 b0 = 3;
             }
 
-            if (block1.func_149730_j() && !block.func_149730_j())
-            {
+            if (block1.func_149730_j() && !block.func_149730_j()) {
                 b0 = 2;
             }
 
-            if (block2.func_149730_j() && !block3.func_149730_j())
-            {
+            if (block2.func_149730_j() && !block3.func_149730_j()) {
                 b0 = 5;
             }
 
-            if (block3.func_149730_j() && !block2.func_149730_j())
-            {
+            if (block3.func_149730_j() && !block2.func_149730_j()) {
                 b0 = 4;
             }
 
@@ -148,53 +134,47 @@ public class BlockCraftFurnace extends BlockDirection{
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
 
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public IIcon getIcon(int par1, int par2)
-    {
+    public IIcon getIcon(int par1, int par2) {
 
-		return par1 == 1 ? this.furnaceIconTop : (par1 == 0 ? this.furnaceIconTop : (par1 != 3 ? this.blockIcon : this.furnaceIconFront[1]));
+        return par1 == 1 ? this.furnaceIconTop : (par1 == 0 ? this.furnaceIconTop : (par1 != 3 ? this.blockIcon : this.furnaceIconFront[1]));
 
     }
 
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(IBlockAccess p_149673_1_, int x, int y, int z, int side)
-    {
-    	//System.out.println("Icon");
-    	TileEntityCraftFurnace tileEntity = (TileEntityCraftFurnace)p_149673_1_.getTileEntity(x, y, z);
+    public IIcon getIcon(IBlockAccess p_149673_1_, int x, int y, int z, int side) {
+        //System.out.println("Icon");
+        TileEntityCraftFurnace tileEntity = (TileEntityCraftFurnace) p_149673_1_.getTileEntity(x, y, z);
 
-    	int meta = p_149673_1_.getBlockMetadata(x, y, z);
+        int meta = p_149673_1_.getBlockMetadata(x, y, z);
 
-		return side == 1 ? this.furnaceIconTop : (side == 0 ? this.furnaceIconTop : (side != meta ? this.blockIcon : (tileEntity.isFuel() ? this.furnaceIconFront[0] : this.furnaceIconFront[1])));
-
+        return side == 1 ? this.furnaceIconTop : (side == 0 ? this.furnaceIconTop : (side != meta ? this.blockIcon : (tileEntity.isFuel() ? this.furnaceIconFront[0] : this.furnaceIconFront[1])));
 
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
 
     /**
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
-    public void registerBlockIcons(IIconRegister par1IconRegister)
-    {
+    public void registerBlockIcons(IIconRegister par1IconRegister) {
         this.blockIcon = par1IconRegister.registerIcon("furnace_side");
         this.furnaceIconFront[0] = par1IconRegister.registerIcon("furnace_front_on");
         this.furnaceIconFront[1] = par1IconRegister.registerIcon("furnace_front_off");
         this.furnaceIconTop = par1IconRegister.registerIcon("sextiarysector:furnace_top");
     }
 
-
     /**
      * Returns a new instance of a block's tile entity class. Called on placing the block.
      */
     @Override
-	public TileEntity createNewTileEntity(World par1World, int p_149915_2_)
-    {
+    public TileEntity createNewTileEntity(World par1World, int p_149915_2_) {
         return new TileEntityCraftFurnace();
     }
 
@@ -202,56 +182,46 @@ public class BlockCraftFurnace extends BlockDirection{
      * Called when the block is placed in the world.
      */
     @Override
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
-    {
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
         int l = MathHelper.floor_double(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        TileEntityCraftFurnace tileEntity = (TileEntityCraftFurnace)par1World.getTileEntity(par2, par3, par4);
+        TileEntityCraftFurnace tileEntity = (TileEntityCraftFurnace) par1World.getTileEntity(par2, par3, par4);
 
-        if (l == 0)
-        {
+        if (l == 0) {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
             tileEntity.direction = ForgeDirection.VALID_DIRECTIONS[2];
         }
 
-        if (l == 1)
-        {
+        if (l == 1) {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
             tileEntity.direction = ForgeDirection.VALID_DIRECTIONS[5];
         }
 
-        if (l == 2)
-        {
+        if (l == 2) {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
             tileEntity.direction = ForgeDirection.VALID_DIRECTIONS[3];
         }
 
-        if (l == 3)
-        {
+        if (l == 3) {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
             tileEntity.direction = ForgeDirection.VALID_DIRECTIONS[4];
         }
 
     }
 
-	@Override
-	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6)
-    {
-        if (!keepFurnaceInventory)
-        {
-        	TileEntityCraftFurnace tileentityfurnace = (TileEntityCraftFurnace)par1World.getTileEntity(par2, par3, par4);
+    @Override
+    public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
+        if (!keepFurnaceInventory) {
+            TileEntityCraftFurnace tileentityfurnace = (TileEntityCraftFurnace) par1World.getTileEntity(par2, par3, par4);
 
-            if (tileentityfurnace != null)
-            {
-                for (int j1 = 0; j1 < tileentityfurnace.getSizeInventory(); ++j1)
-                {
+            if (tileentityfurnace != null) {
+                for (int j1 = 0; j1 < tileentityfurnace.getSizeInventory(); ++j1) {
                     ItemStack itemstack = tileentityfurnace.getStackInSlot(j1);
 
                     this.dropItem(itemstack, par1World, par2, par3, par4);
 
                 }
 
-                for (int j1 = 0; j1 < tileentityfurnace.craftMatrix.getSizeInventory(); ++j1)
-                {
+                for (int j1 = 0; j1 < tileentityfurnace.craftMatrix.getSizeInventory(); ++j1) {
                     ItemStack itemstack = tileentityfurnace.craftMatrix.getStackInSlot(j1);
 
                     this.dropItem(itemstack, par1World, par2, par3, par4);
@@ -264,82 +234,67 @@ public class BlockCraftFurnace extends BlockDirection{
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
     }
 
-	private void dropItem(ItemStack itemstack ,World par1World,int par2, int par3, int par4){
+    private void dropItem(ItemStack itemstack, World par1World, int par2, int par3, int par4) {
 
-		if (itemstack != null)
-        {
+        if (itemstack != null) {
             float f = this.furnaceRand.nextFloat() * 0.8F + 0.1F;
             float f1 = this.furnaceRand.nextFloat() * 0.8F + 0.1F;
             float f2 = this.furnaceRand.nextFloat() * 0.8F + 0.1F;
 
-            while (itemstack.stackSize > 0)
-            {
+            while (itemstack.stackSize > 0) {
                 int k1 = this.furnaceRand.nextInt(21) + 10;
 
-                if (k1 > itemstack.stackSize)
-                {
+                if (k1 > itemstack.stackSize) {
                     k1 = itemstack.stackSize;
                 }
 
                 itemstack.stackSize -= k1;
                 EntityItem entityitem = new EntityItem(par1World, par2 + f, par3 + f1, par4 + f2, new ItemStack(itemstack.getItem(), k1, itemstack.getItemDamage()));
 
-                if (itemstack.hasTagCompound())
-                {
-                    entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+                if (itemstack.hasTagCompound()) {
+                    entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                 }
 
                 float f3 = 0.05F;
-                entityitem.motionX = (float)this.furnaceRand.nextGaussian() * f3;
-                entityitem.motionY = (float)this.furnaceRand.nextGaussian() * f3 + 0.2F;
-                entityitem.motionZ = (float)this.furnaceRand.nextGaussian() * f3;
+                entityitem.motionX = (float) this.furnaceRand.nextGaussian() * f3;
+                entityitem.motionY = (float) this.furnaceRand.nextGaussian() * f3 + 0.2F;
+                entityitem.motionZ = (float) this.furnaceRand.nextGaussian() * f3;
                 par1World.spawnEntityInWorld(entityitem);
             }
         }
 
-	}
+    }
 
-	@SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
-    {
-		TileEntityCraftFurnace tileentityfurnace = (TileEntityCraftFurnace)p_149734_1_.getTileEntity(p_149734_2_, p_149734_3_, p_149734_4_);
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_) {
+        TileEntityCraftFurnace tileentityfurnace = (TileEntityCraftFurnace) p_149734_1_.getTileEntity(p_149734_2_, p_149734_3_, p_149734_4_);
 
-
-        if (tileentityfurnace.isFuel())
-        {
+        if (tileentityfurnace.isFuel()) {
             int l = p_149734_1_.getBlockMetadata(p_149734_2_, p_149734_3_, p_149734_4_);
-            float f = (float)p_149734_2_ + 0.5F;
-            float f1 = (float)p_149734_3_ + 0.0F + p_149734_5_.nextFloat() * 6.0F / 16.0F;
-            float f2 = (float)p_149734_4_ + 0.5F;
+            float f = (float) p_149734_2_ + 0.5F;
+            float f1 = (float) p_149734_3_ + 0.0F + p_149734_5_.nextFloat() * 6.0F / 16.0F;
+            float f2 = (float) p_149734_4_ + 0.5F;
             float f3 = 0.52F;
             float f4 = p_149734_5_.nextFloat() * 0.6F - 0.3F;
 
-            if (l == 4)
-            {
-                p_149734_1_.spawnParticle("smoke", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
-                p_149734_1_.spawnParticle("flame", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
-            }
-            else if (l == 5)
-            {
-                p_149734_1_.spawnParticle("smoke", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
-                p_149734_1_.spawnParticle("flame", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
-            }
-            else if (l == 2)
-            {
-                p_149734_1_.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
-                p_149734_1_.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
-            }
-            else if (l == 3)
-            {
-                p_149734_1_.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
-                p_149734_1_.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
+            if (l == 4) {
+                p_149734_1_.spawnParticle("smoke", (double) (f - f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+                p_149734_1_.spawnParticle("flame", (double) (f - f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+            } else if (l == 5) {
+                p_149734_1_.spawnParticle("smoke", (double) (f + f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+                p_149734_1_.spawnParticle("flame", (double) (f + f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+            } else if (l == 2) {
+                p_149734_1_.spawnParticle("smoke", (double) (f + f4), (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
+                p_149734_1_.spawnParticle("flame", (double) (f + f4), (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
+            } else if (l == 3) {
+                p_149734_1_.spawnParticle("smoke", (double) (f + f4), (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
+                p_149734_1_.spawnParticle("flame", (double) (f + f4), (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
             }
         }
     }
 
-	@Override
-	public boolean hasComparatorInputOverride()
-    {
+    @Override
+    public boolean hasComparatorInputOverride() {
         return true;
     }
 
@@ -348,9 +303,8 @@ public class BlockCraftFurnace extends BlockDirection{
      * strength when this block inputs to a comparator.
      */
     @Override
-	public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5)
-    {
-        return Container.calcRedstoneFromInventory((IInventory)par1World.getTileEntity(par2, par3, par4));
+    public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5) {
+        return Container.calcRedstoneFromInventory((IInventory) par1World.getTileEntity(par2, par3, par4));
     }
 
 }

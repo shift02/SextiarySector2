@@ -8,49 +8,48 @@ import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 public class SSCore implements IFMLLoadingPlugin, IFMLCallHook {
 
-	static File location;
+    static File location;
 
-	@Override
-	public String[] getASMTransformerClass() {
-		return new String[] { "shift.sextiarysector.asm.TransformerBottle", "shift.sextiarysector.asm.TransformerEntityPlayerSP" };
-	}
+    @Override
+    public String[] getASMTransformerClass() {
+        return new String[] { "shift.sextiarysector.asm.TransformerBottle", "shift.sextiarysector.asm.TransformerEntityPlayerSP" };
+    }
 
-	@Override
-	public String getModContainerClass() {
-		return null;
-	}
+    @Override
+    public String getModContainerClass() {
+        return null;
+    }
 
-	@Override
-	public String getSetupClass() {
-		return DepLoader.class.getName();
-	}
+    @Override
+    public String getSetupClass() {
+        return DepLoader.class.getName();
+    }
 
-	@Override
-	public void injectData(Map<String, Object> data) {
-		if (data.containsKey("coremodLocation"))
-		{
-			location = (File) data.get("coremodLocation");
-		}
+    @Override
+    public void injectData(Map<String, Object> data) {
+        if (data.containsKey("coremodLocation")) {
+            location = (File) data.get("coremodLocation");
+        }
 
-		if (location == null) {
+        if (location == null) {
 
-			location = new File((File) data.get("mcLocation"), "../bin");
+            location = new File((File) data.get("mcLocation"), "../bin");
 
-			location.mkdir();
+            location.mkdir();
 
-		}
-	}
+        }
+    }
 
-	@Override
-	public Void call() {
-		//DepLoader.load();
+    @Override
+    public Void call() {
+        //DepLoader.load();
 
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public String getAccessTransformerClass() {
-		return null;
-	}
+    @Override
+    public String getAccessTransformerClass() {
+        return null;
+    }
 
 }

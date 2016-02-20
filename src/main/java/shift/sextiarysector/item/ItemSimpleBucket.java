@@ -6,10 +6,10 @@ import shift.sextiarysector.api.SextiarySectorAPI;
 
 public class ItemSimpleBucket extends Item {
 
-	public ItemSimpleBucket() {
-		this.maxStackSize = 1;
-		this.setCreativeTab(SextiarySectorAPI.TabSSFluid);
-		this.setContainerItem(Items.bucket);
-	}
+    public ItemSimpleBucket() {
+        this.maxStackSize = 1;
+        this.setCreativeTab(SextiarySectorAPI.TabSSFluid);
+        this.setContainerItem(Items.bucket);
+    }
 
 }

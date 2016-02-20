@@ -8,30 +8,30 @@ import shift.sextiarysector.tileentity.TileEntityGFDynamo;
 
 public class BlockGFDynamo extends BlockDirection {
 
-	public BlockGFDynamo() {
-		super(SSMaterials.machine);
-		this.setHardness(3.0F);
-	}
+    public BlockGFDynamo() {
+        super(SSMaterials.machine);
+        this.setHardness(3.0F);
+        this.setHarvestLevel("spanner", 1);
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileEntityGFDynamo();
-	}
+    @Override
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+        return new TileEntityGFDynamo();
+    }
 
-	@Override
-	public boolean renderAsNormalBlock() {
-		return false;
-	}
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
 
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
 
-	@Override
-	public int getRenderType()
-	{
-		return PluginRF.gfDynamoType;
-	}
+    @Override
+    public int getRenderType() {
+        return PluginRF.gfDynamoType;
+    }
 
 }

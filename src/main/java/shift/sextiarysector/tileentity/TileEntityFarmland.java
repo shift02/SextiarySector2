@@ -1,153 +1,178 @@
 package shift.sextiarysector.tileentity;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
-import shift.sextiarysector.SSFluids;
-import shift.sextiarysector.api.agriculture.IFarmland;
+import shift.sextiarysector.SSCrops;
+import shift.sextiarysector.api.agriculture.IFertilizer;
+import shift.sextiarysector.api.agriculture.TileFarmland;
 
-public class TileEntityFarmland extends TileEntity implements IFluidHandler, IFarmland {
+public class TileEntityFarmland extends TileEntity implements TileFarmland {
 
-	//水
-	protected FluidTank water = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
+    //水
+    //protected FluidTank water = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
+    protected int water;
+    private final int MAX_WATER = 10;
 
-	@Override
-	public void updateEntity() {
+    //肥料
+    private IFertilizer fertilizer;
 
-		if (!this.worldObj.isRemote) {
-			this.updateServerEntity();
-		}
+    @Override
+    public void updateEntity() {
 
-	}
+        if (!this.worldObj.isRemote) {
+            this.updateServerEntity();
+        }
 
-	public void updateServerEntity() {
+    }
 
-		if (this.getBlockMetadata() == 0 && water.getFluidAmount() > 500) {
-			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 4);
-			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-		}
+    public void updateServerEntity() {
 
-		if (this.getBlockMetadata() == 1 && water.getFluidAmount() <= 500) {
-			this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 4);
-			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-		}
+        this.doSpreadingWater();
 
-	}
+        if (this.getBlockMetadata() == 0 && this.hasWater()) {
+            this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 4);
+            this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        }
 
-	//肥料
-	//public String fertilizer;
-	private ItemStack fertilizerItem;
+        if (this.getBlockMetadata() == 1 && !this.hasWater()) {
+            this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 4);
+            this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        }
 
-	public ItemStack getFertilizer() {
-		return fertilizerItem;
-	}
+    }
 
-	public void setFertilizer(ItemStack fertilizer) {
-		if (fertilizer == null) {
-			this.fertilizerItem = null;
-		} else {
-			this.fertilizerItem = fertilizer.copy();
-		}
+    public void doSpreadingWater() {
 
-	}
+        if (getWorldObj().getWorldTime() % 40 != 0) return;
+        if (this.water < 7) return;
 
-	public void clearFertilizer() {
-		this.fertilizerItem = null;
-	}
+        if (getWorldObj().rand.nextBoolean()) {
 
-	@Override
-	public boolean canGrowth() {
-		return water.getFluidAmount() >= 500;
-	}
+            for (int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
 
-	@Override
-	public void growth() {
-		this.water.drain(500, true);
-	}
+                    if (i == 0 && j == 0) continue;
+                    if (this.water < 7) break;
 
-	@Override
-	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
-		super.readFromNBT(par1nbtTagCompound);
-		//if(par1nbtTagCompound.hasKey("fertilizer")){
-		//	this.fertilizer = par1nbtTagCompound.getString("fertilizer");
-		//}
-		if (par1nbtTagCompound.hasKey("fertilizeritem")) {
-			this.fertilizerItem = ItemStack.loadItemStackFromNBT(par1nbtTagCompound.getCompoundTag("fertilizeritem"));
-		}
+                    TileEntity t = getWorldObj().getTileEntity(xCoord + i, yCoord, zCoord + j);
 
-		this.water.readFromNBT(par1nbtTagCompound);
-	}
+                    if (!(t instanceof TileFarmland)) continue;
+                    TileFarmland f = (TileFarmland) t;
+                    if (f.getWater() + 1 >= this.water) continue;
+                    if (f.addWater(1) > 0) this.water--;
 
-	@Override
-	public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
-		super.writeToNBT(par1nbtTagCompound);
-		//if(fertilizer!=null)par1nbtTagCompound.setString("fertilizer", fertilizer);
-		if (fertilizerItem != null) {
-			NBTTagCompound itemNBT = new NBTTagCompound();
-			fertilizerItem.writeToNBT(itemNBT);
-			par1nbtTagCompound.setTag("fertilizeritem", itemNBT);
-		}
-		this.water.writeToNBT(par1nbtTagCompound);
-	}
+                }
+            }
 
-	@Override
-	public Packet getDescriptionPacket() {
-		NBTTagCompound nbt = new NBTTagCompound();
-		writeToNBT(nbt);
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
-	}
+        } else {
 
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		readFromNBT(pkt.func_148857_g());
-		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-	}
+            for (int i = 1; i > -2; i--) {
+                for (int j = 1; j > -2; j--) {
 
-	//液体関係
-	@Override
-	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+                    if (i == 0 && j == 0) continue;
+                    if (this.water < 7) break;
 
-		if (!this.canFill(from, resource.getFluid())) {
-			return 0;
-		}
+                    TileEntity t = getWorldObj().getTileEntity(xCoord + i, yCoord, zCoord + j);
 
-		return this.water.fill(resource, doFill);
+                    if (!(t instanceof TileFarmland)) continue;
+                    TileFarmland f = (TileFarmland) t;
+                    if (f.getWater() + 1 >= this.water) continue;
+                    if (f.addWater(1) > 0) this.water--;
 
-	}
+                }
+            }
 
-	@Override
-	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-		return null;
-	}
+        }
 
-	@Override
-	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-		return null;
-	}
+    }
 
-	@Override
-	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return fluid.getID() == SSFluids.drinkingWater.getID();
-	}
+    @Override
+    public boolean canCropGrow(int water) {
 
-	@Override
-	public boolean canDrain(ForgeDirection from, Fluid fluid) {
-		return false;
-	}
+        if (this.water < water) return false;
 
-	@Override
-	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-		return new FluidTankInfo[] { this.water.getInfo() };
-	}
+        return true;
+
+    }
+
+    @Override
+    public void doGrow(int water) {
+
+        this.water -= water;
+
+    }
+
+    @Override
+    public int getWater() {
+        return this.water;
+    }
+
+    @Override
+    public int addWater(int amount) {
+
+        int add = this.water;
+
+        this.water = Math.min(water + amount, MAX_WATER);
+
+        return this.water - add;
+
+    }
+
+    @Override
+    public boolean hasWater() {
+        return water > 5;
+    }
+
+    @Override
+    public IFertilizer getFertilizer() {
+        return fertilizer;
+    }
+
+    @Override
+    public void setFertilizer(IFertilizer fertilizer) {
+        this.fertilizer = fertilizer;
+        this.getWorldObj().markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
+
+    //NBT
+    @Override
+    public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
+        super.readFromNBT(par1nbtTagCompound);
+
+        this.water = par1nbtTagCompound.getInteger("water");
+
+        if (par1nbtTagCompound.hasKey("fertilizerName")) {
+
+            this.fertilizer = SSCrops.fertilizerManager.getFertilizer(par1nbtTagCompound.getString("fertilizerName"));
+
+        }
+
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
+
+        super.writeToNBT(par1nbtTagCompound);
+        par1nbtTagCompound.setInteger("water", this.water);
+
+        if (fertilizer != null) par1nbtTagCompound.setString("fertilizerName", fertilizer.getName());
+
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound nbt = new NBTTagCompound();
+        writeToNBT(nbt);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        readFromNBT(pkt.func_148857_g());
+        this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
 
 }

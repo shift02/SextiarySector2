@@ -5,14 +5,14 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 
 public class SSWorld {
 
-	public static BiomeGenBase magicDesert;
+    public static BiomeGenBase magicDesert;
 
-	public static void init(FMLInitializationEvent event) {
+    public static void init(FMLInitializationEvent event) {
 
-		//magicDesert = (new BiomeGenMagicDesert(Config.magicDesert)).setColor(0xff0000).setBiomeName("MagicDesert");
+        //magicDesert = (new BiomeGenMagicDesert(Config.magicDesert)).setColor(0xff0000).setBiomeName("MagicDesert");
 
-		//BiomeDictionary.registerBiomeType(magicDesert,              HOT,      DRY,        SANDY     ,MAGICAL             );
+        //BiomeDictionary.registerBiomeType(magicDesert,              HOT,      DRY,        SANDY     ,MAGICAL             );
 
-	}
+    }
 
 }
