@@ -22,62 +22,62 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class PluginIC2 implements IPlugin {
 
-	//1EU -> 3Power 2Speed
+    //1EU -> 3Power 2Speed
 
-	@Override
-	public String getModName() {
-		return "IC2";
-	}
+    @Override
+    public String getModName() {
+        return "IC2";
+    }
 
-	public static int electricMotorType;
-	public static Block electricMotor;
+    public static int electricMotorType;
+    public static Block electricMotor;
 
-	public static Item ic2Dust;//3 Copper , 7 Tin
-	public static Item cable;
+    public static Item ic2Dust;//3 Copper , 7 Tin
+    public static Item cable;
 
-	@Override
-	public void prePlugin(FMLPreInitializationEvent event) {
+    @Override
+    public void prePlugin(FMLPreInitializationEvent event) {
 
-		electricMotor = new BlockElectricMotor().setBlockName("ss.electric_motor").setBlockTextureName("glass").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-		GameRegistry.registerBlock(electricMotor, ItemBlockDirection.class, "ElectricMotor");
-		GameRegistry.registerTileEntity(TileEntityElectricMotor.class, "ElectricMotor");
+        electricMotor = new BlockElectricMotor().setBlockName("ss.electric_motor").setBlockTextureName("glass").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        GameRegistry.registerBlock(electricMotor, ItemBlockDirection.class, "ElectricMotor");
+        GameRegistry.registerTileEntity(TileEntityElectricMotor.class, "ElectricMotor");
 
-	}
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void preClientPlugin(FMLPreInitializationEvent event) {
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void preClientPlugin(FMLPreInitializationEvent event) {
 
-		electricMotorType = cpw.mods.fml.client.registry.RenderingRegistry.getNextAvailableRenderId();
-		cpw.mods.fml.client.registry.RenderingRegistry.registerBlockHandler(new RendererElectricMotor());
-		cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElectricMotor.class, new RendererElectricMotor());
+        electricMotorType = cpw.mods.fml.client.registry.RenderingRegistry.getNextAvailableRenderId();
+        cpw.mods.fml.client.registry.RenderingRegistry.registerBlockHandler(new RendererElectricMotor());
+        cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElectricMotor.class, new RendererElectricMotor());
 
-	}
+    }
 
-	@Override
-	public void initPlugin(FMLInitializationEvent event) {
+    @Override
+    public void initPlugin(FMLInitializationEvent event) {
 
-		ic2Dust = GameRegistry.findItem("IC2", "itemDust");
-		cable = GameRegistry.findItem("IC2", "itemCable");
+        ic2Dust = GameRegistry.findItem("IC2", "itemDust");
+        cable = GameRegistry.findItem("IC2", "itemCable");
 
-		SSRecipes.pulverizer.add("oreCopper", new ItemStack(ic2Dust, 2, 3));
-		SSRecipes.pulverizer.add("oreTin", new ItemStack(ic2Dust, 2, 7));
+        SSRecipes.pulverizer.add("oreCopper", new ItemStack(ic2Dust, 2, 3));
+        SSRecipes.pulverizer.add("oreTin", new ItemStack(ic2Dust, 2, 7));
 
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(this.electricMotor, 1),
-				new Object[] { "xzx", "xyx", "pbp",
-						Character.valueOf('x'), "paneGlassColorless",
-						Character.valueOf('y'), SSItems.energyReactor,
-						Character.valueOf('z'), SSBlocks.steelShaft,
-						Character.valueOf('b'), new ItemStack(cable, 1, 0),
-						Character.valueOf('p'), "plateDenseTin"
-				}));
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(this.electricMotor, 1),
+                new Object[] { "xzx", "xyx", "pbp",
+                        Character.valueOf('x'), "paneGlassColorless",
+                        Character.valueOf('y'), SSItems.energyReactor,
+                        Character.valueOf('z'), SSBlocks.steelShaft,
+                        Character.valueOf('b'), new ItemStack(cable, 1, 0),
+                        Character.valueOf('p'), "plateDenseTin"
+                }));
 
-	}
+    }
 
-	@Override
-	public void postPlugin(FMLPostInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
+    @Override
+    public void postPlugin(FMLPostInitializationEvent event) {
+        // TODO 自動生成されたメソッド・スタブ
 
-	}
+    }
 
 }

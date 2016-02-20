@@ -13,35 +13,31 @@ import org.lwjgl.opengl.GL11;
 import shift.sextiarysector.entity.EntityMineboat;
 import shift.sextiarysector.renderer.model.ModelMineboat;
 
-public class RenderMineboat extends RenderBoat{
+public class RenderMineboat extends RenderBoat {
 
-	private static final ResourceLocation field_110782_f = new ResourceLocation("textures/entity/boat.png");
+    private static final ResourceLocation field_110782_f = new ResourceLocation("textures/entity/boat.png");
 
-	protected final RenderBlocks blockrender;
+    protected final RenderBlocks blockrender;
 
-	public RenderMineboat()
-    {
+    public RenderMineboat() {
         this.shadowSize = 0.5F;
         this.modelBoat = new ModelMineboat();
         //
         this.blockrender = new RenderBlocks();
     }
 
-	public void renderMineboat(EntityMineboat par1EntityBoat, double par2, double par4, double par6, float par8, float par9)
-    {
+    public void renderMineboat(EntityMineboat par1EntityBoat, double par2, double par4, double par6, float par8, float par9) {
         GL11.glPushMatrix();
-        GL11.glTranslatef((float)par2, (float)par4, (float)par6);
+        GL11.glTranslatef((float) par2, (float) par4, (float) par6);
         GL11.glRotatef(180.0F - par8, 0.0F, 1.0F, 0.0F);
         float f2 = par1EntityBoat.getTimeSinceHit() - par9;
         float f3 = par1EntityBoat.getDamageTaken() - par9;
 
-        if (f3 < 0.0F)
-        {
+        if (f3 < 0.0F) {
             f3 = 0.0F;
         }
 
-        if (f2 > 0.0F)
-        {
+        if (f2 > 0.0F) {
             GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * par1EntityBoat.getForwardDirection(), 1.0F, 0.0F, 0.0F);
         }
 
@@ -50,8 +46,7 @@ public class RenderMineboat extends RenderBoat{
         Block block = par1EntityBoat.getDisplayTile();
         int k = par1EntityBoat.getDisplayTileData();
 
-        if (block != null)
-        {
+        if (block != null) {
             GL11.glPushMatrix();
             this.bindTexture(TextureMap.locationBlocksTexture);
             float f8 = 1.0f;//0.75F;
@@ -73,9 +68,8 @@ public class RenderMineboat extends RenderBoat{
         GL11.glPopMatrix();
     }
 
-	//
-    protected void renderBlockInMinecart(EntityMineboat par1EntityMineboat, float par2, Block par3Block, int par4)
-    {
+    //
+    protected void renderBlockInMinecart(EntityMineboat par1EntityMineboat, float par2, Block par3Block, int par4) {
         float f1 = par1EntityMineboat.getBrightness(par2);
         GL11.glPushMatrix();
         this.blockrender.renderBlockAsItem(par3Block, par4, f1);
@@ -83,8 +77,7 @@ public class RenderMineboat extends RenderBoat{
     }
 
     @Override
-	public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
-    {
-        this.renderMineboat((EntityMineboat)par1Entity, par2, par4, par6, par8, par9);
+    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
+        this.renderMineboat((EntityMineboat) par1Entity, par2, par4, par6, par8, par9);
     }
 }

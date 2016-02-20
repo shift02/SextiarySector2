@@ -6,19 +6,19 @@ import shift.sextiarysector.player.CustomPlayerData;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
-public class PacketPlayerData implements IMessage{
+public class PacketPlayerData implements IMessage {
 
-	private NBTTagCompound data;
+    private NBTTagCompound data;
 
-	public PacketPlayerData(){
+    public PacketPlayerData() {
 
-	}
+    }
 
-	public PacketPlayerData(CustomPlayerData data) {
+    public PacketPlayerData(CustomPlayerData data) {
 
-		NBTTagCompound nbt = new NBTTagCompound();
-		data.saveNBTData(nbt);
-		this.setData(nbt);
+        NBTTagCompound nbt = new NBTTagCompound();
+        data.saveNBTData(nbt);
+        this.setData(nbt);
 
     }
 
@@ -32,12 +32,12 @@ public class PacketPlayerData implements IMessage{
         ByteBufUtils.writeTag(buf, getData());
     }
 
-	public NBTTagCompound getData() {
-		return data;
-	}
+    public NBTTagCompound getData() {
+        return data;
+    }
 
-	public void setData(NBTTagCompound data) {
-		this.data = data;
-	}
+    public void setData(NBTTagCompound data) {
+        this.data = data;
+    }
 
 }

@@ -7,34 +7,33 @@ import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.tileentity.TileEntitySaw;
 
-public class BlockSaw  extends BlockDirection{
+public class BlockSaw extends BlockDirection {
 
-	public BlockSaw() {
-		super(Material.iron);
-		this.setBlockTextureName("planks_oak");
-		this.setHardness(1.0F);
-		this.setStepSound(soundTypeStone);
-		this.setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-	}
-
-	@Override
-	public boolean renderAsNormalBlock() {
-		return false;
-	}
-
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
-
-	@Override
-	public int getRenderType()
-    {
-    	return SextiarySector.proxy.sawType;
+    public BlockSaw() {
+        super(Material.iron);
+        this.setBlockTextureName("planks_oak");
+        this.setHardness(1.0F);
+        this.setStepSound(soundTypeStone);
+        this.setCreativeTab(SextiarySectorAPI.TabSSIndustry);
     }
 
-	@Override
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileEntitySaw();
-	}
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    @Override
+    public int getRenderType() {
+        return SextiarySector.proxy.sawType;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+        return new TileEntitySaw();
+    }
 }

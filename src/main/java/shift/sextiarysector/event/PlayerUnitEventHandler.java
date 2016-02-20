@@ -1,388 +1,488 @@
 package shift.sextiarysector.event;
 
+import java.util.Random;
+
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import shift.mceconomy2.api.MCEconomyAPI;
 import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.equipment.EquipmentType;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.EquipmentStats;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class PlayerUnitEventHandler {
 
-	@SubscribeEvent
-	public void livingDashEvent(LivingUpdateEvent event) {
+    protected static Random itemRand = new Random();
 
-		//if (event.entityLiving.worldObj.isRemote) {
-		//	return;
-		//}
+    @SubscribeEvent
+    public void livingDashEvent(LivingUpdateEvent event) {
 
-		/*
-		if (!(event.entityLiving instanceof EntityPlayer)) {
-			return;
-		}
+        //if (event.entityLiving.worldObj.isRemote) {
+        //	return;
+        //}
 
-		EntityPlayer player = (EntityPlayer) event.entityLiving;
+        /*
+        if (!(event.entityLiving instanceof EntityPlayer)) {
+        	return;
+        }
+        
+        EntityPlayer player = (EntityPlayer) event.entityLiving;
+        
+        if (player.capabilities.isCreativeMode) return;
+        
+        if (!player.onGround) return;
+        
+        if (EntityPlayerManager.getStaminaStats(player).getStaminaLevel() < 5) {
+        
+        	player.motionX *= 0.7;
+        	//player.motionY *= 0.5;
+        	player.motionZ *= 0.7;
+        	//player.capabilities.setPlayerWalkSpeed(0.08f);
+        
+        } else if (EntityPlayerManager.getStaminaStats(player).getStaminaLevel() >= 30 && player.isSprinting() && Math.abs(player.motionX) <= getMaxMove() && Math.abs(player.motionZ) <= getMaxMove()) {
+        
+        	player.motionX *= 1.1;
+        	//player.motionY *= 1.4;
+        	player.motionZ *= 1.1;
+        	//player.capabilities.setPlayerWalkSpeed(0.16f);
+        
+        }*/
 
-		if (player.capabilities.isCreativeMode) return;
+    }
 
-		if (!player.onGround) return;
+    public float getMaxMove() {
 
-		if (EntityPlayerManager.getStaminaStats(player).getStaminaLevel() < 5) {
+        return 3.4f;
 
-			player.motionX *= 0.7;
-			//player.motionY *= 0.5;
-			player.motionZ *= 0.7;
-			//player.capabilities.setPlayerWalkSpeed(0.08f);
+    }
 
-		} else if (EntityPlayerManager.getStaminaStats(player).getStaminaLevel() >= 30 && player.isSprinting() && Math.abs(player.motionX) <= getMaxMove() && Math.abs(player.motionZ) <= getMaxMove()) {
+    //Unit関係のEvent
 
-			player.motionX *= 1.1;
-			//player.motionY *= 1.4;
-			player.motionZ *= 1.1;
-			//player.capabilities.setPlayerWalkSpeed(0.16f);
+    @SubscribeEvent
+    public void playerAttackEvent(LivingHurtEvent event) {
 
-		}*/
+        if (!(event.source.getEntity() instanceof EntityPlayer)) return;
 
-	}
+        EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.source.getEntity());
 
-	public float getMaxMove() {
+        for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+            ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
 
-		return 3.4f;
+            if (item != null && item.getItem() != null && item.getItem() == SSItems.attackUnit) {
+                event.ammount++;
+            }
 
-	}
+        }
 
-	//Unit関係のEvent
+    }
 
-	@SubscribeEvent
-	public void playerAttackEvent(LivingHurtEvent event) {
+    @SubscribeEvent
+    public void playeDefenseEvent(LivingHurtEvent event) {
 
-		if (!(event.source.getEntity() instanceof EntityPlayer)) return;
+        if (!(event.entity instanceof EntityPlayer)) return;
 
-		EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.source.getEntity());
+        EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
 
-		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
-			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
+        for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+            ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
 
-			if (item != null && item.getItem() != null && item.getItem() == SSItems.attackUnit) {
-				event.ammount++;
-			}
+            if (item != null && item.getItem() != null && item.getItem() == SSItems.defenseUnit) {
+                event.ammount--;
+            }
 
-		}
+        }
 
-	}
+        if (event.ammount < 0) {
+            event.ammount = 0;
+        }
 
-	@SubscribeEvent
-	public void playeDefenseEvent(LivingHurtEvent event) {
+    }
 
-		if (!(event.entity instanceof EntityPlayer)) return;
+    @SubscribeEvent
+    public void playeHarvestCheckEvent(PlayerEvent.HarvestCheck event) {
 
-		EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
+        if (!(event.entity instanceof EntityPlayer)) return;
 
-		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
-			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
+        EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
 
-			if (item != null && item.getItem() != null && item.getItem() == SSItems.defenseUnit) {
-				event.ammount--;
-			}
+        Block block = event.block;
 
-		}
+        for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
 
-		if (event.ammount < 0) {
-			event.ammount = 0;
-		}
+            ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
 
-	}
+            if (item == null) continue;
 
-	@SubscribeEvent
-	public void playeHarvestCheckEvent(PlayerEvent.HarvestCheck event) {
+            if (item.getItem() == null) continue;
 
-		if (!(event.entity instanceof EntityPlayer)) return;
+            if (item.getItem() == SSItems.pickaxeUnit) {
 
-		EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
+                for (int meta = 0; meta < 16; meta++) {
+                    String tool = block.getHarvestTool(meta);
 
-		Block block = event.block;
+                    if (tool == null) continue;
 
-		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+                    if (tool.equals("pickaxe") && block.getHarvestLevel(meta) <= 1) {
+                        event.success = true;
+                    }
+                }
 
-			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
+            }
 
-			if (item == null) continue;
+        }
 
-			if (item.getItem() == null) continue;
+    }
 
-			if (item.getItem() == SSItems.pickaxeUnit) {
+    //jumpユニット
+    @SubscribeEvent
+    public void onLivingJump(LivingJumpEvent event) {
 
-				for (int meta = 0; meta < 16; meta++) {
-					String tool = block.getHarvestTool(meta);
+        if (!(event.entityLiving instanceof EntityPlayer)) {
+            return;
+        }
 
-					if (tool == null) continue;
+        //if (event.entityLiving.worldObj.isRemote) {
+        //	return;
+        //}
 
-					if (tool.equals("pickaxe") && block.getHarvestLevel(meta) <= 1) {
-						event.success = true;
-					}
-				}
+        EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-			}
+        EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
 
-		}
+        double size = 0;
 
-	}
+        for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
 
-	//jumpユニット
-	@SubscribeEvent
-	public void onLivingJump(LivingJumpEvent event) {
+            ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
 
-		if (!(event.entityLiving instanceof EntityPlayer)) {
-			return;
-		}
+            if (item == null) continue;
 
-		//if (event.entityLiving.worldObj.isRemote) {
-		//	return;
-		//}
+            if (item.getItem() == null) continue;
 
-		EntityPlayer player = (EntityPlayer) event.entityLiving;
+            if (item.getItem() == SSItems.jumpUnit) {
+                size += 0.1;
+            }
 
-		EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
+        }
 
-		double size = 0;
+        //System.out.println(size);
+        player.motionY += size;
 
-		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+    }
 
-			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
+    //弓
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void arrowLooseEvent(ArrowLooseEvent event) {
 
-			if (item == null) continue;
+        if (!(event.entity instanceof EntityPlayer)) return;
 
-			if (item.getItem() == null) continue;
+        EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
 
-			if (item.getItem() == SSItems.jumpUnit) {
-				size += 0.1;
-			}
+        for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
 
-		}
+            ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
 
-		//System.out.println(size);
-		player.motionY += size;
+            if (item == null) continue;
 
-	}
+            if (item.getItem() == null) continue;
 
-	//どこでも睡眠
-	/*
-	@SubscribeEvent
-	public void onSleep(PlayerInteractEvent event) {
+            if (item.getItem() == SSItems.pullingUnit) {
 
-		if (event.action != Action.RIGHT_CLICK_BLOCK) return;
+                event.charge = 30;
+                return;
 
-		System.out.println("aaa");
-		if (!event.entityPlayer.isSneaking()) return;
+            }
 
-		System.out.println("baaa");
+        }
 
-		if (event.entityPlayer.getCurrentEquippedItem() != null) return;
+    }
 
-		System.out.println("caaa");
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public void onArrowLooseEvent(ArrowLooseEvent event) {
 
-		if (event.world.isRemote) return;
+        if (!(event.entity instanceof EntityPlayer)) return;
 
-		EquipmentStats e = EntityPlayerManager.getEquipmentStats(event.entityPlayer);
+        EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
 
-		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+        int c = 0;
 
-			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
+        for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
 
-			if (item == null) continue;
+            ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
 
-			if (item.getItem() == null) continue;
+            if (item == null) continue;
 
-			if (item.getItem() == SSItems.bedMonsterUnit) {
-				System.out.println("daaa");
-				event.entityPlayer.sleepInBedAt(event.x, event.y + 1, event.z);
-				return;
+            if (item.getItem() == null) continue;
 
-			}
+            if (item.getItem() == SSItems.multiSchottUnit) {
 
-		}
+                c++;
 
-		//double y = event.world.getBlock(event.x, event.y, event.z).getBlockBoundsMaxY();
+            }
 
-	}*/
+        }
 
-	public boolean checkBed(World w, int x, int y, int z) {
+        if (c == 0) return;
 
-		return false;
-	}
+        int j = event.charge;
 
-	//睡眠ユニット
-	/*
-	@SubscribeEvent
-	public void onSleep(PlayerSleepInBedEvent event) {
+        for (int i = 0; i <= c; i++) {
 
-		EntityPlayer player = (EntityPlayer) event.entityLiving;
+            float f = j / 20.0F;
+            f = (f * f + f * 2.0F) / 3.0F;
 
-		NBTTagCompound nbt = player.getEntityData();
-		NBTTagCompound ssnbt;
-		if (!nbt.hasKey("ss2")) {
+            if (f < 0.1D) {
+                return;
+            }
 
-			ssnbt = new NBTTagCompound();
-			nbt.setTag("ss2", ssnbt);
+            if (f > 1.0F) {
+                f = 1.0F;
+            }
 
-		} else {
-			ssnbt = nbt.getCompoundTag("ss2");
-		}
+            EntityArrow entityarrow = new EntityArrow(event.entityPlayer.worldObj, event.entityPlayer, f * 2.0F);
+            entityarrow.posX += entityarrow.motionX;
+            entityarrow.posY += entityarrow.motionY;
+            entityarrow.posZ += entityarrow.motionZ;
 
-		if (ssnbt.hasKey("bed")) {
-			ssnbt.removeTag("bed");
-			player.worldObj.isRemote = false;
-			return;
-		}
+            if (f == 1.0F) {
+                entityarrow.setIsCritical(true);
+            }
 
-		EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
+            int k = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, event.bow);
 
-		for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+            if (k > 0) {
+                entityarrow.setDamage(entityarrow.getDamage() + k * 0.5D + 0.5D);
+            }
 
-			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
+            int l = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, event.bow);
 
-			if (item == null) continue;
+            if (l > 0) {
+                entityarrow.setKnockbackStrength(l);
+            }
 
-			if (item.getItem() == null) continue;
+            if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, event.bow) > 0) {
+                entityarrow.setFire(100);
+            }
 
-			if (item.getItem() == SSItems.bedMonsterUnit) {
+            //event.bow.damageItem(1, event.entityPlayer);
+            //event.entityPlayer.worldObj.playSoundAtEntity(event.entityPlayer, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
-				if (!player.worldObj.isRemote)
-				{
-					if (player.isPlayerSleeping() || !player.isEntityAlive())
-					{
-						return;
-					}
+            entityarrow.canBePickedUp = 2;
 
-					if (!player.worldObj.provider.isSurfaceWorld())
-					{
-						return;
-					}
+            if (!event.entityPlayer.worldObj.isRemote) {
+                event.entityPlayer.worldObj.spawnEntityInWorld(entityarrow);
+            }
 
-					if (player.worldObj.isDaytime())
-					{
-						return;
-					}
+        }
 
-					if (Math.abs(player.posX - event.x) > 3.0D || Math.abs(player.posY - event.y) > 2.0D || Math.abs(player.posZ - event.z) > 3.0D)
-					{
-						return;
-					}
+    }
 
-					event.result = EntityPlayer.EnumStatus.OK;
-
-					if (player.isRiding())
-					{
-						player.mountEntity((Entity) null);
-					}
-
-					player.sleepInBedAt(event.x, event.y, event.z);
-
-					player.worldObj.updateAllPlayersSleepingFlag();
-
-					return;
-
-				} else {
-					return;
-				}
-
-			}
-
-		}
-
-	}*/
-
-	protected void setSize(EntityPlayer p, float p_70105_1_, float p_70105_2_)
-	{
-		float f2;
-
-		if (p_70105_1_ != p.width || p_70105_2_ != p.height)
-		{
-			f2 = p.width;
-			p.width = p_70105_1_;
-			p.height = p_70105_2_;
-			p.boundingBox.maxX = p.boundingBox.minX + p.width;
-			p.boundingBox.maxZ = p.boundingBox.minZ + p.width;
-			p.boundingBox.maxY = p.boundingBox.minY + p.height;
-
-			if (p.width > f2 && !p.worldObj.isRemote)
-			{
-				p.moveEntity(f2 - p.width, 0.0D, f2 - p.width);
-			}
-		}
-
-		f2 = p_70105_1_ % 2.0F;
-
-		if (f2 < 0.375D)
-		{
-			p.myEntitySize = Entity.EnumEntitySize.SIZE_1;
-		}
-		else if (f2 < 0.75D)
-		{
-			p.myEntitySize = Entity.EnumEntitySize.SIZE_2;
-		}
-		else if (f2 < 1.0D)
-		{
-			p.myEntitySize = Entity.EnumEntitySize.SIZE_3;
-		}
-		else if (f2 < 1.375D)
-		{
-			p.myEntitySize = Entity.EnumEntitySize.SIZE_4;
-		}
-		else if (f2 < 1.75D)
-		{
-			p.myEntitySize = Entity.EnumEntitySize.SIZE_5;
-		}
-		else
-		{
-			p.myEntitySize = Entity.EnumEntitySize.SIZE_6;
-		}
-	}
-
-	//リング
-	@SubscribeEvent(priority = EventPriority.HIGH)
-	public void onPlayerCloneEvent(net.minecraftforge.event.entity.player.PlayerEvent.Clone event)
-	{
-
-		if (!event.wasDeath) return;
-
-		if (!(event.original instanceof EntityPlayer)) return;
-
-		EquipmentStats e = EntityPlayerManager.getEquipmentStats(event.original);
-
-		int mp = (int) (MCEconomyAPI.getPlayerMP(event.original) / 4.0f);
-		int xp = (int) (event.original.experienceLevel / 4.0f);
-
-		for (int i = 0; i < EquipmentType.Other.getSlots().length; i++) {
-
-			ItemStack item = e.inventory.getStackInSlot(EquipmentType.Other.getSlots()[i]);
-
-			if (item != null && item.getItem() == SSItems.mpRing) {
-
-				int reduce = MCEconomyAPI.reducePlayerMP(event.original, mp, false);
-				MCEconomyAPI.addPlayerMP(event.entityPlayer, reduce, false);
-				e.inventory.setInventorySlotContents(EquipmentType.Other.getSlots()[i], null);
-
-			} else if (item != null && item.getItem() == SSItems.xpRing) {
-
-				event.entityPlayer.experienceLevel += xp;
-				event.original.experienceLevel -= xp;
-				e.inventory.setInventorySlotContents(EquipmentType.Other.getSlots()[i], null);
-
-			}
-
-		}
-
-	}
+    //どこでも睡眠
+    /*
+    @SubscribeEvent
+    public void onSleep(PlayerInteractEvent event) {
+    
+    	if (event.action != Action.RIGHT_CLICK_BLOCK) return;
+    
+    	System.out.println("aaa");
+    	if (!event.entityPlayer.isSneaking()) return;
+    
+    	System.out.println("baaa");
+    
+    	if (event.entityPlayer.getCurrentEquippedItem() != null) return;
+    
+    	System.out.println("caaa");
+    
+    	if (event.world.isRemote) return;
+    
+    	EquipmentStats e = EntityPlayerManager.getEquipmentStats(event.entityPlayer);
+    
+    	for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+    
+    		ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
+    
+    		if (item == null) continue;
+    
+    		if (item.getItem() == null) continue;
+    
+    		if (item.getItem() == SSItems.bedMonsterUnit) {
+    			System.out.println("daaa");
+    			event.entityPlayer.sleepInBedAt(event.x, event.y + 1, event.z);
+    			return;
+    
+    		}
+    
+    	}
+    
+    	//double y = event.world.getBlock(event.x, event.y, event.z).getBlockBoundsMaxY();
+    
+    }*/
+
+    public boolean checkBed(World w, int x, int y, int z) {
+
+        return false;
+    }
+
+    //睡眠ユニット
+    /*
+    @SubscribeEvent
+    public void onSleep(PlayerSleepInBedEvent event) {
+    
+    	EntityPlayer player = (EntityPlayer) event.entityLiving;
+    
+    	NBTTagCompound nbt = player.getEntityData();
+    	NBTTagCompound ssnbt;
+    	if (!nbt.hasKey("ss2")) {
+    
+    		ssnbt = new NBTTagCompound();
+    		nbt.setTag("ss2", ssnbt);
+    
+    	} else {
+    		ssnbt = nbt.getCompoundTag("ss2");
+    	}
+    
+    	if (ssnbt.hasKey("bed")) {
+    		ssnbt.removeTag("bed");
+    		player.worldObj.isRemote = false;
+    		return;
+    	}
+    
+    	EquipmentStats e = EntityPlayerManager.getEquipmentStats((EntityPlayer) event.entity);
+    
+    	for (int i = 0; i < EquipmentType.Unit.getSlots().length; i++) {
+    
+    		ItemStack item = e.inventory.getStackInSlot(EquipmentType.Unit.getSlots()[i]);
+    
+    		if (item == null) continue;
+    
+    		if (item.getItem() == null) continue;
+    
+    		if (item.getItem() == SSItems.bedMonsterUnit) {
+    
+    			if (!player.worldObj.isRemote)
+    			{
+    				if (player.isPlayerSleeping() || !player.isEntityAlive())
+    				{
+    					return;
+    				}
+    
+    				if (!player.worldObj.provider.isSurfaceWorld())
+    				{
+    					return;
+    				}
+    
+    				if (player.worldObj.isDaytime())
+    				{
+    					return;
+    				}
+    
+    				if (Math.abs(player.posX - event.x) > 3.0D || Math.abs(player.posY - event.y) > 2.0D || Math.abs(player.posZ - event.z) > 3.0D)
+    				{
+    					return;
+    				}
+    
+    				event.result = EntityPlayer.EnumStatus.OK;
+    
+    				if (player.isRiding())
+    				{
+    					player.mountEntity((Entity) null);
+    				}
+    
+    				player.sleepInBedAt(event.x, event.y, event.z);
+    
+    				player.worldObj.updateAllPlayersSleepingFlag();
+    
+    				return;
+    
+    			} else {
+    				return;
+    			}
+    
+    		}
+    
+    	}
+    
+    }*/
+
+    protected void setSize(EntityPlayer p, float p_70105_1_, float p_70105_2_) {
+        float f2;
+
+        if (p_70105_1_ != p.width || p_70105_2_ != p.height) {
+            f2 = p.width;
+            p.width = p_70105_1_;
+            p.height = p_70105_2_;
+            p.boundingBox.maxX = p.boundingBox.minX + p.width;
+            p.boundingBox.maxZ = p.boundingBox.minZ + p.width;
+            p.boundingBox.maxY = p.boundingBox.minY + p.height;
+
+            if (p.width > f2 && !p.worldObj.isRemote) {
+                p.moveEntity(f2 - p.width, 0.0D, f2 - p.width);
+            }
+        }
+
+        f2 = p_70105_1_ % 2.0F;
+
+        if (f2 < 0.375D) {
+            p.myEntitySize = Entity.EnumEntitySize.SIZE_1;
+        } else if (f2 < 0.75D) {
+            p.myEntitySize = Entity.EnumEntitySize.SIZE_2;
+        } else if (f2 < 1.0D) {
+            p.myEntitySize = Entity.EnumEntitySize.SIZE_3;
+        } else if (f2 < 1.375D) {
+            p.myEntitySize = Entity.EnumEntitySize.SIZE_4;
+        } else if (f2 < 1.75D) {
+            p.myEntitySize = Entity.EnumEntitySize.SIZE_5;
+        } else {
+            p.myEntitySize = Entity.EnumEntitySize.SIZE_6;
+        }
+    }
+
+    //リング
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public void onPlayerCloneEvent(net.minecraftforge.event.entity.player.PlayerEvent.Clone event) {
+
+        if (!event.wasDeath) return;
+
+        if (!(event.original instanceof EntityPlayer)) return;
+
+        EquipmentStats e = EntityPlayerManager.getEquipmentStats(event.original);
+
+        int mp = (int) (MCEconomyAPI.getPlayerMP(event.original) / 4.0f);
+        int xp = (int) (event.original.experienceLevel / 4.0f);
+
+        for (int i = 0; i < EquipmentType.Other.getSlots().length; i++) {
+
+            ItemStack item = e.inventory.getStackInSlot(EquipmentType.Other.getSlots()[i]);
+
+            if (item != null && item.getItem() == SSItems.mpRing) {
+
+                int reduce = MCEconomyAPI.reducePlayerMP(event.original, mp, false);
+                MCEconomyAPI.addPlayerMP(event.entityPlayer, reduce, false);
+                e.inventory.setInventorySlotContents(EquipmentType.Other.getSlots()[i], null);
+
+            } else if (item != null && item.getItem() == SSItems.xpRing) {
+
+                event.entityPlayer.experienceLevel += xp;
+                event.original.experienceLevel -= xp;
+                e.inventory.setInventorySlotContents(EquipmentType.Other.getSlots()[i], null);
+
+            }
+
+        }
+
+    }
 
 }

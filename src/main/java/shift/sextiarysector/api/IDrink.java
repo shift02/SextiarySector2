@@ -8,14 +8,14 @@ import net.minecraft.item.ItemStack;
  */
 public interface IDrink {
 
-	/**
-	 * @return 水分の回復量
-	 */
-	int getMoisture(ItemStack drink);
+    /**
+     * @return 水分の回復量
+     */
+    int getMoisture(ItemStack drink);
 
-	/**
-	 * @return 隠し水分の回復量
-	 */
-	float getMoistureSaturation(ItemStack drink);
+    /**
+     * @return 隠し水分の回復量
+     */
+    float getMoistureSaturation(ItemStack drink);
 
 }

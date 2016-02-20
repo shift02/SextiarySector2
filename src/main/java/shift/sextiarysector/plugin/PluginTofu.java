@@ -22,59 +22,59 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class PluginTofu implements IPlugin {
 
-	@Override
-	public String getModName() {
-		return "TofuCraft";
-	}
+    @Override
+    public String getModName() {
+        return "TofuCraft";
+    }
 
-	public static int tofuMotorType;
-	public static Block tofuMotor;
+    public static int tofuMotorType;
+    public static Block tofuMotor;
 
-	public static Item filterCloth;
+    public static Item filterCloth;
 
-	public static Item tfCircuit;
+    public static Item tfCircuit;
 
-	@Override
-	public void prePlugin(FMLPreInitializationEvent event) {
-		tofuMotor = new BlockTofuMotor().setBlockName("ss.tofu_motor").setBlockTextureName("glass").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-		GameRegistry.registerBlock(tofuMotor, ItemBlockDirection.class, "TofuMotor");
-		GameRegistry.registerTileEntity(TileEntityTofuMotor.class, "TofuMotor");
+    @Override
+    public void prePlugin(FMLPreInitializationEvent event) {
+        tofuMotor = new BlockTofuMotor().setBlockName("ss.tofu_motor").setBlockTextureName("glass").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        GameRegistry.registerBlock(tofuMotor, ItemBlockDirection.class, "TofuMotor");
+        GameRegistry.registerTileEntity(TileEntityTofuMotor.class, "TofuMotor");
 
-	}
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void preClientPlugin(FMLPreInitializationEvent event) {
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void preClientPlugin(FMLPreInitializationEvent event) {
 
-		tofuMotorType = cpw.mods.fml.client.registry.RenderingRegistry.getNextAvailableRenderId();
-		cpw.mods.fml.client.registry.RenderingRegistry.registerBlockHandler(new RendererTofuMotor());
-		cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTofuMotor.class, new RendererTofuMotor());
+        tofuMotorType = cpw.mods.fml.client.registry.RenderingRegistry.getNextAvailableRenderId();
+        cpw.mods.fml.client.registry.RenderingRegistry.registerBlockHandler(new RendererTofuMotor());
+        cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTofuMotor.class, new RendererTofuMotor());
 
-	}
+    }
 
-	@Override
-	public void initPlugin(FMLInitializationEvent event) {
+    @Override
+    public void initPlugin(FMLInitializationEvent event) {
 
-		filterCloth = GameRegistry.findItem("TofuCraft", "filterCloth");
-		OreDictionary.registerOre("craftingFilterCloth", filterCloth);
+        filterCloth = GameRegistry.findItem("TofuCraft", "filterCloth");
+        OreDictionary.registerOre("craftingFilterCloth", filterCloth);
 
-		tfCircuit = GameRegistry.findItem("TofuCraft", "materials");
+        tfCircuit = GameRegistry.findItem("TofuCraft", "materials");
 
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(this.tofuMotor, 1),
-				new Object[] { "xzx", "xyx", "pbp",
-						Character.valueOf('x'), "paneGlassColorless",
-						Character.valueOf('y'), SSItems.energyReactor,
-						Character.valueOf('z'), SSBlocks.stoneShaft,
-						Character.valueOf('b'), new ItemStack(tfCircuit, 1, 3),
-						Character.valueOf('p'), new ItemStack(tfCircuit, 1, 4)
-				}));
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(this.tofuMotor, 1),
+                new Object[] { "xzx", "xyx", "pbp",
+                        Character.valueOf('x'), "paneGlassColorless",
+                        Character.valueOf('y'), SSItems.energyReactor,
+                        Character.valueOf('z'), SSBlocks.stoneShaft,
+                        Character.valueOf('b'), new ItemStack(tfCircuit, 1, 3),
+                        Character.valueOf('p'), new ItemStack(tfCircuit, 1, 4)
+                }));
 
-	}
+    }
 
-	@Override
-	public void postPlugin(FMLPostInitializationEvent event) {
-		// TODO 自動生成されたメソッド・スタブ
+    @Override
+    public void postPlugin(FMLPostInitializationEvent event) {
+        // TODO 自動生成されたメソッド・スタブ
 
-	}
+    }
 
 }

@@ -6,10 +6,10 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public interface IModule {
 
-	public void preInit(FMLPreInitializationEvent event);
+    public void preInit(FMLPreInitializationEvent event);
 
-	public void load(FMLInitializationEvent event);
+    public void load(FMLInitializationEvent event);
 
-	public void postInit(FMLPostInitializationEvent event) ;
+    public void postInit(FMLPostInitializationEvent event);
 
 }

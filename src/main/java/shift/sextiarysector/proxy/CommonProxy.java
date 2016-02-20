@@ -1,80 +1,81 @@
 package shift.sextiarysector.proxy;
 
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class CommonProxy {
 
-	public int leafBedType;
+    public int leafBedType;
 
-	public int holeType;
+    public int holeType;
 
-	public int bottleType;
-	public int squareType;
+    public int bottleType;
+    public int squareType;
 
-	public int fluidCrafterType;
+    public int cropType;
 
-	public int woodHopperType;
+    public int fluidCrafterType;
 
-	public int pipeType;
-	public int tankType;
-	public int funnelType;
-	public int woodenGutterType;
+    public int woodHopperType;
 
-	public int ShaftRenderType;
+    public int pipeType;
+    public int tankType;
+    public int funnelType;
+    public int woodenGutterType;
 
-	public int GearShaftRenderType;
+    public int ShaftRenderType;
 
-	public int smallWindMillType;
-	public int windMillType;
-	public int largeWindMillType;
-	public int smallWaterwheel;
-	public int steamMotorType;
+    public int GearShaftRenderType;
 
-	public int fanType;
-	public int sawType;
+    public int smallWindMillType;
+    public int windMillType;
+    public int largeWindMillType;
+    public int smallWaterwheel;
+    public int steamMotorType;
 
-	public int oreStoneType;
+    public int fanType;
+    public int sawType;
 
-	public int monitorType;
+    public int oreStoneType;
 
-	public int chestType;
+    public int monitorType;
+    public int shopMonitorType;
 
-	public int farmlandType;
-	public int paddyType;
-	public int woodType;
+    public int chestType;
 
-	public EntityPlayer getClientPlayer() {
-		return null;
-	}
+    public int farmlandType;
+    public int paddyType;
+    public int woodType;
 
-	public void setCustomRenderers() {
-	}
+    public EntityPlayer getClientPlayer() {
+        return null;
+    }
 
-	public void setItemCustomRenderers() {
-	}
+    public void setCustomRenderers() {
+    }
 
-	public void registerItemRenderer(Item item) {
+    public void setItemCustomRenderers() {
+    }
 
-	}
+    public void registerItemRenderer(Item item) {
 
-	public void openGUI(int id) {
+    }
 
-	}
+    public void openGUI(int id) {
 
-	public void registerInventoryTabs()
-	{
+    }
 
-	}
+    public void registerInventoryTabs() {
 
-	public void setPluginCustomRenderers(FMLPreInitializationEvent event)
-	{
+    }
 
-	}
+    public void setPluginCustomRenderers(FMLPreInitializationEvent event) {
 
-	public Object getShiftHat() {
-		return null;
-	}
+    }
+
+    public Object getShiftHat() {
+        return null;
+    }
 
 }

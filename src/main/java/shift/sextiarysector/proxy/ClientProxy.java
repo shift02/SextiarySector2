@@ -1,24 +1,27 @@
 package shift.sextiarysector.proxy;
 
+import org.apache.logging.log4j.Level;
+
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
-
-import org.apache.logging.log4j.Level;
-
-import shift.mceconomy2.packet.PacketHandler;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.entity.EntityMineboat;
 import shift.sextiarysector.entity.EntityMineboatChest;
 import shift.sextiarysector.entity.EntityMineboatTank;
 import shift.sextiarysector.gui.tab.TabManager;
-import shift.sextiarysector.packet.PacketGuiId;
 import shift.sextiarysector.plugin.IPlugin;
 import shift.sextiarysector.plugin.SSPlugins;
 import shift.sextiarysector.renderer.block.RendererBlockBottle;
 import shift.sextiarysector.renderer.block.RendererChest;
+import shift.sextiarysector.renderer.block.RendererCrop;
 import shift.sextiarysector.renderer.block.RendererFan;
 import shift.sextiarysector.renderer.block.RendererFarmland;
 import shift.sextiarysector.renderer.block.RendererFigure;
@@ -26,6 +29,7 @@ import shift.sextiarysector.renderer.block.RendererFluidCrafter;
 import shift.sextiarysector.renderer.block.RendererFunnel;
 import shift.sextiarysector.renderer.block.RendererGearShaft;
 import shift.sextiarysector.renderer.block.RendererHole;
+import shift.sextiarysector.renderer.block.RendererKnife;
 import shift.sextiarysector.renderer.block.RendererLargeWindmill;
 import shift.sextiarysector.renderer.block.RendererLeafBed;
 import shift.sextiarysector.renderer.block.RendererMonitor;
@@ -34,6 +38,7 @@ import shift.sextiarysector.renderer.block.RendererPaddy;
 import shift.sextiarysector.renderer.block.RendererPipe;
 import shift.sextiarysector.renderer.block.RendererSaw;
 import shift.sextiarysector.renderer.block.RendererShaft;
+import shift.sextiarysector.renderer.block.RendererShopMonitor;
 import shift.sextiarysector.renderer.block.RendererSmallWaterwheel;
 import shift.sextiarysector.renderer.block.RendererSmallWindmill;
 import shift.sextiarysector.renderer.block.RendererSquare;
@@ -51,227 +56,231 @@ import shift.sextiarysector.tileentity.TileEntityFan;
 import shift.sextiarysector.tileentity.TileEntityFigure;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
+import shift.sextiarysector.tileentity.TileEntityKnife;
 import shift.sextiarysector.tileentity.TileEntityLargeWindmill;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
 import shift.sextiarysector.tileentity.TileEntityPipe;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
 import shift.sextiarysector.tileentity.TileEntitySaw;
 import shift.sextiarysector.tileentity.TileEntityShaft;
+import shift.sextiarysector.tileentity.TileEntityShopMonitor;
 import shift.sextiarysector.tileentity.TileEntitySmallWaterwheel;
 import shift.sextiarysector.tileentity.TileEntitySmallWindmill;
 import shift.sextiarysector.tileentity.TileEntitySquare;
 import shift.sextiarysector.tileentity.TileEntitySteamMotor;
 import shift.sextiarysector.tileentity.TileEntityTank;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ClientProxy extends CommonProxy {
 
-	@SideOnly(Side.CLIENT)
-	public shift.sextiarysector.renderer.model.ModelShiftHat model = new shift.sextiarysector.renderer.model.ModelShiftHat();
+    @SideOnly(Side.CLIENT)
+    public shift.sextiarysector.renderer.model.ModelShiftHat model = new shift.sextiarysector.renderer.model.ModelShiftHat();
 
-	@Override
-	public EntityPlayer getClientPlayer() {
-		return Minecraft.getMinecraft().thePlayer;
-	}
+    @Override
+    public EntityPlayer getClientPlayer() {
+        return Minecraft.getMinecraft().thePlayer;
+    }
 
-	@Override
-	public void setCustomRenderers() {
+    @Override
+    public void setCustomRenderers() {
 
-		this.holeType = RenderingRegistry.getNextAvailableRenderId();
+        this.holeType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.bottleType = RenderingRegistry.getNextAvailableRenderId();
+        this.bottleType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.squareType = RenderingRegistry.getNextAvailableRenderId();
+        this.squareType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.fluidCrafterType = RenderingRegistry.getNextAvailableRenderId();
+        this.fluidCrafterType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.woodHopperType = RenderingRegistry.getNextAvailableRenderId();
+        this.woodHopperType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.leafBedType = RenderingRegistry.getNextAvailableRenderId();
+        this.leafBedType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.tankType = RenderingRegistry.getNextAvailableRenderId();
-		this.funnelType = RenderingRegistry.getNextAvailableRenderId();
-		this.pipeType = RenderingRegistry.getNextAvailableRenderId();
-		this.woodenGutterType = RenderingRegistry.getNextAvailableRenderId();
+        this.cropType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.ShaftRenderType = RenderingRegistry.getNextAvailableRenderId();
+        this.tankType = RenderingRegistry.getNextAvailableRenderId();
+        this.funnelType = RenderingRegistry.getNextAvailableRenderId();
+        this.pipeType = RenderingRegistry.getNextAvailableRenderId();
+        this.woodenGutterType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.GearShaftRenderType = RenderingRegistry.getNextAvailableRenderId();
+        this.ShaftRenderType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.smallWindMillType = RenderingRegistry.getNextAvailableRenderId();
-		this.windMillType = RenderingRegistry.getNextAvailableRenderId();
-		this.largeWindMillType = RenderingRegistry.getNextAvailableRenderId();
-		this.smallWaterwheel = RenderingRegistry.getNextAvailableRenderId();
-		this.steamMotorType = RenderingRegistry.getNextAvailableRenderId();
+        this.GearShaftRenderType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.fanType = RenderingRegistry.getNextAvailableRenderId();
-		this.sawType = RenderingRegistry.getNextAvailableRenderId();
+        this.smallWindMillType = RenderingRegistry.getNextAvailableRenderId();
+        this.windMillType = RenderingRegistry.getNextAvailableRenderId();
+        this.largeWindMillType = RenderingRegistry.getNextAvailableRenderId();
+        this.smallWaterwheel = RenderingRegistry.getNextAvailableRenderId();
+        this.steamMotorType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.chestType = RenderingRegistry.getNextAvailableRenderId();
+        this.fanType = RenderingRegistry.getNextAvailableRenderId();
+        this.sawType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.oreStoneType = RenderingRegistry.getNextAvailableRenderId();
+        this.chestType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.monitorType = RenderingRegistry.getNextAvailableRenderId();
+        this.oreStoneType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.farmlandType = RenderingRegistry.getNextAvailableRenderId();
+        this.monitorType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.paddyType = RenderingRegistry.getNextAvailableRenderId();
+        this.shopMonitorType = RenderingRegistry.getNextAvailableRenderId();
 
-		this.woodType = RenderingRegistry.getNextAvailableRenderId();
+        this.farmlandType = RenderingRegistry.getNextAvailableRenderId();
 
-		RenderingRegistry.registerBlockHandler(new RendererHole());
+        this.paddyType = RenderingRegistry.getNextAvailableRenderId();
 
-		RenderingRegistry.registerBlockHandler(new RendererBlockBottle());
+        this.woodType = RenderingRegistry.getNextAvailableRenderId();
 
-		RenderingRegistry.registerBlockHandler(new RendererSquare());
+        RenderingRegistry.registerBlockHandler(new RendererHole());
 
-		RenderingRegistry.registerBlockHandler(new RendererFluidCrafter());
+        RenderingRegistry.registerBlockHandler(new RendererBlockBottle());
 
-		RenderingRegistry.registerBlockHandler(new RendererWoodHopper());
+        RenderingRegistry.registerBlockHandler(new RendererSquare());
 
-		RenderingRegistry.registerBlockHandler(new RendererLeafBed());
+        RenderingRegistry.registerBlockHandler(new RendererFluidCrafter());
 
-		RenderingRegistry.registerBlockHandler(new RendererTank());
-		RenderingRegistry.registerBlockHandler(new RendererFunnel());
-		RenderingRegistry.registerBlockHandler(new RendererPipe());
-		RenderingRegistry.registerBlockHandler(new RendererWoodenGutter());
+        RenderingRegistry.registerBlockHandler(new RendererWoodHopper());
 
-		RenderingRegistry.registerBlockHandler(new RendererShaft());
+        RenderingRegistry.registerBlockHandler(new RendererLeafBed());
 
-		RenderingRegistry.registerBlockHandler(new RendererGearShaft());
+        RenderingRegistry.registerBlockHandler(new RendererCrop());
 
-		RenderingRegistry.registerBlockHandler(new RendererSmallWindmill());
-		RenderingRegistry.registerBlockHandler(new RendererWindmill());
-		RenderingRegistry.registerBlockHandler(new RendererLargeWindmill());
-		RenderingRegistry.registerBlockHandler(new RendererSmallWaterwheel());
-		RenderingRegistry.registerBlockHandler(new RendererSteamMotor());
+        RenderingRegistry.registerBlockHandler(new RendererTank());
+        RenderingRegistry.registerBlockHandler(new RendererFunnel());
+        RenderingRegistry.registerBlockHandler(new RendererPipe());
+        RenderingRegistry.registerBlockHandler(new RendererWoodenGutter());
 
-		RenderingRegistry.registerBlockHandler(new RendererFan());
-		RenderingRegistry.registerBlockHandler(new RendererSaw());
+        RenderingRegistry.registerBlockHandler(new RendererShaft());
 
-		RenderingRegistry.registerBlockHandler(new RendererChest());
+        RenderingRegistry.registerBlockHandler(new RendererGearShaft());
 
-		RenderingRegistry.registerBlockHandler(new RendererOreStone());
+        RenderingRegistry.registerBlockHandler(new RendererSmallWindmill());
+        RenderingRegistry.registerBlockHandler(new RendererWindmill());
+        RenderingRegistry.registerBlockHandler(new RendererLargeWindmill());
+        RenderingRegistry.registerBlockHandler(new RendererSmallWaterwheel());
+        RenderingRegistry.registerBlockHandler(new RendererSteamMotor());
 
-		RenderingRegistry.registerBlockHandler(new RendererMonitor());
+        RenderingRegistry.registerBlockHandler(new RendererFan());
+        RenderingRegistry.registerBlockHandler(new RendererSaw());
 
-		RenderingRegistry.registerBlockHandler(new RendererFarmland());
-		RenderingRegistry.registerBlockHandler(new RendererPaddy());
-		RenderingRegistry.registerBlockHandler(new RendererWood());
+        RenderingRegistry.registerBlockHandler(new RendererChest());
 
-		this.setCustomClientRenderers();
+        RenderingRegistry.registerBlockHandler(new RendererOreStone());
 
-	}
+        RenderingRegistry.registerBlockHandler(new RendererMonitor());
+        RenderingRegistry.registerBlockHandler(new RendererShopMonitor());
 
-	@Override
-	public void setItemCustomRenderers() {
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(SSBlocks.figure), new RendererFigure());
-	}
+        RenderingRegistry.registerBlockHandler(new RendererFarmland());
+        RenderingRegistry.registerBlockHandler(new RendererPaddy());
+        RenderingRegistry.registerBlockHandler(new RendererWood());
 
-	@SideOnly(Side.CLIENT)
-	public void setCustomClientRenderers() {
+        this.setCustomClientRenderers();
 
-		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCraftFurnace.class, new RendererCraftFurnace());
+    }
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShaft.class, new RendererShaft());
+    @Override
+    public void setItemCustomRenderers() {
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(SSBlocks.figure), new RendererFigure());
+    }
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockBottle.class, new RendererBlockBottle());
+    @SideOnly(Side.CLIENT)
+    public void setCustomClientRenderers() {
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySquare.class, new RendererSquare());
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCraftFurnace.class, new RendererCraftFurnace());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RendererPipe());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShaft.class, new RendererShaft());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFigure.class, new RendererFigure());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockBottle.class, new RendererBlockBottle());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFluidCrafter.class, new RendererFluidCrafter());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySquare.class, new RendererSquare());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGearShaft.class, new RendererGearShaft());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RendererPipe());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySmallWindmill.class, new RendererSmallWindmill());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, new RendererWindmill());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLargeWindmill.class, new RendererLargeWindmill());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySmallWaterwheel.class, new RendererSmallWaterwheel());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySteamMotor.class, new RendererSteamMotor());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityKnife.class, new RendererKnife());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFan.class, new RendererFan());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySaw.class, new RendererSaw());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFigure.class, new RendererFigure());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySSChest.class, new RendererChest());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMonitor.class, new RendererMonitor());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFluidCrafter.class, new RendererFluidCrafter());
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityMineboatChest.class, new RenderMineboat());
-		RenderingRegistry.registerEntityRenderingHandler(EntityMineboatTank.class, new RenderMineboatTank());
-		RenderingRegistry.registerEntityRenderingHandler(EntityMineboat.class, new RenderMineboat());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGearShaft.class, new RendererGearShaft());
 
-	}
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySmallWindmill.class, new RendererSmallWindmill());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, new RendererWindmill());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLargeWindmill.class, new RendererLargeWindmill());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySmallWaterwheel.class, new RendererSmallWaterwheel());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySteamMotor.class, new RendererSteamMotor());
 
-	@Override
-	public void registerItemRenderer(Item item) {
-		MinecraftForgeClient.registerItemRenderer(item, new RenderGF());
-	}
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFan.class, new RendererFan());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySaw.class, new RendererSaw());
 
-	@Override
-	public void openGUI(int id) {
-		PacketHandler.INSTANCE.sendToServer(new PacketGuiId(id));
-	}
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySSChest.class, new RendererChest());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMonitor.class, new RendererMonitor());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShopMonitor.class, new RendererShopMonitor());
 
-	@Override
-	public void registerInventoryTabs()
-	{
-		/*
-		if (!Loader.isModLoaded("TConstruct") || TabRegistry.getTabList().size() < 3)
-		{
-		    TabRegistry.registerTab(new InventoryTabVanilla());
-		}
+        RenderingRegistry.registerEntityRenderingHandler(EntityMineboatChest.class, new RenderMineboat());
+        RenderingRegistry.registerEntityRenderingHandler(EntityMineboatTank.class, new RenderMineboatTank());
+        RenderingRegistry.registerEntityRenderingHandler(EntityMineboat.class, new RenderMineboat());
 
-		TabRegistry.registerTab(new InventoryTabSextiarysector());
-		TabRegistry.registerTab(new InventoryTabSextiarysector());
-		TabRegistry.registerTab(new InventoryTabSextiarysector());
-		TabRegistry.registerTab(new InventoryTabSextiarysector());
-		TabRegistry.registerTab(new InventoryTabSextiarysector());
-		TabRegistry.registerTab(new InventoryTabSextiarysector());
-		TabRegistry.registerTab(new InventoryTabSextiarysector());
-		*/
-		TabManager.initTabManager();
-		//TabManager.registerTab(new InventoryTabEquipment());
-		//TabManager.registerTab(new InventoryTabEquipment());
-		//TabManager.registerTab(new InventoryTabEquipment());
-		//TabManager.registerTab(new InventoryTabEquipment());
-		//TabManager.registerTab(new InventoryTabEquipment());
-		//TabManager.registerTab(new InventoryTabEquipment());
+    }
 
-	}
+    @Override
+    public void registerItemRenderer(Item item) {
+        MinecraftForgeClient.registerItemRenderer(item, new RenderGF());
+    }
 
-	@Override
-	public void setPluginCustomRenderers(FMLPreInitializationEvent event)
-	{
+    @Override
+    public void openGUI(int id) {
+        //PacketHandler.INSTANCE.sendToServer(new PacketGuiId(id));
+    }
 
-		for (IPlugin p : SSPlugins.plugins)
-		{
-			try {
+    @Override
+    public void registerInventoryTabs() {
+        /*
+        if (!Loader.isModLoaded("TConstruct") || TabRegistry.getTabList().size() < 3)
+        {
+            TabRegistry.registerTab(new InventoryTabVanilla());
+        }
+        
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        TabRegistry.registerTab(new InventoryTabSextiarysector());
+        */
+        TabManager.initTabManager();
+        //TabManager.registerTab(new InventoryTabEquipment());
+        //TabManager.registerTab(new InventoryTabEquipment());
+        //TabManager.registerTab(new InventoryTabEquipment());
+        //TabManager.registerTab(new InventoryTabEquipment());
+        //TabManager.registerTab(new InventoryTabEquipment());
+        //TabManager.registerTab(new InventoryTabEquipment());
 
-				p.preClientPlugin(event);
+    }
 
-			} catch (Exception e) {
+    @Override
+    public void setPluginCustomRenderers(FMLPreInitializationEvent event) {
 
-				SextiarySector.Log.log(Level.WARN, p.getModName() + " integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
-				SextiarySector.Log.catching(e);
+        for (IPlugin p : SSPlugins.plugins) {
+            try {
 
-			}
-		}
+                p.preClientPlugin(event);
 
-	}
+            } catch (Exception e) {
 
-	@Override
-	public Object getShiftHat() {
-		return model;
-	}
+                SextiarySector.Log.log(Level.WARN, p.getModName() + " integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+                SextiarySector.Log.catching(e);
+
+            }
+        }
+
+    }
+
+    @Override
+    public Object getShiftHat() {
+        return model;
+    }
 
 }

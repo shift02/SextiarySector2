@@ -9,9 +9,9 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 
 public class SSVillages {
 
-	public static void initVillages(){
+    public static void initVillages() {
 
-		VillagerRegistry.instance().registerVillageCreationHandler(new VillageCreationHandlerWindmill());
+        VillagerRegistry.instance().registerVillageCreationHandler(new VillageCreationHandlerWindmill());
         MapGenStructureIO.registerStructure(ComponentWindmill.class, "VISSSWM");
         MapGenStructureIO.func_143031_a(ComponentWindmill.class, "VISSSWM");
 
@@ -19,6 +19,6 @@ public class SSVillages {
         MapGenStructureIO.registerStructure(ComponentWell.class, "VISSSWE");
         MapGenStructureIO.func_143031_a(ComponentWell.class, "VISSSWE");
 
-	}
+    }
 
 }

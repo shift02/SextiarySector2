@@ -22,45 +22,44 @@ import shift.sextiarysector.tileentity.TileEntitySSChest;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.common.FMLLog;
 
-public class RendererChest extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler{
+public class RendererChest extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
 
-	private TileEntitySSChest field_147717_b = new TileEntitySSChest(0);
+    private TileEntitySSChest field_147717_b = new TileEntitySSChest(0);
 
-	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelId,RenderBlocks renderer) {
+    @Override
+    public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
 
-		 GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
-         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
-         this.renderChest(block, metadata, modelId);
-         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+        GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
+        GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+        this.renderChest(block, metadata, modelId);
+        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 
-	}
+    }
 
-	public void renderChest(Block p_147715_1_, int p_147715_2_, float p_147715_3_)
-    {
+    public void renderChest(Block p_147715_1_, int p_147715_2_, float p_147715_3_) {
 
         TileEntityRendererDispatcher.instance.renderTileEntityAt(this.field_147717_b, 0.0D, 0.0D, 0.0D, 0.0F);
 
     }
 
-	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,Block block, int modelId, RenderBlocks renderer) {
-		return false;
-	}
+    @Override
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+        return false;
+    }
 
-	@Override
-	public boolean shouldRender3DInInventory(int modelId) {
-		return true;
-	}
+    @Override
+    public boolean shouldRender3DInInventory(int modelId) {
+        return true;
+    }
 
-	@Override
-	public int getRenderId() {
-		return SextiarySector.proxy.chestType;
-	}
+    @Override
+    public int getRenderId() {
+        return SextiarySector.proxy.chestType;
+    }
 
-	//
+    //
 
-	private static final ResourceLocation field_147507_b = new ResourceLocation("textures/entity/chest/trapped_double.png");
+    private static final ResourceLocation field_147507_b = new ResourceLocation("textures/entity/chest/trapped_double.png");
     private static final ResourceLocation field_147508_c = new ResourceLocation("textures/entity/chest/christmas_double.png");
     private static final ResourceLocation field_147505_d = new ResourceLocation("sextiarysector:textures/models/chest_creeper_double.png");
     private static final ResourceLocation field_147506_e = new ResourceLocation("textures/entity/chest/trapped.png");
@@ -71,37 +70,27 @@ public class RendererChest extends TileEntitySpecialRenderer implements ISimpleB
     private boolean field_147509_j;
     private static final String __OBFID = "CL_00000965";
 
-    public RendererChest()
-    {
+    public RendererChest() {
         Calendar calendar = Calendar.getInstance();
 
-        if (calendar.get(2) + 1 == 12 && calendar.get(5) >= 24 && calendar.get(5) <= 26)
-        {
+        if (calendar.get(2) + 1 == 12 && calendar.get(5) >= 24 && calendar.get(5) <= 26) {
             this.field_147509_j = true;
         }
     }
 
-    public void renderTileEntityAt(TileEntityChest p_147500_1_, double p_147500_2_, double p_147500_4_, double p_147500_6_, float p_147500_8_)
-    {
+    public void renderTileEntityAt(TileEntityChest p_147500_1_, double p_147500_2_, double p_147500_4_, double p_147500_6_, float p_147500_8_) {
         int i;
 
-        if (!p_147500_1_.hasWorldObj())
-        {
+        if (!p_147500_1_.hasWorldObj()) {
             i = 0;
-        }
-        else
-        {
+        } else {
             Block block = p_147500_1_.getBlockType();
             i = p_147500_1_.getBlockMetadata();
 
-            if (block instanceof BlockChest && i == 0)
-            {
-                try
-                {
-                ((BlockChest)block).func_149954_e(p_147500_1_.getWorldObj(), p_147500_1_.xCoord, p_147500_1_.yCoord, p_147500_1_.zCoord);
-                }
-                catch (ClassCastException e)
-                {
+            if (block instanceof BlockChest && i == 0) {
+                try {
+                    ((BlockChest) block).func_149954_e(p_147500_1_.getWorldObj(), p_147500_1_.xCoord, p_147500_1_.yCoord, p_147500_1_.zCoord);
+                } catch (ClassCastException e) {
                     FMLLog.severe("Attempted to render a chest at %d,  %d, %d that was not a chest", p_147500_1_.xCoord, p_147500_1_.yCoord, p_147500_1_.zCoord);
                 }
                 i = p_147500_1_.getBlockMetadata();
@@ -110,41 +99,27 @@ public class RendererChest extends TileEntitySpecialRenderer implements ISimpleB
             p_147500_1_.checkForAdjacentChests();
         }
 
-        if (p_147500_1_.adjacentChestZNeg == null && p_147500_1_.adjacentChestXNeg == null)
-        {
+        if (p_147500_1_.adjacentChestZNeg == null && p_147500_1_.adjacentChestXNeg == null) {
             ModelChest modelchest;
 
-            if (p_147500_1_.adjacentChestXPos == null && p_147500_1_.adjacentChestZPos == null)
-            {
+            if (p_147500_1_.adjacentChestXPos == null && p_147500_1_.adjacentChestZPos == null) {
                 modelchest = this.field_147510_h;
 
-                if (p_147500_1_.func_145980_j() == 1)
-                {
+                if (p_147500_1_.func_145980_j() == 1) {
                     this.bindTexture(field_147506_e);
-                }
-                else if (this.field_147509_j)
-                {
+                } else if (this.field_147509_j) {
                     this.bindTexture(field_147503_f);
-                }
-                else
-                {
+                } else {
                     this.bindTexture(field_147504_g);
                 }
-            }
-            else
-            {
+            } else {
                 modelchest = this.field_147511_i;
 
-                if (p_147500_1_.func_145980_j() == 1)
-                {
+                if (p_147500_1_.func_145980_j() == 1) {
                     this.bindTexture(field_147507_b);
-                }
-                else if (this.field_147509_j)
-                {
+                } else if (this.field_147509_j) {
                     this.bindTexture(field_147508_c);
-                }
-                else
-                {
+                } else {
                     this.bindTexture(field_147505_d);
                 }
             }
@@ -152,69 +127,59 @@ public class RendererChest extends TileEntitySpecialRenderer implements ISimpleB
             GL11.glPushMatrix();
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            GL11.glTranslatef((float)p_147500_2_, (float)p_147500_4_ + 1.0F, (float)p_147500_6_ + 1.0F);
+            GL11.glTranslatef((float) p_147500_2_, (float) p_147500_4_ + 1.0F, (float) p_147500_6_ + 1.0F);
             GL11.glScalef(1.0F, -1.0F, -1.0F);
             GL11.glTranslatef(0.5F, 0.5F, 0.5F);
             short short1 = 0;
 
-            if (i == 2)
-            {
+            if (i == 2) {
                 short1 = 180;
             }
 
-            if (i == 3)
-            {
+            if (i == 3) {
                 short1 = 0;
             }
 
-            if (i == 4)
-            {
+            if (i == 4) {
                 short1 = 90;
             }
 
-            if (i == 5)
-            {
+            if (i == 5) {
                 short1 = -90;
             }
 
-            if (i == 2 && p_147500_1_.adjacentChestXPos != null)
-            {
+            if (i == 2 && p_147500_1_.adjacentChestXPos != null) {
                 GL11.glTranslatef(1.0F, 0.0F, 0.0F);
             }
 
-            if (i == 5 && p_147500_1_.adjacentChestZPos != null)
-            {
+            if (i == 5 && p_147500_1_.adjacentChestZPos != null) {
                 GL11.glTranslatef(0.0F, 0.0F, -1.0F);
             }
 
-            GL11.glRotatef((float)short1, 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef((float) short1, 0.0F, 1.0F, 0.0F);
             GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
             float f1 = p_147500_1_.prevLidAngle + (p_147500_1_.lidAngle - p_147500_1_.prevLidAngle) * p_147500_8_;
             float f2;
 
-            if (p_147500_1_.adjacentChestZNeg != null)
-            {
+            if (p_147500_1_.adjacentChestZNeg != null) {
                 f2 = p_147500_1_.adjacentChestZNeg.prevLidAngle + (p_147500_1_.adjacentChestZNeg.lidAngle - p_147500_1_.adjacentChestZNeg.prevLidAngle) * p_147500_8_;
 
-                if (f2 > f1)
-                {
+                if (f2 > f1) {
                     f1 = f2;
                 }
             }
 
-            if (p_147500_1_.adjacentChestXNeg != null)
-            {
+            if (p_147500_1_.adjacentChestXNeg != null) {
                 f2 = p_147500_1_.adjacentChestXNeg.prevLidAngle + (p_147500_1_.adjacentChestXNeg.lidAngle - p_147500_1_.adjacentChestXNeg.prevLidAngle) * p_147500_8_;
 
-                if (f2 > f1)
-                {
+                if (f2 > f1) {
                     f1 = f2;
                 }
             }
 
             f1 = 1.0F - f1;
             f1 = 1.0F - f1 * f1 * f1;
-            modelchest.chestLid.rotateAngleX = -(f1 * (float)Math.PI / 2.0F);
+            modelchest.chestLid.rotateAngleX = -(f1 * (float) Math.PI / 2.0F);
             modelchest.renderAll();
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
             GL11.glPopMatrix();
@@ -222,9 +187,8 @@ public class RendererChest extends TileEntitySpecialRenderer implements ISimpleB
         }
     }
 
-    public void renderTileEntityAt(TileEntity p_147500_1_, double p_147500_2_, double p_147500_4_, double p_147500_6_, float p_147500_8_)
-    {
-        this.renderTileEntityAt((TileEntityChest)p_147500_1_, p_147500_2_, p_147500_4_, p_147500_6_, p_147500_8_);
+    public void renderTileEntityAt(TileEntity p_147500_1_, double p_147500_2_, double p_147500_4_, double p_147500_6_, float p_147500_8_) {
+        this.renderTileEntityAt((TileEntityChest) p_147500_1_, p_147500_2_, p_147500_4_, p_147500_6_, p_147500_8_);
     }
 
 }

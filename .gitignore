@@ -2,6 +2,7 @@
 
 /.gradle
 /api
+/lib
 /build
 /src/api
 /src/main/java/tconstruct

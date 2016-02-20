@@ -1,6 +1,9 @@
 package shift.sextiarysector;
 
+import java.util.Iterator;
+
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -37,107 +40,121 @@ import shift.sextiarysector.recipe.RecipesVanilla;
 
 public class SSRecipes {
 
-	public static RecipeSimpleFluid fluidFurnace;
-	public static RecipeSimpleFluid foodSmokers;
-	public static RecipeSimpleMachine magicFurnace;
-	public static RecipeSimpleMachine freezer;
+    public static RecipeSimpleFluid fluidFurnace;
+    public static RecipeSimpleFluid foodSmokers;
+    public static RecipeSimpleMachine magicFurnace;
+    public static RecipeSimpleMachine freezer;
 
-	public static RecipeSimpleFuel magicFuel;
-	public static RecipeSimpleFuel iceFuel;
+    public static RecipeSimpleFuel magicFuel;
+    public static RecipeSimpleFuel iceFuel;
 
-	public static RecipeSimpleMachine millstone;
-	public static RecipeSimpleMachine loom;
-	public static RecipeSimpleMachine sawmill;
-	public static RecipeSimpleMachine spinning_machine;
-	public static RecipeSimpleFluid extractor;
-	public static RecipeSimpleMachine pulverizer;
-	public static RecipeSimpleMachine rollingMachine;
-	public static RecipeSimpleFluid manaSqueezer;
-	public static RecipeSimpleMachine timeMachine;
+    public static RecipeSimpleMachine millstone;
+    public static RecipeSimpleMachine loom;
+    public static RecipeSimpleMachine sawmill;
+    public static RecipeSimpleMachine spinning_machine;
+    public static RecipeSimpleFluid extractor;
+    public static RecipeSimpleMachine pulverizer;
+    public static RecipeSimpleMachine rollingMachine;
+    public static RecipeSimpleFluid manaSqueezer;
+    public static RecipeSimpleMachine timeMachine;
 
-	public static void initRecipeLists() {
+    public static void initRecipeLists() {
 
-		fluidFurnace = new RecipeSimpleFluid();
-		foodSmokers = new RecipeSimpleFluid();
-		magicFurnace = new RecipeSimpleMachine();
-		freezer = new RecipeSimpleMachine();
+        fluidFurnace = new RecipeSimpleFluid();
+        foodSmokers = new RecipeSimpleFluid();
+        magicFurnace = new RecipeSimpleMachine();
+        freezer = new RecipeSimpleMachine();
 
-		magicFuel = new RecipeSimpleFuel();
-		iceFuel = new RecipeSimpleFuel();
+        magicFuel = new RecipeSimpleFuel();
+        iceFuel = new RecipeSimpleFuel();
 
-		RecipeAPI.millstone = millstone = new RecipeSimpleMachine();
-		RecipeAPI.loom = loom = new RecipeSimpleMachine();
-		RecipeAPI.sawmill = sawmill = new RecipeSimpleMachine();
-		RecipeAPI.spinning_machine = spinning_machine = new RecipeSimpleMachine();
-		RecipeAPI.extractor = extractor = new RecipeSimpleFluid();
-		RecipeAPI.pulverizer = pulverizer = new RecipeSimpleMachine();
-		RecipeAPI.rollingMachine = rollingMachine = new RecipeSimpleMachine();
-		RecipeAPI.manaSqueezer = manaSqueezer = new RecipeSimpleFluid();
-		RecipeAPI.timeMachine = timeMachine = new RecipeSimpleMachine();
+        RecipeAPI.millstone = millstone = new RecipeSimpleMachine();
+        RecipeAPI.loom = loom = new RecipeSimpleMachine();
+        RecipeAPI.sawmill = sawmill = new RecipeSimpleMachine();
+        RecipeAPI.spinning_machine = spinning_machine = new RecipeSimpleMachine();
+        RecipeAPI.extractor = extractor = new RecipeSimpleFluid();
+        RecipeAPI.pulverizer = pulverizer = new RecipeSimpleMachine();
+        RecipeAPI.rollingMachine = rollingMachine = new RecipeSimpleMachine();
+        RecipeAPI.manaSqueezer = manaSqueezer = new RecipeSimpleFluid();
+        RecipeAPI.timeMachine = timeMachine = new RecipeSimpleMachine();
 
-	}
+    }
 
-	public static void initRecipes() {
+    public static void initRecipes() {
 
-		CraftingManager m = CraftingManager.getInstance();
+        CraftingManager m = CraftingManager.getInstance();
 
-		RecipesFurnace.addRecipes();
+        RecipesFurnace.addRecipes();
 
-		RecipesVanilla.addRecipes(m);
-		RecipesNormalBlock.addRecipes(m);
-		RecipesMachine.addRecipes(m);
-		RecipesCore.addRecipes(m);
-		RecipesTool.addRecipes(m);
-		RecipesArmor.addRecipes(m);
+        RecipesVanilla.addRecipes(m);
+        RecipesNormalBlock.addRecipes(m);
+        RecipesMachine.addRecipes(m);
+        RecipesCore.addRecipes(m);
+        RecipesTool.addRecipes(m);
+        RecipesArmor.addRecipes(m);
 
-		FurnaceCraftingManager fm = FurnaceCraftingManager.getInstance();
+        FurnaceCraftingManager fm = FurnaceCraftingManager.getInstance();
 
-		RecipesFurnaceCraft.addRecipes(fm);
+        RecipesFurnaceCraft.addRecipes(fm);
 
-		RecipesFluidFurnace.addRecipes(fluidFurnace);
-		RecipesFoodSmokers.addRecipes(foodSmokers);
+        RecipesFluidFurnace.addRecipes(fluidFurnace);
+        RecipesFoodSmokers.addRecipes(foodSmokers);
 
-		RecipesMagicFurnace.addRecipes(magicFurnace);
-		RecipesMagicFuel.addRecipes(magicFuel);
+        RecipesMagicFurnace.addRecipes(magicFurnace);
+        RecipesMagicFuel.addRecipes(magicFuel);
 
-		RecipesFreezer.addRecipes(freezer);
-		RecipesIceFuel.addRecipes(iceFuel);
+        RecipesFreezer.addRecipes(freezer);
+        RecipesIceFuel.addRecipes(iceFuel);
 
-		//GF
-		RecipesMillstone.addRecipes(millstone);
+        //GF
+        RecipesMillstone.addRecipes(millstone);
 
-		RecipesLoom.addRecipes(loom);
+        RecipesLoom.addRecipes(loom);
 
-		RecipesSawmill.addRecipes(sawmill);
+        RecipesSawmill.addRecipes(sawmill);
 
-		RecipesSpinningMachine.addRecipes(spinning_machine);
+        RecipesSpinningMachine.addRecipes(spinning_machine);
 
-		RecipesExtractor.addRecipes(extractor);
+        RecipesExtractor.addRecipes(extractor);
 
-		RecipesPulverizer.addRecipes(pulverizer);
+        RecipesPulverizer.addRecipes(pulverizer);
 
-		RecipesRollingMachine.addRecipes(rollingMachine);
+        RecipesRollingMachine.addRecipes(rollingMachine);
 
-		RecipesManaSqueezer.addRecipes(manaSqueezer);
+        RecipesManaSqueezer.addRecipes(manaSqueezer);
 
-		RecipesTimeMachine.addRecipes(timeMachine);
+        RecipesTimeMachine.addRecipes(timeMachine);
 
-	}
+    }
 
-	public static void deleteVanillaRecipe() {
+    public static void deleteVanillaRecipe() {
 
-		CraftingManager m = CraftingManager.getInstance();
-		ItemStack wool = new ItemStack(Blocks.wool);
+        CraftingManager m = CraftingManager.getInstance();
+        ItemStack wool = new ItemStack(Blocks.wool);
+        ItemStack fishing_rod = new ItemStack(Items.fishing_rod);
 
-		for (int i = 0; i < m.getRecipeList().size(); i++) {
+        Iterator<IRecipe> i = m.getRecipeList().iterator();
 
-			IRecipe re = (IRecipe) m.getRecipeList().get(i);
-			if (re != null && re.getRecipeOutput() != null && re.getRecipeOutput().isItemEqual(wool) && re instanceof ShapedRecipes && !(re instanceof ShapelessRecipes)) {
-				m.getRecipeList().remove(i);
-				return;
-			}
+        while (i.hasNext()) {
 
-		}
+            IRecipe re = i.next();
 
-	}
+            if (re == null) continue;
+            ItemStack outPut = re.getRecipeOutput();
+            if (outPut == null) continue;
+
+            if (outPut.isItemEqual(wool) && re instanceof ShapedRecipes && !(re instanceof ShapelessRecipes)) {
+                i.remove();
+                continue;
+            }
+
+            if (outPut.isItemEqual(fishing_rod)) {
+                i.remove();
+                continue;
+            }
+
+        }
+
+    }
+
 }

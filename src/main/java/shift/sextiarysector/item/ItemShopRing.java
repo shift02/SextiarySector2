@@ -20,107 +20,107 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemShopRing extends Item implements IEquipment, ISSEquipment {
 
-	private SSProductList list;
-	private SSProductList[] sList;
-	public AbstractTab tab;
+    private SSProductList list;
+    private SSProductList[] sList;
+    public AbstractTab tab;
 
-	@SideOnly(Side.CLIENT)
-	public boolean isRing;
+    @SideOnly(Side.CLIENT)
+    public boolean isRing;
 
-	public ItemShopRing() {
-		this.setMaxStackSize(1);
-		this.setCreativeTab(SextiarySectorAPI.TabSSEconomy);
-		MinecraftForge.EVENT_BUS.register(this);
-	}
+    public ItemShopRing() {
+        this.setMaxStackSize(1);
+        this.setCreativeTab(SextiarySectorAPI.TabSSEconomy);
+        MinecraftForge.EVENT_BUS.register(this);
+    }
 
-	public SSProductList getList(World world) {
+    public SSProductList getList(World world) {
 
-		if (world == null || sList == null) return this.getList();
+        if (world == null || sList == null) return this.getList();
 
-		return sList[SeasonAPI.getSeason(world).ordinal()];
-	}
+        return sList[SeasonAPI.getSeason(world).ordinal()];
+    }
 
-	public SSProductList getList() {
-		return list;
-	}
+    public SSProductList getList() {
+        return list;
+    }
 
-	public void setList(SSProductList list) {
-		this.list = list;
-	}
+    public void setList(SSProductList list) {
+        this.list = list;
+    }
 
-	public void setList(SSProductList[] list) {
-		this.sList = list;
-		this.list = list[0];
-	}
+    public void setList(SSProductList[] list) {
+        this.sList = list;
+        this.list = list[0];
+    }
 
-	public void setTab(AbstractTab tab) {
-		this.tab = tab;
-	}
+    public void setTab(AbstractTab tab) {
+        this.tab = tab;
+    }
 
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public void onOpenShopGuiEvent(shift.mceconomy2.api.shop.OpenShopGuiEvent event) {
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onOpenShopGuiEvent(shift.mceconomy2.api.shop.OpenShopGuiEvent event) {
 
-		//if(!isShop(event.shopID))return;
-		if (!this.isRing) return;
+        //if(!isShop(event.shopID))return;
+        if (!this.isRing) return;
 
-		this.isRing = false;
+        this.isRing = false;
 
-		int xSize = 176;
-		int ySize = 166;
-		int guiLeft = (event.gui.width - xSize) / 2;
-		int guiTop = (event.gui.height - ySize) / 2;
+        int xSize = 176;
+        int ySize = 166;
+        int guiLeft = (event.gui.width - xSize) / 2;
+        int guiTop = (event.gui.height - ySize) / 2;
 
-		TabManager.updateTabValues(guiLeft, guiTop, event.buttonList, tab, false);
+        TabManager.updateTabValues(guiLeft, guiTop, event.buttonList, tab, false);
 
-	}
+    }
 
-	private boolean isShop(int id) {
+    private boolean isShop(int id) {
 
-		if (sList != null) {
-			for (SSProductList l : sList) {
-				if (l.id == id) return true;
-			}
-		}
+        if (sList != null) {
+            for (SSProductList l : sList) {
+                if (l.id == id) return true;
+            }
+        }
 
-		return list.id == id;
+        return list.id == id;
 
-	}
+    }
 
-	@Override
-	public String getTabName(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
-		return this.getUnlocalizedName();
-	}
+    @Override
+    public String getTabName(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
+        return this.getUnlocalizedName();
+    }
 
-	@Override
-	public boolean shouldAddToList(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
-		return true;
-	}
+    @Override
+    public boolean shouldAddToList(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
+        return true;
+    }
 
-	@Override
-	public void onTabClicked(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
-		this.isRing = true;
-		MCEconomyAPI.openShopGui(this.getList(player.worldObj).id, player, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
-	}
+    @Override
+    public void onTabClicked(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
+        this.isRing = true;
+        MCEconomyAPI.openShopGui(this.getList(player.worldObj).id, player, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
+    }
 
-	@Override
-	public boolean canTakeStack(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
-		return equipment.equals(EquipmentType.Other);
-	}
+    @Override
+    public boolean canTakeStack(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
+        return equipment.equals(EquipmentType.Other);
+    }
 
-	@Override
-	public boolean isItemValid(EquipmentType equipment, ItemStack stack) {
-		return equipment.equals(EquipmentType.Other);
-	}
+    @Override
+    public boolean isItemValid(EquipmentType equipment, ItemStack stack) {
+        return equipment.equals(EquipmentType.Other);
+    }
 
-	@Override
-	public void onUpdate(EquipmentType equipment, ItemStack stack, World world, Entity player, int slot) {
+    @Override
+    public void onUpdate(EquipmentType equipment, ItemStack stack, World world, Entity player, int slot) {
 
-	}
+    }
 
-	@Override
-	public boolean canDrop(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
-		return true;
-	}
+    @Override
+    public boolean canDrop(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
+        return true;
+    }
 
 }

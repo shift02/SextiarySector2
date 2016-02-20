@@ -6,9 +6,9 @@ import thaumcraft.api.IGoggles;
 
 public class ItemMagicContactLenses extends ItemContactLenses implements IGoggles {
 
-	@Override
-	public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player) {
-		return true;
-	}
+    @Override
+    public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player) {
+        return true;
+    }
 
 }

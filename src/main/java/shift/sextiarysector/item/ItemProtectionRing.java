@@ -6,9 +6,9 @@ import shift.sextiarysector.api.equipment.EquipmentType;
 
 public class ItemProtectionRing extends ItemRing {
 
-	@Override
-	public boolean canDrop(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
-		return false;
-	}
+    @Override
+    public boolean canDrop(EquipmentType equipment, ItemStack stack, EntityPlayer player) {
+        return false;
+    }
 
 }

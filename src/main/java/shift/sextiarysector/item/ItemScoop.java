@@ -2,6 +2,10 @@ package shift.sextiarysector.item;
 
 import java.util.Set;
 
+import com.google.common.collect.Sets;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -13,95 +17,77 @@ import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.api.SextiarySectorAPI;
 
-import com.google.common.collect.Sets;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 public class ItemScoop extends ItemTool {
 
-	//protected Item.ToolMaterial theToolMaterial;
-	private static final Set field_150916_c = Sets.newHashSet(new Block[] { Blocks.sand, Blocks.gravel, Blocks.snow });
+    //protected Item.ToolMaterial theToolMaterial;
+    private static final Set field_150916_c = Sets.newHashSet(new Block[] { Blocks.sand, Blocks.gravel, Blocks.snow });
 
-	public ItemScoop(ToolMaterial p_i45343_1_)
-	{
-		super(1.0F, p_i45343_1_, field_150916_c);
-		int i = p_i45343_1_.getHarvestLevel();
-		float d = p_i45343_1_.getMaxUses();
-		this.setHarvestLevel("scoop", i);
-		if (i == 0) {
-			this.setHarvestLevel("shovel", 0);
-		} else {
-			this.setHarvestLevel("shovel", i - 1);
-		}
-		this.setMaxDamage((int) (d / 2.0f));
-		this.setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
-	}
+    public ItemScoop(ToolMaterial p_i45343_1_) {
+        super(1.0F, p_i45343_1_, field_150916_c);
+        int i = p_i45343_1_.getHarvestLevel();
+        float d = p_i45343_1_.getMaxUses();
+        this.setHarvestLevel("scoop", i);
+        if (i == 0) {
+            this.setHarvestLevel("shovel", 0);
+        } else {
+            this.setHarvestLevel("shovel", i - 1);
+        }
+        this.setMaxDamage((int) (d / 2.0f));
+        this.setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
+    }
 
-	@Override
-	public boolean onItemUse(ItemStack p_77648_1_, EntityPlayer p_77648_2_, World p_77648_3_, int p_77648_4_, int p_77648_5_, int p_77648_6_, int p_77648_7_, float p_77648_8_, float p_77648_9_, float p_77648_10_)
-	{
-		if (!p_77648_2_.canPlayerEdit(p_77648_4_, p_77648_5_, p_77648_6_, p_77648_7_, p_77648_1_))
-		{
-			return false;
-		}
-		else
-		{
+    @Override
+    public boolean onItemUse(ItemStack p_77648_1_, EntityPlayer p_77648_2_, World p_77648_3_, int p_77648_4_, int p_77648_5_, int p_77648_6_, int p_77648_7_, float p_77648_8_, float p_77648_9_, float p_77648_10_) {
 
-			Block block = p_77648_3_.getBlock(p_77648_4_, p_77648_5_, p_77648_6_);
+        if (!p_77648_2_.canPlayerEdit(p_77648_4_, p_77648_5_, p_77648_6_, p_77648_7_, p_77648_1_)) return false;
 
-			if (p_77648_7_ != 0 && p_77648_3_.getBlock(p_77648_4_, p_77648_5_ + 1, p_77648_6_).isAir(p_77648_3_, p_77648_4_, p_77648_5_ + 1, p_77648_6_) && (block == Blocks.grass || block == Blocks.dirt))
-			{
-				Block block1 = SSBlocks.hole;
-				p_77648_3_.playSoundEffect(p_77648_4_ + 0.5F, p_77648_5_ + 0.5F, p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
+        Block block = p_77648_3_.getBlock(p_77648_4_, p_77648_5_, p_77648_6_);
 
-				if (!p_77648_3_.isRemote) p_77648_2_.addStat(SSAchievement.hole, 1);
-				if (p_77648_3_.isRemote)
-				{
-					return true;
-				}
-				else
-				{
-					p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_, block1);
-					p_77648_1_.damageItem(1, p_77648_2_);
-					return true;
-				}
-			}
-			else if (p_77648_7_ != 0 && p_77648_3_.getBlock(p_77648_4_, p_77648_5_ + 1, p_77648_6_).isAir(p_77648_3_, p_77648_4_, p_77648_5_ + 1, p_77648_6_) && (block == Blocks.farmland)) {
+        if (p_77648_7_ != 0 && p_77648_3_.getBlock(p_77648_4_, p_77648_5_ + 1, p_77648_6_).isAir(p_77648_3_, p_77648_4_, p_77648_5_ + 1, p_77648_6_) && (block == Blocks.grass || block == Blocks.dirt)) {
+            Block block1 = SSBlocks.hole;
+            p_77648_3_.playSoundEffect(p_77648_4_ + 0.5F, p_77648_5_ + 0.5F, p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F,
+                    block1.stepSound.getPitch() * 0.8F);
 
-				Block block1 = SSBlocks.farmland;
-				p_77648_3_.playSoundEffect(p_77648_4_ + 0.5F, p_77648_5_ + 0.5F, p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
+            if (!p_77648_3_.isRemote) p_77648_2_.addStat(SSAchievement.hole, 1);
+            if (p_77648_3_.isRemote) {
+                return true;
+            } else {
+                p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_, block1);
+                p_77648_1_.damageItem(1, p_77648_2_);
+                return true;
+            }
 
-				if (!p_77648_3_.isRemote) p_77648_2_.addStat(SSAchievement.farmland, 1);
-				if (p_77648_3_.isRemote)
-				{
-					return true;
-				}
-				else
-				{
-					p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_, block1);
-					p_77648_1_.damageItem(1, p_77648_2_);
-					return true;
-				}
+        } else if (p_77648_7_ != 0 && p_77648_3_.getBlock(p_77648_4_, p_77648_5_ + 1, p_77648_6_).isAir(p_77648_3_, p_77648_4_, p_77648_5_ + 1, p_77648_6_) && (block == SSBlocks.farmland)) {
 
-			} else {
-				return false;
-			}
-		}
-	}
+            Block block1 = Blocks.farmland;
+            p_77648_3_.playSoundEffect(p_77648_4_ + 0.5F, p_77648_5_ + 0.5F, p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F,
+                    block1.stepSound.getPitch() * 0.8F);
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean isFull3D()
-	{
-		return true;
-	}
+            //if (!p_77648_3_.isRemote) p_77648_2_.addStat(SSAchievement.farmland, 1);
+            if (p_77648_3_.isRemote) {
+                return true;
+            } else {
+                p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_, block1);
+                p_77648_1_.damageItem(1, p_77648_2_);
+                return true;
+            }
 
-	@Override
-	public Item setTextureName(String p_111206_1_)
-	{
-		this.iconString = "sextiarysector:tool/" + p_111206_1_;
-		return this;
-	}
+        } else {
+            return false;
+        }
+
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean isFull3D() {
+        return true;
+    }
+
+    @Override
+    public Item setTextureName(String p_111206_1_) {
+        this.iconString = "sextiarysector:tool/" + p_111206_1_;
+        return this;
+    }
 
 }

@@ -14,36 +14,33 @@ import shift.sextiarysector.container.ContainerLargeFurnace;
 import shift.sextiarysector.recipe.FurnaceCraftingManager;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 
-public class GuiLargeFurnace  extends GuiContainer{
+public class GuiLargeFurnace extends GuiContainer {
 
-	private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("sextiarysector:textures/guis/crafting_furnace.png");
+    private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("sextiarysector:textures/guis/crafting_furnace.png");
     private final TileEntityLargeFurnace furnaceInventory;
 
-    public GuiLargeFurnace(InventoryPlayer par1InventoryPlayer, TileEntityLargeFurnace par2TileEntityFurnace)
-    {
+    public GuiLargeFurnace(InventoryPlayer par1InventoryPlayer, TileEntityLargeFurnace par2TileEntityFurnace) {
         super(new ContainerLargeFurnace(par1InventoryPlayer, par2TileEntityFurnace));
         this.furnaceInventory = par2TileEntityFurnace;
-        this.ySize =222;
+        this.ySize = 222;
     }
 
     /**
      * Draw the foreground layer for the GuiContainer (everything in front of the items)
      */
     @Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2)
-    {
+    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         String s = this.furnaceInventory.hasCustomInventoryName() ? this.furnaceInventory.getInventoryName() : I18n.format(this.furnaceInventory.getInventoryName());
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
         this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
-        this.fontRendererObj.drawString(I18n.format("container.sub.inventory", new Object[0]), 8, this.ySize - 96 - 48 -2 + 2 -2, 4210752);
+        this.fontRendererObj.drawString(I18n.format("container.sub.inventory", new Object[0]), 8, this.ySize - 96 - 48 - 2 + 2 - 2, 4210752);
     }
 
     /**
      * Draw the background layer for the GuiContainer (everything behind the items)
      */
     @Override
-	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
-    {
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(furnaceGuiTextures);
         int k = (this.width - this.xSize) / 2;
@@ -51,8 +48,7 @@ public class GuiLargeFurnace  extends GuiContainer{
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         int i1;
 
-        if (this.furnaceInventory.isBurning())
-        {
+        if (this.furnaceInventory.isBurning()) {
             i1 = this.furnaceInventory.getBurnTimeRemainingScaled(12);
             //this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
             this.drawTexturedModalRect(k + 15, l + 29 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
@@ -62,12 +58,9 @@ public class GuiLargeFurnace  extends GuiContainer{
         //this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
         this.drawTexturedModalRect(k + 100 + 1, l + 41, 176, 14, i1 + 1, 16);
 
-
-
         ItemStack itemstack = FurnaceCraftingManager.getInstance().findMatchingRecipe(this.furnaceInventory.craftMatrix, this.furnaceInventory.getWorldObj());
 
-        if (itemstack != null )
-        {
+        if (itemstack != null) {
             int k1 = (this.width - this.xSize) / 2;
             int l1 = (this.height - this.ySize) / 2;
             GL11.glPushMatrix();
@@ -106,8 +99,7 @@ public class GuiLargeFurnace  extends GuiContainer{
             {
                 this.drawItemStackTooltip(itemstack1, par1, par2);
             }
-            else*/ if(this.func_146978_c(105, 23, 16, 16, par2, par3))
-            {
+            else*/ if (this.func_146978_c(105, 23, 16, 16, par2, par3)) {
                 this.renderToolTip(itemstack, par2, par3);
             }
 
@@ -119,11 +111,9 @@ public class GuiLargeFurnace  extends GuiContainer{
 
     }
 
-	@Override
-	public void drawScreen(int par1, int par2, float par3)
-    {
+    @Override
+    public void drawScreen(int par1, int par2, float par3) {
         super.drawScreen(par1, par2, par3);
-
 
     }
 
