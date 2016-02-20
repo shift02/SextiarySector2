@@ -1,0 +1,3 @@
+[submodule "lib/mceconomy2"]
+	path = lib/mceconomy2
+	url = https://github.com/shift02/MCEconomy2
