@@ -135,7 +135,7 @@ public class SSCrops {
         cropManager.registerCrop(onion);
         SSItems.seeds.addSeed("onion", onion);
 
-        tomato = new CropReHarvest("tomato", SSItems.onion, new Season[] { Season.SUMMER }, new int[] { 4, 10, 14, 2 });
+        tomato = new CropReHarvest("tomato", SSItems.tomato, new Season[] { Season.SUMMER }, new int[] { 4, 10, 14, 2 });
         cropManager.registerCrop(tomato);
         SSItems.seeds.addSeed("tomato", tomato);
 

@@ -1,35 +1,31 @@
-/*
-* 作成者: Shift02
-* 作成日: 2016/02/21 - 15:39:33
-*/
 package shift.sextiarysector.achievement;
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import shift.sextiarysector.SextiarySector;
-import shift.sextiarysector.agriculture.CropBase;
 import shift.sextiarysector.api.season.Season;
+import shift.sextiarysector.block.BlockSSCrop;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class AchievementCrop extends AchievementPickup {
+public class AchievementCrop2 extends AchievementPickup {
 
-    private CropBase crop;
+    private BlockSSCrop crop;
     private String n = "\n";//System.getProperty("line.separator");
 
-    public AchievementCrop(String p_i45302_1_, int p_i45302_3_, int p_i45302_4_, CropBase crop, Achievement p_i45302_6_, ArrayList<Achievement> a) {
-        super(p_i45302_1_, p_i45302_3_, p_i45302_4_, new ItemStack(crop.crop), p_i45302_6_, a);
-        this.crop = crop;
+    public AchievementCrop2(String p_i45302_1_, int p_i45302_3_, int p_i45302_4_, ItemStack p_i45302_5_, Block block, Achievement p_i45302_6_, ArrayList<Achievement> a) {
+        super(p_i45302_1_, p_i45302_3_, p_i45302_4_, p_i45302_5_, p_i45302_6_, a);
+        this.crop = (BlockSSCrop) block;
     }
 
     EnumChatFormatting[] InformationC = new EnumChatFormatting[] { EnumChatFormatting.LIGHT_PURPLE, EnumChatFormatting.GREEN, EnumChatFormatting.YELLOW, EnumChatFormatting.BLUE, EnumChatFormatting.GRAY };
 
-    @Override
     @SideOnly(Side.CLIENT)
     public String getDescription() {
 
@@ -42,7 +38,7 @@ public class AchievementCrop extends AchievementPickup {
             str.append(StatCollector.translateToLocal("tooltip.season.seed"));
             str.append(" : ");
 
-            Season[] season = this.crop.getSeason();
+            Season[] season = ((BlockSSCrop) this.crop).getStatus().getSeason();
 
             if (season.length == 1) {
 
@@ -68,7 +64,7 @@ public class AchievementCrop extends AchievementPickup {
 
             str.append(StatCollector.translateToLocal("tooltip.season.day"));
             str.append(" : ");
-            str.append(this.crop.getGrowthDay());
+            str.append(this.crop.getStatus().getDays()[2]);
 
             return str.toString();
         } else {

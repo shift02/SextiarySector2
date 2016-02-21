@@ -100,4 +100,9 @@ public class CropReHarvest extends CropBase {
         return CropRendererType.Cross;
     }
 
+    @Override
+    public int getGrowthDay() {
+        return day[day.length - 2];
+    }
+
 }
