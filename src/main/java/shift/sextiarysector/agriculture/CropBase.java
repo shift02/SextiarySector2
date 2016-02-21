@@ -1,5 +1,7 @@
 package shift.sextiarysector.agriculture;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -28,8 +30,11 @@ public class CropBase implements ICrop {
 
     public String name;
     public Item crop;
-    public Season[] season;
-    public int[] day;
+    protected Season[] season;
+    protected int[] day;
+
+    /** 実績用の作物リスト */
+    public static ArrayList<CropBase> crops = new ArrayList<CropBase>();
 
     @SideOnly(Side.CLIENT)
     public IIcon[] icons;
@@ -39,6 +44,9 @@ public class CropBase implements ICrop {
         this.crop = crop;
         this.season = season;
         this.day = day;
+
+        crops.add(this);
+
     }
 
     @Override
@@ -166,6 +174,30 @@ public class CropBase implements ICrop {
     @Override
     public CropRendererType getRenderType() {
         return CropRendererType.Normal;
+    }
+
+    public Season[] getSeason() {
+        return season;
+    }
+
+    public void setSeason(Season[] season) {
+        this.season = season;
+    }
+
+    public int[] getDays() {
+        return day;
+    }
+
+    public void setDay(int[] day) {
+        this.day = day;
+    }
+
+    /**
+     * 収穫できるまでの日数
+     * @return 日数
+     */
+    public int getGrowthDay() {
+        return day[day.length - 1];
     }
 
 }
