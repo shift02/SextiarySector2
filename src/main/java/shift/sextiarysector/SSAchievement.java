@@ -46,29 +46,31 @@ public class SSAchievement {
 
     public static Achievement[] crops;
 
+    /*
     public static Achievement turnip;
     public static Achievement ironTurnip;
-
+    
     public static Achievement cucumber;
-
+    
     public static Achievement onion;
-
+    
     public static Achievement tomato;
-
+    
     public static Achievement corn;
     public static Achievement goldenCorn;
-
+    
     public static Achievement eggplant;
-
+    
     public static Achievement sweetPotato;
-
+    
     public static Achievement greenPepper;
-
+    
     public static Achievement radish;
-
+    
     public static Achievement rice;
-
+    
     public static Achievement shiitake;
+    */
 
     //Mining
     public static Achievement blueStoneDust;
