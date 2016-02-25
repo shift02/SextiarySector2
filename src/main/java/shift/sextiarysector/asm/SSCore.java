@@ -22,7 +22,7 @@ public class SSCore implements IFMLLoadingPlugin, IFMLCallHook {
 
     @Override
     public String getSetupClass() {
-        return DepLoader.class.getName();
+        return null;//DepLoader.class.getName();
     }
 
     @Override
