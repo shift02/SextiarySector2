@@ -51,7 +51,7 @@ public class ItemSeed extends Item {
     @Override
     public void addInformation(ItemStack itemstack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
 
-        Season[] season = seeds.get(this.getSeedName(itemstack)).season;
+        Season[] season = seeds.get(this.getSeedName(itemstack)).getSeason();
 
         String s = StatCollector.translateToLocal("tooltip.season.seed");
         String s1 = season[0].getTranslatedName();
