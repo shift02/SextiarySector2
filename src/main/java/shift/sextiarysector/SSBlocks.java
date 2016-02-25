@@ -37,6 +37,7 @@ import shift.sextiarysector.block.BlockMagiFurnace;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockOreBlock;
 import shift.sextiarysector.block.BlockPaddy;
+import shift.sextiarysector.block.BlockPaddy2;
 import shift.sextiarysector.block.BlockPipe;
 import shift.sextiarysector.block.BlockPowerStone;
 import shift.sextiarysector.block.BlockPoweredBuoy;
@@ -65,6 +66,7 @@ import shift.sextiarysector.block.BlockTrap;
 import shift.sextiarysector.block.BlockWaterSupplyMachine;
 import shift.sextiarysector.block.BlockWindmill;
 import shift.sextiarysector.block.BlockWood;
+import shift.sextiarysector.block.BlockWood2;
 import shift.sextiarysector.block.BlockWoodHopper;
 import shift.sextiarysector.item.ItemBlockBuoyBase;
 import shift.sextiarysector.item.ItemBlockCrop;
@@ -95,6 +97,7 @@ import shift.sextiarysector.tileentity.TileEntityLargeWindmill;
 import shift.sextiarysector.tileentity.TileEntityMagicFurnace;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
 import shift.sextiarysector.tileentity.TileEntityPaddy;
+import shift.sextiarysector.tileentity.TileEntityPaddy2;
 import shift.sextiarysector.tileentity.TileEntityPipe;
 import shift.sextiarysector.tileentity.TileEntityPump;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
@@ -272,10 +275,12 @@ public class SSBlocks {
 
     //農業
     public static Block farmland2;
-    public static Block paddy;
-    public static Block wood;
+    public static Block paddy2;
+    public static Block wood2;
 
     public static Block farmland;
+    public static Block paddy;
+    public static Block wood;
     public static Block crop;
 
     //農業機械
@@ -664,17 +669,25 @@ public class SSBlocks {
         GameRegistry.registerBlock(farmland2, "Farmland2");
         GameRegistry.registerTileEntity(TileEntityFarmland2.class, "SSFarmland");
 
-        paddy = new BlockPaddy().setBlockName("ss.paddy").setBlockTextureName("dirt").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
-        GameRegistry.registerBlock(paddy, "Paddy");
-        GameRegistry.registerTileEntity(TileEntityPaddy.class, "SSPaddy");
+        paddy2 = new BlockPaddy2().setBlockName("ss.paddy").setBlockTextureName("dirt").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
+        GameRegistry.registerBlock(paddy2, "Paddy2");
+        GameRegistry.registerTileEntity(TileEntityPaddy2.class, "SSPaddy");
 
-        wood = new BlockWood().setBlockName("ss.wood").setBlockTextureName("sextiarysector:wood").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
-        GameRegistry.registerBlock(wood, "Wood");
+        wood2 = new BlockWood2().setBlockName("ss.wood").setBlockTextureName("sextiarysector:wood").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
+        GameRegistry.registerBlock(wood2, "Wood2");
         GameRegistry.registerTileEntity(TileEntityWood.class, "SSWood");
 
-        farmland = new BlockFarmland();
+        farmland = new BlockFarmland().setBlockName("ss.farmland");
         GameRegistry.registerBlock(farmland, "Farmland");
         GameRegistry.registerTileEntity(TileEntityFarmland.class, "SextiarySector:Farmland");
+
+        paddy = new BlockPaddy().setBlockName("ss.paddy");
+        GameRegistry.registerBlock(paddy, "Paddy");
+        GameRegistry.registerTileEntity(TileEntityPaddy.class, "SextiarySector:Paddy");
+
+        wood = new BlockWood().setBlockName("ss.wood").setBlockTextureName("sextiarysector:wood");
+        GameRegistry.registerBlock(wood, "Wood");
+        //GameRegistry.registerTileEntity(TileEntityPaddy.class, "SextiarySector:Paddy");
 
         crop = new BlockCrop();
         GameRegistry.registerBlock(crop, "Crop");
@@ -723,14 +736,14 @@ public class SSBlocks {
 
         //米
         ///28,46,68
-        rice = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 28, 46, 68 }, Season.SPRING, Season.SUMMER, Season.AUTUMN), paddy, SSItems.rice, false).setBlockName("ss.rice").setBlockTextureName("rice");
+        rice = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 28, 46, 68 }, Season.SPRING, Season.SUMMER, Season.AUTUMN), paddy2, SSItems.rice, false).setBlockName("ss.rice").setBlockTextureName("rice");
         GameRegistry.registerBlock(rice, ItemBlockCrop.class, "BlockRice");
 
-        redMushroom = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 6, 8, 14 }, Season.SPRING, Season.SUMMER), wood, Item.getItemFromBlock(Blocks.red_mushroom), false).setBlockName("ss.mushroom_red")
+        redMushroom = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 6, 8, 14 }, Season.SPRING, Season.SUMMER), wood2, Item.getItemFromBlock(Blocks.red_mushroom), false).setBlockName("ss.mushroom_red")
                 .setBlockTextureName("mushroom_red");
         GameRegistry.registerBlock(redMushroom, ItemBlockCrop.class, "BlockRedMushroom");
 
-        shiitake = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 3, 5, 12 }, Season.SPRING), wood, SSItems.shiitake, false).setBlockName("ss.shiitake").setBlockTextureName("shiitake");
+        shiitake = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 3, 5, 12 }, Season.SPRING), wood2, SSItems.shiitake, false).setBlockName("ss.shiitake").setBlockTextureName("shiitake");
         GameRegistry.registerBlock(shiitake, ItemBlockCrop.class, "BlockShiitake");
 
         //水産

@@ -57,7 +57,7 @@ public class ItemWateringCan extends Item {
         int y = par5;
         int z = par6;
 
-        if (par3World.getBlock(x, y, z) != SSBlocks.farmland && par3World.getBlock(x, y, z) != SSBlocks.wood && !(par3World.getBlock(x, y, z) instanceof BlockCrop)) {
+        if (par3World.getBlock(x, y, z) != SSBlocks.farmland && par3World.getBlock(x, y, z) != SSBlocks.wood2 && !(par3World.getBlock(x, y, z) instanceof BlockCrop)) {
             return false;
         }
 

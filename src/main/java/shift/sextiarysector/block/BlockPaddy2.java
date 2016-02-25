@@ -3,27 +3,28 @@ package shift.sextiarysector.block;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.SSAchievement;
-import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SextiarySector;
+import shift.sextiarysector.module.FertilizerManager;
+import shift.sextiarysector.tileentity.TileEntityPaddy2;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockHole extends Block {
+public class BlockPaddy2 extends BlockContainer {
 
-    public BlockHole() {
+    public BlockPaddy2() {
         super(Material.grass);
+        this.setHardness(0.4f);
         this.setLightOpacity(255);
         this.setStepSound(soundTypeGrass);
         this.useNeighborBrightness = true;
@@ -36,73 +37,42 @@ public class BlockHole extends Block {
     }
 
     @Override
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
+    @SideOnly(Side.CLIENT)
+    public int getRenderBlockPass() {
+        return 1;
+    }
 
-        ItemStack itemstack = p_149727_5_.inventory.getCurrentItem();
+    @Override
+    public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
 
-        if (itemstack == null) {
-            return false;
-        }
+        if (FertilizerManager.getFertilizer(p_149727_5_.getCurrentEquippedItem()) != null && par1World.isAirBlock(x, y + 1, z)) {
 
-        if (itemstack.getItem() == Items.bucket && p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_) == 1) {
-            this.drawWater(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_);
-            return true;
+            return this.setFertilizer(par1World, x, y, z, p_149727_5_);
 
-        } else if (itemstack.getItem() == Items.water_bucket && p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_) == 0) {
-            this.addWater(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_);
-            p_149727_5_.addStat(SSAchievement.paddy, 1);
-            return true;
         }
 
         return false;
 
     }
 
-    public void addWater(World w, int x, int y, int z) {
+    private boolean setFertilizer(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer) {
 
-        w.setBlock(x, y, z, SSBlocks.paddy);
-        w.markBlockForUpdate(x, y, z);
+        TileEntityPaddy2 t = (TileEntityPaddy2) par1World.getTileEntity(x, y, z);
 
-        for (int i = 2; i < 6; i++) {
-
-            int x1 = x + ForgeDirection.getOrientation(i).offsetX;
-            int y1 = y + ForgeDirection.getOrientation(i).offsetY;
-            int z1 = z + ForgeDirection.getOrientation(i).offsetZ;
-
-            if (w.getBlock(x1, y1, z1) == this && w.getBlockMetadata(x1, y1, z1) == 0) {
-                ((BlockHole) w.getBlock(x1, y1, z1)).addWater(w, x1, y1, z1);
-            }
-
+        if (t.getFertilizer() != null) {
+            return false;
         }
 
-    }
+        t.setFertilizer(FertilizerManager.getFertilizer(par5EntityPlayer.getCurrentEquippedItem()).getFertilizer());
 
-    public void drawWater(World w, int x, int y, int z) {
-
-        w.setBlockMetadataWithNotify(x, y, z, 0, 4);
-        w.markBlockForUpdate(x, y, z);
-
-        for (int i = 2; i < 6; i++) {
-
-            int x1 = x + ForgeDirection.getOrientation(i).offsetX;
-            int y1 = y + ForgeDirection.getOrientation(i).offsetY;
-            int z1 = z + ForgeDirection.getOrientation(i).offsetZ;
-
-            if (w.getBlock(x1, y1, z1) == this && w.getBlockMetadata(x1, y1, z1) == 1) {
-                ((BlockHole) w.getBlock(x1, y1, z1)).drawWater(w, x1, y1, z1);
-            }
-
+        if (!par5EntityPlayer.capabilities.isCreativeMode && !par1World.isRemote) {
+            --par5EntityPlayer.getCurrentEquippedItem().stackSize;
         }
 
-    }
+        par1World.markBlockForUpdate(x, y, z);
 
-    @Override
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
-        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+        return true;
 
-        ret.add(new ItemStack(Blocks.dirt, 1));
-
-        return ret;
     }
 
     //当たり判定
@@ -143,6 +113,15 @@ public class BlockHole extends Block {
         return false;
     }
 
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+
+        ret.add(new ItemStack(Blocks.dirt, 1));
+
+        return ret;
+    }
+
     //ブロックの線
     @Override
     public void setBlockBoundsForItemRender() {
@@ -161,7 +140,12 @@ public class BlockHole extends Block {
 
     @Override
     public int getRenderType() {
-        return SextiarySector.proxy.holeType;
+        return SextiarySector.proxy.paddyType;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+        return new TileEntityPaddy2();
     }
 
 }

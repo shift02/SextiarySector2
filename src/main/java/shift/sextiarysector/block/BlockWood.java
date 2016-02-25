@@ -1,25 +1,18 @@
+/*
+* 作成者: Shift02
+* 作成日: 2016/02/25 - 16:45:55
+*/
 package shift.sextiarysector.block;
 
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import shift.sextiarysector.SSFluids;
-import shift.sextiarysector.SextiarySector;
-import shift.sextiarysector.module.FertilizerManager;
-import shift.sextiarysector.tileentity.TileEntityFarmland2;
-import shift.sextiarysector.tileentity.TileEntityWood;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
+import shift.sextiarysector.SextiarySector;
+import shift.sextiarysector.api.agriculture.AgricultureAPI;
 
-public class BlockWood extends BlockContainer {
+public class BlockWood extends BlockAbstractFarmland {
 
     private IIcon blockTopIcon;
     private IIcon blockTop2Icon;
@@ -35,87 +28,8 @@ public class BlockWood extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-
-        if (FertilizerManager.getFertilizer(par5EntityPlayer.getCurrentEquippedItem()) != null && par1World.isAirBlock(x, y + 1, z)) {
-
-            return this.setFertilizer(par1World, x, y, z, par5EntityPlayer);
-
-        }
-
-        if (par5EntityPlayer.getCurrentEquippedItem() != null) {
-
-            FluidStack f = FluidContainerRegistry.getFluidForFilledItem(par5EntityPlayer.getCurrentEquippedItem());
-
-            if (f != null) {
-
-                TileEntityWood t = (TileEntityWood) par1World.getTileEntity(x, y, z);
-
-                if (t.fill(ForgeDirection.getOrientation(par6), f, true) > 0) {
-
-                    ItemStack item = par5EntityPlayer.getCurrentEquippedItem().getItem().getContainerItem(par5EntityPlayer.getCurrentEquippedItem());
-
-                    if (!par5EntityPlayer.capabilities.isCreativeMode && !par1World.isRemote) {
-                        --par5EntityPlayer.getCurrentEquippedItem().stackSize;
-
-                        if (item != null) {
-
-                            if (par5EntityPlayer.getCurrentEquippedItem().stackSize == 0) {
-
-                                par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, item);
-
-                            } else if (!par5EntityPlayer.inventory.addItemStackToInventory(item)) {
-                                par5EntityPlayer.dropPlayerItemWithRandomChoice(item, false);
-                            }
-
-                        }
-
-                    }
-
-                    return true;
-
-                }
-
-            } else {
-                return false;
-            }
-
-        }
-
-        return false;
-    }
-
-    private boolean setFertilizer(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer) {
-
-        TileEntityWood t = (TileEntityWood) par1World.getTileEntity(x, y, z);
-
-        if (t.getFertilizer() != null) {
-            return false;
-        }
-
-        t.setFertilizer(FertilizerManager.getFertilizer(par5EntityPlayer.getCurrentEquippedItem()).getFertilizer());
-
-        if (!par5EntityPlayer.capabilities.isCreativeMode && !par1World.isRemote) {
-            --par5EntityPlayer.getCurrentEquippedItem().stackSize;
-        }
-
-        par1World.markBlockForUpdate(x, y, z);
-
-        return true;
-
-    }
-
-    public boolean addWater(World par1World, int x, int y, int z) {
-
-        TileEntityFarmland2 t = (TileEntityFarmland2) par1World.getTileEntity(x, y, z);
-
-        return t.fill(ForgeDirection.UP, new FluidStack(SSFluids.drinkingWater, 1000), true) > 0;
-
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-        return new TileEntityWood();
+    public String getName() {
+        return AgricultureAPI.WOOD;
     }
 
     @Override
@@ -142,6 +56,11 @@ public class BlockWood extends BlockContainer {
     }
 
     @Override
+    public int getRenderType() {
+        return SextiarySector.proxy.woodType;
+    }
+
+    @Override
     public boolean isOpaqueCube() {
         return false;
     }
@@ -149,11 +68,6 @@ public class BlockWood extends BlockContainer {
     @Override
     public boolean renderAsNormalBlock() {
         return false;
-    }
-
-    @Override
-    public int getRenderType() {
-        return SextiarySector.proxy.woodType;
     }
 
 }

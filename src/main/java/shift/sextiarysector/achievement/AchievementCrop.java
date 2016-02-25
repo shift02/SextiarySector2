@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
@@ -23,7 +22,7 @@ public class AchievementCrop extends AchievementPickup {
     private String n = "\n";//System.getProperty("line.separator");
 
     public AchievementCrop(String p_i45302_1_, int p_i45302_3_, int p_i45302_4_, CropBase crop, Achievement p_i45302_6_, ArrayList<Achievement> a) {
-        super(p_i45302_1_, p_i45302_3_, p_i45302_4_, new ItemStack(crop.crop), p_i45302_6_, a);
+        super(p_i45302_1_, p_i45302_3_, p_i45302_4_, crop.crop.copy(), p_i45302_6_, a);
         this.crop = crop;
     }
 

@@ -58,7 +58,7 @@ public class ModuleShop implements IModule {
 
             creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.shopMonitor, 1), 14000));
 
-            creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.wood, 1), 180));
+            creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.wood2, 1), 180));
 
             if (i == 0) {
                 creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.turnip, 8), 180));

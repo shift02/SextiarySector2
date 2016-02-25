@@ -15,6 +15,9 @@ public class AgricultureAPI {
     /** 水田 */
     public static final String PADDY = "paddy";
 
+    /** 木(キノコ用) */
+    public static final String WOOD = "wood";
+
     public static ICropManager cropManager;
 
     public static IFarmlandRegistry farmlandRegistry;

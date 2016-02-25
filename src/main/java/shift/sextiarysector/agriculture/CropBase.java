@@ -7,7 +7,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -29,7 +28,7 @@ import shift.sextiarysector.api.season.SeasonAPI;
 public class CropBase implements ICrop {
 
     public String name;
-    public Item crop;
+    public ItemStack crop;
     protected Season[] season;
     protected int[] day;
 
@@ -39,7 +38,7 @@ public class CropBase implements ICrop {
     @SideOnly(Side.CLIENT)
     public IIcon[] icons;
 
-    public CropBase(String name, Item crop, Season[] season, int[] day) {
+    public CropBase(String name, ItemStack crop, Season[] season, int[] day) {
         this.name = name;
         this.crop = crop;
         this.season = season;
@@ -82,7 +81,7 @@ public class CropBase implements ICrop {
 
         w.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, SSBlocks.crop.stepSound.func_150496_b(), (SSBlocks.crop.stepSound.getVolume() + 1.0F) / 2.0F, SSBlocks.crop.stepSound.getPitch() * 0.8F);
 
-        ItemStack cropItem = new ItemStack(this.crop);
+        ItemStack cropItem = this.crop.copy();
 
         //突然変異の処理
         if (farmland.getFertilizer() != null) {

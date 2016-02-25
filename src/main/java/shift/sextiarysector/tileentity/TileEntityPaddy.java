@@ -1,70 +1,79 @@
+/*
+* 作成者: Shift02
+* 作成日: 2016/02/25 - 15:56:37
+*/
 package shift.sextiarysector.tileentity;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
-import shift.sextiarysector.api.agriculture.IFarmland2;
+import shift.sextiarysector.SSCrops;
+import shift.sextiarysector.api.agriculture.IFertilizer;
+import shift.sextiarysector.api.agriculture.TileFarmland;
 
-public class TileEntityPaddy extends TileEntity implements IFluidHandler, IFarmland2 {
+public class TileEntityPaddy extends TileEntity implements TileFarmland {
 
-    protected FluidTank water = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
-
-    private ItemStack fertilizerItem;
-
-    public ItemStack getFertilizer() {
-        return fertilizerItem;
-    }
-
-    public void setFertilizer(ItemStack fertilizer) {
-        if (fertilizer == null) {
-            this.fertilizerItem = null;
-        } else {
-            this.fertilizerItem = fertilizer.copy();
-        }
-
-    }
+    //肥料
+    private IFertilizer fertilizer;
 
     @Override
-    public boolean canGrowth() {
+    public boolean canCropGrow(int water) {
         return true;
     }
 
     @Override
-    public void growth() {
+    public void doGrow(int water) {
 
     }
 
     @Override
+    public int getWater() {
+        return 10;
+    }
+
+    @Override
+    public int addWater(int amount) {
+        return 0;
+    }
+
+    @Override
+    public boolean hasWater() {
+        return true;
+    }
+
+    @Override
+    public IFertilizer getFertilizer() {
+        return fertilizer;
+    }
+
+    @Override
+    public void setFertilizer(IFertilizer fertilizer) {
+        this.fertilizer = fertilizer;
+        this.getWorldObj().markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
+
+    //NBT
+    @Override
     public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
         super.readFromNBT(par1nbtTagCompound);
-        if (par1nbtTagCompound.hasKey("fertilizeritem")) {
-            this.fertilizerItem = ItemStack.loadItemStackFromNBT(par1nbtTagCompound.getCompoundTag("fertilizeritem"));
+
+        if (par1nbtTagCompound.hasKey("fertilizerName")) {
+
+            this.fertilizer = SSCrops.fertilizerManager.getFertilizer(par1nbtTagCompound.getString("fertilizerName"));
+
         }
 
-        this.water.readFromNBT(par1nbtTagCompound);
     }
 
     @Override
     public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
+
         super.writeToNBT(par1nbtTagCompound);
 
-        if (fertilizerItem != null) {
-            NBTTagCompound itemNBT = new NBTTagCompound();
-            fertilizerItem.writeToNBT(itemNBT);
-            par1nbtTagCompound.setTag("fertilizeritem", itemNBT);
-        }
+        if (fertilizer != null) par1nbtTagCompound.setString("fertilizerName", fertilizer.getName());
 
-        this.water.writeToNBT(par1nbtTagCompound);
     }
 
     @Override
@@ -78,36 +87,6 @@ public class TileEntityPaddy extends TileEntity implements IFluidHandler, IFarml
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         readFromNBT(pkt.func_148857_g());
         this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-    }
-
-    @Override
-    public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        return 0;
-    }
-
-    @Override
-    public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        return null;
-    }
-
-    @Override
-    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-        return null;
-    }
-
-    @Override
-    public boolean canFill(ForgeDirection from, Fluid fluid) {
-        return false;
-    }
-
-    @Override
-    public boolean canDrain(ForgeDirection from, Fluid fluid) {
-        return false;
-    }
-
-    @Override
-    public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-        return new FluidTankInfo[] { this.water.getInfo() };
     }
 
 }
