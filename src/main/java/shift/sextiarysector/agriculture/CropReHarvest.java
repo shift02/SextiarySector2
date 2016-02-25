@@ -4,7 +4,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
@@ -24,7 +23,7 @@ import shift.sextiarysector.api.season.Season;
  */
 public class CropReHarvest extends CropBase {
 
-    public CropReHarvest(String name, Item crop, Season[] season, int[] day) {
+    public CropReHarvest(String name, ItemStack crop, Season[] season, int[] day) {
         super(name, crop, season, day);
     }
 
@@ -42,7 +41,7 @@ public class CropReHarvest extends CropBase {
 
         w.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, SSBlocks.crop.stepSound.func_150496_b(), (SSBlocks.crop.stepSound.getVolume() + 1.0F) / 2.0F, SSBlocks.crop.stepSound.getPitch() * 0.8F);
 
-        ItemStack cropItem = new ItemStack(this.crop);
+        ItemStack cropItem = this.crop.copy();
 
         //突然変異の処理
         if (farmland.getFertilizer() != null) {

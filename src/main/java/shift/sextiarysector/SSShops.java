@@ -12,6 +12,7 @@ import shift.mceconomy2.api.shop.IProductList;
 import shift.mceconomy2.api.shop.ProductItem;
 import shift.sextiarysector.block.BlockMonitor.MonitorType;
 import shift.sextiarysector.item.ItemFigureBox;
+import shift.sextiarysector.item.ItemSeed;
 import shift.sextiarysector.item.ItemShopRing;
 
 public class SSShops {
@@ -47,38 +48,38 @@ public class SSShops {
             creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.craftUnit, 1), 5300));
             creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.pickaxeUnit, 1), 6800));
 
-            creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.wood, 1), 180));
+            creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.wood2, 1), 180));
 
             if (i == 0) {
-                creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.turnip, 8), 180));
-                creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.cucumber, 8), 360));
+                creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("turnip", 8), 180));
+                creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("cucumber", 8), 360));
 
-                creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.rice, 8), 280));
-                creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.shiitake, 8), 210));
+                creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("rice", 8), 280));
+                creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("shiitake", 8), 210));
 
                 creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.mithrilIngot, 1), 1400));
             }
 
             if (i == 1) {
-                creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.onion, 8), 180));
-                creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.tomato, 8), 190));
-                creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.corn, 8), 740));
+                creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("onion", 8), 180));
+                creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("tomato", 8), 190));
+                creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("corn", 8), 740));
 
                 creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.magicDust, 4), 500));
                 creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.waterContactLenses, 1), 700));
             }
 
             if (i == 2) {
-                creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.eggplant, 8), 290));
-                creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.sweetPotato, 8), 110));
-                creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.greenPepper, 8), 320));
+                creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("eggplant", 8), 290));
+                creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("sweet_potato", 8), 110));
+                creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("green_pepper", 8), 320));
 
                 creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.fluidCrafter, 4, 0), 580));
 
             }
 
             if (i == 3) {
-                creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.radish, 8), 170));
+                creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("radish", 8), 170));
 
                 creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.stoneDust, 4), 500));
             }

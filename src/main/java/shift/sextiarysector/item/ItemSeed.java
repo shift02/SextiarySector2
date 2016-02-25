@@ -93,9 +93,14 @@ public class ItemSeed extends Item {
         return this.getIconIndex(stack);
     }
 
-    public static ItemStack getSeedItemStack(String name) {
+    /**
+     * 作物の名前から種を取得
+     * @param name 名前
+     * @return 種
+     */
+    public static ItemStack getSeedItemStack(String name, int amount) {
 
-        ItemStack item = new ItemStack(SSItems.seeds);
+        ItemStack item = new ItemStack(SSItems.seeds, amount);
         setSeedName(item, name);
 
         return item;
