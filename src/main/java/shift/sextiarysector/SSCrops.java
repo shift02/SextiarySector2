@@ -21,6 +21,7 @@ import shift.sextiarysector.api.agriculture.CropWither;
 import shift.sextiarysector.api.agriculture.FertilizerBase;
 import shift.sextiarysector.api.agriculture.ICrop;
 import shift.sextiarysector.api.agriculture.IFertilizer;
+import shift.sextiarysector.api.agriculture.MutationBase;
 import shift.sextiarysector.api.agriculture.MutationNormal;
 import shift.sextiarysector.api.season.Season;
 
@@ -33,6 +34,8 @@ public class SSCrops {
 
     //肥料
     public static IFertilizer normal;
+
+    public static IFertilizer stone;
 
     public static ICrop test;
     public static ICrop wither;
@@ -104,6 +107,10 @@ public class SSCrops {
         normal = new FertilizerBase("normal", new ItemStack(Items.dye, 1, 15)).setIconName("sextiarysector:fertilizer/bone");
         AgricultureAPI.normal = normal;
         AgricultureAPI.registerFertilizer(normal);
+
+        stone = new FertilizerBase("stone", new ItemStack(SSItems.stoneDust, 1)).setIconName("sextiarysector:fertilizer/stone");
+        AgricultureAPI.stone = stone;
+        AgricultureAPI.registerFertilizer(stone);
 
         //作物の登録
         test = new CropTest();
@@ -194,11 +201,14 @@ public class SSCrops {
 
                 @Override
                 public int getProbability() {
-                    return 0;
+                    return 255;
                 }
 
             });
         }
+
+        mutationRegistry.registeMutation(new MutationBase(stone, new ItemStack(SSItems.turnip, 1, 0), new ItemStack(SSItems.ironTurnip, 1, 0)));
+        mutationRegistry.registeMutation(new MutationBase(stone, new ItemStack(SSItems.corn, 1, 0), new ItemStack(SSItems.goldenCorn, 1, 0)));
 
     }
 
