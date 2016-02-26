@@ -26,8 +26,6 @@ public class AgricultureAPI {
 
     public static IMutationRegistry mutationRegistry;
 
-    public static IFertilizerManager2 fertilizerManager2;
-
     //肥料
 
     /** 普通の肥料(大きさ作物が収穫できる) */

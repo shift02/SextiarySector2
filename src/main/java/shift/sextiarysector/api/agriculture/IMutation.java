@@ -10,10 +10,22 @@ import net.minecraft.item.ItemStack;
  */
 public interface IMutation {
 
+    /**
+     * どの肥料で変異が発生するか
+     * @return 肥料
+     */
     public IFertilizer getFertilizer();
 
+    /**
+     * 変異前の作物
+     * @return 作物
+     */
     public ItemStack getBefore();
 
+    /**
+     * 変異後の作物
+     * @return 作物
+     */
     public ItemStack getAfter();
 
     /**

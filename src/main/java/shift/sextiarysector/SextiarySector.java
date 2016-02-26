@@ -16,7 +16,6 @@ import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.gearforce.item.GearForceItemAPI;
 import shift.sextiarysector.item.GearForceItemManager;
 import shift.sextiarysector.module.IModule;
-import shift.sextiarysector.module.ModuleAgriculture;
 import shift.sextiarysector.module.ModuleChest;
 import shift.sextiarysector.module.ModuleChunkLoader;
 import shift.sextiarysector.module.ModuleFigure;
@@ -73,7 +72,6 @@ public class SextiarySector {
         modules.add(ModuleChest.getInstance());
         modules.add(ModuleChunkLoader.getInstance());
         modules.add(ModuleSeason.getInstance());
-        modules.add(ModuleAgriculture.getInstance());
         modules.add(ModuleTrap.getInstance());
         modules.add(ModuleSandpit.getInstance());
         modules.add(ModuleHotSprings.getInstance());
