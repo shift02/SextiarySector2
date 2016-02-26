@@ -5,6 +5,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import shift.sextiarysector.SSCrops;
 import shift.sextiarysector.api.agriculture.IFertilizer;
 import shift.sextiarysector.api.agriculture.TileFarmland;
@@ -173,6 +174,26 @@ public class TileEntityFarmland extends TileEntity implements TileFarmland {
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         readFromNBT(pkt.func_148857_g());
         this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
+
+    @Override
+    public World getWorld() {
+        return this.getWorld();
+    }
+
+    @Override
+    public int getX() {
+        return this.xCoord;
+    }
+
+    @Override
+    public int getY() {
+        return this.yCoord;
+    }
+
+    @Override
+    public int getZ() {
+        return this.zCoord;
     }
 
 }

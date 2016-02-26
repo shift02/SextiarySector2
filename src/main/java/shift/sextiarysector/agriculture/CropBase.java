@@ -104,6 +104,9 @@ public class CropBase implements ICrop {
         w.func_147480_a(x, y, z, false);
         w.setBlockToAir(x, y, z);
 
+        farmland.setFertilizer(null);
+        w.markBlockForUpdate(farmland.getX(), farmland.getY(), farmland.getZ());
+
         return true;
 
     }
