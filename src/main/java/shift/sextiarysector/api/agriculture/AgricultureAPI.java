@@ -33,6 +33,9 @@ public class AgricultureAPI {
     /** 普通の肥料(大きさ作物が収穫できる) */
     public static IFertilizer normal;
 
+    /** 石の肥料(鉱石作物が収穫できる) */
+    public static IFertilizer stone;
+
     /**
      * 作物のデータを登録
      * @param crop 登録する作物
