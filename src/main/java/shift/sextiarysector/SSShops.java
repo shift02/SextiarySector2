@@ -48,7 +48,7 @@ public class SSShops {
             creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.craftUnit, 1), 5300));
             creepers[i].addItemProduct(new ProductItem(new ItemStack(SSItems.pickaxeUnit, 1), 6800));
 
-            creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.wood2, 1), 180));
+            creepers[i].addItemProduct(new ProductItem(new ItemStack(SSBlocks.wood, 1), 180));
 
             if (i == 0) {
                 creepers[i].addItemProduct(new ProductItem(ItemSeed.getSeedItemStack("turnip", 8), 180));
