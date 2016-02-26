@@ -77,12 +77,6 @@ public class NEISextiarySectorConfig implements IConfigureNEI {
         API.registerRecipeHandler(new IceFuelRecipeHandler());
         API.registerUsageHandler(new IceFuelRecipeHandler());
 
-        API.registerRecipeHandler(new FertilizerFarmlandRecipeHandler());
-        API.registerUsageHandler(new FertilizerFarmlandRecipeHandler());
-
-        API.registerRecipeHandler(new FertilizerPaddyRecipeHandler());
-        API.registerUsageHandler(new FertilizerPaddyRecipeHandler());
-
         API.registerRecipeHandler(new MutationRecipeHandler());
         API.registerUsageHandler(new MutationRecipeHandler());
 

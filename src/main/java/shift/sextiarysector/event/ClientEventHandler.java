@@ -56,15 +56,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import shift.sextiarysector.SSItems;
 import shift.sextiarysector.SextiarySector;
-import shift.sextiarysector.api.agriculture.AgricultureAPI;
-import shift.sextiarysector.api.agriculture.IFertilizer2;
 import shift.sextiarysector.api.equipment.EquipmentType;
 import shift.sextiarysector.api.gearforce.item.IGearForceGridItem;
 import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
 import shift.sextiarysector.gui.GuiAchievementsNext;
 import shift.sextiarysector.gui.GuiStatsNext;
 import shift.sextiarysector.item.TextureSeason;
-import shift.sextiarysector.module.FertilizerManager;
 import shift.sextiarysector.module.SeasonManager;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.EquipmentStats;
@@ -166,19 +163,6 @@ public class ClientEventHandler {
             lavaStill = event.map.registerIcon("sextiarysector:fluid/lava_still");
 
             breakIcon = event.map.registerIcon("sextiarysector:break");
-
-        }
-
-    }
-
-    @SubscribeEvent
-    public void preFertilizerTextureStitchEvent(TextureStitchEvent.Pre event) {
-
-        if (event.map.getTextureType() == 0) {
-
-            for (IFertilizer2 f : ((FertilizerManager) AgricultureAPI.fertilizerManager2).fertilizerIcons) {
-                f.registerFertilizerIcons(event.map);
-            }
 
         }
 
