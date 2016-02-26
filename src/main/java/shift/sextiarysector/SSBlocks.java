@@ -269,26 +269,6 @@ public class SSBlocks {
     //農業機械
     public static Block waterSupplyMachine;
 
-    public static Block turnip;
-    public static Block cucumber;
-    public static Block ironTurnip;
-
-    public static Block onion;
-    public static Block tomato;
-    public static Block corn;
-    public static Block goldenCorn;
-
-    public static Block eggplant;
-    public static Block sweetPotato;
-    public static Block greenPepper;
-
-    public static Block radish;
-
-    public static Block rice;
-
-    public static Block redMushroom;
-    public static Block shiitake;
-
     //水産
     public static Block sandpit;
 

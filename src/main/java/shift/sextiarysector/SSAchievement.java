@@ -18,6 +18,7 @@ import shift.sextiarysector.achievement.AchievementPageEconomy;
 import shift.sextiarysector.achievement.AchievementPageIndustry;
 import shift.sextiarysector.achievement.AchievementPickup;
 import shift.sextiarysector.agriculture.CropBase;
+import shift.sextiarysector.item.ItemSeed;
 
 public class SSAchievement {
 
@@ -130,7 +131,7 @@ public class SSAchievement {
         AchievementPage.registerAchievementPage(new AchievementPageBase("achievement.ss.core", core));
 
         //農業
-        seed = new AchievementBase("seed", -8, -2, new ItemStack(SSBlocks.tomato), (Achievement) null, agriculture).initIndependentStat().registerStat();
+        seed = new AchievementBase("seed", -8, -2, ItemSeed.getSeedItemStack("turnip", 1), (Achievement) null, agriculture).initIndependentStat().registerStat();
         scoop = new AchievementCraft("scoop", -6, -3, new ItemStack(SSItems.woodScoop), AchievementList.buildWorkBench, agriculture).registerStat();
         farmland = new AchievementBase("farmland", -4, -4, new ItemStack(Items.stone_hoe), scoop, agriculture).registerStat();
         wateringCan = new AchievementCraft("watering_can", 1, -2, new ItemStack(SSItems.woodWateringCan, 1, OreDictionary.WILDCARD_VALUE), AchievementList.buildWorkBench, agriculture).registerStat();
