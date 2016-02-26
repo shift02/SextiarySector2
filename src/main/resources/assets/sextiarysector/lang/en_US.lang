@@ -583,9 +583,9 @@ achievement.ss.craft_furnace=Craft Furnace
 achievement.ss.craft_furnace.desc=Craft a large furnace
 achievement.ss.craft_furnace.desc2=Complex craft
 
-achievement.ss.hammer=Hammer !
-achievement.ss.hammer.desc=Craft a large hammer
-achievement.ss.hammer.desc2=invincible ?
+achievement.ss.spanner=Spanner !
+achievement.ss.spanner.desc=Craft a large spanner
+achievement.ss.spanner.desc2=invincible ?
 
 achievement.ss.fluid_furnace=Melted
 achievement.ss.fluid_furnace.desc=Craft a fluid furnace
