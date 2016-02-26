@@ -33,7 +33,7 @@ public class SSAchievement {
     public static Achievement drinkingWater;
     public static Achievement craftFurnace;
     public static Achievement fluidFurnace;
-    public static Achievement hammer;
+    public static Achievement spanner;
     public static Achievement freezer;
 
     //Agriculture
@@ -123,7 +123,7 @@ public class SSAchievement {
         bottle = new AchievementCraft("bottle", 1, 1, new ItemStack(Items.glass_bottle), AchievementList.buildWorkBench, core).registerStat();
         drinkingWater = new AchievementFurnace("drinking_water", 3, 1, new ItemStack(SSItems.drinkingWaterBottle), bottle, core).registerStat();
         craftFurnace = new AchievementCraft("craft_furnace", -2, -1, new ItemStack(SSBlocks.LargeFurnace), AchievementList.buildWorkBench, core).registerStat();
-        hammer = new AchievementFurnace("hammer", -4, -1, new ItemStack(SSItems.ironSpanner), craftFurnace, core).registerStat();
+        spanner = new AchievementCraft("spanner", -4, -1, new ItemStack(SSItems.ironSpanner), AchievementList.buildWorkBench, core).registerStat();
         fluidFurnace = new AchievementFurnace("fluid_furnace", -2, 1, new ItemStack(SSBlocks.fluidFurnace), craftFurnace, core).registerStat();
         freezer = new AchievementFurnace("freezer", 0, -3, new ItemStack(SSBlocks.freezer), craftFurnace, core).registerStat();
 
