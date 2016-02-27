@@ -193,6 +193,15 @@ public class RecipesMachine {
                         Character.valueOf('a'), SSBlocks.woodGrate,
                 }));
 
+        //水補給機
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.waterSupplyMachine, 1),
+                new Object[] { "yxy", "aza", "yxy",
+                        Character.valueOf('x'), "plateWood",
+                        Character.valueOf('y'), "plankWood",
+                        Character.valueOf('z'), SSBlocks.tank,
+                        Character.valueOf('a'), SSBlocks.woodGrate,
+                }));
+
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.suctionMachine, 1),
                 new Object[] { "yay", "xzx", "yay",
                         Character.valueOf('x'), "plateWood",
