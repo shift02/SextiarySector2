@@ -149,6 +149,7 @@ jar {
 task devJar(type: Jar) {
     from sourceSets.main.output
     from sourceSets.main.allSource
+    exclude('shift/mceconomy2/**')
     classifier = 'dev'
 }
  
