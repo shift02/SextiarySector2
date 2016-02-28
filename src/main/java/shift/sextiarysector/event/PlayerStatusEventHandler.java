@@ -7,12 +7,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -52,16 +50,16 @@ public class PlayerStatusEventHandler {
      * 空腹時のダメージを無効
      */
 
-    @SubscribeEvent
-    public void onPlayerUseItemEvent(LivingAttackEvent event) {
-
-        if (!(event.entityLiving instanceof EntityPlayer)) return;
-
-        if (event.source == DamageSource.starve) {
-            event.setCanceled(true);
-        }
-
-    }
+    //    @SubscribeEvent
+    //    public void onPlayerUseItemEvent(LivingAttackEvent event) {
+    //
+    //        if (!(event.entityLiving instanceof EntityPlayer)) return;
+    //
+    //        if (event.source == DamageSource.starve) {
+    //            event.setCanceled(true);
+    //        }
+    //
+    //    }
 
     @SubscribeEvent
     public void onPlayerUseItemEvent(LivingUpdateEvent event) {

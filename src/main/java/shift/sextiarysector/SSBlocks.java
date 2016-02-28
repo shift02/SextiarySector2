@@ -4,9 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import shift.sextiarysector.api.SextiarySectorAPI;
-import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.block.BlockBlueFire;
 import shift.sextiarysector.block.BlockBoardingBuoy;
 import shift.sextiarysector.block.BlockChunkLoader;
@@ -42,10 +40,6 @@ import shift.sextiarysector.block.BlockPowerStone;
 import shift.sextiarysector.block.BlockPoweredBuoy;
 import shift.sextiarysector.block.BlockPump;
 import shift.sextiarysector.block.BlockSSChest;
-import shift.sextiarysector.block.BlockSSCrop;
-import shift.sextiarysector.block.BlockSSCrop.CropStatus;
-import shift.sextiarysector.block.BlockSSCrop.CropType;
-import shift.sextiarysector.block.BlockSSFarmland;
 import shift.sextiarysector.block.BlockSSFluid;
 import shift.sextiarysector.block.BlockSSOre;
 import shift.sextiarysector.block.BlockSSPane;
@@ -67,7 +61,6 @@ import shift.sextiarysector.block.BlockWindmill;
 import shift.sextiarysector.block.BlockWood;
 import shift.sextiarysector.block.BlockWoodHopper;
 import shift.sextiarysector.item.ItemBlockBuoyBase;
-import shift.sextiarysector.item.ItemBlockCrop;
 import shift.sextiarysector.item.ItemBlockDirection;
 import shift.sextiarysector.item.ItemBlockFigure;
 import shift.sextiarysector.item.ItemBlockFluidCrafter;
@@ -78,7 +71,6 @@ import shift.sextiarysector.item.ItemBlockSSFluid;
 import shift.sextiarysector.tileentity.TileEntityCrop;
 import shift.sextiarysector.tileentity.TileEntityFan;
 import shift.sextiarysector.tileentity.TileEntityFarmland;
-import shift.sextiarysector.tileentity.TileEntityFarmland2;
 import shift.sextiarysector.tileentity.TileEntityFigure;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityFluidFGFMachineBase;
@@ -98,7 +90,6 @@ import shift.sextiarysector.tileentity.TileEntityPaddy;
 import shift.sextiarysector.tileentity.TileEntityPipe;
 import shift.sextiarysector.tileentity.TileEntityPump;
 import shift.sextiarysector.tileentity.TileEntitySSChest;
-import shift.sextiarysector.tileentity.TileEntitySSCrop;
 import shift.sextiarysector.tileentity.TileEntitySaw;
 import shift.sextiarysector.tileentity.TileEntityShaft;
 import shift.sextiarysector.tileentity.TileEntityShippingBox;
@@ -113,7 +104,6 @@ import shift.sextiarysector.tileentity.TileEntityTank;
 import shift.sextiarysector.tileentity.TileEntityTrap;
 import shift.sextiarysector.tileentity.TileEntityWaterSupplyMachine;
 import shift.sextiarysector.tileentity.TileEntityWindmill;
-import shift.sextiarysector.tileentity.TileEntityWood;
 
 public class SSBlocks {
 
@@ -271,35 +261,13 @@ public class SSBlocks {
     public static Block shopMonitor;
 
     //農業
-    public static Block farmland2;
+    public static Block farmland;
     public static Block paddy;
     public static Block wood;
-
-    public static Block farmland;
     public static Block crop;
 
     //農業機械
     public static Block waterSupplyMachine;
-
-    public static Block turnip;
-    public static Block cucumber;
-    public static Block ironTurnip;
-
-    public static Block onion;
-    public static Block tomato;
-    public static Block corn;
-    public static Block goldenCorn;
-
-    public static Block eggplant;
-    public static Block sweetPotato;
-    public static Block greenPepper;
-
-    public static Block radish;
-
-    public static Block rice;
-
-    public static Block redMushroom;
-    public static Block shiitake;
 
     //水産
     public static Block sandpit;
@@ -660,21 +628,17 @@ public class SSBlocks {
         GameRegistry.registerTileEntity(TileEntityShopMonitor.class, "ShopMonitor");
 
         //農業
-        farmland2 = new BlockSSFarmland().setBlockName("ss.farmland").setBlockTextureName("farmland").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
-        GameRegistry.registerBlock(farmland2, "Farmland2");
-        GameRegistry.registerTileEntity(TileEntityFarmland2.class, "SSFarmland");
-
-        paddy = new BlockPaddy().setBlockName("ss.paddy").setBlockTextureName("dirt").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
-        GameRegistry.registerBlock(paddy, "Paddy");
-        GameRegistry.registerTileEntity(TileEntityPaddy.class, "SSPaddy");
-
-        wood = new BlockWood().setBlockName("ss.wood").setBlockTextureName("sextiarysector:wood").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
-        GameRegistry.registerBlock(wood, "Wood");
-        GameRegistry.registerTileEntity(TileEntityWood.class, "SSWood");
-
-        farmland = new BlockFarmland();
+        farmland = new BlockFarmland().setBlockName("ss.farmland");
         GameRegistry.registerBlock(farmland, "Farmland");
         GameRegistry.registerTileEntity(TileEntityFarmland.class, "SextiarySector:Farmland");
+
+        paddy = new BlockPaddy().setBlockName("ss.paddy");
+        GameRegistry.registerBlock(paddy, "Paddy");
+        GameRegistry.registerTileEntity(TileEntityPaddy.class, "SextiarySector:Paddy");
+
+        wood = new BlockWood().setBlockName("ss.wood").setBlockTextureName("sextiarysector:wood");
+        GameRegistry.registerBlock(wood, "Wood");
+        //GameRegistry.registerTileEntity(TileEntityPaddy.class, "SextiarySector:Paddy");
 
         crop = new BlockCrop();
         GameRegistry.registerBlock(crop, "Crop");
@@ -684,54 +648,6 @@ public class SSBlocks {
         waterSupplyMachine = new BlockWaterSupplyMachine().setBlockName("ss.water_supply_machine").setBlockTextureName("sextiarysector:machine/water_supply_machine").setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
         GameRegistry.registerBlock(waterSupplyMachine, "WaterSupplyMachine");
         GameRegistry.registerTileEntity(TileEntityWaterSupplyMachine.class, "WaterSupplyMachine");
-
-        //野菜
-        GameRegistry.registerTileEntity(TileEntitySSCrop.class, "SSCrop");
-
-        turnip = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 2, 3, 4 }, Season.SPRING), farmland2, SSItems.turnip, false).setBlockName("ss.turnip").setBlockTextureName("turnip");
-        GameRegistry.registerBlock(turnip, ItemBlockCrop.class, "BlockTurnip");
-
-        cucumber = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 2, 6, 10, 3 }, Season.SPRING), farmland2, SSItems.cucumber, true).setBlockName("ss.cucumber").setBlockTextureName("cucumber");
-        GameRegistry.registerBlock(cucumber, ItemBlockCrop.class, "BlockCucumber");
-
-        ironTurnip = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 4, 8, 12 }, Season.SPRING), farmland2, SSItems.ironTurnip, false).setBlockName("ss.iron_turnip").setBlockTextureName("iron_turnip");
-        GameRegistry.registerBlock(ironTurnip, ItemBlockCrop.class, "BlockIronTurnip");
-
-        onion = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 2, 4, 8 }, Season.SUMMER), farmland2, SSItems.onion, false).setBlockName("ss.onion").setBlockTextureName("onion");
-        GameRegistry.registerBlock(onion, ItemBlockCrop.class, "BlockOnion");
-
-        tomato = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 4, 10, 14, 2 }, Season.SUMMER), farmland2, SSItems.tomato, true).setBlockName("ss.tomato").setBlockTextureName("tomato");
-        GameRegistry.registerBlock(tomato, ItemBlockCrop.class, "BlockTomato");
-
-        corn = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 5, 10, 16, 4 }, Season.SUMMER), farmland2, SSItems.corn, true).setBlockName("ss.corn").setBlockTextureName("corn");
-        GameRegistry.registerBlock(corn, ItemBlockCrop.class, "BlockCorn");
-
-        goldenCorn = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 7, 12, 18, 4 }, Season.SUMMER), farmland2, SSItems.goldenCorn, true).setBlockName("ss.golden_corn").setBlockTextureName("golden_corn");
-        GameRegistry.registerBlock(goldenCorn, ItemBlockCrop.class, "BlockGoldenCorn");
-
-        eggplant = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 3, 7, 12, 3 }, Season.AUTUMN), farmland2, SSItems.eggplant, true).setBlockName("ss.eggplant").setBlockTextureName("eggplant");
-        GameRegistry.registerBlock(eggplant, ItemBlockCrop.class, "BlockEggplant");
-
-        sweetPotato = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 2, 4, 6, 2 }, Season.AUTUMN), farmland2, SSItems.sweetPotato, true).setBlockName("ss.sweet_potato").setBlockTextureName("sweet_potato");
-        GameRegistry.registerBlock(sweetPotato, ItemBlockCrop.class, "BlockSweetPotato");
-
-        greenPepper = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 4, 8, 14, 3 }, Season.AUTUMN), farmland2, SSItems.greenPepper, true).setBlockName("ss.green_pepper").setBlockTextureName("green_pepper");
-        GameRegistry.registerBlock(greenPepper, ItemBlockCrop.class, "BlockGreenPepper");
-
-        radish = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 2, 3, 4 }, Season.WINTER), farmland2, SSItems.radish, false).setBlockName("ss.radish").setBlockTextureName("radish");
-        GameRegistry.registerBlock(radish, ItemBlockCrop.class, "BlockRadish");
-
-        //米
-        ///28,46,68
-        rice = new BlockSSCrop(CropType.Normal, new CropStatus(new int[] { 28, 46, 68 }, Season.SPRING, Season.SUMMER, Season.AUTUMN), paddy, SSItems.rice, false).setBlockName("ss.rice").setBlockTextureName("rice");
-        GameRegistry.registerBlock(rice, ItemBlockCrop.class, "BlockRice");
-
-        redMushroom = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 6, 8, 14 }, Season.SPRING, Season.SUMMER), wood, Item.getItemFromBlock(Blocks.red_mushroom), false).setBlockName("ss.mushroom_red")
-                .setBlockTextureName("mushroom_red");
-        GameRegistry.registerBlock(redMushroom, ItemBlockCrop.class, "BlockRedMushroom");
-
-        shiitake = new BlockSSCrop(CropType.Close, new CropStatus(new int[] { 3, 5, 12 }, Season.SPRING), wood, SSItems.shiitake, false).setBlockName("ss.shiitake").setBlockTextureName("shiitake");
-        GameRegistry.registerBlock(shiitake, ItemBlockCrop.class, "BlockShiitake");
 
         //水産
         sandpit = new BlockSandpit().setBlockName("ss.sandpit").setBlockTextureName("sand");

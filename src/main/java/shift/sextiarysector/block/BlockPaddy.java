@@ -1,33 +1,71 @@
+/*
+* 作成者: Shift02
+* 作成日: 2016/02/25 - 15:52:34
+*/
 package shift.sextiarysector.block;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import shift.sextiarysector.SSCrops;
 import shift.sextiarysector.SextiarySector;
-import shift.sextiarysector.module.FertilizerManager;
+import shift.sextiarysector.api.agriculture.AgricultureAPI;
+import shift.sextiarysector.api.agriculture.ICrop;
+import shift.sextiarysector.api.agriculture.IFertilizer;
+import shift.sextiarysector.api.agriculture.TileFarmland;
 import shift.sextiarysector.tileentity.TileEntityPaddy;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockPaddy extends BlockContainer {
+public class BlockPaddy extends BlockAbstractFarmland {
 
     public BlockPaddy() {
-        super(Material.grass);
+        super();
         this.setHardness(0.4f);
         this.setLightOpacity(255);
         this.setStepSound(soundTypeGrass);
         this.useNeighborBrightness = true;
+    }
+
+    @Override
+    public String getName() {
+        return AgricultureAPI.PADDY;
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+
+        ItemStack item = player.getCurrentEquippedItem();
+
+        TileFarmland farmland = (TileFarmland) world.getTileEntity(x, y, z);
+
+        if (item == null) return false;
+
+        if (!world.isAirBlock(x, y + 1, z)) return false;
+
+        //種
+        ICrop crop = SSCrops.cropManager.getCrop(item, player);
+
+        if (crop != null) return this.setCrop(world, x, y, z, player, item, farmland, crop);
+
+        //肥料
+        IFertilizer fertilizer = SSCrops.fertilizerManager.getFertilizer(item);
+
+        if (fertilizer != null) return this.setFertilizer(world, x, y, z, player, item, fertilizer);
+
+        return false;
+
     }
 
     @Override
@@ -40,39 +78,6 @@ public class BlockPaddy extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public int getRenderBlockPass() {
         return 1;
-    }
-
-    @Override
-    public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
-
-        if (FertilizerManager.getFertilizer(p_149727_5_.getCurrentEquippedItem()) != null && par1World.isAirBlock(x, y + 1, z)) {
-
-            return this.setFertilizer(par1World, x, y, z, p_149727_5_);
-
-        }
-
-        return false;
-
-    }
-
-    private boolean setFertilizer(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer) {
-
-        TileEntityPaddy t = (TileEntityPaddy) par1World.getTileEntity(x, y, z);
-
-        if (t.getFertilizer() != null) {
-            return false;
-        }
-
-        t.setFertilizer(FertilizerManager.getFertilizer(par5EntityPlayer.getCurrentEquippedItem()).getFertilizer());
-
-        if (!par5EntityPlayer.capabilities.isCreativeMode && !par1World.isRemote) {
-            --par5EntityPlayer.getCurrentEquippedItem().stackSize;
-        }
-
-        par1World.markBlockForUpdate(x, y, z);
-
-        return true;
-
     }
 
     //当たり判定
@@ -115,6 +120,7 @@ public class BlockPaddy extends BlockContainer {
 
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 
         ret.add(new ItemStack(Blocks.dirt, 1));
@@ -129,6 +135,11 @@ public class BlockPaddy extends BlockContainer {
     }
 
     @Override
+    public int getRenderType() {
+        return SextiarySector.proxy.paddyType;
+    }
+
+    @Override
     public boolean isOpaqueCube() {
         return false;
     }
@@ -139,13 +150,12 @@ public class BlockPaddy extends BlockContainer {
     }
 
     @Override
-    public int getRenderType() {
-        return SextiarySector.proxy.paddyType;
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
+        return Blocks.dirt.getItemDropped(0, p_149650_2_, p_149650_3_);
     }
 
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
         return new TileEntityPaddy();
     }
-
 }

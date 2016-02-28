@@ -23,6 +23,11 @@ public abstract class BlockAbstractFarmland extends BlockContainer {
         this.setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
     }
 
+    public BlockAbstractFarmland(Material m) {
+        super(m);
+        this.setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
+    }
+
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
 
@@ -73,7 +78,7 @@ public abstract class BlockAbstractFarmland extends BlockContainer {
 
     public boolean setFertilizer(World world, int x, int y, int z, EntityPlayer player, ItemStack item, IFertilizer fertilizer) {
 
-        TileEntityFarmland farmland = (TileEntityFarmland) world.getTileEntity(x, y, z);
+        TileFarmland farmland = (TileFarmland) world.getTileEntity(x, y, z);
 
         if (farmland.getFertilizer() != null) return false;
 

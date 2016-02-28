@@ -15,6 +15,9 @@ public class AgricultureAPI {
     /** 水田 */
     public static final String PADDY = "paddy";
 
+    /** 木(キノコ用) */
+    public static final String WOOD = "wood";
+
     public static ICropManager cropManager;
 
     public static IFarmlandRegistry farmlandRegistry;
@@ -23,12 +26,13 @@ public class AgricultureAPI {
 
     public static IMutationRegistry mutationRegistry;
 
-    public static IFertilizerManager2 fertilizerManager2;
-
     //肥料
 
     /** 普通の肥料(大きさ作物が収穫できる) */
     public static IFertilizer normal;
+
+    /** 石の肥料(鉱石作物が収穫できる) */
+    public static IFertilizer stone;
 
     /**
      * 作物のデータを登録

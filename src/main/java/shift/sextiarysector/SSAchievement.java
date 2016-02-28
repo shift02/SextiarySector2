@@ -17,6 +17,8 @@ import shift.sextiarysector.achievement.AchievementPageBase;
 import shift.sextiarysector.achievement.AchievementPageEconomy;
 import shift.sextiarysector.achievement.AchievementPageIndustry;
 import shift.sextiarysector.achievement.AchievementPickup;
+import shift.sextiarysector.agriculture.CropBase;
+import shift.sextiarysector.item.ItemSeed;
 
 public class SSAchievement {
 
@@ -32,7 +34,7 @@ public class SSAchievement {
     public static Achievement drinkingWater;
     public static Achievement craftFurnace;
     public static Achievement fluidFurnace;
-    public static Achievement hammer;
+    public static Achievement spanner;
     public static Achievement freezer;
 
     //Agriculture
@@ -43,29 +45,33 @@ public class SSAchievement {
     public static Achievement hole;
     public static Achievement paddy;
 
+    public static Achievement[] crops;
+
+    /*
     public static Achievement turnip;
     public static Achievement ironTurnip;
-
+    
     public static Achievement cucumber;
-
+    
     public static Achievement onion;
-
+    
     public static Achievement tomato;
-
+    
     public static Achievement corn;
     public static Achievement goldenCorn;
-
+    
     public static Achievement eggplant;
-
+    
     public static Achievement sweetPotato;
-
+    
     public static Achievement greenPepper;
-
+    
     public static Achievement radish;
-
+    
     public static Achievement rice;
-
+    
     public static Achievement shiitake;
+    */
 
     //Mining
     public static Achievement blueStoneDust;
@@ -118,49 +124,60 @@ public class SSAchievement {
         bottle = new AchievementCraft("bottle", 1, 1, new ItemStack(Items.glass_bottle), AchievementList.buildWorkBench, core).registerStat();
         drinkingWater = new AchievementFurnace("drinking_water", 3, 1, new ItemStack(SSItems.drinkingWaterBottle), bottle, core).registerStat();
         craftFurnace = new AchievementCraft("craft_furnace", -2, -1, new ItemStack(SSBlocks.LargeFurnace), AchievementList.buildWorkBench, core).registerStat();
-        hammer = new AchievementFurnace("hammer", -4, -1, new ItemStack(SSItems.ironSpanner), craftFurnace, core).registerStat();
+        spanner = new AchievementCraft("spanner", -4, -1, new ItemStack(SSItems.ironSpanner), AchievementList.buildWorkBench, core).registerStat();
         fluidFurnace = new AchievementFurnace("fluid_furnace", -2, 1, new ItemStack(SSBlocks.fluidFurnace), craftFurnace, core).registerStat();
         freezer = new AchievementFurnace("freezer", 0, -3, new ItemStack(SSBlocks.freezer), craftFurnace, core).registerStat();
 
         AchievementPage.registerAchievementPage(new AchievementPageBase("achievement.ss.core", core));
 
         //農業
-        seed = new AchievementBase("seed", -8, -2, new ItemStack(SSBlocks.tomato), (Achievement) null, agriculture).initIndependentStat().registerStat();
+        seed = new AchievementBase("seed", -8, -2, ItemSeed.getSeedItemStack("turnip", 1), (Achievement) null, agriculture).initIndependentStat().registerStat();
         scoop = new AchievementCraft("scoop", -6, -3, new ItemStack(SSItems.woodScoop), AchievementList.buildWorkBench, agriculture).registerStat();
         farmland = new AchievementBase("farmland", -4, -4, new ItemStack(Items.stone_hoe), scoop, agriculture).registerStat();
         wateringCan = new AchievementCraft("watering_can", 1, -2, new ItemStack(SSItems.woodWateringCan, 1, OreDictionary.WILDCARD_VALUE), AchievementList.buildWorkBench, agriculture).registerStat();
         hole = new AchievementBase("hole", -4, -2, new ItemStack(SSItems.ironScoop), scoop, agriculture).registerStat();
         paddy = new AchievementBase("paddy", -2, -2, new ItemStack(Items.water_bucket), hole, agriculture).registerStat();
 
+        crops = new Achievement[CropBase.crops.size()];
+
+        for (int i = 0; i < crops.length; i++) {
+
+            CropBase crop = CropBase.crops.get(i);
+            Achievement a = new AchievementCrop(crop.name, -7 + i % 10, 1 + i / 10, crop, seed, agriculture).registerStat();
+
+        }
+
+        /*
         int spring = 1;
-        turnip = new AchievementCrop("turnip", -7, spring, new ItemStack(SSItems.turnip), SSBlocks.turnip, seed, agriculture).registerStat();
+        turnip = new AchievementCrop2("turnip", -7, spring, new ItemStack(SSItems.turnip), SSBlocks.turnip, seed, agriculture).registerStat();
         ironTurnip = new AchievementPickup("iron_turnip", -5, spring - 1, new ItemStack(SSItems.ironTurnip), turnip, agriculture).registerStat();
-
-        cucumber = new AchievementCrop("cucumber", -7, spring + 4, new ItemStack(SSItems.cucumber), SSBlocks.cucumber, seed, agriculture).registerStat();
-
+        
+        cucumber = new AchievementCrop2("cucumber", -7, spring + 4, new ItemStack(SSItems.cucumber), SSBlocks.cucumber, seed, agriculture).registerStat();
+        
         int summer = 10;
-        onion = new AchievementCrop("onion", -7, summer, new ItemStack(SSItems.onion), SSBlocks.onion, seed, agriculture).registerStat();
-
-        tomato = new AchievementCrop("tomato", -7, summer + 4, new ItemStack(SSItems.tomato), SSBlocks.tomato, seed, agriculture).registerStat();
-
-        corn = new AchievementCrop("corn", -7, summer + 8, new ItemStack(SSItems.corn), SSBlocks.corn, seed, agriculture).registerStat();
+        onion = new AchievementCrop2("onion", -7, summer, new ItemStack(SSItems.onion), SSBlocks.onion, seed, agriculture).registerStat();
+        
+        tomato = new AchievementCrop2("tomato", -7, summer + 4, new ItemStack(SSItems.tomato), SSBlocks.tomato, seed, agriculture).registerStat();
+        
+        corn = new AchievementCrop2("corn", -7, summer + 8, new ItemStack(SSItems.corn), SSBlocks.corn, seed, agriculture).registerStat();
         goldenCorn = new AchievementPickup("golden_corn", -5, summer + 7, new ItemStack(SSItems.goldenCorn), corn, agriculture).registerStat();
-
+        
         int autumn = 23;
-        eggplant = new AchievementCrop("eggplant", -7, autumn, new ItemStack(SSItems.eggplant), SSBlocks.eggplant, seed, agriculture).registerStat();
-
-        sweetPotato = new AchievementCrop("sweet_potato", -7, autumn + 4, new ItemStack(SSItems.sweetPotato), SSBlocks.sweetPotato, seed, agriculture).registerStat();
-
-        greenPepper = new AchievementCrop("green_pepper", -7, autumn + 8, new ItemStack(SSItems.greenPepper), SSBlocks.greenPepper, seed, agriculture).registerStat();
-
+        eggplant = new AchievementCrop2("eggplant", -7, autumn, new ItemStack(SSItems.eggplant), SSBlocks.eggplant, seed, agriculture).registerStat();
+        
+        sweetPotato = new AchievementCrop2("sweet_potato", -7, autumn + 4, new ItemStack(SSItems.sweetPotato), SSBlocks.sweetPotato, seed, agriculture).registerStat();
+        
+        greenPepper = new AchievementCrop2("green_pepper", -7, autumn + 8, new ItemStack(SSItems.greenPepper), SSBlocks.greenPepper, seed, agriculture).registerStat();
+        
         int winter = 36;
-        radish = new AchievementCrop("radish", -7, winter, new ItemStack(SSItems.radish), SSBlocks.radish, seed, agriculture).registerStat();
-
+        radish = new AchievementCrop2("radish", -7, winter, new ItemStack(SSItems.radish), SSBlocks.radish, seed, agriculture).registerStat();
+        
         int spring2 = 41;
-        rice = new AchievementCrop("rice", -7, spring2, new ItemStack(SSItems.rice), SSBlocks.rice, seed, agriculture).registerStat();
-
+        rice = new AchievementCrop2("rice", -7, spring2, new ItemStack(SSItems.rice), SSBlocks.rice, seed, agriculture).registerStat();
+        
         int spring3 = 46;
-        shiitake = new AchievementCrop("shiitake", -7, spring3, new ItemStack(SSItems.shiitake), SSBlocks.shiitake, seed, agriculture).registerStat();
+        shiitake = new AchievementCrop2("shiitake", -7, spring3, new ItemStack(SSItems.shiitake), SSBlocks.shiitake, seed, agriculture).registerStat();
+        */
 
         AchievementPage.registerAchievementPage(new AchievementPageAgriculture("achievement.ss.agriculture", agriculture));
 

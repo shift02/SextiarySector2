@@ -3,6 +3,8 @@ package shift.sextiarysector.block;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -17,8 +19,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SextiarySector;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockHole extends Block {
 
@@ -29,11 +29,13 @@ public class BlockHole extends Block {
         this.useNeighborBrightness = true;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
         return Blocks.dirt.getIcon(p_149691_1_, p_149691_2_);
     }
 
+    @Override
     public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
 
         ItemStack itemstack = p_149727_5_.inventory.getCurrentItem();
@@ -94,6 +96,7 @@ public class BlockHole extends Block {
 
     }
 
+    @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 
@@ -103,6 +106,7 @@ public class BlockHole extends Block {
     }
 
     //当たり判定
+    @Override
     public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_) {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.625f, 1.0F);
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
@@ -140,18 +144,22 @@ public class BlockHole extends Block {
     }
 
     //ブロックの線
+    @Override
     public void setBlockBoundsForItemRender() {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
+    @Override
     public boolean isOpaqueCube() {
         return false;
     }
 
+    @Override
     public boolean renderAsNormalBlock() {
         return false;
     }
 
+    @Override
     public int getRenderType() {
         return SextiarySector.proxy.holeType;
     }

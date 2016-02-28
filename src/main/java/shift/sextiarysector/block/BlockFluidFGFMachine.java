@@ -3,6 +3,8 @@ package shift.sextiarysector.block;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,8 +26,6 @@ import shift.sextiarysector.SSMaterials;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.recipe.RecipeSimpleFluid;
 import shift.sextiarysector.tileentity.TileEntityFluidFGFMachineBase;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFluidFGFMachine extends BlockContainer {
 
@@ -51,7 +51,7 @@ public class BlockFluidFGFMachine extends BlockContainer {
         this.guiID = gui;
         this.recipe = recipe;
         this.type = type;
-        this.setHarvestLevel("hammer", 1);
+        this.setHarvestLevel("spanner", 1);
         IconName = ("sextiarysector:machine/machine");
     }
 

@@ -1,5 +1,6 @@
 package shift.sextiarysector.event;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -11,14 +12,13 @@ import shift.mceconomy2.api.shop.ShopBuyEvent;
 import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.block.BlockFigure;
-import shift.sextiarysector.item.ItemBlockCrop;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import shift.sextiarysector.item.ItemSeed;
 
 public class AchievementEventHandler {
 
     @SubscribeEvent
     public void useEvent(ShopBuyEvent event) {
-        if (event.buy.getItem() instanceof ItemBlockCrop) event.entityPlayer.addStat(SSAchievement.seed, 1);
+        if (event.buy.getItem() instanceof ItemSeed) event.entityPlayer.addStat(SSAchievement.seed, 1);
     }
 
     @SubscribeEvent

@@ -82,12 +82,26 @@ public interface ICrop {
      */
     int getConsumptionMoisture(TileCrop crop, TileFarmland farmland);
 
+    /**
+     * 作物のIIconを登録するメソッド
+     * @param register
+     */
     @SideOnly(Side.CLIENT)
     void registerCropIcons(IIconRegister register);
 
+    /**
+     * 作物の成長度合いによってIIconを返す
+     * @param crop 作物
+     * @return 作物のIIcon
+     */
     @SideOnly(Side.CLIENT)
     public IIcon getCropIcon(TileCrop crop);
 
+    /**
+     * 作物の描画タイプを返す
+     * @see CropRendererType
+     * @return 描画タイプ
+     */
     @SideOnly(Side.CLIENT)
     public CropRendererType getRenderType();
 
