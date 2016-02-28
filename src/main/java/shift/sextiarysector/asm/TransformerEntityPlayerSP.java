@@ -2,8 +2,6 @@ package shift.sextiarysector.asm;
 
 import java.util.Set;
 
-import net.minecraft.launchwrapper.IClassTransformer;
-
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
@@ -14,8 +12,10 @@ import org.objectweb.asm.commons.AnalyzerAdapter;
 import com.google.common.collect.Sets;
 
 import cpw.mods.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
+import net.minecraft.launchwrapper.IClassTransformer;
 
 public class TransformerEntityPlayerSP implements IClassTransformer, Opcodes {
+
     // 改変対象のクラスの完全修飾名です。
     // 後述でMinecraft.jar内の難読化されるファイルを対象とする場合の簡易な取得方法を紹介します。
     private static final String TARGET_CLASS_NAME = "net.minecraft.client.entity.EntityPlayerSP";

@@ -63,9 +63,9 @@ public class StaminaStats {
         if (par1EntityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration") && this.staminaLevel >= 18 && par1EntityPlayer.shouldHeal()) {
             ++this.staminaTimer;
 
-            if (this.staminaTimer >= 160) {
-                par1EntityPlayer.heal(1.0F);
-                this.addExhaustion(3.0F);
+            if (this.staminaTimer >= 80) {
+                par1EntityPlayer.heal(2.0F);
+                this.addExhaustion(1.0F);
                 this.staminaTimer = 0;
             }
         } else if (this.staminaLevel <= 0) {
@@ -73,8 +73,10 @@ public class StaminaStats {
 
             if (this.staminaTimer >= 80) {
                 if (par1EntityPlayer.getHealth() > 10.0F || i.getDifficultyId() >= 3 || par1EntityPlayer.getHealth() > 1.0F && i.getDifficultyId() >= 2) {
+
                     if (!par1EntityPlayer.isPlayerSleeping()) {
-                        par1EntityPlayer.attackEntityFrom(DamageSource.cactus, 1.0F);
+                        //par1EntityPlayer.attackEntityFrom(DamageSource.cactus, 1.0F);
+                        par1EntityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
                     }
                     //par1EntityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
                 }

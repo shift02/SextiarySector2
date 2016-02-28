@@ -1,11 +1,12 @@
 package shift.sextiarysector.player;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.EnumDifficulty;
 import shift.sextiarysector.Config;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import shift.sextiarysector.api.SextiarySectorAPI;
 
 public class MoistureStats {
 
@@ -55,19 +56,22 @@ public class MoistureStats {
         }
 
         if (par1EntityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration") && this.moistureLevel >= 18 && par1EntityPlayer.shouldHeal()) {
+
             ++this.moistureTimer;
 
             if (this.moistureTimer >= 160) {
-                par1EntityPlayer.heal(1.0F);
+                //par1EntityPlayer.heal(1.0F);
                 this.addExhaustion(3.0F);
                 this.moistureTimer = 0;
             }
+
         } else if (this.moistureLevel <= 0) {
             ++this.moistureTimer;
 
             if (this.moistureTimer >= 80) {
                 if (par1EntityPlayer.getHealth() > 10.0F || i.getDifficultyId() >= 3 || par1EntityPlayer.getHealth() > 1.0F && i.getDifficultyId() >= 2) {
                     //par1EntityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
+                    SextiarySectorAPI.addStaminaExhaustion(par1EntityPlayer, 0.5f);
                 }
 
                 this.moistureTimer = 0;
