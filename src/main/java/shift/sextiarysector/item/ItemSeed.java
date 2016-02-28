@@ -51,7 +51,7 @@ public class ItemSeed extends Item {
     @Override
     public void addInformation(ItemStack itemstack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
 
-        Season[] season = seeds.get(this.getSeedName(itemstack)).season;
+        Season[] season = seeds.get(this.getSeedName(itemstack)).getSeason();
 
         String s = StatCollector.translateToLocal("tooltip.season.seed");
         String s1 = season[0].getTranslatedName();
@@ -93,9 +93,14 @@ public class ItemSeed extends Item {
         return this.getIconIndex(stack);
     }
 
-    public static ItemStack getSeedItemStack(String name) {
+    /**
+     * 作物の名前から種を取得
+     * @param name 名前
+     * @return 種
+     */
+    public static ItemStack getSeedItemStack(String name, int amount) {
 
-        ItemStack item = new ItemStack(SSItems.seeds);
+        ItemStack item = new ItemStack(SSItems.seeds, amount);
         setSeedName(item, name);
 
         return item;

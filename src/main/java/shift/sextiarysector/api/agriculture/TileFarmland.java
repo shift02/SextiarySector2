@@ -1,5 +1,7 @@
 package shift.sextiarysector.api.agriculture;
 
+import net.minecraft.world.World;
+
 /**
  * 農地ブロックのTileEntityに実装するinterface
  *
@@ -51,5 +53,13 @@ public interface TileFarmland {
      * @param fertilizer
      */
     public void setFertilizer(IFertilizer fertilizer);
+
+    public World getWorld();
+
+    public int getX();
+
+    public int getY();
+
+    public int getZ();
 
 }

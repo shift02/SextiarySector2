@@ -1,11 +1,12 @@
 package shift.sextiarysector;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector.api.SextiarySectorAPI;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import shift.sextiarysector.item.ItemSeed;
 
 public class SSCreativeTabs {
 
@@ -96,7 +97,7 @@ public class SSCreativeTabs {
         @Override
         @SideOnly(Side.CLIENT)
         public ItemStack getIconItemStack() {
-            return new ItemStack(SSBlocks.turnip, 1);
+            return ItemSeed.getSeedItemStack("turnip", 1);
         }
 
     }

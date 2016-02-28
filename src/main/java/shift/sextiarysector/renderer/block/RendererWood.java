@@ -1,16 +1,15 @@
 package shift.sextiarysector.renderer.block;
 
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-
-import org.lwjgl.opengl.GL11;
-
 import shift.sextiarysector.SextiarySector;
-import shift.sextiarysector.module.FertilizerManager;
-import shift.sextiarysector.tileentity.TileEntityWood;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import shift.sextiarysector.api.agriculture.TileFarmland;
 
 public class RendererWood implements ISimpleBlockRenderingHandler {
 
@@ -61,21 +60,21 @@ public class RendererWood implements ISimpleBlockRenderingHandler {
         renderer.setRenderBounds(2.0D / 16.0D, 0.0D, 2.0D / 16.0D, 14.0D / 16.0D, 15.0D / 16.0D, 14.0D / 16.0D);
         renderer.renderStandardBlock(block, x, y, z);
 
-        TileEntityWood t = (TileEntityWood) world.getTileEntity(x, y, z);
+        if (!(world.getTileEntity(x, y, z) instanceof TileFarmland)) return false;
+
+        TileFarmland t = (TileFarmland) world.getTileEntity(x, y, z);
 
         if (t != null && t.getFertilizer() != null) {
 
-            if (FertilizerManager.getFertilizer(t.getFertilizer()) != null) {
-                renderer.setOverrideBlockTexture(FertilizerManager.getFertilizerIcon(t.getFertilizer()).getFertilizerIcon());
-            } else {
-                t.setFertilizer(null);
-            }
+            IIcon icon = renderer.overrideBlockTexture;
+            renderer.setOverrideBlockTexture(t.getFertilizer().getFertilizerIcon());
 
             renderer.setRenderBounds(2.0D / 16.0D, 1 - 0.01f, 2.0D / 16.0D, 14.0D / 16.0D, 15.0D / 16.0D + 0.009f, 14.0D / 16.0D);
             renderer.renderStandardBlock(block, x, y, z);
-        }
 
-        renderer.clearOverrideBlockTexture();
+            renderer.setOverrideBlockTexture(icon);
+
+        }
 
         return true;
     }

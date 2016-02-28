@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector.agriculture.CropBase;
 import shift.sextiarysector.agriculture.CropManager;
+import shift.sextiarysector.agriculture.CropMushroom;
 import shift.sextiarysector.agriculture.CropPaddy;
 import shift.sextiarysector.agriculture.CropReHarvest;
 import shift.sextiarysector.agriculture.CropTest;
@@ -20,6 +21,7 @@ import shift.sextiarysector.api.agriculture.CropWither;
 import shift.sextiarysector.api.agriculture.FertilizerBase;
 import shift.sextiarysector.api.agriculture.ICrop;
 import shift.sextiarysector.api.agriculture.IFertilizer;
+import shift.sextiarysector.api.agriculture.MutationBase;
 import shift.sextiarysector.api.agriculture.MutationNormal;
 import shift.sextiarysector.api.season.Season;
 
@@ -32,6 +34,8 @@ public class SSCrops {
 
     //肥料
     public static IFertilizer normal;
+
+    public static IFertilizer stone;
 
     public static ICrop test;
     public static ICrop wither;
@@ -92,11 +96,21 @@ public class SSCrops {
         //農地登録
         AgricultureAPI.registerFarmland(AgricultureAPI.FARMLAND, SSBlocks.farmland);
 
+        //水田の登録
+        AgricultureAPI.registerFarmland(AgricultureAPI.PADDY, SSBlocks.paddy);
+
+        //木の登録
+        AgricultureAPI.registerFarmland(AgricultureAPI.WOOD, SSBlocks.wood);
+
         //肥料の登録
         //TODO
         normal = new FertilizerBase("normal", new ItemStack(Items.dye, 1, 15)).setIconName("sextiarysector:fertilizer/bone");
         AgricultureAPI.normal = normal;
         AgricultureAPI.registerFertilizer(normal);
+
+        stone = new FertilizerBase("stone", new ItemStack(SSItems.stoneDust, 1)).setIconName("sextiarysector:fertilizer/stone");
+        AgricultureAPI.stone = stone;
+        AgricultureAPI.registerFertilizer(stone);
 
         //作物の登録
         test = new CropTest();
@@ -118,59 +132,66 @@ public class SSCrops {
         //SS2
 
         //春
-        turnip = new CropBase("turnip", SSItems.turnip, new Season[] { Season.SPRING }, new int[] { 2, 3, 4 });
+        turnip = new CropBase("turnip", new ItemStack(SSItems.turnip), new Season[] { Season.SPRING }, new int[] { 2, 3, 4 });
         cropManager.registerCrop(turnip);
         SSItems.seeds.addSeed("turnip", turnip);
 
-        cucumber = new CropReHarvest("cucumber", SSItems.cucumber, new Season[] { Season.SPRING }, new int[] { 2, 4, 10, 3 });
+        cucumber = new CropReHarvest("cucumber", new ItemStack(SSItems.cucumber), new Season[] { Season.SPRING }, new int[] { 2, 4, 10, 3 });
         cropManager.registerCrop(cucumber);
         SSItems.seeds.addSeed("cucumber", cucumber);
 
-        ironTurnip = new CropBase("iron_turnip", SSItems.ironTurnip, new Season[] { Season.SPRING }, new int[] { 4, 8, 12 });
+        ironTurnip = new CropBase("iron_turnip", new ItemStack(SSItems.ironTurnip), new Season[] { Season.SPRING }, new int[] { 4, 8, 12 });
         cropManager.registerCrop(ironTurnip);
         SSItems.seeds.addSeed("iron_turnip", ironTurnip);
 
         //夏
-        onion = new CropBase("onion", SSItems.onion, new Season[] { Season.SUMMER }, new int[] { 2, 4, 8 });
+        onion = new CropBase("onion", new ItemStack(SSItems.onion), new Season[] { Season.SUMMER }, new int[] { 2, 4, 8 });
         cropManager.registerCrop(onion);
         SSItems.seeds.addSeed("onion", onion);
 
-        tomato = new CropReHarvest("tomato", SSItems.onion, new Season[] { Season.SUMMER }, new int[] { 4, 10, 14, 2 });
+        tomato = new CropReHarvest("tomato", new ItemStack(SSItems.tomato), new Season[] { Season.SUMMER }, new int[] { 4, 10, 14, 2 });
         cropManager.registerCrop(tomato);
         SSItems.seeds.addSeed("tomato", tomato);
 
-        corn = new CropBase("corn", SSItems.corn, new Season[] { Season.SUMMER }, new int[] { 4, 8, 12 });
+        corn = new CropBase("corn", new ItemStack(SSItems.corn), new Season[] { Season.SUMMER }, new int[] { 4, 8, 12 });
         cropManager.registerCrop(corn);
         SSItems.seeds.addSeed("corn", corn);
 
-        goldenCorn = new CropBase("golden_corn", SSItems.goldenCorn, new Season[] { Season.SUMMER }, new int[] { 4, 8, 12 });
+        goldenCorn = new CropBase("golden_corn", new ItemStack(SSItems.goldenCorn), new Season[] { Season.SUMMER }, new int[] { 4, 8, 12 });
         cropManager.registerCrop(goldenCorn);
         SSItems.seeds.addSeed("golden_corn", goldenCorn);
 
         //秋
-        eggplant = new CropReHarvest("eggplant", SSItems.eggplant, new Season[] { Season.AUTUMN }, new int[] { 3, 7, 12, 3 });
+        eggplant = new CropReHarvest("eggplant", new ItemStack(SSItems.eggplant), new Season[] { Season.AUTUMN }, new int[] { 3, 7, 12, 3 });
         cropManager.registerCrop(eggplant);
         SSItems.seeds.addSeed("eggplant", eggplant);
 
-        sweetPotato = new CropReHarvest("sweet_potato", SSItems.sweetPotato, new Season[] { Season.AUTUMN }, new int[] { 2, 4, 6, 2 });
+        sweetPotato = new CropReHarvest("sweet_potato", new ItemStack(SSItems.sweetPotato), new Season[] { Season.AUTUMN }, new int[] { 2, 4, 6, 2 });
         cropManager.registerCrop(sweetPotato);
         SSItems.seeds.addSeed("sweet_potato", sweetPotato);
 
-        greenPepper = new CropReHarvest("green_pepper", SSItems.greenPepper, new Season[] { Season.AUTUMN }, new int[] { 4, 8, 14, 3 });
+        greenPepper = new CropReHarvest("green_pepper", new ItemStack(SSItems.greenPepper), new Season[] { Season.AUTUMN }, new int[] { 4, 8, 14, 3 });
         cropManager.registerCrop(greenPepper);
         SSItems.seeds.addSeed("green_pepper", greenPepper);
 
         //冬
-        radish = new CropBase("radish", SSItems.radish, new Season[] { Season.WINTER }, new int[] { 2, 4, 5 });
+        radish = new CropBase("radish", new ItemStack(SSItems.radish), new Season[] { Season.WINTER }, new int[] { 2, 4, 5 });
         cropManager.registerCrop(radish);
         SSItems.seeds.addSeed("radish", radish);
 
         //穀物
-        rice = new CropPaddy("rice", SSItems.rice, new Season[] { Season.SPRING, Season.SUMMER, Season.AUTUMN }, new int[] { 28, 46, 68 });
+        rice = new CropPaddy("rice", new ItemStack(SSItems.rice), new Season[] { Season.SPRING, Season.SUMMER, Season.AUTUMN }, new int[] { 28, 46, 68 });
         cropManager.registerCrop(rice);
         SSItems.seeds.addSeed("rice", rice);
 
         //キノコ
+        redMushroom = new CropMushroom("mushroom_red", new ItemStack(Blocks.red_mushroom), new Season[] { Season.SPRING, Season.SUMMER }, new int[] { 6, 8, 14 });
+        cropManager.registerCrop(redMushroom);
+        SSItems.seeds.addSeed("mushroom_red", redMushroom);
+
+        shiitake = new CropMushroom("shiitake", new ItemStack(SSItems.shiitake), new Season[] { Season.SPRING }, new int[] { 3, 5, 12 });
+        cropManager.registerCrop(shiitake);
+        SSItems.seeds.addSeed("shiitake", shiitake);
 
         //突然変異
 
@@ -180,11 +201,14 @@ public class SSCrops {
 
                 @Override
                 public int getProbability() {
-                    return 0;
+                    return 255;
                 }
 
             });
         }
+
+        mutationRegistry.registeMutation(new MutationBase(stone, new ItemStack(SSItems.turnip, 1, 0), new ItemStack(SSItems.ironTurnip, 1, 0)));
+        mutationRegistry.registeMutation(new MutationBase(stone, new ItemStack(SSItems.corn, 1, 0), new ItemStack(SSItems.goldenCorn, 1, 0)));
 
     }
 

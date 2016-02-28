@@ -21,7 +21,6 @@ import shift.sextiarysector.api.agriculture.CropRendererType;
 import shift.sextiarysector.api.agriculture.ICrop;
 import shift.sextiarysector.api.agriculture.TileFarmland;
 import shift.sextiarysector.tileentity.TileEntityCrop;
-import shift.sextiarysector.tileentity.TileEntityFarmland;
 
 public class BlockCrop extends BlockContainer {
 
@@ -37,7 +36,7 @@ public class BlockCrop extends BlockContainer {
 
         TileEntityCrop tileCrop = (TileEntityCrop) world.getTileEntity(x, y, z);
 
-        TileEntityFarmland tileFarmland = (TileEntityFarmland) world.getTileEntity(x, y - 1, z);
+        TileFarmland tileFarmland = (TileFarmland) world.getTileEntity(x, y - 1, z);
 
         if (tileCrop.getCrop() == null) return false;
 

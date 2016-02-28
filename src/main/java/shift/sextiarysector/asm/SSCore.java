@@ -12,7 +12,7 @@ public class SSCore implements IFMLLoadingPlugin, IFMLCallHook {
 
     @Override
     public String[] getASMTransformerClass() {
-        return new String[] { "shift.sextiarysector.asm.TransformerBottle", "shift.sextiarysector.asm.TransformerEntityPlayerSP" };
+        return new String[] { "shift.sextiarysector.asm.TransformerBottle", "shift.sextiarysector.asm.TransformerEntityPlayerSP", "shift.sextiarysector.asm.TransformerFoodStats" };
     }
 
     @Override
@@ -22,7 +22,7 @@ public class SSCore implements IFMLLoadingPlugin, IFMLCallHook {
 
     @Override
     public String getSetupClass() {
-        return DepLoader.class.getName();
+        return null;//DepLoader.class.getName();
     }
 
     @Override

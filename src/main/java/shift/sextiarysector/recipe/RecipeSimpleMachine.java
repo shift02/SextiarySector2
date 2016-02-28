@@ -56,7 +56,11 @@ public class RecipeSimpleMachine implements INormalRecipe {
     }
 
     private boolean checkItem(ItemStack p_151397_1_, ItemStack p_151397_2_) {
-        return p_151397_2_.getItem() == p_151397_1_.getItem() && (p_151397_2_.getItemDamage() == 32767 || p_151397_2_.getItemDamage() == p_151397_1_.getItemDamage());
+
+        return p_151397_2_.getItem() == p_151397_1_.getItem() &&
+                (p_151397_2_.getItemDamage() == 32767 || p_151397_2_.getItemDamage() == p_151397_1_.getItemDamage());// &&
+        //ItemStack.areItemStackTagsEqual(p_151397_1_, p_151397_2_);
+
     }
 
     @Override

@@ -1,7 +1,5 @@
 package shift.sextiarysector.asm;
 
-import net.minecraft.launchwrapper.IClassTransformer;
-
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -13,8 +11,10 @@ import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
 import cpw.mods.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
+import net.minecraft.launchwrapper.IClassTransformer;
 
 public class TransformerBottle implements IClassTransformer, Opcodes {
+
     // 改変対象のクラスの完全修飾名です。
     // 後述でMinecraft.jar内の難読化されるファイルを対象とする場合の簡易な取得方法を紹介します。
     private static final String TARGET_CLASS_NAME = "net.minecraft.item.ItemGlassBottle";

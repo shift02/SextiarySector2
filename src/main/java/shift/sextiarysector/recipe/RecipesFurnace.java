@@ -1,10 +1,10 @@
 package shift.sextiarysector.recipe;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSItems;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RecipesFurnace {
 
@@ -13,6 +13,7 @@ public class RecipesFurnace {
         GameRegistry.addSmelting(new ItemStack(SSItems.goldDust), new ItemStack(Items.gold_ingot), 0.1f);
         GameRegistry.addSmelting(new ItemStack(SSItems.copperDust), new ItemStack(SSItems.copperIngot), 0.1f);
         GameRegistry.addSmelting(new ItemStack(SSItems.zincDust), new ItemStack(SSItems.zincIngot), 0.1f);
+        GameRegistry.addSmelting(new ItemStack(SSItems.silverDust), new ItemStack(SSItems.silverIngot), 0.1f);
 
         GameRegistry.addSmelting(new ItemStack(SSBlocks.copperOre), new ItemStack(SSItems.copperIngot), 0.1f);
         GameRegistry.addSmelting(new ItemStack(SSBlocks.zincOre), new ItemStack(SSItems.zincIngot), 0.1f);

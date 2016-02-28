@@ -1,11 +1,12 @@
 package shift.sextiarysector.agriculture;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -27,18 +28,24 @@ import shift.sextiarysector.api.season.SeasonAPI;
 public class CropBase implements ICrop {
 
     public String name;
-    public Item crop;
-    public Season[] season;
-    public int[] day;
+    public ItemStack crop;
+    protected Season[] season;
+    protected int[] day;
+
+    /** 実績用の作物リスト */
+    public static ArrayList<CropBase> crops = new ArrayList<CropBase>();
 
     @SideOnly(Side.CLIENT)
     public IIcon[] icons;
 
-    public CropBase(String name, Item crop, Season[] season, int[] day) {
+    public CropBase(String name, ItemStack crop, Season[] season, int[] day) {
         this.name = name;
         this.crop = crop;
         this.season = season;
         this.day = day;
+
+        crops.add(this);
+
     }
 
     @Override
@@ -74,7 +81,7 @@ public class CropBase implements ICrop {
 
         w.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, SSBlocks.crop.stepSound.func_150496_b(), (SSBlocks.crop.stepSound.getVolume() + 1.0F) / 2.0F, SSBlocks.crop.stepSound.getPitch() * 0.8F);
 
-        ItemStack cropItem = new ItemStack(this.crop);
+        ItemStack cropItem = this.crop.copy();
 
         //突然変異の処理
         if (farmland.getFertilizer() != null) {
@@ -96,6 +103,9 @@ public class CropBase implements ICrop {
 
         w.func_147480_a(x, y, z, false);
         w.setBlockToAir(x, y, z);
+
+        farmland.setFertilizer(null);
+        w.markBlockForUpdate(farmland.getX(), farmland.getY(), farmland.getZ());
 
         return true;
 
@@ -166,6 +176,30 @@ public class CropBase implements ICrop {
     @Override
     public CropRendererType getRenderType() {
         return CropRendererType.Normal;
+    }
+
+    public Season[] getSeason() {
+        return season;
+    }
+
+    public void setSeason(Season[] season) {
+        this.season = season;
+    }
+
+    public int[] getDays() {
+        return day;
+    }
+
+    public void setDay(int[] day) {
+        this.day = day;
+    }
+
+    /**
+     * 収穫できるまでの日数
+     * @return 日数
+     */
+    public int getGrowthDay() {
+        return day[day.length - 1];
     }
 
 }
