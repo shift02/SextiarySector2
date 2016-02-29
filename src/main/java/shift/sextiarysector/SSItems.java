@@ -176,7 +176,9 @@ public class SSItems {
     public static Item goldScoop;
     public static Item diamondScoop;
 
+    public static Item copperScoop;
     public static Item brassScoop;
+    public static Item ninjaScoop;
     //public static Item diamondScoop;
 
     public static Item woodKnife;
@@ -185,7 +187,9 @@ public class SSItems {
     public static Item goldKnife;
     public static Item diamondKnife;
 
+    public static Item copperKnife;
     public static Item brassKnife;
+    public static Item ninjaKnife;
 
     //道具 バニラ
 
@@ -694,26 +698,34 @@ public class SSItems {
         GameRegistry.registerItem(goldScoop, "GoldScoop");
         GameRegistry.registerItem(diamondScoop, "DiamondScoop");
 
-        brassScoop = new ItemScoop(ModuleToolMaterial.brassTool).setUnlocalizedName("ss.brass_scoop")
-                .setTextureName("brass_scoop");
+        copperScoop = new ItemScoop(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_scoop").setTextureName("copper_scoop");
+        GameRegistry.registerItem(copperScoop, "CopperScoop");
+
+        brassScoop = new ItemScoop(ModuleToolMaterial.brassTool).setUnlocalizedName("ss.brass_scoop").setTextureName("brass_scoop");
         GameRegistry.registerItem(brassScoop, "BrassScoop");
 
+        ninjaScoop = new ItemScoop(ModuleToolMaterial.ninjaTool).setUnlocalizedName("ss.ninja_scoop").setTextureName("ninja_scoop");
+        GameRegistry.registerItem(ninjaScoop, "NinjaScoop");
+
         woodKnife = new ItemKnife(ToolMaterial.WOOD).setUnlocalizedName("ss.wood_knife").setTextureName("wood_knife");
-        stoneKnife = new ItemKnife(ToolMaterial.STONE).setUnlocalizedName("ss.stone_knife")
-                .setTextureName("stone_knife");
+        stoneKnife = new ItemKnife(ToolMaterial.STONE).setUnlocalizedName("ss.stone_knife").setTextureName("stone_knife");
         ironKnife = new ItemKnife(ToolMaterial.IRON).setUnlocalizedName("ss.iron_knife").setTextureName("iron_knife");
         goldKnife = new ItemKnife(ToolMaterial.GOLD).setUnlocalizedName("ss.gold_knife").setTextureName("gold_knife");
-        diamondKnife = new ItemKnife(ToolMaterial.EMERALD).setUnlocalizedName("ss.diamond_knife")
-                .setTextureName("diamond_knife");
+        diamondKnife = new ItemKnife(ToolMaterial.EMERALD).setUnlocalizedName("ss.diamond_knife").setTextureName("diamond_knife");
         GameRegistry.registerItem(woodKnife, "WoodKnife");
         GameRegistry.registerItem(stoneKnife, "StoneKnife");
         GameRegistry.registerItem(ironKnife, "IronKnife");
         GameRegistry.registerItem(goldKnife, "GoldKnife");
         GameRegistry.registerItem(diamondKnife, "DiamondKnife");
 
-        brassKnife = new ItemKnife(ModuleToolMaterial.brassTool).setUnlocalizedName("ss.brass_knife")
-                .setTextureName("brass_knife");
+        copperKnife = new ItemKnife(ModuleToolMaterial.copperTool).setUnlocalizedName("ss.copper_knife").setTextureName("copper_knife");
+        GameRegistry.registerItem(copperKnife, "CopperKnife");
+
+        brassKnife = new ItemKnife(ModuleToolMaterial.brassTool).setUnlocalizedName("ss.brass_knife").setTextureName("brass_knife");
         GameRegistry.registerItem(brassKnife, "BrassKnife");
+
+        ninjaKnife = new ItemKnife(ModuleToolMaterial.ninjaTool).setUnlocalizedName("ss.ninja_knife").setTextureName("ninja_knife");
+        GameRegistry.registerItem(ninjaKnife, "NinjaKnife");
 
         //バニラ
         //	銅
