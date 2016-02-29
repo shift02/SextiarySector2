@@ -28,7 +28,7 @@ public class AgricultureAPI {
 
     //肥料
 
-    /** 普通の肥料(大きさ作物が収穫できる) */
+    /** 普通の肥料(大きな作物が収穫できる) */
     public static IFertilizer normal;
 
     /** 石の肥料(鉱石作物が収穫できる) */
@@ -69,6 +69,14 @@ public class AgricultureAPI {
      */
     public static void registerFertilizer(IFertilizer fertilizer) {
         fertilizerManager.registerFertilizer(fertilizer);
+    }
+
+    /**
+     * 突然変異の登録
+     * @param mutation 突然変異
+     */
+    public void registeMutation(IMutation mutation) {
+        mutationRegistry.registeMutation(mutation);
     }
 
     /**
