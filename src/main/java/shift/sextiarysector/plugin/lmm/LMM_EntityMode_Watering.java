@@ -8,13 +8,18 @@ import littleMaidMobX.LMM_EntityLittleMaid;
 import littleMaidMobX.LMM_EntityModeBase;
 import littleMaidMobX.LMM_EnumSound;
 import littleMaidMobX.LMM_TriggerSelect;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.agriculture.TileFarmland;
@@ -137,7 +142,15 @@ public class LMM_EntityMode_Watering extends LMM_EntityModeBase {
 
         World worldObj = owner.worldObj;
 
-        TileEntity t = worldObj.getTileEntity(px, py, pz);
+        owner.getNextEquipItem();
+        ItemStack lis = owner.getCurrentEquippedItem();
+        //水の補給
+        if (lis.getMaxDamage() - lis.getItemDamage() == 1) return checkBlockWater(pMode, px, py, pz);
+
+        int i = 0;
+        if (py != 0) i = 1;
+
+        TileEntity t = worldObj.getTileEntity(px, py - i, pz);
 
         if (!(t instanceof TileFarmland)) return false;
 
@@ -155,6 +168,16 @@ public class LMM_EntityMode_Watering extends LMM_EntityModeBase {
         //            }
         //        }
         //        return false;
+    }
+
+    public boolean checkBlockWater(int pMode, int px, int py, int pz) {
+
+        World worldObj = owner.worldObj;
+
+        if (worldObj.getBlock(px, py, pz).getMaterial() != Material.water) return false;
+
+        return true;
+
     }
 
     @Override
@@ -186,6 +209,12 @@ public class LMM_EntityMode_Watering extends LMM_EntityModeBase {
         // 水やり
         if (pMode == mmode_Watering && owner.getNextEquipItem()) {
             ItemStack lis = owner.getCurrentEquippedItem();
+
+            if (lis.getMaxDamage() - lis.getItemDamage() == 1) {
+                this.onUpdateWater(pMode, lis);
+                return;
+            }
+
             int lic = lis.stackSize;
             Item lii = lis.getItem();
             World lworld = owner.worldObj;
@@ -225,6 +254,62 @@ public class LMM_EntityMode_Watering extends LMM_EntityModeBase {
             }
 
         }
+    }
+
+    public void onUpdateWater(int pMode, ItemStack lis) {
+        this.scoopWater(lis, owner.worldObj, owner.maidAvatar);
+    }
+
+    public ItemStack scoopWater(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+
+        MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
+
+        if (movingobjectposition == null) {
+            return par1ItemStack;
+        } else {
+            if (movingobjectposition.typeOfHit == MovingObjectType.BLOCK) {
+                int i = movingobjectposition.blockX;
+                int j = movingobjectposition.blockY;
+                int k = movingobjectposition.blockZ;
+
+                if (!par2World.canMineBlock(par3EntityPlayer, i, j, k)) {
+                    return par1ItemStack;
+                }
+
+                if (!par3EntityPlayer.canPlayerEdit(i, j, k, movingobjectposition.sideHit, par1ItemStack)) {
+                    return par1ItemStack;
+                }
+
+                if (par2World.getBlock(i, j, k).getMaterial() == Material.water) {
+                    par2World.playSoundAtEntity(par3EntityPlayer, "liquid.swim", 1.0F, 1.0F);
+                    par1ItemStack.setItemDamage(1);
+                }
+            }
+
+            return par1ItemStack;
+        }
+    }
+
+    protected MovingObjectPosition getMovingObjectPositionFromPlayer(World p_77621_1_, EntityPlayer p_77621_2_, boolean p_77621_3_) {
+        float f = 1.0F;
+        float f1 = p_77621_2_.prevRotationPitch + (p_77621_2_.rotationPitch - p_77621_2_.prevRotationPitch) * f;
+        float f2 = p_77621_2_.prevRotationYaw + (p_77621_2_.rotationYaw - p_77621_2_.prevRotationYaw) * f;
+        double d0 = p_77621_2_.prevPosX + (p_77621_2_.posX - p_77621_2_.prevPosX) * f;
+        double d1 = p_77621_2_.prevPosY + (p_77621_2_.posY - p_77621_2_.prevPosY) * f + (p_77621_1_.isRemote ? p_77621_2_.getEyeHeight() - p_77621_2_.getDefaultEyeHeight() : p_77621_2_.getEyeHeight()); // isRemote check to revert changes to ray trace position due to adding the eye height clientside and player yOffset differences
+        double d2 = p_77621_2_.prevPosZ + (p_77621_2_.posZ - p_77621_2_.prevPosZ) * f;
+        Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
+        float f3 = MathHelper.cos(-f2 * 0.017453292F - (float) Math.PI);
+        float f4 = MathHelper.sin(-f2 * 0.017453292F - (float) Math.PI);
+        float f5 = -MathHelper.cos(-f1 * 0.017453292F);
+        float f6 = MathHelper.sin(-f1 * 0.017453292F);
+        float f7 = f4 * f5;
+        float f8 = f3 * f5;
+        double d3 = 5.0D;
+        if (p_77621_2_ instanceof EntityPlayerMP) {
+            d3 = ((EntityPlayerMP) p_77621_2_).theItemInWorldManager.getBlockReachDistance();
+        }
+        Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
+        return p_77621_1_.func_147447_a(vec3, vec31, p_77621_3_, !p_77621_3_, false);
     }
 
     @Override
