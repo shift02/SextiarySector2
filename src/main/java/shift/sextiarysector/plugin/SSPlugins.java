@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import org.apache.logging.log4j.Level;
 
-import shift.sextiarysector.Config;
-import shift.sextiarysector.SextiarySector;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import shift.sextiarysector.Config;
+import shift.sextiarysector.SextiarySector;
 
 public class SSPlugins {
 
@@ -25,6 +25,7 @@ public class SSPlugins {
     public static boolean modFMP;
     public static boolean modRF;
     public static boolean modTC;
+    public static boolean modMaid;
 
     public static void initModHelper() {
 
@@ -38,6 +39,7 @@ public class SSPlugins {
         modFMP = Loader.isModLoaded("ForgeMultipart") && Config.modFMP;
         modRF = isRF() && Config.modRF;
         modTC = Loader.isModLoaded("Thaumcraft") && Config.modTC;
+        modMaid = Loader.isModLoaded("lmmx") && Config.modMaid;
 
         if (modDCsAppleMilk) {
 
@@ -184,6 +186,21 @@ public class SSPlugins {
             } catch (Exception e) {
 
                 SextiarySector.Log.log(Level.WARN, "Thaumcraft integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
+                SextiarySector.Log.catching(e);
+
+            }
+        }
+
+        if (modMaid) {
+
+            try {
+
+                SextiarySector.Log.info("Maid Plugin is loaded");
+                plugins.add(new PluginMaid());
+
+            } catch (Exception e) {
+
+                SextiarySector.Log.log(Level.WARN, "Maid integration was unsuccessful - please contact the author of this mod to let them know that the API may have changed.");
                 SextiarySector.Log.catching(e);
 
             }
