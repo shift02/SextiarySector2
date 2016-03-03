@@ -93,4 +93,9 @@ public class CropTest implements ICrop {
         return CropRendererType.Normal;
     }
 
+    @Override
+    public int getGrowingPeriod() {
+        return -1;
+    }
+
 }
