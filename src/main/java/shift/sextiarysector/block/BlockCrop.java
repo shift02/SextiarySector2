@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -71,6 +72,23 @@ public class BlockCrop extends BlockContainer {
 
         //作物の処理を呼ぶ
         return tileCrop.getCrop().getLightValue(tileCrop, tileFarmland);
+
+    }
+
+    //接触時
+    @Override
+    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity p_149670_5_) {
+        TileEntityCrop tileCrop = (TileEntityCrop) world.getTileEntity(x, y, z);
+
+        TileFarmland tileFarmland = (TileFarmland) world.getTileEntity(x, y - 1, z);
+
+        if (tileCrop.getCrop() == null) {
+            super.onEntityCollidedWithBlock(world, x, y, z, p_149670_5_);
+            return;
+        }
+
+        //作物の処理を呼ぶ
+        tileCrop.getCrop().onEntityCollidedWithCrop(tileCrop, tileFarmland, p_149670_5_);
 
     }
 

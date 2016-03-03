@@ -11,12 +11,12 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
+import shift.sextiarysector.api.agriculture.CropAbstract;
 import shift.sextiarysector.api.agriculture.CropRendererType;
-import shift.sextiarysector.api.agriculture.ICrop;
 import shift.sextiarysector.api.agriculture.TileCrop;
 import shift.sextiarysector.api.agriculture.TileFarmland;
 
-public class CropTest implements ICrop {
+public class CropTest extends CropAbstract {
 
     @SideOnly(Side.CLIENT)
     public IIcon testIcon;
