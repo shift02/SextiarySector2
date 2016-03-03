@@ -141,6 +141,7 @@ public class ItemWateringCan extends Item {
     }
 
     public ItemStack scoopWater(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
 
         if (movingobjectposition == null) {
