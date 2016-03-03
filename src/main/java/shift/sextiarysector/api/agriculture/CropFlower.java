@@ -78,7 +78,7 @@ public class CropFlower extends CropAbstract {
     }
 
     @Override
-    public ArrayList<ItemStack> hrvest(TileCrop crop, TileFarmland farmland) {
+    public ArrayList<ItemStack> harvest(TileCrop crop, TileFarmland farmland) {
         return new ArrayList<ItemStack>();
     }
 

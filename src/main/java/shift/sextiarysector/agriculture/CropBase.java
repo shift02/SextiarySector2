@@ -86,7 +86,7 @@ public class CropBase extends CropAbstract {
         //w.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, SSBlocks.crop.stepSound.func_150496_b(), (SSBlocks.crop.stepSound.getVolume() + 1.0F) / 2.0F, SSBlocks.crop.stepSound.getPitch() * 0.8F);
 
         //収穫処理
-        ArrayList<ItemStack> list = this.hrvest(crop, farmland);
+        ArrayList<ItemStack> list = this.harvest(crop, farmland);
 
         //ドロップ処理
         for (ItemStack cropItem : list) {
@@ -144,7 +144,7 @@ public class CropBase extends CropAbstract {
     }
 
     @Override
-    public ArrayList<ItemStack> hrvest(TileCrop crop, TileFarmland farmland) {
+    public ArrayList<ItemStack> harvest(TileCrop crop, TileFarmland farmland) {
 
         ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 

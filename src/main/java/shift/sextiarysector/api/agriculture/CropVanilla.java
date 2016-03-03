@@ -67,7 +67,7 @@ public class CropVanilla extends CropAbstract {
         if (w.isRemote) return true;
 
         //収穫処理
-        ArrayList<ItemStack> list = this.hrvest(crop, farmland);
+        ArrayList<ItemStack> list = this.harvest(crop, farmland);
 
         //ドロップ処理
         for (ItemStack cropItem : list) {
@@ -125,7 +125,7 @@ public class CropVanilla extends CropAbstract {
     }
 
     @Override
-    public ArrayList<ItemStack> hrvest(TileCrop crop, TileFarmland farmland) {
+    public ArrayList<ItemStack> harvest(TileCrop crop, TileFarmland farmland) {
 
         ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 
