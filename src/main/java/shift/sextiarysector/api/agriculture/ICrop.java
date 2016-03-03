@@ -95,7 +95,7 @@ public interface ICrop {
      * @param farmland 農地
      * @return 収穫できた作物
      */
-    ArrayList<ItemStack> hrvest(TileCrop crop, TileFarmland farmland);
+    ArrayList<ItemStack> harvest(TileCrop crop, TileFarmland farmland);
 
     /*
      *--------------------------------------

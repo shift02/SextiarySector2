@@ -28,7 +28,7 @@ public class CropReHarvest extends CropBase {
     }
 
     @Override
-    public ArrayList<ItemStack> hrvest(TileCrop crop, TileFarmland farmland) {
+    public ArrayList<ItemStack> harvest(TileCrop crop, TileFarmland farmland) {
 
         ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 
