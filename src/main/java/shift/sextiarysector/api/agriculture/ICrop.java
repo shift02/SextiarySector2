@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -128,6 +129,14 @@ public interface ICrop {
      * @return 0 ~ 15
      */
     int getLightValue(TileCrop crop, TileFarmland farmland);
+
+    /**
+     * Entityが作物に接触した時に呼ばれる
+     * @param crop 作物
+     * @param farmland 農地
+     * @param entity 接触したEntity
+     */
+    void onEntityCollidedWithCrop(TileCrop crop, TileFarmland farmland, Entity entity);
 
     /**
      * 作物に触れたEntityを燃やすかどうか

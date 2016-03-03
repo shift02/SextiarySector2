@@ -4,6 +4,7 @@
 */
 package shift.sextiarysector.api.agriculture;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
 /**
@@ -32,6 +33,11 @@ public abstract class CropAbstract implements ICrop {
     @Override
     public int getLightValue(TileCrop crop, TileFarmland farmland) {
         return 0;
+    }
+
+    @Override
+    public void onEntityCollidedWithCrop(TileCrop crop, TileFarmland farmland, Entity entity) {
+
     }
 
     @Override
