@@ -38,7 +38,7 @@ import shift.sextiarysector.recipe.RecipesFurnaceCraft;
 public class SextiarySector {
 
     public static final String MODID = "SextiarySector";
-    public static final String VERSION = "2.4.5";
+    public static final String VERSION = "2.4.6";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
