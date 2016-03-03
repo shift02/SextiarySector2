@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSItems;
 
@@ -53,7 +52,7 @@ public class RecipesMachine {
         Object[] material = new Object[] { "plankWood", "stone", "ingotSteel", "ingotNinja", "gemOrichalcum" };
         Item[] gear = new Item[] { SSItems.woodGear, SSItems.stoneGear, SSItems.steelGear, SSItems.ninjaGear, SSItems.orichalcumGear };
         String[] gearOre = new String[] { "gearWood", "gearStone", "gearSteel", "gearNinja", "gearOrichalcum" };
-        Item[] unit = new Item[] { SSItems.woodUnitGear, SSItems.stoneUnitGear, SSItems.steelUnitGear, SSItems.ninjaUnitGear, SSItems.orichalcumUnitGear };
+        //Item[] unit = new Item[] { SSItems.woodUnitGear, SSItems.stoneUnitGear, SSItems.steelUnitGear, SSItems.ninjaUnitGear, SSItems.orichalcumUnitGear };
         Item[] storage = new Item[] { SSItems.woodGFStorage, SSItems.stoneGFStorage, SSItems.steelGFStorage, SSItems.ninjaGFStorage, SSItems.orichalcumGFStorage };
         Block[] shaft = new Block[] { SSBlocks.woodShaft, SSBlocks.stoneShaft, SSBlocks.steelShaft, SSBlocks.ninjaShaft, SSBlocks.orichalcumShaft };
         Block[] tank = new Block[] { SSBlocks.woodGFTank, SSBlocks.stoneGFTank, SSBlocks.steelGFTank, SSBlocks.ninjaGFTank, SSBlocks.orichalcumGFTank };
@@ -264,21 +263,21 @@ public class RecipesMachine {
 
         //GF Item
 
-        for (int i = 0; i < 5; i++) {
-
-            p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(gear[i], 2),
-                    new Object[] { " x ", "xyx", " x ",
-                            Character.valueOf('y'), "dustBluestone",
-                            Character.valueOf('x'), material[i]
-                    }));
-
-            p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(unit[i], 1),
-                    new Object[] {
-                            SSItems.unit,
-                            gearOre[i]
-                    }));
-
-        }
+        //        for (int i = 0; i < 5; i++) {
+        //
+        //            p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(gear[i], 2),
+        //                    new Object[] { " x ", "xyx", " x ",
+        //                            Character.valueOf('y'), "dustBluestone",
+        //                            Character.valueOf('x'), material[i]
+        //                    }));
+        //
+        //            p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(unit[i], 1),
+        //                    new Object[] {
+        //                            SSItems.unit,
+        //                            gearOre[i]
+        //                    }));
+        //
+        //        }
 
         for (int i = 0; i < 5; i++) {
 
