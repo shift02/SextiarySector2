@@ -16,6 +16,7 @@ import shift.sextiarysector.agriculture.FarmlandRegistry;
 import shift.sextiarysector.agriculture.FertilizerManager;
 import shift.sextiarysector.agriculture.MutationRegistry;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
+import shift.sextiarysector.api.agriculture.CropFlower;
 import shift.sextiarysector.api.agriculture.CropVanilla;
 import shift.sextiarysector.api.agriculture.CropWither;
 import shift.sextiarysector.api.agriculture.FertilizerBase;
@@ -43,6 +44,10 @@ public class SSCrops {
     public static ICrop wheat;
     public static ICrop carrot;
     public static ICrop potato;
+
+    //花
+    public static ICrop red_flower[];
+    public static ICrop yellow_flower;
 
     //春
     public static CropBase turnip;
@@ -128,6 +133,15 @@ public class SSCrops {
 
         potato = new CropVanilla("potato", Items.potato, Blocks.potatoes, new Season[] { Season.SPRING }, new int[] { 1, 2, 3, 4, 5, 6, 7 });
         cropManager.registerCrop(potato);
+
+        //花
+        red_flower = new ICrop[9];
+        for (int i = 0; i < red_flower.length; i++) {
+            red_flower[i] = new CropFlower("red_flower_" + i, new ItemStack(Blocks.red_flower, 1, i));
+            cropManager.registerCrop(red_flower[i]);
+        }
+        yellow_flower = new CropFlower("yellow_flower", new ItemStack(Blocks.yellow_flower));
+        cropManager.registerCrop(yellow_flower);
 
         //SS2
 
