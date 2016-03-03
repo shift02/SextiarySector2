@@ -1,5 +1,7 @@
 package shift.sextiarysector.agriculture;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -52,6 +54,16 @@ public class CropTest implements ICrop {
     @Override
     public boolean canGrow(TileCrop crop, TileFarmland farmland) {
         return true;
+    }
+
+    @Override
+    public boolean canHarvest(TileCrop crop, TileFarmland farmland) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<ItemStack> hrvest(TileCrop crop, TileFarmland farmland) {
+        return new ArrayList<ItemStack>();
     }
 
     @Override

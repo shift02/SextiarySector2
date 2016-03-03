@@ -1,5 +1,7 @@
 package shift.sextiarysector.api.agriculture;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,6 +27,13 @@ public interface ICrop {
     String getName();
 
     /**
+     * 収穫できるまでの日数 <br>
+     * 生育期間
+     * @return 収穫できない作物の場合は-1を返す
+     */
+    public int getGrowingPeriod();
+
+    /**
      * プレイヤーが農地を右クリックした時に呼ばれる<br>
      * 手に持っていたアイテムがこの作物データの種ならtrueを返す
      *
@@ -44,7 +53,7 @@ public interface ICrop {
 
     /**
      * プレイヤーに作物がクリックされた時に呼ばれる <br>
-     * 収穫処理などを書く
+     * {@link #harvest(TileCrop crop, TileFarmland farmland) } を呼んだりする
      * @param crop
      * @param farmland TODO
      * @param player
@@ -60,9 +69,10 @@ public interface ICrop {
     boolean canBlockStay(String name, TileFarmland farmland);
 
     /**
-     * trueだと枯れる
-     * @param crop
-     * @return
+     * 作物がこの環境(季節やバイオーム)で育つことができるか
+     * @param crop 作物
+     * @param farmland 耕地
+     * @return trueだと枯れる
      */
     boolean canWither(TileCrop crop, TileFarmland farmland);
 
@@ -81,6 +91,20 @@ public interface ICrop {
      * @return 消費する量
      */
     int getConsumptionMoisture(TileCrop crop, TileFarmland farmland);
+
+    /**
+     * 作物が収穫できるか返す
+     * @return 収穫できる場合はtrue
+     */
+    boolean canHarvest(TileCrop crop, TileFarmland farmland);
+
+    /**
+     * 作物の収穫処理
+     * @param crop 作物
+     * @param farmland 農地
+     * @return 収穫できた作物
+     */
+    ArrayList<ItemStack> hrvest(TileCrop crop, TileFarmland farmland);
 
     /**
      * 作物のIIconを登録するメソッド
