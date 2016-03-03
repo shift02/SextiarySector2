@@ -11,14 +11,21 @@ import net.minecraft.util.IIcon;
 
 /**
  * 作物のクラスに実装するinterface <br>
- *
+ * 通常は {@link CropAbstract}を使う<br>
+ * <br>
  * {@link AgricultureAPI#registerCrop(ICrop)}で登録する
  *
+ * @see CropAbstract
  * @author Shift02
  *
  */
 public interface ICrop {
 
+    /*
+     *--------------------------------------
+     *  基礎の処理
+     *--------------------------------------
+     */
     /**
      * 他の作物と被らないオリジナルの名前 <br>
      * 作物を登録する時に被っているとエラーになります。
@@ -43,22 +50,6 @@ public interface ICrop {
      * @return 種ならtrue <br> trueを返すと植える
      */
     boolean isSeed(ItemStack seed, EntityPlayer player);
-
-    /**
-     * 毎tick呼ばれる
-     * @param crop 作物本体
-     * @param farmland 耕地
-     */
-    void update(TileCrop crop, TileFarmland farmland);
-
-    /**
-     * プレイヤーに作物がクリックされた時に呼ばれる <br>
-     * {@link #harvest(TileCrop crop, TileFarmland farmland) } を呼んだりする
-     * @param crop
-     * @param farmland TODO
-     * @param player
-     */
-    boolean click(TileCrop crop, TileFarmland farmland, EntityPlayer player);
 
     /**
      * 作物が引数の農地で育つことができるかを返す<br>
@@ -106,6 +97,71 @@ public interface ICrop {
      */
     ArrayList<ItemStack> hrvest(TileCrop crop, TileFarmland farmland);
 
+    /*
+     *--------------------------------------
+     *  Blockからの処理
+     *--------------------------------------
+     */
+    /**
+     * プレイヤーに作物がクリックされた時に呼ばれる <br>
+     * {@link #harvest(TileCrop crop, TileFarmland farmland) } を呼んだりする
+     * @param crop
+     * @param farmland TODO
+     * @param player
+     */
+    boolean click(TileCrop crop, TileFarmland farmland, EntityPlayer player);
+
+    /**
+     * 作物の硬さを返す<br>
+     * 作物Blockを破壊する時の時間に関係
+     * @param crop 作物
+     * @param farmland 農地
+     * @return 硬さ
+     */
+    float getHardness(TileCrop crop, TileFarmland farmland);
+
+    /**
+     * 作物の明るさを返す<br>
+     * 輝くダイコンとか作成できる
+     * @param crop 作物
+     * @param farmland 農地
+     * @return 0 ~ 15
+     */
+    int getLightValue(TileCrop crop, TileFarmland farmland);
+
+    /**
+     * 作物に触れたEntityを燃やすかどうか
+     * @param crop 作物
+     * @param farmland 農地
+     * @return trueだと火がつく
+     */
+    boolean isBurning(TileCrop crop, TileFarmland farmland);
+
+    /**
+     * 作物をエンチャント時のレベル上げ用本棚の代用にする
+     * @param crop 作物
+     * @param farmland 農地
+     * @return エンチャントテーブルに供給する魔力量
+     */
+    float getEnchantPowerBonus(TileCrop crop, TileFarmland farmland);
+
+    /*
+     *--------------------------------------
+     *  TileEntityからの処理
+     *--------------------------------------
+     */
+    /**
+     * 毎tick呼ばれる
+     * @param crop 作物本体
+     * @param farmland 耕地
+     */
+    void update(TileCrop crop, TileFarmland farmland);
+
+    /*
+     *--------------------------------------
+     *  Client側の処理
+     *--------------------------------------
+     */
     /**
      * 作物のIIconを登録するメソッド
      * @param register
