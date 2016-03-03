@@ -122,11 +122,11 @@ public class RecipesFurnaceCraft {
                         Character.valueOf('x'), "cobblestone",
                 }));
 
-        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.emptyBottle, 8),
-                new Object[] {
-                        "x", "x",
-                        'x', "paneGlassColorless",
-                }));
+        //        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.emptyBottle, 8),
+        //                new Object[] {
+        //                        "x", "x",
+        //                        'x', "paneGlassColorless",
+        //                }));
 
         p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.orichalcumGem, 1),
                 new Object[] {
