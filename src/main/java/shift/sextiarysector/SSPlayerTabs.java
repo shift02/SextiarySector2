@@ -6,7 +6,6 @@ import shift.sextiarysector.gui.tab.AbstractTab;
 import shift.sextiarysector.gui.tab.InventoryTabEquipment;
 import shift.sextiarysector.gui.tab.InventoryTabSS;
 import shift.sextiarysector.gui.tab.TabManager;
-import shift.sextiarysector.item.ItemShopRing;
 
 public class SSPlayerTabs {
 
@@ -34,9 +33,9 @@ public class SSPlayerTabs {
         quiver = new InventoryTabEquipment(EquipmentType.Bag, new ItemStack(SSItems.quiver));
         TabManager.registerTab(quiver);
 
-        creeperShop = new InventoryTabEquipment(EquipmentType.Other, new ItemStack(SSItems.creeperRing));
-        TabManager.registerTab(creeperShop);
-        ((ItemShopRing) SSItems.creeperRing).setTab(creeperShop);
+        //creeperShop = new InventoryTabEquipment(EquipmentType.Other, new ItemStack(SSItems.creeperRing));
+        //TabManager.registerTab(creeperShop);
+        //((ItemShopRing) SSItems.creeperRing).setTab(creeperShop);
 
     }
 

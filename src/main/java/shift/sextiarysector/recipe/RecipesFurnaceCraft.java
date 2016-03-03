@@ -11,8 +11,6 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSItems;
-import shift.sextiarysector.block.BlockMonitor;
-import shift.sextiarysector.block.BlockMonitor.MonitorType;
 
 public class RecipesFurnaceCraft {
 
@@ -152,12 +150,12 @@ public class RecipesFurnaceCraft {
                 }));
 
         //クリーパーリング
-        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.creeperRing, 1),
-                new Object[] {
-                        "ringIron",
-                        SSItems.objectReactor,
-                        BlockMonitor.getMonitor(MonitorType.creeper)
-                }));
+        //p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.creeperRing, 1),
+        //         new Object[] {
+        //                "ringIron",
+        //                SSItems.objectReactor,
+        //               BlockMonitor.getMonitor(MonitorType.creeper)
+        //       }));
 
         //MPRing
         p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.mpRing, 1),
