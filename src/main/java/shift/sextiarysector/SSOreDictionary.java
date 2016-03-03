@@ -151,7 +151,9 @@ public class SSOreDictionary {
         OreDictionary.registerOre("fluidIron", new ItemStack(SSItems.ironFluidBucket));
         OreDictionary.registerOre("fluidGold", new ItemStack(SSItems.goldFluidBucket));
 
-        Item[] Knife = new Item[] { SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife };
+        Item[] Knife = new Item[] {
+                SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife,
+                SSItems.copperKnife, SSItems.brassKnife, SSItems.ninjaKnife };
         for (int i = 0; i < Knife.length; i++) {
             OreDictionary.registerOre("craftingToolWireCutter", new ItemStack(Knife[i], 1, OreDictionary.WILDCARD_VALUE));
             OreDictionary.registerOre("craftingToolKnife", new ItemStack(Knife[i], 1, OreDictionary.WILDCARD_VALUE));
