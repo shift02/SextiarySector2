@@ -40,7 +40,6 @@ import shift.sextiarysector.item.ItemSeasonStone;
 import shift.sextiarysector.item.ItemSeed;
 import shift.sextiarysector.item.ItemShiftHat;
 import shift.sextiarysector.item.ItemShopMemory;
-import shift.sextiarysector.item.ItemShopRing;
 import shift.sextiarysector.item.ItemSimpleBucket;
 import shift.sextiarysector.item.ItemSoup;
 import shift.sextiarysector.item.ItemSpanner;
@@ -336,7 +335,7 @@ public class SSItems {
 
     //リング
     public static Item ironRing;
-    public static Item creeperRing;
+    //public static Item creeperRing;
     public static Item mpRing;
     public static Item xpRing;
 
@@ -1057,9 +1056,9 @@ public class SSItems {
                 .setCreativeTab(SextiarySectorAPI.TabSSPlayer);
         GameRegistry.registerItem(ironRing, "IronRing");
 
-        creeperRing = new ItemShopRing().setUnlocalizedName("ss.creeper_ring")
-                .setTextureName("sextiarysector:ring/creeper_ring");
-        GameRegistry.registerItem(creeperRing, "CreeperRing");
+        //creeperRing = new ItemShopRing().setUnlocalizedName("ss.creeper_ring")
+        //        .setTextureName("sextiarysector:ring/creeper_ring");
+        //GameRegistry.registerItem(creeperRing, "CreeperRing");
 
         mpRing = new ItemProtectionRing().setUnlocalizedName("ss.mp_ring").setTextureName("sextiarysector:ring/mp_ring")
                 .setCreativeTab(SextiarySectorAPI.TabSSPlayer);
