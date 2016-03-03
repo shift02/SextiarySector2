@@ -18,7 +18,7 @@ import shift.sextiarysector.api.season.SeasonAPI;
  * @author Shift02
  *
  */
-public class CropVanilla implements ICrop {
+public class CropVanilla extends CropAbstract {
 
     public String name;
     public Item seed;

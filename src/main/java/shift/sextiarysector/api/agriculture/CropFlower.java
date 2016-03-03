@@ -17,7 +17,7 @@ import net.minecraft.util.IIcon;
  * @author Shift02
  *
  */
-public class CropFlower implements ICrop {
+public class CropFlower extends CropAbstract {
 
     public String name;
     public ItemStack flower;

@@ -12,8 +12,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
+import shift.sextiarysector.api.agriculture.CropAbstract;
 import shift.sextiarysector.api.agriculture.CropRendererType;
-import shift.sextiarysector.api.agriculture.ICrop;
 import shift.sextiarysector.api.agriculture.IFertilizer;
 import shift.sextiarysector.api.agriculture.TileCrop;
 import shift.sextiarysector.api.agriculture.TileFarmland;
@@ -24,7 +24,7 @@ import shift.sextiarysector.api.season.SeasonAPI;
  * 作物クラス
  * @author Shift02
  */
-public class CropBase implements ICrop {
+public class CropBase extends CropAbstract {
 
     public String name;
     public ItemStack crop;

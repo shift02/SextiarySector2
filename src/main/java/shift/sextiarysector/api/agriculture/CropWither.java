@@ -13,7 +13,7 @@ import net.minecraft.util.IIcon;
  * @author Shift02
  *
  */
-public class CropWither implements ICrop {
+public class CropWither extends CropAbstract {
 
     @Override
     public String getName() {
@@ -27,16 +27,6 @@ public class CropWither implements ICrop {
 
     @Override
     public boolean isSeed(ItemStack seed, EntityPlayer player) {
-        return false;
-    }
-
-    @Override
-    public void update(TileCrop crop, TileFarmland farmland) {
-
-    }
-
-    @Override
-    public boolean click(TileCrop crop, TileFarmland farmland, EntityPlayer player) {
         return false;
     }
 
