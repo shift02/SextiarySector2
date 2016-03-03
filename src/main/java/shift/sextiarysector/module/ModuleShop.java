@@ -46,6 +46,7 @@ public class ModuleShop implements IModule {
         creeper = new ShopSeasonBase("shop.ss.creeper");
 
         creeper.addProduct(new ProductBase(new ItemStack(SSItems.blueStoneDust, 2), 320));
+        creeper.addProduct(new ProductBase(new ItemStack(SSItems.blueStoneDust, 2), 320));
         creeper.addProduct(new ProductBase(new ItemStack(SSItems.yellowStoneDust, 2), 320));
 
         creeper.addProduct(new ProductBase(new ItemStack(SSItems.takumiTeaBottle, 2), 216));
