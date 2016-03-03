@@ -263,21 +263,21 @@ public class RecipesMachine {
 
         //GF Item
 
-        //        for (int i = 0; i < 5; i++) {
-        //
-        //            p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(gear[i], 2),
-        //                    new Object[] { " x ", "xyx", " x ",
-        //                            Character.valueOf('y'), "dustBluestone",
-        //                            Character.valueOf('x'), material[i]
-        //                    }));
-        //
-        //            p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(unit[i], 1),
-        //                    new Object[] {
-        //                            SSItems.unit,
-        //                            gearOre[i]
-        //                    }));
-        //
-        //        }
+        for (int i = 0; i < 5; i++) {
+
+            p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(gear[i], 2),
+                    new Object[] { " x ", "xyx", " x ",
+                            Character.valueOf('y'), "dustBluestone",
+                            Character.valueOf('x'), material[i]
+                    }));
+
+            //                    p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(unit[i], 1),
+            //                            new Object[] {
+            //                                    SSItems.unit,
+            //                                    gearOre[i]
+            //                            }));
+
+        }
 
         for (int i = 0; i < 5; i++) {
 
