@@ -52,12 +52,15 @@ public class SSCrops {
     //春
     public static CropBase turnip;
     public static CropBase cucumber;
+
     public static CropBase ironTurnip;
 
     //夏
     public static CropBase onion;
     public static CropBase tomato;
     public static CropBase corn;
+
+    public static CropBase copperOnion;
     public static CropBase goldenCorn;
 
     //秋
@@ -170,6 +173,10 @@ public class SSCrops {
         corn = new CropBase("corn", new ItemStack(SSItems.corn), new Season[] { Season.SUMMER }, new int[] { 4, 8, 12 });
         cropManager.registerCrop(corn);
         SSItems.seeds.addSeed("corn", corn);
+
+        copperOnion = new CropBase("copper_onion", new ItemStack(SSItems.copperOnion), new Season[] { Season.SUMMER }, new int[] { 4, 8, 16 });
+        cropManager.registerCrop(copperOnion);
+        SSItems.seeds.addSeed("copper_onion", copperOnion);
 
         goldenCorn = new CropBase("golden_corn", new ItemStack(SSItems.goldenCorn), new Season[] { Season.SUMMER }, new int[] { 4, 8, 12 });
         cropManager.registerCrop(goldenCorn);

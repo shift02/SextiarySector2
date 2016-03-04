@@ -256,6 +256,7 @@ public class SSItems {
     public static Item tomato;
     public static Item corn;
 
+    public static Item copperOnion;
     public static Item goldenCorn;
 
     public static Item eggplant;
@@ -859,6 +860,10 @@ public class SSItems {
         corn = new ItemFoodCrop(0, 1, 1, 6, 4, 2, false).setUnlocalizedName("ss.corn")
                 .setTextureName("sextiarysector:food/vegetable/corn");
         GameRegistry.registerItem(corn, "corn");
+
+        copperOnion = new ItemFoodCrop(0, 2, 0, 0, 0, 0, false).setUnlocalizedName("ss.copper_onion")
+                .setTextureName("sextiarysector:food/vegetable/copper_onion");
+        GameRegistry.registerItem(copperOnion, "CopperOnion");
 
         goldenCorn = new ItemFoodCrop(0, 2, 0, 0, 0, 0, false).setUnlocalizedName("ss.golden_corn")
                 .setTextureName("sextiarysector:food/vegetable/golden_corn");
