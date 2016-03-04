@@ -142,6 +142,8 @@ tile.ss.iron_turnip.name=Iron Turnip Seed
 tile.ss.onion.name=Onion Seed
 tile.ss.tomato.name=Tomato Seed
 tile.ss.corn.name=Corn Seed
+
+tile.ss.copper_onion.name=Copper Onion Seed
 tile.ss.golden_corn.name=Golden Corn Seed
 
 tile.ss.eggplant.name=Eggplant Seed
@@ -365,6 +367,7 @@ item.ss.onion.name=Onion
 item.ss.tomato.name=Tomato
 item.ss.corn.name=Corn
 
+item.ss.copper_onion.name=Copper Onion
 item.ss.golden_corn.name=Golden Corn
 
 item.ss.eggplant.name=Eggplant

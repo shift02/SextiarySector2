@@ -116,6 +116,7 @@ public class SSPlugins {
             }
         }
 
+
         if (modTcon) {
 
             try {
@@ -131,6 +132,7 @@ public class SSPlugins {
             }
         }
 
+        //すちゃー
         if (modCleaver) {
 
             try {
@@ -146,6 +148,7 @@ public class SSPlugins {
             }
         }
 
+        //マルチブロック
         if (modFMP) {
 
             try {
