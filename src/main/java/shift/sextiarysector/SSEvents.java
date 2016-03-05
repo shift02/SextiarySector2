@@ -5,9 +5,10 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.MinecraftForge;
 import shift.sextiarysector.api.event.VanillaFoodHandler;
 import shift.sextiarysector.event.AchievementEventHandler;
+import shift.sextiarysector.event.AgricultureClientEventHandler;
+import shift.sextiarysector.event.AgricultureEventHandler;
 import shift.sextiarysector.event.ClientEventHandler;
 import shift.sextiarysector.event.CommonEventHandler;
-import shift.sextiarysector.event.AgricultureEventHandler;
 import shift.sextiarysector.event.HUDEventHandler;
 import shift.sextiarysector.event.OreDictionaryEventHandler;
 import shift.sextiarysector.event.PlayerStatusEventHandler;
@@ -47,8 +48,10 @@ public class SSEvents {
         }
 
         if (event.getSide().isClient()) {
-            MinecraftForge.EVENT_BUS.register(new AgricultureEventHandler());
+            MinecraftForge.EVENT_BUS.register(new AgricultureClientEventHandler());
         }
+
+        MinecraftForge.EVENT_BUS.register(new AgricultureEventHandler());
 
         MinecraftForge.EVENT_BUS.register(new WorldEventHandler());
         MinecraftForge.ORE_GEN_BUS.register(new WorldEventHandler());
