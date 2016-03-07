@@ -17,6 +17,8 @@ import shift.sextiarysector.entity.EntityMineboat;
 import shift.sextiarysector.entity.EntityMineboatChest;
 import shift.sextiarysector.entity.EntityMineboatTank;
 import shift.sextiarysector.gui.tab.TabManager;
+import shift.sextiarysector.packet.PacketGuiId;
+import shift.sextiarysector.packet.SSPacketHandler;
 import shift.sextiarysector.plugin.IPlugin;
 import shift.sextiarysector.plugin.SSPlugins;
 import shift.sextiarysector.renderer.block.RendererBlockBottle;
@@ -57,6 +59,7 @@ import shift.sextiarysector.tileentity.TileEntityFan;
 import shift.sextiarysector.tileentity.TileEntityFigure;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
+import shift.sextiarysector.tileentity.TileEntityGutter;
 import shift.sextiarysector.tileentity.TileEntityKnife;
 import shift.sextiarysector.tileentity.TileEntityLargeWindmill;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
@@ -198,6 +201,8 @@ public class ClientProxy extends CommonProxy {
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySquare.class, new RendererSquare());
 
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGutter.class, new RendererGutter());
+
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RendererPipe());
@@ -236,7 +241,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void openGUI(int id) {
-        //PacketHandler.INSTANCE.sendToServer(new PacketGuiId(id));
+        SSPacketHandler.INSTANCE.sendToServer(new PacketGuiId(id));
     }
 
     @Override
