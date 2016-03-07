@@ -28,6 +28,7 @@ import shift.sextiarysector.renderer.block.RendererFigure;
 import shift.sextiarysector.renderer.block.RendererFluidCrafter;
 import shift.sextiarysector.renderer.block.RendererFunnel;
 import shift.sextiarysector.renderer.block.RendererGearShaft;
+import shift.sextiarysector.renderer.block.RendererGutter;
 import shift.sextiarysector.renderer.block.RendererHole;
 import shift.sextiarysector.renderer.block.RendererKnife;
 import shift.sextiarysector.renderer.block.RendererLargeWindmill;
@@ -90,6 +91,8 @@ public class ClientProxy extends CommonProxy {
 
         this.squareType = RenderingRegistry.getNextAvailableRenderId();
 
+        this.gutterType = RenderingRegistry.getNextAvailableRenderId();
+
         this.fluidCrafterType = RenderingRegistry.getNextAvailableRenderId();
 
         this.woodHopperType = RenderingRegistry.getNextAvailableRenderId();
@@ -135,6 +138,8 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerBlockHandler(new RendererBlockBottle());
 
         RenderingRegistry.registerBlockHandler(new RendererSquare());
+
+        RenderingRegistry.registerBlockHandler(new RendererGutter());
 
         RenderingRegistry.registerBlockHandler(new RendererFluidCrafter());
 

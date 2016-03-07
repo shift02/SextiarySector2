@@ -19,6 +19,8 @@ public class CommonProxy {
 
     public int woodHopperType;
 
+    public int gutterType;
+
     public int pipeType;
     public int tankType;
     public int funnelType;
