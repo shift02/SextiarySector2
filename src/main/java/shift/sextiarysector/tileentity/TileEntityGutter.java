@@ -414,10 +414,10 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
 
                 downCount = 0;
 
-                if (this.clientFluidAmount + 20 < this.getFluidAmount()) {
-                    this.clientFluidAmount += 20;
-                } else if (this.clientFluidAmount + 10 < this.getFluidAmount()) {
+                if (this.clientFluidAmount + 10 < this.getFluidAmount()) {
                     this.clientFluidAmount += 10;
+                } else if (this.clientFluidAmount + 2 < this.getFluidAmount()) {
+                    this.clientFluidAmount += 2;
                 } else {
                     this.clientFluidAmount++;
                 }
