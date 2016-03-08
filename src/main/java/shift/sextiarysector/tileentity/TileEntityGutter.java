@@ -161,10 +161,10 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
         } else if (this.getTank(getDirection()).getFluidAmount() < tank.getFluidAmount() && this.getTank(getDirection().getOpposite()).getFluidAmount() < tank.getFluidAmount()) {
 
             //半分こ
-            FluidStack fs = tank.getFluid().copy();
-            fs.amount /= 2;
-            if (fs.amount > MAX_MOVE_VOLUME) fs.amount = MAX_MOVE_VOLUME;
-            int i = this.getTank(getDirection()).fill(fs, true);
+            FluidStack fs1 = tank.getFluid().copy();
+            fs1.amount /= 2;
+            if (fs1.amount > MAX_MOVE_VOLUME) fs1.amount = MAX_MOVE_VOLUME;
+            int i = this.getTank(getDirection()).fill(fs1, true);
             if (i > 0) {
                 this.getTank(getDirection()).setFluidDirection(getDirection());
             }
@@ -248,9 +248,13 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
 
         if (!(from.equals(this.direction) || from.getOpposite().equals(this.direction))) return 0;
 
-        this.getTank(from).setFluidDirection(from.getOpposite());
+        int i = this.getTank(from).fill(resource, doFill);
 
-        return this.getTank(from).fill(resource, doFill);
+        if (i > 0) {
+            this.getTank(from).setFluidDirection(from.getOpposite());
+        }
+
+        return i;
 
     }
 
