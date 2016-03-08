@@ -116,7 +116,7 @@ public class RendererGutter extends TileEntitySpecialRenderer implements ISimple
         //水真ん中
         if (t.getTank(ForgeDirection.UNKNOWN).getClientFluidAmount() > 0) {
             GL11.glPushMatrix();
-            this.setFluidBounds(0.3125D, 0.3125D, 0.6875D, 0.6875D, t.getTank(ForgeDirection.UNKNOWN));
+            this.setFluidBounds(0.3125D - 0.00001D, 0.3125D - 0.00001D, 0.6875D + 0.00001D, 0.6875D + 0.00001D, t.getTank(ForgeDirection.UNKNOWN));
             this.renderFluid(block, t.getTank(ForgeDirection.UNKNOWN).getClientFluid().getFluid().getIcon(t.getTank(ForgeDirection.UNKNOWN).getFluid()));
             GL11.glPopMatrix();
         }

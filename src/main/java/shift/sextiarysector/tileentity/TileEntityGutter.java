@@ -75,6 +75,7 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
         if (this.getWorldObj().getWorldTime() % 4 == 0) {
 
             if (!centralMove.equals(ForgeDirection.UNKNOWN)) {
+                this.getTank(centralMove).setFluidDirection(centralMove);
                 this.moveFluidD(this.getTank(centralMove));
                 centralMove = ForgeDirection.UNKNOWN;
             }
@@ -133,17 +134,20 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
 
         ForgeDirection d = ForgeDirection.UNKNOWN;
 
-        if (this.getTank(getDirection()).getFluidAmount() > this.getTank(getDirection().getOpposite()).getFluidAmount()) {
-            d = getDirection().getOpposite();
-        }
-
-        if (this.getTank(getDirection()).getFluidAmount() < this.getTank(getDirection().getOpposite()).getFluidAmount()) {
-            d = getDirection();
-        }
+        d = tank.fluidDirection;
 
         //たまに液体の方向性にする
-        if (!tank.fluidDirection.equals(ForgeDirection.UNKNOWN)) {
-            d = tank.fluidDirection;
+        if (d.equals(ForgeDirection.UNKNOWN)) {
+
+            if (this.getTank(getDirection()).getFluidAmount() > this.getTank(getDirection().getOpposite()).getFluidAmount()) {
+                d = getDirection().getOpposite();
+
+            }
+
+            if (this.getTank(getDirection()).getFluidAmount() < this.getTank(getDirection().getOpposite()).getFluidAmount()) {
+                d = getDirection();
+            }
+
         }
 
         if (!d.equals(ForgeDirection.UNKNOWN)) {
@@ -156,14 +160,18 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
                 centralMove = d;
             }
             tank.drain(i, true);
+
             //System.out.println("AAAA");
 
-        } else if (this.getTank(getDirection()).getFluidAmount() < tank.getFluidAmount() && this.getTank(getDirection().getOpposite()).getFluidAmount() < tank.getFluidAmount()) {
+        } else if (this.getTank(getDirection()).getFluidAmount() <= tank.getFluidAmount() && this.getTank(getDirection().getOpposite()).getFluidAmount() <= tank.getFluidAmount()) {
+
+            int total = this.getTank(getDirection()).getFluidAmount() + tank.getFluidAmount() + this.getTank(getDirection().getOpposite()).getFluidAmount();
+            int total_3 = total / 3;
 
             //半分こ
             FluidStack fs1 = tank.getFluid().copy();
-            fs1.amount /= 2;
-            if (fs1.amount > MAX_MOVE_VOLUME) fs1.amount = MAX_MOVE_VOLUME;
+            fs1.amount = total_3 - this.getTank(getDirection()).getFluidAmount();
+            if (fs1.amount > MAX_MOVE_VOLUME / 2) fs1.amount = MAX_MOVE_VOLUME / 2;
             int i = this.getTank(getDirection()).fill(fs1, true);
             if (i > 0) {
                 this.getTank(getDirection()).setFluidDirection(getDirection());
@@ -171,8 +179,8 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
             tank.drain(i, true);
 
             FluidStack fs2 = tank.getFluid().copy();
-            fs2.amount /= 2;
-            if (fs2.amount > MAX_MOVE_VOLUME) fs2.amount = MAX_MOVE_VOLUME;
+            fs2.amount = total_3 - this.getTank(getDirection().getOpposite()).getFluidAmount();
+            if (fs2.amount > MAX_MOVE_VOLUME / 2) fs2.amount = MAX_MOVE_VOLUME / 2;
             int i2 = this.getTank(getDirection().getOpposite()).fill(fs2, true);
             if (i2 > 0) {
                 this.getTank(getDirection().getOpposite()).setFluidDirection(getDirection().getOpposite());
@@ -193,7 +201,7 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
         FluidTankDirection c = this.getTank(ForgeDirection.UNKNOWN);
 
         //外へ
-        if (c.getFluidAmount() >= tank.getFluidAmount() || tank.getSide().equals(tank.fluidDirection)) {
+        if (c.getFluidAmount() > tank.getFluidAmount() || (c.getFluidAmount() >= tank.getFluidAmount() && this.getWorldObj().rand.nextInt(2) == 0) || tank.getSide().equals(tank.fluidDirection)) {
 
             tank.fluidDirection = ForgeDirection.UNKNOWN;
 
@@ -210,7 +218,13 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
 
                     if (i == 0) {
                         //外に行けない
-                        tank.fluidDirection = tank.getSide().getOpposite();
+                        if (tank.canRegurgitation()) {
+                            tank.fluidDirection = tank.getSide().getOpposite();
+                            //c.setFluidDirection(tank.getSide().getOpposite());
+                            //this.getTank(tank.getSide().getOpposite()).setFluidDirection(tank.getSide().getOpposite());
+                        }
+                    } else {
+                        tank.fluidDirection = tank.getSide();
                     }
                     //this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
@@ -218,7 +232,11 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
 
             } else {
                 //外に行けない
-                tank.fluidDirection = tank.getSide().getOpposite();
+                if (tank.canRegurgitation()) {
+                    tank.fluidDirection = tank.getSide().getOpposite();
+                    //c.setFluidDirection(tank.getSide().getOpposite());
+                    //this.getTank(tank.getSide().getOpposite()).setFluidDirection(tank.getSide().getOpposite());
+                }
 
             }
 
@@ -329,6 +347,8 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
         /** 流れの向き */
         private ForgeDirection fluidDirection = ForgeDirection.UNKNOWN;
 
+        private int regurgitation = 0;
+
         private int clientFluidAmount = 0;
         private FluidStack clientF;
 
@@ -345,6 +365,19 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
             this.side = side;
         }
 
+        public boolean canRegurgitation() {
+
+            this.regurgitation++;
+
+            if (this.regurgitation > 4) {
+                this.regurgitation = 0;
+                return true;
+            }
+
+            return false;
+
+        }
+
         public boolean canRendererUpdate() {
 
             if ((lastAmount / 10 != (this.getFluidAmount() / 10)) || (lastAmount != 0 && this.getFluidAmount() == 0)) {
@@ -356,24 +389,35 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
 
         }
 
+        private int downCount = 0;
+
         public void updateRenderer() {
 
             int i = clientFluidAmount;
 
             if (this.clientFluidAmount > this.getFluidAmount()) {
 
-                if (this.clientFluidAmount > this.getFluidAmount() + 10) {
-                    this.clientFluidAmount -= 10;
-                } else {
-                    this.clientFluidAmount--;
+                downCount++;
+
+                if (downCount > 4) {
+                    downCount = 0;
+                    if (this.clientFluidAmount > this.getFluidAmount() + 10) {
+                        this.clientFluidAmount -= 10;
+                    } else {
+                        this.clientFluidAmount--;
+                    }
                 }
 
             }
 
             if (this.clientFluidAmount < this.getFluidAmount()) {
 
+                downCount = 0;
+
                 if (this.clientFluidAmount + 20 < this.getFluidAmount()) {
                     this.clientFluidAmount += 20;
+                } else if (this.clientFluidAmount + 10 < this.getFluidAmount()) {
+                    this.clientFluidAmount += 10;
                 } else {
                     this.clientFluidAmount++;
                 }
