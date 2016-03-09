@@ -44,6 +44,7 @@ public class RendererGutter extends TileEntitySpecialRenderer implements ISimple
         if (y > 0) {
             Block underBlock = world.getBlock(x, y - 1, z);
             if (underBlock.isSideSolid(world, x, y, z, ForgeDirection.UP) || this.canPlaceTorchOnTop(underBlock)) {
+
                 renderer.setRenderBounds(0.375, 0.0D, 0.375, 0.625D, 0.25D, 0.625D);
                 renderer.renderStandardBlock(block, x, y, z);
             }
@@ -117,7 +118,19 @@ public class RendererGutter extends TileEntitySpecialRenderer implements ISimple
         if (t.getTank(ForgeDirection.UNKNOWN).getClientFluidAmount() > 0) {
             GL11.glPushMatrix();
             this.setFluidBounds(0.3125D - 0.00001D, 0.3125D - 0.00001D, 0.6875D + 0.00001D, 0.6875D + 0.00001D, t.getTank(ForgeDirection.UNKNOWN));
+            this.setFluidColor(t.getTank(ForgeDirection.UNKNOWN));
             this.renderFluid(block, t.getTank(ForgeDirection.UNKNOWN).getClientFluid().getFluid().getIcon(t.getTank(ForgeDirection.UNKNOWN).getFluid()));
+            GL11.glPopMatrix();
+        }
+
+        //上
+        if (t.getTank(ForgeDirection.UP).getClientFluidAmount() > 0) {
+            GL11.glPushMatrix();
+
+            double s = (0.0625) * (3.0D * t.getTank(ForgeDirection.UP).getClientFluidAmount() / t.getTank(ForgeDirection.UP).getCapacity());
+            renderer.setRenderBounds(0.5D - s, 0.3125D, 0.5D - s, 0.5D + s, 1.00D, 0.5D + s);
+            this.setFluidColor(t.getTank(ForgeDirection.UP));
+            this.renderFluid(block, t.getTank(ForgeDirection.UP).getClientFluid().getFluid().getFlowingIcon());
             GL11.glPopMatrix();
         }
 
@@ -127,14 +140,16 @@ public class RendererGutter extends TileEntitySpecialRenderer implements ISimple
 
             if (t.getTank(ForgeDirection.NORTH).getClientFluidAmount() > 0) {
                 GL11.glPushMatrix();
-                this.setFluidBounds(0.3125D, 0.0D, 0.6875D, 0.3125D, t.getTank(ForgeDirection.NORTH));
+                this.setFluidBounds(0.3125D, 0.00D, 0.6875D, 0.3125D, t.getTank(ForgeDirection.NORTH));
+                this.setFluidColor(t.getTank(ForgeDirection.NORTH));
                 this.renderFluid(block, t.getTank(ForgeDirection.NORTH).getClientFluid().getFluid().getIcon(t.getTank(ForgeDirection.NORTH).getFluid()));
                 GL11.glPopMatrix();
             }
 
             if (t.getTank(ForgeDirection.SOUTH).getClientFluidAmount() > 0) {
                 GL11.glPushMatrix();
-                this.setFluidBounds(0.3125D, 0.6875D, 0.6875D, 1.0D, t.getTank(ForgeDirection.SOUTH));
+                this.setFluidBounds(0.3125D, 0.6875D, 0.6875D, 1.00D, t.getTank(ForgeDirection.SOUTH));
+                this.setFluidColor(t.getTank(ForgeDirection.SOUTH));
                 this.renderFluid(block, t.getTank(ForgeDirection.SOUTH).getClientFluid().getFluid().getIcon(t.getTank(ForgeDirection.SOUTH).getFluid()));
                 GL11.glPopMatrix();
             }
@@ -143,14 +158,16 @@ public class RendererGutter extends TileEntitySpecialRenderer implements ISimple
 
             if (t.getTank(ForgeDirection.WEST).getClientFluidAmount() > 0) {
                 GL11.glPushMatrix();
-                this.setFluidBounds(0.0D, 0.3125D, 0.3125D, 0.6875D, t.getTank(ForgeDirection.WEST));
+                this.setFluidBounds(0.00D, 0.3125D, 0.3125D, 0.6875D, t.getTank(ForgeDirection.WEST));
+                this.setFluidColor(t.getTank(ForgeDirection.WEST));
                 this.renderFluid(block, t.getTank(ForgeDirection.WEST).getClientFluid().getFluid().getIcon(t.getTank(ForgeDirection.WEST).getFluid()));
                 GL11.glPopMatrix();
             }
 
             if (t.getTank(ForgeDirection.EAST).getClientFluidAmount() > 0) {
                 GL11.glPushMatrix();
-                this.setFluidBounds(0.6875D, 0.3125D, 1.0D, 0.6875D, t.getTank(ForgeDirection.EAST));
+                this.setFluidBounds(0.6875D, 0.3125D, 1.00D, 0.6875D, t.getTank(ForgeDirection.EAST));
+                this.setFluidColor(t.getTank(ForgeDirection.EAST));
                 this.renderFluid(block, t.getTank(ForgeDirection.EAST).getClientFluid().getFluid().getIcon(t.getTank(ForgeDirection.EAST).getFluid()));
                 GL11.glPopMatrix();
             }
@@ -161,10 +178,14 @@ public class RendererGutter extends TileEntitySpecialRenderer implements ISimple
 
     }
 
+    public void setFluidColor(FluidTankDirection tank) {
+        this.setColor3ub(tank.getClientFluid().getFluid().getColor());
+    }
+
     public void setFluidBounds(double minX, double minZ, double maxX, double maxZ, FluidTankDirection tank) {
 
         RenderBlocks renderer = RenderBlocks.getInstance();
-        renderer.setRenderBounds(minX, 0.3125D, minZ, maxX, 0.3125D + (1.0f / 16.0f) * (6.0f * tank.getClientFluidAmount() / tank.getCapacity()), maxZ);
+        renderer.setRenderBounds(minX, 0.3125D, minZ, maxX, 0.3125D + (0.0625) * (6.0f * tank.getClientFluidAmount() / tank.getCapacity()), maxZ);
 
     }
 
@@ -205,6 +226,11 @@ public class RendererGutter extends TileEntitySpecialRenderer implements ISimple
 
     public boolean canPlaceTorchOnTop(Block block) {
         return block == Blocks.fence || block == Blocks.nether_brick_fence || block == Blocks.glass || block == Blocks.cobblestone_wall;
+    }
+
+    public static void setColor3ub(int color) {
+
+        GL11.glColor3ub((byte) (color >> 16 & 0xFF), (byte) (color >> 8 & 0xFF), (byte) (color & 0xFF));
     }
 
     @Override
