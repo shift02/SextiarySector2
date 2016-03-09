@@ -91,6 +91,8 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
                 this.moveDownFluid();
             }
 
+            this.moveFluidUP(this.getTank(ForgeDirection.UP));
+
         }
 
     }
@@ -124,6 +126,17 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
             this.moveFluidD(this.tanks[i]);
 
         }
+
+    }
+
+    public void moveFluidUP(FluidTankDirection tank) {
+
+        if (tank.getFluidAmount() == 0) return;
+
+        FluidStack fs = tank.getFluid().copy();
+        if (fs.amount > MAX_MOVE_VOLUME) fs.amount = MAX_MOVE_VOLUME;
+        int i = this.getTank(ForgeDirection.UNKNOWN).fill(fs, true);
+        tank.drain(i, true);
 
     }
 
@@ -289,9 +302,11 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
     @Override
     public boolean canFill(ForgeDirection from, Fluid fluid) {
 
-        if (from.equals(ForgeDirection.DOWN)) return false;
+        if (from.equals(ForgeDirection.UP)) return true;
 
-        return true;
+        if (from.equals(getDirection()) || from.equals(getDirection().getOpposite())) return true;
+
+        return false;
 
     }
 
