@@ -23,6 +23,7 @@ import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockGearShaft;
 import shift.sextiarysector.block.BlockGutter;
+import shift.sextiarysector.block.BlockHalfGutter;
 import shift.sextiarysector.block.BlockHole;
 import shift.sextiarysector.block.BlockHotSprings;
 import shift.sextiarysector.block.BlockKnife;
@@ -83,6 +84,7 @@ import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
 import shift.sextiarysector.tileentity.TileEntityGutter;
+import shift.sextiarysector.tileentity.TileEntityHalfGutter;
 import shift.sextiarysector.tileentity.TileEntityKnife;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityLargeWindmill;
@@ -130,6 +132,7 @@ public class SSBlocks {
 
     //樋
     public static Block gutter;
+    public static Block halfGutter;
 
     public static Block tank;
     public static Block funnel;
@@ -332,6 +335,10 @@ public class SSBlocks {
         gutter = new BlockGutter().setBlockName("ss.gutter").setBlockTextureName("planks_oak");
         GameRegistry.registerBlock(gutter, "Gutter");
         GameRegistry.registerTileEntity(TileEntityGutter.class, "Gutter");
+
+        halfGutter = new BlockHalfGutter().setBlockName("ss.half_gutter").setBlockTextureName("planks_oak");
+        GameRegistry.registerBlock(halfGutter, "HalfGutter");
+        GameRegistry.registerTileEntity(TileEntityHalfGutter.class, "HalfGutter");
 
         tank = new BlockTank().setBlockName("ss.tank").setBlockTextureName("glass").setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerBlock(tank, "Tank");
