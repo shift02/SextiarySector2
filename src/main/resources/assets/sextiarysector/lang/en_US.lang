@@ -9,6 +9,11 @@ tile.ss.food_smokers.name=Food Smokers
 tile.ss.magic_furnace.name=Magic Furnace
 tile.ss.freezer.name=Freezer
 
+
+tile.ss.gutter.name=Gutter
+tile.ss.half_gutter.name=Half Gutter
+
+
 tile.ss.wood_grate.name=Wood Grate
 
 tile.ss.oak_wood_plate.name=Oak Wood Plate

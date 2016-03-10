@@ -332,11 +332,11 @@ public class SSBlocks {
         GameRegistry.registerBlock(square, ItemBlockDirection.class, "Square");
         GameRegistry.registerTileEntity(TileEntitySquare.class, "Square");
 
-        gutter = new BlockGutter().setBlockName("ss.gutter").setBlockTextureName("planks_oak");
+        gutter = new BlockGutter().setBlockItemTextureName(ID + ":gutter").setBlockName("ss.gutter").setBlockTextureName("planks_oak");
         GameRegistry.registerBlock(gutter, "Gutter");
         GameRegistry.registerTileEntity(TileEntityGutter.class, "Gutter");
 
-        halfGutter = new BlockHalfGutter().setBlockName("ss.half_gutter").setBlockTextureName("planks_oak");
+        halfGutter = new BlockHalfGutter().setBlockItemTextureName(ID + ":half_gutter").setBlockName("ss.half_gutter").setBlockTextureName("planks_oak");
         GameRegistry.registerBlock(halfGutter, "HalfGutter");
         GameRegistry.registerTileEntity(TileEntityHalfGutter.class, "HalfGutter");
 

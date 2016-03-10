@@ -26,6 +26,8 @@ import shift.sextiarysector.tileentity.TileEntityHalfGutter;
 
 public class BlockHalfGutter extends BlockContainer {
 
+    private String itemIconName;
+
     public BlockHalfGutter() {
         super(Material.wood);
         this.setHardness(0.8F);
@@ -198,6 +200,17 @@ public class BlockHalfGutter extends BlockContainer {
         }
 
         return i;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String getItemIconName() {
+        return this.itemIconName;
+    }
+
+    public Block setBlockItemTextureName(String p_149658_1_) {
+        this.itemIconName = p_149658_1_;
+        return this;
     }
 
     @Override
