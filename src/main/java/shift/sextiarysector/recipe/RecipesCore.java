@@ -160,6 +160,12 @@ public class RecipesCore {
                         'x', "plateWood",
                 }));
 
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.gutter, 4),
+                new Object[] {
+                        "xxx",
+                        'x', "plateWood"
+                }));
+
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.tank, 1),
                 new Object[] {
                         "xyx", "y y", "xyx",

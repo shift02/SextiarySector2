@@ -12,7 +12,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -27,31 +26,33 @@ import shift.sextiarysector.tileentity.TileEntityGutter;
 
 public class BlockGutter extends BlockContainer {
 
+    private String itemIconName;
+
     public BlockGutter() {
         super(Material.wood);
         this.setHardness(0.8F);
         this.setCreativeTab(SextiarySectorAPI.TabSSCore);
     }
 
-    @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-
-        TileEntityGutter t = (TileEntityGutter) world.getTileEntity(x, y, z);
-
-        if (world.isRemote) return false;
-
-        System.out.println("EAST +x: " + t.getTank(ForgeDirection.EAST).getFluidAmount());
-        System.out.println("WEST -x: " + t.getTank(ForgeDirection.WEST).getFluidAmount());
-        System.out.println("SOUTH: +Z " + t.getTank(ForgeDirection.SOUTH).getFluidAmount());
-        System.out.println("NORTH: -Z " + t.getTank(ForgeDirection.NORTH).getFluidAmount());
-        System.out.println("UNKNOWN: " + t.getTank(ForgeDirection.UNKNOWN).getFluidAmount());
-
-        System.out.println("WEST: " + t.getTank(ForgeDirection.WEST).getFluidDirection());
-        System.out.println("UNKNOWN: " + t.getTank(ForgeDirection.UNKNOWN).getFluidDirection());
-        System.out.println("EAST: " + t.getTank(ForgeDirection.EAST).getFluidDirection());
-
-        return false;
-    }
+    //    @Override
+    //    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+    //
+    //        TileEntityGutter t = (TileEntityGutter) world.getTileEntity(x, y, z);
+    //
+    //        if (world.isRemote) return false;
+    //
+    //        System.out.println("EAST +x: " + t.getTank(ForgeDirection.EAST).getFluidAmount());
+    //        System.out.println("WEST -x: " + t.getTank(ForgeDirection.WEST).getFluidAmount());
+    //        System.out.println("SOUTH: +Z " + t.getTank(ForgeDirection.SOUTH).getFluidAmount());
+    //        System.out.println("NORTH: -Z " + t.getTank(ForgeDirection.NORTH).getFluidAmount());
+    //        System.out.println("UNKNOWN: " + t.getTank(ForgeDirection.UNKNOWN).getFluidAmount());
+    //
+    //        System.out.println("WEST: " + t.getTank(ForgeDirection.WEST).getFluidDirection());
+    //        System.out.println("UNKNOWN: " + t.getTank(ForgeDirection.UNKNOWN).getFluidDirection());
+    //        System.out.println("EAST: " + t.getTank(ForgeDirection.EAST).getFluidDirection());
+    //
+    //        return false;
+    //    }
 
     //ブロック更新時のあたり判定
     @Override
@@ -215,6 +216,17 @@ public class BlockGutter extends BlockContainer {
             tileEntity.direction = ForgeDirection.getOrientation(4);
         }
 
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String getItemIconName() {
+        return this.itemIconName;
+    }
+
+    public Block setBlockItemTextureName(String p_149658_1_) {
+        this.itemIconName = p_149658_1_;
+        return this;
     }
 
     @Override

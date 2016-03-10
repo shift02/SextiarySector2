@@ -27,6 +27,8 @@ public class RecipesSawmill {
         recipe.add(new ItemStack(Items.wooden_door, 1), new ItemStack(Items.stick, 16));
         recipe.add(new ItemStack(Items.bow, 1), new ItemStack(Items.string, 3));
 
+        recipe.add(new ItemStack(SSBlocks.gutter, 1), new ItemStack(SSBlocks.halfGutter, 2));
+
     }
 
 }
