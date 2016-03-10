@@ -23,6 +23,8 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
 
     private ForgeDirection centralMove = ForgeDirection.UNKNOWN;
 
+    private int upHalfGutter;
+
     /** 流れの向き */
     //private ForgeDirection fluidDirection = ForgeDirection.UNKNOWN;
 
@@ -63,6 +65,11 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
         this.moveFluid();
 
         boolean f = false;
+        if (this.upHalfGutter > 0) {
+            this.upHalfGutter--;
+            if (this.upHalfGutter == 0) f = true;
+        }
+
         for (int i = 0; i < this.tanks.length; i++) {
             if (this.tanks[i].canRendererUpdate()) f = true;
         }
@@ -255,7 +262,6 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
 
         } else if (c.getFluidAmount() < tank.getFluidAmount() || tank.getSide().getOpposite().equals(tank.fluidDirection)) {
 
-            //System.out.println("AAA");
             //中
             FluidStack fs = tank.getFluid().copy();
             if (fs.amount > MAX_MOVE_VOLUME) fs.amount = MAX_MOVE_VOLUME;
@@ -275,7 +281,7 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
 
         if (from.equals(ForgeDirection.DOWN)) return 0;
 
-        if (from.equals(ForgeDirection.UP)) this.getTank(from).fill(resource, doFill);
+        if (from.equals(ForgeDirection.UP)) return this.getTank(from).fill(resource, doFill);
 
         if (!(from.equals(this.direction) || from.getOpposite().equals(this.direction))) return 0;
 
@@ -317,6 +323,9 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
 
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+
+        if (this.getTank(from) == null) return null;
+
         return new FluidTankInfo[] { getTank(from).getInfo() };
     }
 
@@ -332,6 +341,9 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
             tanks[i].readFromNBT(nbt);
 
         }
+
+        this.upHalfGutter = par1nbtTagCompound.getInteger("upHalfGutter");
+
     }
 
     @Override
@@ -344,6 +356,9 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
             tanks[i].writeToNBT(nbt);
             par1nbtTagCompound.setTag("tanks" + i, nbt);
         }
+
+        par1nbtTagCompound.setInteger("upHalfGutter", this.upHalfGutter);
+
     }
 
     public FluidTankDirection getTank(ForgeDirection direction) {
@@ -352,6 +367,19 @@ public class TileEntityGutter extends TileEntityDirection implements IFluidHandl
         }
 
         return null;
+    }
+
+    public int getUPHalfGutter() {
+        return this.upHalfGutter;
+    }
+
+    public void setUPHalfGutter() {
+
+        int i = this.upHalfGutter;
+
+        this.upHalfGutter = 20;
+
+        if (i == 0) this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 
     static public class FluidTankDirection extends FluidTank {

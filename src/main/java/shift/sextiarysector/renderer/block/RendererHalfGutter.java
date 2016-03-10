@@ -1,6 +1,6 @@
 /*
 * 作成者: Shift02
-* 作成日: 2016/03/07 - 15:25:35
+* 作成日: 2016/03/10 - 13:41:06
 */
 package shift.sextiarysector.renderer.block;
 
@@ -11,23 +11,21 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 import shift.sextiarysector.SextiarySector;
-import shift.sextiarysector.tileentity.TileEntityGutter;
 import shift.sextiarysector.tileentity.TileEntityGutter.FluidTankDirection;
+import shift.sextiarysector.tileentity.TileEntityHalfGutter;
 
-public class RendererGutter extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
+public class RendererHalfGutter extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
 
     public static final ResourceLocation MC_BLOCK_SHEET = new ResourceLocation("textures/atlas/blocks.png");
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
-
     }
 
     @Override
@@ -35,60 +33,87 @@ public class RendererGutter extends TileEntitySpecialRenderer implements ISimple
 
         if (this.getRenderId() != modelId) return false;
 
-        TileEntityGutter t = (TileEntityGutter) world.getTileEntity(x, y, z);
+        TileEntityHalfGutter t = (TileEntityHalfGutter) world.getTileEntity(x, y, z);
         ForgeDirection d = t.getDirection();
 
         renderer.renderAllFaces = true;
 
-        //柱
-        if (y > 0) {
-            Block underBlock = world.getBlock(x, y - 1, z);
-            if (underBlock.isSideSolid(world, x, y, z, ForgeDirection.UP) || this.canPlaceTorchOnTop(underBlock)) {
-
-                renderer.setRenderBounds(0.375, 0.0D, 0.375, 0.625D, 0.25D, 0.625D);
-                renderer.renderStandardBlock(block, x, y, z);
-            }
-        }
-
         //木
-        if (d.equals(ForgeDirection.NORTH) || d.equals(ForgeDirection.SOUTH)) {
-            this.renderWorldBlockFromZ(world, x, y, z, block, modelId, renderer);
-        } else if (d.equals(ForgeDirection.EAST) || d.equals(ForgeDirection.WEST)) {
-            this.renderWorldBlockFromX(world, x, y, z, block, modelId, renderer);
+        if (d.equals(ForgeDirection.NORTH)) {
+            this.renderWorldBlockFromNORTH(world, x, y, z, block, modelId, renderer);
+        } else if (d.equals(ForgeDirection.SOUTH)) {
+            this.renderWorldBlockFromSOUTH(world, x, y, z, block, modelId, renderer);
+        } else if (d.equals(ForgeDirection.EAST)) {
+            this.renderWorldBlockFromEAST(world, x, y, z, block, modelId, renderer);
+        } else if (d.equals(ForgeDirection.WEST)) {
+            this.renderWorldBlockFromWEST(world, x, y, z, block, modelId, renderer);
         }
 
         renderer.renderAllFaces = false;
 
         return true;
-
     }
 
-    public void renderWorldBlockFromZ(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    //-z
+    public void renderWorldBlockFromNORTH(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 
         //底
-        renderer.setRenderBounds(0.25D, 0.25D, 0.0D, 0.75, 0.3125D, 1.0D);
+        renderer.setRenderBounds(0.25D, 0.25D, 0.0D, 0.75, 0.3125D, 0.3125D);
         renderer.renderStandardBlock(block, x, y, z);
 
         //サイド
-        renderer.setRenderBounds(0.25D, 0.3125D, 0.0D, 0.3125D, 0.75D, 1.0D);
+        renderer.setRenderBounds(0.25D, 0.3125D, 0.0D, 0.3125D, 0.75D, 0.3125D);
         renderer.renderStandardBlock(block, x, y, z);
 
-        renderer.setRenderBounds(0.6875D, 0.3125D, 0.0D, 0.75D, 0.75D, 1.0D);
+        renderer.setRenderBounds(0.6875D, 0.3125D, 0.0D, 0.75D, 0.75D, 0.3125D);
         renderer.renderStandardBlock(block, x, y, z);
 
     }
 
-    public void renderWorldBlockFromX(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    //+z
+    public void renderWorldBlockFromSOUTH(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 
         //底
-        renderer.setRenderBounds(0.0D, 0.25D, 0.25D, 1.00D, 0.3125, 0.75D);
+        renderer.setRenderBounds(0.25D, 0.25D, 0.6875D, 0.75, 0.3125D, 1.0D);
         renderer.renderStandardBlock(block, x, y, z);
 
         //サイド
-        renderer.setRenderBounds(0.0D, 0.3125D, 0.25D, 1.0D, 0.75D, 0.3125D);
+        renderer.setRenderBounds(0.25D, 0.3125D, 0.6875D, 0.3125D, 0.75D, 1.0D);
         renderer.renderStandardBlock(block, x, y, z);
 
-        renderer.setRenderBounds(0.0D, 0.3125D, 0.6875D, 1.0D, 0.75D, 0.75D);
+        renderer.setRenderBounds(0.6875D, 0.3125D, 0.6875D, 0.75D, 0.75D, 1.0D);
+        renderer.renderStandardBlock(block, x, y, z);
+
+    }
+
+    //+x
+    public void renderWorldBlockFromEAST(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+
+        //底
+        renderer.setRenderBounds(0.6875D, 0.25D, 0.25D, 1.00D, 0.3125, 0.75D);
+        renderer.renderStandardBlock(block, x, y, z);
+
+        //サイド
+        renderer.setRenderBounds(0.6875D, 0.3125D, 0.25D, 1.0D, 0.75D, 0.3125D);
+        renderer.renderStandardBlock(block, x, y, z);
+
+        renderer.setRenderBounds(0.6875D, 0.3125D, 0.6875D, 1.0D, 0.75D, 0.75D);
+        renderer.renderStandardBlock(block, x, y, z);
+
+    }
+
+    //-x
+    public void renderWorldBlockFromWEST(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+
+        //底
+        renderer.setRenderBounds(0.0D, 0.25D, 0.25D, 0.3125D, 0.3125, 0.75D);
+        renderer.renderStandardBlock(block, x, y, z);
+
+        //サイド
+        renderer.setRenderBounds(0.0D, 0.3125D, 0.25D, 0.3125D, 0.75D, 0.3125D);
+        renderer.renderStandardBlock(block, x, y, z);
+
+        renderer.setRenderBounds(0.0D, 0.3125D, 0.6875D, 0.3125D, 0.75D, 0.75D);
         renderer.renderStandardBlock(block, x, y, z);
 
     }
@@ -112,32 +137,42 @@ public class RendererGutter extends TileEntitySpecialRenderer implements ISimple
 
         Block block = tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
 
-        TileEntityGutter t = (TileEntityGutter) tileEntity;
+        TileEntityHalfGutter t = (TileEntityHalfGutter) tileEntity;
+
+        ForgeDirection d = t.getDirection();
 
         //水真ん中
         if (t.getTank(ForgeDirection.UNKNOWN).getClientFluidAmount() > 0) {
+
             GL11.glPushMatrix();
-            this.setFluidBounds(0.3125D - 0.00001D, 0.3125D - 0.00001D, 0.6875D + 0.00001D, 0.6875D + 0.00001D, t.getTank(ForgeDirection.UNKNOWN));
+            renderer.setRenderBounds(
+                    0.3125D, 0.3120D + (0.0625) * (6.0f * t.getTank(ForgeDirection.UNKNOWN).getClientFluidAmount() / t.getTank(ForgeDirection.UNKNOWN).getCapacity()), 0.3125D,
+                    0.6875D, 0.3125D + (0.0625) * (6.0f * t.getTank(ForgeDirection.UNKNOWN).getClientFluidAmount() / t.getTank(ForgeDirection.UNKNOWN).getCapacity()), 0.6875D);
             this.setFluidColor(t.getTank(ForgeDirection.UNKNOWN));
             this.renderFluid(block, t.getTank(ForgeDirection.UNKNOWN).getClientFluid().getFluid().getIcon(t.getTank(ForgeDirection.UNKNOWN).getFluid()));
             GL11.glPopMatrix();
-        }
 
-        //上
-        if (t.getTank(ForgeDirection.UP).getClientFluidAmount() > 0) {
             GL11.glPushMatrix();
-
-            double s = (0.0625) * (3.0D * t.getTank(ForgeDirection.UP).getClientFluidAmount() / t.getTank(ForgeDirection.UP).getCapacity());
-            if (t.getUPHalfGutter() > 0) {
-                s = 0.1875D;
-            }
-            renderer.setRenderBounds(0.5D - s, 0.3125D, 0.5D - s, 0.5D + s, 1.00D, 0.5D + s);
-            this.setFluidColor(t.getTank(ForgeDirection.UP));
-            this.renderFluid(block, t.getTank(ForgeDirection.UP).getClientFluid().getFluid().getFlowingIcon());
+            renderer.setRenderBounds(
+                    0.3125D, 0.000D, 0.3125D,
+                    0.6875D, 0.3120D + (0.0625) * (6.0f * t.getTank(ForgeDirection.UNKNOWN).getClientFluidAmount() / t.getTank(ForgeDirection.UNKNOWN).getCapacity()), 0.6875D);
+            this.setFluidColor(t.getTank(ForgeDirection.UNKNOWN));
+            this.renderFluid(block, t.getTank(ForgeDirection.UNKNOWN).getClientFluid().getFluid().getFlowingIcon());
             GL11.glPopMatrix();
-        }
 
-        ForgeDirection d = t.getDirection();
+            for (int i = 1; i < t.getDownClient(); i++) {
+                GL11.glPushMatrix();
+                GL11.glTranslatef(0.0f, -1 * i, 0.0f);
+                //System.out.println("AA");
+                renderer.setRenderBounds(
+                        0.3125D, 0.000D, 0.3125D,
+                        0.6875D, 1.000D, 0.6875D);
+                this.setFluidColor(t.getTank(ForgeDirection.UNKNOWN));
+                this.renderFluid(block, t.getTank(ForgeDirection.UNKNOWN).getClientFluid().getFluid().getFlowingIcon());
+                GL11.glPopMatrix();
+            }
+
+        }
 
         if (d.equals(ForgeDirection.NORTH) || d.equals(ForgeDirection.SOUTH)) {
 
@@ -227,8 +262,10 @@ public class RendererGutter extends TileEntitySpecialRenderer implements ISimple
 
     }
 
-    public boolean canPlaceTorchOnTop(Block block) {
-        return block == Blocks.fence || block == Blocks.nether_brick_fence || block == Blocks.glass || block == Blocks.cobblestone_wall;
+    @Override
+    public boolean shouldRender3DInInventory(int modelId) {
+        // TODO 自動生成されたメソッド・スタブ
+        return false;
     }
 
     public static void setColor3ub(int color) {
@@ -237,14 +274,8 @@ public class RendererGutter extends TileEntitySpecialRenderer implements ISimple
     }
 
     @Override
-    public boolean shouldRender3DInInventory(int modelId) {
-        // TODO 自動生成されたメソッド・スタブ
-        return false;
-    }
-
-    @Override
     public int getRenderId() {
-        return SextiarySector.proxy.gutterType;
+        return SextiarySector.proxy.halfGutterType;
     }
 
 }

@@ -31,6 +31,7 @@ import shift.sextiarysector.renderer.block.RendererFluidCrafter;
 import shift.sextiarysector.renderer.block.RendererFunnel;
 import shift.sextiarysector.renderer.block.RendererGearShaft;
 import shift.sextiarysector.renderer.block.RendererGutter;
+import shift.sextiarysector.renderer.block.RendererHalfGutter;
 import shift.sextiarysector.renderer.block.RendererHole;
 import shift.sextiarysector.renderer.block.RendererKnife;
 import shift.sextiarysector.renderer.block.RendererLargeWindmill;
@@ -60,6 +61,7 @@ import shift.sextiarysector.tileentity.TileEntityFigure;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
 import shift.sextiarysector.tileentity.TileEntityGutter;
+import shift.sextiarysector.tileentity.TileEntityHalfGutter;
 import shift.sextiarysector.tileentity.TileEntityKnife;
 import shift.sextiarysector.tileentity.TileEntityLargeWindmill;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
@@ -95,6 +97,8 @@ public class ClientProxy extends CommonProxy {
         this.squareType = RenderingRegistry.getNextAvailableRenderId();
 
         this.gutterType = RenderingRegistry.getNextAvailableRenderId();
+
+        this.halfGutterType = RenderingRegistry.getNextAvailableRenderId();
 
         this.fluidCrafterType = RenderingRegistry.getNextAvailableRenderId();
 
@@ -143,6 +147,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerBlockHandler(new RendererSquare());
 
         RenderingRegistry.registerBlockHandler(new RendererGutter());
+        RenderingRegistry.registerBlockHandler(new RendererHalfGutter());
 
         RenderingRegistry.registerBlockHandler(new RendererFluidCrafter());
 
@@ -202,6 +207,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySquare.class, new RendererSquare());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGutter.class, new RendererGutter());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHalfGutter.class, new RendererHalfGutter());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
