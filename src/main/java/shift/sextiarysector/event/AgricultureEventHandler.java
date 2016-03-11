@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
+import shift.sextiarysector.Config;
 import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSBlocks;
 
@@ -13,6 +14,8 @@ public class AgricultureEventHandler {
 
     @SubscribeEvent
     public void useHoeEvent(UseHoeEvent event) {
+
+        if (event.entityPlayer.isSneaking() && Config.hoe) return;
 
         int x = event.x;
         int y = event.y;

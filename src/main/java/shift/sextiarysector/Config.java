@@ -7,6 +7,7 @@ public class Config {
 
     //システム
     public static boolean leaf;
+    public static boolean hoe;
 
     //Potion
     public static int burn;
@@ -67,6 +68,7 @@ public class Config {
 
     public static void configForSystem(Configuration cfg) {
         leaf = cfg.getBoolean("DisappearLeaf", "general", true, "");
+        hoe = cfg.getBoolean("ShiftClickVanillaHoe", "general", false, "");
     }
 
     public static void configForPotion(Configuration cfg) {
