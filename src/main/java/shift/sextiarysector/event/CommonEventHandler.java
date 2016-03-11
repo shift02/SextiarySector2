@@ -400,7 +400,7 @@ public class CommonEventHandler {
             return;
 
         if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(Items.stick, event.world.rand.nextInt(1) + 1));
-        if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(SSItems.leaf, event.world.rand.nextInt(2) + 1));
+        if (event.world.rand.nextInt(3) == 0) event.drops.add(new ItemStack(SSItems.leaf, event.world.rand.nextInt(2) + 1));
 
         if (!Config.leaf) return;
 
