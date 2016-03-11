@@ -379,7 +379,7 @@ public class ClientEventHandler {
     private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation(
             "textures/misc/enchanted_item_glint.png");
 
-    @SubscribeEvent
+    //@SubscribeEvent
     public void setArmorModel(SetArmorModel event) {
 
         ModelBase renderPassModel = this.setArmorModel2(event);
