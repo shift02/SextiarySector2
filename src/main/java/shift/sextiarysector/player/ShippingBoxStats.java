@@ -9,19 +9,21 @@ import shift.sextiarysector.api.season.SeasonAPI;
 import shift.sextiarysector.container.InventoryShippingBox;
 import shift.sextiarysector.module.ModuleStatistics;
 
-public class ShippingBoxStats {
+public class ShippingBoxStats extends CustomPlayerStats {
 
     public final String NBT_ID = "ssshippingbox";
 
     public InventoryShippingBox inventory;
 
-    public ShippingBoxStats() {
+    public ShippingBoxStats(EntityPlayer player) {
+        super(player);
 
         inventory = new InventoryShippingBox();
 
     }
 
-    public void onUpdate(EntityPlayer entityPlayer) {
+    @Override
+    public void onUpdate() {
 
         if (SeasonAPI.getHour(entityPlayer.worldObj, 1) != 7 || SeasonAPI.getMinute(entityPlayer.worldObj) != 0) return;
 
@@ -49,6 +51,7 @@ public class ShippingBoxStats {
 
     }
 
+    @Override
     public void writeNBT(NBTTagCompound compound) {
 
         NBTTagCompound nbt = new NBTTagCompound();
@@ -59,6 +62,7 @@ public class ShippingBoxStats {
 
     }
 
+    @Override
     public void readNBT(NBTTagCompound compound) {
 
         if (compound.hasKey(NBT_ID)) {

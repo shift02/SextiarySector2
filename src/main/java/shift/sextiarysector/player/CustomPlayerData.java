@@ -11,6 +11,8 @@ import shift.sextiarysector.packet.SSPacketHandler;
 
 public class CustomPlayerData implements IExtendedEntityProperties {
 
+    private final EntityPlayer entityPlayer;
+
     /** 水分 */
     private MoistureStats moisture;
 
@@ -26,17 +28,25 @@ public class CustomPlayerData implements IExtendedEntityProperties {
     //@SideOnly(Side.CLIENT)
     //private TabStats tab;
 
-    public void onUpdateEntity(EntityPlayer entityPlayer) {
+    public CustomPlayerData(EntityPlayer player) {
+        this.entityPlayer = player;
+    }
+
+    public EntityPlayer getEntityPlayer() {
+        return entityPlayer;
+    }
+
+    public void onUpdateEntity() {
 
         if (moisture.isPacket() || stamina.isPacket()) {
             SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
             //.out.println("onUpdateEntity");
         }
 
-        this.moisture.onUpdate(entityPlayer);
-        this.stamina.onUpdate(entityPlayer);
-        this.equipment.onUpdate(entityPlayer);
-        this.shippingBox.onUpdate(entityPlayer);
+        this.moisture.onUpdate();
+        this.stamina.onUpdate();
+        this.equipment.onUpdate();
+        this.shippingBox.onUpdate();
 
     }
 
@@ -69,13 +79,13 @@ public class CustomPlayerData implements IExtendedEntityProperties {
     @Override
     public void init(Entity entity, World world) {
 
-        if (this.moisture == null) this.moisture = new MoistureStats();
+        if (this.moisture == null) this.moisture = new MoistureStats(entityPlayer);
 
-        if (this.stamina == null) this.stamina = new StaminaStats();
+        if (this.stamina == null) this.stamina = new StaminaStats(entityPlayer);
 
-        if (this.equipment == null) this.equipment = new EquipmentStats();
+        if (this.equipment == null) this.equipment = new EquipmentStats(entityPlayer);
 
-        if (this.shippingBox == null) this.shippingBox = new ShippingBoxStats();
+        if (this.shippingBox == null) this.shippingBox = new ShippingBoxStats(entityPlayer);
 
         //this.tab = new TabStats();
 
