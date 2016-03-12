@@ -1,5 +1,7 @@
 package shift.sextiarysector.player;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,8 +13,6 @@ import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.api.IPlayerManager;
 import shift.sextiarysector.packet.PacketPlayerData;
 import shift.sextiarysector.packet.SSPacketHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
 
 public class EntityPlayerManager implements IPlayerManager {//implements {//IPlayerTracker{
 
@@ -30,13 +30,13 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     /*
     public static final Map<String, MoistureStats> moistureMap = new HashMap<String, MoistureStats>();
     public static final Map<String, StaminaStats> staminaMap = new HashMap<String, StaminaStats>();
-    
+
     public static final Map<String, Integer> lastMoistureLevel = new HashMap<String, Integer>();
     public static final Map<String, Boolean> wasThirsty = new HashMap<String, Boolean>();
-    
+
     public static final Map<String, Integer> lastStaminaLevel = new HashMap<String, Integer>();
     public static final Map<String, Boolean> wasTired = new HashMap<String, Boolean>();
-    
+
     */
 
     public static EntityPlayerManager instance = new EntityPlayerManager();
@@ -100,50 +100,50 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 
     public static void onUpdateEntity(EntityPlayer entityPlayer) {
 
-        getCustomPlayerData(entityPlayer).onUpdateEntity(entityPlayer);
+        getCustomPlayerData(entityPlayer).onUpdateEntity();
 
         /*
         String name = entityPlayer.username;
-        
+
         MoistureStats m = getMoistureStats(entityPlayer);
         StaminaStats s = getStaminaStats(entityPlayer);
         int lM;
         int lS;
         boolean wM;
         boolean wS;
-        
+
         if(!lastMoistureLevel.containsKey(name)){
         	lM = -1;
         	lastMoistureLevel.put(name, lM);
         }else{
         	lM =lastMoistureLevel.get(name);
         }
-        
+
         if(!wasThirsty.containsKey(name)){
         	wM = true;
         	wasThirsty.put(name, wM);
         }else{
         	wM =wasThirsty.get(name);
         }
-        
+
         if(!lastStaminaLevel.containsKey(name)){
         	lS = -1;
         	lastStaminaLevel.put(name, lS);
         }else{
         	lS =lastStaminaLevel.get(name);
         }
-        
+
         if(!wasTired.containsKey(name)){
         	wS = true;
         	wasTired.put(name, wS);
         }else{
         	wS =wasTired.get(name);
         }
-        
+
         m.onUpdate(entityPlayer);
         s.onUpdate(entityPlayer);
-        
-        
+
+
         if (lM != m.getMoistureLevel() || m.getSaturationLevel() == 0.0F != wM  ||  lS != s.getStaminaLevel() || s.getSaturationLevel() == 0.0F != wS)
         {
         	entityPlayer.playerNetServerHandler.sendPacketToPlayer(getPacketUpdate(m.getMoistureLevel(),m.getSaturationLevel(),s.getStaminaLevel(),s.getSaturationLevel()));
@@ -151,11 +151,11 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
         	lastStaminaLevel.put(name, s.getStaminaLevel());
         	wasThirsty.put(name, m.getSaturationLevel() == 0.0F);
         	wasTired.put(name, s.getSaturationLevel() == 0.0F);
-        
+
         	NBTTagCompound nbt = entityPlayer.getEntityData();
         	m.writeNBT(nbt);
         	s.writeNBT(nbt);
-        
+
         }*/
 
     }
@@ -163,7 +163,7 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     @SubscribeEvent
     public void onPlayerDropsEvent(PlayerDropsEvent event) {
         if (!event.entityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")) {
-            this.getCustomPlayerData(event.entityPlayer).getEquipmentStats().inventory.dropAllItems(event.entityPlayer);
+            getCustomPlayerData(event.entityPlayer).getEquipmentStats().inventory.dropAllItems(event.entityPlayer);
         }
 
     }
@@ -175,20 +175,20 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 
             EntityPlayer old = event.original;
 
-            EquipmentStats e = this.getEquipmentStats(old);
+            EquipmentStats e = getEquipmentStats(old);
             NBTTagCompound nbt = new NBTTagCompound();
             e.writeNBT(nbt);
 
-            EquipmentStats eNew = this.getEquipmentStats(event.entityPlayer);
+            EquipmentStats eNew = getEquipmentStats(event.entityPlayer);
             eNew.readNBT(nbt);
 
             //this.getCustomPlayerData(event.entityPlayer).setEquipmentStats(e);
 
-            ShippingBoxStats s = this.getShippingBoxStats(old);
+            ShippingBoxStats s = getShippingBoxStats(old);
             NBTTagCompound nbtS = new NBTTagCompound();
             s.writeNBT(nbtS);
 
-            ShippingBoxStats sNew = this.getShippingBoxStats(event.entityPlayer);
+            ShippingBoxStats sNew = getShippingBoxStats(event.entityPlayer);
             sNew.readNBT(nbtS);
 
             return;
@@ -196,15 +196,11 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 
         if (event.entityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")) {
 
-            this.getCustomPlayerData(event.entityPlayer).setEquipmentStats(this.getEquipmentStats(event.original));
+            getCustomPlayerData(event.entityPlayer).setEquipmentStats(getEquipmentStats(event.original));
 
         }
 
-        this.getCustomPlayerData(event.entityPlayer).setShippingBoxStats(this.getShippingBoxStats(event.original));
-
-    }
-
-    private void oneton() {
+        getCustomPlayerData(event.entityPlayer).setShippingBoxStats(getShippingBoxStats(event.original));
 
     }
 
@@ -217,7 +213,7 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     }
 
     public static void register(EntityPlayer entityPlayer) {
-        entityPlayer.registerExtendedProperties(kye, new CustomPlayerData());
+        entityPlayer.registerExtendedProperties(kye, new CustomPlayerData(entityPlayer));
     }
 
     public static CustomPlayerData getCustomPlayerData(EntityPlayer entityPlayer) {
@@ -229,7 +225,7 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 
         /*
         String name = entityPlayer.username;
-        
+
         if(!moistureMap.containsKey(name)){
         	MoistureStats m = new MoistureStats();
         	moistureMap.put(name, m);
@@ -246,7 +242,7 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 
         /*
         String name = entityPlayer.username;
-        
+
         if(!staminaMap.containsKey(name)){
         	StaminaStats s = new StaminaStats();
         	staminaMap.put(name, s);
@@ -268,45 +264,45 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     //パケット用
     /*
     public void onPacketData(INetworkManager manager,Packet250CustomPayload packet, Player player) {
-    
+
     	if (packet.channel.equals(SextiarySector.channels))
     	{
-    
+
     		ByteArrayDataInput data = ByteStreams.newDataInput(packet.data);
     		//ByteArrayInputStream bos = new ByteArrayInputStream(packet.data);
     		//DataInputStream dos =  new DataInputStream(bos);
-    
-    
+
+
     		try
     		{
-    
-    
+
+
     			if(player instanceof EntityPlayer){
-    
+
     				//System.out.println("onPacketData");
-    
+
     				this.getMoistureStats((EntityPlayer) player).setMoistureLevel(data.readInt());
     				this.getStaminaStats((EntityPlayer) player).setStaminaLevel(data.readInt());
     				this.getMoistureStats((EntityPlayer) player).setMoistureSaturationLevel(data.readFloat());
     				this.getStaminaStats((EntityPlayer) player).setStaminaSaturationLevel(data.readFloat());
-    
+
     			}
-    
+
     		}
     		catch (Exception e)
     		{
     			e.printStackTrace();
     		}
     	}
-    
+
     }
-    
+
     public static Packet getPacketUpdate(int m,float f,int s,float g)
     {
-    
+
     	ByteArrayOutputStream bos = new ByteArrayOutputStream();
     	DataOutputStream dos = new DataOutputStream(bos);
-    
+
     	try
     	{
     		dos.writeInt(m);//
@@ -318,16 +314,16 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     	{
     		e.printStackTrace();
     	}
-    
+
     	Packet250CustomPayload packet = new Packet250CustomPayload();
     	packet.channel = SextiarySector.channels;
     	packet.data    = bos.toByteArray();
     	packet.length  = bos.size();
     	packet.isChunkDataPacket = true;
-    
+
     	return packet;
-    
-    
+
+
     }*/
 
     //GUI用
@@ -347,51 +343,51 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     @Override
     public void onPlayerLogin(EntityPlayer player){
     	//プレイヤーがログインした時の処理
-    
+
     	if(player instanceof EntityPlayerMP){
-    
+
     		EntityPlayerMP P = (EntityPlayerMP) player;
-    
+
     		NBTTagCompound nbt = P.getEntityData();
-    
+
     		MoistureStats m = this.getMoistureStats(player);
     		m.readNBT(nbt);
-    
+
     		StaminaStats s = this.getStaminaStats(player);
     		s.readNBT(nbt);
-    
+
     		P.playerNetServerHandler.sendPacketToPlayer(getPacketUpdate(m.getMoistureLevel(),m.getSaturationLevel(),s.getStaminaLevel(),s.getSaturationLevel()));
-    
+
     	}
     }
-    
+
     @Override
     public void onPlayerLogout(EntityPlayer player) {
     	//プレイヤーがログアウトした時の処理
-    
+
     	if(player instanceof EntityPlayerMP){
-    
+
     		EntityPlayerMP P = (EntityPlayerMP) player;
-    
+
     		String name = player.username;
-    
+
     		NBTTagCompound nbt = P.getEntityData();
-    
+
     		MoistureStats m = this.getMoistureStats(player);
     		m.writeNBT(nbt);
-    
+
     		StaminaStats s = this.getStaminaStats(player);
     		s.writeNBT(nbt);
-    
+
     		P.playerNetServerHandler.sendPacketToPlayer(getPacketUpdate(m.getMoistureLevel(),m.getSaturationLevel(),s.getStaminaLevel(),s.getSaturationLevel()));
-    
+
     		moistureMap.remove(name);
     		staminaMap.remove(name);
-    
+
     	}
-    
+
     }
-    
+
     */
 
     @SubscribeEvent
@@ -400,7 +396,7 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 
         if (!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer) {
 
-            SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData((EntityPlayer) event.entity)), (EntityPlayerMP) event.entity);
+            SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(getCustomPlayerData((EntityPlayer) event.entity)), (EntityPlayerMP) event.entity);
 
         }
     }
@@ -409,7 +405,7 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
         //プレイヤーがディメンション間を移動したときの処理
 
-        if (!event.player.worldObj.isRemote) SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
+        if (!event.player.worldObj.isRemote) SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
 
     }
 
@@ -417,7 +413,7 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
         //プレイヤーがリスポーンした時の処理
         //System.out.println("onPlayerRespawn");
-        if (!event.player.worldObj.isRemote) SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
+        if (!event.player.worldObj.isRemote) SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
 
     }
 

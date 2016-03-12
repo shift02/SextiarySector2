@@ -4,17 +4,19 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
+import net.minecraftforge.common.MinecraftForge;
 import shift.sextiarysector.Config;
 import shift.sextiarysector.api.SextiarySectorAPI;
+import shift.sextiarysector.api.event.PlayerMoistureEvent;
 
-public class MoistureStats {
+public class MoistureStats extends CustomPlayerStats {
 
     //水分
     /** 水分 */
     private int moistureLevel = 20;
-    private final static int MAX_STAMINA_LEVEL = 20;
-    private final static int MAX_PREV_STAMINA_LEVEL = 20;
+    private final static int MAX_MOISTURE_LEVEL = 20;
 
     /** 隠し水分ゲージ */
     private float moistureSaturationLevel = 5.0F;
@@ -30,19 +32,37 @@ public class MoistureStats {
     private int moistureTimer;
     private int prevMoistureLevel = 20;
 
+    public MoistureStats(EntityPlayer player) {
+        super(player);
+    }
+
     /**
      * Args: int foodLevel, float foodSaturationModifier
      */
     public void addStats(int par1, float par2) {
-        this.moistureLevel = Math.min(par1 + this.moistureLevel, 20);
-        this.moistureSaturationLevel = Math.min(Math.min(this.moistureSaturationLevel + par2, this.moistureLevel), MAX_PREV_STAMINA_LEVEL);
+        int prevLevel = moistureLevel;
+        float prevSaturation = moistureSaturationLevel;
+
+        this.moistureLevel = MathHelper.clamp_int(par1 + this.moistureLevel, 0, MAX_MOISTURE_LEVEL);
+        this.moistureSaturationLevel = MathHelper.clamp_float(Math.min(this.moistureSaturationLevel + par2, this.moistureLevel), 0.0F, MAX_MOISTURE_LEVEL);
+
+        PlayerMoistureEvent event = new PlayerMoistureEvent(entityPlayer, moistureLevel, moistureSaturationLevel);
+
+        if (MinecraftForge.EVENT_BUS.post(event)) {
+            this.moistureLevel = prevLevel;
+            this.moistureSaturationLevel = prevSaturation;
+        } else {
+            this.moistureLevel = MathHelper.clamp_int(event.newMoistureLevel, 0, MAX_MOISTURE_LEVEL);
+            this.moistureSaturationLevel = MathHelper.clamp_float(event.newMoistureSaturationLevel, 0.0F, MAX_MOISTURE_LEVEL);
+        }
     }
 
     /**
      * Handles the food game logic.
      */
-    public void onUpdate(EntityPlayer par1EntityPlayer) {
-        EnumDifficulty i = par1EntityPlayer.worldObj.difficultySetting;
+    @Override
+    public void onUpdate() {
+        EnumDifficulty i = entityPlayer.worldObj.difficultySetting;
         this.prevMoistureLevel = this.moistureLevel;
 
         if (this.moistureExhaustionLevel > 4.0F) {
@@ -55,7 +75,7 @@ public class MoistureStats {
             }
         }
 
-        if (par1EntityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration") && this.moistureLevel >= 18 && par1EntityPlayer.shouldHeal()) {
+        if (entityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration") && this.moistureLevel >= 18 && entityPlayer.shouldHeal()) {
 
             ++this.moistureTimer;
 
@@ -69,9 +89,9 @@ public class MoistureStats {
             ++this.moistureTimer;
 
             if (this.moistureTimer >= 80) {
-                if (par1EntityPlayer.getHealth() > 10.0F || i.getDifficultyId() >= 3 || par1EntityPlayer.getHealth() > 1.0F && i.getDifficultyId() >= 2) {
+                if (entityPlayer.getHealth() > 10.0F || i.getDifficultyId() >= 3 || entityPlayer.getHealth() > 1.0F && i.getDifficultyId() >= 2) {
                     //par1EntityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
-                    SextiarySectorAPI.addStaminaExhaustion(par1EntityPlayer, 0.5f);
+                    SextiarySectorAPI.addStaminaExhaustion(entityPlayer, 0.5f);
                 }
 
                 this.moistureTimer = 0;
@@ -84,6 +104,7 @@ public class MoistureStats {
     /**
      * Reads food stats from an NBT object.
      */
+    @Override
     public void readNBT(NBTTagCompound par1NBTTagCompound) {
         if (par1NBTTagCompound.hasKey("moisturelevel")) {
             this.moistureLevel = par1NBTTagCompound.getInteger("moisturelevel");
@@ -96,6 +117,7 @@ public class MoistureStats {
     /**
      * Writes food stats to an NBT object.
      */
+    @Override
     public void writeNBT(NBTTagCompound par1NBTTagCompound) {
         par1NBTTagCompound.setInteger("moisturelevel", this.moistureLevel);
         par1NBTTagCompound.setInteger("moistureticktimer", this.moistureTimer);
@@ -139,14 +161,25 @@ public class MoistureStats {
      * If foodLevel is not max.
      */
     public boolean needMoisture() {
-        return this.moistureLevel < MAX_STAMINA_LEVEL;
+        return this.moistureLevel < MAX_MOISTURE_LEVEL;
     }
 
     /**
      * adds input to foodExhaustionLevel to a max of 40
      */
     public void addExhaustion(float par1) {
-        this.moistureExhaustionLevel = Math.min(this.moistureExhaustionLevel + par1, 40.0F);
+        float max = 40.0F;
+        float prev = this.moistureExhaustionLevel;
+
+        this.moistureExhaustionLevel = MathHelper.clamp_float(this.moistureExhaustionLevel + par1, 0.0F, max);
+
+        PlayerMoistureEvent.Exhaustion event = new PlayerMoistureEvent.Exhaustion(entityPlayer, moistureExhaustionLevel);
+
+        if (MinecraftForge.EVENT_BUS.post(event)) {
+            this.moistureExhaustionLevel = prev;
+        } else {
+            this.moistureExhaustionLevel = MathHelper.clamp_float(event.newExhaustionLevel, 0.0F, max);
+        }
     }
 
     /**

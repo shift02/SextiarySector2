@@ -6,19 +6,21 @@ import shift.sextiarysector.api.equipment.EquipmentType;
 import shift.sextiarysector.api.equipment.IEquipment;
 import shift.sextiarysector.container.InventoryPlayerNext;
 
-public class EquipmentStats {
+public class EquipmentStats extends CustomPlayerStats {
 
     public final String NBT_ID = "ssequipment";
 
     public InventoryPlayerNext inventory;
 
-    public EquipmentStats() {
+    public EquipmentStats(EntityPlayer player) {
+        super(player);
 
         inventory = new InventoryPlayerNext();
 
     }
 
-    public void onUpdate(EntityPlayer entityPlayer) {
+    @Override
+    public void onUpdate() {
 
         for (int i = 0; i < inventory.getSizeInventory(); i++) {
 
@@ -33,6 +35,7 @@ public class EquipmentStats {
 
     }
 
+    @Override
     public void writeNBT(NBTTagCompound compound) {
 
         NBTTagCompound nbt = new NBTTagCompound();
@@ -43,6 +46,7 @@ public class EquipmentStats {
 
     }
 
+    @Override
     public void readNBT(NBTTagCompound compound) {
 
         if (compound.hasKey(NBT_ID)) {
