@@ -1,5 +1,7 @@
 package shift.sextiarysector.player;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,8 +13,6 @@ import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.api.IPlayerManager;
 import shift.sextiarysector.packet.PacketPlayerData;
 import shift.sextiarysector.packet.SSPacketHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
 
 public class EntityPlayerManager implements IPlayerManager {//implements {//IPlayerTracker{
 
@@ -48,7 +48,8 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     @Override
     public void addMoistureStats(EntityPlayer entityPlayer, int par1, float par2) {
         if (!entityPlayer.worldObj.isRemote) {
-            getMoistureStats(entityPlayer).addStats(par1, par2);
+
+            getMoistureStats(entityPlayer).addStats(entityPlayer, par1, par2);
             //Achievement
             entityPlayer.addStat(SSAchievement.moisture, 1);
         }
@@ -57,21 +58,21 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     @Override
     public void addStaminaStats(EntityPlayer entityPlayer, int par1, float par2) {
         if (!entityPlayer.worldObj.isRemote) {
-            getStaminaStats(entityPlayer).addStats(par1, par2);
+            getStaminaStats(entityPlayer).addStats(entityPlayer, par1, par2);
         }
     }
 
     @Override
     public void addMoistureExhaustion(EntityPlayer entityPlayer, float par1) {
         if (!entityPlayer.worldObj.isRemote) {
-            getMoistureStats(entityPlayer).addExhaustion(par1);
+            getMoistureStats(entityPlayer).addExhaustion(entityPlayer, par1);
         }
     }
 
     @Override
     public void addStaminaExhaustion(EntityPlayer entityPlayer, float par1) {
         if (!entityPlayer.worldObj.isRemote) {
-            getStaminaStats(entityPlayer).addExhaustion(par1);
+            getStaminaStats(entityPlayer).addExhaustion(entityPlayer, par1);
         }
     }
 
@@ -171,6 +172,7 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     @SubscribeEvent
     public void onPlayerCloneEvent(net.minecraftforge.event.entity.player.PlayerEvent.Clone event) {
 
+        //死んでいない場合
         if (!event.wasDeath) {
 
             EntityPlayer old = event.original;

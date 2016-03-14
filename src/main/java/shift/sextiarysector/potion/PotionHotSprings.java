@@ -32,8 +32,8 @@ public class PotionHotSprings extends PotionSS {
 
         if (moistStats.getMoistureLevel() < 3) return;
 
-        stats.addStats(3, 0.7f);
-        moistStats.addExhaustion(1.9f);
+        stats.addStats(player, 3, 0.7f);
+        moistStats.addExhaustion(player, 1.9f);
 
     }
 
