@@ -4,16 +4,19 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
+import net.minecraftforge.common.MinecraftForge;
 import shift.sextiarysector.Config;
 import shift.sextiarysector.api.SextiarySectorAPI;
+import shift.sextiarysector.api.event.player.PlayerMoistureEvent;
 
 public class MoistureStats {
 
     //水分
     /** 水分 */
     private int moistureLevel = 20;
-    private final static int MAX_STAMINA_LEVEL = 20;
+    private final static int MAX_MOISTURE_LEVEL = 20;
     private final static int MAX_PREV_STAMINA_LEVEL = 20;
 
     /** 隠し水分ゲージ */
@@ -33,9 +36,21 @@ public class MoistureStats {
     /**
      * Args: int foodLevel, float foodSaturationModifier
      */
-    public void addStats(int par1, float par2) {
-        this.moistureLevel = Math.min(par1 + this.moistureLevel, 20);
-        this.moistureSaturationLevel = Math.min(Math.min(this.moistureSaturationLevel + par2, this.moistureLevel), MAX_PREV_STAMINA_LEVEL);
+    public void addStats(EntityPlayer entityPlayer, int par1, float par2) {
+
+        //this.moistureLevel = Math.min(par1 + this.moistureLevel, 20);
+        //this.moistureSaturationLevel = Math.min(Math.min(this.moistureSaturationLevel + par2, this.moistureLevel), MAX_PREV_STAMINA_LEVEL);
+
+        PlayerMoistureEvent.Add event = new PlayerMoistureEvent.Add(entityPlayer, moistureLevel, moistureSaturationLevel, par1, par2);
+
+        if (MinecraftForge.EVENT_BUS.post(event)) {
+            //this.moistureLevel = prevLevel;
+            //this.moistureSaturationLevel = prevSaturation;
+        } else {
+            this.moistureLevel = MathHelper.clamp_int(event.newAddMoistureLevel + this.moistureLevel, 0, MAX_MOISTURE_LEVEL);
+            this.moistureSaturationLevel = MathHelper.clamp_float(event.newAddMoistureSaturationLevel + this.moistureSaturationLevel, 0.0F, this.moistureLevel);
+        }
+
     }
 
     /**
@@ -61,7 +76,7 @@ public class MoistureStats {
 
             if (this.moistureTimer >= 160) {
                 //par1EntityPlayer.heal(1.0F);
-                this.addExhaustion(3.0F);
+                this.addExhaustion(par1EntityPlayer, 3.0F);
                 this.moistureTimer = 0;
             }
 
@@ -139,14 +154,23 @@ public class MoistureStats {
      * If foodLevel is not max.
      */
     public boolean needMoisture() {
-        return this.moistureLevel < MAX_STAMINA_LEVEL;
+        return this.moistureLevel < MAX_MOISTURE_LEVEL;
     }
 
     /**
      * adds input to foodExhaustionLevel to a max of 40
      */
-    public void addExhaustion(float par1) {
-        this.moistureExhaustionLevel = Math.min(this.moistureExhaustionLevel + par1, 40.0F);
+    public void addExhaustion(EntityPlayer entityPlayer, float par1) {
+
+        PlayerMoistureEvent.Exhaustion event = new PlayerMoistureEvent.Exhaustion(entityPlayer, moistureLevel, moistureExhaustionLevel, par1);
+
+        if (MinecraftForge.EVENT_BUS.post(event)) {
+            //this.moistureLevel = prevLevel;
+            //this.moistureSaturationLevel = prevSaturation;
+        } else {
+            this.moistureExhaustionLevel = MathHelper.clamp_float(event.newExhaustionLevel + this.moistureExhaustionLevel, 0, 40.0F);
+        }
+
     }
 
     /**
