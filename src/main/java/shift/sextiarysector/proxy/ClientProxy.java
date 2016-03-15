@@ -37,6 +37,7 @@ import shift.sextiarysector.renderer.block.RendererKnife;
 import shift.sextiarysector.renderer.block.RendererLargeWindmill;
 import shift.sextiarysector.renderer.block.RendererLeafBed;
 import shift.sextiarysector.renderer.block.RendererMonitor;
+import shift.sextiarysector.renderer.block.RendererMotor;
 import shift.sextiarysector.renderer.block.RendererOreStone;
 import shift.sextiarysector.renderer.block.RendererPaddy;
 import shift.sextiarysector.renderer.block.RendererPipe;
@@ -90,6 +91,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void setCustomRenderers() {
 
+        this.motorType = RenderingRegistry.getNextAvailableRenderId();
+
         this.holeType = RenderingRegistry.getNextAvailableRenderId();
 
         this.bottleType = RenderingRegistry.getNextAvailableRenderId();
@@ -139,6 +142,8 @@ public class ClientProxy extends CommonProxy {
         this.paddyType = RenderingRegistry.getNextAvailableRenderId();
 
         this.woodType = RenderingRegistry.getNextAvailableRenderId();
+
+        RenderingRegistry.registerBlockHandler(new RendererMotor());
 
         RenderingRegistry.registerBlockHandler(new RendererHole());
 
