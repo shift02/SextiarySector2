@@ -35,6 +35,7 @@ import shift.sextiarysector.block.BlockLeafBed;
 import shift.sextiarysector.block.BlockMachineFrame;
 import shift.sextiarysector.block.BlockMagiFurnace;
 import shift.sextiarysector.block.BlockMonitor;
+import shift.sextiarysector.block.BlockMotor;
 import shift.sextiarysector.block.BlockOreBlock;
 import shift.sextiarysector.block.BlockPaddy;
 import shift.sextiarysector.block.BlockPipe;
@@ -147,6 +148,8 @@ public class SSBlocks {
     public static Block trap;
 
     public static Block knife;
+
+    public static Block motor;
 
     //Bed
     public static Block leafBed;
@@ -418,6 +421,9 @@ public class SSBlocks {
         knife = new BlockKnife().setBlockName("ss.knife").setBlockTextureName("sextiarysector:break");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerBlock(knife, "Knife");
         GameRegistry.registerTileEntity(TileEntityKnife.class, "SSKnife");
+
+        motor = new BlockMotor(false).setBlockName("ss.motor").setBlockTextureName("sextiarysector:motor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerBlock(motor, "Motor");
 
         leafBed = new BlockLeafBed().setBlockName("ss.leaf_bed").setBlockTextureName("sextiarysector:leaf_bed");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerBlock(leafBed, "LeafBed");

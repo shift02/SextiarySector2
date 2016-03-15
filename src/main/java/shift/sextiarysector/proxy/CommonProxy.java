@@ -8,6 +8,8 @@ public class CommonProxy {
 
     public int leafBedType;
 
+    public int motorType;
+
     public int holeType;
 
     public int bottleType;
