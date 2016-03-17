@@ -12,7 +12,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.Config;
+import shift.sextiarysector.SSConfig;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.fmp.IShaft;
@@ -50,7 +50,7 @@ public class BlockShaft extends BlockDirection {
     {
         return p_149692_1_;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
     {
@@ -68,7 +68,7 @@ public class BlockShaft extends BlockDirection {
         float y = (float) i[1];
         float z = (float) i[2];
 
-        this.setBlockBounds((0.0F + x), (0.0F + y), (0.0F + z), (1.0F - x), (1.0F - y), (1.0F - z));
+        this.setBlockBounds(0.0F + x, 0.0F + y, 0.0F + z, 1.0F - x, 1.0F - y, 1.0F - z);
     }
 
     //当たり判定。サボテンやソウルサンドを参考にすると良い。ココの設定をすると、onEntityCollidedWithBlockが呼ばれるようになる
@@ -80,7 +80,7 @@ public class BlockShaft extends BlockDirection {
         double y = i[1];
         double z = i[2];
 
-        return AxisAlignedBB.getBoundingBox(par2 + x, par3 + y, par4 + z, (par2 + 1) - x, (par3 + 1) - y, (par4 + 1) - z);
+        return AxisAlignedBB.getBoundingBox(par2 + x, par3 + y, par4 + z, par2 + 1 - x, par3 + 1 - y, par4 + 1 - z);
     }
 
     //ブロックに視点を合わせた時に出てくる黒い線のアレ
@@ -94,7 +94,7 @@ public class BlockShaft extends BlockDirection {
         double z = i[2];
         GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
 
-        return AxisAlignedBB.getBoundingBox(par2 + x, par3 + y, par4 + z, (par2 + 1) - x, (par3 + 1) - y, (par4 + 1) - z);
+        return AxisAlignedBB.getBoundingBox(par2 + x, par3 + y, par4 + z, par2 + 1 - x, par3 + 1 - y, par4 + 1 - z);
     }
 
     public double[] getBoxFromPool(World par1World, int par2, int par3, int par4) {
@@ -152,7 +152,7 @@ public class BlockShaft extends BlockDirection {
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 
-        if (!Config.shaft) return;
+        if (!SSConfig.particleShaft) return;
 
         TileEntityShaft tileEntity = (TileEntityShaft) par1World.getTileEntity(par2, par3, par4);
 
@@ -167,9 +167,9 @@ public class BlockShaft extends BlockDirection {
 
         for (int l = 0; l < 3; ++l) {
 
-            double d1 = par2 + (random.nextFloat() / 2.0f);
-            double d2 = par3 + (random.nextFloat() / 2.0f);
-            double d3 = par4 + (random.nextFloat() / 2.0f);
+            double d1 = par2 + random.nextFloat() / 2.0f;
+            double d2 = par3 + random.nextFloat() / 2.0f;
+            double d3 = par4 + random.nextFloat() / 2.0f;
 
             if (l == 0 && !par1World.getBlock(par2, par3 + 1, par4).isOpaqueCube()) {
                 d2 = par3 + 1 + d0;

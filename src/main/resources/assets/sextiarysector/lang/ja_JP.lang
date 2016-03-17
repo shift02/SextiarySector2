@@ -1,4 +1,4 @@
-﻿#日本語 ja_JP
+・日本語 ja_JPj
 
 #ブロック
 tile.ss.large_furnace.name=大型かまど
@@ -648,7 +648,7 @@ achievement.ss.extractor=近未来
 achievement.ss.extractor.desc=抽出器を作る
 achievement.ss.extractor.desc2=浄化装置 ?
 
-achievement.ss.fan=ああ＾〜
+achievement.ss.fan=ああ＾～
 achievement.ss.fan.desc=ファンを作る
 achievement.ss.fan.desc2=青い炎 ?
 
@@ -725,3 +725,38 @@ nei.ss.time_machine=タイムマシン
 
 nei.ss.fertilizer_farmland=農地 突然変異
 nei.ss.fertilizer_paddy=水田 突然変異
+
+#Config
+config.ss.title=Sextiary Sectorの設定
+config.ss.general=一般的な設定
+config.ss.general.tooltip=generalカテゴリに含まれる設定を変更できます。
+config.ss.general.fastDecayLeaves=葉の高速消滅
+config.ss.general.fastDecayLeaves.tooltip=葉が破壊された後の高速消滅を有効にします。
+config.ss.general.usualHoe=通常のクワ
+config.ss.general.usualHoe.tooltip=通常のクワの動作を有効にします。
+config.ss.general.particleShaft=シャフトのパーティクル
+config.ss.general.particleShaft.tooltip=シャフトのパーティクルの発生を有効にします。
+config.ss.potions=ポーションの設定
+config.ss.potions.tooltip=potionsカテゴリに含まれる設定を変更できます。
+config.ss.potions.burn=火傷
+config.ss.potions.burn.tooltip=火傷のポーションIDを指定します。
+config.ss.potions.hotSprings=温泉
+config.ss.potions.hotSprings.tooltip=温泉のポーションIDを指定します。
+config.ss.world=ワールドの設定
+config.ss.world.tooltip=worldカテゴリに含まれる設定を変更できます。
+config.ss.world.generateCopperOre=銅鉱石の生成
+config.ss.world.generateCopperOre.tooltip=銅鉱石の生成を有効にします。
+config.ss.world.generateZincOre=亜鉛鉱石の生成
+config.ss.world.generateZincOre.tooltip=亜鉛鉱石の生成を有効にします。
+config.ss.world.generateSilverOre=銀鉱石の生成
+config.ss.world.generateSilverOre.tooltip=銀鉱石の生成を有効にします。
+config.ss.status=ステータスの設定
+config.ss.status.tooltip=statusカテゴリに含まれる設定を変更できます。
+config.ss.status.statusStamina=スタミナ
+config.ss.status.statusStamina.tooltip=スタミナのステータスを有効にします。
+config.ss.status.statusMoisture=水分
+config.ss.status.statusMoisture.tooltip=水分のステータスを有効にします。
+config.ss.status.peacefulStamina=ピースフルのスタミナ
+config.ss.status.peacefulStamina.tooltip=ピースフルでのスタミナのステータスを有効にします。
+config.ss.status.peacefulMoisture=ピースフルの水分
+config.ss.status.peacefulMoisture.tooltip=ピースフルでの水分のステータスを有効にします。

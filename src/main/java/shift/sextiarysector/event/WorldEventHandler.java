@@ -2,6 +2,7 @@ package shift.sextiarysector.event;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -12,9 +13,8 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
-import shift.sextiarysector.Config;
 import shift.sextiarysector.SSBlocks;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import shift.sextiarysector.SSConfig;
 
 public class WorldEventHandler {
 
@@ -77,9 +77,9 @@ public class WorldEventHandler {
         this.genStandardOre1(8, this.bluestoneGen, 0, 16);
         this.genStandardOre1(8, this.yellowstoneGen, 0, 16);
 
-        if (Config.generationCopperOre) this.genStandardOre1(20, this.copperOreGen, 0, 64);
-        if (Config.generationZincOre) this.genStandardOre1(12, this.zincOreGen, 0, 64);
-        if (Config.generationSilverOre) this.genStandardOre1(2, this.silverOreGen, 0, 32);
+        if (SSConfig.generateCopperOre) this.genStandardOre1(20, this.copperOreGen, 0, 64);
+        if (SSConfig.generateZincOre) this.genStandardOre1(12, this.zincOreGen, 0, 64);
+        if (SSConfig.generateSilverOre) this.genStandardOre1(2, this.silverOreGen, 0, 32);
 
         if (BiomeDictionary.isBiomeOfType(biome, Type.COLD)) {
 
