@@ -155,7 +155,7 @@ public class RecipesMachine {
                 new Object[] { "yay", "aza", "yxy",
                         Character.valueOf('y'), "gearWood",
                         Character.valueOf('x'), SSItems.woodGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "stone"
                 }));
 
@@ -163,7 +163,7 @@ public class RecipesMachine {
                 new Object[] { "y y", "aza", "yxy",
                         Character.valueOf('y'), "gearWood",
                         Character.valueOf('x'), SSItems.woodGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "stickWood"
                 }));
 
@@ -171,7 +171,7 @@ public class RecipesMachine {
                 new Object[] { "y y", "aza", "yxy",
                         Character.valueOf('y'), "gearStone",
                         Character.valueOf('x'), SSItems.stoneGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "ingotZinc"
                 }));
 
@@ -179,7 +179,7 @@ public class RecipesMachine {
                 new Object[] { "yby", "aza", "yxy",
                         Character.valueOf('y'), "gearStone",
                         Character.valueOf('x'), SSItems.stoneGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "ingotSilver",
                         Character.valueOf('b'), "stickWood"
                 }));
@@ -213,7 +213,7 @@ public class RecipesMachine {
                 new Object[] { "yay", "aza", "yxy",
                         Character.valueOf('y'), "gearSteel",
                         Character.valueOf('x'), SSItems.steelGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "gemDiamond"
                 }));
 
@@ -221,7 +221,7 @@ public class RecipesMachine {
                 new Object[] { "yby", "aza", "yxy",
                         Character.valueOf('y'), "gearSteel",
                         Character.valueOf('x'), SSItems.steelGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "containerBottle",
                         Character.valueOf('b'), SSBlocks.tank
                 }));
@@ -248,7 +248,7 @@ public class RecipesMachine {
                 new Object[] { "yay", "aza", "yxy",
                         Character.valueOf('y'), "gearNinja",
                         Character.valueOf('x'), SSItems.ninjaGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "ingotIron"
                 }));
 
@@ -256,7 +256,7 @@ public class RecipesMachine {
                 new Object[] { "yby", "aza", "yxy",
                         Character.valueOf('y'), "gearOrichalcum",
                         Character.valueOf('x'), SSItems.orichalcumGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), SSBlocks.chunkLoader,
                         Character.valueOf('b'), "ingotMithril"
                 }));

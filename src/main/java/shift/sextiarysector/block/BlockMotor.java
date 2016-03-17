@@ -9,6 +9,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockTorch;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -58,10 +59,15 @@ public class BlockMotor extends Block {
 
             boolean f = block.rotateBlock(world, x, y + 1, z, d[0]);
 
+            if (rotationTouch(world, x, y + 1, z)) {
+                f = true;
+            }
+
             if (f) {
 
                 if (!world.isRemote) {
                     world.playSoundEffect(x, y + 1, z, block.stepSound.getStepResourcePath(), 1.0F, world.rand.nextFloat() * 0.1F + 0.6F);
+                    world.markBlockForUpdate(x, y + 1, z);
                 }
 
             }
@@ -80,15 +86,56 @@ public class BlockMotor extends Block {
                 f = block.rotateBlock(world, x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ, d[0]);
             }
 
+            if (rotationTouch(world, x, y + 1, z)) {
+                f = true;
+            }
+
             if (f) {
 
                 if (!world.isRemote) {
+                    world.markBlockForUpdate(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ);
                     world.playSoundEffect(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ, block.stepSound.getStepResourcePath(), 1.0F, world.rand.nextFloat() * 0.1F + 0.6F);
                 }
 
             }
 
         }
+
+    }
+
+    private boolean rotationTouch(World world, int x, int y, int z) {
+
+        for (int i = 2; i < 6; i++) {
+
+            ForgeDirection d = ForgeDirection.getOrientation(i);
+
+            if (!(world.getBlock(x + d.offsetX, y + d.offsetY, z + d.offsetZ) instanceof BlockTorch)) continue;
+
+            int directionMeta = 6 - world.getBlockMetadata(x + d.offsetX, y + d.offsetY, z + d.offsetZ);
+
+            if (directionMeta != d.ordinal()) continue;
+
+            ForgeDirection dNext = d.getRotation(ForgeDirection.UP);
+
+            if (!world.isAirBlock(x + dNext.offsetX, y + dNext.offsetY, z + dNext.offsetZ)) continue;
+
+            Block block = world.getBlock(x + d.offsetX, y + d.offsetY, z + d.offsetZ);
+
+            //block.rotateBlock(world, x + d.offsetX, y + d.offsetY, z + d.offsetZ, ForgeDirection.UP);
+
+            int nweMeta = 6 - dNext.ordinal();//world.getBlockMetadata(x + d.offsetX, y + d.offsetY, z + d.offsetZ);
+
+            world.setBlockToAir(x + d.offsetX, y + d.offsetY, z + d.offsetZ);
+
+            world.setBlock(x + dNext.offsetX, y + dNext.offsetY, z + dNext.offsetZ, block, nweMeta, 2);
+
+            world.markBlockForUpdate(x + dNext.offsetX * 2, y + dNext.offsetY * 2, z + dNext.offsetZ * 2);
+
+            return true;
+
+        }
+
+        return false;
 
     }
 

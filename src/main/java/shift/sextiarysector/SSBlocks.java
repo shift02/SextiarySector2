@@ -32,7 +32,6 @@ import shift.sextiarysector.block.BlockLargeOre;
 import shift.sextiarysector.block.BlockLargeWindmill;
 import shift.sextiarysector.block.BlockLeaf;
 import shift.sextiarysector.block.BlockLeafBed;
-import shift.sextiarysector.block.BlockMachineFrame;
 import shift.sextiarysector.block.BlockMagiFurnace;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockMotor;
@@ -193,7 +192,7 @@ public class SSBlocks {
     public static Block steamMotor;
 
     //機械
-    public static Block machineFrame;
+    //public static Block machineFrame;
 
     public static Block millstone;
     public static Block loom;
@@ -587,8 +586,8 @@ public class SSBlocks {
         GameRegistry.registerBlock(steamMotor, ItemBlockDirection.class, "SteamMotor");
 
         //機械
-        machineFrame = new BlockMachineFrame().setBlockName("ss.machine_frame").setBlockTextureName("sextiarysector:machine/machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-        GameRegistry.registerBlock(machineFrame, "MachineFrame");
+        //machineFrame = new BlockMachineFrame().setBlockName("ss.machine_frame").setBlockTextureName("sextiarysector:machine/machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        //GameRegistry.registerBlock(machineFrame, "MachineFrame");
 
         GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "SimpleMachine");
         GameRegistry.registerTileEntity(TileEntityFluidFGFMachineBase.class, "FluidFGFMachine");
