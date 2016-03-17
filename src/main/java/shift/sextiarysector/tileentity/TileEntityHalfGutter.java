@@ -4,7 +4,10 @@
 */
 package shift.sextiarysector.tileentity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -275,6 +278,16 @@ public class TileEntityHalfGutter extends TileEntityDirection implements IFluidH
         }
 
         return null;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getRenderBoundingBox() {
+        AxisAlignedBB bb = INFINITE_EXTENT_AABB;
+
+        bb = AxisAlignedBB.getBoundingBox(xCoord, yCoord - this.getDownClient(), zCoord, xCoord + 1, yCoord + 1, zCoord + 1);
+
+        return bb;
     }
 
 }
