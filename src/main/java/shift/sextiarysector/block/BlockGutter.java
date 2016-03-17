@@ -243,6 +243,35 @@ public class BlockGutter extends BlockContainer {
     public int getRenderType() {
         return SextiarySector.proxy.gutterType;
     }
+    //
+    //    @Override
+    //    public boolean rotateBlock(World worldObj, int x, int y, int z, ForgeDirection axis) {
+    //
+    //        if (worldObj.isRemote) {
+    //            return false;
+    //        }
+    //
+    //        TileEntityDirection tileEntity = (TileEntityDirection) worldObj.getTileEntity(x, y, z);
+    //
+    //        if (axis == UP || axis == DOWN) {
+    //
+    //            ForgeDirection d = tileEntity.getDirection().getRotation(axis);
+    //            tileEntity.direction = d;
+    //            worldObj.ma
+    //
+    //
+    //            return true;
+    //
+    //        } else {
+    //            return false;
+    //        }
+    //
+    //    }
+    //
+    //    @Override
+    //    public ForgeDirection[] getValidRotations(World worldObj, int x, int y, int z) {
+    //        return new ForgeDirection[] { UP, DOWN };
+    //    }
 
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {

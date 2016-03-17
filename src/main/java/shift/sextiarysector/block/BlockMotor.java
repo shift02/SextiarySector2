@@ -40,9 +40,17 @@ public class BlockMotor extends Block {
 
         world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
 
-        ForgeDirection direction = ForgeDirection.getOrientation(world.getBlockMetadata(x, y, z) % 6);
+        int meta = world.getBlockMetadata(x, y, z);
 
-        if (direction.equals(ForgeDirection.UP)) {
+        //        if (meta / 6 == 0) {
+        //            world.setBlockMetadataWithNotify(x, y, z, meta + 6, 2);
+        //        } else {
+        //            world.setBlockMetadataWithNotify(x, y, z, meta - 6, 2);
+        //        }
+
+        ForgeDirection direction = ForgeDirection.getOrientation(meta % 6);
+
+        if (direction.equals(ForgeDirection.UP) && !this.isSticky) {
 
             Block block = world.getBlock(x, y + 1, z);
 
@@ -54,6 +62,28 @@ public class BlockMotor extends Block {
 
                 if (!world.isRemote) {
                     world.playSoundEffect(x, y + 1, z, block.stepSound.getStepResourcePath(), 1.0F, world.rand.nextFloat() * 0.1F + 0.6F);
+                }
+
+            }
+
+        } else if (this.isSticky) {
+
+            Block block = world.getBlock(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ);
+
+            ForgeDirection[] d = block.getValidRotations(world, x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ);
+
+            boolean f = false;
+
+            if (d.length == 6) {
+                f = block.rotateBlock(world, x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ, direction.getOpposite());
+            } else {
+                f = block.rotateBlock(world, x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ, d[0]);
+            }
+
+            if (f) {
+
+                if (!world.isRemote) {
+                    world.playSoundEffect(x + direction.offsetX, y + direction.offsetY, z + direction.offsetZ, block.stepSound.getStepResourcePath(), 1.0F, world.rand.nextFloat() * 0.1F + 0.6F);
                 }
 
             }

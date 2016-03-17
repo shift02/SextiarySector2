@@ -150,6 +150,7 @@ public class SSBlocks {
     public static Block knife;
 
     public static Block motor;
+    public static Block stickyMotor;
 
     //Bed
     public static Block leafBed;
@@ -424,6 +425,9 @@ public class SSBlocks {
 
         motor = new BlockMotor(false).setBlockName("ss.motor").setBlockTextureName("sextiarysector:motor").setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerBlock(motor, "Motor");
+
+        stickyMotor = new BlockMotor(true).setBlockName("ss.sticky_motor").setBlockTextureName("sextiarysector:motor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerBlock(stickyMotor, "StickyMotor");
 
         leafBed = new BlockLeafBed().setBlockName("ss.leaf_bed").setBlockTextureName("sextiarysector:leaf_bed");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerBlock(leafBed, "LeafBed");
