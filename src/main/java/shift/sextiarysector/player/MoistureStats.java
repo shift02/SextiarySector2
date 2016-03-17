@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.common.MinecraftForge;
-import shift.sextiarysector.Config;
+import shift.sextiarysector.SSConfig;
 import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.event.player.PlayerMoistureEvent;
 
@@ -38,6 +38,8 @@ public class MoistureStats {
      */
     public void addStats(EntityPlayer entityPlayer, int par1, float par2) {
 
+        if (!SSConfig.statusMoisture) return;
+
         //this.moistureLevel = Math.min(par1 + this.moistureLevel, 20);
         //this.moistureSaturationLevel = Math.min(Math.min(this.moistureSaturationLevel + par2, this.moistureLevel), MAX_PREV_STAMINA_LEVEL);
 
@@ -57,6 +59,9 @@ public class MoistureStats {
      * Handles the food game logic.
      */
     public void onUpdate(EntityPlayer par1EntityPlayer) {
+
+        if (!SSConfig.statusMoisture) return;
+
         EnumDifficulty i = par1EntityPlayer.worldObj.difficultySetting;
         this.prevMoistureLevel = this.moistureLevel;
 
@@ -65,7 +70,7 @@ public class MoistureStats {
 
             if (this.moistureSaturationLevel > 0.0F) {
                 this.moistureSaturationLevel = Math.max(this.moistureSaturationLevel - 1.0F, 0.0F);
-            } else if (i.getDifficultyId() > 0 || Config.peacefulMoisture) {
+            } else if (i.getDifficultyId() > 0 || SSConfig.peacefulMoisture) {
                 this.moistureLevel = Math.max(this.moistureLevel - 1, 0);
             }
         }
@@ -120,6 +125,8 @@ public class MoistureStats {
 
     public boolean isPacket() {
 
+        if (!SSConfig.statusMoisture) return false;
+
         boolean flag = false;
 
         if (this.moistureLevel != this.lastMoistureLevel) {
@@ -142,6 +149,9 @@ public class MoistureStats {
      * Get the player's moisture level.
      */
     public int getMoistureLevel() {
+
+        if (!SSConfig.statusMoisture) return MAX_MOISTURE_LEVEL;
+
         return this.moistureLevel;
     }
 
@@ -154,6 +164,9 @@ public class MoistureStats {
      * If foodLevel is not max.
      */
     public boolean needMoisture() {
+
+        if (!SSConfig.statusMoisture) return false;
+
         return this.moistureLevel < MAX_MOISTURE_LEVEL;
     }
 
@@ -161,6 +174,8 @@ public class MoistureStats {
      * adds input to foodExhaustionLevel to a max of 40
      */
     public void addExhaustion(EntityPlayer entityPlayer, float par1) {
+
+        if (!SSConfig.statusMoisture) return;
 
         PlayerMoistureEvent.Exhaustion event = new PlayerMoistureEvent.Exhaustion(entityPlayer, moistureLevel, moistureExhaustionLevel, par1);
 
@@ -177,6 +192,9 @@ public class MoistureStats {
      * Get the player's food saturation level.
      */
     public float getSaturationLevel() {
+
+        if (!SSConfig.statusMoisture) return MAX_MOISTURE_LEVEL;
+
         return this.moistureSaturationLevel;
     }
 

@@ -101,7 +101,7 @@ public class TransformerFoodStats implements IClassTransformer, Opcodes {
                 mv.visitInsn(POP);
 
                 mv.visitLdcInsn(new Float("0.5"));
-                mv.visitMethodInsn(INVOKESTATIC, "shift/sextiarysector/api/SextiarySectorAPI", "addStaminaExhaustion", "(Lnet/minecraft/entity/player/EntityPlayer;F)V", false);
+                mv.visitMethodInsn(INVOKESTATIC, "shift/sextiarysector/asm/vanilla/FoodStatsMethod", "onExhaustion", "(Lnet/minecraft/entity/player/EntityPlayer;F)V", false);
 
                 //attackEntityFromの戻り値boolを破棄するpop命令が続くので、スタックにダミー値を積んでスタックのずれを解消する
                 mv.visitInsn(FCONST_1);
