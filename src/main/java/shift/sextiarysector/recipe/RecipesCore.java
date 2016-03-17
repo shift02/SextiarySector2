@@ -120,6 +120,21 @@ public class RecipesCore {
                         'y', "plankWood",
                 }));
 
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.motor, 1),
+                new Object[] {
+                        "xxx", "azy", "yyy",
+                        'x', "stone",
+                        'y', "plankWood",
+                        'z', "ingotIron",
+                        'a', "dustBluestone"
+                }));
+
+        p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSBlocks.stickyMotor, 1),
+                new Object[] {
+                        SSBlocks.motor,
+                        "slimeball"
+                }));
+
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSItems.silkBobbin, 1),
                 new Object[] {
                         "xxx", "xyx", "xxx",

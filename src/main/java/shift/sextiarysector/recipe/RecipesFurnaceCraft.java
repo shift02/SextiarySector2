@@ -114,11 +114,11 @@ public class RecipesFurnaceCraft {
         		}));
         		*/
 
-        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.machineFrame, 1),
-                new Object[] { "xxx", "xyx", "xxx",
-                        Character.valueOf('y'), "gelBluestone",
-                        Character.valueOf('x'), "cobblestone",
-                }));
+        //p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.machineFrame, 1),
+        //        new Object[] { "xxx", "xyx", "xxx",
+        //                Character.valueOf('y'), "gelBluestone",
+        //                Character.valueOf('x'), "cobblestone",
+        //        }));
 
         //        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.emptyBottle, 8),
         //                new Object[] {
