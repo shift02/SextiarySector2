@@ -1,13 +1,18 @@
 package shift.sextiarysector.tileentity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
-import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
 import shift.sextiarysector.api.gearforce.tileentity.IGearForceGrid;
+import shift.sextiarysector.api.gearforce.tileentity.IGearForceHandler;
 
 public class TileEntityWindmill extends TileEntityDirection implements IGearForceHandler, IGearForceGrid {
 
     public float rotateStep = 0;
+
+    public int size = 2;
 
     @Override
     public void updateEntity() {
@@ -116,6 +121,18 @@ public class TileEntityWindmill extends TileEntityDirection implements IGearForc
     @Override
     public boolean canOut(ForgeDirection direction) {
         return this.direction.getOpposite().ordinal() == direction.ordinal();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getRenderBoundingBox() {
+        AxisAlignedBB bb = INFINITE_EXTENT_AABB;
+
+        ForgeDirection d1 = this.getDirection().getRotation(ForgeDirection.UP);
+
+        bb = AxisAlignedBB.getBoundingBox(xCoord - Math.abs(d1.offsetX * size), yCoord - size, zCoord - Math.abs(d1.offsetZ * size), xCoord + 1 + Math.abs(d1.offsetX * size), yCoord + 1 + size, zCoord + 1 + Math.abs(d1.offsetZ * size));
+
+        return bb;
     }
 
 }
