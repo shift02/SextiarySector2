@@ -1,16 +1,20 @@
-[
 {
-  "modid": "SextiarySector",
-  "name": "Sextiary Sector",
-  "description": "SextiarySector",
-  "version": "${version}",
-  "logoFile": "",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authors": [ "シフト (Shift)" ],
-  "parent":"",
-  "screenshots": [],
-  "dependencies": ["mod_MinecraftForge"]
+  "modListVersion": 2,
+  "modList": [{
+    "modid": "SextiarySector",
+    "name": "Sextiary Sector 2",
+    "description": "",
+    "version": "${version}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["シフト (Shift)"],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "parent": "",
+    "requiredMods": ["Forge"],
+    "dependencies": [],
+    "dependants": [],
+    "useDependencyInformation": true
+  }]
 }
-]
