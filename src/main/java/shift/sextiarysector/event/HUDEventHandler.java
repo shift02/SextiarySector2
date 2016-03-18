@@ -2,6 +2,11 @@ package shift.sextiarysector.event;
 
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.Tessellator;
@@ -9,14 +14,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-
-import org.lwjgl.opengl.GL11;
-
+import shift.sextiarysector.SSConfig;
 import shift.sextiarysector.player.EntityPlayerManager;
 import shift.sextiarysector.player.MoistureStats;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class HUDEventHandler {
 
@@ -45,21 +45,21 @@ public class HUDEventHandler {
 
         /*if(event.type == ElementType.FOOD && mc.playerController.shouldDrawHUD()){
         	renderMoisture( width, height);
-        
+
         	renderStamina( width, height);
-        
+
         	//renderSeason( width, height);
-        
+
         }*/
 
         /*
         if(event.type == ElementType.ARMOR&&ForgeHooks.getTotalArmorValue(mc.thePlayer)>0){
         	//System.out.println("AIR");
-        
+
             if(!ARMOR){
-        
+
             	GuiIngameForge.left_height+=(left_height-29);
-        
+
             	ARMOR =false;
             }else{
             	GuiIngameForge.left_height-=(left_height-29);
@@ -75,7 +75,7 @@ public class HUDEventHandler {
                 renderStamina(width, height);
                 visibleStamina = false;
             }
-        } else if ((event.type == RenderGameOverlayEvent.ElementType.HOTBAR) && (mc.playerController.shouldDrawHUD())) {
+        } else if (event.type == RenderGameOverlayEvent.ElementType.HOTBAR && mc.playerController.shouldDrawHUD()) {
             if (visibleMoisture) {
                 renderMoisture(width, height);
                 visibleMoisture = false;
@@ -97,7 +97,7 @@ public class HUDEventHandler {
         int width = event.resolution.getScaledWidth();
         int height = event.resolution.getScaledHeight();
 
-        if ((event.type == RenderGameOverlayEvent.ElementType.FOOD) || (event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT)) {
+        if (event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT) {
             if (visibleMoisture) {
                 renderMoisture(width, height);
                 visibleMoisture = false;
@@ -128,14 +128,14 @@ public class HUDEventHandler {
     //public void onRenderGameOverlayEventPost(RenderGameOverlayEvent.Post event) {
 
     /*if(event.type == ElementType.EXPERIENCE||event.type == ElementType.JUMPBAR){
-    
+
     }*/
 
     //}
 
     protected void renderMoisture(int width, int height) {
 
-        if (!visibleMoisture) return;
+        if (!visibleMoisture || !SSConfig.statusMoisture) return;
         visibleMoisture = false;
 
         //mc.thePlayer.addStat(StatList.distanceByBoatStat, 2);
@@ -179,7 +179,7 @@ public class HUDEventHandler {
             if (unused) backgound = 1; //Probably should be a += 1 but vanilla never uses this
 
             if (stats.getSaturationLevel() <= 0.0F && updateCounter % (level * 3 + 1) == 0) {
-                y = top + (rand.nextInt(3) - 1);
+                y = top + rand.nextInt(3) - 1;
             }
 
             drawTexturedModalRect(x, y, iconX, iconY, 9, 9);
@@ -207,7 +207,7 @@ public class HUDEventHandler {
 
     protected void renderStamina(int width, int height) {
 
-        if (!visibleStamina) return;
+        if (!visibleStamina || !SSConfig.statusStamina) return;
         visibleStamina = false;
 
         mc.mcProfiler.startSection("stamina");
@@ -307,10 +307,10 @@ public class HUDEventHandler {
         float f1 = 0.00390625F;
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV((par1 + 0), (par2 + par6), zLevel, ((par3 + 0) * f), ((par4 + par6) * f1));
-        tessellator.addVertexWithUV((par1 + par5), (par2 + par6), zLevel, ((par3 + par5) * f), ((par4 + par6) * f1));
-        tessellator.addVertexWithUV((par1 + par5), (par2 + 0), zLevel, ((par3 + par5) * f), ((par4 + 0) * f1));
-        tessellator.addVertexWithUV((par1 + 0), (par2 + 0), zLevel, ((par3 + 0) * f), ((par4 + 0) * f1));
+        tessellator.addVertexWithUV(par1 + 0, par2 + par6, zLevel, (par3 + 0) * f, (par4 + par6) * f1);
+        tessellator.addVertexWithUV(par1 + par5, par2 + par6, zLevel, (par3 + par5) * f, (par4 + par6) * f1);
+        tessellator.addVertexWithUV(par1 + par5, par2 + 0, zLevel, (par3 + par5) * f, (par4 + 0) * f1);
+        tessellator.addVertexWithUV(par1 + 0, par2 + 0, zLevel, (par3 + 0) * f, (par4 + 0) * f1);
         tessellator.draw();
     }
 
