@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -12,11 +15,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
 import shift.sextiarysector.SSBlocks;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import shift.sextiarysector.api.IFigureManager;
+import shift.sextiarysector.api.SextiarySectorAPI;
 
-public class ModuleFigure implements IModule {
+public class ModuleFigure implements IModule, IFigureManager {
 
     private static ModuleFigure instance;
 
@@ -33,43 +35,68 @@ public class ModuleFigure implements IModule {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
 
+        SextiarySectorAPI.figureManager = this.getInstance();
+
     }
 
     @Override
     public void load(FMLInitializationEvent event) {
 
         //フィギュア初心者
-        addFigure("figure_beginner", new ItemStack(Blocks.dirt), 50);
-        addFigure("figure_beginner", new ItemStack(Blocks.clay), 40);
-        addFigure("figure_beginner", new ItemStack(Blocks.fence), 22);
-        addFigure("figure_beginner", new ItemStack(Blocks.log), 30);
-        addFigure("figure_beginner", new ItemStack(Blocks.iron_ore), 16);
+        addFigure(SextiarySectorAPI.FIGURE_BEGINNER, new ItemStack(Blocks.dirt), 50);
+        addFigure(SextiarySectorAPI.FIGURE_BEGINNER, new ItemStack(Blocks.clay), 40);
+        addFigure(SextiarySectorAPI.FIGURE_BEGINNER, new ItemStack(Blocks.fence), 22);
+        addFigure(SextiarySectorAPI.FIGURE_BEGINNER, new ItemStack(Blocks.log), 30);
+        addFigure(SextiarySectorAPI.FIGURE_BEGINNER, new ItemStack(Blocks.iron_ore), 16);
 
-        addFigure("figure_beginner", new ItemStack(Items.stick), 50);
-        addFigure("figure_beginner", new ItemStack(Items.flint), 40);
-        addFigure("figure_beginner", new ItemStack(Items.fish), 26);
-        addFigure("figure_beginner", new ItemStack(Items.book), 34);
-        addFigure("figure_beginner", new ItemStack(Items.bone), 18);
-        addFigure("figure_beginner", new ItemStack(Items.cake), 2);
+        addFigure(SextiarySectorAPI.FIGURE_BEGINNER, new ItemStack(Items.stick), 50);
+        addFigure(SextiarySectorAPI.FIGURE_BEGINNER, new ItemStack(Items.flint), 40);
+        addFigure(SextiarySectorAPI.FIGURE_BEGINNER, new ItemStack(Items.fish), 26);
+        addFigure(SextiarySectorAPI.FIGURE_BEGINNER, new ItemStack(Items.book), 34);
+        addFigure(SextiarySectorAPI.FIGURE_BEGINNER, new ItemStack(Items.bone), 18);
+        addFigure(SextiarySectorAPI.FIGURE_BEGINNER, new ItemStack(Items.cake), 2);
 
         //鉱石シリーズ
-        addFigure("ore_festival", new ItemStack(Blocks.stone), 50);
-        addFigure("ore_festival", new ItemStack(Blocks.cobblestone), 40);
-        addFigure("ore_festival", new ItemStack(Blocks.coal_ore), 30);
-        addFigure("ore_festival", new ItemStack(Blocks.iron_ore), 20);
-        addFigure("ore_festival", new ItemStack(Blocks.gold_ore), 16);
-        addFigure("ore_festival", new ItemStack(Blocks.lapis_ore), 10);
-        addFigure("ore_festival", new ItemStack(Blocks.redstone_ore), 8);
-        addFigure("ore_festival", new ItemStack(Blocks.diamond_ore), 2);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(Blocks.stone), 50);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(Blocks.cobblestone), 40);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(Blocks.coal_ore), 30);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(Blocks.iron_ore), 20);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(Blocks.gold_ore), 16);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(Blocks.lapis_ore), 10);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(Blocks.redstone_ore), 8);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(Blocks.diamond_ore), 2);
 
         //MOD
-        //addFigure("ore_festival", new ItemStack(SSBlocks.zincOre), 10);
-        addFigure("ore_festival", new ItemStack(SSBlocks.copperOre), 20);
-        addFigure("ore_festival", new ItemStack(SSBlocks.silverOre), 14);
-        addFigure("ore_festival", new ItemStack(SSBlocks.blueStoneOre), 8);
-        addFigure("ore_festival", new ItemStack(SSBlocks.yellowStoneOre), 8);
-        addFigure("ore_festival", new ItemStack(SSBlocks.mithrilOre), 5);
-        addFigure("ore_festival", new ItemStack(SSBlocks.orichalcumOre), 1);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(SSBlocks.zincOre), 10);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(SSBlocks.copperOre), 20);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(SSBlocks.silverOre), 14);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(SSBlocks.blueStoneOre), 8);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(SSBlocks.yellowStoneOre), 8);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(SSBlocks.mithrilOre), 5);
+        addFigure(SextiarySectorAPI.ORE_FESTIVAL, new ItemStack(SSBlocks.orichalcumOre), 1);
+
+        //魔法のカボチャ
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Blocks.pumpkin), 20);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Blocks.lit_pumpkin), 8);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Blocks.enchanting_table), 3);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Blocks.bookshelf), 5);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Blocks.torch), 5);
+        //addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Blocks.flower_pot), 5);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Blocks.obsidian), 2);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Blocks.beacon), 1);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.redstone), 5);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.blaze_rod), 3);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.golden_apple), 2);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.ender_pearl), 3);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.ender_eye), 2);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.bone), 2);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.potionitem), 8);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.blaze_powder), 2);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.book), 2);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.cake), 1);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.name_tag), 2);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.nether_star), 2);
+        addFigure(SextiarySectorAPI.MAGIC_PUMPKIN, new ItemStack(Items.quartz), 2);
 
     }
 

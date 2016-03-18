@@ -15,6 +15,7 @@ import shift.mceconomy2.api.shop.IShop;
 import shift.mceconomy2.api.shop.ProductBase;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSItems;
+import shift.sextiarysector.api.SextiarySectorAPI;
 import shift.sextiarysector.api.season.Season;
 import shift.sextiarysector.api.season.SeasonAPI;
 import shift.sextiarysector.item.ItemFigureBox;
@@ -52,8 +53,11 @@ public class ModuleShop implements IModule {
 
         creeper.addProduct(new ProductBase(new ItemStack(SSItems.seasonStone, 1), 3000));
 
-        creeper.addProduct(new ProductBase(((ItemFigureBox) SSItems.figureBox).getEditionFigureBox("figure_beginner"), 300));
-        creeper.addProduct(new ProductBase(((ItemFigureBox) SSItems.figureBox).getEditionFigureBox("ore_festival"), 500));
+        creeper.addProduct(new ProductBase(((ItemFigureBox) SSItems.figureBox).getEditionFigureBox(SextiarySectorAPI.FIGURE_BEGINNER), 300));
+        creeper.addProduct(new ProductBase(((ItemFigureBox) SSItems.figureBox).getEditionFigureBox(SextiarySectorAPI.ORE_FESTIVAL), 500));
+
+        //秋
+        creeper.addProduct(Season.AUTUMN, new ProductBase(((ItemFigureBox) SSItems.figureBox).getEditionFigureBox(SextiarySectorAPI.MAGIC_PUMPKIN), 500));
 
         creeper.addProduct(new ProductBase(new ItemStack(SSBlocks.woodStoneGearShaft, 1, 0), 260));
         creeper.addProduct(new ProductBase(new ItemStack(SSBlocks.woodStoneGearShaft, 1, 1), 260));
