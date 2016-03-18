@@ -88,4 +88,17 @@ public class SextiarySectorAPI {
         playerManager.addStaminaExhaustion(entityPlayer, amount);
     }
 
+    /*
+     * -------------------------------------------
+     * Figure フィギュア
+     * -------------------------------------------
+     */
+    public static IFigureManager figureManager;
+
+    //エディションの名前
+    public static final String FIGURE_BEGINNER = "figure_beginner";
+    public static final String ORE_FESTIVAL = "ore_festival";
+    public static final String MAGIC_PUMPKIN = "magic_pumpkin";
+    public static final String REDSTONE_FACTORY = "redstone_factory";
+
 }
