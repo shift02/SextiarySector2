@@ -26,6 +26,7 @@ import shift.sextiarysector.block.BlockGutter;
 import shift.sextiarysector.block.BlockHalfGutter;
 import shift.sextiarysector.block.BlockHole;
 import shift.sextiarysector.block.BlockHotSprings;
+import shift.sextiarysector.block.BlockKawara;
 import shift.sextiarysector.block.BlockKnife;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockLargeOre;
@@ -150,6 +151,9 @@ public class SSBlocks {
 
     public static Block motor;
     public static Block stickyMotor;
+
+    //瓦
+    public static Block kawara;
 
     //Bed
     public static Block leafBed;
@@ -427,6 +431,9 @@ public class SSBlocks {
 
         stickyMotor = new BlockMotor(true).setBlockName("ss.sticky_motor").setBlockTextureName("sextiarysector:motor").setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerBlock(stickyMotor, "StickyMotor");
+
+        kawara = new BlockKawara().setBlockName("ss.kawara").setBlockTextureName("sextiarysector:kawara");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerBlock(kawara, "Kawara");
 
         leafBed = new BlockLeafBed().setBlockName("ss.leaf_bed").setBlockTextureName("sextiarysector:leaf_bed");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerBlock(leafBed, "LeafBed");
