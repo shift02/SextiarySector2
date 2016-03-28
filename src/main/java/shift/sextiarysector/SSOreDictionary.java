@@ -132,6 +132,9 @@ public class SSOreDictionary {
 
         OreDictionary.registerOre("treeLeaves", SSBlocks.leafBlock);
 
+        OreDictionary.registerOre("itemAsh", SSItems.ash);
+        OreDictionary.registerOre("dyeLightGray", SSItems.ash);
+
         //布
         OreDictionary.registerOre("massString", SSItems.stringMass);
         OreDictionary.registerOre("blockWool", SSItems.stringMass);

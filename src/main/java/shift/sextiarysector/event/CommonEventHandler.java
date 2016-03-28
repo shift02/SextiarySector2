@@ -12,6 +12,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -97,19 +99,19 @@ public class CommonEventHandler {
     /*無理でした(╹◡╹)
     @SubscribeEvent
     public void useBottleEvent(PlayerInteractEvent event) {
-
+    
     	ItemStack item = event.entityPlayer.getCurrentEquippedItem();
     	EntityPlayer p = event.entityPlayer;
     	World w = event.world;
-
+    
     	if (item == null) return;
-
+    
     	if (item.getItem() != Items.glass_bottle) return;
-
+    
     	//if(w.isRemote)return;
-
+    
     	MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(w, p, true);
-
+    
     	if (movingobjectposition == null)
     	{
     		return;
@@ -121,17 +123,17 @@ public class CommonEventHandler {
     			int i = movingobjectposition.blockX;
     			int j = movingobjectposition.blockY;
     			int k = movingobjectposition.blockZ;
-
+    
     			if (!w.canMineBlock(p, i, j, k))
     			{
     				return;
     			}
-
+    
     			if (!p.canPlayerEdit(i, j, k, movingobjectposition.sideHit, item))
     			{
     				return;
     			}
-
+    
     			if (w.getBlock(i, j, k) == SSBlocks.drinkingWater)
     			{
     				--item.stackSize;
@@ -140,26 +142,26 @@ public class CommonEventHandler {
     					event.setCanceled(true);
     					event.useItem = Result.DEFAULT;
     				}
-
+    
     				//event.setResult(Result.DENY);
-
+    
     				if (item.stackSize <= 0)
     				{
     					p.inventory.setInventorySlotContents(p.inventory.currentItem, new ItemStack(SSItems.drinkingWaterBottle));
     					return;
     					//return new ItemStack(SSItems.drinkingWaterSmallBottle);
     				}
-
+    
     				if (!p.inventory.addItemStackToInventory(new ItemStack(SSItems.drinkingWaterBottle)))
     				{
     					p.dropPlayerItemWithRandomChoice(new ItemStack(SSItems.drinkingWaterBottle, 1, 0), false);
     				}
     			}
     		}
-
+    
     		return;
     	}
-
+    
     }*/
 
     protected MovingObjectPosition getMovingObjectPositionFromPlayer(World p_77621_1_, EntityPlayer p_77621_2_, boolean p_77621_3_) {
@@ -232,28 +234,28 @@ public class CommonEventHandler {
     	if (event.entityLiving.worldObj.isRemote) {
     		return;
     	}
-
+    
     	if (!(event.entityLiving instanceof EntityPlayerMP)) {
     		return;
     	}
-
+    
     	if (!event.entityLiving.worldObj.isRemote) {
-
+    
     		EntityPlayerMP player = (EntityPlayerMP) event.entityLiving;
-
+    
     		if(!player.func_147099_x().hasAchievementUnlocked(SSAchievement.creeperFirework)||player.func_147099_x().hasAchievementUnlocked(SSAchievement.creeperChest)){
     			return;
     		}
-
+    
     		if (player.isPlayerFullyAsleep()) {
-
+    
     			//System.out.println("CCCCC");
-
+    
     			int x = (int) player.posX;
     		    int y = (int) player.posY;
     		    int z = (int) player.posZ;
     		    World world = player.worldObj;
-
+    
     		    int range = 1;
     		    for (int i = -range; i < range; i++){
     		    	for (int j = -range; j < range; j++) {
@@ -268,9 +270,9 @@ public class CommonEventHandler {
     		    	}
     		    }
     		}
-
+    
     	}
-
+    
     }*/
 
     protected boolean generateChest(World world, int x, int y, int z) {
@@ -431,10 +433,10 @@ public class CommonEventHandler {
     @SubscribeEvent
     public void DecayEvent(BlockEvent.BreakEvent event)
     {
-
+    
     	byte b0 = 2;
     	int i1 = b0 + 1;
-
+    
     	if (event.world.checkChunksExist(event.x - i1, event.y - i1, event.z - i1, event.x + i1, event.y + i1, event.z + i1))
     	{
     		for (int j1 = -b0; j1 <= b0; ++j1)
@@ -470,6 +472,14 @@ public class CommonEventHandler {
 
         if (event.entityLiving instanceof EntitySquid) {
             event.drops.add(new EntityItem(event.entityLiving.worldObj, x, y, z, new ItemStack(SSItems.squidSashimi, r.nextInt(5) + 1)));
+        }
+
+        if (event.entityLiving instanceof EntityCow) {
+            event.drops.add(new EntityItem(event.entityLiving.worldObj, x, y, z, new ItemStack(SSItems.animalOil, r.nextInt(5) + 2)));
+        }
+
+        if (event.entityLiving instanceof EntityPig) {
+            event.drops.add(new EntityItem(event.entityLiving.worldObj, x, y, z, new ItemStack(SSItems.animalOil, r.nextInt(3) + 2)));
         }
 
     }
@@ -587,9 +597,9 @@ public class CommonEventHandler {
     /*
     @SubscribeEvent
     public void onFluidRegisterEvent(FluidRegisterEvent event) {
-
+    
     	FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluid(event.fluidID), new ItemStack(SSBlocks.fluidCrafter,1,event.fluidID), new ItemStack(SSBlocks.fluidCrafter,1,0));
-
+    
     }*/
 
 }

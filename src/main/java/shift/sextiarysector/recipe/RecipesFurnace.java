@@ -1,6 +1,7 @@
 package shift.sextiarysector.recipe;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import shift.sextiarysector.SSBlocks;
@@ -28,6 +29,9 @@ public class RecipesFurnace {
         GameRegistry.addSmelting(new ItemStack(Items.potionitem, 1, 0), new ItemStack(SSItems.drinkingWaterBottle), 0.1f);
 
         GameRegistry.addSmelting(new ItemStack(SSBlocks.leafBlock), new ItemStack(Items.dye, 1, 2), 0.1f);
+
+        GameRegistry.addSmelting(new ItemStack(Blocks.tallgrass, 1, 1), new ItemStack(SSItems.ash, 1), 0.1f);
+        GameRegistry.addSmelting(new ItemStack(Blocks.tallgrass, 1, 2), new ItemStack(SSItems.ash, 1), 0.1f);
 
     }
 

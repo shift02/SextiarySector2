@@ -106,6 +106,13 @@ public class RecipesFurnaceCraft {
                         "dustDiamond"
                 }));
 
+        //瓦
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.kawara, 1),
+                new Object[] {
+                        Items.clay_ball,
+                        SSItems.glaze
+                }));
+
         /*
         p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.unit, 1),
         		new Object[] { "xxx", "xyx", "xxx",

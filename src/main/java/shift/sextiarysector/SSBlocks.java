@@ -36,6 +36,7 @@ import shift.sextiarysector.block.BlockLeafBed;
 import shift.sextiarysector.block.BlockMagiFurnace;
 import shift.sextiarysector.block.BlockMonitor;
 import shift.sextiarysector.block.BlockMotor;
+import shift.sextiarysector.block.BlockOil;
 import shift.sextiarysector.block.BlockOreBlock;
 import shift.sextiarysector.block.BlockPaddy;
 import shift.sextiarysector.block.BlockPipe;
@@ -152,8 +153,11 @@ public class SSBlocks {
     public static Block motor;
     public static Block stickyMotor;
 
+    //素材
     //瓦
     public static Block kawara;
+
+    public static Block animalOil;
 
     //Bed
     public static Block leafBed;
@@ -433,7 +437,10 @@ public class SSBlocks {
         GameRegistry.registerBlock(stickyMotor, "StickyMotor");
 
         kawara = new BlockKawara().setBlockName("ss.kawara").setBlockTextureName("sextiarysector:kawara");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
-        GameRegistry.registerBlock(kawara, "Kawara");
+        GameRegistry.registerBlock(kawara, "KawaraBlock");
+
+        animalOil = new BlockOil().setBlockName("ss.animal_oil").setBlockTextureName("sextiarysector:animal_oil").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        GameRegistry.registerBlock(animalOil, "AnimalOilBlock");
 
         leafBed = new BlockLeafBed().setBlockName("ss.leaf_bed").setBlockTextureName("sextiarysector:leaf_bed");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerBlock(leafBed, "LeafBed");
