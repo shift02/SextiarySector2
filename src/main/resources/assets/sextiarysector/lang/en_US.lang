@@ -59,6 +59,10 @@ tile.ss.trap.name=Trap
 tile.ss.motor.name=Motor
 tile.ss.sticky_motor.name=Sticky Motor
 
+tile.ss.kawara.name=Kawara Block
+
+tile.ss.animal_oil.name=Animal Oil Block
+
 tile.ss.leaf_bed.name=Leaf Bed
 
 tile.ss.drinking_water.name=Drinking Water
@@ -217,6 +221,13 @@ item.ss.leaf_bed.name=Leaf Bed
 
 
 item.ss.leaf.name=Leaf
+
+item.ss.ash.name=Ash
+item.ss.glaze.name=Glaze
+item.ss.kawara.name=Kawara
+
+item.ss.animal_oil.name=Animal Oil
+
 
 item.ss.dust_waterlily.name=WaterLily Dust
 

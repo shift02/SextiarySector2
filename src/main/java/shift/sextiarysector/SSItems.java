@@ -87,6 +87,12 @@ public class SSItems {
     //素材
     public static Item leaf;
 
+    public static Item ash;
+    public static Item glaze;
+    public static Item kawara;
+
+    public static Item animalOil;
+
     public static Item dustWaterLily;
 
     public static Item stoneDust;
@@ -451,6 +457,19 @@ public class SSItems {
         leaf = new Item().setUnlocalizedName("ss.leaf").setTextureName("sextiarysector:leaf")
                 .setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerItem(leaf, "Leaf");
+
+        ash = new Item().setUnlocalizedName("ss.ash").setTextureName("sextiarysector:dust/ash").setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerItem(ash, "Ash");
+
+        glaze = new Item().setUnlocalizedName("ss.glaze").setTextureName("sextiarysector:gel/glaze").setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerItem(glaze, "Glaze");
+
+        kawara = new Item().setUnlocalizedName("ss.kawara").setTextureName("sextiarysector:kawara")
+                .setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerItem(kawara, "Kawara");
+
+        animalOil = new Item().setUnlocalizedName("ss.animal_oil").setTextureName("sextiarysector:animal_oil").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        GameRegistry.registerItem(animalOil, "AnimalOil");
 
         dustWaterLily = new Item().setUnlocalizedName("ss.dust_waterlily")
                 .setTextureName("sextiarysector:dust/waterlily_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);

@@ -120,6 +120,25 @@ public class RecipesCore {
                         'y', "plankWood",
                 }));
 
+        p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(SSItems.glaze, 8),
+                new Object[] {
+                        "slimeball",
+                        "dustIron",
+                        "itemAsh"
+                }));
+
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.kawara, 1),
+                new Object[] {
+                        "xx", "xx",
+                        'x', SSItems.kawara
+                }));
+
+        p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.animalOil, 1),
+                new Object[] {
+                        "xxx", "xxx", "xxx",
+                        'x', SSItems.animalOil
+                }));
+
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.motor, 1),
                 new Object[] {
                         "xxx", "azy", "yyy",

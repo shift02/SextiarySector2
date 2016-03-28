@@ -1,8 +1,8 @@
 package shift.sextiarysector;
 
+import cpw.mods.fml.common.IFuelHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.IFuelHandler;
 
 public class SSFuels implements IFuelHandler {
 
@@ -21,6 +21,9 @@ public class SSFuels implements IFuelHandler {
         if (item == SSItems.woodWateringCan) return 200;
 
         if (item == SSItems.lavaBottle) return 20000;
+
+        if (item == SSItems.animalOil) return 1600;
+        if (item == Item.getItemFromBlock(SSBlocks.animalOil)) return 14400;
 
         return 0;
 
