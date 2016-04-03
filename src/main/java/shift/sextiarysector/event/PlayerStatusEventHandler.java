@@ -163,7 +163,7 @@ public class PlayerStatusEventHandler {
 
         EntityPlayer player = event.getPlayer();
 
-        float i = 0.75f;
+        float i = 0.65f;
 
         if (BiomeDictionary
                 .isBiomeOfType(

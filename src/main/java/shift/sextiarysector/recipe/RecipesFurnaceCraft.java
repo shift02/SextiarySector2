@@ -36,6 +36,14 @@ public class RecipesFurnaceCraft {
                         "fluidSap",
                 }));
 
+        //石鹸
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.soap, 1),
+                new Object[] {
+                        "itemAsh",
+                        SSItems.animalOil,
+                        SSItems.animalOil
+                }));
+
         /*
         p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.slime_ball, 2),
         		new Object[] {

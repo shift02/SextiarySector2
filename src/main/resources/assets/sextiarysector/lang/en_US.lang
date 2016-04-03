@@ -217,6 +217,9 @@ item.ss.season_stone_summer.name=Season Stone -Summer-
 item.ss.season_stone_autumn.name=Season Stone -Autumn-
 item.ss.season_stone_winter.name=Season Stone -Winter-
 
+
+item.ss.soap.name=Soap
+
 item.ss.leaf_bed.name=Leaf Bed
 
 

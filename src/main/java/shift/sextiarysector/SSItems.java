@@ -41,6 +41,7 @@ import shift.sextiarysector.item.ItemSeed;
 import shift.sextiarysector.item.ItemShiftHat;
 import shift.sextiarysector.item.ItemShopMemory;
 import shift.sextiarysector.item.ItemSimpleBucket;
+import shift.sextiarysector.item.ItemSoap;
 import shift.sextiarysector.item.ItemSoup;
 import shift.sextiarysector.item.ItemSpanner;
 import shift.sextiarysector.item.ItemSpray;
@@ -80,6 +81,9 @@ public class SSItems {
 
     public static Item calendar;
     public static Item seasonStone;
+
+    //石鹸
+    public static Item soap;
 
     //ベッド
     public static Item leafBed;
@@ -448,6 +452,10 @@ public class SSItems {
         seasonStone = new ItemSeasonStone().setUnlocalizedName("ss.season_stone")
                 .setTextureName("sextiarysector:season_stone").setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerItem(seasonStone, "SeasonStone");
+
+        //石鹸
+        soap = new ItemSoap().setUnlocalizedName("ss.soap").setTextureName("sextiarysector:soap/soap");
+        GameRegistry.registerItem(soap, "Soap");
 
         leafBed = new ItemLeafBed().setUnlocalizedName("ss.leaf_bed").setTextureName("sextiarysector:leaf_bed")
                 .setCreativeTab(SextiarySectorAPI.TabSSCore);
