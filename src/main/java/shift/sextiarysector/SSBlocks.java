@@ -22,17 +22,21 @@ import shift.sextiarysector.block.BlockFunnel;
 import shift.sextiarysector.block.BlockGFTank;
 import shift.sextiarysector.block.BlockGearBox;
 import shift.sextiarysector.block.BlockGearShaft;
+import shift.sextiarysector.block.BlockGutter;
+import shift.sextiarysector.block.BlockHalfGutter;
 import shift.sextiarysector.block.BlockHole;
 import shift.sextiarysector.block.BlockHotSprings;
+import shift.sextiarysector.block.BlockKawara;
 import shift.sextiarysector.block.BlockKnife;
 import shift.sextiarysector.block.BlockLargeFurnace;
 import shift.sextiarysector.block.BlockLargeOre;
 import shift.sextiarysector.block.BlockLargeWindmill;
 import shift.sextiarysector.block.BlockLeaf;
 import shift.sextiarysector.block.BlockLeafBed;
-import shift.sextiarysector.block.BlockMachineFrame;
 import shift.sextiarysector.block.BlockMagiFurnace;
 import shift.sextiarysector.block.BlockMonitor;
+import shift.sextiarysector.block.BlockMotor;
+import shift.sextiarysector.block.BlockOil;
 import shift.sextiarysector.block.BlockOreBlock;
 import shift.sextiarysector.block.BlockPaddy;
 import shift.sextiarysector.block.BlockPipe;
@@ -81,6 +85,8 @@ import shift.sextiarysector.tileentity.TileEntityFunnel;
 import shift.sextiarysector.tileentity.TileEntityGFTank;
 import shift.sextiarysector.tileentity.TileEntityGearBox;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
+import shift.sextiarysector.tileentity.TileEntityGutter;
+import shift.sextiarysector.tileentity.TileEntityHalfGutter;
 import shift.sextiarysector.tileentity.TileEntityKnife;
 import shift.sextiarysector.tileentity.TileEntityLargeFurnace;
 import shift.sextiarysector.tileentity.TileEntityLargeWindmill;
@@ -126,6 +132,10 @@ public class SSBlocks {
 
     public static Block square;
 
+    //樋
+    public static Block gutter;
+    public static Block halfGutter;
+
     public static Block tank;
     public static Block funnel;
     public static Block copperPipe;
@@ -139,6 +149,15 @@ public class SSBlocks {
     public static Block trap;
 
     public static Block knife;
+
+    public static Block motor;
+    public static Block stickyMotor;
+
+    //素材
+    //瓦
+    public static Block kawara;
+
+    public static Block animalOil;
 
     //Bed
     public static Block leafBed;
@@ -181,7 +200,7 @@ public class SSBlocks {
     public static Block steamMotor;
 
     //機械
-    public static Block machineFrame;
+    //public static Block machineFrame;
 
     public static Block millstone;
     public static Block loom;
@@ -324,6 +343,14 @@ public class SSBlocks {
         GameRegistry.registerBlock(square, ItemBlockDirection.class, "Square");
         GameRegistry.registerTileEntity(TileEntitySquare.class, "Square");
 
+        gutter = new BlockGutter().setBlockItemTextureName(ID + ":gutter").setBlockName("ss.gutter").setBlockTextureName("planks_oak");
+        GameRegistry.registerBlock(gutter, "Gutter");
+        GameRegistry.registerTileEntity(TileEntityGutter.class, "Gutter");
+
+        halfGutter = new BlockHalfGutter().setBlockItemTextureName(ID + ":half_gutter").setBlockName("ss.half_gutter").setBlockTextureName("planks_oak");
+        GameRegistry.registerBlock(halfGutter, "HalfGutter");
+        GameRegistry.registerTileEntity(TileEntityHalfGutter.class, "HalfGutter");
+
         tank = new BlockTank().setBlockName("ss.tank").setBlockTextureName("glass").setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerBlock(tank, "Tank");
         GameRegistry.registerTileEntity(TileEntityTank.class, "SSTank");
@@ -402,6 +429,18 @@ public class SSBlocks {
         knife = new BlockKnife().setBlockName("ss.knife").setBlockTextureName("sextiarysector:break");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerBlock(knife, "Knife");
         GameRegistry.registerTileEntity(TileEntityKnife.class, "SSKnife");
+
+        motor = new BlockMotor(false).setBlockName("ss.motor").setBlockTextureName("sextiarysector:motor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerBlock(motor, "Motor");
+
+        stickyMotor = new BlockMotor(true).setBlockName("ss.sticky_motor").setBlockTextureName("sextiarysector:motor").setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerBlock(stickyMotor, "StickyMotor");
+
+        kawara = new BlockKawara().setBlockName("ss.kawara").setBlockTextureName("sextiarysector:kawara");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerBlock(kawara, "KawaraBlock");
+
+        animalOil = new BlockOil().setBlockName("ss.animal_oil").setBlockTextureName("sextiarysector:animal_oil").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        GameRegistry.registerBlock(animalOil, "AnimalOilBlock");
 
         leafBed = new BlockLeafBed().setBlockName("ss.leaf_bed").setBlockTextureName("sextiarysector:leaf_bed");//.setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerBlock(leafBed, "LeafBed");
@@ -561,8 +600,8 @@ public class SSBlocks {
         GameRegistry.registerBlock(steamMotor, ItemBlockDirection.class, "SteamMotor");
 
         //機械
-        machineFrame = new BlockMachineFrame().setBlockName("ss.machine_frame").setBlockTextureName("sextiarysector:machine/machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
-        GameRegistry.registerBlock(machineFrame, "MachineFrame");
+        //machineFrame = new BlockMachineFrame().setBlockName("ss.machine_frame").setBlockTextureName("sextiarysector:machine/machine").setCreativeTab(SextiarySectorAPI.TabSSIndustry);
+        //GameRegistry.registerBlock(machineFrame, "MachineFrame");
 
         GameRegistry.registerTileEntity(TileEntitySimpleMachine.class, "SimpleMachine");
         GameRegistry.registerTileEntity(TileEntityFluidFGFMachineBase.class, "FluidFGFMachine");

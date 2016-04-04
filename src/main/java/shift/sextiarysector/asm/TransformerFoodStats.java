@@ -4,125 +4,110 @@
 */
 package shift.sextiarysector.asm;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import java.util.Set;
 
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.commons.AnalyzerAdapter;
 
+import com.google.common.collect.Sets;
+
+import cpw.mods.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 import net.minecraft.launchwrapper.IClassTransformer;
 
 public class TransformerFoodStats implements IClassTransformer, Opcodes {
+
     // 改変対象のクラスの完全修飾名です。
     // 後述でMinecraft.jar内の難読化されるファイルを対象とする場合の簡易な取得方法を紹介します。
     private static final String TARGET_CLASS_NAME = "net.minecraft.util.FoodStats";
 
-    // クラスがロードされる際に呼び出されるメソッドです。
     @Override
-    public byte[] transform(String name, String transformedName, byte[] basicClass) {
-        // FMLRelauncher.side() : Client/Server どちらか一方のを対象とする場合や、
-        // 一つのMODで Client/Sever 両方に対応したMODで、この値を判定して処理を変える事ができます。
-        // 今回は"CLIENT"と比較し、Client側のファイルを対象としている例です。
-        // Client側専用のMODとして公開するのであれば、判定は必須ではありません。
-
-        // name : 現在ロードされようとしているクラス名が格納されています。
-        if (!transformedName.equals(TARGET_CLASS_NAME)) {
-            // 処理対象外なので何もしない
-            return basicClass;
+    public byte[] transform(String name, String transformedName, byte[] bytes) {
+        try {
+            final String targetClassName = "net.minecraft.util.FoodStats";
+            if (targetClassName.equals(transformedName)) {
+                System.out.println("start transform > FoodStats");
+                ClassReader classReader = new ClassReader(bytes);
+                ClassWriter classWriter = new ClassWriter(0);
+                classReader.accept(new addFoodStatsHooksVisitor(name, classWriter), ClassReader.EXPAND_FRAMES);
+                return classWriter.toByteArray();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("failed : FoodStats loading", e);
         }
 
-        try {
-            // --------------------------------------------------------------
-            // クラスファイル丸ごと差し替える場合
-            // --------------------------------------------------------------
-            return replaceClass(basicClass);
+        return bytes;
+    }
 
-        } catch (Exception e) {
-            throw new RuntimeException("failed : TutorialTransformer loading", e);
+    static class addFoodStatsHooksVisitor extends ClassVisitor {
+        String owner;
+
+        public addFoodStatsHooksVisitor(String owner, ClassVisitor cv) {
+            super(Opcodes.ASM5, cv);
+            this.owner = owner;
+        }
+
+        private final Set<String> targetMethodName = Sets.newHashSet("onUpdate", "func_75118_a");
+        private final String targetMethoddesc = "(Lnet/minecraft/entity/player/EntityPlayer;)V";
+
+        private boolean isTransformed = false;
+
+        @Override
+        public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
+
+            MethodVisitor mv = super.visitMethod(access, name, desc, signature, exceptions);
+
+            if (!isTransformed) {
+
+                FMLDeobfuscatingRemapper remap = FMLDeobfuscatingRemapper.INSTANCE;
+
+                if (targetMethodName.contains(remap.mapMethodName(owner, name, desc)) && targetMethoddesc.equals(remap.mapMethodDesc(desc))) {
+                    mv = new FoodStatusMethodVisitor(owner, access, name, desc, mv);
+
+                    isTransformed = true;
+
+                }
+
+            }
+
+            return mv;
         }
     }
 
-    // 下記の想定で実装されています。
-    // 対象クラスの bytes を ModifiedTargetClass.class ファイルに置き換える
-    private byte[] replaceClass(byte[] bytes) throws IOException {
-        ZipFile zf = null;
-        InputStream zi = null;
+    static class FoodStatusMethodVisitor extends AnalyzerAdapter {
 
-        File f = null;
+        public FoodStatusMethodVisitor(String owner, int access, String name, String desc, org.objectweb.asm.MethodVisitor mv) {
+            super(Opcodes.ASM5, owner, access, name, desc, mv);
+        }
 
-        try {
+        private final String targetoOwner = "net/minecraft/entity/player/EntityPlayer";
+        private final Set<String> targetName = Sets.newHashSet("attackEntityFrom", "func_70097_a");
+        private final String targetDesc = "(Lnet/minecraft/util/DamageSource;F)Z";
 
-            if (SSCore.location.isDirectory()) {
+        @Override
+        public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
 
-                f = new File(SSCore.location, "./net/minecraft/util/FoodStats.class");
+            FMLDeobfuscatingRemapper remap = FMLDeobfuscatingRemapper.INSTANCE;
+            if (opcode == INVOKEVIRTUAL
+                    && targetoOwner.equals(remap.map(owner))
+                    && targetName.contains(remap.mapMethodName(owner, name, desc))
+                    && targetDesc.equals(remap.mapMethodDesc(desc))) {
+                //すでに積んである1を積みおろす
+                //mv.visitInsn(FCONST_1);
+                mv.visitInsn(POP);
+                mv.visitInsn(POP);
 
-                if (f != null) {
+                mv.visitLdcInsn(new Float("0.5"));
+                mv.visitMethodInsn(INVOKESTATIC, "shift/sextiarysector/asm/vanilla/FoodStatsMethod", "onExhaustion", "(Lnet/minecraft/entity/player/EntityPlayer;F)V", false);
 
-                    zi = new FileInputStream(f);
-                    int len = (int) f.length();
-                    bytes = new byte[len];
+                //attackEntityFromの戻り値boolを破棄するpop命令が続くので、スタックにダミー値を積んでスタックのずれを解消する
+                mv.visitInsn(FCONST_1);
 
-                    // ヒープサイズを超えないように、ストリームからファイルを1024ずつ読み込んで bytes に格納する
-                    int MAX_READ = 1024;
-                    int readed = 0, readsize, ret;
-                    while (readed < len) {
-                        readsize = MAX_READ;
-                        if (len - readed < MAX_READ) {
-                            readsize = len - readed;
-                        }
-                        ret = zi.read(bytes, readed, readsize);
-                        if (ret == -1) break;
-                        readed += ret;
-                    }
-                }
-
-            } else {
-
-                zf = new ZipFile(SSCore.location);
-
-                // 差し替え後のファイルです。coremodのjar内のパスを指定します。
-                ZipEntry ze = zf.getEntry("net/minecraft/util/FoodStats.class");
-
-                if (ze != null) {
-                    zi = zf.getInputStream(ze);
-                    int len = (int) ze.getSize();
-                    bytes = new byte[len];
-
-                    // ヒープサイズを超えないように、ストリームからファイルを1024ずつ読み込んで bytes に格納する
-                    int MAX_READ = 1024;
-                    int readed = 0, readsize, ret;
-                    while (readed < len) {
-                        readsize = MAX_READ;
-                        if (len - readed < MAX_READ) {
-                            readsize = len - readed;
-                        }
-                        ret = zi.read(bytes, readed, readsize);
-                        if (ret == -1) break;
-                        readed += ret;
-                    }
-                } else {
-                    throw new NullPointerException();
-                }
-
-            }
-
-            return bytes;
-
-        } catch (IOException e) {
-            throw e;
-        } catch (NullPointerException e) {
-            throw e;
-        } finally {
-            if (zi != null) {
-                zi.close();
-            }
-
-            if (zf != null) {
-                zf.close();
-            }
+            } else
+                super.visitMethodInsn(opcode, owner, name, desc, itf);
         }
     }
 }

@@ -40,8 +40,8 @@ import shift.sextiarysector.item.ItemSeasonStone;
 import shift.sextiarysector.item.ItemSeed;
 import shift.sextiarysector.item.ItemShiftHat;
 import shift.sextiarysector.item.ItemShopMemory;
-import shift.sextiarysector.item.ItemShopRing;
 import shift.sextiarysector.item.ItemSimpleBucket;
+import shift.sextiarysector.item.ItemSoap;
 import shift.sextiarysector.item.ItemSoup;
 import shift.sextiarysector.item.ItemSpanner;
 import shift.sextiarysector.item.ItemSpray;
@@ -82,11 +82,20 @@ public class SSItems {
     public static Item calendar;
     public static Item seasonStone;
 
+    //石鹸
+    public static Item soap;
+
     //ベッド
     public static Item leafBed;
 
     //素材
     public static Item leaf;
+
+    public static Item ash;
+    public static Item glaze;
+    public static Item kawara;
+
+    public static Item animalOil;
 
     public static Item dustWaterLily;
 
@@ -257,6 +266,7 @@ public class SSItems {
     public static Item tomato;
     public static Item corn;
 
+    public static Item copperOnion;
     public static Item goldenCorn;
 
     public static Item eggplant;
@@ -336,7 +346,7 @@ public class SSItems {
 
     //リング
     public static Item ironRing;
-    public static Item creeperRing;
+    //public static Item creeperRing;
     public static Item mpRing;
     public static Item xpRing;
 
@@ -443,6 +453,10 @@ public class SSItems {
                 .setTextureName("sextiarysector:season_stone").setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerItem(seasonStone, "SeasonStone");
 
+        //石鹸
+        soap = new ItemSoap().setUnlocalizedName("ss.soap").setTextureName("sextiarysector:soap/soap");
+        GameRegistry.registerItem(soap, "Soap");
+
         leafBed = new ItemLeafBed().setUnlocalizedName("ss.leaf_bed").setTextureName("sextiarysector:leaf_bed")
                 .setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerItem(leafBed, "ItemLeafBed");
@@ -451,6 +465,19 @@ public class SSItems {
         leaf = new Item().setUnlocalizedName("ss.leaf").setTextureName("sextiarysector:leaf")
                 .setCreativeTab(SextiarySectorAPI.TabSSCore);
         GameRegistry.registerItem(leaf, "Leaf");
+
+        ash = new Item().setUnlocalizedName("ss.ash").setTextureName("sextiarysector:dust/ash").setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerItem(ash, "Ash");
+
+        glaze = new Item().setUnlocalizedName("ss.glaze").setTextureName("sextiarysector:gel/glaze").setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerItem(glaze, "Glaze");
+
+        kawara = new Item().setUnlocalizedName("ss.kawara").setTextureName("sextiarysector:kawara")
+                .setCreativeTab(SextiarySectorAPI.TabSSCore);
+        GameRegistry.registerItem(kawara, "Kawara");
+
+        animalOil = new Item().setUnlocalizedName("ss.animal_oil").setTextureName("sextiarysector:animal_oil").setCreativeTab(SextiarySectorAPI.TabSSCooking);
+        GameRegistry.registerItem(animalOil, "AnimalOil");
 
         dustWaterLily = new Item().setUnlocalizedName("ss.dust_waterlily")
                 .setTextureName("sextiarysector:dust/waterlily_dust").setCreativeTab(SextiarySectorAPI.TabSSCore);
@@ -861,6 +888,10 @@ public class SSItems {
                 .setTextureName("sextiarysector:food/vegetable/corn");
         GameRegistry.registerItem(corn, "corn");
 
+        copperOnion = new ItemFoodCrop(0, 2, 0, 0, 0, 0, false).setUnlocalizedName("ss.copper_onion")
+                .setTextureName("sextiarysector:food/vegetable/copper_onion");
+        GameRegistry.registerItem(copperOnion, "CopperOnion");
+
         goldenCorn = new ItemFoodCrop(0, 2, 0, 0, 0, 0, false).setUnlocalizedName("ss.golden_corn")
                 .setTextureName("sextiarysector:food/vegetable/golden_corn");
         GameRegistry.registerItem(goldenCorn, "GoldCorn");
@@ -894,7 +925,7 @@ public class SSItems {
         GameRegistry.registerItem(shiitake, "Shiitake");
 
         //さかな
-        squidSashimi = new ItemFoodDrink(2, 1.2f, 0, 0.4f, 0, 0, false).setUnlocalizedName("ss.squid_sashimi")
+        squidSashimi = new ItemFoodDrink(2, 1.2f, 0, 0.4f, 0, 4, false).setUnlocalizedName("ss.squid_sashimi")
                 .setTextureName("sextiarysector:food/fish/squid_sashimi")
                 .setCreativeTab(SextiarySectorAPI.TabSSCooking);
         GameRegistry.registerItem(squidSashimi, "SquidSashimi");
@@ -1057,9 +1088,9 @@ public class SSItems {
                 .setCreativeTab(SextiarySectorAPI.TabSSPlayer);
         GameRegistry.registerItem(ironRing, "IronRing");
 
-        creeperRing = new ItemShopRing().setUnlocalizedName("ss.creeper_ring")
-                .setTextureName("sextiarysector:ring/creeper_ring");
-        GameRegistry.registerItem(creeperRing, "CreeperRing");
+        //creeperRing = new ItemShopRing().setUnlocalizedName("ss.creeper_ring")
+        //        .setTextureName("sextiarysector:ring/creeper_ring");
+        //GameRegistry.registerItem(creeperRing, "CreeperRing");
 
         mpRing = new ItemProtectionRing().setUnlocalizedName("ss.mp_ring").setTextureName("sextiarysector:ring/mp_ring")
                 .setCreativeTab(SextiarySectorAPI.TabSSPlayer);

@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSItems;
 
@@ -53,7 +52,7 @@ public class RecipesMachine {
         Object[] material = new Object[] { "plankWood", "stone", "ingotSteel", "ingotNinja", "gemOrichalcum" };
         Item[] gear = new Item[] { SSItems.woodGear, SSItems.stoneGear, SSItems.steelGear, SSItems.ninjaGear, SSItems.orichalcumGear };
         String[] gearOre = new String[] { "gearWood", "gearStone", "gearSteel", "gearNinja", "gearOrichalcum" };
-        Item[] unit = new Item[] { SSItems.woodUnitGear, SSItems.stoneUnitGear, SSItems.steelUnitGear, SSItems.ninjaUnitGear, SSItems.orichalcumUnitGear };
+        //Item[] unit = new Item[] { SSItems.woodUnitGear, SSItems.stoneUnitGear, SSItems.steelUnitGear, SSItems.ninjaUnitGear, SSItems.orichalcumUnitGear };
         Item[] storage = new Item[] { SSItems.woodGFStorage, SSItems.stoneGFStorage, SSItems.steelGFStorage, SSItems.ninjaGFStorage, SSItems.orichalcumGFStorage };
         Block[] shaft = new Block[] { SSBlocks.woodShaft, SSBlocks.stoneShaft, SSBlocks.steelShaft, SSBlocks.ninjaShaft, SSBlocks.orichalcumShaft };
         Block[] tank = new Block[] { SSBlocks.woodGFTank, SSBlocks.stoneGFTank, SSBlocks.steelGFTank, SSBlocks.ninjaGFTank, SSBlocks.orichalcumGFTank };
@@ -156,7 +155,7 @@ public class RecipesMachine {
                 new Object[] { "yay", "aza", "yxy",
                         Character.valueOf('y'), "gearWood",
                         Character.valueOf('x'), SSItems.woodGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "stone"
                 }));
 
@@ -164,7 +163,7 @@ public class RecipesMachine {
                 new Object[] { "y y", "aza", "yxy",
                         Character.valueOf('y'), "gearWood",
                         Character.valueOf('x'), SSItems.woodGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "stickWood"
                 }));
 
@@ -172,7 +171,7 @@ public class RecipesMachine {
                 new Object[] { "y y", "aza", "yxy",
                         Character.valueOf('y'), "gearStone",
                         Character.valueOf('x'), SSItems.stoneGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "ingotZinc"
                 }));
 
@@ -180,7 +179,7 @@ public class RecipesMachine {
                 new Object[] { "yby", "aza", "yxy",
                         Character.valueOf('y'), "gearStone",
                         Character.valueOf('x'), SSItems.stoneGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "ingotSilver",
                         Character.valueOf('b'), "stickWood"
                 }));
@@ -214,7 +213,7 @@ public class RecipesMachine {
                 new Object[] { "yay", "aza", "yxy",
                         Character.valueOf('y'), "gearSteel",
                         Character.valueOf('x'), SSItems.steelGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "gemDiamond"
                 }));
 
@@ -222,7 +221,7 @@ public class RecipesMachine {
                 new Object[] { "yby", "aza", "yxy",
                         Character.valueOf('y'), "gearSteel",
                         Character.valueOf('x'), SSItems.steelGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "containerBottle",
                         Character.valueOf('b'), SSBlocks.tank
                 }));
@@ -249,7 +248,7 @@ public class RecipesMachine {
                 new Object[] { "yay", "aza", "yxy",
                         Character.valueOf('y'), "gearNinja",
                         Character.valueOf('x'), SSItems.ninjaGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), "ingotIron"
                 }));
 
@@ -257,7 +256,7 @@ public class RecipesMachine {
                 new Object[] { "yby", "aza", "yxy",
                         Character.valueOf('y'), "gearOrichalcum",
                         Character.valueOf('x'), SSItems.orichalcumGFStorage,
-                        Character.valueOf('z'), SSBlocks.machineFrame,
+                        Character.valueOf('z'), SSBlocks.motor,
                         Character.valueOf('a'), SSBlocks.chunkLoader,
                         Character.valueOf('b'), "ingotMithril"
                 }));
@@ -272,11 +271,11 @@ public class RecipesMachine {
                             Character.valueOf('x'), material[i]
                     }));
 
-            p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(unit[i], 1),
-                    new Object[] {
-                            SSItems.unit,
-                            gearOre[i]
-                    }));
+            //                    p_77608_1_.getRecipeList().add(new ShapelessOreRecipe(new ItemStack(unit[i], 1),
+            //                            new Object[] {
+            //                                    SSItems.unit,
+            //                                    gearOre[i]
+            //                            }));
 
         }
 

@@ -80,23 +80,29 @@ public class RendererFigure extends TileEntitySpecialRenderer implements IItemRe
 
     public void renderFigure(ItemStack itemstack) {
 
-        GL11.glColor4f(1, 1, 1, 1);
-        entityItem.setEntityItemStack(itemstack);
+        try {
 
-        if (isLarge(itemstack)) {
+            GL11.glColor4f(1, 1, 1, 1);
+            entityItem.setEntityItemStack(itemstack);
 
-            double d = 2;
-            if (isLarge(itemstack)) GL11.glScaled(d, d, d);
+            if (isLarge(itemstack)) {
 
-            renderer.renderInFrame = true;
-            renderer.doRender(entityItem, 0, 0.06, 0, 0, 0);
-            renderer.renderInFrame = false;
+                double d = 2;
+                if (isLarge(itemstack)) GL11.glScaled(d, d, d);
 
-        } else {
+                renderer.renderInFrame = true;
+                renderer.doRender(entityItem, 0, 0.06, 0, 0, 0);
+                renderer.renderInFrame = false;
 
-            renderer.renderInFrame = true;
-            renderer.doRender(entityItem, 0, 0.03, 0, 0, 0);
-            renderer.renderInFrame = false;
+            } else {
+
+                renderer.renderInFrame = true;
+                renderer.doRender(entityItem, 0, 0.03, 0, 0, 0);
+                renderer.renderInFrame = false;
+
+            }
+
+        } catch (NullPointerException e) {
 
         }
 

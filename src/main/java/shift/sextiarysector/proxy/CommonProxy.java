@@ -8,6 +8,8 @@ public class CommonProxy {
 
     public int leafBedType;
 
+    public int motorType;
+
     public int holeType;
 
     public int bottleType;
@@ -18,6 +20,9 @@ public class CommonProxy {
     public int fluidCrafterType;
 
     public int woodHopperType;
+
+    public int gutterType;
+    public int halfGutterType;
 
     public int pipeType;
     public int tankType;

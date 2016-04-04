@@ -110,7 +110,7 @@ public class BlockShopMonitor extends BlockContainer {
 
             IShopMemory memory = (IShopMemory) tItem.getItem();
 
-            MCEconomyAPI.openShopGui(memory.getShopID(world), player, world, x, y, z);
+            MCEconomyAPI.openShopGui(memory.getShopID(world, player), player, world, x, y, z);
 
         }
 

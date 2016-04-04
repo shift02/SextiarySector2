@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.C0DPacketCloseWindow;
 import net.minecraftforge.client.event.GuiScreenEvent;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class TabManager {
 
@@ -141,6 +141,14 @@ public class TabManager {
 
     }
 
+    /**
+     * GUIにタブを付けて表示
+     * @param cornerX
+     * @param cornerY
+     * @param buttonList ボタンList
+     * @param selectedButton 選択しているタブ
+     * @param reset 次へ and 戻るボタンを消す
+     */
     public static void updateTabValues(int cornerX, int cornerY, List buttonList, AbstractTab selectedButton, boolean reset) {
 
         if (reset) {

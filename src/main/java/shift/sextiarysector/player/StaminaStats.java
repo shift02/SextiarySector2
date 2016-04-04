@@ -5,8 +5,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
-import shift.sextiarysector.Config;
+import net.minecraftforge.common.MinecraftForge;
+import shift.sextiarysector.SSConfig;
+import shift.sextiarysector.api.event.player.PlayerMoistureEvent;
+import shift.sextiarysector.api.event.player.PlayerStaminaEvent;
 
 public class StaminaStats {
 
@@ -32,9 +36,23 @@ public class StaminaStats {
     /**
      * Args: int staminaLevel, float staminaSaturationModifier
      */
-    public void addStats(int par1, float par2) {
-        this.staminaLevel = Math.min(par1 + this.staminaLevel, MAX_STAMINA_LEVEL);
-        this.staminaSaturationLevel = Math.min(Math.min(this.staminaSaturationLevel + par1 * par2 * 2.0F, this.staminaLevel), MAX_STAMINA_LEVEL / 2);
+    public void addStats(EntityPlayer entityPlayer, int par1, float par2) {
+
+        if (!SSConfig.statusStamina) return;
+
+        //this.staminaLevel = Math.min(par1 + this.staminaLevel, MAX_STAMINA_LEVEL);
+        //this.staminaSaturationLevel = Math.min(Math.min(this.staminaSaturationLevel + par1 * par2 * 2.0F, this.staminaLevel), MAX_STAMINA_LEVEL / 2);
+
+        PlayerMoistureEvent.Add event = new PlayerMoistureEvent.Add(entityPlayer, staminaLevel, staminaSaturationLevel, par1, par2);
+
+        if (MinecraftForge.EVENT_BUS.post(event)) {
+            //this.moistureLevel = prevLevel;
+            //this.moistureSaturationLevel = prevSaturation;
+        } else {
+            this.staminaLevel = MathHelper.clamp_int(event.newAddMoistureLevel + this.staminaLevel, 0, MAX_STAMINA_LEVEL);
+            this.staminaSaturationLevel = MathHelper.clamp_float(event.newAddMoistureSaturationLevel + this.staminaSaturationLevel, 0.0F, this.staminaLevel / 3.0f);
+        }
+
     }
 
     /*
@@ -47,6 +65,9 @@ public class StaminaStats {
      * Handles the food game logic.
      */
     public void onUpdate(EntityPlayer par1EntityPlayer) {
+
+        if (!SSConfig.statusStamina) return;
+
         EnumDifficulty i = par1EntityPlayer.worldObj.difficultySetting;
         this.prevStaminaLevel = this.staminaLevel;
 
@@ -55,7 +76,7 @@ public class StaminaStats {
 
             if (this.staminaSaturationLevel > 0.0F) {
                 this.staminaSaturationLevel = Math.max(this.staminaSaturationLevel - 1.0F, 0.0F);
-            } else if (i.getDifficultyId() > 0 || Config.peacefulStamina) {
+            } else if (i.getDifficultyId() > 0 || SSConfig.peacefulStamina) {
                 this.staminaLevel = Math.max(this.staminaLevel - 1, 0);
             }
         }
@@ -65,7 +86,7 @@ public class StaminaStats {
 
             if (this.staminaTimer >= 80) {
                 par1EntityPlayer.heal(2.0F);
-                this.addExhaustion(1.0F);
+                this.addExhaustion(par1EntityPlayer, 1.0F);
                 this.staminaTimer = 0;
             }
         } else if (this.staminaLevel <= 0) {
@@ -113,6 +134,8 @@ public class StaminaStats {
     /**Packetを飛ばす必要があるかどうか*/
     public boolean isPacket() {
 
+        if (!SSConfig.statusStamina) return false;
+
         boolean flag = false;
 
         if (this.staminaLevel != this.lastStaminaLevel) {
@@ -135,6 +158,9 @@ public class StaminaStats {
      * Get the player's food level.
      */
     public int getStaminaLevel() {
+
+        if (!SSConfig.statusStamina) return MAX_STAMINA_LEVEL;
+
         return this.staminaLevel;
     }
 
@@ -147,20 +173,37 @@ public class StaminaStats {
      * If foodLevel is not max.
      */
     public boolean needStamina() {
+
+        if (!SSConfig.statusStamina) return false;
+
         return this.staminaLevel < MAX_STAMINA_LEVEL;
     }
 
     /**
      * adds input to foodExhaustionLevel to a max of 400
      */
-    public void addExhaustion(float par1) {
-        this.staminaExhaustionLevel = Math.min(this.staminaExhaustionLevel + par1, 400.0F);
+    public void addExhaustion(EntityPlayer entityPlayer, float par1) {
+
+        if (!SSConfig.statusStamina) return;
+
+        PlayerStaminaEvent.Exhaustion event = new PlayerStaminaEvent.Exhaustion(entityPlayer, staminaLevel, staminaExhaustionLevel, par1);
+
+        if (MinecraftForge.EVENT_BUS.post(event)) {
+            //this.moistureLevel = prevLevel;
+            //this.moistureSaturationLevel = prevSaturation;
+        } else {
+            this.staminaExhaustionLevel = MathHelper.clamp_float(event.newExhaustionLevel + this.staminaExhaustionLevel, 0, 400.0F);
+        }
+
     }
 
     /**
      * Get the player's food saturation level.
      */
     public float getSaturationLevel() {
+
+        if (!SSConfig.statusStamina) return MAX_STAMINA_LEVEL / 3.0F;
+
         return this.staminaSaturationLevel;
     }
 

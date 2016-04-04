@@ -1,5 +1,7 @@
 package shift.sextiarysector.agriculture;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -9,12 +11,12 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
+import shift.sextiarysector.api.agriculture.CropAbstract;
 import shift.sextiarysector.api.agriculture.CropRendererType;
-import shift.sextiarysector.api.agriculture.ICrop;
 import shift.sextiarysector.api.agriculture.TileCrop;
 import shift.sextiarysector.api.agriculture.TileFarmland;
 
-public class CropTest implements ICrop {
+public class CropTest extends CropAbstract {
 
     @SideOnly(Side.CLIENT)
     public IIcon testIcon;
@@ -55,6 +57,16 @@ public class CropTest implements ICrop {
     }
 
     @Override
+    public boolean canHarvest(TileCrop crop, TileFarmland farmland) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<ItemStack> harvest(TileCrop crop, TileFarmland farmland) {
+        return new ArrayList<ItemStack>();
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public void registerCropIcons(IIconRegister register) {
 
@@ -79,6 +91,11 @@ public class CropTest implements ICrop {
     @Override
     public CropRendererType getRenderType() {
         return CropRendererType.Normal;
+    }
+
+    @Override
+    public int getGrowingPeriod() {
+        return -1;
     }
 
 }

@@ -11,8 +11,6 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSItems;
-import shift.sextiarysector.block.BlockMonitor;
-import shift.sextiarysector.block.BlockMonitor.MonitorType;
 
 public class RecipesFurnaceCraft {
 
@@ -36,6 +34,14 @@ public class RecipesFurnaceCraft {
                 new Object[] {
                         "dyeGreen",
                         "fluidSap",
+                }));
+
+        //石鹸
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.soap, 1),
+                new Object[] {
+                        "itemAsh",
+                        SSItems.animalOil,
+                        SSItems.animalOil
                 }));
 
         /*
@@ -108,6 +114,13 @@ public class RecipesFurnaceCraft {
                         "dustDiamond"
                 }));
 
+        //瓦
+        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.kawara, 1),
+                new Object[] {
+                        Items.clay_ball,
+                        SSItems.glaze
+                }));
+
         /*
         p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.unit, 1),
         		new Object[] { "xxx", "xyx", "xxx",
@@ -116,17 +129,17 @@ public class RecipesFurnaceCraft {
         		}));
         		*/
 
-        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.machineFrame, 1),
-                new Object[] { "xxx", "xyx", "xxx",
-                        Character.valueOf('y'), "gelBluestone",
-                        Character.valueOf('x'), "cobblestone",
-                }));
+        //p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSBlocks.machineFrame, 1),
+        //        new Object[] { "xxx", "xyx", "xxx",
+        //                Character.valueOf('y'), "gelBluestone",
+        //                Character.valueOf('x'), "cobblestone",
+        //        }));
 
-        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.emptyBottle, 8),
-                new Object[] {
-                        "x", "x",
-                        'x', "paneGlassColorless",
-                }));
+        //        p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.emptyBottle, 8),
+        //                new Object[] {
+        //                        "x", "x",
+        //                        'x', "paneGlassColorless",
+        //                }));
 
         p_77608_1_.addRecipe(new ShapedOreRecipe(new ItemStack(SSItems.orichalcumGem, 1),
                 new Object[] {
@@ -152,12 +165,12 @@ public class RecipesFurnaceCraft {
                 }));
 
         //クリーパーリング
-        p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.creeperRing, 1),
-                new Object[] {
-                        "ringIron",
-                        SSItems.objectReactor,
-                        BlockMonitor.getMonitor(MonitorType.creeper)
-                }));
+        //p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.creeperRing, 1),
+        //         new Object[] {
+        //                "ringIron",
+        //                SSItems.objectReactor,
+        //               BlockMonitor.getMonitor(MonitorType.creeper)
+        //       }));
 
         //MPRing
         p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.mpRing, 1),

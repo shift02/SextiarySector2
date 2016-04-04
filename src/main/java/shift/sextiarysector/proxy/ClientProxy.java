@@ -17,6 +17,8 @@ import shift.sextiarysector.entity.EntityMineboat;
 import shift.sextiarysector.entity.EntityMineboatChest;
 import shift.sextiarysector.entity.EntityMineboatTank;
 import shift.sextiarysector.gui.tab.TabManager;
+import shift.sextiarysector.packet.PacketGuiId;
+import shift.sextiarysector.packet.SSPacketHandler;
 import shift.sextiarysector.plugin.IPlugin;
 import shift.sextiarysector.plugin.SSPlugins;
 import shift.sextiarysector.renderer.block.RendererBlockBottle;
@@ -28,11 +30,14 @@ import shift.sextiarysector.renderer.block.RendererFigure;
 import shift.sextiarysector.renderer.block.RendererFluidCrafter;
 import shift.sextiarysector.renderer.block.RendererFunnel;
 import shift.sextiarysector.renderer.block.RendererGearShaft;
+import shift.sextiarysector.renderer.block.RendererGutter;
+import shift.sextiarysector.renderer.block.RendererHalfGutter;
 import shift.sextiarysector.renderer.block.RendererHole;
 import shift.sextiarysector.renderer.block.RendererKnife;
 import shift.sextiarysector.renderer.block.RendererLargeWindmill;
 import shift.sextiarysector.renderer.block.RendererLeafBed;
 import shift.sextiarysector.renderer.block.RendererMonitor;
+import shift.sextiarysector.renderer.block.RendererMotor;
 import shift.sextiarysector.renderer.block.RendererOreStone;
 import shift.sextiarysector.renderer.block.RendererPaddy;
 import shift.sextiarysector.renderer.block.RendererPipe;
@@ -56,6 +61,8 @@ import shift.sextiarysector.tileentity.TileEntityFan;
 import shift.sextiarysector.tileentity.TileEntityFigure;
 import shift.sextiarysector.tileentity.TileEntityFluidCrafter;
 import shift.sextiarysector.tileentity.TileEntityGearShaft;
+import shift.sextiarysector.tileentity.TileEntityGutter;
+import shift.sextiarysector.tileentity.TileEntityHalfGutter;
 import shift.sextiarysector.tileentity.TileEntityKnife;
 import shift.sextiarysector.tileentity.TileEntityLargeWindmill;
 import shift.sextiarysector.tileentity.TileEntityMonitor;
@@ -84,11 +91,17 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void setCustomRenderers() {
 
+        this.motorType = RenderingRegistry.getNextAvailableRenderId();
+
         this.holeType = RenderingRegistry.getNextAvailableRenderId();
 
         this.bottleType = RenderingRegistry.getNextAvailableRenderId();
 
         this.squareType = RenderingRegistry.getNextAvailableRenderId();
+
+        this.gutterType = RenderingRegistry.getNextAvailableRenderId();
+
+        this.halfGutterType = RenderingRegistry.getNextAvailableRenderId();
 
         this.fluidCrafterType = RenderingRegistry.getNextAvailableRenderId();
 
@@ -130,11 +143,16 @@ public class ClientProxy extends CommonProxy {
 
         this.woodType = RenderingRegistry.getNextAvailableRenderId();
 
+        RenderingRegistry.registerBlockHandler(new RendererMotor());
+
         RenderingRegistry.registerBlockHandler(new RendererHole());
 
         RenderingRegistry.registerBlockHandler(new RendererBlockBottle());
 
         RenderingRegistry.registerBlockHandler(new RendererSquare());
+
+        RenderingRegistry.registerBlockHandler(new RendererGutter());
+        RenderingRegistry.registerBlockHandler(new RendererHalfGutter());
 
         RenderingRegistry.registerBlockHandler(new RendererFluidCrafter());
 
@@ -193,6 +211,9 @@ public class ClientProxy extends CommonProxy {
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySquare.class, new RendererSquare());
 
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGutter.class, new RendererGutter());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHalfGutter.class, new RendererHalfGutter());
+
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RendererTank());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipe.class, new RendererPipe());
@@ -231,7 +252,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void openGUI(int id) {
-        //PacketHandler.INSTANCE.sendToServer(new PacketGuiId(id));
+        SSPacketHandler.INSTANCE.sendToServer(new PacketGuiId(id));
     }
 
     @Override

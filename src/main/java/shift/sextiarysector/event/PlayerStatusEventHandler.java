@@ -163,7 +163,7 @@ public class PlayerStatusEventHandler {
 
         EntityPlayer player = event.getPlayer();
 
-        float i = 0.75f;
+        float i = 0.65f;
 
         if (BiomeDictionary
                 .isBiomeOfType(
@@ -254,9 +254,9 @@ public class PlayerStatusEventHandler {
             EntityPlayer player = event.entityPlayer;
 
             if (EntityPlayerManager.getMoistureStats(player).getMoistureLevel() > 4 && player.getFoodStats().getFoodLevel() > 4) {
-                EntityPlayerManager.getStaminaStats(player).addStats(100, 20.0f);
+                EntityPlayerManager.getStaminaStats(player).addStats(player, 100, 20.0f);
             } else {
-                EntityPlayerManager.getStaminaStats(player).addStats(40, 0.0f);
+                EntityPlayerManager.getStaminaStats(player).addStats(player, 40, 0.0f);
             }
             player.getFoodStats().addExhaustion(19.3f);
             SextiarySectorAPI.addMoistureExhaustion(player, 20.3f);
@@ -299,8 +299,8 @@ public class PlayerStatusEventHandler {
                 && player.motionZ == 0) {
 
             if (!player.worldObj.isRemote) {
-                stats.addStats(1, 0.1f);
-                moistStats.addExhaustion(0.05f);
+                stats.addStats(player, 1, 0.1f);
+                moistStats.addExhaustion(player, 0.05f);
                 player.addExhaustion(0.1f);
             }
             generateRandomParticles(player, "happyVillager");
@@ -333,8 +333,8 @@ public class PlayerStatusEventHandler {
                 && player.motionY == 0
                 && player.motionZ == 0) {
 
-            stats.addStats(1, 0.0f);
-            moistStats.addExhaustion(1.4f);
+            stats.addStats(player, 1, 0.0f);
+            moistStats.addExhaustion(player, 1.4f);
             player.addExhaustion(0.05f);
             this.generateRandomParticles(player, "happyVillager");
         }

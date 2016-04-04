@@ -3,6 +3,7 @@ package shift.sextiarysector.plugin;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import mmmlibx.lib.FileManager;
 
 public class PluginMaid implements IPlugin {
 
@@ -13,8 +14,7 @@ public class PluginMaid implements IPlugin {
 
     @Override
     public void prePlugin(FMLPreInitializationEvent event) {
-        // TODO 自動生成されたメソッド・スタブ
-
+        FileManager.getModFile("EntityMode", "SextiarySector2");
     }
 
     @Override

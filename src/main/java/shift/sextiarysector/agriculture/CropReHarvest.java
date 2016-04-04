@@ -1,9 +1,9 @@
 package shift.sextiarysector.agriculture;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
@@ -28,18 +28,16 @@ public class CropReHarvest extends CropBase {
     }
 
     @Override
-    public boolean click(TileCrop crop, TileFarmland farmland, EntityPlayer player) {
+    public ArrayList<ItemStack> harvest(TileCrop crop, TileFarmland farmland) {
 
-        if (this.day[this.day.length - 2] >= crop.getDay()) return false;
+        ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+
+        if (!this.canHarvest(crop, farmland)) return list;
 
         World w = crop.getWorld();
         int x = crop.getX();
         int y = crop.getY();
         int z = crop.getZ();
-
-        if (w.isRemote) return true;
-
-        w.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, SSBlocks.crop.stepSound.func_150496_b(), (SSBlocks.crop.stepSound.getVolume() + 1.0F) / 2.0F, SSBlocks.crop.stepSound.getPitch() * 0.8F);
 
         ItemStack cropItem = this.crop.copy();
 
@@ -54,22 +52,23 @@ public class CropReHarvest extends CropBase {
 
         }
 
-        float var10 = w.rand.nextFloat() * 0.8F + 0.1F;
-        float var11 = w.rand.nextFloat() * 0.8F + 0.1F;
-        float var12 = w.rand.nextFloat() * 0.8F + 0.1F;
+        list.add(cropItem);
 
-        EntityItem var14 = new EntityItem(w, (x + var10), (y + var11), (z + var12), cropItem);
-        w.spawnEntityInWorld(var14);
+        if (w.isRemote) return list;
 
+        //再収穫用のフラグ
         NBTTagCompound nbt = crop.getExtendedCropProperties();
         nbt.setBoolean("reharvest", true);
 
         crop.doDecline(this.day[this.day.length - 1]);
 
-        //w.func_147480_a(x, y, z, false);
-        //w.setBlockToAir(x, y, z);
+        //サーバー側の処理
+        w.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, SSBlocks.crop.stepSound.func_150496_b(), (SSBlocks.crop.stepSound.getVolume() + 1.0F) / 2.0F, SSBlocks.crop.stepSound.getPitch() * 0.8F);
 
-        return true;
+        farmland.setFertilizer(null);
+        w.markBlockForUpdate(farmland.getX(), farmland.getY(), farmland.getZ());
+
+        return list;
 
     }
 
@@ -100,7 +99,7 @@ public class CropReHarvest extends CropBase {
     }
 
     @Override
-    public int getGrowthDay() {
+    public int getGrowingPeriod() {
         return day[day.length - 2];
     }
 

@@ -9,6 +9,11 @@ tile.ss.food_smokers.name=Food Smokers
 tile.ss.magic_furnace.name=Magic Furnace
 tile.ss.freezer.name=Freezer
 
+
+tile.ss.gutter.name=Gutter
+tile.ss.half_gutter.name=Half Gutter
+
+
 tile.ss.wood_grate.name=Wood Grate
 
 tile.ss.oak_wood_plate.name=Oak Wood Plate
@@ -50,6 +55,13 @@ tile.ss.figure.name=Figure
 tile.ss.leaf_block.name=Leaf Block
 
 tile.ss.trap.name=Trap
+
+tile.ss.motor.name=Motor
+tile.ss.sticky_motor.name=Sticky Motor
+
+tile.ss.kawara.name=Kawara Block
+
+tile.ss.animal_oil.name=Animal Oil Block
 
 tile.ss.leaf_bed.name=Leaf Bed
 
@@ -142,6 +154,8 @@ tile.ss.iron_turnip.name=Iron Turnip Seed
 tile.ss.onion.name=Onion Seed
 tile.ss.tomato.name=Tomato Seed
 tile.ss.corn.name=Corn Seed
+
+tile.ss.copper_onion.name=Copper Onion Seed
 tile.ss.golden_corn.name=Golden Corn Seed
 
 tile.ss.eggplant.name=Eggplant Seed
@@ -203,10 +217,20 @@ item.ss.season_stone_summer.name=Season Stone -Summer-
 item.ss.season_stone_autumn.name=Season Stone -Autumn-
 item.ss.season_stone_winter.name=Season Stone -Winter-
 
+
+item.ss.soap.name=Soap
+
 item.ss.leaf_bed.name=Leaf Bed
 
 
 item.ss.leaf.name=Leaf
+
+item.ss.ash.name=Ash
+item.ss.glaze.name=Glaze
+item.ss.kawara.name=Kawara
+
+item.ss.animal_oil.name=Animal Oil
+
 
 item.ss.dust_waterlily.name=WaterLily Dust
 
@@ -365,6 +389,7 @@ item.ss.onion.name=Onion
 item.ss.tomato.name=Tomato
 item.ss.corn.name=Corn
 
+item.ss.copper_onion.name=Copper Onion
 item.ss.golden_corn.name=Golden Corn
 
 item.ss.eggplant.name=Eggplant
@@ -540,6 +565,7 @@ edition.creative=CreativeTab
 edition.achievement=Achievement
 edition.figure_beginner=Figure Beginner
 edition.ore_festival=Ore Festival
+edition.magic_pumpkin=Magic Pumpkin
 
 edition.schr0_cleaver=Schr0 Cleaver
 
@@ -829,3 +855,38 @@ nei.ss.time_machine=Time Machine Recipe
 
 nei.ss.fertilizer_farmland=Farmland Mutation Recipe
 nei.ss.fertilizer_paddy=Paddy Mutation Recipe
+
+#Config
+config.ss.title=Sextiary Sector Configuration
+config.ss.general=General Settings
+config.ss.general.tooltip=Change the settings contained in general category.
+config.ss.general.fastDecayLeaves=Fast Decay Leaves
+config.ss.general.fastDecayLeaves.tooltip=Specify the bool for enable fast decay leaves.
+config.ss.general.usualHoe=Usual Hoe
+config.ss.general.usualHoe.tooltip=Specify the bool for enable usual hoe.
+config.ss.general.particleShaft=Shaft Particle
+config.ss.general.particleShaft.tooltip=Specify the bool for enable shaft particle.
+config.ss.potions=Potion Settings
+config.ss.potions.tooltip=Change the settings contained in potions category.
+config.ss.potions.burn=Burn
+config.ss.potions.burn.tooltip=Specify the potion id for potion of burn.
+config.ss.potions.hotSprings=Hot Springs
+config.ss.potions.hotSprings.tooltip=Specify the potion id for potion of hot springs.
+config.ss.world=World Settings
+config.ss.world.tooltip=Change the settings contained in world category.
+config.ss.world.generateCopperOre=Generate Copper Ore
+config.ss.world.generateCopperOre.tooltip=Specify the bool for generate copper ore.
+config.ss.world.generateZincOre=Generate Zinc Ore
+config.ss.world.generateZincOre.tooltip=Specify the bool for generate zinc ore.
+config.ss.world.generateSilverOre=Generate Silver Ore
+config.ss.world.generateSilverOre.tooltip=Specify the bool for generate silver ore.
+config.ss.status=Status Settings
+config.ss.status.tooltip=Change the settings contained in status category.
+config.ss.status.statusStamina=Stamina
+config.ss.status.statusStamina.tooltip=Specify the bool for enable stamina status.
+config.ss.status.statusMoisture=Moisture
+config.ss.status.statusMoisture.tooltip=Specify the bool for enable moisture status.
+config.ss.status.peacefulStamina=Peaceful Stamina
+config.ss.status.peacefulStamina.tooltip=Specify the bool for enable peaceful stamina status.
+config.ss.status.peacefulMoisture=Peaceful Moisture
+config.ss.status.peacefulMoisture.tooltip=Specify the bool for enable peaceful moisture status.

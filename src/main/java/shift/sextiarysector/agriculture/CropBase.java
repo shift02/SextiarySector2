@@ -10,11 +10,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import shift.sextiarysector.SSBlocks;
 import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
+import shift.sextiarysector.api.agriculture.CropAbstract;
 import shift.sextiarysector.api.agriculture.CropRendererType;
-import shift.sextiarysector.api.agriculture.ICrop;
 import shift.sextiarysector.api.agriculture.IFertilizer;
 import shift.sextiarysector.api.agriculture.TileCrop;
 import shift.sextiarysector.api.agriculture.TileFarmland;
@@ -25,7 +24,7 @@ import shift.sextiarysector.api.season.SeasonAPI;
  * 作物クラス
  * @author Shift02
  */
-public class CropBase implements ICrop {
+public class CropBase extends CropAbstract {
 
     public String name;
     public ItemStack crop;
@@ -54,6 +53,11 @@ public class CropBase implements ICrop {
     }
 
     @Override
+    public int getGrowingPeriod() {
+        return day[day.length - 1];
+    }
+
+    @Override
     public boolean isSeed(ItemStack seed, EntityPlayer player) {
 
         if (seed.getItem() != SSItems.seeds) return false;
@@ -70,7 +74,7 @@ public class CropBase implements ICrop {
     @Override
     public boolean click(TileCrop crop, TileFarmland farmland, EntityPlayer player) {
 
-        if (this.day[this.day.length - 1] >= crop.getDay()) return false;
+        if (!this.canHarvest(crop, farmland)) return false;
 
         World w = crop.getWorld();
         int x = crop.getX();
@@ -79,33 +83,21 @@ public class CropBase implements ICrop {
 
         if (w.isRemote) return true;
 
-        w.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, SSBlocks.crop.stepSound.func_150496_b(), (SSBlocks.crop.stepSound.getVolume() + 1.0F) / 2.0F, SSBlocks.crop.stepSound.getPitch() * 0.8F);
+        //w.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, SSBlocks.crop.stepSound.func_150496_b(), (SSBlocks.crop.stepSound.getVolume() + 1.0F) / 2.0F, SSBlocks.crop.stepSound.getPitch() * 0.8F);
 
-        ItemStack cropItem = this.crop.copy();
+        //収穫処理
+        ArrayList<ItemStack> list = this.harvest(crop, farmland);
 
-        //突然変異の処理
-        if (farmland.getFertilizer() != null) {
+        //ドロップ処理
+        for (ItemStack cropItem : list) {
 
-            IFertilizer f = farmland.getFertilizer();
+            float var10 = w.rand.nextFloat() * 0.8F + 0.1F;
+            float var11 = w.rand.nextFloat() * 0.8F + 0.1F;
+            float var12 = w.rand.nextFloat() * 0.8F + 0.1F;
 
-            ItemStack after = AgricultureAPI.getMutationItem(f, cropItem);
-
-            if (after != null) cropItem = after;
-
+            EntityItem var14 = new EntityItem(w, (x + var10), (y + var11), (z + var12), cropItem);
+            w.spawnEntityInWorld(var14);
         }
-
-        float var10 = w.rand.nextFloat() * 0.8F + 0.1F;
-        float var11 = w.rand.nextFloat() * 0.8F + 0.1F;
-        float var12 = w.rand.nextFloat() * 0.8F + 0.1F;
-
-        EntityItem var14 = new EntityItem(w, (x + var10), (y + var11), (z + var12), cropItem);
-        w.spawnEntityInWorld(var14);
-
-        w.func_147480_a(x, y, z, false);
-        w.setBlockToAir(x, y, z);
-
-        farmland.setFertilizer(null);
-        w.markBlockForUpdate(farmland.getX(), farmland.getY(), farmland.getZ());
 
         return true;
 
@@ -144,6 +136,51 @@ public class CropBase implements ICrop {
     @Override
     public int getConsumptionMoisture(TileCrop crop, TileFarmland farmland) {
         return 5;
+    }
+
+    @Override
+    public boolean canHarvest(TileCrop crop, TileFarmland farmland) {
+        return this.getGrowingPeriod() < crop.getDay();
+    }
+
+    @Override
+    public ArrayList<ItemStack> harvest(TileCrop crop, TileFarmland farmland) {
+
+        ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+
+        if (!this.canHarvest(crop, farmland)) return list;
+
+        World w = crop.getWorld();
+        int x = crop.getX();
+        int y = crop.getY();
+        int z = crop.getZ();
+
+        ItemStack cropItem = this.crop.copy();
+
+        //突然変異の処理
+        if (farmland.getFertilizer() != null) {
+
+            IFertilizer f = farmland.getFertilizer();
+
+            ItemStack after = AgricultureAPI.getMutationItem(f, cropItem);
+
+            if (after != null) cropItem = after;
+
+        }
+
+        list.add(cropItem);
+
+        if (w.isRemote) return list;
+
+        //サーバー側の処理
+        w.func_147480_a(x, y, z, false);
+        w.setBlockToAir(x, y, z);
+
+        farmland.setFertilizer(null);
+        w.markBlockForUpdate(farmland.getX(), farmland.getY(), farmland.getZ());
+
+        return list;
+
     }
 
     @Override
@@ -192,14 +229,6 @@ public class CropBase implements ICrop {
 
     public void setDay(int[] day) {
         this.day = day;
-    }
-
-    /**
-     * 収穫できるまでの日数
-     * @return 日数
-     */
-    public int getGrowthDay() {
-        return day[day.length - 1];
     }
 
 }

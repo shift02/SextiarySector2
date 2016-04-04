@@ -7,6 +7,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
@@ -54,6 +55,7 @@ import net.minecraftforge.client.event.RenderPlayerEvent.SetArmorModel;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import shift.sextiarysector.SSConfig;
 import shift.sextiarysector.SSItems;
 import shift.sextiarysector.SextiarySector;
 import shift.sextiarysector.api.equipment.EquipmentType;
@@ -71,6 +73,16 @@ public class ClientEventHandler {
 
     @SideOnly(Side.CLIENT)
     public static Minecraft mc = FMLClientHandler.instance().getClient();
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onConfigChanged(ConfigChangedEvent event) {
+
+        if (event.modID.equals(SextiarySector.MODID)) {
+
+            SSConfig.syncConfig();
+        }
+    }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
@@ -379,7 +391,7 @@ public class ClientEventHandler {
     private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation(
             "textures/misc/enchanted_item_glint.png");
 
-    @SubscribeEvent
+    //@SubscribeEvent
     public void setArmorModel(SetArmorModel event) {
 
         ModelBase renderPassModel = this.setArmorModel2(event);

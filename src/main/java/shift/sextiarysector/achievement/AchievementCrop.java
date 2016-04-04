@@ -67,7 +67,7 @@ public class AchievementCrop extends AchievementPickup {
 
             str.append(StatCollector.translateToLocal("tooltip.season.day"));
             str.append(" : ");
-            str.append(this.crop.getGrowthDay());
+            str.append(this.crop.getGrowingPeriod());
 
             return str.toString();
         } else {

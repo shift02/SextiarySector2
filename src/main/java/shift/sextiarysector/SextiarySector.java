@@ -34,11 +34,11 @@ import shift.sextiarysector.plugin.SSPlugins;
 import shift.sextiarysector.proxy.CommonProxy;
 import shift.sextiarysector.recipe.RecipesFurnaceCraft;
 
-@Mod(modid = SextiarySector.MODID, version = SextiarySector.VERSION, dependencies = SextiarySector.DEPENDENCY)
+@Mod(modid = SextiarySector.MODID, version = SextiarySector.VERSION, guiFactory = "shift.sextiarysector.config.SSConfigGuiFactory")
 public class SextiarySector {
 
     public static final String MODID = "SextiarySector";
-    public static final String VERSION = "2.4.5";
+    public static final String VERSION = "2.4.8";
 
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
@@ -57,7 +57,7 @@ public class SextiarySector {
 
         Log.info("PreInit");
 
-        Config.ConfigRead(event);
+        SSConfig.syncConfig();
 
         SSPacketHandler.init(event);
 

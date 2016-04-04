@@ -1,18 +1,17 @@
 package shift.sextiarysector.item;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import shift.sextiarysector.api.SextiarySectorAPI;
-import shift.sextiarysector.api.season.SeasonAPI;
 import shift.sextiarysector.api.shop.IShopMemory;
-import shift.sextiarysector.api.shop.ProductListBase;
+import shift.sextiarysector.module.ModuleShop.ShopSeasonBase;
 
 public class ItemShopMemory extends Item implements IShopMemory {
 
     private ResourceLocation monitor;
-    private ProductListBase list;
-    private ProductListBase[] seasonList;
+    private ShopSeasonBase shop;
 
     public ItemShopMemory(String resource) {
         this.monitor = new ResourceLocation("sextiarysector:textures/models/monitor_" + resource + ".png");
@@ -26,25 +25,14 @@ public class ItemShopMemory extends Item implements IShopMemory {
     }
 
     @Override
-    public int getShopID(World world) {
+    public int getShopID(World world, EntityPlayer player) {
 
-        if (world == null || seasonList == null) return this.getList().getShopID();
-
-        return seasonList[SeasonAPI.getSeason(world).ordinal()].getShopID();
+        return this.shop.getID();
 
     }
 
-    public ProductListBase getList() {
-        return list;
-    }
-
-    public void setList(ProductListBase list) {
-        this.list = list;
-    }
-
-    public void setList(ProductListBase[] list) {
-        this.seasonList = list;
-        this.list = list[0];
+    public void setShopData(ShopSeasonBase shop) {
+        this.shop = shop;
     }
 
 }

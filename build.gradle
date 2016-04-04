@@ -51,7 +51,7 @@ repositories {
 
 apply plugin: 'forge'
 
-version = "2.4.5.c-1.7.10"//${project.minecraft.version}"
+version = "2.4.8.a-1.7.10"//${project.minecraft.version}"
 group= "shift.SextiarySector2" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SextiarySector2"
 
@@ -66,7 +66,7 @@ minecraft {
     replace '@MC_VERSION@', version
 }
 
-[compileJava, compileTestJava,recompMinecraft].each{
+[compileJava,compileApiJava, compileTestJava,recompMinecraft].each{
     it.options.encoding = 'UTF-8'
     it.options.compilerArgs += ['-source', '1.7', '-target', '1.7']
 }
@@ -114,20 +114,24 @@ dependencies {
 
 processResources
 {
+
+    //exclude 'mcmod.info'
+
+    
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
     // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
+    from(sourceSets.main.resources.srcDirs[0]) {
         include 'mcmod.info'
                 
         // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-        
+
     // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
+    from(sourceSets.main.resources.srcDirs[0]) {
         exclude 'mcmod.info'
     }
 }
@@ -139,6 +143,7 @@ jar {
   }
 
   exclude('shift/mceconomy2/**')
+  exclude('assets/mceconomy2/**')
 
   manifest {
     attributes 'FMLCorePlugin' : 'shift.sextiarysector.asm.SSCore','FMLCorePluginContainsFMLMod':'true'
@@ -150,6 +155,7 @@ task devJar(type: Jar) {
     from sourceSets.main.output
     from sourceSets.main.allSource
     exclude('shift/mceconomy2/**')
+    exclude('assets/mceconomy2/**')
     classifier = 'dev'
 }
  

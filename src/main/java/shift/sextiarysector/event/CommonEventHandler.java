@@ -12,6 +12,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -38,9 +40,9 @@ import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidStack;
-import shift.sextiarysector.Config;
 import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.SSConfig;
 import shift.sextiarysector.SSFluids.SSFluid;
 import shift.sextiarysector.SSItems;
 import shift.sextiarysector.api.SextiarySectorAPI;
@@ -400,9 +402,9 @@ public class CommonEventHandler {
             return;
 
         if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(Items.stick, event.world.rand.nextInt(1) + 1));
-        if (event.world.rand.nextBoolean()) event.drops.add(new ItemStack(SSItems.leaf, event.world.rand.nextInt(2) + 1));
+        if (event.world.rand.nextInt(3) == 0) event.drops.add(new ItemStack(SSItems.leaf, event.world.rand.nextInt(2) + 1));
 
-        if (!Config.leaf) return;
+        if (!SSConfig.fastDecayLeaves) return;
 
         byte b0 = 2;
         int i1 = b0 + 1;
@@ -470,6 +472,14 @@ public class CommonEventHandler {
 
         if (event.entityLiving instanceof EntitySquid) {
             event.drops.add(new EntityItem(event.entityLiving.worldObj, x, y, z, new ItemStack(SSItems.squidSashimi, r.nextInt(5) + 1)));
+        }
+
+        if (event.entityLiving instanceof EntityCow) {
+            event.drops.add(new EntityItem(event.entityLiving.worldObj, x, y, z, new ItemStack(SSItems.animalOil, r.nextInt(5) + 2)));
+        }
+
+        if (event.entityLiving instanceof EntityPig) {
+            event.drops.add(new EntityItem(event.entityLiving.worldObj, x, y, z, new ItemStack(SSItems.animalOil, r.nextInt(3) + 2)));
         }
 
     }

@@ -28,6 +28,7 @@ public class ItemWateringCan extends Item {
     public ItemWateringCan(ToolMaterial par2EnumToolMaterial) {
         this.theToolMaterial = par2EnumToolMaterial;
         this.maxStackSize = 1;
+        this.setFull3D();
         this.setMaxDamage(par2EnumToolMaterial.getMaxUses());
         this.setCreativeTab(SextiarySectorAPI.TabSSAgriculture);
     }
@@ -140,6 +141,7 @@ public class ItemWateringCan extends Item {
     }
 
     public ItemStack scoopWater(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
 
         if (movingobjectposition == null) {

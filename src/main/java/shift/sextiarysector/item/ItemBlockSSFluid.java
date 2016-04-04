@@ -1,13 +1,12 @@
 package shift.sextiarysector.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import shift.sextiarysector.block.BlockSSFluid;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import shift.sextiarysector.block.BlockSSFluid;
 
-public class ItemBlockSSFluid extends ItemBlock {
+public class ItemBlockSSFluid extends ItemBlockMeta {
 
     public ItemBlockSSFluid(Block p_i45328_1_) {
         super(p_i45328_1_);

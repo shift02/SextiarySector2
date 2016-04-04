@@ -1,5 +1,7 @@
 package shift.sextiarysector.api.agriculture;
 
+import java.util.ArrayList;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
@@ -16,7 +18,7 @@ import shift.sextiarysector.api.season.SeasonAPI;
  * @author Shift02
  *
  */
-public class CropVanilla implements ICrop {
+public class CropVanilla extends CropAbstract {
 
     public String name;
     public Item seed;
@@ -38,6 +40,11 @@ public class CropVanilla implements ICrop {
     }
 
     @Override
+    public int getGrowingPeriod() {
+        return this.day[this.day.length - 1];
+    }
+
+    @Override
     public boolean isSeed(ItemStack seed, EntityPlayer player) {
         return this.seed == seed.getItem();
     }
@@ -50,7 +57,7 @@ public class CropVanilla implements ICrop {
     @Override
     public boolean click(TileCrop crop, TileFarmland farmland, EntityPlayer player) {
 
-        if (this.day[this.day.length - 1] >= crop.getDay()) return false;
+        if (!this.canHarvest(crop, farmland)) return false;
 
         World w = crop.getWorld();
         int x = crop.getX();
@@ -59,19 +66,19 @@ public class CropVanilla implements ICrop {
 
         if (w.isRemote) return true;
 
-        w.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, this.crop.stepSound.func_150496_b(), (this.crop.stepSound.getVolume() + 1.0F) / 2.0F, this.crop.stepSound.getPitch() * 0.8F);
+        //収穫処理
+        ArrayList<ItemStack> list = this.harvest(crop, farmland);
 
-        ItemStack cropItem = new ItemStack(this.crop.getItemDropped(7, w.rand, 0));
+        //ドロップ処理
+        for (ItemStack cropItem : list) {
 
-        float var10 = w.rand.nextFloat() * 0.8F + 0.1F;
-        float var11 = w.rand.nextFloat() * 0.8F + 0.1F;
-        float var12 = w.rand.nextFloat() * 0.8F + 0.1F;
+            float var10 = w.rand.nextFloat() * 0.8F + 0.1F;
+            float var11 = w.rand.nextFloat() * 0.8F + 0.1F;
+            float var12 = w.rand.nextFloat() * 0.8F + 0.1F;
 
-        EntityItem var14 = new EntityItem(w, (x + var10), (y + var11), (z + var12), cropItem);
-        w.spawnEntityInWorld(var14);
-
-        w.func_147480_a(x, y, z, false);
-        w.setBlockToAir(x, y, z);
+            EntityItem var14 = new EntityItem(w, (x + var10), (y + var11), (z + var12), cropItem);
+            w.spawnEntityInWorld(var14);
+        }
 
         return true;
 
@@ -110,6 +117,37 @@ public class CropVanilla implements ICrop {
     @Override
     public int getConsumptionMoisture(TileCrop crop, TileFarmland farmland) {
         return 5;
+    }
+
+    @Override
+    public boolean canHarvest(TileCrop crop, TileFarmland farmland) {
+        return this.getGrowingPeriod() < crop.getDay();
+    }
+
+    @Override
+    public ArrayList<ItemStack> harvest(TileCrop crop, TileFarmland farmland) {
+
+        ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+
+        if (!this.canHarvest(crop, farmland)) return list;
+
+        World w = crop.getWorld();
+        int x = crop.getX();
+        int y = crop.getY();
+        int z = crop.getZ();
+
+        ItemStack cropItem = new ItemStack(this.crop.getItemDropped(7, w.rand, 0));
+
+        list.add(cropItem);
+
+        if (w.isRemote) return list;
+
+        //w.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, this.crop.stepSound.func_150496_b(), (this.crop.stepSound.getVolume() + 1.0F) / 2.0F, this.crop.stepSound.getPitch() * 0.8F);
+
+        w.func_147480_a(x, y, z, false);
+        w.setBlockToAir(x, y, z);
+
+        return list;
     }
 
     @Override

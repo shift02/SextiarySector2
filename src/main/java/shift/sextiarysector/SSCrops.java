@@ -16,6 +16,7 @@ import shift.sextiarysector.agriculture.FarmlandRegistry;
 import shift.sextiarysector.agriculture.FertilizerManager;
 import shift.sextiarysector.agriculture.MutationRegistry;
 import shift.sextiarysector.api.agriculture.AgricultureAPI;
+import shift.sextiarysector.api.agriculture.CropFlower;
 import shift.sextiarysector.api.agriculture.CropVanilla;
 import shift.sextiarysector.api.agriculture.CropWither;
 import shift.sextiarysector.api.agriculture.FertilizerBase;
@@ -44,15 +45,22 @@ public class SSCrops {
     public static ICrop carrot;
     public static ICrop potato;
 
+    //花
+    public static ICrop red_flower[];
+    public static ICrop yellow_flower;
+
     //春
     public static CropBase turnip;
     public static CropBase cucumber;
+
     public static CropBase ironTurnip;
 
     //夏
     public static CropBase onion;
     public static CropBase tomato;
     public static CropBase corn;
+
+    public static CropBase copperOnion;
     public static CropBase goldenCorn;
 
     //秋
@@ -123,11 +131,20 @@ public class SSCrops {
         wheat = new CropVanilla("wheat", Items.wheat_seeds, Blocks.wheat, new Season[] { Season.AUTUMN, Season.WINTER, Season.SPRING }, new int[] { 8, 13, 25, 32, 40, 50, 62 });
         cropManager.registerCrop(wheat);
 
-        carrot = new CropVanilla("carrot", Items.carrot, Blocks.carrots, new Season[] { Season.AUTUMN }, new int[] { 2, 4, 7 });
+        carrot = new CropVanilla("carrot", Items.carrot, Blocks.carrots, new Season[] { Season.AUTUMN }, new int[] { 1, 2, 3, 4, 5, 6, 7 });
         cropManager.registerCrop(carrot);
 
-        potato = new CropVanilla("potato", Items.potato, Blocks.potatoes, new Season[] { Season.SPRING }, new int[] { 2, 5, 7 });
+        potato = new CropVanilla("potato", Items.potato, Blocks.potatoes, new Season[] { Season.SPRING }, new int[] { 1, 2, 3, 4, 5, 6, 7 });
         cropManager.registerCrop(potato);
+
+        //花
+        red_flower = new ICrop[9];
+        for (int i = 0; i < red_flower.length; i++) {
+            red_flower[i] = new CropFlower("red_flower_" + i, new ItemStack(Blocks.red_flower, 1, i));
+            cropManager.registerCrop(red_flower[i]);
+        }
+        yellow_flower = new CropFlower("yellow_flower", new ItemStack(Blocks.yellow_flower));
+        cropManager.registerCrop(yellow_flower);
 
         //SS2
 
@@ -156,6 +173,10 @@ public class SSCrops {
         corn = new CropBase("corn", new ItemStack(SSItems.corn), new Season[] { Season.SUMMER }, new int[] { 4, 8, 12 });
         cropManager.registerCrop(corn);
         SSItems.seeds.addSeed("corn", corn);
+
+        copperOnion = new CropBase("copper_onion", new ItemStack(SSItems.copperOnion), new Season[] { Season.SUMMER }, new int[] { 4, 8, 16 });
+        cropManager.registerCrop(copperOnion);
+        SSItems.seeds.addSeed("copper_onion", copperOnion);
 
         goldenCorn = new CropBase("golden_corn", new ItemStack(SSItems.goldenCorn), new Season[] { Season.SUMMER }, new int[] { 4, 8, 12 });
         cropManager.registerCrop(goldenCorn);
