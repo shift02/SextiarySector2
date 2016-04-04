@@ -925,7 +925,7 @@ public class SSItems {
         GameRegistry.registerItem(shiitake, "Shiitake");
 
         //さかな
-        squidSashimi = new ItemFoodDrink(2, 1.2f, 0, 0.4f, 0, 0, false).setUnlocalizedName("ss.squid_sashimi")
+        squidSashimi = new ItemFoodDrink(2, 1.2f, 0, 0.4f, 0, 4, false).setUnlocalizedName("ss.squid_sashimi")
                 .setTextureName("sextiarysector:food/fish/squid_sashimi")
                 .setCreativeTab(SextiarySectorAPI.TabSSCooking);
         GameRegistry.registerItem(squidSashimi, "SquidSashimi");
