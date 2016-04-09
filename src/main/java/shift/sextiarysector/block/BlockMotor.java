@@ -68,6 +68,7 @@ public class BlockMotor extends Block {
                 if (!world.isRemote) {
                     world.playSoundEffect(x, y + 1, z, block.stepSound.getStepResourcePath(), 1.0F, world.rand.nextFloat() * 0.1F + 0.6F);
                     world.markBlockForUpdate(x, y + 1, z);
+                    world.notifyBlockOfNeighborChange(x, y + 1, z, block);
                 }
 
             }
@@ -127,7 +128,7 @@ public class BlockMotor extends Block {
 
             world.setBlockToAir(x + d.offsetX, y + d.offsetY, z + d.offsetZ);
 
-            world.setBlock(x + dNext.offsetX, y + dNext.offsetY, z + dNext.offsetZ, block, nweMeta, 2);
+            world.setBlock(x + dNext.offsetX, y + dNext.offsetY, z + dNext.offsetZ, block, nweMeta, 3);
 
             world.markBlockForUpdate(x + dNext.offsetX * 2, y + dNext.offsetY * 2, z + dNext.offsetZ * 2);
 
