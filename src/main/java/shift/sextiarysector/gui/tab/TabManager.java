@@ -16,8 +16,12 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.C0DPacketCloseWindow;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.common.MinecraftForge;
 
 public class TabManager {
+
+    private TabManager() {
+    }
 
     private static HashMap<Integer, AbstractTab> tabMap = new HashMap<Integer, AbstractTab>();
     private static int tabSize = 0;
@@ -32,6 +36,7 @@ public class TabManager {
     private static final String Selected_Button = "selectedbutton";
 
     private static boolean init;
+    private static boolean initEvent;
     private static AbstractTab vanilla;
 
     public static WeakReference<List> buttons;
@@ -42,6 +47,17 @@ public class TabManager {
             init = true;
             vanilla = new InventoryTabVanilla();
             registerTab(vanilla);
+        }
+
+        initEvent();
+
+    }
+
+    public static void initEvent() {
+
+        if (!initEvent) {
+            initEvent = true;
+            MinecraftForge.EVENT_BUS.register(new TabManager());
         }
 
     }
