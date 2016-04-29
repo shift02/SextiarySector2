@@ -44,7 +44,7 @@ public class SSEvents {
         }
 
         if (event.getSide().isClient()) {
-            MinecraftForge.EVENT_BUS.register(new TabManager());
+            TabManager.initEvent();
         }
 
         if (event.getSide().isClient()) {
