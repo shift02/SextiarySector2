@@ -11,8 +11,8 @@ public class RecipesTool {
     public static void addRecipes(CraftingManager p_77608_1_) {
 
         //Scoop
-        Object[] material = new Object[] { "plankWood", "cobblestone", "ingotIron", "ingotGold", "gemDiamond", "ingotBrass" };
-        Item[] scoop = new Item[] { SSItems.woodScoop, SSItems.stoneScoop, SSItems.ironScoop, SSItems.goldScoop, SSItems.diamondScoop, SSItems.brassScoop };
+        Object[] material = new Object[] { "plankWood", "cobblestone", "ingotIron", "ingotGold", "gemDiamond", "ingotCopper", "ingotBrass", "ingotNinja" };
+        Item[] scoop = new Item[] { SSItems.woodScoop, SSItems.stoneScoop, SSItems.ironScoop, SSItems.goldScoop, SSItems.diamondScoop, SSItems.copperScoop, SSItems.brassScoop, SSItems.ninjaScoop };
         for (int i = 0; i < material.length; i++) {
             p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(scoop[i], 1),
                     new Object[] { "y", "x",
@@ -22,7 +22,7 @@ public class RecipesTool {
         }
 
         //Knife
-        Item[] knife = new Item[] { SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife, SSItems.brassKnife };
+        Item[] knife = new Item[] { SSItems.woodKnife, SSItems.stoneKnife, SSItems.ironKnife, SSItems.goldKnife, SSItems.diamondKnife, SSItems.copperKnife, SSItems.brassKnife, SSItems.ninjaKnife };
         for (int i = 0; i < material.length; i++) {
             p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(knife[i], 1),
                     new Object[] { " y", "x ",
