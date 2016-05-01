@@ -39,7 +39,7 @@ public class RecipesFurnaceCraft {
         //石鹸
         p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.soap, 1),
                 new Object[] {
-                        "itemAsh",
+                        "dustAsh",
                         SSItems.animalOil,
                         SSItems.animalOil
                 }));
