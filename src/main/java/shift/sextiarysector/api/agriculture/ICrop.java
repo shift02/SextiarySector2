@@ -191,7 +191,6 @@ public interface ICrop {
      * @see CropRendererType
      * @return 描画タイプ
      */
-    @SideOnly(Side.CLIENT)
     public CropRendererType getRenderType();
 
 }

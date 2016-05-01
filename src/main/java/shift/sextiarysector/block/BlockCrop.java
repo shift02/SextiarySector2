@@ -211,6 +211,8 @@ public class BlockCrop extends BlockContainer {
 
         } catch (NullPointerException e) {
 
+        } catch (NoSuchMethodError e) {
+
         }
 
     }
