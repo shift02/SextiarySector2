@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import shift.sextiarysector.SextiarySector;
@@ -22,6 +23,38 @@ public class BlockFarmland extends BlockAbstractFarmland {
         this.setStepSound(soundTypeGravel);
         this.setLightOpacity(255);
         this.useNeighborBrightness = true;
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+
+        boolean f = super.onBlockActivated(world, x, y, z, player, par6, par7, par8, par9);
+
+        if (f) return true;
+
+        if (!world.isAirBlock(x, y + 1, z)) return false;
+
+        ItemStack item = player.getCurrentEquippedItem();
+
+        if (item == null) return false;
+
+        if (par6 != 1) return false;
+
+        world.setBlock(x, y, z, Blocks.farmland);
+
+        boolean s = item.getItem().onItemUse(item, player, world, x, y, z, par6, par7, par8, par9);
+
+        if (s) return true;
+
+        world.setBlock(x, y, z, this);
+
+        return false;
+
+    }
+
+    @Override
+    public void onBlockClicked(World p_149699_1_, int p_149699_2_, int p_149699_3_, int p_149699_4_, EntityPlayer p_149699_5_) {
+
     }
 
     @Override
