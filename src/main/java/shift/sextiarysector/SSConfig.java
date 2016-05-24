@@ -24,6 +24,7 @@ public class SSConfig {
     //General
     public static boolean fastDecayLeaves;
     public static boolean usualHoe;
+    public static int achievementReward;
 
     public static boolean particleShaft;
 
@@ -106,6 +107,15 @@ public class SSConfig {
         prop.comment += " [default: " + prop.getDefault() + "]";
         propOrder.add(prop.getName());
         usualHoe = prop.getBoolean(usualHoe);
+
+        //MP reward for achievements
+        prop = config.get(category, "achievementReward", 500);
+        prop.setMinValue(0);
+        prop.setLanguageKey(SS_LANG  + category + "." + prop.getName());
+        prop.comment = StatCollector.translateToLocal(prop.getLanguageKey() + ".tooltip");
+        prop.comment += " [default: " + prop.getDefault() + "]";
+        propOrder.add(prop.getName());
+        achievementReward = prop.getInt(achievementReward);
 
         if (side.isClient()) {
 
