@@ -9,6 +9,11 @@ tile.ss.food_smokers.name=熏制机
 tile.ss.magic_furnace.name=魔力熔炉
 tile.ss.freezer.name=冷冻机
 
+
+tile.ss.gutter.name=雨水槽
+tile.ss.half_gutter.name=木雨水槽
+
+
 tile.ss.wood_grate.name=木栏杆
 
 tile.ss.oak_wood_plate.name=橡树木板
@@ -20,6 +25,10 @@ tile.ss.big_oak_wood_plate.name=深色橡树木板
 
 tile.ss.iron_plate.name=铁板
 tile.ss.gold_plate.name=金板
+
+tile.ss.copper_plate.name=铜板
+tile.ss.zinc_plate.name=锌板
+tile.ss.silver_plate.name=银板
 
 tile.ss.hole.name=坑田
 tile.ss.farmland.name=农田
@@ -41,7 +50,20 @@ tile.ss.chunk_loader.name=时空载入器
 
 tile.ss.figure.name=成就台
 
+
+
+tile.ss.leaf_block.name=叶块
+
 tile.ss.trap.name=陷阱
+
+tile.ss.motor.name=发动机
+tile.ss.sticky_motor.name=粘性发动机
+
+tile.ss.kawara.name=瓦块
+
+tile.ss.animal_oil.name=动物油块
+
+tile.ss.leaf_bed.name=叶床
 
 tile.ss.drinking_water.name=饮用水
 tile.ss.hot_springs.name=温泉水
@@ -61,6 +83,8 @@ tile.ss.coal_large_ore.name=大型煤矿石
 tile.ss.iron_large_ore.name=大型铁矿石
 tile.ss.gold_large_ore.name=大型金矿石
 
+tile.ss.silver_large_ore.name=大型银矿石
+
 tile.ss.copper_block.name=铜方块
 tile.ss.zinc_block.name=锌方块
 tile.ss.silver_block.name=银方块
@@ -69,6 +93,7 @@ tile.ss.brass_block.name=黄铜方块
 tile.ss.ninja_block.name=忍者方块
 tile.ss.mithril_block.name=秘银方块
 tile.ss.orichalcum_block.name=山铜方块
+
 
 tile.ss.small_windmill.name=小型风车
 tile.ss.windmill.name=风车
@@ -120,6 +145,8 @@ tile.ss.suction_machine.name=抽吸机
 tile.ss.creeper_chest.name=爬行者商人箱子
 tile.ss.shipping_box.name=船舶箱子
 
+tile.ss.water_supply_machine.name=供水机
+
 tile.ss.turnip.name=萝卜种子
 tile.ss.cucumber.name=黄瓜种子
 tile.ss.iron_turnip.name=铁萝卜种子
@@ -127,6 +154,8 @@ tile.ss.iron_turnip.name=铁萝卜种子
 tile.ss.onion.name=洋葱种子
 tile.ss.tomato.name=番茄种子
 tile.ss.corn.name=玉米种子
+
+tile.ss.copper_onion.name=铜洋葱种子
 tile.ss.golden_corn.name=金玉米种子
 
 tile.ss.eggplant.name=茄子种子
@@ -178,6 +207,8 @@ item.ss.ninja_gf_storage.name=忍者GF存储器
 item.ss.orichalcum_gf_storage.name=山铜GF存储器
 
 item.ss.hammer.name=锤子
+item.ss.iron_spanner.name=铁扳手
+item.ss.color_spray.name=彩色扳手
 
 item.ss.calendar.name=日历
 item.ss.season_stone.name=季节之石
@@ -186,6 +217,19 @@ item.ss.season_stone_summer.name=季节之石 -夏季-
 item.ss.season_stone_autumn.name=季节之石 -秋季-
 item.ss.season_stone_winter.name=季节之石 -冬季-
 
+
+item.ss.soap.name=肥皂
+
+item.ss.leaf_bed.name=叶床
+
+
+item.ss.leaf.name=叶子
+
+item.ss.ash.name=灰烬
+item.ss.glaze.name=琉璃
+item.ss.kawara.name=屋面瓦
+
+item.ss.animal_oil.name=动物油
 
 
 item.ss.dust_waterlily.name=睡莲粉末
@@ -202,24 +246,10 @@ item.ss.diamond_dust.name=钻石粉
 
 item.ss.copper_dust.name=铜粉
 item.ss.zinc_dust.name=锌粉
+item.ss.silver_dust.name=银粉
 
 item.ss.mithril_dust.name=秘银粉
 
-item.ss.steel_ingot.name=钢锭
-item.ss.brass_ingot.name=黄铜锭
-
-item.ss.bluestone_ingot.name=蓝石锭
-item.ss.yellowstone_ingot.name=黄石锭
-
-item.ss.copper_ingot.name=铜锭
-item.ss.zinc_ingot.name=锌锭
-item.ss.silver_ingot.name=银锭
-
-item.ss.craft_reactor.name=合成反应器
-item.ss.mithril_ingot.name=秘银锭
-item.ss.orichalcum_gem.name=山铜锭
-
-item.ss.ninja_ingot.name=忍者锭
 
 item.ss.iron_nugget.name=铁粒
 item.ss.copper_nugget.name=铜粒
@@ -231,12 +261,30 @@ item.ss.ninja_nugget.name=忍者粒
 
 item.ss.obsidian_nugget.name=黑曜石粒
 
+
+item.ss.steel_ingot.name=钢锭
+item.ss.brass_ingot.name=黄铜锭
+
+item.ss.bluestone_ingot.name=蓝石锭
+item.ss.yellowstone_ingot.name=黄石锭
+
+item.ss.copper_ingot.name=铜锭
+item.ss.zinc_ingot.name=锌锭
+item.ss.silver_ingot.name=银锭
+
+item.ss.mithril_ingot.name=秘银锭
+item.ss.orichalcum_gem.name=山铜锭
+
+item.ss.ninja_ingot.name=忍者锭
+
 item.ss.red_gel.name=红石凝胶
 item.ss.blue_gel.name=蓝石凝胶
 item.ss.yellow_gel.name=黄石凝胶
 
-item.ss.energy_reactor.name=能源反应器
-item.ss.object_reactor.name=目标反应器
+
+item.ss.craft_reactor.name=创造反应炉
+item.ss.energy_reactor.name=能量反应炉
+item.ss.object_reactor.name=物体反应炉
 
 
 
@@ -253,7 +301,7 @@ item.ss.magic_dust.name=魔力粉
 
 
 item.ss.silk_bobbin.name=丝绸卷
-item.ss.cloth.name=布匹
+item.ss.silk_cloth.name=丝绸布匹
 item.ss.small_cloth.name=小型布匹
 item.ss.canvas.name=帆布
 item.ss.drying_flesh.name=干燥腐肉
@@ -273,14 +321,23 @@ item.ss.stone_scoop.name=石铲
 item.ss.iron_scoop.name=铁铲
 item.ss.gold_scoop.name=金铲
 item.ss.diamond_scoop.name=钻石铲
+
+item.ss.copper_scoop.name=铜铲
 item.ss.brass_scoop.name=黄铜铲
+item.ss.ninja_scoop.name=忍者铲
+
+
 
 item.ss.wood_knife.name=木质小刀
 item.ss.stone_knife.name=石质小刀
 item.ss.iron_knife.name=铁质小刀
 item.ss.gold_knife.name=金质小刀
 item.ss.diamond_knife.name=钻石小刀
+
+item.ss.copper_knife.name=铜小刀
 item.ss.brass_knife.name=黄铜小刀
+item.ss.ninja_knife.name=忍者小刀
+
 
 item.ss.copper_shovel.name=铜锹
 item.ss.copper_pickaxe.name=铜镐
@@ -293,6 +350,13 @@ item.ss.brass_pickaxe.name=黄铜镐
 item.ss.brass_axe.name=黄铜斧
 item.ss.brass_sword.name=黄铜剑
 item.ss.brass_hoe.name=黄铜锄
+
+item.ss.ninja_shovel.name=忍者铲
+item.ss.ninja_pickaxe.name=忍者镐
+item.ss.ninja_axe.name=忍者斧
+item.ss.ninja_sword.name=忍者剑
+item.ss.ninja_hoe.name=忍者锄
+
 
 item.ss.copper_helmet.name=铜头盔
 item.ss.copper_chestplate.name=铜胸甲
@@ -325,10 +389,13 @@ item.ss.onion.name=洋葱
 item.ss.tomato.name=番茄
 item.ss.corn.name=玉米
 
+item.ss.copper_onion.name=铜洋葱
 item.ss.golden_corn.name=金玉米
 
 item.ss.eggplant.name=茄子
 item.ss.sweet_potato.name=甘薯
+item.ss.green_pepper.name=青椒
+
 item.ss.blue_potato.name=蓝土豆
 
 item.ss.radish.name=白萝卜
@@ -371,6 +438,7 @@ item.ss.takumi_tea_bottle.name=TAKUMI茶瓶
 
 item.ss.shift_hat.name=Shift的帽子
 item.ss.rucksack.name=帆布包
+item.ss.quiver.name=箭筒
 item.ss.oxygen_tank.name=氧气储罐
 item.ss.gf_contact_lenses.name=GF隐形眼镜
 item.ss.water_contact_lenses.name=水灵隐形眼镜
@@ -388,11 +456,8 @@ item.ss.multi_schott_unit.name=多重射击单元
 item.ss.bed_monster_unit.name=睡眠单元
 item.ss.pickaxe_unit.name=采掘单元
 
-item.ss.magic_contact_lenses.name=魔法隐形眼镜
-
 item.ss.debug_unit.name=调试单元
 
-item.ss.quiver.name=箭袋
 
 item.ss.iron_ring.name=铁指环
 item.ss.creeper_ring.name=爬行者商店指环
@@ -400,6 +465,10 @@ item.ss.mp_ring.name=钱币指环
 item.ss.xp_ring.name=经验指环
 
 
+item.ss.creeper_memory.name=苦力怕钱
+item.ss.skeleton_memory.name=骷髅钱
+
+item.ss.magic_contact_lenses.name=魔法隐形眼镜
 
 #液体
 fluid.ss.takumi_tea=TAKUMI 茶
@@ -449,7 +518,9 @@ gui.ss.funnel=流体漏斗
 
 gui.ss.shipping_box=船舶箱子
 
+
 gui.ss.rucksack=帆布包
+gui.ss.quiver=箭袋
 
 gui.ss.steam_motor=蒸汽引擎
 
@@ -471,6 +542,7 @@ gui.ss.gf_tank_5=山铜GF罐
 
 #Shop
 shop.ss.creeper=爬行者商店
+shop.ss.skeleton=武器骷髅商店
 shop.ss.robot=机器人商店
 
 #ToolTip
@@ -493,6 +565,7 @@ edition.creative=创造模式栏
 edition.achievement=成就
 edition.figure_beginner=初学者
 edition.ore_festival=矿物节日
+edition.magic_pumpkin=魔法南瓜
 
 edition.schr0_cleaver=Schr0切肉刀
 
@@ -515,6 +588,7 @@ player.tab.equipment=设备
 player.tab.item.ss.craft_unit=合成
 
 player.tab.item.ss.rucksack=帆布包
+player.tab.item.ss.quiver=箭袋
 
 player.tab.item.ss.creeper_ring=爬行者商店
 
@@ -749,14 +823,11 @@ achievement.ss.shipping=船舶方块
 achievement.ss.shipping.desc=试试来装载货物
 achievement.ss.shipping.desc2=我可是百万富翁!
 
-
-
 #Dep
 dep.ss.error1=是需要的程序库
-dep.ss.error2=不能下载。
+dep.ss.error2=。
 dep.ss.error2=确认互联网连接，手动重启
-dep.ss.error3=下载请放入文件夹mods。
-
+dep.ss.error3=下载请放入mods文件夹。
 
 #NEI
 nei.recipe=合成配方
@@ -784,3 +855,38 @@ nei.ss.time_machine=时光机配方
 
 nei.ss.fertilizer_farmland=农田作物突变
 nei.ss.fertilizer_paddy=稻田作物突变
+
+#Config
+config.ss.title=Sextiary Sector Configuration
+config.ss.general=一般设置
+config.ss.general.tooltip=更改一般类别中包含的设置。
+config.ss.general.fastDecayLeaves=快速掉落树叶
+config.ss.general.fastDecayLeaves.tooltip=关闭快速掉落树叶
+config.ss.general.usualHoe=通常的锄头
+config.ss.general.usualHoe.tooltip=关闭通常的锄头
+config.ss.general.particleShaft=轴粒子
+config.ss.general.particleShaft.tooltip=关闭轴粒子
+config.ss.potions=药水设置
+config.ss.potions.tooltip=更改设置药剂种类
+config.ss.potions.burn=燃烧
+config.ss.potions.burn.tooltip=指定烧伤药水的药水标识.
+config.ss.potions.hotSprings=温泉
+config.ss.potions.hotSprings.tooltip=指定温泉药水的药水
+config.ss.world=世界设定
+config.ss.world.tooltip=更改世界类别中包含的设置。
+config.ss.world.generateCopperOre=生成铜矿
+config.ss.world.generateCopperOre.tooltip=指定生成铜矿
+config.ss.world.generateZincOre=生成锌矿
+config.ss.world.generateZincOre.tooltip=指定生成锌矿
+config.ss.world.generateSilverOre=生成银矿
+config.ss.world.generateSilverOre.tooltip=指定生成银矿
+config.ss.status=状态设置
+config.ss.status.tooltip=更改设置状态设置
+config.ss.status.statusStamina=体力
+config.ss.status.statusStamina.tooltip=设定体力
+config.ss.status.statusMoisture=水分
+config.ss.status.statusMoisture.tooltip=设定水分
+config.ss.status.peacefulStamina=平静的耐力
+config.ss.status.peacefulStamina.tooltip=指定平静的耐力
+config.ss.status.peacefulMoisture=平静的水分
+config.ss.status.peacefulMoisture.tooltip=指定平静的水分
