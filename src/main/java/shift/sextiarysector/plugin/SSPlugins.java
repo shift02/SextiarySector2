@@ -33,7 +33,7 @@ public class SSPlugins {
         modTHKaguya = Loader.isModLoaded("THKaguyaMod") && modTHKaguya;
         modIC2 = Loader.isModLoaded("IC2") && modIC2;
         modTofu = Loader.isModLoaded("TofuCraft") && modTofu;
-        modTcon = Loader.isModLoaded("TConstruct") && modTcon;
+        modTcon = isTconTab() && modTcon;//Loader.isModLoaded("TConstruct") && modTcon;
         modCleaver = Loader.isModLoaded("schr0.cleaver") && modCleaver;
         modFMP = Loader.isModLoaded("ForgeMultipart") && modFMP;
         modRF = isRF() && modRF;
@@ -115,13 +115,12 @@ public class SSPlugins {
             }
         }
 
-
         if (modTcon) {
 
             try {
 
                 SextiarySector.Log.info("TConstruct Plugin is loaded");
-                plugins.add(new PluginTcon());
+                plugins.add(new PluginTconTab());
 
             } catch (Exception e) {
 
@@ -273,6 +272,21 @@ public class SSPlugins {
         Class<?> clazz;
         try {
             clazz = Class.forName("cofh.api.energy.IEnergyHandler");
+        } catch (ClassNotFoundException e) {
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    private static boolean isTconTab() {
+
+        Class<?> clazz;
+        try {
+            clazz = Class.forName("tconstruct.client.tabs.TabRegistry");
         } catch (ClassNotFoundException e) {
             return false;
         } catch (Exception e) {

@@ -3,11 +3,6 @@ package shift.sextiarysector.plugin;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.event.GuiScreenEvent;
-import net.minecraftforge.common.MinecraftForge;
-import shift.sextiarysector.gui.tab.TabManager;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -15,8 +10,13 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.common.MinecraftForge;
+import shift.sextiarysector.gui.tab.TabManager;
 
-public class PluginTcon implements IPlugin {
+public class PluginTconTab implements IPlugin {
 
     @SideOnly(Side.CLIENT)
     private static TconTab openTab;
@@ -85,6 +85,8 @@ public class PluginTcon implements IPlugin {
 
         ArrayList<tconstruct.client.tabs.AbstractTab> tabs = tconstruct.client.tabs.TabRegistry.getTabList();
 
+        if (tabs.size() < 2) return;
+
         for (int i = 1; i < tabs.size(); i++) {
             TabManager.registerTab(new TconTab(tabs.get(i)));
         }
@@ -97,10 +99,15 @@ public class PluginTcon implements IPlugin {
 
         tconstruct.client.tabs.AbstractTab tab;
         ItemStack item;
+        String tabName;
 
         public TconTab(tconstruct.client.tabs.AbstractTab tab) {
 
             this.tab = tab;
+            this.tabName = tab.getClass().getSimpleName();
+            if (this.tabName.indexOf("InventoryTab") != -1) {
+                this.tabName = this.tabName.replaceFirst("InventoryTab", "");
+            }
 
             try {
 
@@ -136,7 +143,7 @@ public class PluginTcon implements IPlugin {
 
         @Override
         public String getTabName() {
-            return "Tcon";
+            return this.tabName;
         }
 
         @Override
