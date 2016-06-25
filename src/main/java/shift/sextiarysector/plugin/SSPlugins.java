@@ -287,6 +287,8 @@ public class SSPlugins {
         Class<?> clazz;
         try {
             clazz = Class.forName("tconstruct.client.tabs.TabRegistry");
+        } catch (NoClassDefFoundError e) {
+            return false;
         } catch (ClassNotFoundException e) {
             return false;
         } catch (Exception e) {
