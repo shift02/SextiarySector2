@@ -51,7 +51,7 @@ repositories {
 
 apply plugin: 'forge'
 
-version = "2.4.8.c-1.7.10"//${project.minecraft.version}"
+version = "2.4.8.f-1.7.10"//${project.minecraft.version}"
 group= "shift.SextiarySector2" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SextiarySector2"
 
