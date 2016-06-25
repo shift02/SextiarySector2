@@ -1,6 +1,7 @@
 package shift.sextiarysector.player;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import shift.sextiarysector.api.equipment.EquipmentType;
 import shift.sextiarysector.api.equipment.IEquipment;
@@ -12,9 +13,12 @@ public class EquipmentStats {
 
     public InventoryPlayerNext inventory;
 
+    public InventoryPlayerNext dummy;
+
     public EquipmentStats() {
 
         inventory = new InventoryPlayerNext();
+        dummy = new InventoryPlayerNext();
 
     }
 
@@ -31,6 +35,22 @@ public class EquipmentStats {
 
         }
 
+    }
+
+    public boolean isPacket() {
+
+        for (int i = 0; i < 4; i++) {
+
+            if (!ItemStack.areItemStacksEqual(this.inventory.getStackInSlot(i), dummy.getStackInSlot(i))) {
+
+                dummy.setInventorySlotContents(i, inventory.getStackInSlot(i).copy());
+                return true;
+
+            }
+
+        }
+
+        return false;
     }
 
     public void writeNBT(NBTTagCompound compound) {
