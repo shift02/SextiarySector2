@@ -24,6 +24,7 @@ public class SSConfig {
     //General
     public static boolean fastDecayLeaves;
     public static boolean usualHoe;
+    public static int achievementReward;
 
     public static boolean particleShaft;
 
@@ -32,9 +33,15 @@ public class SSConfig {
     public static int potionHotSprings;
 
     //World
+    public static boolean generateBluestoneOre;
+    public static boolean generateYellowstoneOre;
     public static boolean generateCopperOre;
     public static boolean generateZincOre;
     public static boolean generateSilverOre;
+    public static boolean generateMithrilOre;
+    public static boolean generateOrichalcumOre;
+    public static boolean generateLargeOres;
+    public static boolean generateExtraLapis;
 
     //Status
     public static boolean statusStamina;
@@ -101,6 +108,15 @@ public class SSConfig {
         propOrder.add(prop.getName());
         usualHoe = prop.getBoolean(usualHoe);
 
+        //MP reward for achievements
+        prop = config.get(category, "achievementReward", 500);
+        prop.setMinValue(0);
+        prop.setLanguageKey(SS_LANG  + category + "." + prop.getName());
+        prop.comment = StatCollector.translateToLocal(prop.getLanguageKey() + ".tooltip");
+        prop.comment += " [default: " + prop.getDefault() + "]";
+        propOrder.add(prop.getName());
+        achievementReward = prop.getInt(achievementReward);
+
         if (side.isClient()) {
 
             //Shaft Particle - シャフトのパーティクル
@@ -143,6 +159,22 @@ public class SSConfig {
         category = CATEGORY_WORLD;
         propOrder = Lists.newArrayList();
 
+        //Generate Blue Stone Ore
+        prop = config.get(category, "generateBluestoneOre", true);
+        prop.setLanguageKey(SS_LANG  + category + "." + prop.getName());
+        prop.comment = StatCollector.translateToLocal(prop.getLanguageKey() + ".tooltip");
+        prop.comment += " [default: " + prop.getDefault() + "]";
+        propOrder.add(prop.getName());
+        generateBluestoneOre = prop.getBoolean(generateBluestoneOre);
+
+        //Generate Yellow Stone Ore
+        prop = config.get(category, "generateYellowstoneOre", true);
+        prop.setLanguageKey(SS_LANG  + category + "." + prop.getName());
+        prop.comment = StatCollector.translateToLocal(prop.getLanguageKey() + ".tooltip");
+        prop.comment += " [default: " + prop.getDefault() + "]";
+        propOrder.add(prop.getName());
+        generateYellowstoneOre = prop.getBoolean(generateYellowstoneOre);
+
         //Generate Copper Ore - 銅鉱石の生成
         prop = config.get(category, "generateCopperOre", true);
         prop.setLanguageKey(SS_LANG  + category + "." + prop.getName());
@@ -166,6 +198,38 @@ public class SSConfig {
         prop.comment += " [default: " + prop.getDefault() + "]";
         propOrder.add(prop.getName());
         generateSilverOre = prop.getBoolean(generateSilverOre);
+
+        //Generate Mithril Ore
+        prop = config.get(category, "generateMithrilOre", true);
+        prop.setLanguageKey(SS_LANG  + category + "." + prop.getName());
+        prop.comment = StatCollector.translateToLocal(prop.getLanguageKey() + ".tooltip");
+        prop.comment += " [default: " + prop.getDefault() + "]";
+        propOrder.add(prop.getName());
+        generateMithrilOre = prop.getBoolean(generateMithrilOre);
+
+        //Generate Orichalcum Ore
+        prop = config.get(category, "generateOrichalcumOre", true);
+        prop.setLanguageKey(SS_LANG  + category + "." + prop.getName());
+        prop.comment = StatCollector.translateToLocal(prop.getLanguageKey() + ".tooltip");
+        prop.comment += " [default: " + prop.getDefault() + "]";
+        propOrder.add(prop.getName());
+        generateOrichalcumOre = prop.getBoolean(generateOrichalcumOre);
+
+        //Generate Large Ores
+        prop = config.get(category, "generateLargeOres", true);
+        prop.setLanguageKey(SS_LANG  + category + "." + prop.getName());
+        prop.comment = StatCollector.translateToLocal(prop.getLanguageKey() + ".tooltip");
+        prop.comment += " [default: " + prop.getDefault() + "]";
+        propOrder.add(prop.getName());
+        generateLargeOres = prop.getBoolean(generateLargeOres);
+
+        //Generate Extra Lapis
+        prop = config.get(category, "generateExtraLapis", true);
+        prop.setLanguageKey(SS_LANG  + category + "." + prop.getName());
+        prop.comment = StatCollector.translateToLocal(prop.getLanguageKey() + ".tooltip");
+        prop.comment += " [default: " + prop.getDefault() + "]";
+        propOrder.add(prop.getName());
+        generateExtraLapis = prop.getBoolean(generateExtraLapis);
 
         config.setCategoryLanguageKey(category, SS_LANG + category);
         config.setCategoryPropertyOrder(category, propOrder);

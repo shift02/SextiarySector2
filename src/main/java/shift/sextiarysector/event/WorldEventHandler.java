@@ -74,8 +74,8 @@ public class WorldEventHandler {
 
         this.lapisGen = new WorldGenMinable(Blocks.lapis_ore, 6);
 
-        this.genStandardOre1(8, this.bluestoneGen, 0, 16);
-        this.genStandardOre1(8, this.yellowstoneGen, 0, 16);
+        if (SSConfig.generateBluestoneOre) this.genStandardOre1(8, this.bluestoneGen, 0, 16);
+        if (SSConfig.generateYellowstoneOre) this.genStandardOre1(8, this.yellowstoneGen, 0, 16);
 
         if (SSConfig.generateCopperOre) this.genStandardOre1(20, this.copperOreGen, 0, 64);
         if (SSConfig.generateZincOre) this.genStandardOre1(12, this.zincOreGen, 0, 64);
@@ -83,22 +83,26 @@ public class WorldEventHandler {
 
         if (BiomeDictionary.isBiomeOfType(biome, Type.COLD)) {
 
-            this.genStandardOre1(4, mithrilOreGen, 0, 32);
+            if (SSConfig.generateMithrilOre) this.genStandardOre1(4, mithrilOreGen, 0, 32);
 
         } else if (BiomeDictionary.isBiomeOfType(biome, Type.HOT)) {
 
-            this.genStandardOre1(1, orichalcumOreGen, 0, 18);
+            if (SSConfig.generateOrichalcumOre) this.genStandardOre1(1, orichalcumOreGen, 0, 18);
 
         }
 
-        this.genStandardOre1(10, this.coaLargeGen, 0, 128);
-        this.genStandardOre1(10, this.ironLarge, 0, 64);
-        this.genStandardOre1(1, this.goldLarge, 0, 32);
+        if (SSConfig.generateLargeOres) {
 
-        this.genStandardOre1(1, this.silverLarge, 0, 32);
+            this.genStandardOre1(10, this.coaLargeGen, 0, 128);
+            this.genStandardOre1(10, this.ironLarge, 0, 64);
+            this.genStandardOre1(1, this.goldLarge, 0, 32);
+
+            if (SSConfig.generateSilverOre) this.genStandardOre1(1, this.silverLarge, 0, 32);
+
+        }
         //System.out.println("onOreGenEvent");
 
-        this.genStandardOre1(1, this.lapisGen, 16, 24);
+        if (SSConfig.generateExtraLapis) this.genStandardOre1(1, this.lapisGen, 16, 24);
 
     }
 

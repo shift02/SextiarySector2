@@ -11,6 +11,7 @@ import shift.mceconomy2.api.MCEconomyAPI;
 import shift.mceconomy2.api.shop.ShopBuyEvent;
 import shift.sextiarysector.SSAchievement;
 import shift.sextiarysector.SSBlocks;
+import shift.sextiarysector.SSConfig;
 import shift.sextiarysector.block.BlockFigure;
 import shift.sextiarysector.item.ItemSeed;
 
@@ -43,7 +44,7 @@ public class AchievementEventHandler {
         	player.dropPlayerItemWithRandomChoice(f, false);
         }*/
 
-        MCEconomyAPI.addPlayerMP(player, 500, false);
+        MCEconomyAPI.addPlayerMP(player, SSConfig.achievementReward, false);
 
         EntityItem eItem = new EntityItem(player.worldObj, player.posX + 0.5d, player.posY + 0.5d, player.posZ + 0.5d, f);
         eItem.lifespan = 12000;
