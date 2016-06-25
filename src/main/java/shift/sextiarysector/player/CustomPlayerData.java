@@ -1,5 +1,6 @@
 package shift.sextiarysector.player;
 
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -31,6 +32,12 @@ public class CustomPlayerData implements IExtendedEntityProperties {
         if (moisture.isPacket() || stamina.isPacket()) {
             SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this), (EntityPlayerMP) entityPlayer);
             //.out.println("onUpdateEntity");
+        }
+
+        if (equipment.isPacket()) {
+            PacketPlayerData d = new PacketPlayerData(this);
+            d.getData().setString("uuid", entityPlayer.getUniqueID().toString());
+            SSPacketHandler.INSTANCE.sendToAllAround(d, new TargetPoint(entityPlayer.dimension, entityPlayer.posX, entityPlayer.posY, entityPlayer.posZ, 64));
         }
 
         this.moisture.onUpdate(entityPlayer);

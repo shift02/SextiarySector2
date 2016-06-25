@@ -1,5 +1,6 @@
 package shift.sextiarysector.event;
 
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.block.Block;
@@ -7,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -180,16 +182,34 @@ public class PlayerStatusEventHandler {
     }
 
     // ダメージ
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onLivingHurtEvent2(LivingHurtEvent event) {
 
         if (event.entityLiving.worldObj.isRemote || !(event.entityLiving instanceof EntityPlayer)) {
             return;
         }
 
+        if (event.isCanceled()) return;
+
         EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-        SextiarySectorAPI.addStaminaExhaustion(player, event.ammount * 1.2f);
+        if (event.ammount < 0) return;
+
+        float d = this.applyArmorCalculations(player, event.source, event.ammount);
+
+        SextiarySectorAPI.addStaminaExhaustion(player, d * 1.2f);
+
+    }
+
+    protected float applyArmorCalculations(EntityPlayer player, DamageSource p_70655_1_, float p_70655_2_) {
+
+        if (!p_70655_1_.isUnblockable()) {
+            int i = 25 - player.getTotalArmorValue();
+            float f1 = p_70655_2_ * i;
+            p_70655_2_ = f1 / 25.0F;
+        }
+
+        return p_70655_2_;
 
     }
 

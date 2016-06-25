@@ -124,7 +124,7 @@ public class RecipesCore {
                 new Object[] {
                         "slimeball",
                         "dustIron",
-                        "itemAsh"
+                        "dustAsh"
                 }));
 
         p_77608_1_.getRecipeList().add(new ShapedOreRecipe(new ItemStack(SSBlocks.kawara, 1),

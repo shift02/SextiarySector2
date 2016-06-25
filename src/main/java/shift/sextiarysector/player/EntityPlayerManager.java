@@ -2,6 +2,7 @@ package shift.sextiarysector.player;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -404,6 +405,8 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
 
             SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData((EntityPlayer) event.entity)), (EntityPlayerMP) event.entity);
 
+            this.sendOtherPlayer((EntityPlayer) event.entity);
+
         }
     }
 
@@ -411,7 +414,11 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
         //プレイヤーがディメンション間を移動したときの処理
 
-        if (!event.player.worldObj.isRemote) SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
+        if (!event.player.worldObj.isRemote) {
+            SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
+
+            this.sendOtherPlayer(event.player);
+        }
 
     }
 
@@ -419,8 +426,20 @@ public class EntityPlayerManager implements IPlayerManager {//implements {//IPla
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
         //プレイヤーがリスポーンした時の処理
         //System.out.println("onPlayerRespawn");
-        if (!event.player.worldObj.isRemote) SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
+        if (!event.player.worldObj.isRemote) {
 
+            SSPacketHandler.INSTANCE.sendTo(new PacketPlayerData(this.getCustomPlayerData(event.player)), (EntityPlayerMP) event.player);
+
+            this.sendOtherPlayer(event.player);
+        }
+
+    }
+
+    public void sendOtherPlayer(EntityPlayer player) {
+        //他のプレイヤーに送る
+        PacketPlayerData d = new PacketPlayerData(this.getCustomPlayerData(player));
+        d.getData().setString("uuid", player.getUniqueID().toString());
+        SSPacketHandler.INSTANCE.sendToAllAround(d, new TargetPoint(player.dimension, player.posX, player.posY, player.posZ, 64));
     }
 
 }

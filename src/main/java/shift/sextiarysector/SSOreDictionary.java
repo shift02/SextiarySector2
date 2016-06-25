@@ -132,7 +132,7 @@ public class SSOreDictionary {
 
         OreDictionary.registerOre("treeLeaves", SSBlocks.leafBlock);
 
-        OreDictionary.registerOre("itemAsh", SSItems.ash);
+        OreDictionary.registerOre("dustAsh", SSItems.ash);
         OreDictionary.registerOre("dyeLightGray", SSItems.ash);
 
         //布

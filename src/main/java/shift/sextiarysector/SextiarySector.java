@@ -34,7 +34,7 @@ import shift.sextiarysector.plugin.SSPlugins;
 import shift.sextiarysector.proxy.CommonProxy;
 import shift.sextiarysector.recipe.RecipesFurnaceCraft;
 
-@Mod(modid = SextiarySector.MODID, version = SextiarySector.VERSION, guiFactory = "shift.sextiarysector.config.SSConfigGuiFactory")
+@Mod(modid = SextiarySector.MODID, version = SextiarySector.VERSION, dependencies = SextiarySector.DEPENDENCY, guiFactory = "shift.sextiarysector.config.SSConfigGuiFactory")
 public class SextiarySector {
 
     public static final String MODID = "SextiarySector";
@@ -43,7 +43,7 @@ public class SextiarySector {
     @Mod.Instance("SextiarySector")
     public static SextiarySector instance;
 
-    public static final String DEPENDENCY = "";//"required-after:mceconomy2";
+    public static final String DEPENDENCY = "after:GalacticraftCore";//"required-after:mceconomy2";
 
     @SidedProxy(modId = MODID, clientSide = "shift.sextiarysector.proxy.ClientProxy", serverSide = "shift.sextiarysector.proxy.CommonProxy")
     public static CommonProxy proxy;

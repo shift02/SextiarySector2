@@ -51,6 +51,7 @@ public class BlockCrop extends BlockContainer {
     public float getBlockHardness(World world, int x, int y, int z) {
 
         TileEntityCrop tileCrop = (TileEntityCrop) world.getTileEntity(x, y, z);
+        if (tileCrop == null) return super.getBlockHardness(world, x, y, z);
 
         TileFarmland tileFarmland = (TileFarmland) world.getTileEntity(x, y - 1, z);
 
@@ -110,6 +111,8 @@ public class BlockCrop extends BlockContainer {
         TileEntityCrop tileCrop = (TileEntityCrop) world.getTileEntity(x, y, z);
 
         TileFarmland tileFarmland = (TileFarmland) world.getTileEntity(x, y - 1, z);
+
+        if (tileCrop == null) return super.getEnchantPowerBonus(world, x, y, z);
 
         if (tileCrop.getCrop() == null) return super.getEnchantPowerBonus(world, x, y, z);
 
@@ -207,6 +210,8 @@ public class BlockCrop extends BlockContainer {
             }
 
         } catch (NullPointerException e) {
+
+        } catch (NoSuchMethodError e) {
 
         }
 

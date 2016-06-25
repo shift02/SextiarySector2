@@ -39,7 +39,7 @@ public class RecipesFurnaceCraft {
         //石鹸
         p_77608_1_.addRecipe(new ShapelessOreRecipe(new ItemStack(SSItems.soap, 1),
                 new Object[] {
-                        "itemAsh",
+                        "dustAsh",
                         SSItems.animalOil,
                         SSItems.animalOil
                 }));
@@ -306,12 +306,18 @@ public class RecipesFurnaceCraft {
 
         for (Map.Entry<ItemStack, ItemStack> e : ((HashMap<ItemStack, ItemStack>) FurnaceRecipes.smelting().getSmeltingList()).entrySet()) {
 
-            if (e.getValue().getItem().hasContainerItem(e.getValue().copy()) && e.getKey().getItem().hasContainerItem(e.getKey().copy())) {
-                if (checkItem(e.getValue().getItem().getContainerItem(e.getValue().copy()), e.getKey().getItem().getContainerItem(e.getKey().copy())))
-                    continue;
-            }
+            try {
 
-            FurnaceCraftingManager.getInstance().addShapelessRecipe(e.getValue(), new Object[] { e.getKey() });
+                if (e.getValue().getItem().hasContainerItem(e.getValue().copy()) && e.getKey().getItem().hasContainerItem(e.getKey().copy())) {
+                    if (checkItem(e.getValue().getItem().getContainerItem(e.getValue().copy()), e.getKey().getItem().getContainerItem(e.getKey().copy())))
+                        continue;
+                }
+
+                FurnaceCraftingManager.getInstance().addShapelessRecipe(e.getValue(), new Object[] { e.getKey() });
+
+            } catch (NullPointerException nullE) {
+
+            }
 
         }
 
