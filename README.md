@@ -5,8 +5,8 @@
 動作環境
 ---------------------------------
 
-*Minecraft 1.7.10  
-*MinecraftForge 10.13.0.1186
+- Minecraft 1.7.10  
+- MinecraftForge 10.13.0.1186
 
 
 ライセンス
