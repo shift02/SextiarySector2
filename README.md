@@ -11,5 +11,5 @@
 
 ライセンス
 ---------------------------------
-*ソース
+- ソース
 [Minecraft Mod Public License Japanese Translation (MMPL_J)](https://dl.dropboxusercontent.com/u/51943112/MMPL_J.txt "MMPL_J")
